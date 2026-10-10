@@ -1,0 +1,1848 @@
+{
+  "baseCommit": "07fc322c3159975d3a9abb90e6be180b81452105",
+  "version": "0.12.2",
+  "buildId": "20261010T142132Z-stage-cadence",
+  "result": "PASS",
+  "scope": "3-stage boss/map cadence, first living enemies 4, proportional population, centered nonblocking stage entry; no enemy appearance/ability/stat/economy changes",
+  "finalArtifacts": {
+    "index.html": "024a901aaaab9e665aac56d27e6be29dca2711bebad8dfcc772a940b534f6bd2",
+    "pets.js": "ee8acfe3ff54cb32e2d728d5b9bbd6ee8f263f86c60a93da7b7253e15282b24e",
+    "audio.js": "8543ce14bcd61c07373cd7c7c560b9c696ecf5afb80918d3c5929ef407a84a22"
+  },
+  "rules": {
+    "initialKills": 7,
+    "killsPerStage": 4,
+    "bossEvery": 3,
+    "mapEvery": 3,
+    "transitionMs": 1650,
+    "bossWarningMs": 750,
+    "entryNoticeMs": 1100,
+    "bossNoticeMs": 1250,
+    "noticePriority": {
+      "stage": 1,
+      "boss": 3
+    },
+    "worldRadius": 550,
+    "radiusGrowth": 0.22,
+    "maxRadius": 1600,
+    "initialPopulation": 4,
+    "populationPerStage": 1,
+    "maxEnemies": 82,
+    "enemySpawnMinGap": 98,
+    "spawnSafeRadius": 285,
+    "obstaclePer100k": 0.93,
+    "maxObstacles": 72,
+    "connectivityStep": 82,
+    "connectivityMin": 0.92
+  },
+  "observedStages": [
+    {
+      "index": 1,
+      "radius": 550,
+      "playableArea": 749631,
+      "targetPopulation": 4,
+      "mapTier": 0,
+      "mapStart": 1,
+      "mapSeed": 2654354052,
+      "theme": "garden",
+      "layout": "grove",
+      "killTarget": 7
+    },
+    {
+      "index": 2,
+      "radius": 550,
+      "playableArea": 749631,
+      "targetPopulation": 5,
+      "mapTier": 0,
+      "mapStart": 1,
+      "mapSeed": 2654354052,
+      "theme": "garden",
+      "layout": "grove",
+      "killTarget": 11
+    },
+    {
+      "index": 3,
+      "radius": 550,
+      "playableArea": 749631,
+      "targetPopulation": 6,
+      "mapTier": 0,
+      "mapStart": 1,
+      "mapSeed": 2654354052,
+      "theme": "garden",
+      "layout": "grove",
+      "killTarget": 15
+    },
+    {
+      "index": 4,
+      "radius": 671,
+      "playableArea": 1042440,
+      "targetPopulation": 10,
+      "mapTier": 1,
+      "mapStart": 4,
+      "mapSeed": 2027726321,
+      "theme": "cave",
+      "layout": "cavernRing",
+      "killTarget": 19
+    },
+    {
+      "index": 5,
+      "radius": 671,
+      "playableArea": 1042440,
+      "targetPopulation": 11,
+      "mapTier": 1,
+      "mapStart": 4,
+      "mapSeed": 2027726321,
+      "theme": "cave",
+      "layout": "cavernRing",
+      "killTarget": 23
+    },
+    {
+      "index": 6,
+      "radius": 671,
+      "playableArea": 1042440,
+      "targetPopulation": 13,
+      "mapTier": 1,
+      "mapStart": 4,
+      "mapSeed": 2027726321,
+      "theme": "cave",
+      "layout": "cavernRing",
+      "killTarget": 27
+    }
+  ],
+  "actualBrowserElapsedMs": 44689,
+  "runs": {
+    "representative": {
+      "startedAt": "2026-10-10T14:25:18.211Z",
+      "result": "PASS",
+      "elapsedMs": 35210,
+      "browser": "155.0.4283.45",
+      "artifacts": {
+        "index.html": "edcb6f0f9815d9176d4c9a9d13d505d5bce509ba3c576f7834e4ade11418d6fd",
+        "pets.js": "ee8acfe3ff54cb32e2d728d5b9bbd6ee8f263f86c60a93da7b7253e15282b24e",
+        "audio.js": "8543ce14bcd61c07373cd7c7c560b9c696ecf5afb80918d3c5929ef407a84a22"
+      },
+      "fixture": {
+        "kills": 20000,
+        "unlocked": [
+          "echo",
+          "autoChain",
+          "ricochet"
+        ],
+        "statLevels": {
+          "attackPower": 30,
+          "maxHp": 30,
+          "armor": 10,
+          "healthRegen": 5,
+          "petSlots": 4
+        },
+        "companions": {
+          "inventory": [
+            {
+              "id": 1,
+              "speciesId": "petalPredator",
+              "kind": "pet",
+              "grade": 5,
+              "hatchProgress": 30,
+              "locked": false
+            },
+            {
+              "id": 2,
+              "speciesId": "petalPredator",
+              "kind": "pet",
+              "grade": 5,
+              "hatchProgress": 30,
+              "locked": false
+            },
+            {
+              "id": 3,
+              "speciesId": "petalPredator",
+              "kind": "pet",
+              "grade": 5,
+              "hatchProgress": 30,
+              "locked": false
+            },
+            {
+              "id": 4,
+              "speciesId": "petalPredator",
+              "kind": "pet",
+              "grade": 5,
+              "hatchProgress": 30,
+              "locked": false
+            },
+            {
+              "id": 5,
+              "speciesId": "petalPredator",
+              "kind": "pet",
+              "grade": 5,
+              "hatchProgress": 30,
+              "locked": false
+            }
+          ],
+          "slots": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "nextId": 6,
+          "discovered": [
+            "petalPredator"
+          ]
+        }
+      },
+      "checks": [
+        "Exactly 4 living enemies in initial stage; target cap respected during wave",
+        "1→2 normal clear and 2→3 without boss; actual stage3 boss and clear",
+        "1..3 same radius/theme/geometry seed/playable area; actual 3→4 expansion and cave debut",
+        "Stage 1..6 central number entry, pointer none and native WASD/click/ticks during intro",
+        "Stage/actual area proportional population grows; existing stage cues play",
+        "Actual stage6 cave mushroom boss reached without runtime forcing"
+      ],
+      "errors": [],
+      "events": [
+        {
+          "key": "LOBBY:1:WAVE",
+          "tick": 0,
+          "timeMs": 0,
+          "phase": "LOBBY",
+          "stage": {
+            "index": 1,
+            "phase": "WAVE",
+            "waveKills": 0,
+            "killTarget": 7,
+            "bossHp": null,
+            "bossState": null,
+            "bossPattern": null,
+            "patternLog": [],
+            "obstacleCount": 6,
+            "broken": 0,
+            "arenaSides": 8,
+            "theme": "garden",
+            "themeName": "화원",
+            "layout": "grove",
+            "layoutName": "빽빽한 화단",
+            "radius": 550,
+            "playableArea": 749631,
+            "targetPopulation": 4,
+            "mapTier": 0,
+            "mapStart": 1,
+            "mapSeed": 2654354052,
+            "bossStage": false,
+            "referenceArea": 749630.913784598,
+            "bossName": null,
+            "bossVariant": null,
+            "bossSummons": 0,
+            "seed": 2654354052,
+            "generation": {
+              "retries": 0,
+              "connectivity": 0.9375,
+              "clearLane": 444,
+              "obstacles": 6
+            }
+          },
+          "enemies": 4,
+          "health": 280,
+          "kills": 0,
+          "pets": {
+            "hits": 0,
+            "kills": 0,
+            "damage": 0,
+            "actors": 5
+          },
+          "audio": {
+            "state": "locked",
+            "played": 0,
+            "dropped": 0,
+            "maxObserved": 0,
+            "bySound": {}
+          },
+          "banner": {
+            "text": "STAGE 1",
+            "kind": "stage",
+            "opacity": "0",
+            "pointerEvents": "none",
+            "center": {
+              "x": 0,
+              "y": 0
+            }
+          }
+        },
+        {
+          "key": "PLAYING:1:WAVE",
+          "tick": 0,
+          "timeMs": 0,
+          "phase": "PLAYING",
+          "stage": {
+            "index": 1,
+            "phase": "WAVE",
+            "waveKills": 0,
+            "killTarget": 7,
+            "bossHp": null,
+            "bossState": null,
+            "bossPattern": null,
+            "patternLog": [],
+            "obstacleCount": 6,
+            "broken": 0,
+            "arenaSides": 8,
+            "theme": "garden",
+            "themeName": "화원",
+            "layout": "grove",
+            "layoutName": "빽빽한 화단",
+            "radius": 550,
+            "playableArea": 749631,
+            "targetPopulation": 4,
+            "mapTier": 0,
+            "mapStart": 1,
+            "mapSeed": 2654354052,
+            "bossStage": false,
+            "referenceArea": 749630.913784598,
+            "bossName": null,
+            "bossVariant": null,
+            "bossSummons": 0,
+            "seed": 2654354052,
+            "generation": {
+              "retries": 0,
+              "connectivity": 0.9375,
+              "clearLane": 444,
+              "obstacles": 6
+            }
+          },
+          "enemies": 4,
+          "health": 280,
+          "kills": 0,
+          "pets": {
+            "hits": 0,
+            "kills": 0,
+            "damage": 0,
+            "actors": 5
+          },
+          "audio": {
+            "state": "running",
+            "played": 2,
+            "dropped": 0,
+            "maxObserved": 2,
+            "bySound": {
+              "stageStart": 1,
+              "ui": 1
+            }
+          },
+          "banner": {
+            "text": "STAGE 1",
+            "kind": "stage",
+            "opacity": "1",
+            "pointerEvents": "none",
+            "center": {
+              "x": 500,
+              "y": 400
+            }
+          }
+        },
+        {
+          "key": "PLAYING:1:CLEAR",
+          "tick": 110,
+          "timeMs": 1833.3333333333335,
+          "phase": "PLAYING",
+          "stage": {
+            "index": 1,
+            "phase": "CLEAR",
+            "waveKills": 7,
+            "killTarget": 7,
+            "bossHp": null,
+            "bossState": null,
+            "bossPattern": null,
+            "patternLog": [],
+            "obstacleCount": 6,
+            "broken": 0,
+            "arenaSides": 8,
+            "theme": "garden",
+            "themeName": "화원",
+            "layout": "grove",
+            "layoutName": "빽빽한 화단",
+            "radius": 550,
+            "playableArea": 749631,
+            "targetPopulation": 4,
+            "mapTier": 0,
+            "mapStart": 1,
+            "mapSeed": 2654354052,
+            "bossStage": false,
+            "referenceArea": 749630.913784598,
+            "bossName": null,
+            "bossVariant": null,
+            "bossSummons": 0,
+            "seed": 2654354052,
+            "generation": {
+              "retries": 0,
+              "connectivity": 0.9375,
+              "clearLane": 444,
+              "obstacles": 6
+            }
+          },
+          "enemies": 0,
+          "health": 228.37750000000037,
+          "kills": 7,
+          "pets": {
+            "hits": 3,
+            "kills": 7,
+            "damage": 475,
+            "actors": 5
+          },
+          "audio": {
+            "state": "running",
+            "played": 22,
+            "dropped": 3,
+            "maxObserved": 4,
+            "bySound": {
+              "stageStart": 1,
+              "ui": 1,
+              "enemyNotice": 3,
+              "evade": 2,
+              "enemyShot": 1,
+              "launch": 2,
+              "kill": 6,
+              "petImpact": 2,
+              "hurt": 1,
+              "chargeHalf": 1,
+              "dash": 1,
+              "stageClear": 1
+            }
+          },
+          "banner": {
+            "text": "STAGE 1",
+            "kind": "stage",
+            "opacity": "0",
+            "pointerEvents": "none",
+            "center": {
+              "x": 500,
+              "y": 399.99998474121094
+            }
+          }
+        },
+        {
+          "key": "PLAYING:2:WAVE",
+          "tick": 209,
+          "timeMs": 3483.3333333333335,
+          "phase": "PLAYING",
+          "stage": {
+            "index": 2,
+            "phase": "WAVE",
+            "waveKills": 0,
+            "killTarget": 11,
+            "bossHp": null,
+            "bossState": null,
+            "bossPattern": null,
+            "patternLog": [],
+            "obstacleCount": 6,
+            "broken": 0,
+            "arenaSides": 8,
+            "theme": "garden",
+            "themeName": "화원",
+            "layout": "grove",
+            "layoutName": "빽빽한 화단",
+            "radius": 550,
+            "playableArea": 749631,
+            "targetPopulation": 5,
+            "mapTier": 0,
+            "mapStart": 1,
+            "mapSeed": 2654354052,
+            "bossStage": false,
+            "referenceArea": 749630.913784598,
+            "bossName": null,
+            "bossVariant": null,
+            "bossSummons": 0,
+            "seed": 1013952599,
+            "generation": {
+              "retries": 0,
+              "connectivity": 0.9375,
+              "clearLane": 444,
+              "obstacles": 6
+            }
+          },
+          "enemies": 5,
+          "health": 280,
+          "kills": 7,
+          "pets": {
+            "hits": 3,
+            "kills": 7,
+            "damage": 475,
+            "actors": 5
+          },
+          "audio": {
+            "state": "running",
+            "played": 23,
+            "dropped": 3,
+            "maxObserved": 4,
+            "bySound": {
+              "stageStart": 2,
+              "ui": 1,
+              "enemyNotice": 3,
+              "evade": 2,
+              "enemyShot": 1,
+              "launch": 2,
+              "kill": 6,
+              "petImpact": 2,
+              "hurt": 1,
+              "chargeHalf": 1,
+              "dash": 1,
+              "stageClear": 1
+            }
+          },
+          "banner": {
+            "text": "STAGE 2",
+            "kind": "stage",
+            "opacity": "0",
+            "pointerEvents": "none",
+            "center": {
+              "x": 500,
+              "y": 399.99998474121094
+            }
+          }
+        },
+        {
+          "key": "PLAYING:2:CLEAR",
+          "tick": 411,
+          "timeMs": 6850.000000000001,
+          "phase": "PLAYING",
+          "stage": {
+            "index": 2,
+            "phase": "CLEAR",
+            "waveKills": 11,
+            "killTarget": 11,
+            "bossHp": null,
+            "bossState": null,
+            "bossPattern": null,
+            "patternLog": [],
+            "obstacleCount": 6,
+            "broken": 0,
+            "arenaSides": 8,
+            "theme": "garden",
+            "themeName": "화원",
+            "layout": "grove",
+            "layoutName": "빽빽한 화단",
+            "radius": 550,
+            "playableArea": 749631,
+            "targetPopulation": 5,
+            "mapTier": 0,
+            "mapStart": 1,
+            "mapSeed": 2654354052,
+            "bossStage": false,
+            "referenceArea": 749630.913784598,
+            "bossName": null,
+            "bossVariant": null,
+            "bossSummons": 0,
+            "seed": 1013952599,
+            "generation": {
+              "retries": 0,
+              "connectivity": 0.9375,
+              "clearLane": 444,
+              "obstacles": 6
+            }
+          },
+          "enemies": 0,
+          "health": 280,
+          "kills": 18,
+          "pets": {
+            "hits": 8,
+            "kills": 15,
+            "damage": 1117,
+            "actors": 5
+          },
+          "audio": {
+            "state": "running",
+            "played": 88,
+            "dropped": 7,
+            "maxObserved": 8,
+            "bySound": {
+              "stageStart": 2,
+              "ui": 1,
+              "enemyNotice": 9,
+              "evade": 2,
+              "enemyShot": 4,
+              "launch": 3,
+              "kill": 15,
+              "petImpact": 7,
+              "hurt": 10,
+              "chargeHalf": 6,
+              "dash": 7,
+              "stageClear": 2,
+              "impactMedium": 4,
+              "heal": 6,
+              "echo": 5,
+              "enemyLunge": 1,
+              "chargeReady": 1,
+              "impactLight": 1,
+              "chainStart": 1,
+              "impactHeavy": 1
+            }
+          },
+          "banner": {
+            "text": "STAGE 2",
+            "kind": "stage",
+            "opacity": "0",
+            "pointerEvents": "none",
+            "center": {
+              "x": 500,
+              "y": 399.99998474121094
+            }
+          }
+        },
+        {
+          "key": "PLAYING:3:WAVE",
+          "tick": 510,
+          "timeMs": 8500,
+          "phase": "PLAYING",
+          "stage": {
+            "index": 3,
+            "phase": "WAVE",
+            "waveKills": 0,
+            "killTarget": 15,
+            "bossHp": null,
+            "bossState": null,
+            "bossPattern": null,
+            "patternLog": [],
+            "obstacleCount": 6,
+            "broken": 0,
+            "arenaSides": 8,
+            "theme": "garden",
+            "themeName": "화원",
+            "layout": "grove",
+            "layoutName": "빽빽한 화단",
+            "radius": 550,
+            "playableArea": 749631,
+            "targetPopulation": 6,
+            "mapTier": 0,
+            "mapStart": 1,
+            "mapSeed": 2654354052,
+            "bossStage": true,
+            "referenceArea": 749630.913784598,
+            "bossName": null,
+            "bossVariant": null,
+            "bossSummons": 0,
+            "seed": 3668389414,
+            "generation": {
+              "retries": 0,
+              "connectivity": 0.9375,
+              "clearLane": 444,
+              "obstacles": 6
+            }
+          },
+          "enemies": 6,
+          "health": 280,
+          "kills": 18,
+          "pets": {
+            "hits": 8,
+            "kills": 15,
+            "damage": 1117,
+            "actors": 5
+          },
+          "audio": {
+            "state": "running",
+            "played": 89,
+            "dropped": 7,
+            "maxObserved": 8,
+            "bySound": {
+              "stageStart": 3,
+              "ui": 1,
+              "enemyNotice": 9,
+              "evade": 2,
+              "enemyShot": 4,
+              "launch": 3,
+              "kill": 15,
+              "petImpact": 7,
+              "hurt": 10,
+              "chargeHalf": 6,
+              "dash": 7,
+              "stageClear": 2,
+              "impactMedium": 4,
+              "heal": 6,
+              "echo": 5,
+              "enemyLunge": 1,
+              "chargeReady": 1,
+              "impactLight": 1,
+              "chainStart": 1,
+              "impactHeavy": 1
+            }
+          },
+          "banner": {
+            "text": "STAGE 3",
+            "kind": "stage",
+            "opacity": "0",
+            "pointerEvents": "none",
+            "center": {
+              "x": 500,
+              "y": 399.99998474121094
+            }
+          }
+        },
+        {
+          "key": "PLAYING:3:BOSS_PENDING",
+          "tick": 740,
+          "timeMs": 12333.333333333334,
+          "phase": "PLAYING",
+          "stage": {
+            "index": 3,
+            "phase": "BOSS_PENDING",
+            "waveKills": 15,
+            "killTarget": 15,
+            "bossHp": null,
+            "bossState": null,
+            "bossPattern": null,
+            "patternLog": [],
+            "obstacleCount": 6,
+            "broken": 0,
+            "arenaSides": 8,
+            "theme": "garden",
+            "themeName": "화원",
+            "layout": "grove",
+            "layoutName": "빽빽한 화단",
+            "radius": 550,
+            "playableArea": 749631,
+            "targetPopulation": 6,
+            "mapTier": 0,
+            "mapStart": 1,
+            "mapSeed": 2654354052,
+            "bossStage": true,
+            "referenceArea": 749630.913784598,
+            "bossName": null,
+            "bossVariant": null,
+            "bossSummons": 0,
+            "seed": 3668389414,
+            "generation": {
+              "retries": 0,
+              "connectivity": 0.9375,
+              "clearLane": 444,
+              "obstacles": 6
+            }
+          },
+          "enemies": 4,
+          "health": 268.782857142857,
+          "kills": 34,
+          "pets": {
+            "hits": 17,
+            "kills": 31,
+            "damage": 1896,
+            "actors": 5
+          },
+          "audio": {
+            "state": "running",
+            "played": 149,
+            "dropped": 14,
+            "maxObserved": 8,
+            "bySound": {
+              "stageStart": 3,
+              "ui": 1,
+              "enemyNotice": 18,
+              "evade": 2,
+              "enemyShot": 5,
+              "launch": 6,
+              "kill": 26,
+              "petImpact": 15,
+              "hurt": 14,
+              "chargeHalf": 12,
+              "dash": 12,
+              "stageClear": 2,
+              "impactMedium": 6,
+              "heal": 9,
+              "echo": 8,
+              "enemyLunge": 2,
+              "chargeReady": 3,
+              "impactLight": 2,
+              "chainStart": 2,
+              "impactHeavy": 1
+            }
+          },
+          "banner": {
+            "text": "거대 생명체가 다가온다",
+            "kind": "boss",
+            "opacity": "0",
+            "pointerEvents": "none",
+            "center": {
+              "x": 500.00001525878906,
+              "y": 400
+            }
+          }
+        },
+        {
+          "key": "PLAYING:3:BOSS",
+          "tick": 785,
+          "timeMs": 13083.333333333334,
+          "phase": "PLAYING",
+          "stage": {
+            "index": 3,
+            "phase": "BOSS",
+            "waveKills": 15,
+            "killTarget": 15,
+            "bossHp": 745.1999999999999,
+            "bossState": "BOSS_RECOVER",
+            "bossPattern": "FAN",
+            "patternLog": [],
+            "obstacleCount": 6,
+            "broken": 0,
+            "arenaSides": 8,
+            "theme": "garden",
+            "themeName": "화원",
+            "layout": "grove",
+            "layoutName": "빽빽한 화단",
+            "radius": 550,
+            "playableArea": 749631,
+            "targetPopulation": 6,
+            "mapTier": 0,
+            "mapStart": 1,
+            "mapSeed": 2654354052,
+            "bossStage": true,
+            "referenceArea": 749630.913784598,
+            "bossName": "꽃잎 포식자",
+            "bossVariant": "wide",
+            "bossSummons": 0,
+            "seed": 3668389414,
+            "generation": {
+              "retries": 0,
+              "connectivity": 0.9375,
+              "clearLane": 444,
+              "obstacles": 6
+            }
+          },
+          "enemies": 1,
+          "health": 269.90785714285596,
+          "kills": 36,
+          "pets": {
+            "hits": 18,
+            "kills": 33,
+            "damage": 2001,
+            "actors": 5
+          },
+          "audio": {
+            "state": "running",
+            "played": 153,
+            "dropped": 15,
+            "maxObserved": 8,
+            "bySound": {
+              "stageStart": 3,
+              "ui": 1,
+              "enemyNotice": 19,
+              "evade": 2,
+              "enemyShot": 5,
+              "launch": 6,
+              "kill": 27,
+              "petImpact": 16,
+              "hurt": 14,
+              "chargeHalf": 12,
+              "dash": 12,
+              "stageClear": 2,
+              "impactMedium": 6,
+              "heal": 9,
+              "echo": 8,
+              "enemyLunge": 2,
+              "chargeReady": 3,
+              "impactLight": 2,
+              "chainStart": 2,
+              "impactHeavy": 1,
+              "bossNotice": 1
+            }
+          },
+          "banner": {
+            "text": "꽃잎 포식자",
+            "kind": "boss",
+            "opacity": "1",
+            "pointerEvents": "none",
+            "center": {
+              "x": 500,
+              "y": 400
+            }
+          }
+        },
+        {
+          "key": "PLAYING:3:CLEAR",
+          "tick": 800,
+          "timeMs": 13333.333333333334,
+          "phase": "PLAYING",
+          "stage": {
+            "index": 3,
+            "phase": "CLEAR",
+            "waveKills": 15,
+            "killTarget": 15,
+            "bossHp": 0,
+            "bossState": "BOSS_RECOVER",
+            "bossPattern": "FAN",
+            "patternLog": [],
+            "obstacleCount": 6,
+            "broken": 0,
+            "arenaSides": 8,
+            "theme": "garden",
+            "themeName": "화원",
+            "layout": "grove",
+            "layoutName": "빽빽한 화단",
+            "radius": 550,
+            "playableArea": 749631,
+            "targetPopulation": 6,
+            "mapTier": 0,
+            "mapStart": 1,
+            "mapSeed": 2654354052,
+            "bossStage": true,
+            "referenceArea": 749630.913784598,
+            "bossName": "꽃잎 포식자",
+            "bossVariant": "wide",
+            "bossSummons": 0,
+            "seed": 3668389414,
+            "generation": {
+              "retries": 0,
+              "connectivity": 0.9375,
+              "clearLane": 444,
+              "obstacles": 6
+            }
+          },
+          "enemies": 0,
+          "health": 243.27207142857023,
+          "kills": 37,
+          "pets": {
+            "hits": 19,
+            "kills": 34,
+            "damage": 2474,
+            "actors": 5
+          },
+          "audio": {
+            "state": "running",
+            "played": 157,
+            "dropped": 16,
+            "maxObserved": 8,
+            "bySound": {
+              "stageStart": 3,
+              "ui": 1,
+              "enemyNotice": 19,
+              "evade": 2,
+              "enemyShot": 5,
+              "launch": 7,
+              "kill": 28,
+              "petImpact": 17,
+              "hurt": 14,
+              "chargeHalf": 12,
+              "dash": 12,
+              "stageClear": 3,
+              "impactMedium": 6,
+              "heal": 9,
+              "echo": 8,
+              "enemyLunge": 2,
+              "chargeReady": 3,
+              "impactLight": 2,
+              "chainStart": 2,
+              "impactHeavy": 1,
+              "bossNotice": 1
+            }
+          },
+          "banner": {
+            "text": "꽃잎 포식자",
+            "kind": "boss",
+            "opacity": "1",
+            "pointerEvents": "none",
+            "center": {
+              "x": 500,
+              "y": 400
+            }
+          }
+        },
+        {
+          "key": "PLAYING:4:WAVE",
+          "tick": 899,
+          "timeMs": 14983.333333333334,
+          "phase": "PLAYING",
+          "stage": {
+            "index": 4,
+            "phase": "WAVE",
+            "waveKills": 0,
+            "killTarget": 19,
+            "bossHp": null,
+            "bossState": null,
+            "bossPattern": null,
+            "patternLog": [],
+            "obstacleCount": 8,
+            "broken": 0,
+            "arenaSides": 8,
+            "theme": "cave",
+            "themeName": "균사 동굴",
+            "layout": "cavernRing",
+            "layoutName": "동굴 고리",
+            "radius": 671,
+            "playableArea": 1042440,
+            "targetPopulation": 10,
+            "mapTier": 1,
+            "mapStart": 4,
+            "mapSeed": 2027726321,
+            "bossStage": false,
+            "referenceArea": 749630.913784598,
+            "bossName": null,
+            "bossVariant": null,
+            "bossSummons": 0,
+            "seed": 2027726321,
+            "generation": {
+              "retries": 0,
+              "connectivity": 0.9908256880733946,
+              "clearLane": 540,
+              "obstacles": 8
+            }
+          },
+          "enemies": 10,
+          "health": 280,
+          "kills": 37,
+          "pets": {
+            "hits": 19,
+            "kills": 34,
+            "damage": 2474,
+            "actors": 5
+          },
+          "audio": {
+            "state": "running",
+            "played": 158,
+            "dropped": 16,
+            "maxObserved": 8,
+            "bySound": {
+              "stageStart": 4,
+              "ui": 1,
+              "enemyNotice": 19,
+              "evade": 2,
+              "enemyShot": 5,
+              "launch": 7,
+              "kill": 28,
+              "petImpact": 17,
+              "hurt": 14,
+              "chargeHalf": 12,
+              "dash": 12,
+              "stageClear": 3,
+              "impactMedium": 6,
+              "heal": 9,
+              "echo": 8,
+              "enemyLunge": 2,
+              "chargeReady": 3,
+              "impactLight": 2,
+              "chainStart": 2,
+              "impactHeavy": 1,
+              "bossNotice": 1
+            }
+          },
+          "banner": {
+            "text": "STAGE 4",
+            "kind": "stage",
+            "opacity": "0",
+            "pointerEvents": "none",
+            "center": {
+              "x": 500,
+              "y": 399.99998474121094
+            }
+          }
+        },
+        {
+          "key": "PLAYING:4:CLEAR",
+          "tick": 1129,
+          "timeMs": 18816.666666666668,
+          "phase": "PLAYING",
+          "stage": {
+            "index": 4,
+            "phase": "CLEAR",
+            "waveKills": 19,
+            "killTarget": 19,
+            "bossHp": null,
+            "bossState": null,
+            "bossPattern": null,
+            "patternLog": [],
+            "obstacleCount": 8,
+            "broken": 0,
+            "arenaSides": 8,
+            "theme": "cave",
+            "themeName": "균사 동굴",
+            "layout": "cavernRing",
+            "layoutName": "동굴 고리",
+            "radius": 671,
+            "playableArea": 1042440,
+            "targetPopulation": 10,
+            "mapTier": 1,
+            "mapStart": 4,
+            "mapSeed": 2027726321,
+            "bossStage": false,
+            "referenceArea": 749630.913784598,
+            "bossName": null,
+            "bossVariant": null,
+            "bossSummons": 0,
+            "seed": 2027726321,
+            "generation": {
+              "retries": 0,
+              "connectivity": 0.9908256880733946,
+              "clearLane": 540,
+              "obstacles": 8
+            }
+          },
+          "enemies": 0,
+          "health": 280,
+          "kills": 56,
+          "pets": {
+            "hits": 29,
+            "kills": 50,
+            "damage": 3489,
+            "actors": 5
+          },
+          "audio": {
+            "state": "running",
+            "played": 231,
+            "dropped": 34,
+            "maxObserved": 8,
+            "bySound": {
+              "stageStart": 4,
+              "ui": 1,
+              "enemyNotice": 26,
+              "evade": 2,
+              "enemyShot": 7,
+              "launch": 10,
+              "kill": 41,
+              "petImpact": 25,
+              "hurt": 22,
+              "chargeHalf": 20,
+              "dash": 15,
+              "stageClear": 4,
+              "impactMedium": 10,
+              "heal": 15,
+              "echo": 13,
+              "enemyLunge": 3,
+              "chargeReady": 5,
+              "impactLight": 2,
+              "chainStart": 3,
+              "impactHeavy": 2,
+              "bossNotice": 1
+            }
+          },
+          "banner": {
+            "text": "STAGE 4",
+            "kind": "stage",
+            "opacity": "0",
+            "pointerEvents": "none",
+            "center": {
+              "x": 500,
+              "y": 399.99998474121094
+            }
+          }
+        },
+        {
+          "key": "PLAYING:5:WAVE",
+          "tick": 1228,
+          "timeMs": 20466.666666666668,
+          "phase": "PLAYING",
+          "stage": {
+            "index": 5,
+            "phase": "WAVE",
+            "waveKills": 0,
+            "killTarget": 23,
+            "bossHp": null,
+            "bossState": null,
+            "bossPattern": null,
+            "patternLog": [],
+            "obstacleCount": 8,
+            "broken": 0,
+            "arenaSides": 8,
+            "theme": "cave",
+            "themeName": "균사 동굴",
+            "layout": "cavernRing",
+            "layoutName": "동굴 고리",
+            "radius": 671,
+            "playableArea": 1042440,
+            "targetPopulation": 11,
+            "mapTier": 1,
+            "mapStart": 4,
+            "mapSeed": 2027726321,
+            "bossStage": false,
+            "referenceArea": 749630.913784598,
+            "bossName": null,
+            "bossVariant": null,
+            "bossSummons": 0,
+            "seed": 387195712,
+            "generation": {
+              "retries": 0,
+              "connectivity": 0.9908256880733946,
+              "clearLane": 540,
+              "obstacles": 8
+            }
+          },
+          "enemies": 11,
+          "health": 280,
+          "kills": 56,
+          "pets": {
+            "hits": 29,
+            "kills": 50,
+            "damage": 3489,
+            "actors": 5
+          },
+          "audio": {
+            "state": "running",
+            "played": 232,
+            "dropped": 34,
+            "maxObserved": 8,
+            "bySound": {
+              "stageStart": 5,
+              "ui": 1,
+              "enemyNotice": 26,
+              "evade": 2,
+              "enemyShot": 7,
+              "launch": 10,
+              "kill": 41,
+              "petImpact": 25,
+              "hurt": 22,
+              "chargeHalf": 20,
+              "dash": 15,
+              "stageClear": 4,
+              "impactMedium": 10,
+              "heal": 15,
+              "echo": 13,
+              "enemyLunge": 3,
+              "chargeReady": 5,
+              "impactLight": 2,
+              "chainStart": 3,
+              "impactHeavy": 2,
+              "bossNotice": 1
+            }
+          },
+          "banner": {
+            "text": "STAGE 5",
+            "kind": "stage",
+            "opacity": "0",
+            "pointerEvents": "none",
+            "center": {
+              "x": 500,
+              "y": 399.99998474121094
+            }
+          }
+        },
+        {
+          "key": "PLAYING:5:CLEAR",
+          "tick": 1565,
+          "timeMs": 26083.333333333336,
+          "phase": "PLAYING",
+          "stage": {
+            "index": 5,
+            "phase": "CLEAR",
+            "waveKills": 23,
+            "killTarget": 23,
+            "bossHp": null,
+            "bossState": null,
+            "bossPattern": null,
+            "patternLog": [],
+            "obstacleCount": 8,
+            "broken": 0,
+            "arenaSides": 8,
+            "theme": "cave",
+            "themeName": "균사 동굴",
+            "layout": "cavernRing",
+            "layoutName": "동굴 고리",
+            "radius": 671,
+            "playableArea": 1042440,
+            "targetPopulation": 11,
+            "mapTier": 1,
+            "mapStart": 4,
+            "mapSeed": 2027726321,
+            "bossStage": false,
+            "referenceArea": 749630.913784598,
+            "bossName": null,
+            "bossVariant": null,
+            "bossSummons": 0,
+            "seed": 387195712,
+            "generation": {
+              "retries": 0,
+              "connectivity": 0.9908256880733946,
+              "clearLane": 540,
+              "obstacles": 8
+            }
+          },
+          "enemies": 0,
+          "health": 207.1487500000007,
+          "kills": 79,
+          "pets": {
+            "hits": 40,
+            "kills": 70,
+            "damage": 4808,
+            "actors": 5
+          },
+          "audio": {
+            "state": "running",
+            "played": 314,
+            "dropped": 42,
+            "maxObserved": 8,
+            "bySound": {
+              "stageStart": 5,
+              "ui": 1,
+              "enemyNotice": 40,
+              "evade": 2,
+              "enemyShot": 10,
+              "launch": 15,
+              "kill": 60,
+              "petImpact": 35,
+              "hurt": 25,
+              "chargeHalf": 26,
+              "dash": 21,
+              "stageClear": 5,
+              "impactMedium": 10,
+              "heal": 19,
+              "echo": 16,
+              "enemyLunge": 4,
+              "chargeReady": 7,
+              "impactLight": 3,
+              "chainStart": 4,
+              "impactHeavy": 5,
+              "bossNotice": 1
+            }
+          },
+          "banner": {
+            "text": "STAGE 5",
+            "kind": "stage",
+            "opacity": "0",
+            "pointerEvents": "none",
+            "center": {
+              "x": 500,
+              "y": 399.99998474121094
+            }
+          }
+        },
+        {
+          "key": "PLAYING:6:WAVE",
+          "tick": 1664,
+          "timeMs": 27733.333333333336,
+          "phase": "PLAYING",
+          "stage": {
+            "index": 6,
+            "phase": "WAVE",
+            "waveKills": 0,
+            "killTarget": 27,
+            "bossHp": null,
+            "bossState": null,
+            "bossPattern": null,
+            "patternLog": [],
+            "obstacleCount": 8,
+            "broken": 0,
+            "arenaSides": 8,
+            "theme": "cave",
+            "themeName": "균사 동굴",
+            "layout": "cavernRing",
+            "layoutName": "동굴 고리",
+            "radius": 671,
+            "playableArea": 1042440,
+            "targetPopulation": 13,
+            "mapTier": 1,
+            "mapStart": 4,
+            "mapSeed": 2027726321,
+            "bossStage": true,
+            "referenceArea": 749630.913784598,
+            "bossName": null,
+            "bossVariant": null,
+            "bossSummons": 0,
+            "seed": 3041761555,
+            "generation": {
+              "retries": 0,
+              "connectivity": 0.9908256880733946,
+              "clearLane": 540,
+              "obstacles": 8
+            }
+          },
+          "enemies": 13,
+          "health": 280,
+          "kills": 79,
+          "pets": {
+            "hits": 40,
+            "kills": 70,
+            "damage": 4808,
+            "actors": 5
+          },
+          "audio": {
+            "state": "running",
+            "played": 315,
+            "dropped": 42,
+            "maxObserved": 8,
+            "bySound": {
+              "stageStart": 6,
+              "ui": 1,
+              "enemyNotice": 40,
+              "evade": 2,
+              "enemyShot": 10,
+              "launch": 15,
+              "kill": 60,
+              "petImpact": 35,
+              "hurt": 25,
+              "chargeHalf": 26,
+              "dash": 21,
+              "stageClear": 5,
+              "impactMedium": 10,
+              "heal": 19,
+              "echo": 16,
+              "enemyLunge": 4,
+              "chargeReady": 7,
+              "impactLight": 3,
+              "chainStart": 4,
+              "impactHeavy": 5,
+              "bossNotice": 1
+            }
+          },
+          "banner": {
+            "text": "STAGE 6",
+            "kind": "stage",
+            "opacity": "0",
+            "pointerEvents": "none",
+            "center": {
+              "x": 500,
+              "y": 399.99998474121094
+            }
+          }
+        },
+        {
+          "key": "PLAYING:6:BOSS_PENDING",
+          "tick": 1923,
+          "timeMs": 32050.000000000004,
+          "phase": "PLAYING",
+          "stage": {
+            "index": 6,
+            "phase": "BOSS_PENDING",
+            "waveKills": 27,
+            "killTarget": 27,
+            "bossHp": null,
+            "bossState": null,
+            "bossPattern": null,
+            "patternLog": [],
+            "obstacleCount": 8,
+            "broken": 0,
+            "arenaSides": 8,
+            "theme": "cave",
+            "themeName": "균사 동굴",
+            "layout": "cavernRing",
+            "layoutName": "동굴 고리",
+            "radius": 671,
+            "playableArea": 1042440,
+            "targetPopulation": 13,
+            "mapTier": 1,
+            "mapStart": 4,
+            "mapSeed": 2027726321,
+            "bossStage": true,
+            "referenceArea": 749630.913784598,
+            "bossName": null,
+            "bossVariant": null,
+            "bossSummons": 0,
+            "seed": 3041761555,
+            "generation": {
+              "retries": 0,
+              "connectivity": 0.9908256880733946,
+              "clearLane": 540,
+              "obstacles": 8
+            }
+          },
+          "enemies": 12,
+          "health": 189.6215535714289,
+          "kills": 106,
+          "pets": {
+            "hits": 49,
+            "kills": 95,
+            "damage": 5700,
+            "actors": 5
+          },
+          "audio": {
+            "state": "running",
+            "played": 387,
+            "dropped": 61,
+            "maxObserved": 8,
+            "bySound": {
+              "stageStart": 6,
+              "ui": 1,
+              "enemyNotice": 49,
+              "evade": 2,
+              "enemyShot": 16,
+              "launch": 19,
+              "kill": 79,
+              "petImpact": 44,
+              "hurt": 31,
+              "chargeHalf": 32,
+              "dash": 25,
+              "stageClear": 5,
+              "impactMedium": 11,
+              "heal": 21,
+              "echo": 18,
+              "enemyLunge": 6,
+              "chargeReady": 9,
+              "impactLight": 3,
+              "chainStart": 4,
+              "impactHeavy": 5,
+              "bossNotice": 1
+            }
+          },
+          "banner": {
+            "text": "거대 생명체가 다가온다",
+            "kind": "boss",
+            "opacity": "0",
+            "pointerEvents": "none",
+            "center": {
+              "x": 500.00001525878906,
+              "y": 400
+            }
+          }
+        },
+        {
+          "key": "PLAYING:6:BOSS",
+          "tick": 1968,
+          "timeMs": 32800,
+          "phase": "PLAYING",
+          "stage": {
+            "index": 6,
+            "phase": "BOSS",
+            "waveKills": 27,
+            "killTarget": 27,
+            "bossHp": 1116.1799999999998,
+            "bossState": "BOSS_RECOVER",
+            "bossPattern": "FAN",
+            "patternLog": [],
+            "obstacleCount": 8,
+            "broken": 0,
+            "arenaSides": 8,
+            "theme": "cave",
+            "themeName": "균사 동굴",
+            "layout": "cavernRing",
+            "layoutName": "동굴 고리",
+            "radius": 671,
+            "playableArea": 1042440,
+            "targetPopulation": 13,
+            "mapTier": 1,
+            "mapStart": 4,
+            "mapSeed": 2027726321,
+            "bossStage": true,
+            "referenceArea": 749630.913784598,
+            "bossName": "탄성 버섯왕",
+            "bossVariant": "cloud",
+            "bossSummons": 0,
+            "seed": 3041761555,
+            "generation": {
+              "retries": 0,
+              "connectivity": 0.9908256880733946,
+              "clearLane": 540,
+              "obstacles": 8
+            }
+          },
+          "enemies": 1,
+          "health": 252.38583928571487,
+          "kills": 111,
+          "pets": {
+            "hits": 53,
+            "kills": 99,
+            "damage": 6200,
+            "actors": 5
+          },
+          "audio": {
+            "state": "running",
+            "played": 400,
+            "dropped": 63,
+            "maxObserved": 8,
+            "bySound": {
+              "stageStart": 6,
+              "ui": 1,
+              "enemyNotice": 49,
+              "evade": 2,
+              "enemyShot": 16,
+              "launch": 19,
+              "kill": 83,
+              "petImpact": 47,
+              "hurt": 32,
+              "chargeHalf": 32,
+              "dash": 25,
+              "stageClear": 5,
+              "impactMedium": 12,
+              "heal": 22,
+              "echo": 19,
+              "enemyLunge": 6,
+              "chargeReady": 9,
+              "impactLight": 3,
+              "chainStart": 5,
+              "impactHeavy": 5,
+              "bossNotice": 2
+            }
+          },
+          "banner": {
+            "text": "탄성 버섯왕",
+            "kind": "boss",
+            "opacity": "1",
+            "pointerEvents": "none",
+            "center": {
+              "x": 500,
+              "y": 400
+            }
+          }
+        }
+      ],
+      "entries": [
+        {
+          "index": 1,
+          "text": "STAGE 1",
+          "tick": 0,
+          "timeMs": 0,
+          "pointerEvents": "none",
+          "center": {
+            "x": 500,
+            "y": 400
+          }
+        },
+        {
+          "index": 2,
+          "text": "STAGE 2",
+          "tick": 209,
+          "timeMs": 3483.3333333333335,
+          "pointerEvents": "none",
+          "center": {
+            "x": 500,
+            "y": 399.99998474121094
+          }
+        },
+        {
+          "index": 3,
+          "text": "STAGE 3",
+          "tick": 510,
+          "timeMs": 8500,
+          "pointerEvents": "none",
+          "center": {
+            "x": 500,
+            "y": 399.99998474121094
+          }
+        },
+        {
+          "index": 4,
+          "text": "STAGE 4",
+          "tick": 899,
+          "timeMs": 14983.333333333334,
+          "pointerEvents": "none",
+          "center": {
+            "x": 500,
+            "y": 399.99998474121094
+          }
+        },
+        {
+          "index": 5,
+          "text": "STAGE 5",
+          "tick": 1228,
+          "timeMs": 20466.666666666668,
+          "pointerEvents": "none",
+          "center": {
+            "x": 500,
+            "y": 399.99998474121094
+          }
+        },
+        {
+          "index": 6,
+          "text": "STAGE 6",
+          "tick": 1664,
+          "timeMs": 27733.333333333336,
+          "pointerEvents": "none",
+          "center": {
+            "x": 500,
+            "y": 399.99998474121094
+          }
+        }
+      ],
+      "maxWaveCount": {
+        "1": 4,
+        "2": 5,
+        "3": 6,
+        "4": 10,
+        "5": 11,
+        "6": 13
+      },
+      "lastAudio": {
+        "state": "running",
+        "volume": 0.7,
+        "muted": false,
+        "voices": 1,
+        "categoryVolumes": {
+          "enemy": 0.65,
+          "impact": 1,
+          "motion": 0.8,
+          "danger": 0.9,
+          "reward": 0.85,
+          "magic": 0.55,
+          "ui": 0.5
+        },
+        "lastError": null,
+        "played": 400,
+        "dropped": 63,
+        "blocked": 0,
+        "maxObserved": 8,
+        "bySound": {
+          "stageStart": 6,
+          "ui": 1,
+          "enemyNotice": 49,
+          "evade": 2,
+          "enemyShot": 16,
+          "launch": 19,
+          "kill": 83,
+          "petImpact": 47,
+          "hurt": 32,
+          "chargeHalf": 32,
+          "dash": 25,
+          "stageClear": 5,
+          "impactMedium": 12,
+          "heal": 22,
+          "echo": 19,
+          "enemyLunge": 6,
+          "chargeReady": 9,
+          "impactLight": 3,
+          "chainStart": 5,
+          "impactHeavy": 5,
+          "bossNotice": 2
+        }
+      },
+      "limits": [
+        "Pre-boot high-growth and five owned Mythic-pet fixture speeds representative progression; not a novice difficulty/playtime proof.",
+        "Default kill targets, AI, maps, combat and RNG run normally; no runtime stage/HP/Config/tick mutation.",
+        "Only the first six stages and one natural sequence; all themes/seeds/late caps/mobile/long campaign not browser tested."
+      ]
+    },
+    "finalDocumentationBoot": {
+      "result": "PASS",
+      "elapsedMs": 9479,
+      "browser": "155.0.4283.45",
+      "artifacts": {
+        "index.html": "a8100f3ed54045c75840a5263139c05ec9620af430c17328a2b3571d4d94ee86",
+        "pets.js": "ee8acfe3ff54cb32e2d728d5b9bbd6ee8f263f86c60a93da7b7253e15282b24e",
+        "audio.js": "8543ce14bcd61c07373cd7c7c560b9c696ecf5afb80918d3c5929ef407a84a22"
+      },
+      "defaultStart": {
+        "version": "0.12.2",
+        "build": "20261010T142132Z-stage-cadence",
+        "stage": {
+          "index": 1,
+          "phase": "WAVE",
+          "waveKills": 0,
+          "killTarget": 7,
+          "bossHp": null,
+          "bossState": null,
+          "bossPattern": null,
+          "patternLog": [],
+          "obstacleCount": 6,
+          "broken": 0,
+          "arenaSides": 8,
+          "theme": "garden",
+          "themeName": "화원",
+          "layout": "grove",
+          "layoutName": "빽빽한 화단",
+          "radius": 550,
+          "playableArea": 749631,
+          "targetPopulation": 4,
+          "mapTier": 0,
+          "mapStart": 1,
+          "mapSeed": 2654354052,
+          "bossStage": false,
+          "referenceArea": 749630.913784598,
+          "bossName": null,
+          "bossVariant": null,
+          "bossSummons": 0,
+          "seed": 2654354052,
+          "generation": {
+            "retries": 0,
+            "connectivity": 0.9375,
+            "clearLane": 444,
+            "obstacles": 6
+          }
+        },
+        "enemies": 4,
+        "banner": {
+          "text": "STAGE 1",
+          "pointerEvents": "none"
+        }
+      },
+      "bannerExpired": true,
+      "errors": []
+    },
+    "temporarySourceFormulas": {
+      "result": "PASS",
+      "scope": "Temporary source-extracted formula checks only, not browser progression evidence",
+      "cases": [
+        {
+          "n": 1,
+          "tier": 0,
+          "start": 1,
+          "boss": false,
+          "radius": 550
+        },
+        {
+          "n": 2,
+          "tier": 0,
+          "start": 1,
+          "boss": false,
+          "radius": 550
+        },
+        {
+          "n": 3,
+          "tier": 0,
+          "start": 1,
+          "boss": true,
+          "radius": 550
+        },
+        {
+          "n": 4,
+          "tier": 1,
+          "start": 4,
+          "boss": false,
+          "radius": 671
+        },
+        {
+          "n": 6,
+          "tier": 1,
+          "start": 4,
+          "boss": true,
+          "radius": 671
+        },
+        {
+          "n": 7,
+          "tier": 2,
+          "start": 7,
+          "boss": false,
+          "radius": 721.1198410471445
+        },
+        {
+          "n": 9,
+          "tier": 2,
+          "start": 7,
+          "boss": true,
+          "radius": 721.1198410471445
+        }
+      ],
+      "first": 4,
+      "reducedAreaFloor": 14,
+      "lateCap": 82,
+      "elapsedMs": 146
+    }
+  },
+  "evidenceReuse": "First run completed real 1→6 progression. Later changes were wiki/README wording and a wiki table header only, not game rules or CSS. Fresh final HTML default boot/banner expiry checked after those edits; 1→6 was not repeated. Temporary formula checks are not browser evidence. Existing pet/audio/other combat E2E was unchanged and reused. After the final boot, one prose chapter reference was corrected from 24 to 26; all script/style blocks were compared and are byte identical. No gameplay rerun was needed.",
+  "unchangedDependencies": {
+    "pets": "ee8acfe3ff54cb32e2d728d5b9bbd6ee8f263f86c60a93da7b7253e15282b24e",
+    "audio": "8543ce14bcd61c07373cd7c7c560b9c696ecf5afb80918d3c5929ef407a84a22",
+    "sdkCommit": "2de54d6ef1fd5ae91907c2d10d549abe1043d8b8",
+    "sdkSha256": "7e3e16d34ce88124e6ba7699f16d23107a3e42ee93ea5a16691e856e5865c14a"
+  },
+  "privateEvidence": [
+    {
+      "path": "C:\\Users\\byh02\\Documents\\Codex\\2026-10-10\\task-3/stage-cadence-result.json",
+      "sha256": "1d53914406fb3200e447d43be20a8f8dc7593492d492b26cae19822da003dfd9"
+    },
+    {
+      "path": "C:\\Users\\byh02\\Documents\\Codex\\2026-10-10\\task-3/stage-final-boot-result.json",
+      "sha256": "14a307e30677a10ebdf74ddcc15d2e9dce8f096478f24612bfec08ac592a68f3"
+    },
+    {
+      "path": "C:\\Users\\byh02\\Documents\\Codex\\2026-10-10\\task-3/stage-formulas-result.json",
+      "sha256": "bfb4986e0cdd35924c21e02f91508a5630cb1bc2bedfd8acf146dac9d03b2eb4"
+    },
+    {
+      "path": "C:\\Users\\byh02\\Documents\\Codex\\2026-10-10\\task-3/stage-first-centered.png",
+      "sha256": "f26525f8916ea5d31bdc6ec627ab91fb47020aaa690da2d10088404c671e6461"
+    },
+    {
+      "path": "C:\\Users\\byh02\\Documents\\Codex\\2026-10-10\\task-3/stage-four-expansion.png",
+      "sha256": "ded57594859839f1dbc3e4bcd6ec358a4860445c1259c2d0788108c3e0fe00f6"
+    },
+    {
+      "path": "C:\\Users\\byh02\\Documents\\Codex\\2026-10-10\\task-3/stage-six-mushroom-boss.png",
+      "sha256": "782278d07c5f3e011bb8969034b7e7a9075107a6267c5737b63a8f9291969930"
+    }
+  ],
+  "postBootDocumentationCorrection": {
+    "change": "Plain prose cross-reference 24→26 only",
+    "verifiedHtmlSha256": "a8100f3ed54045c75840a5263139c05ec9620af430c17328a2b3571d4d94ee86",
+    "finalHtmlSha256": "024a901aaaab9e665aac56d27e6be29dca2711bebad8dfcc772a940b534f6bd2",
+    "runtimeStyleSha256": "e307a3991a793341e0f1ad348349b450f05a43af2ddae3156c5fccd69c2caef3",
+    "runtimeAndStylesByteIdentical": true
+  }
+}

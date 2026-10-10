@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="ko"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
-<meta name="theme-color" content="#0b141a"><title>BOUNKO · Prototype 0.12.1</title>
+<meta name="theme-color" content="#0b141a"><title>BOUNKO · Prototype 0.12.2</title>
 <style>
 :root{color-scheme:dark;--bg:#0a141a;--ink:#edf9f1;--mute:#9cb2b0;--mint:#72ebc0;--line:#345454;--orange:#fac779}*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,'Noto Sans KR',sans-serif;-webkit-tap-highlight-color:transparent;user-select:none}#game{position:absolute;inset:0;display:block;width:100%;height:100%;touch-action:none;outline:none}#hud{position:absolute;inset:0;pointer-events:none;overflow:hidden}#top{position:absolute;top:env(safe-area-inset-top,0px);left:0;right:0;display:flex;align-items:flex-start;justify-content:space-between;padding:15px 18px;gap:10px;text-shadow:0 2px 8px #091117}#brand{font-size:17px;font-weight:900;letter-spacing:.16em}#brand small{display:block;letter-spacing:.12em;font-size:10px;font-weight:500;color:#84a7a2;margin-top:2px}.stats{display:flex;gap:13px;margin-top:9px}.stat-label{display:block;font-size:10px;color:var(--mute);font-weight:600;letter-spacing:.08em}.stat-num{font-size:22px;font-weight:900;font-variant-numeric:tabular-nums}.stat-num.gold{color:var(--orange)}#score{min-width:68px;text-align:right}.pills{display:flex;gap:6px;align-items:center;justify-content:flex-end;margin-top:3px;flex-wrap:wrap}.pill{border:1px solid #41625d;background:#0d2929bb;color:#abdac8;padding:4px 7px;border-radius:30px;font-size:10px}#controls{pointer-events:auto;position:absolute;bottom:calc(19px + env(safe-area-inset-bottom,0px));right:20px;display:flex;align-items:flex-end;gap:11px}#auto{position:relative;isolation:isolate;width:107px;height:107px;border-radius:50%;border:2px solid #7ef0c2;background:radial-gradient(circle at 35% 27%,#329b80,#155144 67%,#0d332f);box-shadow:0 0 0 6px #15564740,0 15px 34px #0008;color:#f4fff6;font-size:16px;font-weight:900;letter-spacing:.12em;display:flex;align-items:center;justify-content:center;flex-direction:column;touch-action:manipulation;cursor:pointer}#auto small{font-size:10px;letter-spacing:.07em;color:#b9f7d9;margin-top:1px}#auto:active{transform:scale(.93);filter:brightness(1.2)}#auto.ready{border-color:#86f8ca}#auto.shadow{border-color:#ffd580;background:radial-gradient(circle at 35% 27%,#aa8650,#60502a 67%,#3d3422);box-shadow:0 0 0 6px #b9944c38,0 0 42px #ca9b4c44}#auto.dash{border-color:#a7d8cf;background:#345452}#options{position:absolute;top:calc(17px + env(safe-area-inset-top,0px));left:50%;transform:translateX(-50%);pointer-events:auto;border:1px solid #436866;border-radius:8px;background:#0c2425bb;display:flex;align-items:center;overflow:hidden}button{font:inherit}#options button{cursor:pointer;border:0;background:none;color:#d0eadd;padding:9px 11px;font-size:11px}#options button+button{border-left:1px solid #436866}#options button:hover{background:#204b45}#targetcue{position:absolute;left:0;top:0;display:none;min-width:82px;text-align:center;transform:translate(-50%,-50%);font-size:11px;font-weight:900;letter-spacing:.07em;line-height:1.3;white-space:nowrap;text-shadow:0 2px 5px #00151c,0 0 7px #00151c;will-change:transform;z-index:2}#targetcue.active{display:block}#targetcue .tip{font-size:9px;font-weight:600;opacity:.85;letter-spacing:0}#toast{position:absolute;top:28%;left:50%;transform:translateX(-50%);font-size:clamp(20px,5vw,44px);font-weight:950;letter-spacing:.11em;text-align:center;white-space:nowrap;opacity:0;transition:opacity .12s;text-shadow:0 3px 14px #000}#toast.visible{opacity:1}#bars{position:absolute;left:50%;bottom:calc(42px + env(safe-area-inset-bottom,0px));width:140px;transform:translateX(-50%);text-align:center}#bars .label{font-size:10px;color:#a4c8b8;letter-spacing:.15em;margin-bottom:5px}#charge{height:5px;background:#244240;border-radius:5px;overflow:hidden}#chargefill{width:0;height:100%;background:#f0c87a;box-shadow:0 0 8px #f0c87a}#settings{pointer-events:auto;position:absolute;top:70px;left:50%;width:min(430px,calc(100vw - 28px));transform:translateX(-50%);border:1px solid #45625d;border-radius:14px;background:#0e2226f7;box-shadow:0 15px 60px #000b;padding:15px;display:none;max-height:calc(100vh - 105px);overflow-y:auto}#settings.open{display:block}#settings h2{font-size:17px;margin:0 0 8px}.setting-row{display:grid;grid-template-columns:1fr 110px 44px;align-items:center;gap:8px;margin:11px 0;font-size:12px}#settings label{color:#ccdfd8}#settings input[type=range]{accent-color:#70efbb;width:100%}#settings output{font-variant-numeric:tabular-nums;text-align:right;color:#e7c280}#settings .check{display:flex;align-items:center;gap:8px;font-size:12px;margin:10px 0}#settings .check input{accent-color:#70efbb}#settings footer{border-top:1px solid #294c49;padding-top:9px;color:#99ada9;font-size:10px;line-height:1.5}#load{pointer-events:auto;position:absolute;inset:0;display:flex;justify-content:center;align-items:center;background:#081317ef;z-index:20;padding:20px}#loadbox{width:min(420px,100%);text-align:center}#load h1{font-size:26px;letter-spacing:.14em;color:#7aebbe}#load p{color:#b5cbc5;line-height:1.7;font-size:13px}#load details{margin-top:10px;color:#b9c9c8;font-size:11px}#load.hidden{display:none}@media(max-width:650px){#top{padding:12px}#brand{font-size:13px}.stat-num{font-size:18px}.stats{gap:9px}#options{top:auto;bottom:calc(148px + env(safe-area-inset-bottom,0px));left:auto;right:15px;transform:none}#options button{padding:8px;font-size:10px}#controls{right:22px;bottom:calc(20px + env(safe-area-inset-bottom,0px))}#auto{width:99px;height:99px}#bars{bottom:calc(17px + env(safe-area-inset-bottom,0px));width:110px}#settings{top:12px;max-height:calc(100vh - 20px)}}
 .settings-head{display:flex;justify-content:space-between;align-items:center;gap:8px}.settings-head h2{margin:0!important}.settings-head button{cursor:pointer;color:#dcf6e9;border:1px solid #50766a;background:#17483a;border-radius:6px;font-size:12px;padding:7px 10px}#health{height:6px;background:#4b2630;border-radius:5px;margin-top:7px;overflow:hidden}#healthfill{height:100%;width:100%;background:linear-gradient(90deg,#44cda9,#c2ffbd)}#healthlabel{font-size:10px;color:#bcdac5;margin-top:3px}#chargefill{transition:background-color .06s}#gameover{display:none;position:absolute;inset:0;z-index:15;pointer-events:auto;background:#061419c9;align-items:center;justify-content:center;padding:24px;text-align:center}#gameover.show{display:flex}.over-inner{border:1px solid #466f64;background:#122c2b;padding:28px 26px;border-radius:16px;min-width:min(330px,90vw);box-shadow:0 22px 70px #0008}.over-inner h1{font-size:29px;margin:8px 0}.over-inner p{font-size:13px;color:#b9d7c9;line-height:1.7}.over-tag{font-size:11px;font-weight:800;letter-spacing:.18em;color:#fac779}#retry{margin-top:10px;background:#59d8ad;color:#0a2820;border:0;border-radius:8px;padding:13px 25px;font-weight:900;cursor:pointer}#top{pointer-events:none}#auto[data-near="true"]{border-color:#ff776e!important;background:radial-gradient(circle at 35% 27%,#a65a50,#542925 67%,#322121)!important;box-shadow:0 0 0 5px #ad484239,0 0 22px #ec655466!important}
@@ -182,11 +182,12 @@ body.lobby-active #top,body.lobby-active #bars,body.lobby-active #controls,body.
 #stageProgress{font-size:11px;color:#d2ece3;font-variant-numeric:tabular-nums}
 #bossHealthTrack{display:none;width:clamp(155px,26vw,290px);height:8px;background:#573036;border:1px solid #a25955;border-radius:99px;overflow:hidden;margin-top:2px}
 #bossHealthFill{height:100%;background:linear-gradient(90deg,#e78558,#ffe0a0);width:100%}
-#stageBanner{position:absolute;left:50%;top:36%;transform:translate(-50%,-50%);font-size:clamp(22px,4.7vw,46px);font-weight:950;letter-spacing:.13em;text-align:center;white-space:nowrap;color:#ffe2a5;text-shadow:0 3px 18px #000,0 0 32px #e6a4547a;opacity:0;transition:opacity .15s;pointer-events:none}
-#stageBanner.show{opacity:1}
+#stageBanner{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%) scale(.94);font-size:clamp(22px,4.7vw,46px);font-weight:950;letter-spacing:.13em;text-align:center;white-space:nowrap;color:#ffe2a5;text-shadow:0 3px 18px #000,0 0 32px #e6a4547a;opacity:0;transition:opacity .18s,transform .18s;pointer-events:none}
+#stageBanner.show{opacity:1;transform:translate(-50%,-50%) scale(1)}
+#stageBanner[data-kind="boss"]{color:#ffd2b9;font-size:clamp(20px,3.8vw,36px)}
 #bossDirection{display:none;position:absolute;z-index:3;pointer-events:none;color:#ffc17a;font-size:23px;font-weight:1000;text-shadow:0 0 15px #d56d38,0 2px 6px #000;line-height:1;transform-origin:center center}
 body.lobby-active #stageHud,body.lobby-active #stageBanner{display:none}
-@media(max-width:650px){#stageHud{top:calc(120px + env(safe-area-inset-top));min-width:120px}#stageLabel{font-size:11px}#stageProgress{font-size:10px}#stageBanner{top:33%}}
+@media(max-width:650px){#stageHud{top:calc(120px + env(safe-area-inset-top));min-width:120px}#stageLabel{font-size:11px}#stageProgress{font-size:10px}#stageBanner{top:50%}}
 
 /* User-facing quick guide and reference wiki. Read-only overlays; physics and input owners unchanged. */
 .lobby-resource-buttons{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:11px}
@@ -285,7 +286,7 @@ body.lobby-active #stageHud,body.lobby-active #stageBanner{display:none}
 </head><body>
 <canvas id="game" tabindex="0" aria-label="BOUNKO(바운코) 물리 전투 게임"></canvas>
 <div id="hud">
-  <div id="top"><div><div id="brand">BOUNKO<small>PHYSICS ACTION LAB · v0.12.1</small></div><div class="stats"><div><span class="stat-label">HP</span><span class="stat-num" id="playerhp">100</span></div><div><span class="stat-label">COMBO</span><span class="stat-num gold" id="combo">0</span></div><div><span class="stat-label">HITS</span><span class="stat-num" id="hits">0</span></div><div><span class="stat-label">SPEED</span><span class="stat-num" id="speed">0</span></div></div></div><div id="score"><span class="stat-label">KNOCKOUT</span><span class="stat-num gold" id="kills">0</span><div class="pills"><span class="pill" id="fps">-- FPS</span><span class="pill" id="state">READY</span></div></div></div>
+  <div id="top"><div><div id="brand">BOUNKO<small>PHYSICS ACTION LAB · v0.12.2</small></div><div class="stats"><div><span class="stat-label">HP</span><span class="stat-num" id="playerhp">100</span></div><div><span class="stat-label">COMBO</span><span class="stat-num gold" id="combo">0</span></div><div><span class="stat-label">HITS</span><span class="stat-num" id="hits">0</span></div><div><span class="stat-label">SPEED</span><span class="stat-num" id="speed">0</span></div></div></div><div id="score"><span class="stat-label">KNOCKOUT</span><span class="stat-num gold" id="kills">0</span><div class="pills"><span class="pill" id="fps">-- FPS</span><span class="pill" id="state">READY</span></div></div></div>
   <div id="options"><button id="tune" aria-label="설정">설정</button><button id="restart" aria-label="대기 화면으로">대기</button></div><div id="augments" role="group" aria-label="해금된 특성"></div>
   <div id="targetcue" aria-hidden="true"></div>
   <div id="toast" aria-live="polite"></div>
@@ -355,7 +356,7 @@ body.lobby-active #stageHud,body.lobby-active #stageBanner{display:none}
 <div class="wiki-tags"><span>모바일 우선</span><span>탑다운</span><span>Matter.js 물리</span><span>Bloom GameKit</span><span>랜덤 다각형 스테이지</span><span>보스 탄막</span><span>영구 테크트리</span></div>
 <div class="wiki-info">이 위키는 현재 단일 HTML 프로토타입의 <b>실제 기본 설정과 동작</b>을 설명한다. 테크트리·수치 표는 HTML 안의 런타임 Definition에서 생성한다. 이는 정식 출시 계획이 아니라 현재 실행 중인 프로토타입의 구현 기준이다.</div>
 <p><b>설계 불변 조건</b>: 첫 공격은 플레이어 입력으로 시작하며, 차지율은 초기 충격량과 비행 가속만 결정한다. 기본 직접 피해는 실제 충돌 접근 속도로 결정한다. 잔상 조준, 공격용 물리 돌진, 이동용 회피 구르기는 별도 행동이다. 표현 파티클은 HP나 시뮬레이션을 수정하지 않는다.</p></section><section class="wiki-section" id="wiki-flow" data-wiki-title="2. 전체 게임 흐름과 화면"><h2>2. 전체 게임 흐름과 화면</h2>
-<div class="wiki-table-wrap"><table><thead><tr><th>상태</th><th>진입</th><th>동작·전환</th></tr></thead><tbody><tr><td>대기 화면 (LOBBY)</td><td>최초 로드 또는 대기 복귀</td><td>게임 시작 / 업그레이드 / 도움말 / 상세 위키. 대기 중 시뮬레이션 틱 정지</td></tr><tr><td>전투 (PLAYING)</td><td>게임 시작</td><td>첫 스테이지 생성 → 일반 적 무한 보충 → 스테이지 목표 처치 달성</td></tr><tr><td>보스 대기 (BOSS_PENDING)</td><td>스테이지 목표 처치 달성</td><td>잔존 일반 적은 보스 생성 시 제거; 750ms 전환 예고</td></tr><tr><td>보스전 (BOSS)</td><td>보스 생성</td><td>보스 이외 일반 적 제거. 탄막·돌진·소환 패턴, 테마별 보스 외형과 체력 표시</td></tr><tr><td>스테이지 클리어 (CLEAR)</td><td>보스 체력 0</td><td>1,650ms 클리어 표시 뒤 HP 전부 회복하고 다음 테마·지형 생성</td></tr><tr><td>전투 종료 (ENDED)</td><td>플레이어 HP 0</td><td>결과: 처치·누적 처치·레벨·명중·피격·회복 → 대기 복귀</td></tr></tbody></table></div>
+<div class="wiki-table-wrap"><table><thead><tr><th>상태</th><th>진입</th><th>동작·전환</th></tr></thead><tbody><tr><td>대기 화면 (LOBBY)</td><td>최초 로드 또는 대기 복귀</td><td>게임 시작 / 업그레이드 / 도움말 / 상세 위키. 대기 중 시뮬레이션 틱 정지</td></tr><tr><td>전투 (PLAYING)</td><td>게임 시작</td><td>첫 스테이지 생성 → 일반 적 무한 보충 → 스테이지 목표 처치 달성</td></tr><tr><td>보스 대기 (BOSS_PENDING)</td><td>3·6·9…단계의 일반 처치 목표 달성</td><td>750ms 보스 예고 뒤 남은 일반 적·탄막을 제거하고 보스 생성</td></tr><tr><td>보스전 (BOSS)</td><td>보스 생성</td><td>보스 이외 일반 적 제거. 탄막·돌진·소환 패턴, 테마별 보스 외형과 체력 표시</td></tr><tr><td>스테이지 클리어 (CLEAR)</td><td>일반 단계 목표 달성 또는 보스 체력 0</td><td>남은 적·탄막 정리 → 1,650ms 전환 → HP 회복·다음 단계 중앙 번호. 맵 확장은 4·7…단계</td></tr><tr><td>전투 종료 (ENDED)</td><td>플레이어 HP 0</td><td>결과: 처치·누적 처치·레벨·명중·피격·회복 → 대기 복귀</td></tr></tbody></table></div>
 <p>각 스테이지의 처치 목표는 <code>initialKills + (stageIndex - 1) × killsPerStage</code>. 스테이지 처치 수와 영구 누적 처치 수는 독립이다. 일반 적 사망·화염 지속 피해로 인한 처치도 영구 처치 수를 증가시킨다. 보스 처치도 1킬로 누적된다.</p></section><section class="wiki-section" id="wiki-controls" data-wiki-title="3. 조작·입력 계약"><h2>3. 조작·입력 계약</h2>
 <div class="wiki-table-wrap"><table><thead><tr><th>입력</th><th>동작</th><th>주의점</th></tr></thead><tbody><tr><td>화면 우하단 공격 버튼 / Space / Enter</td><td>READY: 자동 조준 잔상 발사; SHADOW·GOLDEN·COYOTE: 공격 돌진</td><td>해당 버튼은 같은 명령을 해당 고정 틱에 제출</td></tr><tr><td>전장 빈 곳 탭·클릭</td><td>해당 월드 방향으로 이동용 구르기 대시</td><td>기존 전장 탭 수동 잔상 발사는 제거됨</td></tr><tr><td>W / A / S / D</td><td>위 / 왼쪽 / 아래 / 오른쪽 방향 구르기. 함께 누른 방향은 대각선으로 합산</td><td>새로 누를 때 1회; 대각선 속도 동일. 길게 눌러도 자동 반복하지 않으며 메뉴·입력란에서는 동작하지 않음</td></tr><tr><td>공격 중 전장 탭 / WASD</td><td>잔상·돌진·자동 연격 취소 → 구르기 시도</td><td>구르기 충전이 없으면 취소하지 않음</td></tr><tr><td>구르기 충전</td><td>2회, 500ms마다 1회 순차 충전</td><td>대시 시작 100ms 적 탄환만 피해 면역, 적 몸체 접촉 피해는 적용</td></tr><tr><td>메뉴</td><td>대기 화면에서 업그레이드·도움말·위키 선택</td><td>전투 중 설정을 열면 시뮬레이션 일시정지</td></tr></tbody></table></div>
 <p><b>입력 흐름</b>: Bloom GameKit의 <code>createDOMInput</code>이 PointerEvent/키를 수집하고, <code>pending</code> 명령 큐를 고정 틱 <code>processInputs()</code>에서 소비한다. 렌더 루프에서 게임 규칙을 실행하지 않는다. 터치 탭 판정은 <code>tapMs=330</code>, <code>dragSlop=18</code> CSS 픽셀이다. 화면→월드 변환은 게임 렌더 카메라가 소유한다.</p></section><section class="wiki-section" id="wiki-state" data-wiki-title="4. 공격 상태 기계"><h2>4. 공격 상태 기계</h2>
@@ -421,16 +422,19 @@ if (chainActive &amp;&amp; automaticDash &amp;&amp; energy &gt;= autoDashCost): 
 <p>보스 패턴 하나씩만 순차 실행하며, 소환수는 기본적으로 3기 내외, 동시 최대 4기, 제한시간 후 소멸하고 보스가 죽으면 제거된다. 상태는 <code>BOSS_RECOVER / BOSS_WINDUP / BOSS_LOCK / BOSS_EXEC / BOSS_CHARGE / BOSS_RECOIL</code>를 사용한다. 추적 예고 중 몸체 방향은 매 틱 갱신되며 LOCK 시작 뒤 고정된다. 서로 다른 패턴 사이 보스가 이동 방식을 바꾸며, 원거리 패턴은 거리를 조절한다.</p>
 <p><b>보스 장애물 충돌</b>: 고속 CHARGE 중 정적 장애물과 실제 충돌하면 장애물을 제거하고 파편 VFX를 보여 준다. 보스는 뒤쪽 반동으로 튕겨 나가고 <code>BOSS_RECOIL</code> 1,000ms 후 새 예고부터 CHARGE를 재시도한다. 반동 중 보스 방어력 변화는 없다. 탄막은 장애물에 막혀 소멸하고, 보스 몸체 접촉은 구르기 탄환 무적과 무관하게 피해를 준다.</p>
 <div class="wiki-info wiki-warning">테마 보스는 FAN·RADIAL·CHARGE·SUMMON 공통 패턴을 상황에 따라 고른다. 소환 패턴에는 동시 개체 수 제한과 유효 수명이 있고, 재등장 때 시드에 따른 변형이 적용된다. 피격으로 패턴을 끊는 추가 경직·체력별 2페이즈는 구현 범위 밖이다.</div></section><section class="wiki-section" id="wiki-stage" data-wiki-title="13. 스테이지·랜덤 다각형 맵"><h2>13. 스테이지·랜덤 다각형 맵</h2>
-<p>스테이지마다 반지름을 늘려 <b>6~10각형</b> 외곽을 만들고 내부에 테마별 조합 레시피로 볼록 다각형 장애물을 배치한다. 회피 공간과 보스 탄막 차단을 위해 스폰 위치·장애물 겹침을 검사한다. 내부 지형은 <code>Bodies.polygon</code>, 바깥 경계는 각 변을 따라 회전한 정적 사각형 벽이다.</p>
-<pre><code>radius = min(maxRadius, worldRadius × (1 + radiusGrowth × sqrt(stageIndex - 1)))
+<p>보스는 3·6·9…단계에 등장하고, 맵은 1~3·4~6·7~9…구간마다 반지름을 늘려 <b>6~10각형</b> 외곽을 만들고 내부에 테마별 조합 레시피로 볼록 다각형 장애물을 배치한다. 회피 공간과 보스 탄막 차단을 위해 스폰 위치·장애물 겹침을 검사한다. 내부 지형은 <code>Bodies.polygon</code>, 바깥 경계는 각 변을 따라 회전한 정적 사각형 벽이다.</p>
+<pre><code>mapTier = floor((stageIndex - 1) / mapEvery) // mapEvery = 3
+radius = min(maxRadius, worldRadius × (1 + radiusGrowth × sqrt(mapTier)))
 sides = 6 + floor(random × 5) // 6~10
 outerRadius = radius × (0.88 + random × 0.22)
 obstacleBudget = clamp(round(area / 100000 × obstaclePer100k), 4, maxObstacles)
 playableArea ≈ polygonArea - sum(π × obstacleRadius²)
-targetEnemies = clamp(round(playableArea / 100000 × enemyDensityPer100k), 5, maxEnemies)
+stage 1 targetEnemies = initialPopulation // 4
+proportional = round((initialPopulation + (stageIndex - 1) × populationPerStage) × playableArea / firstPlayableArea)
+stage 2+ targetEnemies = min(maxEnemies, max(previousPopulation + populationPerStage, proportional))
 killTarget = initialKills + (stageIndex - 1) × killsPerStage</code></pre>
-<p>테마/지형/보스 변형 선택은 스테이지 번호로 결정되는 재현 가능한 정수 시드를 사용한다. 자세한 현행 생성 계약은 24절을 기준으로 한다. 과거 초기 보스 3패턴·반지름 고정 공식은 24절의 생성기로 교체됐다. 맵 난수는 스테이지 번호를 조합한 결정적 정수 PRNG(LCG)로 초기화한다. 설치하는 물체·적과 기타 확률 이벤트는 동일한 게임 난수 함수를 사용한다. 스테이지 시작 시 플레이어를 중앙으로 돌려보내고, 공격·연격·에너지·구르기 자원을 초기화한다. 일반전 시작 적 수와 사망 후 보충 목표는 이동 가능 면적 기준의 일정 밀도를 따른다.</p>
-<p>보스 처치 시 전이 시간 이후 체력이 최대치로 회복되고 새 테마·새 맵이 생성된다. 현재 구현은 완전 자유 형태·오목 다각형·내비메시 생성기를 제공하지 않는다. 아래 24절의 테마·보스 정의 자동 표와 생성 파이프라인을 현행 기준으로 사용한다.</p></section><section class="wiki-section" id="wiki-elements" data-wiki-title="14. 속성 · 번개와 화염"><h2>14. 속성 · 번개와 화염</h2>
+<p>테마는 확장 구간의 시작에 선택하며 구간 안에서는 반경·테마·지형 seed가 같다. 일반 적 배치와 보스 변형은 각 단계 seed를 사용한다. 자세한 생성 계약은 26절을 따른다. 매 단계 시작에 플레이어를 중앙으로 돌려보내고 공격·연격·에너지·구르기 자원을 초기화한다. 동시 생존 적 목표는 첫 4마리에서 단계당 1과 첫 맵 대비 실제 플레이 면적 비율로 늘고, 다음 구간의 랜덤 형상이 작게 나와도 이전 목표보다 최소 1 늘린다(최대 82).</p>
+<p>일반 단계는 처치 목표 달성으로 다음 단계에 넘어가고, 3의 배수 단계는 보스를 처치해야 넘어간다. 각 전이 뒤 체력이 최대치로 회복되며 4·7…단계에서 맵이 확장된다. 중앙의 STAGE 번호는 1,100ms 뒤 사라지고 입력·게임 틱을 막지 않는다. 보스 예고는 같은 배너의 더 높은 우선순위를 사용하며 별도 clear 문구는 중앙에 겹치지 않는다. 현재 구현은 완전 자유 형태·오목 다각형·내비메시 생성기를 제공하지 않는다. 아래 26절의 테마·보스 정의 자동 표와 생성 파이프라인을 현행 기준으로 사용한다.</p></section><section class="wiki-section" id="wiki-elements" data-wiki-title="14. 속성 · 번개와 화염"><h2>14. 속성 · 번개와 화염</h2>
 <div class="wiki-table-wrap"><table><thead><tr><th>속성/테크</th><th>효과</th><th>VFX</th></tr></thead><tbody><tr><td>번개 I — 전도 표식</td><td>직접 돌진 명중 시 2,400ms 표식. 다음 유효 돌진 명중의 피해 +25%, 1회 소비; 도탄 우선 선택은 추가 시너지</td><td>적 주변 청백색 브래킷·스파크</td></tr><tr><td>번개 II — 연결 방전</td><td>직접 명중 시 가장 가까운 다른 적 1개에 같은 추가 피해 표식을 전파; 표식 전파가 다시 전파를 일으키지 않음</td><td>적↔적 청백 연결선, 약 220ms</td></tr><tr><td>화염 I — 점화</td><td>실제 명중 피해의 30%를 3,000ms에 걸쳐 화상으로 배분; 매 200ms 피해 처리</td><td>대상 표면 불꽃·불씨</td></tr><tr><td>화염 II — 접촉 전염</td><td>불타는 적이 다른 살아 있는 적과 실제 충돌할 때만 점화 전파. 피해 강도 70%, 시간 85%</td><td>접촉면으로 불씨가 옮겨가는 짧은 입자 흐름</td></tr></tbody></table></div>
 <p>전도 표식은 <b>다음 유효 돌진 명중의 피해 +25%</b>를 1회 소비한다. 기본 충돌 피해·치명 배율에 이 비율을 적용한 뒤 공통 방어·반올림·남은 HP 제한을 적용한다. 피해·명중·회복·처치는 한 번만 처리한다. 해당 명중 후 새 표식을 다시 부여할 수 있지만, 추가 피해나 전파가 별도 명중을 발생시키지는 않는다. 표식은 2,400ms 후 만료되고 중첩 없이 갱신된다. 도탄 기술 없이도 효과를 소비할 수 있으며, <b>도탄 대상 우선 선택</b>은 추가 시너지다. 화염은 단순 근접 거리만으로 전염하지 않으며 <code>collisionStart/collisionActive</code>에 들어온 실제 두 적 강체 쌍을 검사한다. 이미 타는 대상에는 중복 신규 점화를 만들지 않으며, 직접 재점화 시 더 센 DPS만 채택하고 지속시간을 갱신한다.</p>
 <p>속성은 충돌 피해의 기본 공식 자체를 수정하지 않는다. 번개는 다음 명중 피해 증폭·표식 전파, 화염은 느린 지속 피해·접촉 전염으로 행동 차이를 만든다.</p></section><section class="wiki-section" id="wiki-progression" data-wiki-title="15. 영구 성장·레벨·저장"><h2>15. 영구 성장·레벨·저장</h2>
@@ -492,7 +496,7 @@ availableUpgrades = (level - 1) - sum(learnedTechCosts) - sum(statInvestments)</
       update kill+level once if enemy died
   resolve final player death after same-hit healing</code></pre>
 <p><b>경계</b>: 자동 도탄은 매 충돌 시 실제 비용을 소비하는 물리 돌진이다. 속성 VFX는 이미 계산된 이벤트를 그리며, UI 버튼 이벤트에서 임의로 시뮬레이션 위치를 수정하지 않는다.</p></section><section class="wiki-section" id="wiki-qa" data-wiki-title="22. E2E 시나리오·알려진 범위"><h2>22. E2E 시나리오·알려진 범위</h2>
-<div class="wiki-table-wrap"><table><thead><tr><th>사용자 흐름</th><th>최소 확인 기준</th></tr></thead><tbody><tr><td>대기→게임 시작</td><td>로비 종료, STAGE 1 생성, 조작 가능</td></tr><tr><td>공격 버튼 2회</td><td>SHADOW 발사→골든/코요테 타이밍→DASH→실제 적 HP 변화→회복</td></tr><tr><td>잔상 접촉 반동</td><td>적 HP 변화 0, 초기 접촉 속도 300px/s·AI 제어 대기 500ms, 탁 트인 지역에서 대략 100 월드 단위 이동. 장애물·다른 유닛 충돌은 유지</td></tr><tr><td>전장 탭 / WASD 회피</td><td>구르기 2회 차감·500ms 충전·100ms 탄환 무적·몸체 충돌 유효</td></tr><tr><td>가속 피해</td><td>동일 충돌 접근속도에서 차지별 피해 동일, 높은 속도일수록 높은 피해</td></tr><tr><td>자동 연격/도탄</td><td>최대 에너지 100% + 잔상 50% 이상 직접 명중 시 시작, 연쇄 중 에너지 소비·충전 0/50/100%, 종료 후 재시작은 다시 100%</td></tr><tr><td>번개·화염</td><td>번개 표식→다음 유효 명중 +25% 1회 소비/주변 전파(도탄 불필요), 화염 실제 적-적 충돌에서만 전염</td></tr><tr><td>일반전→보스</td><td>처치 목표→일반 적·탄막 제거→보스 세 패턴</td></tr><tr><td>보스 장애물 충돌</td><td>탄막은 장애물로 소멸, 보스 CHARGE만 장애물 파괴→반동→1초 재돌진</td></tr><tr><td>보스 처치→다음 스테이지</td><td>새 다각형/장애물과 새 처치 목표, 영구 성장은 유지</td></tr><tr><td>대기 업그레이드</td><td>누적 처치 레벨에 따라 1회 투자, 저장/초기화 후 새 판 적용</td></tr><tr><td>도움말·위키</td><td>대기 화면 팝업 열기/닫기, 슬라이드·목차·검색·모바일 탐색</td></tr></tbody></table></div>
+<div class="wiki-table-wrap"><table><thead><tr><th>사용자 흐름</th><th>최소 확인 기준</th></tr></thead><tbody><tr><td>대기→게임 시작</td><td>로비 종료, STAGE 1 생성, 조작 가능</td></tr><tr><td>공격 버튼 2회</td><td>SHADOW 발사→골든/코요테 타이밍→DASH→실제 적 HP 변화→회복</td></tr><tr><td>잔상 접촉 반동</td><td>적 HP 변화 0, 초기 접촉 속도 300px/s·AI 제어 대기 500ms, 탁 트인 지역에서 대략 100 월드 단위 이동. 장애물·다른 유닛 충돌은 유지</td></tr><tr><td>전장 탭 / WASD 회피</td><td>구르기 2회 차감·500ms 충전·100ms 탄환 무적·몸체 충돌 유효</td></tr><tr><td>가속 피해</td><td>동일 충돌 접근속도에서 차지별 피해 동일, 높은 속도일수록 높은 피해</td></tr><tr><td>자동 연격/도탄</td><td>최대 에너지 100% + 잔상 50% 이상 직접 명중 시 시작, 연쇄 중 에너지 소비·충전 0/50/100%, 종료 후 재시작은 다시 100%</td></tr><tr><td>번개·화염</td><td>번개 표식→다음 유효 명중 +25% 1회 소비/주변 전파(도탄 불필요), 화염 실제 적-적 충돌에서만 전염</td></tr><tr><td>일반 단계→다음 단계 / 보스 단계</td><td>1·2단계 목표→clear→다음 단계, 3단계 목표→보스. 이후 3단계마다 보스</td></tr><tr><td>보스 장애물 충돌</td><td>탄막은 장애물로 소멸, 보스 CHARGE만 장애물 파괴→반동→1초 재돌진</td></tr><tr><td>보스 처치→다음 스테이지</td><td>다음 단계 번호·처치 목표, 3→4·6→7에서 맵 확장·테마 선택, 영구 성장은 유지</td></tr><tr><td>대기 업그레이드</td><td>누적 처치 레벨에 따라 1회 투자, 저장/초기화 후 새 판 적용</td></tr><tr><td>도움말·위키</td><td>대기 화면 팝업 열기/닫기, 슬라이드·목차·검색·모바일 탐색</td></tr></tbody></table></div>
 <div class="wiki-info wiki-warning">과거 v0.8.0~v0.9.0의 검증 이력에는 모의 라이브러리를 이용한 브라우저 통합 검사와 개별 Matter.js 검사가 포함돼 있다. v0.10.1의 실제 검증 결과는 별도로 판단해야 하며, 모의 통합 검사와 실제 패키지 결합 검사를 동일한 PASS로 취급하지 않는다. 본 문서는 실행 코드에서 도출한 계약이지 검증 완료·Stable 선언이 아니다.</div>
 <p><b>향후 범위 밖</b>: 화염 폭발형 3단계·냉기·중력, 체력별 보스 패턴 중첩, 게임 전체의 상용 저장/네트워크는 현재 구현 계약에 포함되지 않는다.</p></section><section class="wiki-section" id="wiki-glossary" data-wiki-title="23. 용어·개발 참고"><h2>23. 용어·개발 참고</h2>
 <div class="wiki-table-wrap"><table><thead><tr><th>용어</th><th>의미</th></tr></thead><tbody><tr><td>잔상 SHADOW</td><td>적에게 가속하며 접근하는 공격 준비 객체. 플레이어의 이동과 독립</td></tr><tr><td>GOLDEN</td><td>잔상 표면 접촉 직후 짧은 정확 타이밍 상태</td></tr><tr><td>COYOTE</td><td>골든 이후 짧은 늦은 입력 허용 상태. 차지 보상 감소</td></tr><tr><td>회피 구르기</td><td>전장 탭·WASD에 반응하는 별도 이동/회피 행동. 피해 공격 아님</td></tr><tr><td>운동 에너지</td><td>실제 플레이어 본체 이동 거리로 충전되는 자동 돌진 자원</td></tr><tr><td>자동 연격/도탄</td><td>동일 적 반복 충돌 / 인근 다른 적으로 자동 충돌</td></tr><tr><td>전도/점화</td><td>다음 명중 피해 증폭·주변 전파 / 지속 피해와 적끼리 물리 접촉 전염</td></tr><tr><td>후처리 VFX</td><td>게임이 확정한 명중·피해·회복·연결 상태를 그리기만 하는 표현</td></tr></tbody></table></div>
@@ -500,19 +504,25 @@ availableUpgrades = (level - 1) - sum(learnedTechCosts) - sum(statInvestments)</
 <section class="wiki-section" id="wiki-audio" data-wiki-title="24. 효과음과 설정"><h2>24. 효과음과 설정</h2><p>수동·메아리 발사, 충돌 강도, 자동 돌진·도탄·연격, 충전·회피, 적·보스 공격, 실제 피해·회복·처치·사망, 성장·스테이지, 알·부화·합성·동행 부활과 메뉴 조작에 효과음이 반응한다. 배경 입자는 소리를 반복하지 않는다.</p><p>로비·설정의 전체 음량과 음소거, 설정의 종류별 음량은 로컬 저장된다. 같은 종류 최소 간격·동시 수·전체 최대 12음과 우선순위로 밀집 전투를 제한한다. 음량·압축 값은 초기 추천이다. 브라우저가 허용한 실제 입력으로 소리를 열며, 중단 시 정리하고 다음 입력에서 재개한다. 잠금·음소거 중 소리는 나중에 재생하지 않는다.</p></section>
 <section class="wiki-section" id="wiki-pets" data-wiki-title="25. 영구 동행 · 알 · 합성"><h2>25. 영구 동행 · 알 · 합성</h2><p>보스 처치마다 그 보스의 정해진 결과인 알 1개를 영구 보유한다. 보유 수는 제한하지 않는다. 기본 동행 1칸에 슬롯 투자 4회로 최대 5칸이며 알과 펫이 같은 칸을 쓴다. 장착 알은 플레이어·펫의 모든 실제 처치마다 각각 +1, 30처치에 같은 UID·슬롯의 Common 펫으로 바뀐다. 예비 알은 진행하지 않는다.</p><p>펫은 접근 → 준비 → 물리 돌진 → 충돌 → 반동 → 재접근한다. 기본 피해 = 펫 공격력 × 충돌 직전 상대 접근 속도 ÷ 1600, 대상 방어를 공통 공식으로 적용한다. 가만히 겹친 몸은 펫에 피해를 주지 않으며 적 돌진과 실제 투사체는 피해를 준다. 펫 사망은 보유를 잃지 않고 3초 뒤 플레이어 근처에 최대 HP로 복귀한다. 수치는 Config의 측정 추천값이며 부활 3000ms는 확정 규칙이다.</p><p>발견한 동행의 대표 능력은 발견 기록에서 확인한다. Rare부터 계열별 추가 능력, Legendary부터 추가 탄막을 더한다. 모든 등급은 기본 물리 공격을 유지한다. 등급별 체력·공격력 ×1.8, 크기·범위 ×1.05를 적용한다.</p><p>같은 종·등급 5마리 합성의 성공률은 Common→Mythic 순 64/32/16/8/4%. 성공은 5마리를 상위 1마리로 바꾸며 실패는 1~4마리를 균등 소모한다. 잠금만 보호하고 장착 여부는 보호하지 않는다. 예비 재료를 먼저 사용하며 연속 합성도 선택한 등급만 처리한다. 알·Mythic은 재료가 아니다. 발견 전에는 알의 정체를 숨기고 처음 부화할 때 모습·이름·대표 능력을 공개한다. 발견 기록은 보유·합성 소모와 독립해 유지한다. 보유·잠금·편성·부화 진행·슬롯 투자는 로컬 저장되어 사망·재시작에 유지된다.</p></section>
 <section class="wiki-section" id="wiki-stage-pools" data-wiki-title="26. 스테이지·보스 조합 풀 상세 명세">
-<h2>26. 절차적 생성·보스 시스템 풀 (v0.10.0)</h2>
-<p><b>콘텐츠를 개별 코드로 추가하지 않는다.</b> THEME_POOL 정의는 테마별 최초 등장 스테이지·출현 가중치·색상·지형 연산 레시피·외형·보스 타입만 소유한다. 보스는 BOSS_POOL 정의의 외형 프리셋·행동 풀 참조·소환수·변형률을 조합한다. 신규 테마는 정의 등록 후 최초 등장 보장과 이후 시드 기반 랜덤 후보에 자동 편입한다.</p>
+<h2>26. 절차적 생성·보스 시스템 풀</h2>
+<p><b>콘텐츠를 개별 코드로 추가하지 않는다.</b> THEME_POOL 정의는 테마별 최초 등장 스테이지·출현 가중치·색상·지형 연산 레시피·외형·보스 타입만 소유한다. 보스는 BOSS_POOL 정의의 외형 프리셋·행동 풀 참조·소환수·변형률을 조합한다. 신규 테마는 확장 구간 시작(1·4·7…)에 최초 등장하도록 정의하며 이후 구간의 시드 기반 후보에 편입한다.</p>
 <div id="wikiThemesTable"></div><div id="wikiBossesTable"></div><div id="wikiMapOpsTable"></div>
-<h3>스테이지 크기와 평균 밀도</h3>
-<pre><code>radius = min(maxRadius, worldRadius * (1 + radiusGrowth * sqrt(stageIndex - 1)))
+<h3>3단계 보스·맵 구간과 동시 생존 수</h3>
+<pre><code>bossStage = stageIndex % bossEvery == 0 // bossEvery = 3
+mapTier = floor((stageIndex - 1) / mapEvery) // mapEvery = 3
+mapStart = mapTier * mapEvery + 1
+radius = min(maxRadius, worldRadius * (1 + radiusGrowth * sqrt(mapTier)))
 outerBoundary = seeded convex 6..10-gon (vertex radius jitter ±~12%)
 obstacleBudget = clamp(round(area / 100000 * obstaclePer100k), 4, maxObstacles)
 playableArea ≈ polygonArea - sum(π * obstacleRadius²)
-targetConcurrentEnemies = clamp(round(playableArea / 100000 * enemyDensityPer100k), 5, maxEnemies)
+firstPlayableArea = stage 1 playableArea
+proportional = round((initialPopulation + (stageIndex - 1) * populationPerStage) * playableArea / firstPlayableArea)
+targetConcurrentEnemies = stageIndex == 1 ? initialPopulation : min(maxEnemies, max(previousPopulation + populationPerStage, proportional))
+// initialPopulation=4, populationPerStage=1, maxEnemies=82
 waveKillTarget = initialKills + (stageIndex - 1) * killsPerStage
 // Do not mistake TARGET CONCURRENT population for required wave kills.</code></pre>
 <h3>생성 파이프라인·검증</h3>
-<p>1. 스테이지 번호로 시드 고정 → 2. 해금 테마 선택(최초 등장 우선) → 3. 반지름 확대·6~10각형 외곽 생성 → 4. 선택된 지형 연산을 한 풀에서 조합 → 5. 출발 안전지대·장애물 중첩·통로 폭 제한 → 6. 굵은 격자 Flood-fill로 자유 공간 연결성 검증(미달 시 장애물 제거) → 7. 이동 가능 면적 기준 동시 적 밀도 계산 → 8. 적 최소 거리 배치 → 9. Matter.js 정적 장애물과 테마 색·장식 렌더링. 맵은 스테이지마다 새로 생성하며 기존 맵을 외부 확장하지 않는다.</p>
+<p>1. 확장 구간 시작 번호로 지형 seed 고정 → 2. 구간 테마 선택(최초 등장 우선) → 3. 구간 반경·6~10각형 외곽 생성 → 4. 선택된 지형 연산을 한 풀에서 조합 → 5. 출발 안전지대·장애물 중첩·통로 폭 제한 → 6. 굵은 격자 Flood-fill로 자유 공간 연결성 검증(미달 시 장애물 제거) → 7. 첫 면적 대비 비율·현재 단계로 동시 적 목표 계산 → 8. 적 최소 거리 배치 → 9. Matter.js 정적 장애물과 테마 색·장식 렌더링. 같은 구간은 동일한 지형 seed로 재생성하며 크기·테마·형상을 유지한다. 4단계에서 반경 550→671로 확장하며 균사 동굴을 처음 선택하고, 4~6 구간을 유지하므로 6단계에 버섯왕이 등장한다.</p>
 <p>공동/통로는 정적 다각형 장애물 사이의 개방 공간과 예약 통로로 표현한다. 완전한 오목 다각형 동굴 생성/내비메시가 아니다. 생성된 장애물이 플레이어·보스 충돌 및 탄막 차폐에 영향을 준다. 시드·테마·연산·실제 유효 공간은 진단 상태에서 재현 가능하다.</p>
 <h3>보스 행동 풀 공통 상태·계약</h3>
 <pre><code>RECOVER -> choosePattern(situation, availableSummons) -> WINDUP(tracking)
@@ -521,10 +531,13 @@ CHARGE hits obstacle -> removeObstacle -> physical RECOIL(1000ms)
   -> WINDUP(CHARGE) again
 SUMMON -> create units from shared enemy factory (type, ttl, owner, cap)
   -> minions may be killed, or expire with no kill/level reward
-boss dies -> clear all owned summons -> CLEAR -> new stage/theme/map</code></pre>
+normal wave goal -> CLEAR -> next stage (no boss)
+3/6/9... wave goal -> BOSS_PENDING -> BOSS
+boss dies -> egg reward -> clear enemies/summons/projectiles -> CLEAR
+next stage -> centered stage number; 4/7/10... expands map/theme segment</code></pre>
 <p>보스 행동은 항상 패턴 하나씩 실행한다. 현재 등록된 원형 탄막, 부채꼴 탄막, 직선 돌진, 소환은 BOSS_PATTERNS 풀의 공통 구현이다. 보스별 외형 함수는 BOSS_VISUALS 풀을 사용하고, WINDUP과 LOCK 신호를 외형이 읽어 몸체 변화로 패턴을 예고한다. 소환수는 동일한 물리·속성·체력 컴포넌트를 사용하며, 일정 수명 후 HP 보상 없이 소멸한다. 소환형 패턴일 때만 보스 단독전 규칙에 예외를 둔다.</p>
 <h3>테마를 늘리는 계약</h3>
-<p>THEME_POOL에 unlockStage, layouts(공통 MAP_OPERATORS 함수들의 이름과 비율), obstacle, decoration, colors, boss를 등록하고, 새 보스 외형이 필요할 때 BOSS_VISUALS와 BOSS_POOL에 선언적으로 추가한다. 등록된 최초 등장 스테이지는 무조건 해당 테마를 쓰고 이후에는 해금된 테마만 랜덤 선택한다. 별도의 switch(stageIndex)나 스테이지별 구현 파일이 필요하지 않다.</p>
+<p>THEME_POOL에 unlockStage, layouts(공통 MAP_OPERATORS 함수들의 이름과 비율), obstacle, decoration, colors, boss를 등록하고, 새 보스 외형이 필요할 때 BOSS_VISUALS와 BOSS_POOL에 선언적으로 추가한다. unlockStage는 확장 구간 시작 번호(1·4·7…)로 등록한다. 해당 구간에서 최초 테마를 보장하고 구간 내 테마를 유지하며, 이후 구간에서는 해금된 테마만 시드로 선택한다. 현재 화원은 1단계, 균사 동굴은 4단계 첫 해금이며 보스는 각각 3·6단계다. 별도의 switch(stageIndex)나 스테이지별 구현 파일이 필요하지 않다.</p>
 </section>
  <div class="wiki-empty" id="wikiEmpty">일치하는 항목이 없어. 검색어를 줄여봐.</div>
  </main></div></div></div>
@@ -563,7 +576,7 @@ boss dies -> clear all owned summons -> CLEAR -> new stage/theme/map</code></pre
 <script type="module">
 
 const KIT = 'https://cdn.jsdelivr.net/gh/byh-playground/bloom-gamekit@d1e2c385033ad04a7a004cfbe9558948ef07a6d1/';
-const VERSION = '0.12.1', BUILD_ID = '20261010T130000Z-discovery-audio';
+const VERSION = '0.12.2', BUILD_ID = '20261010T142132Z-stage-cadence';
 const $ = id => document.getElementById(id);
 const loadtext = $('loadtext');
 const ERROR = error => { console.error(error); loadtext.innerHTML = '<strong style="color:#fdb8a9">실행 라이브러리를 불러오지 못했습니다.</strong><br>인터넷 연결 상태를 확인하고 다시 여세요.<br>'+String(error.message||error).replace(/[<>]/g,''); };
@@ -591,7 +604,7 @@ try {
     physics:{restitution:.86,frictionAir:.008,maxSpeed:1900},
     evade:{maxCharges:2,rechargeMs:500,durationMs:580,invulnerableMs:100,impulseSpeed:1020,decayPerSec:6.5,particleRateMs:22,
       capacityTierRate:.50,rechargeReductionTierRate:.20,distanceTierRate:.10,projectileWindowBonusRate:.50,hitRechargeRate:.20},
-    stage:{initialKills:7,killsPerStage:4,transitionMs:1650,worldRadius:550,radiusGrowth:.22,maxRadius:1600,enemyDensityPer100k:.86,maxEnemies:82,enemySpawnMinGap:98,spawnSafeRadius:285,obstaclePer100k:.93,maxObstacles:72,connectivityStep:82,connectivityMin:.92},
+    stage:{initialKills:7,killsPerStage:4,bossEvery:3,mapEvery:3,transitionMs:1650,bossWarningMs:750,entryNoticeMs:1100,bossNoticeMs:1250,noticePriority:{stage:1,boss:3},worldRadius:550,radiusGrowth:.22,maxRadius:1600,initialPopulation:4,populationPerStage:1,maxEnemies:82,enemySpawnMinGap:98,spawnSafeRadius:285,obstaclePer100k:.93,maxObstacles:72,connectivityStep:82,connectivityMin:.92},
     boss:{radius:48,mass:36,hp:540,armor:12,speed:155,contactDamage:36,contactPush:450,detect:2000,bulletSpeed:450,bulletDamage:23,bulletPush:300,bulletRadius:10,bulletLifeMs:2050,windupMs:640,lockMs:160,recoverMs:850,recoilMs:1000,chargeSpeed:880,chargeDurationMs:760,chargeRecoilSpeed:330,summonPeriodMs:5100,summonAppearMs:390,summonLifeMs:7800,summonCap:4},
     shadow:{initialSpeed:150,acceleration:2500,range:680,minDashDistance:28,contactPushSpeed:300,contactPushControlMs:500},
     dash:{minSpeed:250,maxSpeed:880,acceleration:850,rearmMinMs:150,rearmMaxMs:400,rearmSpeed:700,inputBufferMs:450,flightMinMs:500,flightMaxMs:2400,flightMarginMs:300,missClosingSpeed:45},damage:{referenceSpeed:1600},
@@ -629,8 +642,8 @@ try {
   let lightningArcs=[],fireEmbers=[],fireTransfers=[],fireFxSerial=0,elementalEvents={ignite:0,spread:0,conduct:0,conductSpread:0,conductConsumed:0,conductDamage:0,arc:0,burnDamage:0}, chainActive=false, pendingChainStart=null, chainStarts=0, chainEnds=0, autoChainReady=false, autoDashPlanned=false, dashAutomatic=false, dashPerfect=false, automaticDashes=0, manualPerfectHits=0, autoChainWins=0, autoChainRolls=0, chainEnergy=0, chainTargetId=null, energySpent=0, energyGained=0, energyRestored=0;
   let evadeCharges=2,evadeRefillAtMs=0,evadeMotion=null,evadeStartedAtMs=-1e9,evadePreviousPosition=null,evadeActions=0;
   let attackDashSerial=0,evadeHitRechargeUsed=false,evadeHitRechargeEvents=0,evadeHitRechargeProgress=0,evadeLastHitRecharge=null;
-  let stage={index:1,phase:'WAVE',waveKills:0,killTarget:7,startedAtMs:0,transitionUntilMs:0,boss:null,patternLog:[],themeId:'garden',layoutId:'open',radius:550,targetPopulation:8},arenaVertices=[],boundaryWalls=[],bossObstaclesBroken=0;
-   let terrainDecor=[],terrainChannels=[],generationStats={retries:0,connectivity:1,clearLane:0,obstacles:0},stageHistory=[];
+  let stage={index:1,phase:'WAVE',waveKills:0,killTarget:7,startedAtMs:0,transitionUntilMs:0,boss:null,patternLog:[],themeId:'garden',layoutId:'open',radius:550,targetPopulation:4,mapTier:0,mapStart:1},arenaVertices=[],boundaryWalls=[],bossObstaclesBroken=0;
+   let terrainDecor=[],terrainChannels=[],generationStats={retries:0,connectivity:1,clearLane:0,obstacles:0},stageHistory=[],stageBasePlayableArea=0;
   // The current Definition owns saved investments. Keep kills and valid choices;
   // omit removed IDs/invalid prerequisites so their spent points are refunded.
   // No old-ID aliases or translation path; only this product-owned key persists.
@@ -836,10 +849,12 @@ try {
       variants:[{id:'bouncy',name:'고탄성 갓',recoilSpeedRate:1.25,chargeSpeedRate:1.07},{id:'cloud',name:'포자 폭풍',radialCountRate:1.3,bulletSpeedRate:.9},{id:'dense',name:'균사 집결',summonCountRate:1.3,windupRate:1.06}]}
   });
   function themeForStage(index){
+    index=mapStartAtStage(index);
+    if(stage.mapStart===index&&THEME_POOL[stage.themeId])return THEME_POOL[stage.themeId];
     const all=Object.values(THEME_POOL).sort((a,b)=>a.unlockStage-b.unlockStage);
     const debut=all.find(t=>t.unlockStage===index);if(debut)return debut;
     const possible=all.filter(t=>t.unlockStage<=index);if(possible.length===1)return possible[0];
-    // Deterministic at the stage boundary, independent from transient combat/VFX RNG.
+    // Choose once at the map-segment boundary, independent from combat/VFX RNG.
     const roll=((Math.imul(index+5917,2654435761)>>>0)/4294967296);
     const prev=stage.themeId,weighted=possible.map(t=>({t,w:t.weight*(t.id===prev?.25:1)}));
     const total=weighted.reduce((acc,x)=>acc+x.w,0);let r=roll*total;
@@ -932,7 +947,11 @@ try {
     const dx=bx-ax,dy=by-ay,t=clamp(((x-ax)*dx+(y-ay)*dy)/Math.max(1,dx*dx+dy*dy),0,1);
     return Math.hypot(x-ax-t*dx,y-ay-t*dy);
   };
-  function radiusAtStage(index){return Math.min(C.stage.maxRadius,C.stage.worldRadius*(1+C.stage.radiusGrowth*Math.sqrt(index-1)));}
+  function mapTierAtStage(index){return Math.floor((index-1)/C.stage.mapEvery);}
+  function mapStartAtStage(index){return mapTierAtStage(index)*C.stage.mapEvery+1;}
+  function isBossStage(index){return index%C.stage.bossEvery===0;}
+  function radiusAtStage(index){return Math.min(C.stage.maxRadius,C.stage.worldRadius*(1+C.stage.radiusGrowth*Math.sqrt(mapTierAtStage(index))));}
+  function populationAtStage(index,playableArea,referenceArea,previousPopulation=0){return Math.min(C.stage.maxEnemies,Math.max(C.stage.initialPopulation,previousPopulation+(index>1?C.stage.populationPerStage:0),Math.round((C.stage.initialPopulation+(index-1)*C.stage.populationPerStage)*playableArea/referenceArea)));}
   function mapArea(){let area=0;for(let i=0;i<arenaVertices.length;i++){
     const a=arenaVertices[i],b=arenaVertices[(i+1)%arenaVertices.length];area+=a.x*b.y-a.y*b.x;
   }return Math.abs(area)*.5;}
@@ -1081,44 +1100,51 @@ try {
     const obstacleArea=obstacles.reduce((area,o)=>area+Math.PI*o.r*o.r,0);
     const playableArea=Math.max(100000,mapArea()-obstacleArea);
     stage.playableArea=playableArea;
-    stage.targetPopulation=Math.min(C.stage.maxEnemies,Math.max(5,Math.round(playableArea/100000*C.stage.enemyDensityPer100k)));
+    if(index===1)stageBasePlayableArea=playableArea;
+    stage.targetPopulation=populationAtStage(index,playableArea,stageBasePlayableArea,stageHistory.at(-1)?.population||0);
     fillTerrainDecor();
   }
-  function clearArena(){
+  function clearStageEnemies(){
     for(const shot of [...projectiles])removeProjectile(shot);
     for(const e of enemies)if(e.alive){e.alive=false;World.remove(engine.world,e.body);}
     enemies.length=0;enemiesById.clear();
+  }
+  function clearArena(){
+    clearStageEnemies();
     for(const o of obstacles)World.remove(engine.world,o.body);
     for(const w of boundaryWalls)World.remove(engine.world,w);
     obstacles=[];boundaryWalls=[];arenaVertices=[];terrainDecor=[];terrainChannels=[];
   }
   function setupStage(index){
     if(engine)clearArena();
-    const theme=themeForStage(index),radius=radiusAtStage(index);
+    const theme=themeForStage(index),radius=radiusAtStage(index),mapTier=mapTierAtStage(index),mapStart=mapStartAtStage(index);
     C.world.width=2*radius+400;C.world.height=2*radius+400;
     stage={index,phase:'WAVE',waveKills:0,killTarget:C.stage.initialKills+(index-1)*C.stage.killsPerStage,
       startedAtMs:timeMs,transitionUntilMs:0,boss:null,patternLog:[],themeId:theme.id,layoutId:'',layoutName:'',
-      radius,targetPopulation:0,playableArea:0,seed:(82741^Math.imul(index,2654435761))>>>0};
-    randomSeed=stage.seed;
+      radius,targetPopulation:0,playableArea:0,mapTier,mapStart,mapSeed:(82741^Math.imul(mapStart,2654435761))>>>0,seed:(82741^Math.imul(index,2654435761))>>>0};
+    randomSeed=stage.mapSeed;
     if(player){Body.setPosition(player,{x:C.world.width/2,y:C.world.height/2});setSpeed(player,0,0);}
     shadow=null;mode='READY';dashMotion=null;dashFlight=null;endChain();bufferedIntent=null;chainEnergy=0;
     evadeMotion=null;evadeCharges=C.evade.maxCharges;evadeRefillAtMs=0;
     buildArena(index);
+    randomSeed=stage.seed; // Wave placement varies; geometry remains fixed inside a map segment.
     for(let i=0;i<stage.targetPopulation;i++){
       const pt=findSpawn(C.stage.spawnSafeRadius,28);
       if(pt)spawnEnemy(pt.x,pt.y,i%7===0?'brute':i%5===2?'spitter':'scout');
     }
-    stageHistory.push({index,theme:theme.id,layout:stage.layoutId,radius:Math.round(radius),population:stage.targetPopulation,seed:stage.seed});
+    stageHistory.push({index,theme:theme.id,layout:stage.layoutId,radius,playableArea:stage.playableArea,population:stage.targetPopulation,mapTier,mapStart,mapSeed:stage.mapSeed,bossStage:isBossStage(index),seed:stage.seed});
     if(stageHistory.length>20)stageHistory.shift();
     petCombat.enterStage();if(index>1)sfx.play('stageStart');
-    stageNotice(`STAGE ${index}  ·  ${theme.name}`,1100);
+    stageNotice(`STAGE ${index}`,C.stage.entryNoticeMs,'stage');
   }
-  function stageNotice(message,durationMs=900){$('stageBanner').textContent=message;stage.noticeUntilMs=timeMs+durationMs;}
+  function stageNotice(message,durationMs,kind){
+    const priority=C.stage.noticePriority[kind];
+    if(timeMs<(stage.noticeUntilMs??0)&&priority<(stage.noticePriority??0))return false;
+    $('stageBanner').textContent=message;$('stageBanner').dataset.kind=kind;stage.noticeKind=kind;stage.noticePriority=priority;stage.noticeUntilMs=timeMs+durationMs;return true;
+  }
   function spawnBoss(){
     if(stage.phase!=='BOSS_PENDING')return;
-    for(const shot of [...projectiles])removeProjectile(shot);
-    for(const e of enemies){if(e.alive){e.alive=false;World.remove(engine.world,e.body);}}
-    enemies.length=0;enemiesById.clear();
+    clearStageEnemies();
     shadow=null;dashMotion=null;dashFlight=null;mode='READY';endChain();bufferedIntent=null;
     const theme=THEME_POOL[stage.themeId],spec=BOSS_POOL[theme.boss];
     if(!spec)throw Error('등록되지 않은 보스 '+theme.boss);
@@ -1142,15 +1168,12 @@ try {
     boss.state='BOSS_RECOVER';boss.stateUntilMs=timeMs+520;boss.pattern='FAN';boss.headingX=-1;boss.headingY=0;
     boss.patternStartedAtMs=timeMs;boss.volleys=0;boss.lastPattern='';boss.nextSummonAtMs=timeMs+3400;
     stage.boss=boss;stage.phase='BOSS';stage.bossName=spec.name;stage.bossVariant=variety.id;
-    sfx.play('bossNotice');stageNotice(spec.name,1250);
+    sfx.play('bossNotice');stageNotice(spec.name,C.stage.bossNoticeMs,'boss');
   }
   function finishStage(){
-    if(stage.phase!=='BOSS')return;
-    sfx.play('stageClear');stage.phase='CLEAR';stage.transitionUntilMs=timeMs+C.stage.transitionMs;
-    const next=themeForStage(stage.index+1);
-    stageNotice(`${THEME_POOL[stage.themeId].name} 돌파!  →  ${next.name}`,C.stage.transitionMs);
-    for(const shot of [...projectiles])removeProjectile(shot);
-    clearSummons();shadow=null;mode='READY';endChain();dashMotion=null;dashFlight=null;bufferedIntent=null;
+    if(stage.phase!=='BOSS'&&stage.phase!=='WAVE')return;
+    sfx.play('stageClear');stage.phase='CLEAR';stage.transitionUntilMs=timeMs+C.stage.transitionMs;stage.noticeUntilMs=timeMs;
+    clearStageEnemies();shadow=null;mode='READY';endChain();dashMotion=null;dashFlight=null;bufferedIntent=null;
   }
   // Every resolved player/pet kill advances equipped eggs exactly once, including summons.
   function defeatEnemy(e,source='player'){
@@ -1204,7 +1227,10 @@ try {
     if(e.isSummon)return;
     if(stage.phase==='WAVE'){
       stage.waveKills++;
-      if(stage.waveKills>=stage.killTarget){stage.phase='BOSS_PENDING';stage.transitionUntilMs=timeMs+750;stageNotice('거대 생명체가 다가온다',750);}
+      if(stage.waveKills>=stage.killTarget){
+        if(isBossStage(stage.index)){stage.phase='BOSS_PENDING';stage.transitionUntilMs=timeMs+C.stage.bossWarningMs;stageNotice('거대 생명체가 다가온다',C.stage.bossWarningMs,'boss');}
+        else finishStage();
+      }
       else spawnReplacement();
     }
   }
@@ -1221,7 +1247,7 @@ try {
     shadow=null;mode='READY';modeUntil=0;particles=[];particleCursor=0;lightningArcs=[];fireEmbers=[];fireTransfers=[];fireFxSerial=0;elementalEvents={ignite:0,spread:0,conduct:0,conductSpread:0,conductConsumed:0,conductDamage:0,arc:0,burnDamage:0};health=C.stats.maxHp;hitstopLeftMs=0;
     dashCharge=0;dashMotion=null;dashFlight=null;dashHits.clear();damageTaken=0;healingDone=0;launchCostTotal=0;launchCount=0;
     enemies=[];enemiesById=new Map();obstacles=[];boundaryWalls=[];arenaVertices=[];projectiles=[];projectileById=new Map();
-    terrainDecor=[];terrainChannels=[];stageHistory=[];generationStats={retries:0,connectivity:1,clearLane:0,obstacles:0};
+    terrainDecor=[];terrainChannels=[];stageHistory=[];stageBasePlayableArea=0;generationStats={retries:0,connectivity:1,clearLane:0,obstacles:0};
     enemyShots=0;enemyAttacks=0;enemyPushes=0;pending.length=0;aimTargetId=null;previewTargetId=null;fxRings=[];
     attackOrigin=null;bufferedIntent=null;bufferedUntilMs=0;dashStartedAtMs=0;recoverStartedAtMs=0;readyFlashUntilMs=0;
     autoChainReady=false;autoDashPlanned=false;dashAutomatic=false;dashPerfect=false;automaticDashes=0;manualPerfectHits=0;autoChainWins=0;autoChainRolls=0;
@@ -2099,7 +2125,7 @@ try {
     textFloats.push({x,y,text,color,age:0,el});}
   function spawnReplacement(){
     if(stage.phase!=='WAVE'||enemies.filter(e=>e.alive).length>=stage.targetPopulation)return;
-    // Keep average DENSITY constant but allow localized variations from the current formation.
+    // Refill the config-owned population target; never increase living count on a frame.
     for(let k=0;k<38;k++){
       const a=rand()*Math.PI*2,d=240+Math.sqrt(rand())*Math.min(stage.radius*.78,610);
       const x=player.position.x+Math.cos(a)*d,y=player.position.y+Math.sin(a)*d;
@@ -3013,7 +3039,7 @@ try {
   function refreshWikiStats(){const rows=$('wikiStatTable').querySelectorAll('tbody tr');
     STAT_UPGRADES.forEach(([key],i)=>{rows[i].cells[3].textContent=key==='criticalDamage'?`${(C.stats.criticalDamage*100).toFixed(0)}% (200% + ${tech.statLevels[key]} × 6%p)`:String(C.stats[key]);});}
 
-   makeWikiTable('wikiThemesTable',['테마 ID/최초 등장','맵 표현','조합 레시피·지형 연산','보스'],
+   makeWikiTable('wikiThemesTable',['테마 ID/구간 최초 등장','맵 표현','조합 레시피·지형 연산','보스'],
      Object.values(THEME_POOL).map(t=>[`${t.name} (${t.id}) / ${t.unlockStage} 스테이지`,t.decoration,
        t.layouts.map(l=>l.name+': '+l.ops.map(o=>o[0]).join(' + ')).join(' / '),BOSS_POOL[t.boss]?.name||t.boss]));
    makeWikiTable('wikiBossesTable',['보스 ID','소환수·반응','탄막·돌진 정의','재등장 변형'],
@@ -3111,7 +3137,7 @@ try {
   window.addEventListener('resize',resize);
   document.addEventListener('visibilitychange',()=>{if(document.hidden){pending.length=0;bufferedIntent=null;bufferedUntilMs=0;}else{lastFrame=performance.now();}});
   loop.start();$('load').classList.add('hidden');canvas.focus({preventScroll:true});
-  window.__bloomImpulse={VERSION,BUILD_ID,config:C,getAudio:()=>sfx.snapshot(),audioMeter:()=>sfx.meter(),getCompanions:()=>companions.snapshot(),getState:()=>({companions:petCombat.snapshot(),phase,mode,health,maxHp:C.stats.maxHp,aimPreviewId:previewTargetId,augment:{spore:C.augment.spore.enabled,momentum:C.augment.momentum.enabled,relay:C.chain.followKill,chain:C.chain.enabled},tech:{points:availableTech(),level:progressionLevel(tech.kills),totalKills:tech.kills,unlocked:[...tech.unlocked],statLevels:{...tech.statLevels}},autoChainReady,autoDashPlanned,chainActive,chainStarts,chainEnds,chainTriggerCharge:C.chain.minTriggerCharge,energy:{current:chainEnergy,capacity:energyCapacity(),fraction:chainEnergy/energyCapacity(),full:energyFull(),autoRechargeRate:autoChargeRate(),cost:energyCost(),spent:energySpent,gained:energyGained,restored:energyRestored},chainTargetId,autoChainWins,autoChainRolls,automaticDashes,manualPerfectHits,dashAutomatic,dashPerfect,launchCostTotal,launchCount,evade:{charges:evadeCharges,max:C.evade.maxCharges,refillAtMs:evadeRefillAtMs,progress:evadeRefillProgress(),rechargeMs:C.evade.rechargeMs,impulseSpeed:C.evade.impulseSpeed,durationMs:C.evade.durationMs,invulnerableMs:C.evade.invulnerableMs,projectileInvulnerable:timeMs-evadeStartedAtMs<C.evade.invulnerableMs,active:!!evadeMotion,startedAtMs:evadeStartedAtMs,count:evadeActions,hitRechargeEvents:evadeHitRechargeEvents,hitRechargeProgress:evadeHitRechargeProgress,lastHitRecharge:evadeLastHitRecharge?{...evadeLastHitRecharge}:null},stage:{index:stage.index,phase:stage.phase,waveKills:stage.waveKills,killTarget:stage.killTarget,bossHp:stage.boss?.hp??null,bossState:stage.boss?.state??null,bossPattern:stage.boss?.pattern??null,patternLog:[...stage.patternLog],obstacleCount:obstacles.length,broken:bossObstaclesBroken,arenaSides:arenaVertices.length,theme:stage.themeId,themeName:THEME_POOL[stage.themeId]?.name,layout:stage.layoutId,layoutName:stage.layoutName,radius:stage.radius,playableArea:Math.round(stage.playableArea),targetPopulation:stage.targetPopulation,bossName:stage.bossName||null,bossVariant:stage.bossVariant||null,bossSummons:stage.boss?liveSummons(stage.boss.id).length:0,seed:stage.seed,generation:{...generationStats}},stageHistory:[...stageHistory],bossPool:Object.keys(BOSS_POOL),themePool:Object.keys(THEME_POOL),mapOperators:Object.keys(MAP_OPERATORS),dashMotion:dashMotion?{...dashMotion}:null,shadow:shadow?{progress:chargeOf(),charge:chargeOf(),dashReady:shadowDashAvailable(),separation:shadowSeparation(),remainingGap:remainingShadowGap(),initialGap:shadow.initialGap,travel:shadow.travel,limit:shadow.limit,targetId:shadow.targetId,arrived:shadow.arrived,speed:shadow.speed}:null,hitstopLeftMs,dashCharge,dashFlight:dashFlight?{...dashFlight,remainingMs:Math.round(dashFlight.untilMs-timeMs)}:null,rearmProgress:rearmProgress(),buffered:!!bufferedIntent,damageTaken,healingDone,position:{...player.position},speed:speedOf(player),hits,kills,combo,comboFxActive:comboFx.classList.contains('active'),enemyMasses:Object.fromEntries(Object.entries(C.enemy.types).map(([type,def])=>[type,def.mass])),tick,timeMs,attackDashSerial,enemies:enemies.filter(e=>e.alive).length,enemyShots,enemyAttacks,enemyPushes,projectiles:projectiles.length,enemyStates:enemies.filter(e=>e.alive).map(e=>({id:e.id,bodyId:e.body.id,type:e.type,state:e.state,hp:e.hp,burning:!!e.burn,conducting:e.conductUntilMs>timeMs,radius:enemyDef(e).radius,x:e.body.position.x,y:e.body.position.y,preX:e.preX,preY:e.preY,shadowKnockbackLeftMs:Math.max(0,(e.shadowKnockbackUntilMs||0)-timeMs),attackCount:e.attackCount,playerGap:Math.hypot(e.body.position.x-player.position.x,e.body.position.y-player.position.y)})),rendererState:renderer.state,elemental:{...elementalEvents,fireEmbers:fireEmbers.length,fireTransfers:fireTransfers.length,activeBurning:enemies.filter(e=>e.alive&&e.burn).length,activeConducting:enemies.filter(e=>e.alive&&e.conductUntilMs>timeMs).length},stats:{...C.stats},criticalHits,lastHit:lastHit?{...lastHit,tags:[...lastHit.tags]}:null,fx:{stage:shadow?fxStage(chargeOf()):'none',target:shadow?(getTargetAnchor(fxAnchor)?{x:fxAnchor.x,y:fxAnchor.y,isEnemy:fxAnchor.isEnemy}:null):null,enabled:C.fx.targetCompression}}),auto:()=>{if(phase==='PLAYING')pending.push({kind:'auto'});},point:(x,y)=>{if(phase==='PLAYING')pending.push({kind:'point',x,y});},startRun,enterLobby,reset,dispose:()=>{sfx.dispose();running=false;loop.stop();input.dispose();document.removeEventListener('focusin',onGameplayFocus);renderer.dispose();window.removeEventListener('resize',resize);}};
+  window.__bloomImpulse={VERSION,BUILD_ID,config:C,getAudio:()=>sfx.snapshot(),audioMeter:()=>sfx.meter(),getCompanions:()=>companions.snapshot(),getState:()=>({companions:petCombat.snapshot(),phase,mode,health,maxHp:C.stats.maxHp,aimPreviewId:previewTargetId,augment:{spore:C.augment.spore.enabled,momentum:C.augment.momentum.enabled,relay:C.chain.followKill,chain:C.chain.enabled},tech:{points:availableTech(),level:progressionLevel(tech.kills),totalKills:tech.kills,unlocked:[...tech.unlocked],statLevels:{...tech.statLevels}},autoChainReady,autoDashPlanned,chainActive,chainStarts,chainEnds,chainTriggerCharge:C.chain.minTriggerCharge,energy:{current:chainEnergy,capacity:energyCapacity(),fraction:chainEnergy/energyCapacity(),full:energyFull(),autoRechargeRate:autoChargeRate(),cost:energyCost(),spent:energySpent,gained:energyGained,restored:energyRestored},chainTargetId,autoChainWins,autoChainRolls,automaticDashes,manualPerfectHits,dashAutomatic,dashPerfect,launchCostTotal,launchCount,evade:{charges:evadeCharges,max:C.evade.maxCharges,refillAtMs:evadeRefillAtMs,progress:evadeRefillProgress(),rechargeMs:C.evade.rechargeMs,impulseSpeed:C.evade.impulseSpeed,durationMs:C.evade.durationMs,invulnerableMs:C.evade.invulnerableMs,projectileInvulnerable:timeMs-evadeStartedAtMs<C.evade.invulnerableMs,active:!!evadeMotion,startedAtMs:evadeStartedAtMs,count:evadeActions,hitRechargeEvents:evadeHitRechargeEvents,hitRechargeProgress:evadeHitRechargeProgress,lastHitRecharge:evadeLastHitRecharge?{...evadeLastHitRecharge}:null},stage:{index:stage.index,phase:stage.phase,waveKills:stage.waveKills,killTarget:stage.killTarget,bossHp:stage.boss?.hp??null,bossState:stage.boss?.state??null,bossPattern:stage.boss?.pattern??null,patternLog:[...stage.patternLog],obstacleCount:obstacles.length,broken:bossObstaclesBroken,arenaSides:arenaVertices.length,theme:stage.themeId,themeName:THEME_POOL[stage.themeId]?.name,layout:stage.layoutId,layoutName:stage.layoutName,radius:stage.radius,playableArea:Math.round(stage.playableArea),targetPopulation:stage.targetPopulation,mapTier:stage.mapTier,mapStart:stage.mapStart,mapSeed:stage.mapSeed,bossStage:isBossStage(stage.index),referenceArea:stageBasePlayableArea,bossName:stage.bossName||null,bossVariant:stage.bossVariant||null,bossSummons:stage.boss?liveSummons(stage.boss.id).length:0,seed:stage.seed,generation:{...generationStats}},stageHistory:[...stageHistory],bossPool:Object.keys(BOSS_POOL),themePool:Object.keys(THEME_POOL),mapOperators:Object.keys(MAP_OPERATORS),dashMotion:dashMotion?{...dashMotion}:null,shadow:shadow?{progress:chargeOf(),charge:chargeOf(),dashReady:shadowDashAvailable(),separation:shadowSeparation(),remainingGap:remainingShadowGap(),initialGap:shadow.initialGap,travel:shadow.travel,limit:shadow.limit,targetId:shadow.targetId,arrived:shadow.arrived,speed:shadow.speed}:null,hitstopLeftMs,dashCharge,dashFlight:dashFlight?{...dashFlight,remainingMs:Math.round(dashFlight.untilMs-timeMs)}:null,rearmProgress:rearmProgress(),buffered:!!bufferedIntent,damageTaken,healingDone,position:{...player.position},speed:speedOf(player),hits,kills,combo,comboFxActive:comboFx.classList.contains('active'),enemyMasses:Object.fromEntries(Object.entries(C.enemy.types).map(([type,def])=>[type,def.mass])),tick,timeMs,attackDashSerial,enemies:enemies.filter(e=>e.alive).length,enemyShots,enemyAttacks,enemyPushes,projectiles:projectiles.length,enemyStates:enemies.filter(e=>e.alive).map(e=>({id:e.id,bodyId:e.body.id,type:e.type,state:e.state,hp:e.hp,burning:!!e.burn,conducting:e.conductUntilMs>timeMs,radius:enemyDef(e).radius,x:e.body.position.x,y:e.body.position.y,preX:e.preX,preY:e.preY,shadowKnockbackLeftMs:Math.max(0,(e.shadowKnockbackUntilMs||0)-timeMs),attackCount:e.attackCount,playerGap:Math.hypot(e.body.position.x-player.position.x,e.body.position.y-player.position.y)})),rendererState:renderer.state,elemental:{...elementalEvents,fireEmbers:fireEmbers.length,fireTransfers:fireTransfers.length,activeBurning:enemies.filter(e=>e.alive&&e.burn).length,activeConducting:enemies.filter(e=>e.alive&&e.conductUntilMs>timeMs).length},stats:{...C.stats},criticalHits,lastHit:lastHit?{...lastHit,tags:[...lastHit.tags]}:null,fx:{stage:shadow?fxStage(chargeOf()):'none',target:shadow?(getTargetAnchor(fxAnchor)?{x:fxAnchor.x,y:fxAnchor.y,isEnemy:fxAnchor.isEnemy}:null):null,enabled:C.fx.targetCompression}}),auto:()=>{if(phase==='PLAYING')pending.push({kind:'auto'});},point:(x,y)=>{if(phase==='PLAYING')pending.push({kind:'point',x,y});},startRun,enterLobby,reset,dispose:()=>{sfx.dispose();running=false;loop.stop();input.dispose();document.removeEventListener('focusin',onGameplayFocus);renderer.dispose();window.removeEventListener('resize',resize);}};
 } catch(e) { ERROR(e); }
 
 </script>

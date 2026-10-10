@@ -4,7 +4,7 @@
   "base": "fc3733d6e40ea1e65d37f14a7df3d9c4b165ac09",
   "scope": "실제 Edge/Playwright 대표 입력·유효한 사전 저장 데이터·자연스러운 스테이지 전환·별도 생성한 실제 Matter 능력 계약·실제 GPU 외형",
   "sourceHashes": {
-    "index.html": "f457a76d1075c36f1484e537de43d6e66012b92e900e68aeb6822487c3d4a8f2",
+    "index.html": "65f35e9e1813b965d56df1541d6de8d547cfd69e6668f17f73091c65d1bcff49",
     "abilities.js": "9f7a91efa3b8911cb8f944c41c1e6330a49ccca5f15dda173df451e38d6e2b52",
     "enemies.js": "bba2ec615f685e8a4b31e21c40c1479232db00de38d82483f3c39a802a796b42",
     "controllers.js": "b49df0ffb0e02990a7fe992202392a7e7c7c89ce9a1a857514146f2cfe1986d1",
@@ -858,7 +858,7 @@
     "elapsedMs": 3565,
     "errors": [],
     "limitations": [
-      "Two bounded native player-hit attempts produced no hit (6.768s,10.086s); native purchase passed but player-hit lifesteal ratio remains unverified. Common receiveHit real-owner effective-damage ratio passed separately."
+      "당시두실제명중시도미명중한계는후속nativeLifesteal의7.366초실제대표명중으로해소됨. 이기록은당시PASS_WITH_LIMITS결과로보존."
     ],
     "learned": {
       "lifeSteal": 0.02,
@@ -1374,7 +1374,7 @@
     "elapsedMs": 4768
   },
   "limitations": [
-    "플레이어 흡혈 UI 구매 0→2%는 확인했다. 두 한정된 실제 플레이어 명중 시도가 미명중(6.768초/10.086초)이어서 명중 시 회복 비율은 실제 플레이에서는 미검증이다. 공통 receiveHit에서 방어·유효HP·실제 공격자·사망한 투사체 소유자의 회복 계약은 통과했다. 미명중을 별도 게임 회귀로 확정하지 않았다.",
+    "앞선 두 플레이어 미명중(6.768초/10.086초)은 이력으로 보존한다. 후속 실제 성공 입력 경로에서 대표명중1회와2%회복비율을 검증해 기존 미검증 한계를 해소했다. 전체종류·성장비율 매트릭스를 늘리지는 않았다.",
     "물리 위치·HP·틱·RNG를 강제한 게임 진행은 없다. 별도 구성한 Matter 계약의 상태/좌표 조작은 자연 플레이 검증과 분리했다.",
     "전체16종×6등급·장기 밸런스·최대82개체 성능·전 기기 매트릭스는 실행하지 않았다.",
     "광선 외형은 실제 동행 FIRE와 GPU 공유 외형을 확인했다. 최대집중단계/차폐/치유 생존비용 경계는 별도 공통 능력 계약으로 확인했다."
@@ -1393,5 +1393,193 @@
       "elapsedMs": 10086,
       "result": "미명중, mode READY/hits0/healing0; 추가 명중 시도 중단"
     }
-  ]
+  ],
+  "nativeLifesteal": {
+    "scope": "실제 Edge 흡혈2% 대표명중1회. 성공한 실제WASD 접근/수동발사/돌진 경로에 유효한 시작 저장 fixture만 추가; 실행중 HP/위치/RNG/틱 강제없음",
+    "result": "PASS",
+    "elapsedMs": 7366,
+    "errors": [],
+    "observation": {
+      "rate": 0.02,
+      "statLevel": 1,
+      "attacker": 0,
+      "targetId": 1,
+      "targetBeforeHp": 105,
+      "targetAfterHp": 28,
+      "effectiveDamage": 77,
+      "lastHitDamage": 77,
+      "playerBeforeHp": 387.90000000000003,
+      "playerAfterHp": 389.44000000000005,
+      "healed": 1.54,
+      "expectedHeal": 1.54,
+      "damageTaken": 0,
+      "launchCostInHitWindow": 0,
+      "netHp": 1.5400000000000205,
+      "expectedNetHp": 1.54,
+      "previousTick": 211,
+      "afterTick": 216,
+      "manualLaunchCost": 43.10000000000001,
+      "previousLaunches": 1,
+      "afterLaunches": 1,
+      "healthRegen": 0,
+      "hit": {
+        "tick": 214,
+        "enemyId": 1,
+        "automatic": false,
+        "critical": false,
+        "criticalMultiplier": 1,
+        "raw": 77.06618211774176,
+        "normalDamage": 77,
+        "boostedDamage": 77,
+        "damage": 77,
+        "conductDamage": 0,
+        "markConsumed": false,
+        "tags": [
+          "dash"
+        ]
+      }
+    },
+    "fixture": {
+      "kills": 20000,
+      "unlocked": [
+        "echo",
+        "autoChain",
+        "charge1",
+        "charge2",
+        "costEff"
+      ],
+      "statLevels": {
+        "maxHp": 20,
+        "attackPower": 5,
+        "lifeSteal": 1
+      },
+      "companions": {
+        "inventory": [],
+        "slots": [
+          null
+        ],
+        "nextId": 1,
+        "discovered": []
+      }
+    },
+    "input": "기존 성공한 WASD실제접근→Space수동발사→50%이상Space수동돌진. 매 표본은getState읽기만 수행. 첫명중1회에서중단.",
+    "forcedRuntimeState": false
+  },
+  "deathRegression": {
+    "scope": "별도 구성한 실제 Edge 전체 게임 런타임의 치명타격 계약. 테스트 전용 초기HP1·단일 원거리 적 배치; 자연 플레이로 주장하지 않음. 실제 공통 factory/adapter/step/Matter/사망 UI 사용.",
+    "errors": [],
+    "cases": [
+      {
+        "version": "before",
+        "speciesId": "pikeman",
+        "setup": {
+          "targetId": 5,
+          "gap": 90,
+          "maxHp": 200,
+          "initialHp": 1,
+          "fixture": true
+        },
+        "phase": "PLAYING",
+        "mode": "READY",
+        "health": -21,
+        "attack": {
+          "kind": "melee-thrust",
+          "tick": 21,
+          "timeMs": 350,
+          "id": 5,
+          "type": "pikeman",
+          "targetId": 0,
+          "damage": 22
+        },
+        "projectiles": 0,
+        "deathCalls": 0,
+        "overlay": false,
+        "tick": 73,
+        "laterTick": 89,
+        "guard": null
+      },
+      {
+        "version": "after",
+        "speciesId": "pikeman",
+        "setup": {
+          "targetId": 5,
+          "gap": 90,
+          "maxHp": 200,
+          "initialHp": 1,
+          "fixture": true
+        },
+        "phase": "ENDED",
+        "mode": "DEAD",
+        "health": 0,
+        "attack": {
+          "kind": "melee-thrust",
+          "tick": 19,
+          "timeMs": 316.6666666666667,
+          "id": 5,
+          "type": "pikeman",
+          "targetId": 0,
+          "damage": 22
+        },
+        "projectiles": 0,
+        "deathCalls": 1,
+        "overlay": true,
+        "tick": 19,
+        "laterTick": 19,
+        "guard": {
+          "before": 1,
+          "after": 1,
+          "phase": "ENDED",
+          "mode": "DEAD",
+          "health": 0
+        }
+      },
+      {
+        "version": "after",
+        "speciesId": "brute",
+        "setup": {
+          "targetId": 5,
+          "gap": 300,
+          "maxHp": 200,
+          "initialHp": 1,
+          "fixture": true
+        },
+        "phase": "ENDED",
+        "mode": "DEAD",
+        "health": 0,
+        "attack": {
+          "kind": "sunbeam",
+          "tick": 62,
+          "timeMs": 1033.3333333333335,
+          "id": 5,
+          "type": "brute",
+          "targetId": 0,
+          "damage": 8.41838134430727,
+          "focusMs": 249.99999999999994,
+          "beamStage": 1
+        },
+        "projectiles": 0,
+        "deathCalls": 1,
+        "overlay": true,
+        "tick": 62,
+        "laterTick": 62,
+        "guard": {
+          "before": 1,
+          "after": 1,
+          "phase": "ENDED",
+          "mode": "DEAD",
+          "health": 0
+        }
+      }
+    ],
+    "browser": "155.0.4283.45",
+    "result": "PASS",
+    "elapsedMs": 9547,
+    "beforeHead": "58739460e4b93e81c063446fdb917b80290a749f",
+    "sourceTestSetup": "검증 전용 HTML에 fixture 초기화/사망횟수 계측만 주입. 초기HP1·기존적cleanup·공통spawnEnemy로단일가시창90/해바라기300배치. 실제factory/adapter/step/Matter/사망DOM실행. 자연플레이로주장하지않음.",
+    "fix": "playerUnit.die를실제사망전이에연결하고모든동일틱전투/흡혈수신후step의단일경계에서호출. 기존범위/탄환/몸접촉별die호출제거. 종료뒤재장전/다음재생틱차단. 기존사망가드로효과1회."
+  },
+  "limitationResolution": {
+    "nativePlayerLifesteal": "해소됨: 실제대표첫명중77피해→2%·1.54회복, HP387.90→389.44, 피격/발사비용증가/재생0,7.366초PASS. 앞선미명중2회이력보존.",
+    "rangedPlayerDeath": "해소됨: 기존P1실제전체런타임fixture재현후가시창/광선치명타격사망/정리·중복호출가드9.547초PASS."
+  }
 }

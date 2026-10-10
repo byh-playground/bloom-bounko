@@ -387,7 +387,7 @@ inflicted = min(enemyRemainingHP, max(0, outgoingDamage))
 heal = min(effectiveHPDamage * attacker.lifeSteal, attackerMaxHP - attackerHP) // base lifeSteal = 0</code></pre>
 <p><b>충전율·이동거리의 피해 배율은 없다.</b> 차지율은 초기 Impulse와 지속 가속만 바꾸므로 장거리 정타는 비행 중 실제 충돌 속도가 상승하는 방식으로 보상받는다. 공격마다 치명타는 <code>criticalChance</code> 확률로 판정하고 기본 2배(200%)에 투자당 6%p가 가산된 <code>criticalDamage</code>를 곱한다. 관통은 퍼센트 관통 후 고정 관통 순으로 적용한다.</p>
 <p><b>체력의 기본 흐름</b>: 시작 최대 HP는 200이며 기존 최대 체력 투자당 기본값의 +6%를 유지한다. 수동 잔상은 현재 HP 10%, 메아리 자동 재발사는 자동 연격 중에도 무료다. 수동 돌진은 무료이고 자동 돌진은 별도 운동 에너지를 소모한다. 평상 몸 접촉 피해는 0이며, 준비를 마친 돌진·도약·근접·광선·탄환·폭발만 공통 피해 수신에 전달된다. 플레이어와 동행의 돌진은 같은 공격력 × 상대 접근속도 / 1600 공식을 사용한다. 단계 전환은 현재 HP를 유지하고 새 판 시작만 최대 HP로 초기화한다.</p>
-<p><b>흡혈</b>: 기본 0%, 투자당 +2%p, 최대 15회·30%다. 방어·보호 시간·반올림을 적용하고 실제 줄어든 HP만 기준으로 하므로 과잉 피해는 회복을 늘리지 않는다. 직접·범위·화상·투사체 공격이 같은 수신 규칙을 사용하며 실제 공격자가 회복한다. 소멸한 투사체 소유자는 회복하지 않는다. 체력 재생과 치유 동행의 회복은 별도로 유지하며 최대 HP까지만 회복한다.</p>
+<p><b>흡혈</b>: 기본 0%, 투자당 +2%p, 최대 15회·30%다. 방어·보호 시간·반올림을 적용하고 실제 줄어든 HP만 기준으로 하므로 과잉 피해는 회복을 늘리지 않는다. 직접·범위·화상·투사체 공격이 같은 수신 규칙을 사용하며 실제 공격자가 회복한다. 소멸한 투사체 소유자는 회복하지 않는다. 체력 재생과 치유 동행의 회복은 별도로 유지하며 최대 HP까지만 회복한다. 모든 공격의 같은 틱 피해와 흡혈을 반영한 뒤 HP가 0 이하면 게임을 종료하며 사망 효과는 한 번만 처리한다.</p>
 <div class="wiki-info wiki-warning">화염 지속 피해도 흡혈률이 0%면 회복하지 않고, 투자한 흡혈률만 적용한다. 감속·충돌 등 시뮬레이션 결과 없는 단순 VFX만으로는 피해·회복이 발생하지 않는다.</div></section><section class="wiki-section" id="wiki-attackdash" data-wiki-title="8. 돌진 가속·비행·회복"><h2>8. 돌진 가속·비행·회복</h2>
 <p>돌진 시작 시 차지율을 부드럽게 매핑하여 최소/최대 초기 속도 변화를 계산하고, 그 결과의 크기에 비례하는 지속 가속을 설정한다. 발동 순간 목표 방향이 고정되고 기존 횡관성만 제거된다. 같은 속도로 충돌하면 첫 차지율이 달라도 같은 피해를 입힌다.</p>
 <pre><code>chargeSmooth = charge² × (3 - 2 × charge)
@@ -908,7 +908,6 @@ try {
     for(const target of combatWorld.targets()){if(!hostile(source,target))continue;const b=target.body;
       if(contactWindow(blast,b,false,1,1)&&Math.hypot(b.position.x-p.x,b.position.y-p.y)<=c.radius+b.circleRadius){
         damageUnit(target,{raw:c.damage,stats:source.config,kind:'area'},source);if(target.alive){const n=norm(b.position.x-p.x,b.position.y-p.y);applyImpulse(b,{x:n.x*c.push*b.mass,y:n.y*c.push*b.mass});}}}
-    die();
   }
   function addShot(source,{radius,height=radius*2,speed=0,angle=0,damage,push,lifeMs,arc=null,impactRadius,impactHeight,boss=false}){
     const n={x:Math.cos(angle),y:Math.sin(angle)},p=source.body.position,x=p.x+n.x*(source.config.radius+radius+2),y=p.y+n.y*(source.config.radius+radius+2);
@@ -1007,7 +1006,7 @@ try {
     hurtPlayer(dmg,player.position.x,player.position.y,{...shot.source,attacker:shot.source,alive:true});
     const delta=shot.push*C.enemy.knockbackMultiplier;
     applyImpulse(player,{x:dir.x*delta*player.mass,y:dir.y*delta*player.mass});enemyPushes++;
-    burst(pos.x,pos.y,180,16,[.76,.55,1,1]);toast(`포자 피격 -${Math.round(dmg)}`,'#d3a9ff',380);die();
+    burst(pos.x,pos.y,180,16,[.76,.55,1,1]);toast(`포자 피격 -${Math.round(dmg)}`,'#d3a9ff',380);
   }
   const boundaryPoint=(x,y,margin=0)=>{
     for(let i=0;i<arenaVertices.length;i++){
@@ -1298,7 +1297,7 @@ try {
       frictionAir:C.physics.frictionAir,friction:0,frictionStatic:0,collisionFilter:{category:2,mask:1|4|8}});
     Body.setMass(player,C.player.mass);Body.setInertia(player,Infinity);volume(player,C.player.height);World.add(engine.world,player);
     playerUnit={unitId:0,id:0,faction:'garden',body:player,get config(){return {...C.stats,deferDeath:true,damageRounding:false};},pre:{x:0,y:0},preX:player.position.x,preY:player.position.y,
-      get hp(){return health;},set hp(value){health=value;},get maxHp(){return C.stats.maxHp;},get alive(){return mode!=='DEAD';},onHit(){},die(){},
+      get hp(){return health;},set hp(value){health=value;},get maxHp(){return C.stats.maxHp;},get alive(){return mode!=='DEAD';},onHit(){},die(){die();},
       adapter:{healed(target,amount){healingDone+=amount;sfx.play('heal');floatText(player.position.x,player.position.y,'+'+formatCombatNumber(amount),[.33,1,.68,1]);burst(player.position.x,player.position.y,120,6,[.24,1,.7,1]);},hurt(target,amount){damageTaken+=amount;if(amount>0){sfx.play('hurt');floatText(player.position.x,player.position.y,'-'+formatCombatNumber(amount),[1,.38,.43,1]);burst(player.position.x,player.position.y,90,8,[1,.36,.46,1]);}}}};
     setupStage(1);petRoster.reset();
     renderCamera.x=player.position.x;renderCamera.y=player.position.y;
@@ -2055,7 +2054,6 @@ try {
         }else{attackOrigin=chainTargetId??e.id;toast(combo>1?`✦ ×${combo}`:'✦','#ffdba0',430);}
         dashAutomatic=false;
       }else if(touch)toast(`피격 -${formatCombatNumber(received)}`,'#ff9e95',420);
-      die();
     }}
   // Combo presentation only. Only a resolved positive-damage body collision increments it.
   // Replaying or drawing this effect never mutates health, physics or hit counts.
@@ -2204,6 +2202,9 @@ try {
     }
     resolveChainStart();
     updateBurning(dt*1000);updateShadow(dt);updateProjectiles();
+    // One death boundary for every explicit attack. Resolve same-tick collision
+    // damage/lifesteal together, then stop before rearming or another healing tick.
+    playerUnit.die();if(mode==='DEAD')return;
     const v=speedOf(player),s=Math.hypot(v.x,v.y);
     if(s>3){const desired=Math.atan2(v.y,v.x),err=Math.atan2(Math.sin(desired-playerFacing),Math.cos(desired-playerFacing));
       const stepRad=C.player.facingTurnRateRadPerSec*dt;playerFacing+=clamp(err,-stepRad,stepRad);}

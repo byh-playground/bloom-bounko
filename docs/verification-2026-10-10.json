@@ -1,0 +1,449 @@
+{
+  "date": "2026-10-10",
+  "status": "PASS",
+  "artifact": {
+    "version": "0.10.2",
+    "buildId": "20261010T031928Z-bounko-registration",
+    "sha256": "6be42151ed11ffdcc965131f1abfc436fafc846ea64328e1ee1503b903e34a30",
+    "bytes": 279073,
+    "originalCommit": "7919b0c80e8dac8d6e16beced368010e7fcdbf16",
+    "originalSha256": "37e85266bd68a823fd0268785b5ecf554a7bb0f915b238fd80e9877d596ecd0a",
+    "originalBytes": 279094,
+    "gameModuleUnchangedExceptBuildId": true
+  },
+  "environment": {
+    "browser": "Microsoft Edge 154.0.4258.62",
+    "headless": true,
+    "playwright": "1.64.0",
+    "viewport": {
+      "width": 1000,
+      "height": 800
+    },
+    "visibility": "visible",
+    "gpu": {
+      "version": "WebGL 1.0 (OpenGL ES 2.0 Chromium)",
+      "renderer": "ANGLE (NVIDIA, NVIDIA GeForce GTX 1660 Ti (0x00002191) Direct3D11 vs_5_0 ps_5_0, D3D11)"
+    }
+  },
+  "dependencies": {
+    "matter": "0.20.0",
+    "resources": [
+      "https://cdn.jsdelivr.net/npm/matter-js@0.20.0/build/matter.min.js",
+      "https://cdn.jsdelivr.net/gh/byh-playground/bloom-gamekit@d1e2c385033ad04a7a004cfbe9558948ef07a6d1/rendering.js",
+      "https://cdn.jsdelivr.net/gh/byh-playground/bloom-gamekit@d1e2c385033ad04a7a004cfbe9558948ef07a6d1/input.js",
+      "https://cdn.jsdelivr.net/gh/byh-playground/bloom-gamekit@d1e2c385033ad04a7a004cfbe9558948ef07a6d1/simloop.js"
+    ],
+    "visibility": "visible"
+  },
+  "scenario": "boot/wiki/start/evade/shadow-contact/charged-dash/combat/lobby",
+  "elapsedMs": 8928,
+  "mockLibraries": false,
+  "observation": "Read-only observer of existing diagnostic getter. Normal RAF, fixed ticks, physics, timers and rendering. No forced game state, manual ticks or generated input commands.",
+  "checkpoints": [
+    {
+      "name": "boot",
+      "atMs": 2556,
+      "tick": 0,
+      "phase": "LOBBY",
+      "mode": "READY",
+      "health": 100,
+      "launches": 0,
+      "hits": 0,
+      "kills": 0,
+      "evades": 0,
+      "position": {
+        "x": 750,
+        "y": 750
+      },
+      "tech": {
+        "points": 0,
+        "level": 1,
+        "totalKills": 0,
+        "unlocked": [],
+        "statLevels": {
+          "attackPower": 0,
+          "criticalChance": 0,
+          "criticalDamage": 0,
+          "armorPenFlat": 0,
+          "armorPenPercent": 0,
+          "maxHp": 0,
+          "armor": 0,
+          "healthRegen": 0
+        }
+      }
+    },
+    {
+      "name": "started",
+      "atMs": 3658,
+      "tick": 5,
+      "phase": "PLAYING",
+      "mode": "READY",
+      "health": 100,
+      "launches": 0,
+      "hits": 0,
+      "kills": 0,
+      "evades": 0,
+      "position": {
+        "x": 750,
+        "y": 750
+      },
+      "tech": {
+        "points": 0,
+        "level": 1,
+        "totalKills": 0,
+        "unlocked": [],
+        "statLevels": {
+          "attackPower": 0,
+          "criticalChance": 0,
+          "criticalDamage": 0,
+          "armorPenFlat": 0,
+          "armorPenPercent": 0,
+          "maxHp": 0,
+          "armor": 0,
+          "healthRegen": 0
+        }
+      }
+    },
+    {
+      "name": "evade-movement",
+      "atMs": 4386,
+      "tick": 49,
+      "phase": "PLAYING",
+      "mode": "READY",
+      "health": 100,
+      "launches": 0,
+      "hits": 0,
+      "kills": 0,
+      "evades": 1,
+      "position": {
+        "x": 864.5010263951391,
+        "y": 786.4321447620941
+      },
+      "tech": {
+        "points": 0,
+        "level": 1,
+        "totalKills": 0,
+        "unlocked": [],
+        "statLevels": {
+          "attackPower": 0,
+          "criticalChance": 0,
+          "criticalDamage": 0,
+          "armorPenFlat": 0,
+          "armorPenPercent": 0,
+          "maxHp": 0,
+          "armor": 0,
+          "healthRegen": 0
+        }
+      }
+    },
+    {
+      "name": "shadow-launched",
+      "atMs": 4487,
+      "tick": 55,
+      "phase": "PLAYING",
+      "mode": "SHADOW",
+      "health": 90,
+      "launches": 1,
+      "hits": 0,
+      "kills": 0,
+      "evades": 1,
+      "position": {
+        "x": 864.5010263951391,
+        "y": 786.4321447620948
+      },
+      "tech": {
+        "points": 0,
+        "level": 1,
+        "totalKills": 0,
+        "unlocked": [],
+        "statLevels": {
+          "attackPower": 0,
+          "criticalChance": 0,
+          "criticalDamage": 0,
+          "armorPenFlat": 0,
+          "armorPenPercent": 0,
+          "maxHp": 0,
+          "armor": 0,
+          "healthRegen": 0
+        }
+      }
+    },
+    {
+      "name": "shadow-contact-recoil",
+      "atMs": 4889,
+      "tick": 79,
+      "phase": "PLAYING",
+      "mode": "COYOTE",
+      "health": 90,
+      "launches": 1,
+      "hits": 0,
+      "kills": 0,
+      "evades": 1,
+      "position": {
+        "x": 864.5010263951391,
+        "y": 786.4321447620963
+      },
+      "tech": {
+        "points": 0,
+        "level": 1,
+        "totalKills": 0,
+        "unlocked": [],
+        "statLevels": {
+          "attackPower": 0,
+          "criticalChance": 0,
+          "criticalDamage": 0,
+          "armorPenFlat": 0,
+          "armorPenPercent": 0,
+          "maxHp": 0,
+          "armor": 0,
+          "healthRegen": 0
+        }
+      }
+    },
+    {
+      "name": "charged-dash-1",
+      "atMs": 5813,
+      "tick": 135,
+      "phase": "PLAYING",
+      "mode": "READY",
+      "health": 96,
+      "launches": 2,
+      "hits": 1,
+      "kills": 0,
+      "evades": 1,
+      "position": {
+        "x": 899.0835679068962,
+        "y": 720.982892691591
+      },
+      "tech": {
+        "points": 0,
+        "level": 1,
+        "totalKills": 0,
+        "unlocked": [],
+        "statLevels": {
+          "attackPower": 0,
+          "criticalChance": 0,
+          "criticalDamage": 0,
+          "armorPenFlat": 0,
+          "armorPenPercent": 0,
+          "maxHp": 0,
+          "armor": 0,
+          "healthRegen": 0
+        }
+      }
+    },
+    {
+      "name": "charged-dash-2",
+      "atMs": 6721,
+      "tick": 189,
+      "phase": "PLAYING",
+      "mode": "READY",
+      "health": 81.4,
+      "launches": 3,
+      "hits": 2,
+      "kills": 0,
+      "evades": 1,
+      "position": {
+        "x": 883.3590458720772,
+        "y": 608.769517447803
+      },
+      "tech": {
+        "points": 0,
+        "level": 1,
+        "totalKills": 0,
+        "unlocked": [],
+        "statLevels": {
+          "attackPower": 0,
+          "criticalChance": 0,
+          "criticalDamage": 0,
+          "armorPenFlat": 0,
+          "armorPenPercent": 0,
+          "maxHp": 0,
+          "armor": 0,
+          "healthRegen": 0
+        }
+      }
+    },
+    {
+      "name": "charged-dash-3",
+      "atMs": 7588,
+      "tick": 241,
+      "phase": "PLAYING",
+      "mode": "READY",
+      "health": 53.260000000000005,
+      "launches": 4,
+      "hits": 3,
+      "kills": 1,
+      "evades": 1,
+      "position": {
+        "x": 975.3327312522794,
+        "y": 567.059277856693
+      },
+      "tech": {
+        "points": 0,
+        "level": 1,
+        "totalKills": 1,
+        "unlocked": [],
+        "statLevels": {
+          "attackPower": 0,
+          "criticalChance": 0,
+          "criticalDamage": 0,
+          "armorPenFlat": 0,
+          "armorPenPercent": 0,
+          "maxHp": 0,
+          "armor": 0,
+          "healthRegen": 0
+        }
+      }
+    },
+    {
+      "name": "combat",
+      "atMs": 7616,
+      "tick": 243,
+      "phase": "PLAYING",
+      "mode": "READY",
+      "health": 53.260000000000005,
+      "launches": 4,
+      "hits": 3,
+      "kills": 1,
+      "evades": 1,
+      "position": {
+        "x": 984.5050719518699,
+        "y": 564.9224191022632
+      },
+      "tech": {
+        "points": 0,
+        "level": 1,
+        "totalKills": 1,
+        "unlocked": [],
+        "statLevels": {
+          "attackPower": 0,
+          "criticalChance": 0,
+          "criticalDamage": 0,
+          "armorPenFlat": 0,
+          "armorPenPercent": 0,
+          "maxHp": 0,
+          "armor": 0,
+          "healthRegen": 0
+        }
+      }
+    },
+    {
+      "name": "returned-lobby",
+      "atMs": 7824,
+      "tick": 254,
+      "phase": "LOBBY",
+      "mode": "READY",
+      "health": 53.260000000000005,
+      "launches": 4,
+      "hits": 3,
+      "kills": 1,
+      "evades": 1,
+      "position": {
+        "x": 1032.4000810829236,
+        "y": 553.7663296348355
+      },
+      "tech": {
+        "points": 0,
+        "level": 1,
+        "totalKills": 1,
+        "unlocked": [],
+        "statLevels": {
+          "attackPower": 0,
+          "criticalChance": 0,
+          "criticalDamage": 0,
+          "armorPenFlat": 0,
+          "armorPenPercent": 0,
+          "maxHp": 0,
+          "armor": 0,
+          "healthRegen": 0
+        }
+      }
+    },
+    {
+      "name": "progression-reload",
+      "atMs": 8488,
+      "tick": 0,
+      "phase": "LOBBY",
+      "mode": "READY",
+      "health": 100,
+      "launches": 0,
+      "hits": 0,
+      "kills": 0,
+      "evades": 0,
+      "position": {
+        "x": 750,
+        "y": 750
+      },
+      "tech": {
+        "points": 0,
+        "level": 1,
+        "totalKills": 1,
+        "unlocked": [],
+        "statLevels": {
+          "attackPower": 0,
+          "criticalChance": 0,
+          "criticalDamage": 0,
+          "armorPenFlat": 0,
+          "armorPenPercent": 0,
+          "maxHp": 0,
+          "armor": 0,
+          "healthRegen": 0
+        }
+      }
+    }
+  ],
+  "shadowContact": [
+    {
+      "at": 1791602981416,
+      "id": 2,
+      "leftMs": 500,
+      "x": 847.5322503682397,
+      "y": 949.247626185229,
+      "playerGap": 163.69734375028068,
+      "hp": 105,
+      "observedDisplacement": 92.55520924431184,
+      "finalPlayerGap": 301.5543739879954
+    },
+    {
+      "at": 1791602982568,
+      "id": 6,
+      "leftMs": 500,
+      "x": 871.8787695197798,
+      "y": 696.4537606948177,
+      "playerGap": 47.10497526037707,
+      "hp": 65,
+      "observedDisplacement": 119.28659506256724,
+      "finalPlayerGap": 88.33917387279062
+    }
+  ],
+  "progressionRestore": "PASS; nonzero kills retained",
+  "errors": [],
+  "resourceWarnings": [
+    {
+      "path": "/favicon.ico",
+      "message": "Failed to load resource: the server responded with a status of 404 (File not found)",
+      "classification": "optional favicon request; no game or dependency failure"
+    }
+  ],
+  "priorAttempts": [
+    {
+      "result": "ENVIRONMENT_LIMITED",
+      "environment": "Chrome extension tab displayed 1 FPS",
+      "scope": "Boot and native input observed; combat not completed. Original cause was not established. Only the owned test tab was closed."
+    },
+    {
+      "result": "FUNCTIONAL_FLOW_PASS_WITH_HARNESS_FAILURE",
+      "elapsedMs": 9556,
+      "reason": "Initial harness counted optional favicon 404 as a fatal console error. Gameplay, real library integration and saved kill restoration already passed. Classifier corrected; product code was unchanged before final rerun."
+    }
+  ],
+  "limits": [
+    "mobile device",
+    "boss clear",
+    "upgrade unlock",
+    "long play",
+    "old-origin storage transfer"
+  ],
+  "projectStatus": "Candidate; no Stable promotion or Pages deployment."
+}

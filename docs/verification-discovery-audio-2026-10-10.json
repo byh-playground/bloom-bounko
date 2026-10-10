@@ -1,0 +1,3044 @@
+{
+  "baseCommit": "e2e841679e9260f65536b21fd42a6d8daa87f7a8",
+  "version": "0.12.1",
+  "buildId": "20261010T130000Z-discovery-audio",
+  "result": "PASS_WITH_REUSED_UNCHANGED_COVERAGE",
+  "finalArtifacts": {
+    "index.html": "4899daadb306755444c7ddae8381fc33093fe5f8c102dc15d8cec77065ec61a3",
+    "pets.js": "ee8acfe3ff54cb32e2d728d5b9bbd6ee8f263f86c60a93da7b7253e15282b24e",
+    "audio.js": "8543ce14bcd61c07373cd7c7c560b9c696ecf5afb80918d3c5929ef407a84a22"
+  },
+  "sdk": {
+    "repository": "byh-playground/bloom-gamekit",
+    "pr": 36,
+    "main": "6032f77a56668e31fa73672ef4a388741d7b6e6b",
+    "dist": "2de54d6ef1fd5ae91907c2d10d549abe1043d8b8",
+    "ciRun": "38055547281",
+    "url": "https://cdn.jsdelivr.net/gh/byh-playground/bloom-gamekit@2de54d6ef1fd5ae91907c2d10d549abe1043d8b8/audio.js",
+    "status": 200,
+    "sha256": "7e3e16d34ce88124e6ba7699f16d23107a3e42ee93ea5a16691e856e5865c14a",
+    "localEngineDuplicated": false
+  },
+  "runs": {
+    "representative": {
+      "startedAt": "2026-10-10T13:31:03.032Z",
+      "baseCommit": "e2e841679e9260f65536b21fd42a6d8daa87f7a8",
+      "scope": "Representative real Edge discovery/UI/combat sound and volume persistence; existing pet combat/death full matrix not repeated",
+      "mockLibraries": false,
+      "forcedLiveState": false,
+      "forcedRandom": false,
+      "manualTicks": false,
+      "configChanges": false,
+      "errors": [],
+      "requests": [
+        {
+          "url": "https://cdn.jsdelivr.net/npm/matter-js@0.20.0/build/matter.min.js",
+          "status": 200
+        },
+        {
+          "url": "https://cdn.jsdelivr.net/gh/byh-playground/bloom-gamekit@d1e2c385033ad04a7a004cfbe9558948ef07a6d1/input.js",
+          "status": 200
+        },
+        {
+          "url": "https://cdn.jsdelivr.net/gh/byh-playground/bloom-gamekit@d1e2c385033ad04a7a004cfbe9558948ef07a6d1/simloop.js",
+          "status": 200
+        },
+        {
+          "url": "https://cdn.jsdelivr.net/gh/byh-playground/bloom-gamekit@d1e2c385033ad04a7a004cfbe9558948ef07a6d1/rendering.js",
+          "status": 200
+        },
+        {
+          "url": "https://cdn.jsdelivr.net/gh/byh-playground/bloom-gamekit@2de54d6ef1fd5ae91907c2d10d549abe1043d8b8/audio.js",
+          "status": 200
+        },
+        {
+          "url": "https://cdn.jsdelivr.net/npm/matter-js@0.20.0/build/matter.min.js",
+          "status": 200
+        },
+        {
+          "url": "https://cdn.jsdelivr.net/gh/byh-playground/bloom-gamekit@d1e2c385033ad04a7a004cfbe9558948ef07a6d1/rendering.js",
+          "status": 200
+        },
+        {
+          "url": "https://cdn.jsdelivr.net/gh/byh-playground/bloom-gamekit@d1e2c385033ad04a7a004cfbe9558948ef07a6d1/input.js",
+          "status": 200
+        },
+        {
+          "url": "https://cdn.jsdelivr.net/gh/byh-playground/bloom-gamekit@d1e2c385033ad04a7a004cfbe9558948ef07a6d1/simloop.js",
+          "status": 200
+        },
+        {
+          "url": "https://cdn.jsdelivr.net/gh/byh-playground/bloom-gamekit@2de54d6ef1fd5ae91907c2d10d549abe1043d8b8/audio.js",
+          "status": 200
+        }
+      ],
+      "checks": [
+        "Unknown eggs: neutral icon/name, exact progress/cracks/wobble; no family options or config spoilers",
+        "Real player kill crosses 29→30 for 3 equipped eggs, same UID/slots; first reveal does not stop ticks",
+        "Owned family/grade only, 3/5 disabled then 5/5 actual natural RNG fusion; discovery retained",
+        "Actual master/category controls and measured mute; reload restores audio and independent discovery, context locked",
+        "Actual pinned SDK/consumer recipe OfflineAudioContext normal and dense mix finite/nonzero/headroom"
+      ],
+      "fixture": {
+        "kills": 20000,
+        "unlocked": [
+          "echo",
+          "autoChain",
+          "ricochet",
+          "spore",
+          "shockPush",
+          "conduct",
+          "ignite"
+        ],
+        "statLevels": {
+          "attackPower": 30,
+          "maxHp": 30,
+          "petSlots": 4
+        },
+        "companions": {
+          "inventory": [
+            {
+              "id": 1,
+              "speciesId": "petalPredator",
+              "kind": "egg",
+              "grade": 0,
+              "hatchProgress": 29,
+              "locked": false
+            },
+            {
+              "id": 2,
+              "speciesId": "petalPredator",
+              "kind": "egg",
+              "grade": 0,
+              "hatchProgress": 29,
+              "locked": false
+            },
+            {
+              "id": 3,
+              "speciesId": "petalPredator",
+              "kind": "egg",
+              "grade": 0,
+              "hatchProgress": 29,
+              "locked": false
+            },
+            {
+              "id": 4,
+              "speciesId": "petalPredator",
+              "kind": "egg",
+              "grade": 0,
+              "hatchProgress": 29,
+              "locked": false
+            },
+            {
+              "id": 5,
+              "speciesId": "petalPredator",
+              "kind": "egg",
+              "grade": 0,
+              "hatchProgress": 29,
+              "locked": false
+            },
+            {
+              "id": 6,
+              "speciesId": "elasticCap",
+              "kind": "egg",
+              "grade": 0,
+              "hatchProgress": 0,
+              "locked": false
+            }
+          ],
+          "slots": [
+            1,
+            2,
+            3,
+            null,
+            null
+          ],
+          "nextId": 7,
+          "discovered": []
+        }
+      },
+      "artifacts": {
+        "index.html": "4094f05615fe8c64ecf718dd86e36635ac900d98230e8885f43deccadbb692f5",
+        "pets.js": "ee8acfe3ff54cb32e2d728d5b9bbd6ee8f263f86c60a93da7b7253e15282b24e",
+        "audio.js": "8543ce14bcd61c07373cd7c7c560b9c696ecf5afb80918d3c5929ef407a84a22"
+      },
+      "browser": "155.0.4283.45",
+      "sdkResponse": {
+        "url": "https://cdn.jsdelivr.net/gh/byh-playground/bloom-gamekit@2de54d6ef1fd5ae91907c2d10d549abe1043d8b8/audio.js",
+        "status": 200,
+        "sha256": "7e3e16d34ce88124e6ba7699f16d23107a3e42ee93ea5a16691e856e5865c14a"
+      },
+      "unknown": "◉ 영구 동행\n닫기 ✕\n\n보스 처치마다 알 1개 · 보유 제한 없음. 장착한 알은 당신과 펫의 처치마다 각각 +1, 30처치에 같은 칸에서 부화합니다. 슬롯을 고른 뒤 보유 목록에서 장착하세요.\n\n1번 · 정체불명의 알 29/30\n1번 해제\n2번 · 정체불명의 알 29/30\n2번 해제\n3번 · 정체불명의 알 29/30\n3번 해제\n4번 · 빈 슬롯\n5번 · 빈 슬롯\n합성 \n보유한 펫 없음\n5마리 합성\n선택 등급 연속 합성\n보유한 펫을 선택하세요\n\n잠금한 펫만 보호됩니다. 장착 펫도 재료에 포함되며, 예비 펫을 먼저 씁니다. 성공: 5마리 → 상위 1마리. 실패: 1~4마리 소모, 최소 1마리 유지. 알은 재료가 아닙니다.\n\n발견 기록\n아직 기록된 동행이 없습니다.\n◉정체불명의 알\n\n부화 29/30 · 갈라진 껍질\n\n1번 동행 중\n◉정체불명의 알\n\n부화 29/30 · 갈라진 껍질\n\n2번 동행 중\n◉정체불명의 알\n\n부화 29/30 · 갈라진 껍질\n\n3번 동행 중\n◉정체불명의 알\n\n부화 29/30 · 갈라진 껍질\n\n1번에 장착\n◉정체불명의 알\n\n부화 29/30 · 갈라진 껍질\n\n1번에 장착\n◉정체불명의 알\n\n부화 0/30 · 단단한 껍질\n\n1번에 장착",
+      "hatched": {
+        "inventory": [
+          {
+            "id": 1,
+            "speciesId": "petalPredator",
+            "kind": "pet",
+            "grade": 0,
+            "hatchProgress": 30,
+            "locked": false
+          },
+          {
+            "id": 2,
+            "speciesId": "petalPredator",
+            "kind": "pet",
+            "grade": 0,
+            "hatchProgress": 30,
+            "locked": false
+          },
+          {
+            "id": 3,
+            "speciesId": "petalPredator",
+            "kind": "pet",
+            "grade": 0,
+            "hatchProgress": 30,
+            "locked": false
+          },
+          {
+            "id": 4,
+            "speciesId": "petalPredator",
+            "kind": "egg",
+            "grade": 0,
+            "hatchProgress": 29,
+            "locked": false
+          },
+          {
+            "id": 5,
+            "speciesId": "petalPredator",
+            "kind": "egg",
+            "grade": 0,
+            "hatchProgress": 29,
+            "locked": false
+          },
+          {
+            "id": 6,
+            "speciesId": "elasticCap",
+            "kind": "egg",
+            "grade": 0,
+            "hatchProgress": 0,
+            "locked": false
+          }
+        ],
+        "slots": [
+          1,
+          2,
+          3,
+          null,
+          null
+        ],
+        "nextId": 7,
+        "discovered": [
+          "petalPredator"
+        ]
+      },
+      "firstReveal": {
+        "text": "❀ 작은 꽃잎 포식자\n물리 돌진 · 성장하면 부채 탄막",
+        "state": {
+          "companions": {
+            "inventoryCount": 6,
+            "slots": [
+              1,
+              2,
+              3,
+              null,
+              null
+            ],
+            "hits": 0,
+            "kills": 0,
+            "damage": 0,
+            "taken": 0,
+            "deaths": 0,
+            "revivals": 0,
+            "abilities": 0,
+            "supportHealing": 0,
+            "lastHit": null,
+            "actors": [
+              {
+                "id": 1,
+                "kind": "pet",
+                "speciesId": "petalPredator",
+                "grade": 0,
+                "state": "FOLLOW",
+                "hp": 150,
+                "maxHp": 150,
+                "x": 898.2039132948385,
+                "y": 637.9710914307282,
+                "reviveInMs": 0
+              },
+              {
+                "id": 2,
+                "kind": "pet",
+                "speciesId": "petalPredator",
+                "grade": 0,
+                "state": "FOLLOW",
+                "hp": 150,
+                "maxHp": 150,
+                "x": 937.670682782608,
+                "y": 557.6892745937811,
+                "reviveInMs": 0
+              },
+              {
+                "id": 3,
+                "kind": "pet",
+                "speciesId": "petalPredator",
+                "grade": 0,
+                "state": "FOLLOW",
+                "hp": 150,
+                "maxHp": 150,
+                "x": 962.8813914108327,
+                "y": 643.5217636576816,
+                "reviveInMs": 0
+              }
+            ]
+          },
+          "phase": "PLAYING",
+          "mode": "RECOVER",
+          "health": 280,
+          "maxHp": 280,
+          "aimPreviewId": 3,
+          "augment": {
+            "spore": true,
+            "momentum": false,
+            "relay": false,
+            "chain": true
+          },
+          "tech": {
+            "points": 68,
+            "level": 141,
+            "totalKills": 20001,
+            "unlocked": [
+              "echo",
+              "autoChain",
+              "ricochet",
+              "spore",
+              "shockPush",
+              "conduct",
+              "ignite"
+            ],
+            "statLevels": {
+              "attackPower": 30,
+              "criticalChance": 0,
+              "criticalDamage": 0,
+              "armorPenFlat": 0,
+              "armorPenPercent": 0,
+              "maxHp": 30,
+              "armor": 0,
+              "healthRegen": 0,
+              "petSlots": 4
+            }
+          },
+          "autoChainReady": false,
+          "autoDashPlanned": false,
+          "chainActive": false,
+          "chainStarts": 0,
+          "chainEnds": 0,
+          "chainTriggerCharge": 0.5,
+          "energy": {
+            "current": 1.104944865692786,
+            "capacity": 3,
+            "fraction": 0.36831495523092866,
+            "full": false,
+            "autoRechargeRate": 0,
+            "cost": 1,
+            "spent": 0,
+            "gained": 1.104944865692786,
+            "restored": 0
+          },
+          "chainTargetId": null,
+          "autoChainWins": 0,
+          "autoChainRolls": 1,
+          "automaticDashes": 0,
+          "manualPerfectHits": 0,
+          "dashAutomatic": false,
+          "dashPerfect": false,
+          "launchCostTotal": 28,
+          "launchCount": 1,
+          "evade": {
+            "charges": 2,
+            "max": 2,
+            "refillAtMs": 0,
+            "progress": 0,
+            "rechargeMs": 500,
+            "impulseSpeed": 1020,
+            "durationMs": 580,
+            "invulnerableMs": 100,
+            "projectileInvulnerable": false,
+            "active": false,
+            "startedAtMs": 316.6666666666667,
+            "count": 2,
+            "hitRechargeEvents": 0,
+            "hitRechargeProgress": 0,
+            "lastHitRecharge": null
+          },
+          "stage": {
+            "index": 1,
+            "phase": "WAVE",
+            "waveKills": 1,
+            "killTarget": 7,
+            "bossHp": null,
+            "bossState": null,
+            "bossPattern": null,
+            "patternLog": [],
+            "obstacleCount": 6,
+            "broken": 0,
+            "arenaSides": 8,
+            "theme": "garden",
+            "themeName": "화원",
+            "layout": "grove",
+            "layoutName": "빽빽한 화단",
+            "radius": 550,
+            "playableArea": 749631,
+            "targetPopulation": 6,
+            "bossName": null,
+            "bossVariant": null,
+            "bossSummons": 0,
+            "seed": 2654354052,
+            "generation": {
+              "retries": 0,
+              "connectivity": 0.9375,
+              "clearLane": 444,
+              "obstacles": 6
+            }
+          },
+          "stageHistory": [
+            {
+              "index": 1,
+              "theme": "garden",
+              "layout": "grove",
+              "radius": 550,
+              "population": 6,
+              "seed": 2654354052
+            }
+          ],
+          "bossPool": [
+            "petalPredator",
+            "elasticCap"
+          ],
+          "themePool": [
+            "garden",
+            "cave"
+          ],
+          "mapOperators": [
+            "scatter",
+            "clusters",
+            "ring",
+            "rooms",
+            "ridges"
+          ],
+          "dashMotion": null,
+          "shadow": null,
+          "hitstopLeftMs": 50,
+          "dashCharge": 0.9182799637557953,
+          "dashFlight": null,
+          "rearmProgress": 0,
+          "buffered": false,
+          "damageTaken": 25,
+          "healingDone": 53,
+          "position": {
+            "x": 934.347618259167,
+            "y": 607.3997212132739
+          },
+          "speed": {
+            "x": 130.03573020985414,
+            "y": 342.4998620809288
+          },
+          "hits": 1,
+          "kills": 1,
+          "combo": 1,
+          "comboFxActive": true,
+          "enemyMasses": {
+            "scout": 4.6,
+            "brute": 8.2,
+            "spitter": 4.2,
+            "boss": 36,
+            "sprout": 3.4,
+            "puff": 4.6
+          },
+          "tick": 61,
+          "timeMs": 1016.6666666666667,
+          "attackDashSerial": 1,
+          "enemies": 6,
+          "enemyShots": 1,
+          "enemyAttacks": 0,
+          "enemyPushes": 0,
+          "projectiles": 1,
+          "enemyStates": [
+            {
+              "id": 1,
+              "bodyId": 38,
+              "type": "brute",
+              "state": "CHASE",
+              "hp": 185,
+              "burning": false,
+              "conducting": false,
+              "radius": 29,
+              "x": 426.61229143722295,
+              "y": 718.4146048073715,
+              "preX": 425.76910708453346,
+              "preY": 718.4747044706535,
+              "shadowKnockbackLeftMs": 0,
+              "attackCount": 0,
+              "playerGap": 519.7301862335854
+            },
+            {
+              "id": 2,
+              "bodyId": 39,
+              "type": "scout",
+              "state": "CHASE",
+              "hp": 105,
+              "burning": false,
+              "conducting": false,
+              "radius": 20,
+              "x": 864.5404031699101,
+              "y": 970.4341596850212,
+              "preX": 863.9853513301991,
+              "preY": 972.0290177160114,
+              "shadowKnockbackLeftMs": 0,
+              "attackCount": 0,
+              "playerGap": 369.685069748583
+            },
+            {
+              "id": 3,
+              "bodyId": 40,
+              "type": "spitter",
+              "state": "RECOVER",
+              "hp": 78,
+              "burning": false,
+              "conducting": false,
+              "radius": 19,
+              "x": 817.7458272149116,
+              "y": 398.4539357418885,
+              "preX": 817.8807328625019,
+              "preY": 398.24356719393455,
+              "shadowKnockbackLeftMs": 0,
+              "attackCount": 1,
+              "playerGap": 239.27874736587535
+            },
+            {
+              "id": 4,
+              "bodyId": 41,
+              "type": "scout",
+              "state": "CHASE",
+              "hp": 105,
+              "burning": false,
+              "conducting": false,
+              "radius": 20,
+              "x": 623.9093282679696,
+              "y": 546.1776028515758,
+              "preX": 622.3366774737644,
+              "preY": 545.5629812227419,
+              "shadowKnockbackLeftMs": 0,
+              "attackCount": 0,
+              "playerGap": 316.41757168234597
+            },
+            {
+              "id": 5,
+              "bodyId": 42,
+              "type": "scout",
+              "state": "CHASE",
+              "hp": 105,
+              "burning": false,
+              "conducting": false,
+              "radius": 20,
+              "x": 728.1120456146076,
+              "y": 1095.999251554677,
+              "preX": 727.2746140301032,
+              "preY": 1097.468867680979,
+              "shadowKnockbackLeftMs": 0,
+              "attackCount": 0,
+              "playerGap": 530.3419769110012
+            },
+            {
+              "id": 7,
+              "bodyId": 48,
+              "type": "scout",
+              "state": "PATROL",
+              "hp": 105,
+              "burning": false,
+              "conducting": false,
+              "radius": 20,
+              "x": 714.5116601291126,
+              "y": 907.1765715686556,
+              "shadowKnockbackLeftMs": 0,
+              "attackCount": 0,
+              "playerGap": 371.7445473654617
+            }
+          ],
+          "rendererState": "ready",
+          "elemental": {
+            "ignite": 1,
+            "spread": 0,
+            "conduct": 1,
+            "conductSpread": 0,
+            "conductConsumed": 0,
+            "conductDamage": 0,
+            "arc": 0,
+            "burnDamage": 0,
+            "fireEmbers": 7,
+            "fireTransfers": 0,
+            "activeBurning": 0,
+            "activeConducting": 0
+          },
+          "stats": {
+            "petSlots": 5,
+            "attackPower": 280,
+            "criticalChance": 0,
+            "criticalDamage": 2,
+            "armorPenFlat": 0,
+            "armorPenPercent": 0,
+            "maxHp": 280,
+            "armor": 0,
+            "healthRegen": 0
+          },
+          "criticalHits": 0,
+          "lastHit": {
+            "tick": 61,
+            "enemyId": 6,
+            "automatic": false,
+            "critical": false,
+            "criticalMultiplier": 1,
+            "raw": 175.15747411332947,
+            "normalDamage": 175,
+            "boostedDamage": 175,
+            "damage": 105,
+            "conductDamage": 0,
+            "markConsumed": false,
+            "tags": [
+              "dash"
+            ]
+          },
+          "fx": {
+            "stage": "none",
+            "target": null,
+            "enabled": true
+          }
+        },
+        "audio": {
+          "state": "running",
+          "volume": 0.7,
+          "muted": false,
+          "voices": 5,
+          "categoryVolumes": {
+            "enemy": 0.65,
+            "impact": 1,
+            "motion": 0.8,
+            "danger": 0.9,
+            "reward": 0.85,
+            "magic": 0.55,
+            "ui": 0.5
+          },
+          "lastError": null,
+          "played": 17,
+          "dropped": 2,
+          "blocked": 0,
+          "maxObserved": 7,
+          "bySound": {
+            "ui": 3,
+            "stageStart": 1,
+            "evade": 2,
+            "enemyNotice": 2,
+            "enemyShot": 1,
+            "launch": 1,
+            "chargeHalf": 1,
+            "dash": 1,
+            "hurt": 1,
+            "impactHeavy": 1,
+            "heal": 1,
+            "kill": 1,
+            "hatchFirst": 1
+          }
+        }
+      },
+      "live": {
+        "peak": 0.024782594293355942,
+        "rms": 0.01298175930054997,
+        "state": {
+          "state": "running",
+          "volume": 0.7,
+          "muted": false,
+          "voices": 0,
+          "categoryVolumes": {
+            "enemy": 0.65,
+            "impact": 1,
+            "motion": 0.8,
+            "danger": 0.9,
+            "reward": 0.85,
+            "magic": 0.55,
+            "ui": 0.5
+          },
+          "lastError": null,
+          "played": 21,
+          "dropped": 2,
+          "blocked": 0,
+          "maxObserved": 7,
+          "bySound": {
+            "ui": 3,
+            "stageStart": 1,
+            "evade": 2,
+            "enemyNotice": 2,
+            "enemyShot": 1,
+            "launch": 1,
+            "chargeHalf": 2,
+            "dash": 1,
+            "hurt": 1,
+            "impactHeavy": 1,
+            "heal": 1,
+            "kill": 1,
+            "hatchFirst": 1,
+            "echo": 1,
+            "chargeReady": 1,
+            "petImpact": 1
+          }
+        }
+      },
+      "threeMaterial": "성공 64% · 재료 3/5 (잠금 제외)",
+      "fusion": {
+        "text": "합성 1회 · 성공 0 · 실패 1 · 소모 4마리 · 생성 0마리",
+        "collection": {
+          "inventory": [
+            {
+              "id": 5,
+              "speciesId": "petalPredator",
+              "kind": "pet",
+              "grade": 0,
+              "hatchProgress": 30,
+              "locked": false
+            },
+            {
+              "id": 6,
+              "speciesId": "elasticCap",
+              "kind": "egg",
+              "grade": 0,
+              "hatchProgress": 0,
+              "locked": false
+            }
+          ],
+          "slots": [
+            null,
+            null,
+            null,
+            null,
+            5
+          ],
+          "nextId": 7,
+          "discovered": [
+            "petalPredator"
+          ]
+        },
+        "audio": {
+          "state": "running",
+          "volume": 0.7,
+          "muted": false,
+          "voices": 1,
+          "categoryVolumes": {
+            "enemy": 0.65,
+            "impact": 1,
+            "motion": 0.8,
+            "danger": 0.9,
+            "reward": 0.85,
+            "magic": 0.55,
+            "ui": 0.5
+          },
+          "lastError": null,
+          "played": 46,
+          "dropped": 4,
+          "blocked": 0,
+          "maxObserved": 7,
+          "bySound": {
+            "ui": 14,
+            "stageStart": 2,
+            "evade": 2,
+            "enemyNotice": 4,
+            "enemyShot": 2,
+            "launch": 1,
+            "chargeHalf": 2,
+            "dash": 1,
+            "hurt": 3,
+            "impactHeavy": 1,
+            "heal": 1,
+            "kill": 2,
+            "hatchFirst": 1,
+            "echo": 1,
+            "chargeReady": 1,
+            "petImpact": 6,
+            "enemyLunge": 1,
+            "fusionFail": 1
+          }
+        }
+      },
+      "muted": {
+        "state": {
+          "state": "running",
+          "volume": 0.37,
+          "muted": true,
+          "voices": 0,
+          "categoryVolumes": {
+            "enemy": 0.65,
+            "impact": 0.41,
+            "motion": 0.8,
+            "danger": 0.9,
+            "reward": 0.85,
+            "magic": 0.55,
+            "ui": 0.5
+          },
+          "lastError": null,
+          "played": 51,
+          "dropped": 4,
+          "blocked": 0,
+          "maxObserved": 7,
+          "bySound": {
+            "ui": 17,
+            "stageStart": 3,
+            "evade": 2,
+            "enemyNotice": 5,
+            "enemyShot": 2,
+            "launch": 1,
+            "chargeHalf": 2,
+            "dash": 1,
+            "hurt": 3,
+            "impactHeavy": 1,
+            "heal": 1,
+            "kill": 2,
+            "hatchFirst": 1,
+            "echo": 1,
+            "chargeReady": 1,
+            "petImpact": 6,
+            "enemyLunge": 1,
+            "fusionFail": 1
+          }
+        },
+        "meter": {
+          "peak": 0,
+          "rms": 0
+        }
+      },
+      "restored": {
+        "audio": {
+          "state": "locked",
+          "volume": 0.37,
+          "muted": true,
+          "voices": 0,
+          "categoryVolumes": {
+            "enemy": 0.65,
+            "impact": 0.41,
+            "motion": 0.8,
+            "danger": 0.9,
+            "reward": 0.85,
+            "magic": 0.55,
+            "ui": 0.5
+          },
+          "lastError": null,
+          "played": 0,
+          "dropped": 0,
+          "blocked": 0,
+          "maxObserved": 0,
+          "bySound": {}
+        },
+        "collection": {
+          "inventory": [
+            {
+              "id": 5,
+              "speciesId": "petalPredator",
+              "kind": "pet",
+              "grade": 0,
+              "hatchProgress": 30,
+              "locked": false
+            },
+            {
+              "id": 6,
+              "speciesId": "elasticCap",
+              "kind": "egg",
+              "grade": 0,
+              "hatchProgress": 0,
+              "locked": false
+            }
+          ],
+          "slots": [
+            null,
+            null,
+            null,
+            null,
+            5
+          ],
+          "nextId": 7,
+          "discovered": [
+            "petalPredator"
+          ]
+        }
+      },
+      "offline": [
+        {
+          "dense": false,
+          "sounds": [
+            "impactHeavy",
+            "launch",
+            "bossNotice",
+            "hatchFirst"
+          ],
+          "peak": 0.06285222619771957,
+          "rms": 0.008651758472601571,
+          "finite": true
+        },
+        {
+          "dense": true,
+          "sounds": [
+            "impactHeavy",
+            "impactMedium",
+            "petImpact",
+            "bossRadial",
+            "bossCharge",
+            "bossNotice",
+            "hatchFirst",
+            "fusionMixed",
+            "fire",
+            "lightning",
+            "spore",
+            "kill"
+          ],
+          "peak": 0.06808988749980927,
+          "rms": 0.008150594457029833,
+          "finite": true
+        }
+      ],
+      "finalAudioBeforeReload": {
+        "state": "running",
+        "volume": 0.7,
+        "muted": false,
+        "voices": 1,
+        "categoryVolumes": {
+          "enemy": 0.65,
+          "impact": 1,
+          "motion": 0.8,
+          "danger": 0.9,
+          "reward": 0.85,
+          "magic": 0.55,
+          "ui": 0.5
+        },
+        "lastError": null,
+        "played": 46,
+        "dropped": 4,
+        "blocked": 0,
+        "maxObserved": 7,
+        "bySound": {
+          "ui": 14,
+          "stageStart": 2,
+          "evade": 2,
+          "enemyNotice": 4,
+          "enemyShot": 2,
+          "launch": 1,
+          "chargeHalf": 2,
+          "dash": 1,
+          "hurt": 3,
+          "impactHeavy": 1,
+          "heal": 1,
+          "kill": 2,
+          "hatchFirst": 1,
+          "echo": 1,
+          "chargeReady": 1,
+          "petImpact": 6,
+          "enemyLunge": 1,
+          "fusionFail": 1
+        }
+      },
+      "result": "PASS",
+      "limits": [
+        "Valid progression/ownership fixture loaded before boot; no runtime HP/ticks/config/RNG forced.",
+        "29/30 real hatch boundary was used; 0→30 campaign and all pet combat grades were not repeated.",
+        "One natural fusion outcome; success/failure probabilities unchanged and previously checked, not a new RNG matrix.",
+        "Generated offline/live graph output is verified; speaker output, subjective punch, mobile hardware and CPU performance are unverified.",
+        "Not every game sound event was individually forced in browser; source hooks and the representative native combat/UI flow are recorded."
+      ],
+      "last": {
+        "state": {
+          "companions": {
+            "inventoryCount": 2,
+            "slots": [
+              null,
+              null,
+              null,
+              null,
+              5
+            ],
+            "hits": 0,
+            "kills": 0,
+            "damage": 0,
+            "taken": 0,
+            "deaths": 0,
+            "revivals": 0,
+            "abilities": 0,
+            "supportHealing": 0,
+            "lastHit": null,
+            "actors": [
+              {
+                "id": 5,
+                "kind": "pet",
+                "speciesId": "petalPredator",
+                "grade": 0,
+                "state": "FOLLOW",
+                "hp": 150,
+                "maxHp": 150,
+                "x": 790.3757067440914,
+                "y": 724.0422977728164,
+                "reviveInMs": 0
+              }
+            ]
+          },
+          "phase": "LOBBY",
+          "mode": "READY",
+          "health": 280,
+          "maxHp": 280,
+          "aimPreviewId": 6,
+          "augment": {
+            "spore": true,
+            "momentum": false,
+            "relay": false,
+            "chain": true
+          },
+          "tech": {
+            "points": 68,
+            "level": 141,
+            "totalKills": 20002,
+            "unlocked": [
+              "echo",
+              "autoChain",
+              "ricochet",
+              "spore",
+              "shockPush",
+              "conduct",
+              "ignite"
+            ],
+            "statLevels": {
+              "attackPower": 30,
+              "criticalChance": 0,
+              "criticalDamage": 0,
+              "armorPenFlat": 0,
+              "armorPenPercent": 0,
+              "maxHp": 30,
+              "armor": 0,
+              "healthRegen": 0,
+              "petSlots": 4
+            }
+          },
+          "autoChainReady": false,
+          "autoDashPlanned": false,
+          "chainActive": false,
+          "chainStarts": 0,
+          "chainEnds": 0,
+          "chainTriggerCharge": 0.5,
+          "energy": {
+            "current": 0,
+            "capacity": 3,
+            "fraction": 0,
+            "full": false,
+            "autoRechargeRate": 0,
+            "cost": 1,
+            "spent": 0,
+            "gained": 0,
+            "restored": 0
+          },
+          "chainTargetId": null,
+          "autoChainWins": 0,
+          "autoChainRolls": 0,
+          "automaticDashes": 0,
+          "manualPerfectHits": 0,
+          "dashAutomatic": false,
+          "dashPerfect": false,
+          "launchCostTotal": 0,
+          "launchCount": 0,
+          "evade": {
+            "charges": 2,
+            "max": 2,
+            "refillAtMs": 0,
+            "progress": 0,
+            "rechargeMs": 500,
+            "impulseSpeed": 1020,
+            "durationMs": 580,
+            "invulnerableMs": 100,
+            "projectileInvulnerable": false,
+            "active": false,
+            "startedAtMs": -1000000000,
+            "count": 0,
+            "hitRechargeEvents": 0,
+            "hitRechargeProgress": 0,
+            "lastHitRecharge": null
+          },
+          "stage": {
+            "index": 1,
+            "phase": "WAVE",
+            "waveKills": 0,
+            "killTarget": 7,
+            "bossHp": null,
+            "bossState": null,
+            "bossPattern": null,
+            "patternLog": [],
+            "obstacleCount": 6,
+            "broken": 0,
+            "arenaSides": 8,
+            "theme": "garden",
+            "themeName": "화원",
+            "layout": "grove",
+            "layoutName": "빽빽한 화단",
+            "radius": 550,
+            "playableArea": 749631,
+            "targetPopulation": 6,
+            "bossName": null,
+            "bossVariant": null,
+            "bossSummons": 0,
+            "seed": 2654354052,
+            "generation": {
+              "retries": 0,
+              "connectivity": 0.9375,
+              "clearLane": 444,
+              "obstacles": 6
+            }
+          },
+          "stageHistory": [
+            {
+              "index": 1,
+              "theme": "garden",
+              "layout": "grove",
+              "radius": 550,
+              "population": 6,
+              "seed": 2654354052
+            }
+          ],
+          "bossPool": [
+            "petalPredator",
+            "elasticCap"
+          ],
+          "themePool": [
+            "garden",
+            "cave"
+          ],
+          "mapOperators": [
+            "scatter",
+            "clusters",
+            "ring",
+            "rooms",
+            "ridges"
+          ],
+          "dashMotion": null,
+          "shadow": null,
+          "hitstopLeftMs": 0,
+          "dashCharge": 0,
+          "dashFlight": null,
+          "rearmProgress": 1,
+          "buffered": false,
+          "damageTaken": 0,
+          "healingDone": 0,
+          "position": {
+            "x": 750,
+            "y": 750
+          },
+          "speed": {
+            "x": 0,
+            "y": 0
+          },
+          "hits": 0,
+          "kills": 0,
+          "combo": 0,
+          "comboFxActive": false,
+          "enemyMasses": {
+            "scout": 4.6,
+            "brute": 8.2,
+            "spitter": 4.2,
+            "boss": 36,
+            "sprout": 3.4,
+            "puff": 4.6
+          },
+          "tick": 0,
+          "timeMs": 0,
+          "attackDashSerial": 0,
+          "enemies": 6,
+          "enemyShots": 0,
+          "enemyAttacks": 0,
+          "enemyPushes": 0,
+          "projectiles": 0,
+          "enemyStates": [
+            {
+              "id": 1,
+              "bodyId": 16,
+              "type": "brute",
+              "state": "PATROL",
+              "hp": 185,
+              "burning": false,
+              "conducting": false,
+              "radius": 29,
+              "x": 383.6646659156777,
+              "y": 717.2160362943496,
+              "shadowKnockbackLeftMs": 0,
+              "attackCount": 0,
+              "playerGap": 367.79935464180113
+            },
+            {
+              "id": 2,
+              "bodyId": 17,
+              "type": "scout",
+              "state": "PATROL",
+              "hp": 105,
+              "burning": false,
+              "conducting": false,
+              "radius": 20,
+              "x": 847.8572329013648,
+              "y": 1052.6354229025676,
+              "shadowKnockbackLeftMs": 0,
+              "attackCount": 0,
+              "playerGap": 318.06325978730695
+            },
+            {
+              "id": 3,
+              "bodyId": 18,
+              "type": "spitter",
+              "state": "PATROL",
+              "hp": 78,
+              "burning": false,
+              "conducting": false,
+              "radius": 19,
+              "x": 815.4390654796273,
+              "y": 389.0349963306012,
+              "shadowKnockbackLeftMs": 0,
+              "attackCount": 0,
+              "playerGap": 366.8487497115072
+            },
+            {
+              "id": 4,
+              "bodyId": 19,
+              "type": "scout",
+              "state": "PATROL",
+              "hp": 105,
+              "burning": false,
+              "conducting": false,
+              "radius": 20,
+              "x": 552.4270528052156,
+              "y": 499.9680944192659,
+              "shadowKnockbackLeftMs": 0,
+              "attackCount": 0,
+              "playerGap": 318.6707129178428
+            },
+            {
+              "id": 5,
+              "bodyId": 20,
+              "type": "scout",
+              "state": "PATROL",
+              "hp": 105,
+              "burning": false,
+              "conducting": false,
+              "radius": 20,
+              "x": 690.2365627085853,
+              "y": 1172.4507292015655,
+              "shadowKnockbackLeftMs": 0,
+              "attackCount": 0,
+              "playerGap": 426.65710710102945
+            },
+            {
+              "id": 6,
+              "bodyId": 21,
+              "type": "scout",
+              "state": "PATROL",
+              "hp": 105,
+              "burning": false,
+              "conducting": false,
+              "radius": 20,
+              "x": 918.9648867292743,
+              "y": 495.3012745718617,
+              "shadowKnockbackLeftMs": 0,
+              "attackCount": 0,
+              "playerGap": 305.6477935175628
+            }
+          ],
+          "rendererState": "ready",
+          "elemental": {
+            "ignite": 0,
+            "spread": 0,
+            "conduct": 0,
+            "conductSpread": 0,
+            "conductConsumed": 0,
+            "conductDamage": 0,
+            "arc": 0,
+            "burnDamage": 0,
+            "fireEmbers": 0,
+            "fireTransfers": 0,
+            "activeBurning": 0,
+            "activeConducting": 0
+          },
+          "stats": {
+            "petSlots": 5,
+            "attackPower": 280,
+            "criticalChance": 0,
+            "criticalDamage": 2,
+            "armorPenFlat": 0,
+            "armorPenPercent": 0,
+            "maxHp": 280,
+            "armor": 0,
+            "healthRegen": 0
+          },
+          "criticalHits": 0,
+          "lastHit": null,
+          "fx": {
+            "stage": "none",
+            "target": null,
+            "enabled": true
+          }
+        },
+        "audio": {
+          "state": "locked",
+          "volume": 0.37,
+          "muted": true,
+          "voices": 0,
+          "categoryVolumes": {
+            "enemy": 0.65,
+            "impact": 0.41,
+            "motion": 0.8,
+            "danger": 0.9,
+            "reward": 0.85,
+            "magic": 0.55,
+            "ui": 0.5
+          },
+          "lastError": null,
+          "played": 0,
+          "dropped": 0,
+          "blocked": 0,
+          "maxObserved": 0,
+          "bySound": {}
+        }
+      },
+      "reveals": [],
+      "elapsedMs": 20556
+    },
+    "bossGuardContinuation": {
+      "startedAt": "2026-10-10T13:36:57.542Z",
+      "scope": "Only final charge guard and real boss execution hooks; completed discovery/audio controls/offline not repeated",
+      "errors": [],
+      "events": [
+        {
+          "tick": 415,
+          "timeMs": 6916.666666666667,
+          "stage": {
+            "index": 1,
+            "phase": "BOSS",
+            "waveKills": 7,
+            "killTarget": 7,
+            "bossHp": 540,
+            "bossState": "BOSS_RECOVER",
+            "bossPattern": "FAN",
+            "patternLog": [],
+            "obstacleCount": 6,
+            "broken": 0,
+            "arenaSides": 8,
+            "theme": "garden",
+            "themeName": "화원",
+            "layout": "grove",
+            "layoutName": "빽빽한 화단",
+            "radius": 550,
+            "playableArea": 749631,
+            "targetPopulation": 6,
+            "bossName": "꽃잎 포식자",
+            "bossVariant": "spiral",
+            "bossSummons": 0,
+            "seed": 2654354052,
+            "generation": {
+              "retries": 0,
+              "connectivity": 0.9375,
+              "clearLane": 444,
+              "obstacles": 6
+            }
+          },
+          "audio": {
+            "state": "running",
+            "volume": 0.7,
+            "muted": false,
+            "voices": 4,
+            "categoryVolumes": {
+              "enemy": 0.65,
+              "impact": 1,
+              "motion": 0.8,
+              "danger": 0.9,
+              "reward": 0.85,
+              "magic": 0.55,
+              "ui": 0.5
+            },
+            "lastError": null,
+            "played": 87,
+            "dropped": 1,
+            "blocked": 0,
+            "maxObserved": 6,
+            "bySound": {
+              "stageStart": 1,
+              "ui": 1,
+              "enemyNotice": 8,
+              "launch": 10,
+              "chargeHalf": 10,
+              "dash": 10,
+              "enemyShot": 3,
+              "hurt": 11,
+              "impactHeavy": 2,
+              "heal": 10,
+              "kill": 8,
+              "impactMedium": 8,
+              "enemyLunge": 2,
+              "chargeReady": 2,
+              "bossNotice": 1
+            }
+          }
+        },
+        {
+          "tick": 450,
+          "timeMs": 7500.000000000001,
+          "stage": {
+            "index": 1,
+            "phase": "BOSS",
+            "waveKills": 7,
+            "killTarget": 7,
+            "bossHp": 540,
+            "bossState": "BOSS_WINDUP",
+            "bossPattern": "CHARGE",
+            "patternLog": [
+              "CHARGE"
+            ],
+            "obstacleCount": 6,
+            "broken": 0,
+            "arenaSides": 8,
+            "theme": "garden",
+            "themeName": "화원",
+            "layout": "grove",
+            "layoutName": "빽빽한 화단",
+            "radius": 550,
+            "playableArea": 749631,
+            "targetPopulation": 6,
+            "bossName": "꽃잎 포식자",
+            "bossVariant": "spiral",
+            "bossSummons": 0,
+            "seed": 2654354052,
+            "generation": {
+              "retries": 0,
+              "connectivity": 0.9375,
+              "clearLane": 444,
+              "obstacles": 6
+            }
+          },
+          "audio": {
+            "state": "running",
+            "volume": 0.7,
+            "muted": false,
+            "voices": 1,
+            "categoryVolumes": {
+              "enemy": 0.65,
+              "impact": 1,
+              "motion": 0.8,
+              "danger": 0.9,
+              "reward": 0.85,
+              "magic": 0.55,
+              "ui": 0.5
+            },
+            "lastError": null,
+            "played": 88,
+            "dropped": 1,
+            "blocked": 0,
+            "maxObserved": 6,
+            "bySound": {
+              "stageStart": 1,
+              "ui": 1,
+              "enemyNotice": 8,
+              "launch": 10,
+              "chargeHalf": 10,
+              "dash": 10,
+              "enemyShot": 3,
+              "hurt": 11,
+              "impactHeavy": 2,
+              "heal": 10,
+              "kill": 8,
+              "impactMedium": 8,
+              "enemyLunge": 2,
+              "chargeReady": 2,
+              "bossNotice": 1,
+              "bossWindup": 1
+            }
+          }
+        },
+        {
+          "tick": 490,
+          "timeMs": 8166.666666666667,
+          "stage": {
+            "index": 1,
+            "phase": "BOSS",
+            "waveKills": 7,
+            "killTarget": 7,
+            "bossHp": 540,
+            "bossState": "BOSS_LOCK",
+            "bossPattern": "CHARGE",
+            "patternLog": [
+              "CHARGE"
+            ],
+            "obstacleCount": 6,
+            "broken": 0,
+            "arenaSides": 8,
+            "theme": "garden",
+            "themeName": "화원",
+            "layout": "grove",
+            "layoutName": "빽빽한 화단",
+            "radius": 550,
+            "playableArea": 749631,
+            "targetPopulation": 6,
+            "bossName": "꽃잎 포식자",
+            "bossVariant": "spiral",
+            "bossSummons": 0,
+            "seed": 2654354052,
+            "generation": {
+              "retries": 0,
+              "connectivity": 0.9375,
+              "clearLane": 444,
+              "obstacles": 6
+            }
+          },
+          "audio": {
+            "state": "running",
+            "volume": 0.7,
+            "muted": false,
+            "voices": 0,
+            "categoryVolumes": {
+              "enemy": 0.65,
+              "impact": 1,
+              "motion": 0.8,
+              "danger": 0.9,
+              "reward": 0.85,
+              "magic": 0.55,
+              "ui": 0.5
+            },
+            "lastError": null,
+            "played": 88,
+            "dropped": 1,
+            "blocked": 0,
+            "maxObserved": 6,
+            "bySound": {
+              "stageStart": 1,
+              "ui": 1,
+              "enemyNotice": 8,
+              "launch": 10,
+              "chargeHalf": 10,
+              "dash": 10,
+              "enemyShot": 3,
+              "hurt": 11,
+              "impactHeavy": 2,
+              "heal": 10,
+              "kill": 8,
+              "impactMedium": 8,
+              "enemyLunge": 2,
+              "chargeReady": 2,
+              "bossNotice": 1,
+              "bossWindup": 1
+            }
+          }
+        },
+        {
+          "tick": 496,
+          "timeMs": 8266.666666666668,
+          "stage": {
+            "index": 1,
+            "phase": "BOSS",
+            "waveKills": 7,
+            "killTarget": 7,
+            "bossHp": 540,
+            "bossState": "BOSS_CHARGE",
+            "bossPattern": "CHARGE",
+            "patternLog": [
+              "CHARGE"
+            ],
+            "obstacleCount": 6,
+            "broken": 0,
+            "arenaSides": 8,
+            "theme": "garden",
+            "themeName": "화원",
+            "layout": "grove",
+            "layoutName": "빽빽한 화단",
+            "radius": 550,
+            "playableArea": 749631,
+            "targetPopulation": 6,
+            "bossName": "꽃잎 포식자",
+            "bossVariant": "spiral",
+            "bossSummons": 0,
+            "seed": 2654354052,
+            "generation": {
+              "retries": 0,
+              "connectivity": 0.9375,
+              "clearLane": 444,
+              "obstacles": 6
+            }
+          },
+          "audio": {
+            "state": "running",
+            "volume": 0.7,
+            "muted": false,
+            "voices": 1,
+            "categoryVolumes": {
+              "enemy": 0.65,
+              "impact": 1,
+              "motion": 0.8,
+              "danger": 0.9,
+              "reward": 0.85,
+              "magic": 0.55,
+              "ui": 0.5
+            },
+            "lastError": null,
+            "played": 89,
+            "dropped": 1,
+            "blocked": 0,
+            "maxObserved": 6,
+            "bySound": {
+              "stageStart": 1,
+              "ui": 1,
+              "enemyNotice": 8,
+              "launch": 10,
+              "chargeHalf": 10,
+              "dash": 10,
+              "enemyShot": 3,
+              "hurt": 11,
+              "impactHeavy": 2,
+              "heal": 10,
+              "kill": 8,
+              "impactMedium": 8,
+              "enemyLunge": 2,
+              "chargeReady": 2,
+              "bossNotice": 1,
+              "bossWindup": 1,
+              "bossCharge": 1
+            }
+          }
+        },
+        {
+          "tick": 544,
+          "timeMs": 9066.666666666668,
+          "stage": {
+            "index": 1,
+            "phase": "BOSS",
+            "waveKills": 7,
+            "killTarget": 7,
+            "bossHp": 540,
+            "bossState": "BOSS_RECOVER",
+            "bossPattern": "CHARGE",
+            "patternLog": [
+              "CHARGE"
+            ],
+            "obstacleCount": 6,
+            "broken": 0,
+            "arenaSides": 8,
+            "theme": "garden",
+            "themeName": "화원",
+            "layout": "grove",
+            "layoutName": "빽빽한 화단",
+            "radius": 550,
+            "playableArea": 749631,
+            "targetPopulation": 6,
+            "bossName": "꽃잎 포식자",
+            "bossVariant": "spiral",
+            "bossSummons": 0,
+            "seed": 2654354052,
+            "generation": {
+              "retries": 0,
+              "connectivity": 0.9375,
+              "clearLane": 444,
+              "obstacles": 6
+            }
+          },
+          "audio": {
+            "state": "running",
+            "volume": 0.7,
+            "muted": false,
+            "voices": 0,
+            "categoryVolumes": {
+              "enemy": 0.65,
+              "impact": 1,
+              "motion": 0.8,
+              "danger": 0.9,
+              "reward": 0.85,
+              "magic": 0.55,
+              "ui": 0.5
+            },
+            "lastError": null,
+            "played": 89,
+            "dropped": 1,
+            "blocked": 0,
+            "maxObserved": 6,
+            "bySound": {
+              "stageStart": 1,
+              "ui": 1,
+              "enemyNotice": 8,
+              "launch": 10,
+              "chargeHalf": 10,
+              "dash": 10,
+              "enemyShot": 3,
+              "hurt": 11,
+              "impactHeavy": 2,
+              "heal": 10,
+              "kill": 8,
+              "impactMedium": 8,
+              "enemyLunge": 2,
+              "chargeReady": 2,
+              "bossNotice": 1,
+              "bossWindup": 1,
+              "bossCharge": 1
+            }
+          }
+        },
+        {
+          "tick": 591,
+          "timeMs": 9850,
+          "stage": {
+            "index": 1,
+            "phase": "BOSS",
+            "waveKills": 7,
+            "killTarget": 7,
+            "bossHp": 540,
+            "bossState": "BOSS_WINDUP",
+            "bossPattern": "FAN",
+            "patternLog": [
+              "CHARGE",
+              "FAN"
+            ],
+            "obstacleCount": 6,
+            "broken": 0,
+            "arenaSides": 8,
+            "theme": "garden",
+            "themeName": "화원",
+            "layout": "grove",
+            "layoutName": "빽빽한 화단",
+            "radius": 550,
+            "playableArea": 749631,
+            "targetPopulation": 6,
+            "bossName": "꽃잎 포식자",
+            "bossVariant": "spiral",
+            "bossSummons": 0,
+            "seed": 2654354052,
+            "generation": {
+              "retries": 0,
+              "connectivity": 0.9375,
+              "clearLane": 444,
+              "obstacles": 6
+            }
+          },
+          "audio": {
+            "state": "running",
+            "volume": 0.7,
+            "muted": false,
+            "voices": 1,
+            "categoryVolumes": {
+              "enemy": 0.65,
+              "impact": 1,
+              "motion": 0.8,
+              "danger": 0.9,
+              "reward": 0.85,
+              "magic": 0.55,
+              "ui": 0.5
+            },
+            "lastError": null,
+            "played": 90,
+            "dropped": 1,
+            "blocked": 0,
+            "maxObserved": 6,
+            "bySound": {
+              "stageStart": 1,
+              "ui": 1,
+              "enemyNotice": 8,
+              "launch": 10,
+              "chargeHalf": 10,
+              "dash": 10,
+              "enemyShot": 3,
+              "hurt": 11,
+              "impactHeavy": 2,
+              "heal": 10,
+              "kill": 8,
+              "impactMedium": 8,
+              "enemyLunge": 2,
+              "chargeReady": 2,
+              "bossNotice": 1,
+              "bossWindup": 2,
+              "bossCharge": 1
+            }
+          }
+        },
+        {
+          "tick": 632,
+          "timeMs": 10533.333333333334,
+          "stage": {
+            "index": 1,
+            "phase": "BOSS",
+            "waveKills": 7,
+            "killTarget": 7,
+            "bossHp": 540,
+            "bossState": "BOSS_LOCK",
+            "bossPattern": "FAN",
+            "patternLog": [
+              "CHARGE",
+              "FAN"
+            ],
+            "obstacleCount": 6,
+            "broken": 0,
+            "arenaSides": 8,
+            "theme": "garden",
+            "themeName": "화원",
+            "layout": "grove",
+            "layoutName": "빽빽한 화단",
+            "radius": 550,
+            "playableArea": 749631,
+            "targetPopulation": 6,
+            "bossName": "꽃잎 포식자",
+            "bossVariant": "spiral",
+            "bossSummons": 0,
+            "seed": 2654354052,
+            "generation": {
+              "retries": 0,
+              "connectivity": 0.9375,
+              "clearLane": 444,
+              "obstacles": 6
+            }
+          },
+          "audio": {
+            "state": "running",
+            "volume": 0.7,
+            "muted": false,
+            "voices": 0,
+            "categoryVolumes": {
+              "enemy": 0.65,
+              "impact": 1,
+              "motion": 0.8,
+              "danger": 0.9,
+              "reward": 0.85,
+              "magic": 0.55,
+              "ui": 0.5
+            },
+            "lastError": null,
+            "played": 90,
+            "dropped": 1,
+            "blocked": 0,
+            "maxObserved": 6,
+            "bySound": {
+              "stageStart": 1,
+              "ui": 1,
+              "enemyNotice": 8,
+              "launch": 10,
+              "chargeHalf": 10,
+              "dash": 10,
+              "enemyShot": 3,
+              "hurt": 11,
+              "impactHeavy": 2,
+              "heal": 10,
+              "kill": 8,
+              "impactMedium": 8,
+              "enemyLunge": 2,
+              "chargeReady": 2,
+              "bossNotice": 1,
+              "bossWindup": 2,
+              "bossCharge": 1
+            }
+          }
+        },
+        {
+          "tick": 645,
+          "timeMs": 10750,
+          "stage": {
+            "index": 1,
+            "phase": "BOSS",
+            "waveKills": 7,
+            "killTarget": 7,
+            "bossHp": 540,
+            "bossState": "BOSS_EXEC",
+            "bossPattern": "FAN",
+            "patternLog": [
+              "CHARGE",
+              "FAN"
+            ],
+            "obstacleCount": 6,
+            "broken": 0,
+            "arenaSides": 8,
+            "theme": "garden",
+            "themeName": "화원",
+            "layout": "grove",
+            "layoutName": "빽빽한 화단",
+            "radius": 550,
+            "playableArea": 749631,
+            "targetPopulation": 6,
+            "bossName": "꽃잎 포식자",
+            "bossVariant": "spiral",
+            "bossSummons": 0,
+            "seed": 2654354052,
+            "generation": {
+              "retries": 0,
+              "connectivity": 0.9375,
+              "clearLane": 444,
+              "obstacles": 6
+            }
+          },
+          "audio": {
+            "state": "running",
+            "volume": 0.7,
+            "muted": false,
+            "voices": 1,
+            "categoryVolumes": {
+              "enemy": 0.65,
+              "impact": 1,
+              "motion": 0.8,
+              "danger": 0.9,
+              "reward": 0.85,
+              "magic": 0.55,
+              "ui": 0.5
+            },
+            "lastError": null,
+            "played": 91,
+            "dropped": 1,
+            "blocked": 0,
+            "maxObserved": 6,
+            "bySound": {
+              "stageStart": 1,
+              "ui": 1,
+              "enemyNotice": 8,
+              "launch": 10,
+              "chargeHalf": 10,
+              "dash": 10,
+              "enemyShot": 3,
+              "hurt": 11,
+              "impactHeavy": 2,
+              "heal": 10,
+              "kill": 8,
+              "impactMedium": 8,
+              "enemyLunge": 2,
+              "chargeReady": 2,
+              "bossNotice": 1,
+              "bossWindup": 2,
+              "bossCharge": 1,
+              "bossFan": 1
+            }
+          }
+        },
+        {
+          "tick": 673,
+          "timeMs": 11216.666666666668,
+          "stage": {
+            "index": 1,
+            "phase": "BOSS",
+            "waveKills": 7,
+            "killTarget": 7,
+            "bossHp": 540,
+            "bossState": "BOSS_RECOVER",
+            "bossPattern": "FAN",
+            "patternLog": [
+              "CHARGE",
+              "FAN"
+            ],
+            "obstacleCount": 6,
+            "broken": 0,
+            "arenaSides": 8,
+            "theme": "garden",
+            "themeName": "화원",
+            "layout": "grove",
+            "layoutName": "빽빽한 화단",
+            "radius": 550,
+            "playableArea": 749631,
+            "targetPopulation": 6,
+            "bossName": "꽃잎 포식자",
+            "bossVariant": "spiral",
+            "bossSummons": 0,
+            "seed": 2654354052,
+            "generation": {
+              "retries": 0,
+              "connectivity": 0.9375,
+              "clearLane": 444,
+              "obstacles": 6
+            }
+          },
+          "audio": {
+            "state": "running",
+            "volume": 0.7,
+            "muted": false,
+            "voices": 1,
+            "categoryVolumes": {
+              "enemy": 0.65,
+              "impact": 1,
+              "motion": 0.8,
+              "danger": 0.9,
+              "reward": 0.85,
+              "magic": 0.55,
+              "ui": 0.5
+            },
+            "lastError": null,
+            "played": 93,
+            "dropped": 1,
+            "blocked": 0,
+            "maxObserved": 6,
+            "bySound": {
+              "stageStart": 1,
+              "ui": 1,
+              "enemyNotice": 8,
+              "launch": 10,
+              "chargeHalf": 10,
+              "dash": 10,
+              "enemyShot": 3,
+              "hurt": 12,
+              "impactHeavy": 2,
+              "heal": 10,
+              "kill": 8,
+              "impactMedium": 8,
+              "enemyLunge": 2,
+              "chargeReady": 2,
+              "bossNotice": 1,
+              "bossWindup": 2,
+              "bossCharge": 1,
+              "bossFan": 2
+            }
+          }
+        },
+        {
+          "tick": 727,
+          "timeMs": 12116.666666666668,
+          "stage": {
+            "index": 1,
+            "phase": "BOSS",
+            "waveKills": 7,
+            "killTarget": 7,
+            "bossHp": 540,
+            "bossState": "BOSS_WINDUP",
+            "bossPattern": "SUMMON",
+            "patternLog": [
+              "CHARGE",
+              "FAN",
+              "SUMMON"
+            ],
+            "obstacleCount": 6,
+            "broken": 0,
+            "arenaSides": 8,
+            "theme": "garden",
+            "themeName": "화원",
+            "layout": "grove",
+            "layoutName": "빽빽한 화단",
+            "radius": 550,
+            "playableArea": 749631,
+            "targetPopulation": 6,
+            "bossName": "꽃잎 포식자",
+            "bossVariant": "spiral",
+            "bossSummons": 0,
+            "seed": 2654354052,
+            "generation": {
+              "retries": 0,
+              "connectivity": 0.9375,
+              "clearLane": 444,
+              "obstacles": 6
+            }
+          },
+          "audio": {
+            "state": "running",
+            "volume": 0.7,
+            "muted": false,
+            "voices": 1,
+            "categoryVolumes": {
+              "enemy": 0.65,
+              "impact": 1,
+              "motion": 0.8,
+              "danger": 0.9,
+              "reward": 0.85,
+              "magic": 0.55,
+              "ui": 0.5
+            },
+            "lastError": null,
+            "played": 95,
+            "dropped": 2,
+            "blocked": 0,
+            "maxObserved": 6,
+            "bySound": {
+              "stageStart": 1,
+              "ui": 1,
+              "enemyNotice": 8,
+              "launch": 10,
+              "chargeHalf": 10,
+              "dash": 10,
+              "enemyShot": 3,
+              "hurt": 13,
+              "impactHeavy": 2,
+              "heal": 10,
+              "kill": 8,
+              "impactMedium": 8,
+              "enemyLunge": 2,
+              "chargeReady": 2,
+              "bossNotice": 1,
+              "bossWindup": 3,
+              "bossCharge": 1,
+              "bossFan": 2
+            }
+          }
+        },
+        {
+          "tick": 768,
+          "timeMs": 12800,
+          "stage": {
+            "index": 1,
+            "phase": "BOSS",
+            "waveKills": 7,
+            "killTarget": 7,
+            "bossHp": 540,
+            "bossState": "BOSS_LOCK",
+            "bossPattern": "SUMMON",
+            "patternLog": [
+              "CHARGE",
+              "FAN",
+              "SUMMON"
+            ],
+            "obstacleCount": 6,
+            "broken": 0,
+            "arenaSides": 8,
+            "theme": "garden",
+            "themeName": "화원",
+            "layout": "grove",
+            "layoutName": "빽빽한 화단",
+            "radius": 550,
+            "playableArea": 749631,
+            "targetPopulation": 6,
+            "bossName": "꽃잎 포식자",
+            "bossVariant": "spiral",
+            "bossSummons": 0,
+            "seed": 2654354052,
+            "generation": {
+              "retries": 0,
+              "connectivity": 0.9375,
+              "clearLane": 444,
+              "obstacles": 6
+            }
+          },
+          "audio": {
+            "state": "running",
+            "volume": 0.7,
+            "muted": false,
+            "voices": 0,
+            "categoryVolumes": {
+              "enemy": 0.65,
+              "impact": 1,
+              "motion": 0.8,
+              "danger": 0.9,
+              "reward": 0.85,
+              "magic": 0.55,
+              "ui": 0.5
+            },
+            "lastError": null,
+            "played": 95,
+            "dropped": 2,
+            "blocked": 0,
+            "maxObserved": 6,
+            "bySound": {
+              "stageStart": 1,
+              "ui": 1,
+              "enemyNotice": 8,
+              "launch": 10,
+              "chargeHalf": 10,
+              "dash": 10,
+              "enemyShot": 3,
+              "hurt": 13,
+              "impactHeavy": 2,
+              "heal": 10,
+              "kill": 8,
+              "impactMedium": 8,
+              "enemyLunge": 2,
+              "chargeReady": 2,
+              "bossNotice": 1,
+              "bossWindup": 3,
+              "bossCharge": 1,
+              "bossFan": 2
+            }
+          }
+        },
+        {
+          "tick": 775,
+          "timeMs": 12916.666666666668,
+          "stage": {
+            "index": 1,
+            "phase": "BOSS",
+            "waveKills": 7,
+            "killTarget": 7,
+            "bossHp": 540,
+            "bossState": "BOSS_EXEC",
+            "bossPattern": "SUMMON",
+            "patternLog": [
+              "CHARGE",
+              "FAN",
+              "SUMMON"
+            ],
+            "obstacleCount": 6,
+            "broken": 0,
+            "arenaSides": 8,
+            "theme": "garden",
+            "themeName": "화원",
+            "layout": "grove",
+            "layoutName": "빽빽한 화단",
+            "radius": 550,
+            "playableArea": 749631,
+            "targetPopulation": 6,
+            "bossName": "꽃잎 포식자",
+            "bossVariant": "spiral",
+            "bossSummons": 0,
+            "seed": 2654354052,
+            "generation": {
+              "retries": 0,
+              "connectivity": 0.9375,
+              "clearLane": 444,
+              "obstacles": 6
+            }
+          },
+          "audio": {
+            "state": "running",
+            "volume": 0.7,
+            "muted": false,
+            "voices": 0,
+            "categoryVolumes": {
+              "enemy": 0.65,
+              "impact": 1,
+              "motion": 0.8,
+              "danger": 0.9,
+              "reward": 0.85,
+              "magic": 0.55,
+              "ui": 0.5
+            },
+            "lastError": null,
+            "played": 95,
+            "dropped": 2,
+            "blocked": 0,
+            "maxObserved": 6,
+            "bySound": {
+              "stageStart": 1,
+              "ui": 1,
+              "enemyNotice": 8,
+              "launch": 10,
+              "chargeHalf": 10,
+              "dash": 10,
+              "enemyShot": 3,
+              "hurt": 13,
+              "impactHeavy": 2,
+              "heal": 10,
+              "kill": 8,
+              "impactMedium": 8,
+              "enemyLunge": 2,
+              "chargeReady": 2,
+              "bossNotice": 1,
+              "bossWindup": 3,
+              "bossCharge": 1,
+              "bossFan": 2
+            }
+          }
+        }
+      ],
+      "artifacts": {
+        "index.html": "4899daadb306755444c7ddae8381fc33093fe5f8c102dc15d8cec77065ec61a3",
+        "pets.js": "ee8acfe3ff54cb32e2d728d5b9bbd6ee8f263f86c60a93da7b7253e15282b24e",
+        "audio.js": "8543ce14bcd61c07373cd7c7c560b9c696ecf5afb80918d3c5929ef407a84a22"
+      },
+      "browser": "155.0.4283.45",
+      "charge": {
+        "before": 1,
+        "after": 1
+      },
+      "bossStarted": {
+        "index": 1,
+        "phase": "BOSS",
+        "waveKills": 7,
+        "killTarget": 7,
+        "bossHp": 540,
+        "bossState": "BOSS_RECOVER",
+        "bossPattern": "FAN",
+        "patternLog": [],
+        "obstacleCount": 6,
+        "broken": 0,
+        "arenaSides": 8,
+        "theme": "garden",
+        "themeName": "화원",
+        "layout": "grove",
+        "layoutName": "빽빽한 화단",
+        "radius": 550,
+        "playableArea": 749631,
+        "targetPopulation": 6,
+        "bossName": "꽃잎 포식자",
+        "bossVariant": "spiral",
+        "bossSummons": 0,
+        "seed": 2654354052,
+        "generation": {
+          "retries": 0,
+          "connectivity": 0.9375,
+          "clearLane": 444,
+          "obstacles": 6
+        }
+      },
+      "summon": {
+        "state": {
+          "companions": {
+            "inventoryCount": 0,
+            "slots": [
+              null
+            ],
+            "hits": 0,
+            "kills": 0,
+            "damage": 0,
+            "taken": 0,
+            "deaths": 0,
+            "revivals": 0,
+            "abilities": 0,
+            "supportHealing": 0,
+            "lastHit": null,
+            "actors": []
+          },
+          "phase": "PLAYING",
+          "mode": "READY",
+          "health": 233.7892857142861,
+          "maxHp": 280,
+          "aimPreviewId": 16,
+          "augment": {
+            "spore": false,
+            "momentum": false,
+            "relay": false,
+            "chain": false
+          },
+          "tech": {
+            "points": 65,
+            "level": 141,
+            "totalKills": 20008,
+            "unlocked": [],
+            "statLevels": {
+              "attackPower": 30,
+              "criticalChance": 0,
+              "criticalDamage": 0,
+              "armorPenFlat": 0,
+              "armorPenPercent": 0,
+              "maxHp": 30,
+              "armor": 10,
+              "healthRegen": 5,
+              "petSlots": 0
+            }
+          },
+          "autoChainReady": false,
+          "autoDashPlanned": false,
+          "chainActive": false,
+          "chainStarts": 0,
+          "chainEnds": 0,
+          "chainTriggerCharge": 0.5,
+          "energy": {
+            "current": 0,
+            "capacity": 3,
+            "fraction": 0,
+            "full": false,
+            "autoRechargeRate": 0,
+            "cost": 1,
+            "spent": 0,
+            "gained": 0,
+            "restored": 0
+          },
+          "chainTargetId": null,
+          "autoChainWins": 0,
+          "autoChainRolls": 10,
+          "automaticDashes": 0,
+          "manualPerfectHits": 1,
+          "dashAutomatic": false,
+          "dashPerfect": false,
+          "launchCostTotal": 276.48428571428576,
+          "launchCount": 10,
+          "evade": {
+            "charges": 2,
+            "max": 2,
+            "refillAtMs": 0,
+            "progress": 0,
+            "rechargeMs": 500,
+            "impulseSpeed": 1020,
+            "durationMs": 580,
+            "invulnerableMs": 100,
+            "projectileInvulnerable": false,
+            "active": false,
+            "startedAtMs": -1000000000,
+            "count": 0,
+            "hitRechargeEvents": 0,
+            "hitRechargeProgress": 0,
+            "lastHitRecharge": null
+          },
+          "stage": {
+            "index": 1,
+            "phase": "BOSS",
+            "waveKills": 7,
+            "killTarget": 7,
+            "bossHp": 540,
+            "bossState": "BOSS_EXEC",
+            "bossPattern": "SUMMON",
+            "patternLog": [
+              "CHARGE",
+              "FAN",
+              "SUMMON"
+            ],
+            "obstacleCount": 6,
+            "broken": 0,
+            "arenaSides": 8,
+            "theme": "garden",
+            "themeName": "화원",
+            "layout": "grove",
+            "layoutName": "빽빽한 화단",
+            "radius": 550,
+            "playableArea": 749631,
+            "targetPopulation": 6,
+            "bossName": "꽃잎 포식자",
+            "bossVariant": "spiral",
+            "bossSummons": 3,
+            "seed": 2654354052,
+            "generation": {
+              "retries": 0,
+              "connectivity": 0.9375,
+              "clearLane": 444,
+              "obstacles": 6
+            }
+          },
+          "stageHistory": [
+            {
+              "index": 1,
+              "theme": "garden",
+              "layout": "grove",
+              "radius": 550,
+              "population": 6,
+              "seed": 2654354052
+            }
+          ],
+          "bossPool": [
+            "petalPredator",
+            "elasticCap"
+          ],
+          "themePool": [
+            "garden",
+            "cave"
+          ],
+          "mapOperators": [
+            "scatter",
+            "clusters",
+            "ring",
+            "rooms",
+            "ridges"
+          ],
+          "dashMotion": null,
+          "shadow": null,
+          "hitstopLeftMs": 0,
+          "dashCharge": 0.9154093870206355,
+          "dashFlight": null,
+          "rearmProgress": 1,
+          "buffered": false,
+          "damageTaken": 237.14285714285722,
+          "healingDone": 456.5164285714269,
+          "position": {
+            "x": 882.1617294208077,
+            "y": 601.2664290773549
+          },
+          "speed": {
+            "x": -105.33690570327053,
+            "y": 27.489468329347346
+          },
+          "hits": 10,
+          "kills": 8,
+          "combo": 0,
+          "comboFxActive": false,
+          "enemyMasses": {
+            "scout": 4.6,
+            "brute": 8.2,
+            "spitter": 4.2,
+            "boss": 36,
+            "sprout": 3.4,
+            "puff": 4.6
+          },
+          "tick": 796,
+          "timeMs": 13266.666666666668,
+          "attackDashSerial": 10,
+          "enemies": 4,
+          "enemyShots": 21,
+          "enemyAttacks": 2,
+          "enemyPushes": 6,
+          "projectiles": 0,
+          "enemyStates": [
+            {
+              "id": 13,
+              "bodyId": 53,
+              "type": "boss",
+              "state": "BOSS_EXEC",
+              "hp": 540,
+              "burning": false,
+              "conducting": false,
+              "radius": 48,
+              "x": 914.1041998147056,
+              "y": 864.5803004809395,
+              "preX": 914.1041126100492,
+              "preY": 864.5802458347147,
+              "shadowKnockbackLeftMs": 0,
+              "attackCount": 0,
+              "playerGap": 265.2442577859293
+            },
+            {
+              "id": 14,
+              "bodyId": 72,
+              "type": "sprout",
+              "state": "PATROL",
+              "hp": 45,
+              "burning": false,
+              "conducting": false,
+              "radius": 14,
+              "x": 735.225458003494,
+              "y": 954.0365308355391,
+              "shadowKnockbackLeftMs": 0,
+              "attackCount": 0,
+              "playerGap": 382.14789356020543
+            },
+            {
+              "id": 15,
+              "bodyId": 73,
+              "type": "sprout",
+              "state": "PATROL",
+              "hp": 45,
+              "burning": false,
+              "conducting": false,
+              "radius": 14,
+              "x": 837.4445888005312,
+              "y": 972.0386908695184,
+              "shadowKnockbackLeftMs": 0,
+              "attackCount": 0,
+              "playerGap": 373.4590911729559
+            },
+            {
+              "id": 16,
+              "bodyId": 74,
+              "type": "sprout",
+              "state": "PATROL",
+              "hp": 45,
+              "burning": false,
+              "conducting": false,
+              "radius": 14,
+              "x": 856.9495160214233,
+              "y": 745.595574179953,
+              "shadowKnockbackLeftMs": 0,
+              "attackCount": 0,
+              "playerGap": 146.51470175563583
+            }
+          ],
+          "rendererState": "ready",
+          "elemental": {
+            "ignite": 0,
+            "spread": 0,
+            "conduct": 0,
+            "conductSpread": 0,
+            "conductConsumed": 0,
+            "conductDamage": 0,
+            "arc": 0,
+            "burnDamage": 0,
+            "fireEmbers": 0,
+            "fireTransfers": 0,
+            "activeBurning": 0,
+            "activeConducting": 0
+          },
+          "stats": {
+            "petSlots": 1,
+            "attackPower": 280,
+            "criticalChance": 0,
+            "criticalDamage": 2,
+            "armorPenFlat": 0,
+            "armorPenPercent": 0,
+            "maxHp": 280,
+            "armor": 40,
+            "healthRegen": 1.5
+          },
+          "criticalHits": 0,
+          "lastHit": {
+            "tick": 405,
+            "enemyId": 9,
+            "automatic": false,
+            "critical": false,
+            "criticalMultiplier": 1,
+            "raw": 159.4420885124708,
+            "normalDamage": 148,
+            "boostedDamage": 148,
+            "damage": 78,
+            "conductDamage": 0,
+            "markConsumed": false,
+            "tags": [
+              "dash"
+            ]
+          },
+          "fx": {
+            "stage": "none",
+            "target": null,
+            "enabled": true
+          }
+        },
+        "audio": {
+          "state": "running",
+          "volume": 0.7,
+          "muted": false,
+          "voices": 1,
+          "categoryVolumes": {
+            "enemy": 0.65,
+            "impact": 1,
+            "motion": 0.8,
+            "danger": 0.9,
+            "reward": 0.85,
+            "magic": 0.55,
+            "ui": 0.5
+          },
+          "lastError": null,
+          "played": 96,
+          "dropped": 2,
+          "blocked": 0,
+          "maxObserved": 6,
+          "bySound": {
+            "stageStart": 1,
+            "ui": 1,
+            "enemyNotice": 8,
+            "launch": 10,
+            "chargeHalf": 10,
+            "dash": 10,
+            "enemyShot": 3,
+            "hurt": 13,
+            "impactHeavy": 2,
+            "heal": 10,
+            "kill": 8,
+            "impactMedium": 8,
+            "enemyLunge": 2,
+            "chargeReady": 2,
+            "bossNotice": 1,
+            "bossWindup": 3,
+            "bossCharge": 1,
+            "bossFan": 2,
+            "bossSummon": 1
+          }
+        }
+      },
+      "result": "PASS",
+      "final": {
+        "state": {
+          "companions": {
+            "inventoryCount": 0,
+            "slots": [
+              null
+            ],
+            "hits": 0,
+            "kills": 0,
+            "damage": 0,
+            "taken": 0,
+            "deaths": 0,
+            "revivals": 0,
+            "abilities": 0,
+            "supportHealing": 0,
+            "lastHit": null,
+            "actors": []
+          },
+          "phase": "PLAYING",
+          "mode": "READY",
+          "health": 233.91428571428614,
+          "maxHp": 280,
+          "aimPreviewId": 16,
+          "augment": {
+            "spore": false,
+            "momentum": false,
+            "relay": false,
+            "chain": false
+          },
+          "tech": {
+            "points": 65,
+            "level": 141,
+            "totalKills": 20008,
+            "unlocked": [],
+            "statLevels": {
+              "attackPower": 30,
+              "criticalChance": 0,
+              "criticalDamage": 0,
+              "armorPenFlat": 0,
+              "armorPenPercent": 0,
+              "maxHp": 30,
+              "armor": 10,
+              "healthRegen": 5,
+              "petSlots": 0
+            }
+          },
+          "autoChainReady": false,
+          "autoDashPlanned": false,
+          "chainActive": false,
+          "chainStarts": 0,
+          "chainEnds": 0,
+          "chainTriggerCharge": 0.5,
+          "energy": {
+            "current": 0,
+            "capacity": 3,
+            "fraction": 0,
+            "full": false,
+            "autoRechargeRate": 0,
+            "cost": 1,
+            "spent": 0,
+            "gained": 0,
+            "restored": 0
+          },
+          "chainTargetId": null,
+          "autoChainWins": 0,
+          "autoChainRolls": 10,
+          "automaticDashes": 0,
+          "manualPerfectHits": 1,
+          "dashAutomatic": false,
+          "dashPerfect": false,
+          "launchCostTotal": 276.48428571428576,
+          "launchCount": 10,
+          "evade": {
+            "charges": 2,
+            "max": 2,
+            "refillAtMs": 0,
+            "progress": 0,
+            "rechargeMs": 500,
+            "impulseSpeed": 1020,
+            "durationMs": 580,
+            "invulnerableMs": 100,
+            "projectileInvulnerable": false,
+            "active": false,
+            "startedAtMs": -1000000000,
+            "count": 0,
+            "hitRechargeEvents": 0,
+            "hitRechargeProgress": 0,
+            "lastHitRecharge": null
+          },
+          "stage": {
+            "index": 1,
+            "phase": "BOSS",
+            "waveKills": 7,
+            "killTarget": 7,
+            "bossHp": 540,
+            "bossState": "BOSS_EXEC",
+            "bossPattern": "SUMMON",
+            "patternLog": [
+              "CHARGE",
+              "FAN",
+              "SUMMON"
+            ],
+            "obstacleCount": 6,
+            "broken": 0,
+            "arenaSides": 8,
+            "theme": "garden",
+            "themeName": "화원",
+            "layout": "grove",
+            "layoutName": "빽빽한 화단",
+            "radius": 550,
+            "playableArea": 749631,
+            "targetPopulation": 6,
+            "bossName": "꽃잎 포식자",
+            "bossVariant": "spiral",
+            "bossSummons": 3,
+            "seed": 2654354052,
+            "generation": {
+              "retries": 0,
+              "connectivity": 0.9375,
+              "clearLane": 444,
+              "obstacles": 6
+            }
+          },
+          "stageHistory": [
+            {
+              "index": 1,
+              "theme": "garden",
+              "layout": "grove",
+              "radius": 550,
+              "population": 6,
+              "seed": 2654354052
+            }
+          ],
+          "bossPool": [
+            "petalPredator",
+            "elasticCap"
+          ],
+          "themePool": [
+            "garden",
+            "cave"
+          ],
+          "mapOperators": [
+            "scatter",
+            "clusters",
+            "ring",
+            "rooms",
+            "ridges"
+          ],
+          "dashMotion": null,
+          "shadow": null,
+          "hitstopLeftMs": 0,
+          "dashCharge": 0.9154093870206355,
+          "dashFlight": null,
+          "rearmProgress": 1,
+          "buffered": false,
+          "damageTaken": 237.14285714285722,
+          "healingDone": 456.5164285714269,
+          "position": {
+            "x": 873.5920940096552,
+            "y": 603.502822102726
+          },
+          "speed": {
+            "x": -101.19030792368221,
+            "y": 26.407342671914193
+          },
+          "hits": 10,
+          "kills": 8,
+          "combo": 0,
+          "comboFxActive": false,
+          "enemyMasses": {
+            "scout": 4.6,
+            "brute": 8.2,
+            "spitter": 4.2,
+            "boss": 36,
+            "sprout": 3.4,
+            "puff": 4.6
+          },
+          "tick": 801,
+          "timeMs": 13350.000000000002,
+          "attackDashSerial": 10,
+          "enemies": 4,
+          "enemyShots": 21,
+          "enemyAttacks": 2,
+          "enemyPushes": 6,
+          "projectiles": 0,
+          "enemyStates": [
+            {
+              "id": 13,
+              "bodyId": 53,
+              "type": "boss",
+              "state": "BOSS_EXEC",
+              "hp": 540,
+              "burning": false,
+              "conducting": false,
+              "radius": 48,
+              "x": 914.1045047851413,
+              "y": 864.5804915886589,
+              "preX": 914.1044579424843,
+              "preY": 864.5804622350157,
+              "shadowKnockbackLeftMs": 0,
+              "attackCount": 0,
+              "playerGap": 264.2022046294235
+            },
+            {
+              "id": 14,
+              "bodyId": 72,
+              "type": "sprout",
+              "state": "PATROL",
+              "hp": 45,
+              "burning": false,
+              "conducting": false,
+              "radius": 14,
+              "x": 735.225458003494,
+              "y": 954.0365308355391,
+              "preX": 735.225458003494,
+              "preY": 954.0365308355391,
+              "shadowKnockbackLeftMs": 0,
+              "attackCount": 0,
+              "playerGap": 376.85435770021576
+            },
+            {
+              "id": 15,
+              "bodyId": 73,
+              "type": "sprout",
+              "state": "PATROL",
+              "hp": 45,
+              "burning": false,
+              "conducting": false,
+              "radius": 14,
+              "x": 837.4445888005312,
+              "y": 972.0386908695184,
+              "preX": 837.4445888005312,
+              "preY": 972.0386908695184,
+              "shadowKnockbackLeftMs": 0,
+              "attackCount": 0,
+              "playerGap": 370.30437305078925
+            },
+            {
+              "id": 16,
+              "bodyId": 74,
+              "type": "sprout",
+              "state": "PATROL",
+              "hp": 45,
+              "burning": false,
+              "conducting": false,
+              "radius": 14,
+              "x": 856.9495160214233,
+              "y": 745.595574179953,
+              "preX": 856.9495160214233,
+              "preY": 745.595574179953,
+              "shadowKnockbackLeftMs": 0,
+              "attackCount": 0,
+              "playerGap": 143.06406115784176
+            }
+          ],
+          "rendererState": "ready",
+          "elemental": {
+            "ignite": 0,
+            "spread": 0,
+            "conduct": 0,
+            "conductSpread": 0,
+            "conductConsumed": 0,
+            "conductDamage": 0,
+            "arc": 0,
+            "burnDamage": 0,
+            "fireEmbers": 0,
+            "fireTransfers": 0,
+            "activeBurning": 0,
+            "activeConducting": 0
+          },
+          "stats": {
+            "petSlots": 1,
+            "attackPower": 280,
+            "criticalChance": 0,
+            "criticalDamage": 2,
+            "armorPenFlat": 0,
+            "armorPenPercent": 0,
+            "maxHp": 280,
+            "armor": 40,
+            "healthRegen": 1.5
+          },
+          "criticalHits": 0,
+          "lastHit": {
+            "tick": 405,
+            "enemyId": 9,
+            "automatic": false,
+            "critical": false,
+            "criticalMultiplier": 1,
+            "raw": 159.4420885124708,
+            "normalDamage": 148,
+            "boostedDamage": 148,
+            "damage": 78,
+            "conductDamage": 0,
+            "markConsumed": false,
+            "tags": [
+              "dash"
+            ]
+          },
+          "fx": {
+            "stage": "none",
+            "target": null,
+            "enabled": true
+          }
+        },
+        "audio": {
+          "state": "running",
+          "volume": 0.7,
+          "muted": false,
+          "voices": 1,
+          "categoryVolumes": {
+            "enemy": 0.65,
+            "impact": 1,
+            "motion": 0.8,
+            "danger": 0.9,
+            "reward": 0.85,
+            "magic": 0.55,
+            "ui": 0.5
+          },
+          "lastError": null,
+          "played": 96,
+          "dropped": 2,
+          "blocked": 0,
+          "maxObserved": 6,
+          "bySound": {
+            "stageStart": 1,
+            "ui": 1,
+            "enemyNotice": 8,
+            "launch": 10,
+            "chargeHalf": 10,
+            "dash": 10,
+            "enemyShot": 3,
+            "hurt": 13,
+            "impactHeavy": 2,
+            "heal": 10,
+            "kill": 8,
+            "impactMedium": 8,
+            "enemyLunge": 2,
+            "chargeReady": 2,
+            "bossNotice": 1,
+            "bossWindup": 3,
+            "bossCharge": 1,
+            "bossFan": 2,
+            "bossSummon": 1
+          }
+        }
+      },
+      "elapsedMs": 15432,
+      "limits": [
+        "Natural fixture-fed native attacks, real default boss AI/pattern choice; no source callbacks/state/ticks/Config/RNG forced.",
+        "Only the first reached boss and charge/summon changes; not all boss/species/grade combinations."
+      ]
+    },
+    "temporaryDiscoveryModel": {
+      "result": "PASS",
+      "scope": "Temporary model semantics only; not browser evidence",
+      "checks": [
+        "0.12.0 owned pet discovery inferred; unknown egg remains hidden",
+        "Empty inventory retains independent discovery; invalid IDs rejected",
+        "First and repeat hatch events use actual hatchProgress shape"
+      ],
+      "elapsedMs": 0
+    }
+  },
+  "actualBrowserElapsedMs": 35988,
+  "verificationPolicy": "No broad rerun after final guard/summon-only changes. The first run covers discovery/native input/settings/offline graph; the second uses final runtime hashes and covers only changed charge/boss paths. Reports preserve per-run artifact hashes. Existing pet combat/death/egg reward and producer audio lifecycle/dense capacity scenarios were unchanged and were not repeated.",
+  "sourceEventReview": {
+    "player": [
+      "successful manual/echo launch",
+      "successful manual/automatic dash and ricochet",
+      "chainStart",
+      "chargeHalf once per shadow",
+      "chargeReady after !shadow/arrived guard",
+      "successful evade",
+      "positive impact + critical",
+      "actual hurt/heal/kill/death"
+    ],
+    "enemy": [
+      "state change WINDUP/LUNGE",
+      "actual spawned projectile"
+    ],
+    "boss": [
+      "spawn notice",
+      "windup",
+      "CHARGE fire",
+      "FAN/RADIAL volleys",
+      "SUMMON only when live summon count increased",
+      "clear + next stage"
+    ],
+    "growth": [
+      "level boundary",
+      "accepted stat/tech investment"
+    ],
+    "companions": [
+      "actual impact/hurt/death/revive",
+      "boss egg reward",
+      "hatchProgress.hatched first/repeat",
+      "single/bulk fusion success/failure/mixed"
+    ],
+    "ui": [
+      "native button click after actual unlock"
+    ],
+    "nonBrowserObservedInThisTask": [
+      "automatic dash/ricochet/chainStart",
+      "fire/lightning/spore",
+      "level/tech investment",
+      "boss radial/clear/new-stage/reward",
+      "pet revival",
+      "fusion success/mixed"
+    ]
+  },
+  "limits": [
+    "Valid progression/ownership fixture loaded before boot; no runtime HP/ticks/config/RNG forced.",
+    "29/30 real hatch boundary was used; 0→30 campaign and all pet combat grades were not repeated.",
+    "One natural fusion outcome; success/failure probabilities unchanged and previously checked, not a new RNG matrix.",
+    "Generated offline/live graph output is verified; speaker output, subjective punch, mobile hardware and CPU performance are unverified.",
+    "Not every game sound event was individually forced in browser; source hooks and the representative native combat/UI flow are recorded."
+  ],
+  "privateArtifacts": [
+    {
+      "name": "discovery-unknown.png",
+      "absolutePath": "C:\\Users\\byh02\\Documents\\Codex\\2026-10-10\\task-3/discovery-unknown.png",
+      "sha256": "96ab02bc01bf260335f33477961e369c2e7bc9cdfd9578f243fbdc3b884c83f5"
+    },
+    {
+      "name": "discovery-first-hatch.png",
+      "absolutePath": "C:\\Users\\byh02\\Documents\\Codex\\2026-10-10\\task-3/discovery-first-hatch.png",
+      "sha256": "02772214393752f2d0fb449c549ac2c09d286558fe9b0084ec1f0551b9791c44"
+    },
+    {
+      "name": "discovery-owned-fusion.png",
+      "absolutePath": "C:\\Users\\byh02\\Documents\\Codex\\2026-10-10\\task-3/discovery-owned-fusion.png",
+      "sha256": "7193cbd4211800b9d3b787fbcaf2ffcd21d835c8b1e6740e4cf48de9aef5bb80"
+    },
+    {
+      "name": "audio-boss-summon.png",
+      "absolutePath": "C:\\Users\\byh02\\Documents\\Codex\\2026-10-10\\task-3/audio-boss-summon.png",
+      "sha256": "3b7b342d09fdddfa519a7ddbbd75955c7321f345d18d60b200fa6c4cc0ff482c"
+    }
+  ]
+}

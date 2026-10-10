@@ -39,8 +39,9 @@ export class CompanionCollection {
   constructor(config=petConfig,raw=null,slotLevel=0,onChange=()=>{}){
     this.config=config;this.onChange=onChange;this.slotLevel=integer(slotLevel,0,config.slots.maxLevel);
     this.inventory=[];this.byId=new Map();this.slots=Array(companionCapacity(config,this.slotLevel)).fill(null);
-    this.nextId=1;this.revision=0;this.lastFusion=null;
+    this.nextId=1;this.revision=0;this.lastFusion=null;this.discovered=new Set();
     if(raw&&typeof raw==='object'){
+      for(const id of Array.isArray(raw.discovered)?raw.discovered:[])if(config.species[id])this.discovered.add(id);
       for(const source of Array.isArray(raw.inventory)?raw.inventory:[]){
         if(!source||!Number.isSafeInteger(source.id)||source.id<1||this.byId.has(source.id)||
           !config.species[source.speciesId]||!['egg','pet'].includes(source.kind))continue;
@@ -49,7 +50,7 @@ export class CompanionCollection {
         const grade=source.kind==='egg'?0:integer(source.grade,0,config.grades.length-1);
         const item={id:source.id,speciesId:source.speciesId,kind,grade,
           hatchProgress:kind==='egg'?progress:config.eggs.hatchKills,locked:kind==='pet'&&source.locked===true};
-        this.inventory.push(item);this.byId.set(item.id,item);this.nextId=Math.max(this.nextId,item.id+1);
+        this.inventory.push(item);this.byId.set(item.id,item);if(kind==='pet')this.discovered.add(item.speciesId);this.nextId=Math.max(this.nextId,item.id+1);
       }
       const used=new Set();for(let i=0;i<this.slots.length;i++){
         const id=raw.slots?.[i];if(this.byId.has(id)&&!used.has(id)){this.slots[i]=id;used.add(id);}
@@ -58,7 +59,7 @@ export class CompanionCollection {
     }
   }
   changed(event){this.revision++;this.onChange(event);return event;}
-  snapshot(){return {inventory:this.inventory.map(item=>({...item})),slots:[...this.slots],nextId:this.nextId};}
+  snapshot(){return {inventory:this.inventory.map(item=>({...item})),slots:[...this.slots],nextId:this.nextId,discovered:[...this.discovered]};}
   // Call on roster changes, never scan the inventory in the combat frame loop.
   companions(){return this.slots.map(id=>this.byId.get(id)||null);}
   setSlotLevel(level){
@@ -92,13 +93,13 @@ export class CompanionCollection {
     item.locked=locked;this.changed({kind:'lock',id,locked});return true;
   }
   recordKill(){
-    const advanced=[],hatched=[];
+    const advanced=[],hatched=[],firstDiscoveries=[];
     // Every equipped egg receives +1; reserve eggs never advance. At most five lookups.
     for(const id of this.slots){const item=this.byId.get(id);if(!item||item.kind!=='egg')continue;
       item.hatchProgress++;advanced.push(id);
-      if(item.hatchProgress>=this.config.eggs.hatchKills){item.kind='pet';item.grade=0;hatched.push(id);}
+      if(item.hatchProgress>=this.config.eggs.hatchKills){item.kind='pet';item.grade=0;hatched.push(id);if(!this.discovered.has(item.speciesId)){this.discovered.add(item.speciesId);firstDiscoveries.push(item.speciesId);}}
     }
-    if(advanced.length)this.changed({kind:'hatchProgress',advanced,hatched});
+    if(advanced.length)this.changed({kind:'hatchProgress',advanced,hatched,firstDiscoveries});
     return hatched;
   }
   eligible(speciesId,grade){return this.inventory.filter(item=>item.kind==='pet'&&item.speciesId===speciesId&&item.grade===grade&&!item.locked);}

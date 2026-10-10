@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="ko"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
-<meta name="theme-color" content="#0b141a"><title>BOUNKO · Prototype 0.12.0</title>
+<meta name="theme-color" content="#0b141a"><title>BOUNKO · Prototype 0.12.1</title>
 <style>
 :root{color-scheme:dark;--bg:#0a141a;--ink:#edf9f1;--mute:#9cb2b0;--mint:#72ebc0;--line:#345454;--orange:#fac779}*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,'Noto Sans KR',sans-serif;-webkit-tap-highlight-color:transparent;user-select:none}#game{position:absolute;inset:0;display:block;width:100%;height:100%;touch-action:none;outline:none}#hud{position:absolute;inset:0;pointer-events:none;overflow:hidden}#top{position:absolute;top:env(safe-area-inset-top,0px);left:0;right:0;display:flex;align-items:flex-start;justify-content:space-between;padding:15px 18px;gap:10px;text-shadow:0 2px 8px #091117}#brand{font-size:17px;font-weight:900;letter-spacing:.16em}#brand small{display:block;letter-spacing:.12em;font-size:10px;font-weight:500;color:#84a7a2;margin-top:2px}.stats{display:flex;gap:13px;margin-top:9px}.stat-label{display:block;font-size:10px;color:var(--mute);font-weight:600;letter-spacing:.08em}.stat-num{font-size:22px;font-weight:900;font-variant-numeric:tabular-nums}.stat-num.gold{color:var(--orange)}#score{min-width:68px;text-align:right}.pills{display:flex;gap:6px;align-items:center;justify-content:flex-end;margin-top:3px;flex-wrap:wrap}.pill{border:1px solid #41625d;background:#0d2929bb;color:#abdac8;padding:4px 7px;border-radius:30px;font-size:10px}#controls{pointer-events:auto;position:absolute;bottom:calc(19px + env(safe-area-inset-bottom,0px));right:20px;display:flex;align-items:flex-end;gap:11px}#auto{position:relative;isolation:isolate;width:107px;height:107px;border-radius:50%;border:2px solid #7ef0c2;background:radial-gradient(circle at 35% 27%,#329b80,#155144 67%,#0d332f);box-shadow:0 0 0 6px #15564740,0 15px 34px #0008;color:#f4fff6;font-size:16px;font-weight:900;letter-spacing:.12em;display:flex;align-items:center;justify-content:center;flex-direction:column;touch-action:manipulation;cursor:pointer}#auto small{font-size:10px;letter-spacing:.07em;color:#b9f7d9;margin-top:1px}#auto:active{transform:scale(.93);filter:brightness(1.2)}#auto.ready{border-color:#86f8ca}#auto.shadow{border-color:#ffd580;background:radial-gradient(circle at 35% 27%,#aa8650,#60502a 67%,#3d3422);box-shadow:0 0 0 6px #b9944c38,0 0 42px #ca9b4c44}#auto.dash{border-color:#a7d8cf;background:#345452}#options{position:absolute;top:calc(17px + env(safe-area-inset-top,0px));left:50%;transform:translateX(-50%);pointer-events:auto;border:1px solid #436866;border-radius:8px;background:#0c2425bb;display:flex;align-items:center;overflow:hidden}button{font:inherit}#options button{cursor:pointer;border:0;background:none;color:#d0eadd;padding:9px 11px;font-size:11px}#options button+button{border-left:1px solid #436866}#options button:hover{background:#204b45}#targetcue{position:absolute;left:0;top:0;display:none;min-width:82px;text-align:center;transform:translate(-50%,-50%);font-size:11px;font-weight:900;letter-spacing:.07em;line-height:1.3;white-space:nowrap;text-shadow:0 2px 5px #00151c,0 0 7px #00151c;will-change:transform;z-index:2}#targetcue.active{display:block}#targetcue .tip{font-size:9px;font-weight:600;opacity:.85;letter-spacing:0}#toast{position:absolute;top:28%;left:50%;transform:translateX(-50%);font-size:clamp(20px,5vw,44px);font-weight:950;letter-spacing:.11em;text-align:center;white-space:nowrap;opacity:0;transition:opacity .12s;text-shadow:0 3px 14px #000}#toast.visible{opacity:1}#bars{position:absolute;left:50%;bottom:calc(42px + env(safe-area-inset-bottom,0px));width:140px;transform:translateX(-50%);text-align:center}#bars .label{font-size:10px;color:#a4c8b8;letter-spacing:.15em;margin-bottom:5px}#charge{height:5px;background:#244240;border-radius:5px;overflow:hidden}#chargefill{width:0;height:100%;background:#f0c87a;box-shadow:0 0 8px #f0c87a}#settings{pointer-events:auto;position:absolute;top:70px;left:50%;width:min(430px,calc(100vw - 28px));transform:translateX(-50%);border:1px solid #45625d;border-radius:14px;background:#0e2226f7;box-shadow:0 15px 60px #000b;padding:15px;display:none;max-height:calc(100vh - 105px);overflow-y:auto}#settings.open{display:block}#settings h2{font-size:17px;margin:0 0 8px}.setting-row{display:grid;grid-template-columns:1fr 110px 44px;align-items:center;gap:8px;margin:11px 0;font-size:12px}#settings label{color:#ccdfd8}#settings input[type=range]{accent-color:#70efbb;width:100%}#settings output{font-variant-numeric:tabular-nums;text-align:right;color:#e7c280}#settings .check{display:flex;align-items:center;gap:8px;font-size:12px;margin:10px 0}#settings .check input{accent-color:#70efbb}#settings footer{border-top:1px solid #294c49;padding-top:9px;color:#99ada9;font-size:10px;line-height:1.5}#load{pointer-events:auto;position:absolute;inset:0;display:flex;justify-content:center;align-items:center;background:#081317ef;z-index:20;padding:20px}#loadbox{width:min(420px,100%);text-align:center}#load h1{font-size:26px;letter-spacing:.14em;color:#7aebbe}#load p{color:#b5cbc5;line-height:1.7;font-size:13px}#load details{margin-top:10px;color:#b9c9c8;font-size:11px}#load.hidden{display:none}@media(max-width:650px){#top{padding:12px}#brand{font-size:13px}.stat-num{font-size:18px}.stats{gap:9px}#options{top:auto;bottom:calc(148px + env(safe-area-inset-bottom,0px));left:auto;right:15px;transform:none}#options button{padding:8px;font-size:10px}#controls{right:22px;bottom:calc(20px + env(safe-area-inset-bottom,0px))}#auto{width:99px;height:99px}#bars{bottom:calc(17px + env(safe-area-inset-bottom,0px));width:110px}#settings{top:12px;max-height:calc(100vh - 20px)}}
 .settings-head{display:flex;justify-content:space-between;align-items:center;gap:8px}.settings-head h2{margin:0!important}.settings-head button{cursor:pointer;color:#dcf6e9;border:1px solid #50766a;background:#17483a;border-radius:6px;font-size:12px;padding:7px 10px}#health{height:6px;background:#4b2630;border-radius:5px;margin-top:7px;overflow:hidden}#healthfill{height:100%;width:100%;background:linear-gradient(90deg,#44cda9,#c2ffbd)}#healthlabel{font-size:10px;color:#bcdac5;margin-top:3px}#chargefill{transition:background-color .06s}#gameover{display:none;position:absolute;inset:0;z-index:15;pointer-events:auto;background:#061419c9;align-items:center;justify-content:center;padding:24px;text-align:center}#gameover.show{display:flex}.over-inner{border:1px solid #466f64;background:#122c2b;padding:28px 26px;border-radius:16px;min-width:min(330px,90vw);box-shadow:0 22px 70px #0008}.over-inner h1{font-size:29px;margin:8px 0}.over-inner p{font-size:13px;color:#b9d7c9;line-height:1.7}.over-tag{font-size:11px;font-weight:800;letter-spacing:.18em;color:#fac779}#retry{margin-top:10px;background:#59d8ad;color:#0a2820;border:0;border-radius:8px;padding:13px 25px;font-weight:900;cursor:pointer}#top{pointer-events:none}#auto[data-near="true"]{border-color:#ff776e!important;background:radial-gradient(circle at 35% 27%,#a65a50,#542925 67%,#322121)!important;box-shadow:0 0 0 5px #ad484239,0 0 22px #ec655466!important}
@@ -280,11 +280,12 @@ body.lobby-active #stageHud,body.lobby-active #stageBanner{display:none}
 @media(max-height:690px){.lobby-resource-buttons{gap:7px;margin-top:7px}.lobby-resource-buttons button{min-height:36px}.guide-art svg{max-height:190px}.guide-stage{padding-top:9px}}
 
 .pet-panel{position:fixed;inset:0;z-index:90;background:#061014d9;display:none;align-items:center;justify-content:center;padding:18px}.pet-panel.open{display:flex}.pet-card{width:min(920px,100%);max-height:90vh;overflow:auto;border:1px solid #71928b;border-radius:18px;background:#112529;color:#e4f0e7;padding:20px}.pet-head{position:sticky;top:-20px;background:#112529;z-index:1;padding:10px 0;display:flex;justify-content:space-between;align-items:center;gap:10px}.pet-card button,.pet-card select{background:#233c3c;color:#e9f4df;border:1px solid #71928b;border-radius:8px;padding:9px;cursor:pointer}.pet-card button:disabled{opacity:.45;cursor:default}.pet-slots{display:flex;gap:8px;flex-wrap:wrap;margin:16px 0}.pet-slots button{min-width:120px;min-height:72px}.pet-slots button.selected{border:2px solid #f0c96c}.pet-inventory{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:10px}.pet-item{border:1px solid var(--grade,#839f92);border-radius:12px;padding:12px;background:#172f31}.pet-item b{display:block;color:var(--grade,#e7dfbc);margin-bottom:8px}.pet-item p{font-size:12px;line-height:1.5}.pet-item button{margin-right:5px;margin-top:5px}.pet-fusion{display:flex;gap:8px;flex-wrap:wrap;align-items:center;border-top:1px solid #53706a;margin:18px 0 12px;padding-top:16px}.pet-result{min-height:2em;color:#f2d596;font-size:13px}.pet-note{font-size:13px;line-height:1.6;color:#c3d7d0}
+#petReveal{position:fixed;left:18px;bottom:130px;z-index:28;max-width:min(340px,75vw);padding:12px 16px;background:#10262bea;border:1px solid #f2cc79;border-radius:12px;color:#eaf1e3;pointer-events:none;opacity:0;transform:translateY(8px);transition:opacity .15s,transform .15s}#petReveal.show{opacity:1;transform:none}#petReveal b{display:block;color:#f2d896;font-size:15px}#petReveal span{font-size:12px;line-height:1.6}.pet-egg-mark{display:inline-block;transform-origin:50% 80%}.pet-egg-mark.shaking{animation:eggShake .8s ease-in-out infinite}@keyframes eggShake{0%,100%{transform:rotate(-6deg)}50%{transform:rotate(6deg)}}.pet-discoveries{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0}.pet-discovery{border:1px solid #658e80;border-radius:9px;padding:9px;font-size:12px}.audio-controls{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:8px 0}.audio-controls input[type=range]{max-width:180px}.audio-controls label{font-size:13px}.audio-controls button{cursor:pointer}
 </style>
 </head><body>
 <canvas id="game" tabindex="0" aria-label="BOUNKO(바운코) 물리 전투 게임"></canvas>
 <div id="hud">
-  <div id="top"><div><div id="brand">BOUNKO<small>PHYSICS ACTION LAB · v0.12.0</small></div><div class="stats"><div><span class="stat-label">HP</span><span class="stat-num" id="playerhp">100</span></div><div><span class="stat-label">COMBO</span><span class="stat-num gold" id="combo">0</span></div><div><span class="stat-label">HITS</span><span class="stat-num" id="hits">0</span></div><div><span class="stat-label">SPEED</span><span class="stat-num" id="speed">0</span></div></div></div><div id="score"><span class="stat-label">KNOCKOUT</span><span class="stat-num gold" id="kills">0</span><div class="pills"><span class="pill" id="fps">-- FPS</span><span class="pill" id="state">READY</span></div></div></div>
+  <div id="top"><div><div id="brand">BOUNKO<small>PHYSICS ACTION LAB · v0.12.1</small></div><div class="stats"><div><span class="stat-label">HP</span><span class="stat-num" id="playerhp">100</span></div><div><span class="stat-label">COMBO</span><span class="stat-num gold" id="combo">0</span></div><div><span class="stat-label">HITS</span><span class="stat-num" id="hits">0</span></div><div><span class="stat-label">SPEED</span><span class="stat-num" id="speed">0</span></div></div></div><div id="score"><span class="stat-label">KNOCKOUT</span><span class="stat-num gold" id="kills">0</span><div class="pills"><span class="pill" id="fps">-- FPS</span><span class="pill" id="state">READY</span></div></div></div>
   <div id="options"><button id="tune" aria-label="설정">설정</button><button id="restart" aria-label="대기 화면으로">대기</button></div><div id="augments" role="group" aria-label="해금된 특성"></div>
   <div id="targetcue" aria-hidden="true"></div>
   <div id="toast" aria-live="polite"></div>
@@ -301,7 +302,7 @@ body.lobby-active #stageHud,body.lobby-active #stageBanner{display:none}
       <h1>흐름을 이어라</h1>
       <p class="lobby-intro">공격 버튼 두 번으로 돌진하고, 전장 탭이나 WASD로 구르며 피하자. 공격에 성공하면 체력도 되찾아!</p>
       <div class="lobby-meta"><span id="lobbyGrowth">누적 처치 0</span><span id="lobbyBalance">레벨 1 · 남은 강화 0</span></div>
-      <div class="lobby-buttons"><button id="startRun" class="lobby-primary">게임 시작 <span aria-hidden="true">↗</span></button><button id="techOpen" class="lobby-secondary">업그레이드 <span class="lobby-pts">✦ <b id="techPoints">0</b></span></button></div><div class="lobby-resource-buttons"><button id="guideOpen" type="button">◈ 도움말 · 3장</button><button id="wikiOpen" type="button">▤ 상세 위키</button><button id="petOpen" type="button">❀ 동행 · 알과 펫</button></div>
+      <div class="lobby-buttons"><button id="startRun" class="lobby-primary">게임 시작 <span aria-hidden="true">↗</span></button><button id="techOpen" class="lobby-secondary">업그레이드 <span class="lobby-pts">✦ <b id="techPoints">0</b></span></button></div><div class="audio-controls"><button id="audioMute" type="button" aria-pressed="false">소리 켜짐</button><label>효과음 <input id="audioVolume" type="range" min="0" max="100" step="1" aria-label="효과음 음량"></label><output id="audioVolumeValue"></output></div><div class="lobby-resource-buttons"><button id="guideOpen" type="button">◈ 도움말 · 3장</button><button id="wikiOpen" type="button">▤ 상세 위키</button><button id="petOpen" type="button">◉ 동행 · 알과 펫</button></div>
       <p id="lobbyLastRun" class="lobby-run-summary">공격 버튼 두 번 = 돌진 · 전장 탭 / WASD = 회피</p>
     </div>
   </section>
@@ -496,9 +497,10 @@ availableUpgrades = (level - 1) - sum(learnedTechCosts) - sum(statInvestments)</
 <p><b>향후 범위 밖</b>: 화염 폭발형 3단계·냉기·중력, 체력별 보스 패턴 중첩, 게임 전체의 상용 저장/네트워크는 현재 구현 계약에 포함되지 않는다.</p></section><section class="wiki-section" id="wiki-glossary" data-wiki-title="23. 용어·개발 참고"><h2>23. 용어·개발 참고</h2>
 <div class="wiki-table-wrap"><table><thead><tr><th>용어</th><th>의미</th></tr></thead><tbody><tr><td>잔상 SHADOW</td><td>적에게 가속하며 접근하는 공격 준비 객체. 플레이어의 이동과 독립</td></tr><tr><td>GOLDEN</td><td>잔상 표면 접촉 직후 짧은 정확 타이밍 상태</td></tr><tr><td>COYOTE</td><td>골든 이후 짧은 늦은 입력 허용 상태. 차지 보상 감소</td></tr><tr><td>회피 구르기</td><td>전장 탭·WASD에 반응하는 별도 이동/회피 행동. 피해 공격 아님</td></tr><tr><td>운동 에너지</td><td>실제 플레이어 본체 이동 거리로 충전되는 자동 돌진 자원</td></tr><tr><td>자동 연격/도탄</td><td>동일 적 반복 충돌 / 인근 다른 적으로 자동 충돌</td></tr><tr><td>전도/점화</td><td>다음 명중 피해 증폭·주변 전파 / 지속 피해와 적끼리 물리 접촉 전염</td></tr><tr><td>후처리 VFX</td><td>게임이 확정한 명중·피해·회복·연결 상태를 그리기만 하는 표현</td></tr></tbody></table></div>
 <p><a href="https://github.com/byh-playground/bloom-reference">BLOOM Reference</a> · <a href="https://github.com/byh-playground/bloom-reference/blob/main/rules/development.html">공통 개발규칙</a> · <a href="https://github.com/byh-playground/bloom-reference/blob/main/rules/project-management.html">관리 규칙</a> · <a href="https://github.com/byh-playground/bloom-reference/blob/main/labs/particles.html">파티클 연구소</a> · <a href="https://github.com/byh-playground/bloom-gamekit">Bloom GameKit</a>.</p></section>
-<section class="wiki-section" id="wiki-pets" data-wiki-title="24. 영구 동행 · 알 · 합성"><h2>24. 영구 동행 · 알 · 합성</h2><p>보스 처치마다 같은 보스 계열 알 1개를 영구 보유한다. 보유 수는 제한하지 않는다. 기본 동행 1칸에 슬롯 투자 4회로 최대 5칸이며 알과 펫이 같은 칸을 쓴다. 장착 알은 플레이어·펫의 모든 실제 처치마다 각각 +1, 30처치에 같은 UID·슬롯의 Common 펫으로 바뀐다. 예비 알은 진행하지 않는다.</p><p>펫은 접근 → 준비 → 물리 돌진 → 충돌 → 반동 → 재접근한다. 기본 피해 = 펫 공격력 × 충돌 직전 상대 접근 속도 ÷ 1600, 대상 방어를 공통 공식으로 적용한다. 가만히 겹친 몸은 펫에 피해를 주지 않으며 적 돌진과 실제 투사체는 피해를 준다. 펫 사망은 보유를 잃지 않고 3초 뒤 플레이어 근처에 최대 HP로 복귀한다. 수치는 Config의 측정 추천값이며 부활 3000ms는 확정 규칙이다.</p><p>Rare부터 꽃잎은 부채 탄막, 버섯은 탄성 반동·실제 피해 비례 근거리 회복을 얻는다. Legendary부터 원형 탄막을 더한다. 모든 등급은 기본 물리 공격을 유지한다. 등급별 체력·공격력 ×1.8, 크기·범위 ×1.05를 적용한다.</p><p>같은 종·등급 5마리 합성의 성공률은 Common→Mythic 순 64/32/16/8/4%. 성공은 5마리를 상위 1마리로 바꾸며 실패는 1~4마리를 균등 소모한다. 잠금만 보호하고 장착 여부는 보호하지 않는다. 예비 재료를 먼저 사용하며 연속 합성도 선택한 등급만 처리한다. 알·Mythic은 재료가 아니다. 보유·잠금·편성·부화 진행·슬롯 투자는 로컬 저장되어 사망·재시작에 유지된다.</p></section>
-<section class="wiki-section" id="wiki-stage-pools" data-wiki-title="24. 스테이지·보스 조합 풀 상세 명세">
-<h2>24. 절차적 생성·보스 시스템 풀 (v0.10.0)</h2>
+<section class="wiki-section" id="wiki-audio" data-wiki-title="24. 효과음과 설정"><h2>24. 효과음과 설정</h2><p>수동·메아리 발사, 충돌 강도, 자동 돌진·도탄·연격, 충전·회피, 적·보스 공격, 실제 피해·회복·처치·사망, 성장·스테이지, 알·부화·합성·동행 부활과 메뉴 조작에 효과음이 반응한다. 배경 입자는 소리를 반복하지 않는다.</p><p>로비·설정의 전체 음량과 음소거, 설정의 종류별 음량은 로컬 저장된다. 같은 종류 최소 간격·동시 수·전체 최대 12음과 우선순위로 밀집 전투를 제한한다. 음량·압축 값은 초기 추천이다. 브라우저가 허용한 실제 입력으로 소리를 열며, 중단 시 정리하고 다음 입력에서 재개한다. 잠금·음소거 중 소리는 나중에 재생하지 않는다.</p></section>
+<section class="wiki-section" id="wiki-pets" data-wiki-title="25. 영구 동행 · 알 · 합성"><h2>25. 영구 동행 · 알 · 합성</h2><p>보스 처치마다 그 보스의 정해진 결과인 알 1개를 영구 보유한다. 보유 수는 제한하지 않는다. 기본 동행 1칸에 슬롯 투자 4회로 최대 5칸이며 알과 펫이 같은 칸을 쓴다. 장착 알은 플레이어·펫의 모든 실제 처치마다 각각 +1, 30처치에 같은 UID·슬롯의 Common 펫으로 바뀐다. 예비 알은 진행하지 않는다.</p><p>펫은 접근 → 준비 → 물리 돌진 → 충돌 → 반동 → 재접근한다. 기본 피해 = 펫 공격력 × 충돌 직전 상대 접근 속도 ÷ 1600, 대상 방어를 공통 공식으로 적용한다. 가만히 겹친 몸은 펫에 피해를 주지 않으며 적 돌진과 실제 투사체는 피해를 준다. 펫 사망은 보유를 잃지 않고 3초 뒤 플레이어 근처에 최대 HP로 복귀한다. 수치는 Config의 측정 추천값이며 부활 3000ms는 확정 규칙이다.</p><p>발견한 동행의 대표 능력은 발견 기록에서 확인한다. Rare부터 계열별 추가 능력, Legendary부터 추가 탄막을 더한다. 모든 등급은 기본 물리 공격을 유지한다. 등급별 체력·공격력 ×1.8, 크기·범위 ×1.05를 적용한다.</p><p>같은 종·등급 5마리 합성의 성공률은 Common→Mythic 순 64/32/16/8/4%. 성공은 5마리를 상위 1마리로 바꾸며 실패는 1~4마리를 균등 소모한다. 잠금만 보호하고 장착 여부는 보호하지 않는다. 예비 재료를 먼저 사용하며 연속 합성도 선택한 등급만 처리한다. 알·Mythic은 재료가 아니다. 발견 전에는 알의 정체를 숨기고 처음 부화할 때 모습·이름·대표 능력을 공개한다. 발견 기록은 보유·합성 소모와 독립해 유지한다. 보유·잠금·편성·부화 진행·슬롯 투자는 로컬 저장되어 사망·재시작에 유지된다.</p></section>
+<section class="wiki-section" id="wiki-stage-pools" data-wiki-title="26. 스테이지·보스 조합 풀 상세 명세">
+<h2>26. 절차적 생성·보스 시스템 풀 (v0.10.0)</h2>
 <p><b>콘텐츠를 개별 코드로 추가하지 않는다.</b> THEME_POOL 정의는 테마별 최초 등장 스테이지·출현 가중치·색상·지형 연산 레시피·외형·보스 타입만 소유한다. 보스는 BOSS_POOL 정의의 외형 프리셋·행동 풀 참조·소환수·변형률을 조합한다. 신규 테마는 정의 등록 후 최초 등장 보장과 이후 시드 기반 랜덤 후보에 자동 편입한다.</p>
 <div id="wikiThemesTable"></div><div id="wikiBossesTable"></div><div id="wikiMapOpsTable"></div>
 <h3>스테이지 크기와 평균 밀도</h3>
@@ -555,25 +557,29 @@ boss dies -> clear all owned summons -> CLEAR -> new stage/theme/map</code></pre
 </div>
 <div id="gameover"><div class="over-inner"><div class="over-tag">RUN ENDED</div><h1>쓰러졌어</h1><p id="runSummary"></p><button id="retry">대기 화면으로</button></div></div>
 <div id="load"><div id="loadbox"><h1>BOUNKO</h1><p id="loadtext">물리 엔진과 공통 게임 모듈을 불러오는 중…</p><details><summary>라이브러리 정보</summary><p>Matter.js 0.20.0 / Bloom GameKit ESM · 고정 커밋 d1e2c385. 최초 실행에는 인터넷 연결이 필요합니다.</p></details></div></div>
-<div id="petPanel" class="pet-panel" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="petTitle"><div class="pet-card"><div class="pet-head"><h2 id="petTitle">❀ 영구 동행</h2><button id="petClose" type="button">닫기 ✕</button></div><p class="pet-note">보스 처치마다 알 1개 · 보유 제한 없음. 장착한 알은 당신과 펫의 처치마다 각각 +1, 30처치에 같은 칸에서 부화합니다. 슬롯을 고른 뒤 보유 목록에서 장착하세요.</p><div id="petSlots" class="pet-slots"></div><div class="pet-fusion"><label>합성 <select id="petFusionSpecies"></select></label><select id="petFusionGrade" aria-label="합성 등급"></select><button id="petFuse" type="button">5마리 합성</button><button id="petFuseAll" type="button">선택 등급 연속 합성</button><span id="petFusionOdds"></span></div><p class="pet-note">잠금한 펫만 보호됩니다. 장착 펫도 재료에 포함되며, 예비 펫을 먼저 씁니다. 성공: 5마리 → 상위 1마리. 실패: 1~4마리 소모, 최소 1마리 유지. 알은 재료가 아닙니다.</p><div id="petResult" class="pet-result" aria-live="polite"></div><div id="petInventory" class="pet-inventory"></div></div></div>
+<div id="petReveal" role="status" aria-live="polite"></div>
+<div id="petPanel" class="pet-panel" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="petTitle"><div class="pet-card"><div class="pet-head"><h2 id="petTitle">◉ 영구 동행</h2><button id="petClose" type="button">닫기 ✕</button></div><p class="pet-note">보스 처치마다 알 1개 · 보유 제한 없음. 장착한 알은 당신과 펫의 처치마다 각각 +1, 30처치에 같은 칸에서 부화합니다. 슬롯을 고른 뒤 보유 목록에서 장착하세요.</p><div id="petSlots" class="pet-slots"></div><div class="pet-fusion"><label>합성 <select id="petFusionSpecies"></select></label><select id="petFusionGrade" aria-label="합성 등급"></select><button id="petFuse" type="button">5마리 합성</button><button id="petFuseAll" type="button">선택 등급 연속 합성</button><span id="petFusionOdds"></span></div><p class="pet-note">잠금한 펫만 보호됩니다. 장착 펫도 재료에 포함되며, 예비 펫을 먼저 씁니다. 성공: 5마리 → 상위 1마리. 실패: 1~4마리 소모, 최소 1마리 유지. 알은 재료가 아닙니다.</p><div id="petResult" class="pet-result" aria-live="polite"></div><h3>발견 기록</h3><div id="petDiscoveries" class="pet-discoveries"></div><div id="petInventory" class="pet-inventory"></div></div></div>
 <script src="https://cdn.jsdelivr.net/npm/matter-js@0.20.0/build/matter.min.js"></script>
 <script type="module">
 
 const KIT = 'https://cdn.jsdelivr.net/gh/byh-playground/bloom-gamekit@d1e2c385033ad04a7a004cfbe9558948ef07a6d1/';
-const VERSION = '0.12.0', BUILD_ID = '20261010T114424Z-permanent-pets';
+const VERSION = '0.12.1', BUILD_ID = '20261010T130000Z-discovery-audio';
 const $ = id => document.getElementById(id);
 const loadtext = $('loadtext');
 const ERROR = error => { console.error(error); loadtext.innerHTML = '<strong style="color:#fdb8a9">실행 라이브러리를 불러오지 못했습니다.</strong><br>인터넷 연결 상태를 확인하고 다시 여세요.<br>'+String(error.message||error).replace(/[<>]/g,''); };
 try {
   if (!window.Matter) throw new Error('Matter.js 0.20.0 스크립트 로딩 실패');
-  const [{Renderer2D}, {ActionState,createDOMInput}, {createLoop}, {petConfig,CompanionCollection,CompanionCombat,companionCapacity,patternAngle}] = await Promise.all([
-    import(KIT+'rendering.js'),import(KIT+'input.js'),import(KIT+'simloop.js'),import('./pets.js')
+  const [{Renderer2D}, {ActionState,createDOMInput}, {createLoop}, {petConfig,CompanionCollection,CompanionCombat,companionCapacity,patternAngle}, {audioConfig,AudioPlayer}] = await Promise.all([
+    import(KIT+'rendering.js'),import(KIT+'input.js'),import(KIT+'simloop.js'),import('./pets.js'),import('./audio.js')
   ]);
   const M = window.Matter;
+  const sfx=new AudioPlayer(audioConfig);
+  function playImpact(speed,pet=false){return sfx.play(pet?'petImpact':speed<500?'impactLight':speed<1000?'impactMedium':'impactHeavy',Math.min(1,.4+speed/1600));}
+  async function playUiSound(){if(await sfx.unlock())sfx.play('ui');}
   // Single source of truth: capability-based, hierarchical configuration.
   const C = {
     world:{width:2500,height:1750}, sim:{tps:60}, player:{radius:16,mass:2,shadowCostRate:.10,facingTurnRateRadPerSec:Math.PI*3},
-    pets:petConfig,stats:{petSlots:petConfig.slots.base,attackPower:100,criticalChance:0,criticalDamage:2,armorPenFlat:0,armorPenPercent:0,maxHp:100,armor:0,healthRegen:0},enemy:{radius:23,count:13,contactDamage:25,contactCooldownMs:450,chaseRadius:690,stopDistance:29,chaseResponse:6,
+    audio:audioConfig,pets:petConfig,stats:{petSlots:petConfig.slots.base,attackPower:100,criticalChance:0,criticalDamage:2,armorPenFlat:0,armorPenPercent:0,maxHp:100,armor:0,healthRegen:0},enemy:{radius:23,count:13,contactDamage:25,contactCooldownMs:450,chaseRadius:690,stopDistance:29,chaseResponse:6,
       knockbackMultiplier:1,projectileDamageMultiplier:1,types:{
         scout:{radius:20,mass:4.6,hp:105,armor:0,speed:128,detect:700,damage:25,push:250,windupMs:180,lungeSpeed:310,lungeMs:280,recoverMs:740,range:84},
         brute:{radius:29,mass:8.2,hp:185,armor:24,speed:64,detect:640,damage:34,push:460,windupMs:530,lungeSpeed:360,lungeMs:420,recoverMs:1480,range:132},
@@ -724,11 +730,11 @@ try {
     evadeRefillAtMs=evadeCharges<C.evade.maxCharges?timeMs+(1-progress)*C.evade.rechargeMs:0;
   }
   applyTech();persistTech(); // Save only the current Definition; removed investments become available points.
-  function recordKill(){tech.kills++;persistTech();updateTechUi();}
+  function recordKill(){const level=progressionLevel(tech.kills);tech.kills++;if(progressionLevel(tech.kills)>level)sfx.play('level');persistTech();updateTechUi();}
   function learnTech(id){const node=TECH_NODES.find(n=>n.id===id);if(!node||hasTech(id)||!node.requires.every(hasTech)||availableTech()<node.cost)return false;
-    tech.unlocked.add(id);applyTech();persistTech();updateTechUi();ringFx(player.position.x,player.position.y,100,[1,.86,.48,1],680);burst(player.position.x,player.position.y,180,22,[1,.86,.48,1]);return true;}
+    tech.unlocked.add(id);sfx.play('upgrade');applyTech();persistTech();updateTechUi();ringFx(player.position.x,player.position.y,100,[1,.86,.48,1],680);burst(player.position.x,player.position.y,180,22,[1,.86,.48,1]);return true;}
   function learnStat(id){const spec=STAT_UPGRADES.find(s=>s[0]===id);if(!spec||tech.statLevels[id]>=(spec[5]??Infinity)||!statPathReady(id,tech.statLevels)||availableTech()<1)return false;
-    tech.statLevels[id]++;applyTech();persistTech();updateTechUi();return true;}
+    tech.statLevels[id]++;sfx.play('upgrade');applyTech();persistTech();updateTechUi();return true;}
   function refundTech(){tech.unlocked.clear();for(const key of Object.keys(tech.statLevels))tech.statLevels[key]=0;
     endChain();applyTech();persistTech();updateTechUi();}
   function energyCapacity(){return C.energy.baseCapacityCharges*(1+(hasTech('capacity1')?C.energy.capacityBonusTierRate:0)+(hasTech('capacity2')?C.energy.capacityBonusTierRate:0));}
@@ -748,7 +754,7 @@ try {
     if(pendingChainStart==null)return;
     const targetId=pendingChainStart;pendingChainStart=null;
     if(energyFull()&&hasTech('autoChain')){
-      chainActive=true;chainTargetId=targetId;autoChainReady=true;chainStarts++;autoChainWins++;
+      chainActive=true;chainTargetId=targetId;autoChainReady=true;chainStarts++;autoChainWins++;sfx.play('chainStart');
       ringFx(player.position.x,player.position.y,49,[1,.86,.50,1],350);
     }else{autoChainReady=false;chainTargetId=null;}
   }
@@ -874,7 +880,7 @@ try {
     Body.setInertia(orb,Infinity);Body.setVelocity(orb,{x:n.x*cfg.projectileSpeed/60,y:n.y*cfg.projectileSpeed/60});
     const shot={body:orb,ownerId:e.id,damage:cfg.damage,push:cfg.push,bornMs:timeMs,lifeMs:cfg.projectileLifeMs,
       dirX:n.x,dirY:n.y,lastX:x,lastY:y};
-    projectiles.push(shot);projectileById.set(orb.id,shot);World.add(engine.world,orb);enemyShots++;
+    projectiles.push(shot);projectileById.set(orb.id,shot);World.add(engine.world,orb);enemyShots++;sfx.play('enemyShot');
     burst(x,y,90,5,[.71,.51,1,1]);
   }
   function spawnBossShot(boss,angle,projectileSpeed=bossParameters(boss).bulletSpeed){
@@ -1104,7 +1110,7 @@ try {
     }
     stageHistory.push({index,theme:theme.id,layout:stage.layoutId,radius:Math.round(radius),population:stage.targetPopulation,seed:stage.seed});
     if(stageHistory.length>20)stageHistory.shift();
-    petCombat.enterStage();
+    petCombat.enterStage();if(index>1)sfx.play('stageStart');
     stageNotice(`STAGE ${index}  ·  ${theme.name}`,1100);
   }
   function stageNotice(message,durationMs=900){$('stageBanner').textContent=message;stage.noticeUntilMs=timeMs+durationMs;}
@@ -1136,11 +1142,11 @@ try {
     boss.state='BOSS_RECOVER';boss.stateUntilMs=timeMs+520;boss.pattern='FAN';boss.headingX=-1;boss.headingY=0;
     boss.patternStartedAtMs=timeMs;boss.volleys=0;boss.lastPattern='';boss.nextSummonAtMs=timeMs+3400;
     stage.boss=boss;stage.phase='BOSS';stage.bossName=spec.name;stage.bossVariant=variety.id;
-    stageNotice(spec.name,1250);
+    sfx.play('bossNotice');stageNotice(spec.name,1250);
   }
   function finishStage(){
     if(stage.phase!=='BOSS')return;
-    stage.phase='CLEAR';stage.transitionUntilMs=timeMs+C.stage.transitionMs;
+    sfx.play('stageClear');stage.phase='CLEAR';stage.transitionUntilMs=timeMs+C.stage.transitionMs;
     const next=themeForStage(stage.index+1);
     stageNotice(`${THEME_POOL[stage.themeId].name} 돌파!  →  ${next.name}`,C.stage.transitionMs);
     for(const shot of [...projectiles])removeProjectile(shot);
@@ -1148,7 +1154,7 @@ try {
   }
   // Every resolved player/pet kill advances equipped eggs exactly once, including summons.
   function defeatEnemy(e,source='player'){
-    if(!e.alive)return false;e.alive=false;e.burn=null;e.conductUntilMs=0;
+    if(!e.alive)return false;sfx.play('kill');e.alive=false;e.burn=null;e.conductUntilMs=0;
     World.remove(engine.world,e.body);enemiesById.delete(e.body.id);
     companions.recordKill();if(source==='pet')petCombat.stats.kills++;
     if(!e.isSummon){kills++;recordKill();}onEnemyKilled(e);return true;
@@ -1182,11 +1188,16 @@ try {
     enemyDamage:e=>enemyDef(e).damage*C.enemy.contactDamage/25,damage:petDamage,cast:castPetAbility,
     effect:(kind,actor)=>{const p=actor.body?.position||actor;
       ringFx(p.x,p.y,kind==='impact'?35:24,kind==='hurt'?[1,.48,.42,.8]:[.66,.94,1,.8],300);
+      if(kind==='impact')playImpact(actor.preVelocity?Math.hypot(actor.preVelocity.x,actor.preVelocity.y):650,true);else if(kind==='revive')sfx.play('petRevive');else if(kind==='hurt')sfx.play('hurt',.55);else if(kind==='death')sfx.play('hurt',.7);
       if(kind==='death'||kind==='revive')floatText(p.x,p.y,kind==='death'?'동행 · 3초':'동행 복귀',[.72,.93,1,1]);}
   });
   companions.onChange=event=>{persistTech();petCombat.sync();if($('petPanel').classList.contains('open'))updatePetUi();
-    if(event.kind==='hatch'||event.kind==='reward'){const p=player.position;
-      floatText(p.x,p.y,event.kind==='hatch'?'알 부화 · 새 동행':'보스 알 획득',[.97,.85,.54,1]);ringFx(p.x,p.y,65,[1,.85,.5,.8],500);}
+    if(event.kind==='reward'){const p=player.position;sfx.play('egg');floatText(p.x,p.y,'알 획득',[.97,.85,.54,1]);ringFx(p.x,p.y,65,[1,.85,.5,.8],500);}
+    if(event.hatched?.length){const first=event.firstDiscoveries||[],p=player.position;sfx.play(first.length?'hatchFirst':'hatchRepeat');
+      floatText(p.x,p.y,first.length?'새 동행 발견':'알 부화',[.97,.85,.54,1]);ringFx(p.x,p.y,65,[1,.85,.5,.8],500);
+      for(const actor of petCombat.actors)if(event.hatched.includes(actor.id))actor.revealUntilMs=timeMs+1000;
+      if(first.length)revealCompanions(first);}
+    if(event.kind==='fusion')sfx.play(event.result.successes&&event.result.failures?'fusionMixed':event.result.successes?'fusionSuccess':'fusionFail');
   };
   function onEnemyKilled(e){
     if(e.type==='boss'){companions.addEgg(e.bossSpec.id);finishStage();return;}
@@ -1250,7 +1261,7 @@ try {
     return clamp(1-remainingShadowGap()/Math.max(1,shadow.initialGap),0,1);
   }
   function endShadowAt(x,y,enemy=null){
-    if(!shadow||shadow.arrived)return;
+    if(!shadow||shadow.arrived)return;sfx.play('chargeReady');
     shadow.arrived=true;shadow.x=x;shadow.y=y;shadow.contactAtMs=timeMs;
     if(enemy){
       shadow.targetId=enemy.id;
@@ -1278,21 +1289,21 @@ try {
     mode='GOLDEN';hitstopLeftMs=Math.max(hitstopLeftMs,C.timing.shadowHitstopMs);
     bloomImpact(x,y,'perfect');
   }
-  function die(){if(health>0||mode==='DEAD')return;
+  function die(){if(health>0||mode==='DEAD')return;sfx.play('death');
     health=0;mode='DEAD';phase='ENDED';shadow=null;dashMotion=null;dashFlight=null;attackOrigin=null;bufferedIntent=null;combo=0;hitstopLeftMs=0;endChain();
     $('runSummary').textContent=`처치 ${kills} · 누적 처치 ${tech.kills} · 레벨 ${progressionLevel(tech.kills)} · 명중 ${hits} · 피격 ${Math.round(damageTaken)} · 회복 ${Math.round(healingDone)}`;
     $('gameover').classList.add('show');
   }
   function hurtPlayer(amount,x,y){if(mode==='DEAD')return 0;
     const dealt=incomingDamage(amount);
-    health-=dealt;damageTaken+=dealt;
+    health-=dealt;damageTaken+=dealt;if(dealt>0)sfx.play('hurt');
     if(dealt>0){floatText(x,y,`-${formatCombatNumber(dealt)}`,[1,.38,.43,1]);burst(x,y,90,8,[1,.36,.46,1]);}
     // Resolve damage and same-collision healing before checking for death.
     return dealt;
   }
   function healPlayer(amount,x,y){if(mode==='DEAD'||amount<=0)return 0;
     const gained=Math.max(0,Math.min(amount,C.stats.maxHp-health));
-    health+=gained;healingDone+=gained;
+    health+=gained;healingDone+=gained;if(gained>0)sfx.play('heal');
     if(gained>0){floatText(x,y,`+${formatCombatNumber(gained)}`,[.33,1,.68,1]);burst(x,y,120,6,[.24,1,.7,1]);}
     return gained;
   }
@@ -1307,7 +1318,7 @@ try {
     // that one hit, never another hit event that can trigger itself.
     if(!hasTech('conduct')||!e.alive||!hit.tags.includes('dash'))return;
     e.conductUntilMs=timeMs+C.element.lightning.markDurationMs;
-    elementalEvents.conduct++;
+    elementalEvents.conduct++;sfx.play('lightning');
     burst(hitX,hitY,120,8,[.57,.88,1,1]);
     if(!hasTech('relayArc'))return;
     let best=null,bestD=C.shadow.range*C.element.lightning.relayRadiusPct;
@@ -1357,7 +1368,7 @@ try {
     const cfg=C.element.fire,dps=actualImpactDamage*cfg.damageRate*1000/cfg.durationMs;
     if(e.burn){e.burn.damagePerSec=Math.max(e.burn.damagePerSec,dps);e.burn.remainingMs=cfg.durationMs;}
     else e.burn={damagePerSec:dps,remainingMs:cfg.durationMs,clockMs:0,emberClockMs:0};
-    elementalEvents.ignite++;
+    elementalEvents.ignite++;sfx.play('fire');
     fireIgnitionFx(e.body.position.x,e.body.position.y,enemyDef(e).radius);
   }
   function fireTransferFx(a,b){
@@ -1580,7 +1591,7 @@ try {
   function startBossWindup(b,forcePattern=null){
     b.pattern=forcePattern||chooseBossPattern(b);b.lastPattern=b.pattern;
     if(!BOSS_PATTERNS[b.pattern])throw Error('등록되지 않은 보스 행동 '+b.pattern);
-    b.state='BOSS_WINDUP';b.patternStartedAtMs=timeMs;
+    sfx.play('bossWindup');b.state='BOSS_WINDUP';b.patternStartedAtMs=timeMs;
     b.stateUntilMs=timeMs+bossParameters(b).windupMs;b.volleys=0;
     stage.patternLog.push(b.pattern);if(stage.patternLog.length>20)stage.patternLog.shift();
   }
@@ -1604,15 +1615,15 @@ try {
       b.state='BOSS_EXEC';b.stateUntilMs=timeMs+(b.pattern==='CHARGE'?P.chargeDurationMs:pattern.executionMs);
       b.execStartedAtMs=timeMs;b.volleys=0;
       if(b.pattern==='CHARGE'){
-        b.state='BOSS_CHARGE';BOSS_PATTERNS.CHARGE.fire(b,0);
+        b.state='BOSS_CHARGE';sfx.play('bossCharge');BOSS_PATTERNS.CHARGE.fire(b,0);
       }
     }
     if(b.state==='BOSS_EXEC'){
       const elapsed=timeMs-b.execStartedAtMs;
       if(b.pattern==='SUMMON'){
-        if(b.volleys===0&&elapsed>=P.summonAppearMs){BOSS_PATTERNS.SUMMON.fire(b,0);b.volleys++;}
+        if(b.volleys===0&&elapsed>=P.summonAppearMs){const before=liveSummons(b.id).length;BOSS_PATTERNS.SUMMON.fire(b,0);if(liveSummons(b.id).length>before)sfx.play('bossSummon');b.volleys++;}
       }else{
-        while(b.volleys<2&&elapsed>=b.volleys*225){BOSS_PATTERNS[b.pattern].fire(b,b.volleys);b.volleys++;}
+        while(b.volleys<2&&elapsed>=b.volleys*225){sfx.play('boss'+b.pattern[0]+b.pattern.slice(1).toLowerCase());BOSS_PATTERNS[b.pattern].fire(b,b.volleys);b.volleys++;}
       }
       if(timeMs>=b.stateUntilMs){b.state='BOSS_RECOVER';b.stateUntilMs=timeMs+P.recoverMs;}
     }
@@ -1639,6 +1650,7 @@ try {
   }
 
   function updateEnemies(dt){for(const e of enemies){if(!e.alive)continue;
+      if(e.soundState!==e.state){e.soundState=e.state;if(e.state==='WINDUP')sfx.play('enemyNotice');else if(e.state==='LUNGE')sfx.play('enemyLunge');}
       if(e.type==='boss'){updateBoss(e,dt);continue;}
       if(e.isSummon&&timeMs>=e.summonExpiresAtMs){e.alive=false;enemiesById.delete(e.body.id);World.remove(engine.world,e.body);ringFx(e.body.position.x,e.body.position.y,29,[.62,.78,1,1],250);continue;}
       if(e.isSummon&&timeMs<e.summonGrowUntilMs)continue;
@@ -1710,7 +1722,7 @@ try {
       floatText(e.body.position.x,e.body.position.y,'-'+formatCombatNumber(applied),[.68,1,.63,1]);
       if(e.hp<=0){defeatEnemy(e);}
     }
-    if(total>0)healPlayer(total,player.position.x,player.position.y);
+    if(total>0){sfx.play('spore');healPlayer(total,player.position.x,player.position.y);}
   }
   // Tech amplifications are real authoritative effects, not particle callbacks.
   // They inspect only the already-resolved hit and use a fixed bounded target count.
@@ -1726,7 +1738,7 @@ try {
       burst(target.body.position.x,target.body.position.y,110,5,[.50,.82,1,1]);
       if(target.hp<=0){defeatEnemy(target);}
     }
-    if(healed>0)healPlayer(healed,player.position.x,player.position.y);
+    if(healed>0){sfx.play('spore');healPlayer(healed,player.position.x,player.position.y);}
     return healed;
   }
   function impactPush(x,y,excludedId,speed){
@@ -1761,7 +1773,7 @@ try {
       travel:0,limit,age:0,targetId:detected?.id??null,followTarget:!!target,
       goalX:sx+n.x*limit,goalY:sy+n.y*limit,initialGap:gap,
       arrived:false,contactAtMs:-Infinity};
-    aimTargetId=detected?.id??null;mode='SHADOW';payShadowCost(source);burst(sx,sy,65,6,[.45,.9,1,1]);return true;
+    aimTargetId=detected?.id??null;mode='SHADOW';payShadowCost(source);sfx.play(source==='echo'?'echo':'launch');burst(sx,sy,65,6,[.45,.9,1,1]);return true;
   }
   // Automatic aim still comes from manual input; only the recovery echo uses the free source.
   function launchAuto(){const e=selectedAim();if(e){return launch({x:e.body.position.x-player.position.x,y:e.body.position.y-player.position.y},e);}return launch({x:1,y:0},null);}
@@ -1798,7 +1810,7 @@ try {
     const moveSpeed=Math.max(180,Math.hypot(v.x,v.y));
     const estimatedMs=travelGap/moveSpeed*1000;
     dashFlight=target?{targetId:target.id,initialGap:travelGap,untilMs:timeMs+clamp(estimatedMs*2+C.dash.flightMarginMs,C.dash.flightMinMs,C.dash.flightMaxMs)}:null;
-    shadow=null;mode='DASH';dashStartedAtMs=timeMs;modeUntil=timeMs+rearmDelay(C.dash.rearmMinMs);hitstopLeftMs=0;trailClock=0;
+    sfx.play(automatic?(shadow.targetId!==lastHit?.enemyId?'ricochet':'autoDash'):'dash');shadow=null;mode='DASH';dashStartedAtMs=timeMs;modeUntil=timeMs+rearmDelay(C.dash.rearmMinMs);hitstopLeftMs=0;trailClock=0;
     const perfect=charge>=.985&&(timely||modeBeforeDash==='GOLDEN');
     dashPerfect=perfect;dashAutomatic=automatic;if(automatic){automaticDashes++;ringFx(player.position.x,player.position.y,54,[1,.86,.50,1],340);}
     if(perfect)bloomImpact(player.position.x,player.position.y,'perfect');
@@ -1830,7 +1842,7 @@ try {
     applyImpulse(player,{x:direction.x*player.mass*impulse,y:direction.y*player.mass*impulse});
     evadeMotion={x:direction.x,y:direction.y,remaining:impulse,startedAtMs:timeMs,lastParticleMs:timeMs,
       baselineForward:Math.max(0,initial.x*direction.x+initial.y*direction.y)};
-    evadeStartedAtMs=timeMs;evadeCharges--;evadeActions++;
+    evadeStartedAtMs=timeMs;evadeCharges--;evadeActions++;sfx.play('evade');
     if(!evadeRefillAtMs)evadeRefillAtMs=timeMs+C.evade.rechargeMs;
     ringFx(player.position.x,player.position.y,29,[.42,.85,1,1],220);
     return true;
@@ -1989,7 +2001,7 @@ try {
         lastHit={tick,enemyId:e.id,automatic:dashAutomatic,critical,criticalMultiplier:critical?C.stats.criticalDamage:1,
           raw,normalDamage:theoretical,boostedDamage:boosted,damage:inflicted,conductDamage,markConsumed:conducted,
           tags:['dash',...(critical?['critical']:[]),...(conducted?['conduct']:[])]};
-        e.hp=Math.max(0,e.hp-inflicted);hits++;combo++;onComboHit(combo);rechargeEvadeOnDashHit();
+        playImpact(impactSpeed);if(critical)sfx.play('perfect');e.hp=Math.max(0,e.hp-inflicted);hits++;combo++;onComboHit(combo);rechargeEvadeOnDashHit();
         if(!dashAutomatic&&dashPerfect)manualPerfectHits++;
         // A successful manual hit at >= 50% SHADOW timing starts an automatic
         // chain. Auto hits can continue it without requiring another manual tap.
@@ -2099,7 +2111,7 @@ try {
     const pt=findSpawn(180,28);if(pt)spawnEnemy(pt.x,pt.y,rand()<.25?'spitter':'scout');
   }
   /** Continuous collision: swept relative segment against each enemy that moved this tick. */
-  function updateShadow(dt){if(!shadow||shadow.arrived)return;
+  function updateShadow(dt){if(!shadow||shadow.arrived)return;if(!shadow.halfSound&&chargeOf()>=.5){shadow.halfSound=true;sfx.play('chargeHalf');}
     const sx=shadow.x,sy=shadow.y;
     shadow.speed+=C.shadow.acceleration*dt;shadow.age+=dt;
     if(shadow.followTarget&&shadow.targetId!=null){
@@ -2540,8 +2552,9 @@ try {
   function drawCompanions(now){
     for(const actor of petCombat.actors){const p=actor.body?.position||actor;
       if(actor.kind==='egg'){
-        renderer.ellipse(p.x,p.y,11,14,actor.speciesId==='petalPredator'?[1,.76,.65,.96]:[.77,.71,1,.96],16);
-        const item=companions.byId.get(actor.id),progress=item.hatchProgress/petConfig.eggs.hatchKills;
+        const known=petKnown(actor.speciesId),progress=companions.byId.get(actor.id).hatchProgress/petConfig.eggs.hatchKills;const wobble=progress>.33?Math.sin(now*.018+actor.id)*progress*2:0;
+        renderer.ellipse(p.x+wobble,p.y,11,14,known?(actor.speciesId==='petalPredator'?[1,.76,.65,.96]:[.77,.71,1,.96]):[.83,.81,.73,.96],16);
+
         if(progress>.3)renderer.line(p.x-4,p.y-3,p.x+2,p.y+2,1.8,[.27,.25,.35,1]);
         if(progress>.6)renderer.line(p.x+2,p.y+2,p.x-3,p.y+7,1.8,[.27,.25,.35,1]);
         drawArc(p.x,p.y,18,-Math.PI/2,Math.PI*2*progress,24,2,[1,.87,.58,.8]);continue;
@@ -2550,7 +2563,7 @@ try {
       const grade=petConfig.grades[actor.grade],hex=grade.color,col=[1,3,5].map(i=>parseInt(hex.slice(i,i+2),16)/255);col.push(.8);
       renderer.ellipse(p.x,p.y,actor.settings.radius*1.6,actor.settings.radius*1.5,[...col.slice(0,3),.18],24);
       const state=actor.state==='WINDUP'?'BOSS_WINDUP':actor.state==='CHARGE'?'BOSS_CHARGE':'FOLLOW';
-      BOSS_VISUALS[petConfig.species[actor.speciesId].appearance]({...actor,state,visualRadius:actor.settings.radius},now);
+      BOSS_VISUALS[petConfig.species[actor.speciesId].appearance]({...actor,state,visualRadius:actor.settings.radius*(actor.revealUntilMs>timeMs?1.5:1)},now);
       renderer.rect(p.x,p.y-actor.settings.radius*1.7,26,3,[.05,.08,.13,.8]);
       renderer.rect(p.x-13+13*actor.hp/actor.settings.maxHp,p.y-actor.settings.radius*1.7,26*actor.hp/actor.settings.maxHp,3,col);
     }
@@ -2810,6 +2823,13 @@ try {
   }
   // DOM layout and settings (render owner handles CSS/DPR; game owns world projection).
   function resize(){const w=Math.max(1,canvas.clientWidth),h=Math.max(1,canvas.clientHeight);renderer.resize(w,h,Math.min(window.devicePixelRatio||1,2));}
+  const audioControls=document.createElement('div');audioControls.className='audio-controls';audioControls.innerHTML='<label><input id="audioSettingsMute" type="checkbox"> 음소거</label><label>효과음 <input id="audioSettingsVolume" type="range" min="0" max="100" step="1" aria-label="설정 효과음 음량"></label>';$('settingRows').append(audioControls);
+  const audioCategoryNames={enemy:'적 공격',impact:'충돌',motion:'발사·이동',danger:'위험·피격',reward:'성장·보상',magic:'속성·회복',ui:'메뉴'};
+  for(const [category,name] of Object.entries(audioCategoryNames)){const label=document.createElement('label'),slider=document.createElement('input'),value=document.createElement('output');slider.type='range';slider.min='0';slider.max='100';slider.step='1';slider.id='audioCategory_'+category;slider.setAttribute('aria-label',name+' 효과음 음량');value.id=slider.id+'_value';label.append(document.createTextNode(name+' '),slider,value);audioControls.append(label);slider.oninput=()=>{sfx.setCategoryVolume(category,Number(slider.value)/100);refreshAudioUi();};}
+  function refreshAudioUi(){$('audioMute').textContent=sfx.muted?'소리 꺼짐':'소리 켜짐';$('audioMute').setAttribute('aria-pressed',String(sfx.muted));$('audioVolume').value=$('audioSettingsVolume').value=String(Math.round(sfx.volume*100));$('audioVolumeValue').textContent=Math.round(sfx.volume*100)+'%';$('audioSettingsMute').checked=sfx.muted;for(const [category,volume] of Object.entries(sfx.snapshot().categoryVolumes)){const id='audioCategory_'+category;if($(id)){$(id).value=String(Math.round(volume*100));$(id+'_value').textContent=Math.round(volume*100)+'%';}}}
+  $('audioMute').onclick=()=>{sfx.setMuted(!sfx.muted);refreshAudioUi();};$('audioSettingsMute').onchange=e=>{sfx.setMuted(e.target.checked);refreshAudioUi();};
+  for(const id of ['audioVolume','audioSettingsVolume'])$(id).oninput=e=>{sfx.setVolume(Number(e.target.value)/100);refreshAudioUi();};refreshAudioUi();
+  document.addEventListener('click',event=>{const button=event.target.closest('button');if(button&&!button.closest('#game')&&button.id!=='auto')void playUiSound();});
   const settings=[['player.shadowCostRate','수동 잔상 발사 비용 (현재 HP 비율)',0,.25,.01],['shadow.initialSpeed','잔상 초기 속도',20,420,10],['shadow.acceleration','잔상 가속도',400,5300,100],['shadow.range','잔상 사거리',250,980,10],['shadow.minDashDistance','잔상↔플레이어 최소 돌진 거리',10,80,2],['shadow.contactPushSpeed','잔상 넉백 초기 속도(px/s)',0,800,20],['shadow.contactPushControlMs','잔상 넉백 추적 억제(ms)',0,1000,25],['dash.minSpeed','최소 돌진 Δv',80,500,10],['dash.maxSpeed','최대 돌진 Δv',500,1250,10],['dash.acceleration','돌진 추가 가속도 (px/s²)',150,2600,50],['damage.referenceSpeed','공격력 100% 기준 충돌 속도',500,2600,50],['dash.rearmMinMs','재발사 최소 대기(ms)',70,350,5],['dash.rearmMaxMs','재발사 최대 대기(ms)',200,750,10],['dash.rearmSpeed','조기 재발사 속도',250,1050,25],['dash.flightMaxMs','돌진 최대 비행(ms)',800,3500,50],['dash.inputBufferMs','입력 예약 시간(ms)',80,800,10],['physics.restitution','충돌 반발 계수',0.1,1,0.05],['physics.maxSpeed','물리 최대 속도',900,3000,100],['physics.frictionAir','공기 저항',0.001,0.035,0.001],['enemy.contactDamage','접촉 피해',5,50,1],['enemy.chaseRadius','적 공통 감지 상한',200,1100,25],['enemy.knockbackMultiplier','적 피격 반동 배율',0,2,.05],['enemy.projectileDamageMultiplier','원거리 포자탄 피해 배율',0,2,.05],['enemy.types.scout.speed','추적형 속도',50,250,10],['enemy.types.brute.push','중장갑 밀어내기',100,800,20],['enemy.types.spitter.projectileSpeed','포자탄 속도',180,850,20],['timing.bulletStart','불릿타임 시작 차지',.60,.95,.01],['timing.bulletScale','불릿타임 배속',.15,.9,.05],['timing.coyoteMs','코요테 타임(ms)',50,240,5],['timing.shadowHitstopMs','접촉 히트스탑(ms)',10,130,5],['timing.hitstopMs','공격 히트스탑(ms)',10,130,5],['chain.minTriggerCharge','자동 연격 시작 최소 잔상 타이밍',.10,1,.05],['energy.baseChargePerDiameter','몸체 직경당 기본 에너지 충전 (내부 단위)',.01,.30,.01],['energy.baseCapacityCharges','기본 최대 에너지 (내부 단위)',1,5,.25],['energy.baseAutoCostCharges','자동 돌진당 에너지 소비 (내부 단위)',.4,2,.05],['energy.ricochetRangeRate','도탄 탐색 반경 / 잔상 사거리',.2,1,.05],['element.fire.durationMs','점화 지속시간(ms)',500,6000,100],['element.fire.damageRate','화염 기본피해 비율',.05,.8,.05],['element.lightning.markDurationMs','전도 지속시간(ms)',500,5000,100],['fx.intensity','목표 VFX 강도',.2,2,.1],['fx.reticleScale','목표 조준선 크기',.65,1.6,.05],['fx.pulseSpeed','에너지 펄스 속도',.2,2,.1]];
   for(const [key,label,min,max,stepValue] of settings){const div=document.createElement('div');div.className='setting-row';const labelEl=document.createElement('label');labelEl.textContent=label;const inp=document.createElement('input');inp.type='range';inp.min=min;inp.max=max;inp.step=stepValue;inp.value=key.split('.').reduce((obj,part)=>obj[part],C);inp.id='config_'+key.replaceAll('.','_');const out=document.createElement('output');out.textContent=inp.value;inp.addEventListener('input',()=>{const parts=key.split('.');let target=C;for(let i=0;i<parts.length-1;i++)target=target[parts[i]];target[parts.at(-1)]=Number(inp.value);out.textContent=inp.value;});div.append(labelEl,inp,out);$('settingRows').append(div);}
   // Only the eight stats that affect this game remain; movement and automation belong to their own owners.
@@ -2879,35 +2899,32 @@ try {
   function centerTechRoot(){const view=$('techViewport');const pos=techGraphPositions.get('echo');
     view.scrollLeft=Math.max(0,pos.x+GRAPH.nodeW/2-view.clientWidth/2);}
   $('treeCenter').addEventListener('click',centerTechRoot);
-  let selectedPetSlot=0;
-  for(const [id,spec] of Object.entries(petConfig.species)){const option=document.createElement('option');option.value=id;option.textContent=spec.name;$('petFusionSpecies').append(option);}
-  petConfig.grades.slice(0,-1).forEach((grade,i)=>{const option=document.createElement('option');option.value=i;option.textContent=grade.name;$('petFusionGrade').append(option);});
+  let selectedPetSlot=0,revealTimer=0;
+  const petKnown=id=>companions.discovered.has(id);
+  const petName=item=>item.kind==='egg'?(petKnown(item.speciesId)?petConfig.species[item.speciesId].name+'의 알':'정체불명의 알'):petConfig.species[item.speciesId].name;
+  const petIcon=item=>item.kind==='egg'&&!petKnown(item.speciesId)?'◉':petConfig.species[item.speciesId].appearance==='petal'?'❀':'♧';
+  const petAbility=id=>petConfig.species[id].appearance==='petal'?'물리 돌진 · 성장하면 부채 탄막':'탄성 물리 돌진 · 성장하면 반동과 근거리 회복';
+  function revealCompanions(ids){const reveal=$('petReveal');reveal.replaceChildren();for(const id of ids){const name=document.createElement('b');name.textContent=petIcon({kind:'pet',speciesId:id})+' '+petConfig.species[id].name;const desc=document.createElement('span');desc.textContent=petAbility(id);reveal.append(name,desc);}reveal.classList.add('show');clearTimeout(revealTimer);revealTimer=setTimeout(()=>reveal.classList.remove('show'),2800);}
+  function discoveryCards(target){target.replaceChildren();for(const id of companions.discovered){const card=document.createElement('div');card.className='pet-discovery';card.textContent=petIcon({kind:'pet',speciesId:id})+' '+petConfig.species[id].name+' · '+petAbility(id);target.append(card);}if(!companions.discovered.size)target.textContent='아직 기록된 동행이 없습니다.';}
   function updatePetUi(){
     selectedPetSlot=Math.min(selectedPetSlot,companions.slots.length-1);$('petSlots').replaceChildren();
-    companions.companions().forEach((item,i)=>{const button=document.createElement('button');button.type='button';button.classList.toggle('selected',i===selectedPetSlot);
-      button.textContent=(i+1)+'번 · '+(item?petConfig.species[item.speciesId].name+(item.kind==='egg'?' 알 '+item.hatchProgress+'/30':' '+petConfig.grades[item.grade].name):'빈 슬롯');
-      button.onclick=()=>{selectedPetSlot=i;updatePetUi();};$('petSlots').append(button);
-      if(item){const remove=document.createElement('button');remove.type='button';remove.textContent=(i+1)+'번 해제';remove.onclick=()=>companions.unequip(i);$('petSlots').append(remove);}
-    });
-    $('petInventory').replaceChildren();
-    for(const item of companions.inventory){const spec=petConfig.species[item.speciesId],grade=petConfig.grades[item.grade],slot=companions.slots.indexOf(item.id);
-      const card=document.createElement('div');card.className='pet-item';card.dataset.petId=item.id;card.style.setProperty('--grade',item.kind==='egg'?'#ecd7a1':grade.color);
-      const name=document.createElement('b');name.textContent=(spec.appearance==='petal'?'❀ ':'♧ ')+spec.name+(item.kind==='egg'?' 알':' · '+grade.name);card.append(name);
-      const text=document.createElement('p');text.textContent=item.kind==='egg'?'부화 '+item.hatchProgress+'/30 · '+(item.hatchProgress>=20?'갈라진 껍질':item.hatchProgress>=10?'작은 금':'단단한 껍질'): '물리 돌진 · '+(item.grade>=2?(spec.appearance==='petal'?'부채 탄막': '탄성 반동·회복'):'충돌과 반동')+(item.grade>=4?' · 원형 탄막':'');card.append(text);
-      const equip=document.createElement('button');equip.type='button';equip.textContent=slot>=0?(slot+1)+'번 동행 중':(selectedPetSlot+1)+'번에 장착';equip.dataset.action='equip';equip.disabled=slot===selectedPetSlot;equip.onclick=()=>{const first=companions.equip(item.id,selectedPetSlot);if(first)$('petResult').textContent='동행을 편성했습니다. 전투에서 곁을 따릅니다.';};card.append(equip);
-      if(item.kind==='pet'){const lock=document.createElement('button');lock.type='button';lock.dataset.action='lock';lock.textContent=item.locked?'🔒 잠금 해제':'잠금';lock.onclick=()=>companions.setLocked(item.id,!item.locked);card.append(lock);}
-      $('petInventory').append(card);
-    }
-    if(!companions.inventory.length)$('petInventory').textContent='첫 보스를 쓰러뜨리면 동행 알을 받습니다.';
-    const species=$('petFusionSpecies').value,grade=Number($('petFusionGrade').value),count=companions.eligible(species,grade).length;
-    $('petFusionOdds').textContent='성공 '+Math.round(petConfig.fusion.odds[grade]*100)+'% · 재료 '+count+'/5';$('petFuse').disabled=$('petFuseAll').disabled=count<petConfig.fusion.required;
+    companions.companions().forEach((item,i)=>{const button=document.createElement('button');button.type='button';button.classList.toggle('selected',i===selectedPetSlot);button.textContent=(i+1)+'번 · '+(item?petName(item)+(item.kind==='egg'?' '+item.hatchProgress+'/'+petConfig.eggs.hatchKills:' '+petConfig.grades[item.grade].name):'빈 슬롯');button.onclick=()=>{selectedPetSlot=i;updatePetUi();};$('petSlots').append(button);
+      if(item){const remove=document.createElement('button');remove.type='button';remove.textContent=(i+1)+'번 해제';remove.onclick=()=>companions.unequip(i);$('petSlots').append(remove);}});
+    const speciesSelect=$('petFusionSpecies'),gradeSelect=$('petFusionGrade'),oldSpecies=speciesSelect.value,oldGrade=gradeSelect.value,owned=companions.inventory.filter(item=>item.kind==='pet');
+    speciesSelect.replaceChildren();for(const id of new Set(owned.map(item=>item.speciesId))){const option=document.createElement('option');option.value=id;option.textContent=petConfig.species[id].name;speciesSelect.append(option);}if([...speciesSelect.options].some(o=>o.value===oldSpecies))speciesSelect.value=oldSpecies;
+    if(!owned.length){const option=document.createElement('option');option.value='';option.textContent='보유한 펫 없음';speciesSelect.append(option);}speciesSelect.disabled=!owned.length;
+    const species=speciesSelect.value;gradeSelect.replaceChildren();for(const grade of [...new Set(owned.filter(item=>item.speciesId===species).map(item=>item.grade))].sort((a,b)=>a-b)){const option=document.createElement('option');option.value=grade;option.textContent=petConfig.grades[grade].name;gradeSelect.append(option);}if([...gradeSelect.options].some(o=>o.value===oldGrade))gradeSelect.value=oldGrade;gradeSelect.disabled=!owned.length;
+    $('petInventory').replaceChildren();for(const item of companions.inventory){const grade=petConfig.grades[item.grade],slot=companions.slots.indexOf(item.id),card=document.createElement('div');card.className='pet-item';card.dataset.petId=item.id;card.style.setProperty('--grade',item.kind==='egg'?'#d8d4bc':grade.color);
+      const name=document.createElement('b'),icon=document.createElement('span');icon.textContent=petIcon(item)+' ';if(item.kind==='egg'){icon.className='pet-egg-mark'+(item.hatchProgress>=petConfig.eggs.hatchKills/3?' shaking':'');}name.append(icon,document.createTextNode(petName(item)+(item.kind==='pet'?' · '+grade.name:'')));card.append(name);
+      const text=document.createElement('p');text.textContent=item.kind==='egg'?'부화 '+item.hatchProgress+'/'+petConfig.eggs.hatchKills+' · '+(item.hatchProgress>=petConfig.eggs.hatchKills*2/3?'갈라진 껍질':item.hatchProgress>=petConfig.eggs.hatchKills/3?'작은 금':'단단한 껍질'):petAbility(item.speciesId)+(item.grade>=4?' · 원형 탄막':'');card.append(text);
+      const equip=document.createElement('button');equip.type='button';equip.textContent=slot>=0?(slot+1)+'번 동행 중':(selectedPetSlot+1)+'번에 장착';equip.dataset.action='equip';equip.disabled=slot===selectedPetSlot;equip.onclick=()=>{if(companions.equip(item.id,selectedPetSlot))$('petResult').textContent='동행을 편성했습니다.';};card.append(equip);
+      if(item.kind==='pet'){const lock=document.createElement('button');lock.type='button';lock.dataset.action='lock';lock.textContent=item.locked?'🔒 잠금 해제':'잠금';lock.onclick=()=>companions.setLocked(item.id,!item.locked);card.append(lock);}$('petInventory').append(card);}
+    if(!companions.inventory.length)$('petInventory').textContent='보스를 쓰러뜨리면 알을 받습니다.';discoveryCards($('petDiscoveries'));
+    const grade=Number(gradeSelect.value),count=companions.eligible(species,grade).length,odds=petConfig.fusion.odds[grade];$('petFusionOdds').textContent=!owned.length?'보유한 펫을 선택하세요':odds===undefined?'최고 등급 · 합성 없음':'성공 '+Math.round(odds*100)+'% · 재료 '+count+'/'+petConfig.fusion.required+' (잠금 제외)';$('petFuse').disabled=$('petFuseAll').disabled=!owned.length||odds===undefined||count<petConfig.fusion.required;
   }
   function openPets(open){if(open&&phase!=='LOBBY')return;$('petPanel').classList.toggle('open',open);$('petPanel').setAttribute('aria-hidden',String(!open));if(open){updatePetUi();$('petClose').focus();}}
-  $('petOpen').onclick=()=>openPets(true);$('petClose').onclick=()=>openPets(false);
-  $('petPanel').onclick=e=>{if(e.target===$('petPanel'))openPets(false);};
-  $('petFusionSpecies').onchange=$('petFusionGrade').onchange=updatePetUi;
-  for(const [id,all] of [['petFuse',false],['petFuseAll',true]])$(id).onclick=()=>{const result=companions.fuse($('petFusionSpecies').value,Number($('petFusionGrade').value),all);
-    $('petResult').textContent=result.ok?'합성 '+result.attempts+'회 · 성공 '+result.successes+' · 실패 '+result.failures+' · 소모 '+result.consumed.length+'마리 · 생성 '+result.produced.length+'마리':'재료가 부족합니다.';updatePetUi();};
+  $('petOpen').onclick=()=>openPets(true);$('petClose').onclick=()=>openPets(false);$('petPanel').onclick=e=>{if(e.target===$('petPanel'))openPets(false);};$('petFusionSpecies').onchange=$('petFusionGrade').onchange=updatePetUi;
+  for(const [id,all] of [['petFuse',false],['petFuseAll',true]])$(id).onclick=()=>{const result=companions.fuse($('petFusionSpecies').value,Number($('petFusionGrade').value),all);$('petResult').textContent=result.ok?'합성 '+result.attempts+'회 · 성공 '+result.successes+' · 실패 '+result.failures+' · 소모 '+result.consumed.length+'마리 · 생성 '+result.produced.length+'마리':'재료가 부족합니다.';updatePetUi();};
   const statElements=new Map();
   for(const [key,name,amount] of STAT_UPGRADES){const b=document.createElement('button');b.type='button';b.className='tech-node';b.id='statBuy_'+key;
     b.innerHTML=`<div class="node-head"><span class="node-icon">+</span><b>${name}</b></div><span class="node-desc">레벨당 ${amount} · 반복 투자 가능</span><span class="node-price"></span>`;
@@ -2955,7 +2972,7 @@ try {
   }
   function startRun(){
     openPets(false);openGuide(false);openWiki(false);openTech(false);toggleSettings(false);reset();input.releaseAll();actions.consume();phase='PLAYING';
-    $('lobby').classList.add('hidden');document.body.classList.remove('lobby-active');
+    sfx.play('stageStart');$('lobby').classList.add('hidden');document.body.classList.remove('lobby-active');
     pending.length=0;loop.resetTiming?.();canvas.focus({preventScroll:true});
   }
   $('startRun').addEventListener('click',startRun);
@@ -2987,7 +3004,7 @@ try {
     }
     return out;
   }
-  makeWikiTable('wikiConfigTable',['설정 경로 (원본)','기본값'],flattenConfig(wikiDefaultConfig));
+  makeWikiTable('wikiConfigTable',['설정 경로 (원본)','기본값'],flattenConfig(wikiDefaultConfig).filter(([path])=>!path.startsWith('pets.species.')&&!path.startsWith('pets.eggs.candidates')));
   makeWikiTable('wikiTechTable',['분기','기술','선행기술','비용','정확한 효과'],
     TECH_NODES.map(node=>[wikiBranchName[node.branch]||node.branch,node.name,node.requires.length?node.requires.map(wikiName).join(' + '):'없음',node.cost+' 강화',node.desc]));
   makeWikiTable('wikiStatTable',['능력치 / 저장 키','초기 기본값','레벨 투자당 상승','현재 실제 값'],
@@ -3094,7 +3111,7 @@ try {
   window.addEventListener('resize',resize);
   document.addEventListener('visibilitychange',()=>{if(document.hidden){pending.length=0;bufferedIntent=null;bufferedUntilMs=0;}else{lastFrame=performance.now();}});
   loop.start();$('load').classList.add('hidden');canvas.focus({preventScroll:true});
-  window.__bloomImpulse={VERSION,BUILD_ID,config:C,getCompanions:()=>companions.snapshot(),getState:()=>({companions:petCombat.snapshot(),phase,mode,health,maxHp:C.stats.maxHp,aimPreviewId:previewTargetId,augment:{spore:C.augment.spore.enabled,momentum:C.augment.momentum.enabled,relay:C.chain.followKill,chain:C.chain.enabled},tech:{points:availableTech(),level:progressionLevel(tech.kills),totalKills:tech.kills,unlocked:[...tech.unlocked],statLevels:{...tech.statLevels}},autoChainReady,autoDashPlanned,chainActive,chainStarts,chainEnds,chainTriggerCharge:C.chain.minTriggerCharge,energy:{current:chainEnergy,capacity:energyCapacity(),fraction:chainEnergy/energyCapacity(),full:energyFull(),autoRechargeRate:autoChargeRate(),cost:energyCost(),spent:energySpent,gained:energyGained,restored:energyRestored},chainTargetId,autoChainWins,autoChainRolls,automaticDashes,manualPerfectHits,dashAutomatic,dashPerfect,launchCostTotal,launchCount,evade:{charges:evadeCharges,max:C.evade.maxCharges,refillAtMs:evadeRefillAtMs,progress:evadeRefillProgress(),rechargeMs:C.evade.rechargeMs,impulseSpeed:C.evade.impulseSpeed,durationMs:C.evade.durationMs,invulnerableMs:C.evade.invulnerableMs,projectileInvulnerable:timeMs-evadeStartedAtMs<C.evade.invulnerableMs,active:!!evadeMotion,startedAtMs:evadeStartedAtMs,count:evadeActions,hitRechargeEvents:evadeHitRechargeEvents,hitRechargeProgress:evadeHitRechargeProgress,lastHitRecharge:evadeLastHitRecharge?{...evadeLastHitRecharge}:null},stage:{index:stage.index,phase:stage.phase,waveKills:stage.waveKills,killTarget:stage.killTarget,bossHp:stage.boss?.hp??null,bossState:stage.boss?.state??null,bossPattern:stage.boss?.pattern??null,patternLog:[...stage.patternLog],obstacleCount:obstacles.length,broken:bossObstaclesBroken,arenaSides:arenaVertices.length,theme:stage.themeId,themeName:THEME_POOL[stage.themeId]?.name,layout:stage.layoutId,layoutName:stage.layoutName,radius:stage.radius,playableArea:Math.round(stage.playableArea),targetPopulation:stage.targetPopulation,bossName:stage.bossName||null,bossVariant:stage.bossVariant||null,bossSummons:stage.boss?liveSummons(stage.boss.id).length:0,seed:stage.seed,generation:{...generationStats}},stageHistory:[...stageHistory],bossPool:Object.keys(BOSS_POOL),themePool:Object.keys(THEME_POOL),mapOperators:Object.keys(MAP_OPERATORS),dashMotion:dashMotion?{...dashMotion}:null,shadow:shadow?{progress:chargeOf(),charge:chargeOf(),dashReady:shadowDashAvailable(),separation:shadowSeparation(),remainingGap:remainingShadowGap(),initialGap:shadow.initialGap,travel:shadow.travel,limit:shadow.limit,targetId:shadow.targetId,arrived:shadow.arrived,speed:shadow.speed}:null,hitstopLeftMs,dashCharge,dashFlight:dashFlight?{...dashFlight,remainingMs:Math.round(dashFlight.untilMs-timeMs)}:null,rearmProgress:rearmProgress(),buffered:!!bufferedIntent,damageTaken,healingDone,position:{...player.position},speed:speedOf(player),hits,kills,combo,comboFxActive:comboFx.classList.contains('active'),enemyMasses:Object.fromEntries(Object.entries(C.enemy.types).map(([type,def])=>[type,def.mass])),tick,timeMs,attackDashSerial,enemies:enemies.filter(e=>e.alive).length,enemyShots,enemyAttacks,enemyPushes,projectiles:projectiles.length,enemyStates:enemies.filter(e=>e.alive).map(e=>({id:e.id,bodyId:e.body.id,type:e.type,state:e.state,hp:e.hp,burning:!!e.burn,conducting:e.conductUntilMs>timeMs,radius:enemyDef(e).radius,x:e.body.position.x,y:e.body.position.y,preX:e.preX,preY:e.preY,shadowKnockbackLeftMs:Math.max(0,(e.shadowKnockbackUntilMs||0)-timeMs),attackCount:e.attackCount,playerGap:Math.hypot(e.body.position.x-player.position.x,e.body.position.y-player.position.y)})),rendererState:renderer.state,elemental:{...elementalEvents,fireEmbers:fireEmbers.length,fireTransfers:fireTransfers.length,activeBurning:enemies.filter(e=>e.alive&&e.burn).length,activeConducting:enemies.filter(e=>e.alive&&e.conductUntilMs>timeMs).length},stats:{...C.stats},criticalHits,lastHit:lastHit?{...lastHit,tags:[...lastHit.tags]}:null,fx:{stage:shadow?fxStage(chargeOf()):'none',target:shadow?(getTargetAnchor(fxAnchor)?{x:fxAnchor.x,y:fxAnchor.y,isEnemy:fxAnchor.isEnemy}:null):null,enabled:C.fx.targetCompression}}),auto:()=>{if(phase==='PLAYING')pending.push({kind:'auto'});},point:(x,y)=>{if(phase==='PLAYING')pending.push({kind:'point',x,y});},startRun,enterLobby,reset,dispose:()=>{running=false;loop.stop();input.dispose();document.removeEventListener('focusin',onGameplayFocus);renderer.dispose();window.removeEventListener('resize',resize);}};
+  window.__bloomImpulse={VERSION,BUILD_ID,config:C,getAudio:()=>sfx.snapshot(),audioMeter:()=>sfx.meter(),getCompanions:()=>companions.snapshot(),getState:()=>({companions:petCombat.snapshot(),phase,mode,health,maxHp:C.stats.maxHp,aimPreviewId:previewTargetId,augment:{spore:C.augment.spore.enabled,momentum:C.augment.momentum.enabled,relay:C.chain.followKill,chain:C.chain.enabled},tech:{points:availableTech(),level:progressionLevel(tech.kills),totalKills:tech.kills,unlocked:[...tech.unlocked],statLevels:{...tech.statLevels}},autoChainReady,autoDashPlanned,chainActive,chainStarts,chainEnds,chainTriggerCharge:C.chain.minTriggerCharge,energy:{current:chainEnergy,capacity:energyCapacity(),fraction:chainEnergy/energyCapacity(),full:energyFull(),autoRechargeRate:autoChargeRate(),cost:energyCost(),spent:energySpent,gained:energyGained,restored:energyRestored},chainTargetId,autoChainWins,autoChainRolls,automaticDashes,manualPerfectHits,dashAutomatic,dashPerfect,launchCostTotal,launchCount,evade:{charges:evadeCharges,max:C.evade.maxCharges,refillAtMs:evadeRefillAtMs,progress:evadeRefillProgress(),rechargeMs:C.evade.rechargeMs,impulseSpeed:C.evade.impulseSpeed,durationMs:C.evade.durationMs,invulnerableMs:C.evade.invulnerableMs,projectileInvulnerable:timeMs-evadeStartedAtMs<C.evade.invulnerableMs,active:!!evadeMotion,startedAtMs:evadeStartedAtMs,count:evadeActions,hitRechargeEvents:evadeHitRechargeEvents,hitRechargeProgress:evadeHitRechargeProgress,lastHitRecharge:evadeLastHitRecharge?{...evadeLastHitRecharge}:null},stage:{index:stage.index,phase:stage.phase,waveKills:stage.waveKills,killTarget:stage.killTarget,bossHp:stage.boss?.hp??null,bossState:stage.boss?.state??null,bossPattern:stage.boss?.pattern??null,patternLog:[...stage.patternLog],obstacleCount:obstacles.length,broken:bossObstaclesBroken,arenaSides:arenaVertices.length,theme:stage.themeId,themeName:THEME_POOL[stage.themeId]?.name,layout:stage.layoutId,layoutName:stage.layoutName,radius:stage.radius,playableArea:Math.round(stage.playableArea),targetPopulation:stage.targetPopulation,bossName:stage.bossName||null,bossVariant:stage.bossVariant||null,bossSummons:stage.boss?liveSummons(stage.boss.id).length:0,seed:stage.seed,generation:{...generationStats}},stageHistory:[...stageHistory],bossPool:Object.keys(BOSS_POOL),themePool:Object.keys(THEME_POOL),mapOperators:Object.keys(MAP_OPERATORS),dashMotion:dashMotion?{...dashMotion}:null,shadow:shadow?{progress:chargeOf(),charge:chargeOf(),dashReady:shadowDashAvailable(),separation:shadowSeparation(),remainingGap:remainingShadowGap(),initialGap:shadow.initialGap,travel:shadow.travel,limit:shadow.limit,targetId:shadow.targetId,arrived:shadow.arrived,speed:shadow.speed}:null,hitstopLeftMs,dashCharge,dashFlight:dashFlight?{...dashFlight,remainingMs:Math.round(dashFlight.untilMs-timeMs)}:null,rearmProgress:rearmProgress(),buffered:!!bufferedIntent,damageTaken,healingDone,position:{...player.position},speed:speedOf(player),hits,kills,combo,comboFxActive:comboFx.classList.contains('active'),enemyMasses:Object.fromEntries(Object.entries(C.enemy.types).map(([type,def])=>[type,def.mass])),tick,timeMs,attackDashSerial,enemies:enemies.filter(e=>e.alive).length,enemyShots,enemyAttacks,enemyPushes,projectiles:projectiles.length,enemyStates:enemies.filter(e=>e.alive).map(e=>({id:e.id,bodyId:e.body.id,type:e.type,state:e.state,hp:e.hp,burning:!!e.burn,conducting:e.conductUntilMs>timeMs,radius:enemyDef(e).radius,x:e.body.position.x,y:e.body.position.y,preX:e.preX,preY:e.preY,shadowKnockbackLeftMs:Math.max(0,(e.shadowKnockbackUntilMs||0)-timeMs),attackCount:e.attackCount,playerGap:Math.hypot(e.body.position.x-player.position.x,e.body.position.y-player.position.y)})),rendererState:renderer.state,elemental:{...elementalEvents,fireEmbers:fireEmbers.length,fireTransfers:fireTransfers.length,activeBurning:enemies.filter(e=>e.alive&&e.burn).length,activeConducting:enemies.filter(e=>e.alive&&e.conductUntilMs>timeMs).length},stats:{...C.stats},criticalHits,lastHit:lastHit?{...lastHit,tags:[...lastHit.tags]}:null,fx:{stage:shadow?fxStage(chargeOf()):'none',target:shadow?(getTargetAnchor(fxAnchor)?{x:fxAnchor.x,y:fxAnchor.y,isEnemy:fxAnchor.isEnemy}:null):null,enabled:C.fx.targetCompression}}),auto:()=>{if(phase==='PLAYING')pending.push({kind:'auto'});},point:(x,y)=>{if(phase==='PLAYING')pending.push({kind:'point',x,y});},startRun,enterLobby,reset,dispose:()=>{sfx.dispose();running=false;loop.stop();input.dispose();document.removeEventListener('focusin',onGameplayFocus);renderer.dispose();window.removeEventListener('resize',resize);}};
 } catch(e) { ERROR(e); }
 
 </script>

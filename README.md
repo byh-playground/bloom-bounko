@@ -2,7 +2,7 @@
 
 블룸 세계관의 탑다운 2D 물리 액션 공 튕기기 게임입니다. 잔상을 보내 조준·충전하고, 타이밍에 맞춰 몸체를 돌진시켜 적과 충돌합니다. 전장을 탭해 구르며 피하고, 처치로 모은 성장 자원으로 기술과 기본 능력치를 강화합니다.
 
-게임·스타일·도움말·상세 위키는 `index.html`, 영구 동행의 보유·Config·물리 전투는 `pets.js`에 들어 있습니다. 현재 후보 버전 **0.12.0**은 보스 알·부화·펫 물리 전투·최대 5칸 편성·잠금·합성을 추가합니다. 기존 잔상 비용·자동 연격·이동 기술은 유지합니다. 저장에 동행 소유권을 추가해 이전 코드가 해당 필드를 보존하지 못하므로 MINOR를 올렸습니다. 검증 범위는 아래 기록을 참조합니다.
+게임·스타일·도움말·상세 위키는 `index.html`, 영구 동행의 보유·Config·물리 전투는 `pets.js`, 게임별 효과음 정의는 `audio.js`에 들어 있습니다. 현재 후보 **0.12.1**은 동행 발견 UX와 게임 전체 효과음을 더합니다. 기존 0.12.0 보유 데이터·동행 편성·전투와 조작 계약을 유지하는 PATCH입니다. 실제 검증과 한계는 아래 기록에 남깁니다.
 
 ## 실행
 
@@ -55,6 +55,14 @@ npx --yes http-server . -p 8000 -c-1
 
 합성·명시적 잠금·예비 우선 순서는 [Budmori src/game.js](https://github.com/byh-playground/budmori-io/blob/5a9cf03e3be85ab2e506fe441e05f9ccfdfb4cb8/src/game.js)의 같은 종/등급 흐름을 참고했습니다. 소유 목록은 프레임마다 돌지 않으며 실제 동행 최대 5개만 갱신합니다. 영구 소유·잠금·알 진행·슬롯 투자는 사망·판 종료·재시작에도 유지됩니다.
 
+## 발견과 효과음
+
+미발견 알은 중립 외형과 정체불명의 알로 표시합니다. 정확한 30처치 진행도와 균열·흔들림만 먼저 드러나며 첫 부화에서 짧게 모습·이름·대표 능력을 공개합니다. 발견 기록은 보유·합성 재료 소모와 독립해 저장되고, 기존 저장의 실제 보유 펫도 발견으로 인정합니다. 보스별 알 지급은 기존 고정 결과 그대로입니다. 아직 얻지 않은 종 이름·전종 개수·미발견 빈 도감 칸을 UI·위키에 노출하지 않습니다. 합성 종·등급 선택은 현재 보유한 펫만 보여 주며 부족한 재료도 3/5처럼 표시합니다. 합성 성공률과 실패 소모·장착 재료 규칙은 유지합니다.
+
+효과음은 펫 외에도 실제 공격·방어·성장 이벤트에 연결합니다. 충돌 강도별 타격, 수동/메아리 발사·돌진·도탄·연격 시작·충전·회피, 적 공격 준비·돌진·투사체, 보스 경고·준비·부채/원형/돌진/소환, 화염·전도·포자·실제 회복, 피격·처치·사망, 레벨·기술 투자·스테이지 시작/완료, 알·첫/반복 부화·합성 결과·펫 부활과 메뉴 조작을 구분합니다. 효과음은 실제 사건에서만 요청하며 배경 입자 프레임이나 장식 렌더에는 재생을 넣지 않습니다. 소리 합성과 재생 자원은 공통 GameKit 모듈이 소유하고 BOUNKO는 소리 정의와 이벤트 연결을 소유합니다.
+
+로비와 설정에서 전체 음량·음소거를 바꾸고 설정에서 종류별 음량도 조절합니다. 같은 종류 최소 간격과 동시 수, 전체 최대 12음 및 우선순위로 군집 충돌을 제한합니다. master 70%·headroom 24%·compressor와 종류별 음량은 초기 추천값이며 주관적 타격감의 확정 수치가 아닙니다. 실제 포인터/키 입력 뒤 context를 열고 중단 뒤 다음 입력에서 재개합니다. 잠금·음소거 때의 사건은 버리며 나중에 몰아 재생하지 않습니다. 음량·음소거는 별도 로컬 키에 저장합니다. 단독 플레이는 직접 이벤트 재생 경로를 사용하며 두 번째 rollback 기록을 만들지 않습니다.
+
 ## 이동 구르기 강화
 
 이동 구르기는 무료이며 공격 잔상 HP·자동 돌진 에너지와 별도입니다. 신규 이동 기술 8개는 각각 **1 강화**이고 자동 연격을 선행으로 요구하지 않습니다. 모든 단계는 기본값 대비 누적 퍼센트로 계산하며 현재 값에 연속 곱하지 않습니다.
@@ -92,15 +100,16 @@ npx --yes http-server . -p 8000 -c-1
 | 의존성 | 실제 사용 경로 |
 | --- | --- |
 | Matter.js 0.20.0 | [jsDelivr npm 빌드](https://cdn.jsdelivr.net/npm/matter-js@0.20.0/build/matter.min.js) |
+| Bloom GameKit audio | 실제 dist 커밋 `2de54d6ef1fd5ae91907c2d10d549abe1043d8b8`의 [audio.js](https://github.com/byh-playground/bloom-gamekit/blob/2de54d6ef1fd5ae91907c2d10d549abe1043d8b8/audio.js), SHA-256 `7e3e16d34ce88124e6ba7699f16d23107a3e42ee93ea5a16691e856e5865c14a` · [모듈 계약](https://github.com/byh-playground/bloom-gamekit/blob/6032f77a56668e31fa73672ef4a388741d7b6e6b/modules/audio/README.md) |
 | Bloom GameKit | 커밋 `d1e2c385033ad04a7a004cfbe9558948ef07a6d1`의 루트 [rendering.js](https://github.com/byh-playground/bloom-gamekit/blob/d1e2c385033ad04a7a004cfbe9558948ef07a6d1/rendering.js), [input.js](https://github.com/byh-playground/bloom-gamekit/blob/d1e2c385033ad04a7a004cfbe9558948ef07a6d1/input.js), [simloop.js](https://github.com/byh-playground/bloom-gamekit/blob/d1e2c385033ad04a7a004cfbe9558948ef07a6d1/simloop.js) |
 
-GameKit은 위 고정 커밋의 루트 ESM을 jsDelivr에서 가져옵니다. 초기 이관에서는 제목·대기 화면·접근성 이름·내장 위키를 BOUNKO로 정리하고, 실제 루트 import와 맞도록 의존성 설명을 수정했습니다. 0.10.2 이관 시 게임 실행 모듈은 BUILD_ID 외에 원본과 동일했습니다. 0.10.3은 기존 GameKit 입력 수집과 회피 실행 경로를 재사용하며, 밸런스·공격 메커니즘·저장 계약을 유지합니다. 0.10.4는 공통 `launch`에 발사 원인(`manual` / `echo`)을 명시해 메아리만 무료로 처리합니다. 발사 성공 뒤에만 비용과 발사 횟수를 기록하므로 실패한 발사에는 비용이 없고, 무료 메아리도 발사 횟수에 포함됩니다. `.gitattributes`로 HTML의 LF 줄바꿈을 고정했습니다.
+GameKit은 위 고정 커밋의 루트 ESM을 jsDelivr에서 가져옵니다. 오디오는 부모가 검토·머지한 [GameKit PR #36](https://github.com/byh-playground/bloom-gamekit/pull/36)의 실제 main→dist 배포본에 별도로 고정하며 로컬 재생 엔진을 복제하지 않습니다. 초기 이관에서는 제목·대기 화면·접근성 이름·내장 위키를 BOUNKO로 정리하고, 실제 루트 import와 맞도록 의존성 설명을 수정했습니다. 0.10.2 이관 시 게임 실행 모듈은 BUILD_ID 외에 원본과 동일했습니다. 0.10.3은 기존 GameKit 입력 수집과 회피 실행 경로를 재사용하며, 밸런스·공격 메커니즘·저장 계약을 유지합니다. 0.10.4는 공통 `launch`에 발사 원인(`manual` / `echo`)을 명시해 메아리만 무료로 처리합니다. 발사 성공 뒤에만 비용과 발사 횟수를 기록하므로 실패한 발사에는 비용이 없고, 무료 메아리도 발사 횟수에 포함됩니다. `.gitattributes`로 HTML의 LF 줄바꿈을 고정했습니다.
 
 ## Pages 정적 배포
 
 [Pages workflow](.github/workflows/pages.yml)는 main 변경과 수동 실행에서 검증한 HTML을 정적 파일로 게시합니다. 한 job에서 checkout → Pages 설정 → 파일 준비 → artifact 업로드 → 배포를 수행합니다. 별도 게임 빌드나 테스트 매트릭스는 추가하지 않습니다.
 
-배포 파일은 index.html, pets.js, build.json, .nojekyll입니다. HTML은 저장소의 바이트를 그대로 사용하며, [build.json](https://byh-playground.github.io/bloom-bounko/build.json)에 배포 커밋·UTC 빌드 시각·게임 버전·BUILD_ID·HTML/펫 모듈 SHA-256을 자동으로 기록합니다. HTML의 BUILD_ID는 검증한 게임 원본을, build.json의 commit은 그 파일을 게시한 커밋을 식별합니다. 배포 상태는 저장소의 Actions에서 확인합니다.
+배포 파일은 index.html, pets.js, audio.js, build.json, .nojekyll입니다. HTML은 저장소의 바이트를 그대로 사용하며, [build.json](https://byh-playground.github.io/bloom-bounko/build.json)에 배포 커밋·UTC 빌드 시각·게임 버전·BUILD_ID·HTML/펫/오디오 정의 모듈 SHA-256과 고정 오디오 SDK 커밋·SHA-256을 자동으로 기록합니다. HTML의 BUILD_ID는 검증한 게임 원본을, build.json의 commit은 그 파일을 게시한 커밋을 식별합니다. 배포 상태는 저장소의 Actions에서 확인합니다.
 
 GitHub Pages의 게시 소스는 Settings → Pages → Build and deployment → GitHub Actions입니다. 정적 파일 게시가 성공한 뒤에도 실제 공개 주소의 라이브러리 로딩과 부팅을 별도로 확인합니다.
 
@@ -109,6 +118,14 @@ GitHub Pages의 게시 소스는 Settings → Pages → Build and deployment →
 [공통 개발 규칙](https://github.com/byh-playground/bloom-reference/blob/main/rules/development.html)과 [공통 프로젝트 관리 규칙](https://github.com/byh-playground/bloom-reference/blob/main/rules/project-management.html)을 참조합니다. 검증 정책의 원본은 [관리 규칙 §13](https://github.com/byh-playground/bloom-reference/blob/main/rules/project-management.html#verification)입니다. 후속 변경은 브랜치와 Draft PR에서 작업합니다.
 
 ## 실제 검증 범위
+
+### 0.12.1 발견·효과음 검증
+
+실제 Edge 155.0.4283.45·Matter.js 0.20.0·고정 GameKit CDN에서 대표 발견/오디오 흐름 **PASS 20.556초**, 최종 충전 guard/보스 소환 경로 이어 검증 **PASS 15.432초**, 합계 **35.988초·JS 오류 0**입니다. 실제 CDN audio.js HTTP 200과 SHA-256 일치, 입력 전 context 잠금, WASD·클릭, 실제 처치에 의한 장착 알 3개의 같은 UID/슬롯 29→30 첫 부화와 틱을 막지 않는 연출, 미발견 정보 숨김, 보유 종/등급만 선택, 3/5 부족 표시, 자연 RNG 합성 실패 1회·4마리 소모 후 발견 기록 유지, 실제 master/category 조절·음소거 출력 0·새로고침 저장 복구를 확인했습니다. 전투 live peak **0.02478**, 실제 recipe/SDK를 사용한 일반·밀집 Offline peak **0.06285/0.06809**, 유한 파형·0보다 큰 RMS·최대 관측 7음(상한 12)을 기록했습니다. 자연 보스 경고/준비·돌진·부채·실제 소환 3개와 충전 완료 1회 유지도 실제 재생 기록으로 확인했습니다.
+
+부팅 전 유효 성장/알 fixture를 사용했으며 실행 중 HP·틱·Config·RNG·소리 callback을 강제하지 않았습니다. 첫 실행 뒤 충전 guard/소환 연결만 변경했으므로 완료된 발견·설정·Offline 검사를 반복하지 않고 변경 경로만 이어 확인했습니다. 기존 저장 펫의 발견 추론, 알의 미발견 유지, 보유가 빈 경우의 독립 발견 저장, 첫/반복 부화 이벤트 형태는 별도 임시 모델 의미 검사로 구분합니다. 실제 스피커 소리·주관적 타격감·모바일·CPU와 모든 음향/등급 조합은 미검증입니다. 자동 연격·속성·레벨·보스 원형/처치/스테이지·펫 부활·합성 성공/혼합은 source hook 검토 및 변경 없는 기존/공통 검증에 한정하며 이번 브라우저에서 모두 재현했다는 뜻이 아닙니다. [최종 원본 해시·실행 기록·한계](docs/verification-discovery-audio-2026-10-10.json)에 실행별 구분을 남깁니다. 후보는 draft PR로 전달하며 부모가 merge·Pages 배포를 검토합니다.
+
+### 0.12.0 동행 검증
 
 0.12.0은 실제 Edge 154.0.4258.62, 실제 Matter.js와 고정 GameKit으로 **PASS 48.630초, JS 오류 0**입니다. Common 펫은 14초에 물리 충돌 9회·피해 206·처치 1회, 상대 접근 속도 609.27에서 raw 24.75→실제 피해 25를 기록했습니다. 실제 UI의 동행 슬롯 4회 투자/최대 5칸, WASD·클릭, 보스 처치 알 1개, 같은 UID·슬롯 알 두 개의 29→30 부화, 예비 알 진행 0, 펫 처치·상위 패턴·실제 회복, 자연 RNG 합성 성공 8회·실패 9회, 잠금 보호·알 재료 제외·선택 등급 한정, 새로고침과 실제 플레이어 사망·재시작의 소유권 보존을 확인했습니다.
 

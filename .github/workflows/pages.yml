@@ -30,6 +30,7 @@ jobs:
           mkdir -p _site
           cp index.html _site/index.html
           cp pets.js _site/pets.js
+          cp audio.js _site/audio.js
           touch _site/.nojekyll
           python3 - <<'PY'
           import datetime, hashlib, json, os, pathlib, re
@@ -43,6 +44,9 @@ jobs:
               'build_id': re.search(r"BUILD_ID = '([^']+)'", html).group(1),
               'index_sha256': hashlib.sha256(data).hexdigest(),
               'pets_sha256': hashlib.sha256(pathlib.Path('_site/pets.js').read_bytes()).hexdigest(),
+              'audio_sha256': hashlib.sha256(pathlib.Path('_site/audio.js').read_bytes()).hexdigest(),
+              'audio_sdk_commit': re.search(r"commit:'([^']+)'", pathlib.Path('_site/audio.js').read_text(encoding='utf-8')).group(1),
+              'audio_sdk_sha256': re.search(r"sha256:'([^']+)'", pathlib.Path('_site/audio.js').read_text(encoding='utf-8')).group(1),
           }
           pathlib.Path('_site/build.json').write_text(json.dumps(metadata, indent=2) + '\n', encoding='utf-8')
           PY

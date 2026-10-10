@@ -1,0 +1,2269 @@
+{
+  "version": "0.12.0",
+  "buildId": "20261010T114424Z-permanent-pets",
+  "baseCommit": "2488bfad6c11b14bccc896434dc235d9c4054430",
+  "scope": "Permanent boss eggs, bounded five-slot physical companions, 30-kill hatch, explicit lock and selected-grade fusion; no merge/deploy.",
+  "finalArtifactHashes": {
+    "index.html": "0da94e76cb150772e4013f44e0f6247615e0ad228ac04bf7a89d20f3fd3f9f41",
+    "pets.js": "86a7ecd67d53895f1fae9fcc3f345dbe8a1c5050f85ac13a345c5bdaaec659bc"
+  },
+  "configurationStatus": {
+    "confirmed": {
+      "reviveMs": 3000
+    },
+    "implementerRecommendation": "Common HP/attack/mass/speed/cadence, grade power ×1.8, size/range ×1.05, 500ms hit protection and reduced capability values; measured initial candidates, not user-confirmed numerical requirements."
+  },
+  "references": {
+    "budmoriCommit": "5a9cf03e3be85ab2e506fe441e05f9ccfdfb4cb8",
+    "commonRulesCommit": "847b90c4cf911a666cc21a431ea3c3bba2edc29c",
+    "localInstructions": "No repository AGENTS.md or .agents/skills were present."
+  },
+  "actualBrowserRuns": [
+    {
+      "startedAt": "2026-10-10T11:55:12.745Z",
+      "baseCommit": "2488bfad6c11b14bccc896434dc235d9c4054430",
+      "mockLibraries": false,
+      "forcedLiveState": false,
+      "forcedRandom": false,
+      "manualTicks": false,
+      "configChanges": false,
+      "checkpoints": [
+        {
+          "name": "Common-natural-combat-probe",
+          "state": {
+            "timeMs": 14050.000000000002,
+            "phase": "PLAYING",
+            "mode": "READY",
+            "health": 25,
+            "stats": {
+              "petSlots": 1,
+              "attackPower": 280,
+              "criticalChance": 0,
+              "criticalDamage": 2,
+              "armorPenFlat": 0,
+              "armorPenPercent": 0,
+              "maxHp": 280,
+              "armor": 0,
+              "healthRegen": 0
+            },
+            "tech": {
+              "points": 80,
+              "level": 141,
+              "totalKills": 20001,
+              "unlocked": [],
+              "statLevels": {
+                "attackPower": 30,
+                "criticalChance": 0,
+                "criticalDamage": 0,
+                "armorPenFlat": 0,
+                "armorPenPercent": 0,
+                "maxHp": 30,
+                "armor": 0,
+                "healthRegen": 0,
+                "petSlots": 0
+              }
+            },
+            "evadeCount": 0,
+            "kills": 1,
+            "stage": {
+              "index": 1,
+              "phase": "WAVE",
+              "bossName": null,
+              "bossHp": null
+            },
+            "companions": {
+              "inventoryCount": 65,
+              "slots": [
+                1
+              ],
+              "hits": 9,
+              "kills": 1,
+              "damage": 206,
+              "taken": 25,
+              "deaths": 0,
+              "revivals": 0,
+              "abilities": 0,
+              "supportHealing": 0,
+              "lastHit": {
+                "petId": 1,
+                "speciesId": "petalPredator",
+                "grade": 0,
+                "enemyId": 7,
+                "closingSpeed": 609.2712871900462,
+                "attackPower": 65,
+                "raw": 24.751646042095626,
+                "damage": 25,
+                "atMs": 12816.666666666668
+              },
+              "actors": [
+                {
+                  "id": 1,
+                  "kind": "pet",
+                  "speciesId": "petalPredator",
+                  "grade": 0,
+                  "state": "WINDUP",
+                  "hp": 125,
+                  "maxHp": 150,
+                  "x": 1006.0109813612733,
+                  "y": 566.8177571309974,
+                  "reviveInMs": 0
+                }
+              ]
+            }
+          },
+          "collection": {
+            "inventoryCount": 65,
+            "slots": [
+              1
+            ],
+            "nextId": 66,
+            "items": [
+              {
+                "id": 1,
+                "speciesId": "petalPredator",
+                "kind": "pet",
+                "grade": 0,
+                "hatchProgress": 30,
+                "locked": false
+              },
+              {
+                "id": 2,
+                "speciesId": "elasticCap",
+                "kind": "pet",
+                "grade": 5,
+                "hatchProgress": 30,
+                "locked": false
+              },
+              {
+                "id": 3,
+                "speciesId": "petalPredator",
+                "kind": "egg",
+                "grade": 0,
+                "hatchProgress": 29,
+                "locked": false
+              },
+              {
+                "id": 4,
+                "speciesId": "elasticCap",
+                "kind": "egg",
+                "grade": 0,
+                "hatchProgress": 29,
+                "locked": false
+              },
+              {
+                "id": 5,
+                "speciesId": "petalPredator",
+                "kind": "egg",
+                "grade": 0,
+                "hatchProgress": 0,
+                "locked": false
+              },
+              {
+                "id": 6,
+                "speciesId": "petalPredator",
+                "kind": "pet",
+                "grade": 0,
+                "hatchProgress": 30,
+                "locked": false
+              }
+            ]
+          }
+        },
+        {
+          "name": "actual-four-slot-investments",
+          "state": {
+            "timeMs": 14083.333333333334,
+            "phase": "LOBBY",
+            "mode": "READY",
+            "health": 25,
+            "stats": {
+              "petSlots": 5,
+              "attackPower": 280,
+              "criticalChance": 0,
+              "criticalDamage": 2,
+              "armorPenFlat": 0,
+              "armorPenPercent": 0,
+              "maxHp": 280,
+              "armor": 0,
+              "healthRegen": 0
+            },
+            "tech": {
+              "points": 76,
+              "level": 141,
+              "totalKills": 20001,
+              "unlocked": [],
+              "statLevels": {
+                "attackPower": 30,
+                "criticalChance": 0,
+                "criticalDamage": 0,
+                "armorPenFlat": 0,
+                "armorPenPercent": 0,
+                "maxHp": 30,
+                "armor": 0,
+                "healthRegen": 0,
+                "petSlots": 4
+              }
+            },
+            "evadeCount": 0,
+            "kills": 1,
+            "stage": {
+              "index": 1,
+              "phase": "WAVE",
+              "bossName": null,
+              "bossHp": null
+            },
+            "companions": {
+              "inventoryCount": 65,
+              "slots": [
+                1,
+                null,
+                null,
+                null,
+                null
+              ],
+              "hits": 10,
+              "kills": 1,
+              "damage": 227,
+              "taken": 25,
+              "deaths": 0,
+              "revivals": 0,
+              "abilities": 0,
+              "supportHealing": 0,
+              "lastHit": {
+                "petId": 1,
+                "speciesId": "petalPredator",
+                "grade": 0,
+                "enemyId": 1,
+                "closingSpeed": 654.7778547935748,
+                "attackPower": 65,
+                "raw": 26.600350350988975,
+                "damage": 21,
+                "atMs": 14066.666666666668
+              },
+              "actors": [
+                {
+                  "id": 1,
+                  "kind": "pet",
+                  "speciesId": "petalPredator",
+                  "grade": 0,
+                  "state": "RECOVER",
+                  "hp": 125,
+                  "maxHp": 150,
+                  "x": 1001.4243065086466,
+                  "y": 567.1550581228579,
+                  "reviveInMs": 0
+                }
+              ]
+            }
+          },
+          "collection": {
+            "inventoryCount": 65,
+            "slots": [
+              1,
+              null,
+              null,
+              null,
+              null
+            ],
+            "nextId": 66,
+            "items": [
+              {
+                "id": 1,
+                "speciesId": "petalPredator",
+                "kind": "pet",
+                "grade": 0,
+                "hatchProgress": 30,
+                "locked": false
+              },
+              {
+                "id": 2,
+                "speciesId": "elasticCap",
+                "kind": "pet",
+                "grade": 5,
+                "hatchProgress": 30,
+                "locked": false
+              },
+              {
+                "id": 3,
+                "speciesId": "petalPredator",
+                "kind": "egg",
+                "grade": 0,
+                "hatchProgress": 29,
+                "locked": false
+              },
+              {
+                "id": 4,
+                "speciesId": "elasticCap",
+                "kind": "egg",
+                "grade": 0,
+                "hatchProgress": 29,
+                "locked": false
+              },
+              {
+                "id": 5,
+                "speciesId": "petalPredator",
+                "kind": "egg",
+                "grade": 0,
+                "hatchProgress": 0,
+                "locked": false
+              },
+              {
+                "id": 6,
+                "speciesId": "petalPredator",
+                "kind": "pet",
+                "grade": 0,
+                "hatchProgress": 30,
+                "locked": false
+              }
+            ]
+          }
+        },
+        {
+          "name": "WASD-and-click",
+          "state": {
+            "timeMs": 466.6666666666667,
+            "phase": "PLAYING",
+            "mode": "READY",
+            "health": 280,
+            "stats": {
+              "petSlots": 5,
+              "attackPower": 280,
+              "criticalChance": 0,
+              "criticalDamage": 2,
+              "armorPenFlat": 0,
+              "armorPenPercent": 0,
+              "maxHp": 280,
+              "armor": 0,
+              "healthRegen": 0
+            },
+            "tech": {
+              "points": 76,
+              "level": 141,
+              "totalKills": 20001,
+              "unlocked": [],
+              "statLevels": {
+                "attackPower": 30,
+                "criticalChance": 0,
+                "criticalDamage": 0,
+                "armorPenFlat": 0,
+                "armorPenPercent": 0,
+                "maxHp": 30,
+                "armor": 0,
+                "healthRegen": 0,
+                "petSlots": 4
+              }
+            },
+            "evadeCount": 2,
+            "kills": 0,
+            "stage": {
+              "index": 1,
+              "phase": "WAVE",
+              "bossName": null,
+              "bossHp": null
+            },
+            "companions": {
+              "inventoryCount": 65,
+              "slots": [
+                1,
+                2,
+                3,
+                4,
+                6
+              ],
+              "hits": 0,
+              "kills": 0,
+              "damage": 0,
+              "taken": 0,
+              "deaths": 0,
+              "revivals": 0,
+              "abilities": 0,
+              "supportHealing": 0,
+              "lastHit": null,
+              "actors": [
+                {
+                  "id": 1,
+                  "kind": "pet",
+                  "speciesId": "petalPredator",
+                  "grade": 0,
+                  "state": "FOLLOW",
+                  "hp": 150,
+                  "maxHp": 150,
+                  "x": 741.7345194513792,
+                  "y": 835.6065888916087,
+                  "reviveInMs": 0
+                },
+                {
+                  "id": 2,
+                  "kind": "pet",
+                  "speciesId": "elasticCap",
+                  "grade": 5,
+                  "state": "FOLLOW",
+                  "hp": 3401,
+                  "maxHp": 3401,
+                  "x": 791.8947293169385,
+                  "y": 656.014669128275,
+                  "reviveInMs": 0
+                },
+                {
+                  "id": 3,
+                  "kind": "egg",
+                  "speciesId": "petalPredator",
+                  "grade": 0,
+                  "state": "FOLLOW",
+                  "hp": null,
+                  "maxHp": null,
+                  "x": 947.8056481968092,
+                  "y": 761.8582608810015,
+                  "reviveInMs": 0
+                },
+                {
+                  "id": 4,
+                  "kind": "egg",
+                  "speciesId": "elasticCap",
+                  "grade": 0,
+                  "state": "FOLLOW",
+                  "hp": null,
+                  "maxHp": null,
+                  "x": 872.5861948634522,
+                  "y": 716.5116071073753,
+                  "reviveInMs": 0
+                },
+                {
+                  "id": 6,
+                  "kind": "pet",
+                  "speciesId": "petalPredator",
+                  "grade": 0,
+                  "state": "FOLLOW",
+                  "hp": 150,
+                  "maxHp": 150,
+                  "x": 819.9152284226544,
+                  "y": 672.2065518427362,
+                  "reviveInMs": 0
+                }
+              ]
+            }
+          },
+          "collection": {
+            "inventoryCount": 65,
+            "slots": [
+              1,
+              2,
+              3,
+              4,
+              6
+            ],
+            "nextId": 66,
+            "items": [
+              {
+                "id": 1,
+                "speciesId": "petalPredator",
+                "kind": "pet",
+                "grade": 0,
+                "hatchProgress": 30,
+                "locked": true
+              },
+              {
+                "id": 2,
+                "speciesId": "elasticCap",
+                "kind": "pet",
+                "grade": 5,
+                "hatchProgress": 30,
+                "locked": false
+              },
+              {
+                "id": 3,
+                "speciesId": "petalPredator",
+                "kind": "egg",
+                "grade": 0,
+                "hatchProgress": 29,
+                "locked": false
+              },
+              {
+                "id": 4,
+                "speciesId": "elasticCap",
+                "kind": "egg",
+                "grade": 0,
+                "hatchProgress": 29,
+                "locked": false
+              },
+              {
+                "id": 5,
+                "speciesId": "petalPredator",
+                "kind": "egg",
+                "grade": 0,
+                "hatchProgress": 0,
+                "locked": false
+              },
+              {
+                "id": 6,
+                "speciesId": "petalPredator",
+                "kind": "pet",
+                "grade": 0,
+                "hatchProgress": 30,
+                "locked": false
+              }
+            ]
+          }
+        },
+        {
+          "name": "boss-reward-and-30-threshold",
+          "state": {
+            "timeMs": 12800,
+            "phase": "PLAYING",
+            "mode": "READY",
+            "health": 254.6376158352677,
+            "stats": {
+              "petSlots": 5,
+              "attackPower": 280,
+              "criticalChance": 0,
+              "criticalDamage": 2,
+              "armorPenFlat": 0,
+              "armorPenPercent": 0,
+              "maxHp": 280,
+              "armor": 0,
+              "healthRegen": 0
+            },
+            "tech": {
+              "points": 76,
+              "level": 141,
+              "totalKills": 20011,
+              "unlocked": [],
+              "statLevels": {
+                "attackPower": 30,
+                "criticalChance": 0,
+                "criticalDamage": 0,
+                "armorPenFlat": 0,
+                "armorPenPercent": 0,
+                "maxHp": 30,
+                "armor": 0,
+                "healthRegen": 0,
+                "petSlots": 4
+              }
+            },
+            "evadeCount": 2,
+            "kills": 10,
+            "stage": {
+              "index": 1,
+              "phase": "CLEAR",
+              "bossName": "꽃잎 포식자",
+              "bossHp": 0
+            },
+            "companions": {
+              "inventoryCount": 66,
+              "slots": [
+                1,
+                2,
+                3,
+                4,
+                6
+              ],
+              "hits": 24,
+              "kills": 5,
+              "damage": 631,
+              "taken": 168,
+              "deaths": 0,
+              "revivals": 0,
+              "abilities": 7,
+              "supportHealing": 17.7,
+              "lastHit": {
+                "petId": 3,
+                "speciesId": "petalPredator",
+                "grade": 0,
+                "enemyId": 13,
+                "closingSpeed": 531.0405657965578,
+                "attackPower": 65,
+                "raw": 21.57352298548516,
+                "damage": 19,
+                "atMs": 12266.666666666668
+              },
+              "actors": [
+                {
+                  "id": 1,
+                  "kind": "pet",
+                  "speciesId": "petalPredator",
+                  "grade": 0,
+                  "state": "FOLLOW",
+                  "hp": 150,
+                  "maxHp": 150,
+                  "x": 895.5208406753275,
+                  "y": 839.0411688608569,
+                  "reviveInMs": 0
+                },
+                {
+                  "id": 2,
+                  "kind": "pet",
+                  "speciesId": "elasticCap",
+                  "grade": 5,
+                  "state": "CHARGE",
+                  "hp": 3378,
+                  "maxHp": 3401,
+                  "x": 1034.619326818133,
+                  "y": 858.01431338063,
+                  "reviveInMs": 0
+                },
+                {
+                  "id": 3,
+                  "kind": "pet",
+                  "speciesId": "petalPredator",
+                  "grade": 0,
+                  "state": "FOLLOW",
+                  "hp": 102,
+                  "maxHp": 150,
+                  "x": 934.9309002724758,
+                  "y": 851.1792064709635,
+                  "reviveInMs": 0
+                },
+                {
+                  "id": 4,
+                  "kind": "pet",
+                  "speciesId": "elasticCap",
+                  "grade": 0,
+                  "state": "FOLLOW",
+                  "hp": 106,
+                  "maxHp": 180,
+                  "x": 893.8516693794855,
+                  "y": 880.5676385212226,
+                  "reviveInMs": 0
+                },
+                {
+                  "id": 6,
+                  "kind": "pet",
+                  "speciesId": "petalPredator",
+                  "grade": 0,
+                  "state": "FOLLOW",
+                  "hp": 127,
+                  "maxHp": 150,
+                  "x": 904.9545709279523,
+                  "y": 912.1682630223969,
+                  "reviveInMs": 0
+                }
+              ]
+            }
+          },
+          "collection": {
+            "inventoryCount": 66,
+            "slots": [
+              1,
+              2,
+              3,
+              4,
+              6
+            ],
+            "nextId": 67,
+            "items": [
+              {
+                "id": 1,
+                "speciesId": "petalPredator",
+                "kind": "pet",
+                "grade": 0,
+                "hatchProgress": 30,
+                "locked": true
+              },
+              {
+                "id": 2,
+                "speciesId": "elasticCap",
+                "kind": "pet",
+                "grade": 5,
+                "hatchProgress": 30,
+                "locked": false
+              },
+              {
+                "id": 3,
+                "speciesId": "petalPredator",
+                "kind": "pet",
+                "grade": 0,
+                "hatchProgress": 30,
+                "locked": false
+              },
+              {
+                "id": 4,
+                "speciesId": "elasticCap",
+                "kind": "pet",
+                "grade": 0,
+                "hatchProgress": 30,
+                "locked": false
+              },
+              {
+                "id": 5,
+                "speciesId": "petalPredator",
+                "kind": "egg",
+                "grade": 0,
+                "hatchProgress": 0,
+                "locked": false
+              },
+              {
+                "id": 6,
+                "speciesId": "petalPredator",
+                "kind": "pet",
+                "grade": 0,
+                "hatchProgress": 30,
+                "locked": false
+              },
+              {
+                "id": 66,
+                "speciesId": "petalPredator",
+                "kind": "egg",
+                "grade": 0,
+                "hatchProgress": 0,
+                "locked": false
+              }
+            ]
+          }
+        },
+        {
+          "name": "actual-random-fusion-success-failure",
+          "state": {
+            "timeMs": 12833.333333333334,
+            "phase": "LOBBY",
+            "mode": "READY",
+            "health": 254.6376158352677,
+            "stats": {
+              "petSlots": 5,
+              "attackPower": 280,
+              "criticalChance": 0,
+              "criticalDamage": 2,
+              "armorPenFlat": 0,
+              "armorPenPercent": 0,
+              "maxHp": 280,
+              "armor": 0,
+              "healthRegen": 0
+            },
+            "tech": {
+              "points": 76,
+              "level": 141,
+              "totalKills": 20011,
+              "unlocked": [],
+              "statLevels": {
+                "attackPower": 30,
+                "criticalChance": 0,
+                "criticalDamage": 0,
+                "armorPenFlat": 0,
+                "armorPenPercent": 0,
+                "maxHp": 30,
+                "armor": 0,
+                "healthRegen": 0,
+                "petSlots": 4
+              }
+            },
+            "evadeCount": 2,
+            "kills": 10,
+            "stage": {
+              "index": 1,
+              "phase": "CLEAR",
+              "bossName": "꽃잎 포식자",
+              "bossHp": 0
+            },
+            "companions": {
+              "inventoryCount": 16,
+              "slots": [
+                1,
+                2,
+                3,
+                4,
+                6
+              ],
+              "hits": 24,
+              "kills": 5,
+              "damage": 631,
+              "taken": 168,
+              "deaths": 0,
+              "revivals": 0,
+              "abilities": 7,
+              "supportHealing": 17.7,
+              "lastHit": {
+                "petId": 3,
+                "speciesId": "petalPredator",
+                "grade": 0,
+                "enemyId": 13,
+                "closingSpeed": 531.0405657965578,
+                "attackPower": 65,
+                "raw": 21.57352298548516,
+                "damage": 19,
+                "atMs": 12266.666666666668
+              },
+              "actors": [
+                {
+                  "id": 1,
+                  "kind": "pet",
+                  "speciesId": "petalPredator",
+                  "grade": 0,
+                  "state": "FOLLOW",
+                  "hp": 150,
+                  "maxHp": 150,
+                  "x": 897.6956355724419,
+                  "y": 841.3797333618118,
+                  "reviveInMs": 0
+                },
+                {
+                  "id": 2,
+                  "kind": "pet",
+                  "speciesId": "elasticCap",
+                  "grade": 5,
+                  "state": "CHARGE",
+                  "hp": 3378,
+                  "maxHp": 3401,
+                  "x": 1040.0706558279194,
+                  "y": 876.5514635857326,
+                  "reviveInMs": 0
+                },
+                {
+                  "id": 3,
+                  "kind": "pet",
+                  "speciesId": "petalPredator",
+                  "grade": 0,
+                  "state": "FOLLOW",
+                  "hp": 102,
+                  "maxHp": 150,
+                  "x": 939.4949035874566,
+                  "y": 854.0405648387714,
+                  "reviveInMs": 0
+                },
+                {
+                  "id": 4,
+                  "kind": "pet",
+                  "speciesId": "elasticCap",
+                  "grade": 0,
+                  "state": "FOLLOW",
+                  "hp": 106,
+                  "maxHp": 180,
+                  "x": 898.7346371495311,
+                  "y": 881.9819283206436,
+                  "reviveInMs": 0
+                },
+                {
+                  "id": 6,
+                  "kind": "pet",
+                  "speciesId": "petalPredator",
+                  "grade": 0,
+                  "state": "FOLLOW",
+                  "hp": 127,
+                  "maxHp": 150,
+                  "x": 910.1003000823513,
+                  "y": 911.1703463216077,
+                  "reviveInMs": 0
+                }
+              ]
+            }
+          },
+          "collection": {
+            "inventoryCount": 16,
+            "slots": [
+              1,
+              2,
+              3,
+              4,
+              6
+            ],
+            "nextId": 75,
+            "items": [
+              {
+                "id": 1,
+                "speciesId": "petalPredator",
+                "kind": "pet",
+                "grade": 0,
+                "hatchProgress": 30,
+                "locked": true
+              },
+              {
+                "id": 2,
+                "speciesId": "elasticCap",
+                "kind": "pet",
+                "grade": 5,
+                "hatchProgress": 30,
+                "locked": false
+              },
+              {
+                "id": 3,
+                "speciesId": "petalPredator",
+                "kind": "pet",
+                "grade": 0,
+                "hatchProgress": 30,
+                "locked": false
+              },
+              {
+                "id": 4,
+                "speciesId": "elasticCap",
+                "kind": "pet",
+                "grade": 0,
+                "hatchProgress": 30,
+                "locked": false
+              },
+              {
+                "id": 5,
+                "speciesId": "petalPredator",
+                "kind": "egg",
+                "grade": 0,
+                "hatchProgress": 0,
+                "locked": false
+              },
+              {
+                "id": 6,
+                "speciesId": "petalPredator",
+                "kind": "pet",
+                "grade": 0,
+                "hatchProgress": 30,
+                "locked": false
+              },
+              {
+                "id": 66,
+                "speciesId": "petalPredator",
+                "kind": "egg",
+                "grade": 0,
+                "hatchProgress": 0,
+                "locked": false
+              },
+              {
+                "id": 67,
+                "speciesId": "petalPredator",
+                "kind": "pet",
+                "grade": 1,
+                "hatchProgress": 30,
+                "locked": false
+              },
+              {
+                "id": 68,
+                "speciesId": "petalPredator",
+                "kind": "pet",
+                "grade": 1,
+                "hatchProgress": 30,
+                "locked": false
+              },
+              {
+                "id": 69,
+                "speciesId": "petalPredator",
+                "kind": "pet",
+                "grade": 1,
+                "hatchProgress": 30,
+                "locked": false
+              },
+              {
+                "id": 70,
+                "speciesId": "petalPredator",
+                "kind": "pet",
+                "grade": 1,
+                "hatchProgress": 30,
+                "locked": false
+              },
+              {
+                "id": 71,
+                "speciesId": "petalPredator",
+                "kind": "pet",
+                "grade": 1,
+                "hatchProgress": 30,
+                "locked": false
+              },
+              {
+                "id": 72,
+                "speciesId": "petalPredator",
+                "kind": "pet",
+                "grade": 1,
+                "hatchProgress": 30,
+                "locked": false
+              },
+              {
+                "id": 73,
+                "speciesId": "petalPredator",
+                "kind": "pet",
+                "grade": 1,
+                "hatchProgress": 30,
+                "locked": false
+              },
+              {
+                "id": 74,
+                "speciesId": "petalPredator",
+                "kind": "pet",
+                "grade": 1,
+                "hatchProgress": 30,
+                "locked": false
+              }
+            ]
+          }
+        },
+        {
+          "name": "reload-preserved",
+          "state": {
+            "timeMs": 0,
+            "phase": "LOBBY",
+            "mode": "READY",
+            "health": 280,
+            "stats": {
+              "petSlots": 5,
+              "attackPower": 280,
+              "criticalChance": 0,
+              "criticalDamage": 2,
+              "armorPenFlat": 0,
+              "armorPenPercent": 0,
+              "maxHp": 280,
+              "armor": 0,
+              "healthRegen": 0
+            },
+            "tech": {
+              "points": 76,
+              "level": 141,
+              "totalKills": 20011,
+              "unlocked": [],
+              "statLevels": {
+                "attackPower": 30,
+                "criticalChance": 0,
+                "criticalDamage": 0,
+                "armorPenFlat": 0,
+                "armorPenPercent": 0,
+                "maxHp": 30,
+                "armor": 0,
+                "healthRegen": 0,
+                "petSlots": 4
+              }
+            },
+            "evadeCount": 0,
+            "kills": 0,
+            "stage": {
+              "index": 1,
+              "phase": "WAVE",
+              "bossName": null,
+              "bossHp": null
+            },
+            "companions": {
+              "inventoryCount": 16,
+              "slots": [
+                1,
+                2,
+                3,
+                4,
+                6
+              ],
+              "hits": 0,
+              "kills": 0,
+              "damage": 0,
+              "taken": 0,
+              "deaths": 0,
+              "revivals": 0,
+              "abilities": 0,
+              "supportHealing": 0,
+              "lastHit": null,
+              "actors": [
+                {
+                  "id": 1,
+                  "kind": "pet",
+                  "speciesId": "petalPredator",
+                  "grade": 0,
+                  "state": "FOLLOW",
+                  "hp": 150,
+                  "maxHp": 150,
+                  "x": 714.6375415787306,
+                  "y": 782.4576113477871,
+                  "reviveInMs": 0
+                },
+                {
+                  "id": 2,
+                  "kind": "pet",
+                  "speciesId": "elasticCap",
+                  "grade": 5,
+                  "state": "FOLLOW",
+                  "hp": 3401,
+                  "maxHp": 3401,
+                  "x": 754.1043110665001,
+                  "y": 702.17579451084,
+                  "reviveInMs": 0
+                },
+                {
+                  "id": 3,
+                  "kind": "pet",
+                  "speciesId": "petalPredator",
+                  "grade": 0,
+                  "state": "FOLLOW",
+                  "hp": 150,
+                  "maxHp": 150,
+                  "x": 779.3150196947249,
+                  "y": 788.0082835747405,
+                  "reviveInMs": 0
+                },
+                {
+                  "id": 4,
+                  "kind": "pet",
+                  "speciesId": "elasticCap",
+                  "grade": 0,
+                  "state": "FOLLOW",
+                  "hp": 180,
+                  "maxHp": 180,
+                  "x": 702.7018903887748,
+                  "y": 741.8214410068443,
+                  "reviveInMs": 0
+                },
+                {
+                  "id": 6,
+                  "kind": "pet",
+                  "speciesId": "petalPredator",
+                  "grade": 0,
+                  "state": "FOLLOW",
+                  "hp": 150,
+                  "maxHp": 150,
+                  "x": 790.3757067440914,
+                  "y": 724.0422977728164,
+                  "reviveInMs": 0
+                }
+              ]
+            }
+          },
+          "collection": {
+            "inventoryCount": 16,
+            "slots": [
+              1,
+              2,
+              3,
+              4,
+              6
+            ],
+            "nextId": 75,
+            "items": [
+              {
+                "id": 1,
+                "speciesId": "petalPredator",
+                "kind": "pet",
+                "grade": 0,
+                "hatchProgress": 30,
+                "locked": true
+              },
+              {
+                "id": 2,
+                "speciesId": "elasticCap",
+                "kind": "pet",
+                "grade": 5,
+                "hatchProgress": 30,
+                "locked": false
+              },
+              {
+                "id": 3,
+                "speciesId": "petalPredator",
+                "kind": "pet",
+                "grade": 0,
+                "hatchProgress": 30,
+                "locked": false
+              },
+              {
+                "id": 4,
+                "speciesId": "elasticCap",
+                "kind": "pet",
+                "grade": 0,
+                "hatchProgress": 30,
+                "locked": false
+              },
+              {
+                "id": 5,
+                "speciesId": "petalPredator",
+                "kind": "egg",
+                "grade": 0,
+                "hatchProgress": 0,
+                "locked": false
+              },
+              {
+                "id": 6,
+                "speciesId": "petalPredator",
+                "kind": "pet",
+                "grade": 0,
+                "hatchProgress": 30,
+                "locked": false
+              },
+              {
+                "id": 66,
+                "speciesId": "petalPredator",
+                "kind": "egg",
+                "grade": 0,
+                "hatchProgress": 0,
+                "locked": false
+              },
+              {
+                "id": 67,
+                "speciesId": "petalPredator",
+                "kind": "pet",
+                "grade": 1,
+                "hatchProgress": 30,
+                "locked": false
+              },
+              {
+                "id": 68,
+                "speciesId": "petalPredator",
+                "kind": "pet",
+                "grade": 1,
+                "hatchProgress": 30,
+                "locked": false
+              },
+              {
+                "id": 69,
+                "speciesId": "petalPredator",
+                "kind": "pet",
+                "grade": 1,
+                "hatchProgress": 30,
+                "locked": false
+              },
+              {
+                "id": 70,
+                "speciesId": "petalPredator",
+                "kind": "pet",
+                "grade": 1,
+                "hatchProgress": 30,
+                "locked": false
+              },
+              {
+                "id": 71,
+                "speciesId": "petalPredator",
+                "kind": "pet",
+                "grade": 1,
+                "hatchProgress": 30,
+                "locked": false
+              },
+              {
+                "id": 72,
+                "speciesId": "petalPredator",
+                "kind": "pet",
+                "grade": 1,
+                "hatchProgress": 30,
+                "locked": false
+              },
+              {
+                "id": 73,
+                "speciesId": "petalPredator",
+                "kind": "pet",
+                "grade": 1,
+                "hatchProgress": 30,
+                "locked": false
+              },
+              {
+                "id": 74,
+                "speciesId": "petalPredator",
+                "kind": "pet",
+                "grade": 1,
+                "hatchProgress": 30,
+                "locked": false
+              }
+            ]
+          }
+        },
+        {
+          "name": "actual-player-death",
+          "state": {
+            "timeMs": 17233.333333333336,
+            "phase": "ENDED",
+            "mode": "DEAD",
+            "health": 0,
+            "stats": {
+              "petSlots": 5,
+              "attackPower": 280,
+              "criticalChance": 0,
+              "criticalDamage": 2,
+              "armorPenFlat": 0,
+              "armorPenPercent": 0,
+              "maxHp": 280,
+              "armor": 0,
+              "healthRegen": 0
+            },
+            "tech": {
+              "points": 76,
+              "level": 141,
+              "totalKills": 20011,
+              "unlocked": [],
+              "statLevels": {
+                "attackPower": 30,
+                "criticalChance": 0,
+                "criticalDamage": 0,
+                "armorPenFlat": 0,
+                "armorPenPercent": 0,
+                "maxHp": 30,
+                "armor": 0,
+                "healthRegen": 0,
+                "petSlots": 4
+              }
+            },
+            "evadeCount": 0,
+            "kills": 0,
+            "stage": {
+              "index": 1,
+              "phase": "WAVE",
+              "bossName": null,
+              "bossHp": null
+            },
+            "companions": {
+              "inventoryCount": 16,
+              "slots": [
+                null,
+                null,
+                null,
+                null,
+                null
+              ],
+              "hits": 0,
+              "kills": 0,
+              "damage": 0,
+              "taken": 0,
+              "deaths": 0,
+              "revivals": 0,
+              "abilities": 0,
+              "supportHealing": 0,
+              "lastHit": null,
+              "actors": []
+            }
+          },
+          "collection": {
+            "inventoryCount": 16,
+            "slots": [
+              null,
+              null,
+              null,
+              null,
+              null
+            ],
+            "nextId": 75,
+            "items": [
+              {
+                "id": 1,
+                "speciesId": "petalPredator",
+                "kind": "pet",
+                "grade": 0,
+                "hatchProgress": 30,
+                "locked": true
+              },
+              {
+                "id": 2,
+                "speciesId": "elasticCap",
+                "kind": "pet",
+                "grade": 5,
+                "hatchProgress": 30,
+                "locked": false
+              },
+              {
+                "id": 3,
+                "speciesId": "petalPredator",
+                "kind": "pet",
+                "grade": 0,
+                "hatchProgress": 30,
+                "locked": false
+              },
+              {
+                "id": 4,
+                "speciesId": "elasticCap",
+                "kind": "pet",
+                "grade": 0,
+                "hatchProgress": 30,
+                "locked": false
+              },
+              {
+                "id": 5,
+                "speciesId": "petalPredator",
+                "kind": "egg",
+                "grade": 0,
+                "hatchProgress": 0,
+                "locked": false
+              },
+              {
+                "id": 6,
+                "speciesId": "petalPredator",
+                "kind": "pet",
+                "grade": 0,
+                "hatchProgress": 30,
+                "locked": false
+              },
+              {
+                "id": 66,
+                "speciesId": "petalPredator",
+                "kind": "egg",
+                "grade": 0,
+                "hatchProgress": 0,
+                "locked": false
+              },
+              {
+                "id": 67,
+                "speciesId": "petalPredator",
+                "kind": "pet",
+                "grade": 1,
+                "hatchProgress": 30,
+                "locked": false
+              },
+              {
+                "id": 68,
+                "speciesId": "petalPredator",
+                "kind": "pet",
+                "grade": 1,
+                "hatchProgress": 30,
+                "locked": false
+              },
+              {
+                "id": 69,
+                "speciesId": "petalPredator",
+                "kind": "pet",
+                "grade": 1,
+                "hatchProgress": 30,
+                "locked": false
+              },
+              {
+                "id": 70,
+                "speciesId": "petalPredator",
+                "kind": "pet",
+                "grade": 1,
+                "hatchProgress": 30,
+                "locked": false
+              },
+              {
+                "id": 71,
+                "speciesId": "petalPredator",
+                "kind": "pet",
+                "grade": 1,
+                "hatchProgress": 30,
+                "locked": false
+              },
+              {
+                "id": 72,
+                "speciesId": "petalPredator",
+                "kind": "pet",
+                "grade": 1,
+                "hatchProgress": 30,
+                "locked": false
+              },
+              {
+                "id": 73,
+                "speciesId": "petalPredator",
+                "kind": "pet",
+                "grade": 1,
+                "hatchProgress": 30,
+                "locked": false
+              },
+              {
+                "id": 74,
+                "speciesId": "petalPredator",
+                "kind": "pet",
+                "grade": 1,
+                "hatchProgress": 30,
+                "locked": false
+              }
+            ]
+          }
+        },
+        {
+          "name": "restart-preserved",
+          "state": {
+            "timeMs": 0,
+            "phase": "PLAYING",
+            "mode": "READY",
+            "health": 280,
+            "stats": {
+              "petSlots": 5,
+              "attackPower": 280,
+              "criticalChance": 0,
+              "criticalDamage": 2,
+              "armorPenFlat": 0,
+              "armorPenPercent": 0,
+              "maxHp": 280,
+              "armor": 0,
+              "healthRegen": 0
+            },
+            "tech": {
+              "points": 76,
+              "level": 141,
+              "totalKills": 20011,
+              "unlocked": [],
+              "statLevels": {
+                "attackPower": 30,
+                "criticalChance": 0,
+                "criticalDamage": 0,
+                "armorPenFlat": 0,
+                "armorPenPercent": 0,
+                "maxHp": 30,
+                "armor": 0,
+                "healthRegen": 0,
+                "petSlots": 4
+              }
+            },
+            "evadeCount": 0,
+            "kills": 0,
+            "stage": {
+              "index": 1,
+              "phase": "WAVE",
+              "bossName": null,
+              "bossHp": null
+            },
+            "companions": {
+              "inventoryCount": 16,
+              "slots": [
+                null,
+                null,
+                null,
+                null,
+                null
+              ],
+              "hits": 0,
+              "kills": 0,
+              "damage": 0,
+              "taken": 0,
+              "deaths": 0,
+              "revivals": 0,
+              "abilities": 0,
+              "supportHealing": 0,
+              "lastHit": null,
+              "actors": []
+            }
+          },
+          "collection": {
+            "inventoryCount": 16,
+            "slots": [
+              null,
+              null,
+              null,
+              null,
+              null
+            ],
+            "nextId": 75,
+            "items": [
+              {
+                "id": 1,
+                "speciesId": "petalPredator",
+                "kind": "pet",
+                "grade": 0,
+                "hatchProgress": 30,
+                "locked": true
+              },
+              {
+                "id": 2,
+                "speciesId": "elasticCap",
+                "kind": "pet",
+                "grade": 5,
+                "hatchProgress": 30,
+                "locked": false
+              },
+              {
+                "id": 3,
+                "speciesId": "petalPredator",
+                "kind": "pet",
+                "grade": 0,
+                "hatchProgress": 30,
+                "locked": false
+              },
+              {
+                "id": 4,
+                "speciesId": "elasticCap",
+                "kind": "pet",
+                "grade": 0,
+                "hatchProgress": 30,
+                "locked": false
+              },
+              {
+                "id": 5,
+                "speciesId": "petalPredator",
+                "kind": "egg",
+                "grade": 0,
+                "hatchProgress": 0,
+                "locked": false
+              },
+              {
+                "id": 6,
+                "speciesId": "petalPredator",
+                "kind": "pet",
+                "grade": 0,
+                "hatchProgress": 30,
+                "locked": false
+              },
+              {
+                "id": 66,
+                "speciesId": "petalPredator",
+                "kind": "egg",
+                "grade": 0,
+                "hatchProgress": 0,
+                "locked": false
+              },
+              {
+                "id": 67,
+                "speciesId": "petalPredator",
+                "kind": "pet",
+                "grade": 1,
+                "hatchProgress": 30,
+                "locked": false
+              },
+              {
+                "id": 68,
+                "speciesId": "petalPredator",
+                "kind": "pet",
+                "grade": 1,
+                "hatchProgress": 30,
+                "locked": false
+              },
+              {
+                "id": 69,
+                "speciesId": "petalPredator",
+                "kind": "pet",
+                "grade": 1,
+                "hatchProgress": 30,
+                "locked": false
+              },
+              {
+                "id": 70,
+                "speciesId": "petalPredator",
+                "kind": "pet",
+                "grade": 1,
+                "hatchProgress": 30,
+                "locked": false
+              },
+              {
+                "id": 71,
+                "speciesId": "petalPredator",
+                "kind": "pet",
+                "grade": 1,
+                "hatchProgress": 30,
+                "locked": false
+              },
+              {
+                "id": 72,
+                "speciesId": "petalPredator",
+                "kind": "pet",
+                "grade": 1,
+                "hatchProgress": 30,
+                "locked": false
+              },
+              {
+                "id": 73,
+                "speciesId": "petalPredator",
+                "kind": "pet",
+                "grade": 1,
+                "hatchProgress": 30,
+                "locked": false
+              },
+              {
+                "id": 74,
+                "speciesId": "petalPredator",
+                "kind": "pet",
+                "grade": 1,
+                "hatchProgress": 30,
+                "locked": false
+              }
+            ]
+          }
+        }
+      ],
+      "events": [
+        {
+          "before": {
+            "timeMs": 0,
+            "phase": "LOBBY",
+            "hp": 280,
+            "kills": 0,
+            "pets": {
+              "inventoryCount": 16,
+              "slots": [
+                null,
+                null,
+                null,
+                null,
+                null
+              ],
+              "hits": 0,
+              "kills": 0,
+              "damage": 0,
+              "taken": 0,
+              "deaths": 0,
+              "revivals": 0,
+              "abilities": 0,
+              "supportHealing": 0,
+              "lastHit": null,
+              "actors": []
+            }
+          },
+          "after": {
+            "timeMs": 0,
+            "phase": "PLAYING",
+            "hp": 280,
+            "kills": 0,
+            "pets": {
+              "inventoryCount": 16,
+              "slots": [
+                null,
+                null,
+                null,
+                null,
+                null
+              ],
+              "hits": 0,
+              "kills": 0,
+              "damage": 0,
+              "taken": 0,
+              "deaths": 0,
+              "revivals": 0,
+              "abilities": 0,
+              "supportHealing": 0,
+              "lastHit": null,
+              "actors": []
+            }
+          }
+        },
+        {
+          "before": {
+            "timeMs": 17216.666666666668,
+            "phase": "PLAYING",
+            "hp": 6,
+            "kills": 0,
+            "pets": {
+              "inventoryCount": 16,
+              "slots": [
+                null,
+                null,
+                null,
+                null,
+                null
+              ],
+              "hits": 0,
+              "kills": 0,
+              "damage": 0,
+              "taken": 0,
+              "deaths": 0,
+              "revivals": 0,
+              "abilities": 0,
+              "supportHealing": 0,
+              "lastHit": null,
+              "actors": []
+            }
+          },
+          "after": {
+            "timeMs": 17233.333333333336,
+            "phase": "ENDED",
+            "hp": 0,
+            "kills": 0,
+            "pets": {
+              "inventoryCount": 16,
+              "slots": [
+                null,
+                null,
+                null,
+                null,
+                null
+              ],
+              "hits": 0,
+              "kills": 0,
+              "damage": 0,
+              "taken": 0,
+              "deaths": 0,
+              "revivals": 0,
+              "abilities": 0,
+              "supportHealing": 0,
+              "lastHit": null,
+              "actors": []
+            }
+          }
+        },
+        {
+          "before": {
+            "timeMs": 17233.333333333336,
+            "phase": "ENDED",
+            "hp": 0,
+            "kills": 0,
+            "pets": {
+              "inventoryCount": 16,
+              "slots": [
+                null,
+                null,
+                null,
+                null,
+                null
+              ],
+              "hits": 0,
+              "kills": 0,
+              "damage": 0,
+              "taken": 0,
+              "deaths": 0,
+              "revivals": 0,
+              "abilities": 0,
+              "supportHealing": 0,
+              "lastHit": null,
+              "actors": []
+            }
+          },
+          "after": {
+            "timeMs": 17233.333333333336,
+            "phase": "LOBBY",
+            "hp": 0,
+            "kills": 0,
+            "pets": {
+              "inventoryCount": 16,
+              "slots": [
+                null,
+                null,
+                null,
+                null,
+                null
+              ],
+              "hits": 0,
+              "kills": 0,
+              "damage": 0,
+              "taken": 0,
+              "deaths": 0,
+              "revivals": 0,
+              "abilities": 0,
+              "supportHealing": 0,
+              "lastHit": null,
+              "actors": []
+            }
+          }
+        },
+        {
+          "before": {
+            "timeMs": 17233.333333333336,
+            "phase": "LOBBY",
+            "hp": 0,
+            "kills": 0,
+            "pets": {
+              "inventoryCount": 16,
+              "slots": [
+                null,
+                null,
+                null,
+                null,
+                null
+              ],
+              "hits": 0,
+              "kills": 0,
+              "damage": 0,
+              "taken": 0,
+              "deaths": 0,
+              "revivals": 0,
+              "abilities": 0,
+              "supportHealing": 0,
+              "lastHit": null,
+              "actors": []
+            }
+          },
+          "after": {
+            "timeMs": 0,
+            "phase": "PLAYING",
+            "hp": 280,
+            "kills": 0,
+            "pets": {
+              "inventoryCount": 16,
+              "slots": [
+                null,
+                null,
+                null,
+                null,
+                null
+              ],
+              "hits": 0,
+              "kills": 0,
+              "damage": 0,
+              "taken": 0,
+              "deaths": 0,
+              "revivals": 0,
+              "abilities": 0,
+              "supportHealing": 0,
+              "lastHit": null,
+              "actors": []
+            }
+          }
+        }
+      ],
+      "errors": [],
+      "limitations": [
+        "30-kill hatch boundary tested with pre-boot eggs at 29/30; a fresh 0→30 egg campaign was not repeated.",
+        "No mobile hardware, long campaign, all grade/species combinations or CPU benchmark.",
+        "Fusion randomness was not overridden; pre-boot inventory is a documented valid ownership fixture, not earned from 65 boss kills during this short E2E."
+      ],
+      "artifacts": {
+        "index.html": "a34768266d03fbafc99fca90a003ec4899f6be8cf4c8ec99753d5a41d2e65fbd",
+        "pets.js": "08b84b11a2c91c7843ea6120c5ec05d8b11db157fc4265833960810d36aae004"
+      },
+      "browser": "154.0.4258.62",
+      "fixture": {
+        "kills": 20000,
+        "unlocked": [],
+        "statLevels": {
+          "attackPower": 30,
+          "maxHp": 30
+        },
+        "companions": {
+          "inventory": [
+            {
+              "id": 1,
+              "kind": "pet",
+              "grade": 0,
+              "hatchProgress": 30,
+              "speciesId": "petalPredator",
+              "locked": false
+            },
+            {
+              "id": 2,
+              "kind": "pet",
+              "grade": 5,
+              "hatchProgress": 30,
+              "speciesId": "elasticCap",
+              "locked": false
+            },
+            {
+              "id": 3,
+              "kind": "egg",
+              "grade": 0,
+              "hatchProgress": 29,
+              "speciesId": "petalPredator",
+              "locked": false
+            },
+            {
+              "id": 4,
+              "kind": "egg",
+              "grade": 0,
+              "hatchProgress": 29,
+              "speciesId": "elasticCap",
+              "locked": false
+            },
+            {
+              "id": 5,
+              "kind": "egg",
+              "grade": 0,
+              "hatchProgress": 0,
+              "speciesId": "petalPredator",
+              "locked": false
+            },
+            {
+              "id": 6,
+              "kind": "pet",
+              "grade": 0,
+              "hatchProgress": 30,
+              "speciesId": "petalPredator",
+              "locked": false
+            }
+          ],
+          "slots": [
+            1
+          ],
+          "nextId": 66,
+          "additionalIdenticalCommonPets": {
+            "idFrom": 7,
+            "idTo": 65,
+            "count": 59,
+            "speciesId": "petalPredator",
+            "kind": "pet",
+            "grade": 0,
+            "hatchProgress": 30,
+            "locked": false
+          }
+        }
+      },
+      "measurement": {
+        "common": {
+          "petId": 1,
+          "speciesId": "petalPredator",
+          "grade": 0,
+          "enemyId": 7,
+          "closingSpeed": 609.2712871900462,
+          "attackPower": 65,
+          "raw": 24.751646042095626,
+          "damage": 25,
+          "atMs": 12816.666666666668
+        },
+        "commonTotalDamage": 206,
+        "commonHits": 9,
+        "taken": 25,
+        "deaths": 0,
+        "revivals": 0
+      },
+      "fusionResult": "합성 17회 · 성공 8 · 실패 9 · 소모 58마리 · 생성 8마리",
+      "result": "PASS",
+      "elapsedMs": 48630
+    },
+    {
+      "startedAt": "2026-10-10T12:00:30.416Z",
+      "forcedLiveState": false,
+      "forcedRandom": false,
+      "manualTicks": false,
+      "mockLibraries": false,
+      "events": [
+        {
+          "timeMs": 49383.333333333336,
+          "pet": {
+            "id": 1,
+            "kind": "pet",
+            "speciesId": "petalPredator",
+            "grade": 0,
+            "state": "DEAD",
+            "hp": 0,
+            "maxHp": 150,
+            "x": 1020.3087946482559,
+            "y": 607.9086360011747,
+            "reviveInMs": 3000
+          },
+          "player": {
+            "x": 1155.9019205868249,
+            "y": 505.6172850036846
+          },
+          "owned": {
+            "inventoryCount": 1,
+            "slots": [
+              1
+            ],
+            "nextId": 2,
+            "items": [
+              {
+                "id": 1,
+                "speciesId": "petalPredator",
+                "kind": "pet",
+                "grade": 0,
+                "hatchProgress": 30,
+                "locked": false
+              }
+            ]
+          },
+          "stats": {
+            "inventoryCount": 1,
+            "slots": [
+              1
+            ],
+            "hits": 36,
+            "kills": 5,
+            "damage": 778,
+            "taken": 150,
+            "deaths": 1,
+            "revivals": 0,
+            "abilities": 0,
+            "supportHealing": 0,
+            "lastHit": {
+              "petId": 1,
+              "speciesId": "petalPredator",
+              "grade": 0,
+              "enemyId": 11,
+              "closingSpeed": 591.3313167404804,
+              "attackPower": 65,
+              "raw": 24.022834742582013,
+              "damage": 19,
+              "atMs": 48416.66666666667
+            },
+            "actors": [
+              {
+                "id": 1,
+                "kind": "pet",
+                "speciesId": "petalPredator",
+                "grade": 0,
+                "state": "DEAD",
+                "hp": 0,
+                "maxHp": 150,
+                "x": 1020.3087946482559,
+                "y": 607.9086360011747,
+                "reviveInMs": 3000
+              }
+            ]
+          }
+        },
+        {
+          "timeMs": 52383.333333333336,
+          "pet": {
+            "id": 1,
+            "kind": "pet",
+            "speciesId": "petalPredator",
+            "grade": 0,
+            "state": "FOLLOW",
+            "hp": 150,
+            "maxHp": 150,
+            "x": 1127.1594232040663,
+            "y": 543.8878844446419,
+            "reviveInMs": 0
+          },
+          "player": {
+            "x": 1154.4671973066052,
+            "y": 501.0817579099303
+          },
+          "owned": {
+            "inventoryCount": 1,
+            "slots": [
+              1
+            ],
+            "nextId": 2,
+            "items": [
+              {
+                "id": 1,
+                "speciesId": "petalPredator",
+                "kind": "pet",
+                "grade": 0,
+                "hatchProgress": 30,
+                "locked": false
+              }
+            ]
+          },
+          "stats": {
+            "inventoryCount": 1,
+            "slots": [
+              1
+            ],
+            "hits": 36,
+            "kills": 5,
+            "damage": 778,
+            "taken": 150,
+            "deaths": 1,
+            "revivals": 1,
+            "abilities": 0,
+            "supportHealing": 0,
+            "lastHit": {
+              "petId": 1,
+              "speciesId": "petalPredator",
+              "grade": 0,
+              "enemyId": 11,
+              "closingSpeed": 591.3313167404804,
+              "attackPower": 65,
+              "raw": 24.022834742582013,
+              "damage": 19,
+              "atMs": 48416.66666666667
+            },
+            "actors": [
+              {
+                "id": 1,
+                "kind": "pet",
+                "speciesId": "petalPredator",
+                "grade": 0,
+                "state": "FOLLOW",
+                "hp": 150,
+                "maxHp": 150,
+                "x": 1127.1594232040663,
+                "y": 543.8878844446419,
+                "reviveInMs": 0
+              }
+            ]
+          }
+        }
+      ],
+      "errors": [],
+      "browser": "154.0.4258.62",
+      "artifacts": {
+        "index.html": "7ea12c647ae59bc1b6208d7c7cfe637797f1679915b9bd64a9605da50b437ad0",
+        "pets.js": "86a7ecd67d53895f1fae9fcc3f345dbe8a1c5050f85ac13a345c5bdaaec659bc"
+      },
+      "fixture": {
+        "kills": 250000,
+        "unlocked": [],
+        "statLevels": {
+          "maxHp": 50,
+          "armor": 300,
+          "healthRegen": 100
+        },
+        "companions": {
+          "inventory": [
+            {
+              "id": 1,
+              "kind": "pet",
+              "speciesId": "petalPredator",
+              "grade": 0,
+              "hatchProgress": 30,
+              "locked": false
+            }
+          ],
+          "slots": [
+            1
+          ],
+          "nextId": 2
+        }
+      },
+      "state": {
+        "timeMs": 52516.66666666667,
+        "phase": "PLAYING",
+        "mode": "READY",
+        "health": 400,
+        "stats": {
+          "petSlots": 1,
+          "attackPower": 100,
+          "criticalChance": 0,
+          "criticalDamage": 2,
+          "armorPenFlat": 0,
+          "armorPenPercent": 0,
+          "maxHp": 400,
+          "armor": 1200,
+          "healthRegen": 30
+        },
+        "tech": {
+          "points": 49,
+          "level": 500,
+          "totalKills": 250005,
+          "unlocked": [],
+          "statLevels": {
+            "attackPower": 0,
+            "criticalChance": 0,
+            "criticalDamage": 0,
+            "armorPenFlat": 0,
+            "armorPenPercent": 0,
+            "maxHp": 50,
+            "armor": 300,
+            "healthRegen": 100,
+            "petSlots": 0
+          }
+        },
+        "evadeCount": 0,
+        "kills": 5,
+        "stage": {
+          "index": 1,
+          "phase": "WAVE",
+          "bossName": null,
+          "bossHp": null
+        },
+        "companions": {
+          "inventoryCount": 1,
+          "slots": [
+            1
+          ],
+          "hits": 36,
+          "kills": 5,
+          "damage": 778,
+          "taken": 150,
+          "deaths": 1,
+          "revivals": 1,
+          "abilities": 0,
+          "supportHealing": 0,
+          "lastHit": {
+            "petId": 1,
+            "speciesId": "petalPredator",
+            "grade": 0,
+            "enemyId": 11,
+            "closingSpeed": 591.3313167404804,
+            "attackPower": 65,
+            "raw": 24.022834742582013,
+            "damage": 19,
+            "atMs": 48416.66666666667
+          },
+          "actors": [
+            {
+              "id": 1,
+              "kind": "pet",
+              "speciesId": "petalPredator",
+              "grade": 0,
+              "state": "FOLLOW",
+              "hp": 150,
+              "maxHp": 150,
+              "x": 1129.6395137835148,
+              "y": 543.282018314158,
+              "reviveInMs": 0
+            }
+          ]
+        }
+      },
+      "reviveDelayMs": 3000,
+      "result": "PASS",
+      "elapsedMs": 56380
+    }
+  ],
+  "actualRunTotalMs": 105010,
+  "temporaryModelChecks": {
+    "result": "PASS",
+    "permanentTestAdded": false,
+    "forcedRngOnlyInTemporaryModel": true,
+    "checks": [
+      "Two equipped eggs both advance 29→30 and hatch into same UID/slots; reserve egg stays 0.",
+      "Slot level load clamps to the one maxLevel=4 definition; shrink preserves inventory.",
+      "Locked pet survives; unlocked equipped pet is eligible; success consumes exactly 5 and clears consumed equipped slots.",
+      "Uniform 1..4 failure loss checked at the upper endpoint (4); at least one selected material survives.",
+      "Egg and Mythic cannot be fusion material."
+    ]
+  },
+  "finalChangesAfterBrowser": {
+    "behavior": "Preserved original unlimited non-slot stat purchases after finding a review-only default 500 cap; petSlots still maxLevel=4. No pet combat constants changed.",
+    "presentation": "Updated visible title/HUD version and original wiki save paragraph; discarded stale raw load copy after collection load.",
+    "verification": "Module syntax, diff whitespace, temporary model and algebraic shared projectile geometry checks; no full browser rerun of completed scenarios."
+  },
+  "limits": [
+    "Actual hatch E2E used 29/30 boundary, not a repeated 0→30 fresh campaign.",
+    "Owned pets and legitimate growth were pre-boot fixtures, not earned in this short run.",
+    "Exact fusion loss and consumed equipped slot edge checked separately with temporary forced-RNG model; browser bulk used real RNG.",
+    "Grade-independent 3000ms rule is a single Config value; natural Common revival directly observed, every grade was not repeated.",
+    "No mobile hardware, every grade/family combination, long campaign, save quota stress, or CPU benchmark.",
+    "Draft PR only. Parent reviews merge and deployment."
+  ],
+  "privateRawReportSha256": {
+    "pets-result.json": "aa1ee0476f4e2caa29b425ae294c8fa825ffb211950fe4bd112fac9d389c2a87",
+    "pets-revive-result.json": "ebc4d088e7a24e6d726a18497c17fb6997e34f6d72db81b70c6880d8fd75f249"
+  },
+  "evidenceFormat": "Relevant actual snapshots are retained; repetitive full enemy lists and 60 identical fixture copies are compressed. Original raw reports are in the task workspace with hashes above."
+}

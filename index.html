@@ -316,7 +316,7 @@ body.lobby-active #stageHud,body.lobby-active #stageBanner{display:none}
 <path d="M120 175 Q130 228 218 244" stroke="#8ab8f7" stroke-width="7" stroke-linecap="round" fill="none"/><path d="M205 232l17 14 -20 6" fill="none" stroke="#abd3ff" stroke-width="4"/>
 <g font-size="16" fill="#d8f2ec" font-weight="700"><text x="86" y="84">플레이어</text><text x="414" y="84">적</text><text x="185" y="118">① 먼저 잔상 발사</text><text x="258" y="88" fill="#ffdb8e">② 가까워지면 돌진!</text><text x="97" y="279" fill="#a4caff">전장 탭 = 구르기</text></g></svg></div><p><b>공격 버튼을 누르면</b> 잔상이 적에게 날아가. 적에게 닿은 잔상은 <b>피해 없이 적을 밀어내!</b> 잔상과 충분히 떨어지면 한 번 더 눌러 돌진해. <b>빨간 조준선</b>이면 아직 너무 가까운 상태야.</p>
 <div class="guide-health-rules" aria-label="체력 규칙"><div class="guide-health-rule danger"><span class="health-sign" aria-hidden="true">−</span><div><strong>닿으면 체력 ↓</strong><span>적 몸·탄환에 맞으면 감소</span></div></div><div class="guide-health-rule heal"><span class="health-sign" aria-hidden="true">＋</span><div><strong>맞히면 체력 ↑</strong><span>적에게 준 피해만큼 회복!</span></div></div></div>
-<div class="guide-notes"><div><b>잔상 발사: 현재 체력 10%</b>아껴 쓰고, 맞혀서 회복해!</div><div><b>전장 탭 / WASD = 구르기</b>W 위 · A 왼쪽 · S 아래 · D 오른쪽. 함께 누르면 대각선으로 피해.</div></div></article>
+<div class="guide-notes"><div><b>수동 잔상: 현재 체력 10%</b>맞혀서 회복해! 잔상 메아리의 자동 재발사는 무료야.</div><div><b>전장 탭 / WASD = 구르기</b>W 위 · A 왼쪽 · S 아래 · D 오른쪽. 함께 누르면 대각선으로 피해.</div></div></article>
   <article class="guide-slide"><h2>02 · 적을 잡고 새 능력을 열자</h2><div class="guide-art"><svg viewBox="0 0 680 300" role="img" aria-label="영구 성장에서 처치 수로 레벨을 올리고 공격·생존 스탯이나 연쇄·속성 기술을 선택하는 테크트리 그림">
 <rect width="680" height="300" fill="#0d2229"/><g stroke="#638e80" stroke-width="3" fill="none"><path d="M340 70V100H126V116 M340 100V116 M340 100H554V116"/><path d="M126 183V205 M340 183V205 M554 183V205"/></g>
 <rect x="254" y="12" width="172" height="62" rx="14" fill="#2d6453" stroke="#92edbc" stroke-width="2"/><text x="340" y="37" text-anchor="middle" font-size="19" font-weight="900" fill="#eefff4">누적 처치 ↑</text><text x="340" y="56" text-anchor="middle" font-size="14" fill="#bdf5d2">레벨마다 강화 1회</text>
@@ -347,7 +347,7 @@ body.lobby-active #stageHud,body.lobby-active #stageBanner{display:none}
  <div id="wikiToc" class="wiki-toc-box"><strong>목차 바로가기</strong><div id="wikiTocItems"></div></div>
  <section class="wiki-section" id="wiki-overview" data-wiki-title="1. 게임 개요와 설계 목표"><h2>1. 게임 개요와 설계 목표</h2>
 <p><b>BOUNKO</b>는 블룸 세계관의 탑다운 2D 물리 액션 게임이다. 공격 버튼을 두 번 눌러 적에게 돌진하고, 전장을 탭하거나 WASD를 눌러 구르며 피한다. 멀리서 빠르게 충돌할수록 공격이 강해진다. 조작감 자체의 재미를 우선하며 성장과 이펙트는 이 흐름을 돕는다.</p>
-<div class="wiki-info"><b>먼저 알아야 할 체력 규칙</b><br>① <b>잔상 발사</b>에는 현재 체력의 10%가 든다.<br>② <b>적에게 몸이 닿거나 탄환을 맞으면</b> 피해를 입는다. 공격 돌진 중 부딪혀도 접촉 피해가 함께 발생할 수 있다.<br>③ <b>공격으로 적에게 실제로 준 피해만큼</b> 내 체력을 회복한다(최대 체력까지만).<br>④ 공격 버튼은 <b>잔상 발사 → 돌진</b>, 전장 탭과 WASD는 <b>회피 구르기</b>다.</div>
+<div class="wiki-info"><b>먼저 알아야 할 체력 규칙</b><br>① <b>수동 잔상 발사</b>에는 현재 체력의 10%가 든다. <b>잔상 메아리의 자동 재발사</b>는 체력·에너지 소모 없이 무료다.<br>② <b>적에게 몸이 닿거나 탄환을 맞으면</b> 피해를 입는다. 공격 돌진 중 부딪혀도 접촉 피해가 함께 발생할 수 있다.<br>③ <b>공격으로 적에게 실제로 준 피해만큼</b> 내 체력을 회복한다(최대 체력까지만).<br>④ 공격 버튼은 <b>잔상 발사 → 돌진</b>, 전장 탭과 WASD는 <b>회피 구르기</b>다.</div>
 <div class="wiki-tags"><span>모바일 우선</span><span>탑다운</span><span>Matter.js 물리</span><span>Bloom GameKit</span><span>랜덤 다각형 스테이지</span><span>보스 탄막</span><span>영구 테크트리</span></div>
 <div class="wiki-info">이 위키는 현재 단일 HTML 프로토타입의 <b>실제 기본 설정과 동작</b>을 설명한다. 테크트리·수치 표는 HTML 안의 런타임 Definition에서 생성한다. 이는 정식 출시 계획이 아니라 현재 실행 중인 프로토타입의 구현 기준이다.</div>
 <p><b>설계 불변 조건</b>: 첫 공격은 플레이어 입력으로 시작하며, 차지율은 초기 충격량과 비행 가속만 결정한다. 기본 직접 피해는 실제 충돌 접근 속도로 결정한다. 잔상 조준, 공격용 물리 돌진, 이동용 회피 구르기는 별도 행동이다. 표현 파티클은 HP나 시뮬레이션을 수정하지 않는다.</p></section><section class="wiki-section" id="wiki-flow" data-wiki-title="2. 전체 게임 흐름과 화면"><h2>2. 전체 게임 흐름과 화면</h2>
@@ -381,7 +381,7 @@ outgoingDamage = round(criticalRaw * 100 / (100 + effectiveArmor))
 inflicted = min(enemyRemainingHP, max(0, outgoingDamage))
 heal = min(inflicted, playerMaxHP - playerHP)</code></pre>
 <p><b>충전율·이동거리의 피해 배율은 없다.</b> 차지율은 초기 Impulse와 지속 가속만 바꾸므로 장거리 정타는 비행 중 실제 충돌 속도가 상승하는 방식으로 보상받는다. 공격마다 치명타는 <code>criticalChance</code> 확률로 판정하고 <code>criticalDamage</code>를 곱한다. 관통은 퍼센트 관통 후 고정 관통 순으로 적용한다.</p>
-<p><b>체력의 기본 흐름</b>: 잔상을 발사할 때마다 그 순간 체력의 10%를 사용한다(자동 발사도 동일). 두 번째 탭의 돌진은 무료다. <b>적과 몸이 부딪히면 접촉 피해를 받고</b>, 적 탄환을 맞아도 피해와 넉백을 받는다. 반대로 <b>내 공격이 적에게 실제로 입힌 피해만큼 곧바로 회복</b>한다. 단, 최대 체력은 넘지 않는다.</p>
+<p><b>체력의 기본 흐름</b>: 직접 잔상을 발사할 때 그 순간 체력의 10%를 사용한다. 「잔상 메아리」로 명중 후 자동 재발사되는 잔상은 무료이며, 자동 연격 중에도 체력·에너지를 쓰지 않는다. 두 번째 탭의 수동 돌진은 무료이고, 자동 돌진은 별도 운동 에너지를 소모한다. <b>적과 몸이 부딪히면 접촉 피해를 받고</b>, 적 탄환을 맞아도 피해와 넉백을 받는다. 반대로 <b>내 공격이 적에게 실제로 입힌 피해만큼 곧바로 회복</b>한다. 단, 최대 체력은 넘지 않는다.</p>
 <p><b>공격 중 충돌은 서로 주고받는 것</b>이다. 예를 들어 같은 충돌에서 내가 접촉 피해 25를 받고 적에게 실제 피해 40을 입히면 회복 40을 받아, 최대 체력 제한이 없을 경우 체력 순변화는 +15다. 적 유형별 피해·접촉 쿨타임·방어력에 따라 실제 값은 달라진다. 한 충돌에서 받은 피해와 회복을 모두 반영한 다음 사망을 판정하며, 체력 재생 스탯은 초당 HP를 추가 회복시킨다.</p>
 <div class="wiki-info wiki-warning">화염 지속 피해 역시 실제 입힌 만큼 현재 구현에서 플레이어 HP를 회복한다. 감속·충돌 등 시뮬레이션 결과 없는 단순 VFX만으로는 피해·회복이 발생하지 않는다.</div></section><section class="wiki-section" id="wiki-attackdash" data-wiki-title="8. 돌진 가속·비행·회복"><h2>8. 돌진 가속·비행·회복</h2>
 <p>돌진 시작 시 차지율을 부드럽게 매핑하여 최소/최대 초기 속도 변화를 계산하고, 그 결과의 크기에 비례하는 지속 가속을 설정한다. 발동 순간 목표 방향이 고정되고 기존 횡관성만 제거된다. 같은 속도로 충돌하면 첫 차지율이 달라도 같은 피해를 입힌다.</p>
@@ -393,6 +393,7 @@ acceleration = dash.acceleration × deltaV / dash.maxSpeed
 <p>기본 공격 피해 유효시간은 짧은 고정 대기시간(현재 400ms)으로 끊지 않는다. 원거리 돌진은 목표까지 비행·명중 또는 속도 소멸/수명 종료 판정으로 끝난다. 최대·최소 비행 시간과 목표 거리 여유시간은 Config의 <code>dash.flight*</code> 설정을 참조한다. 재발사 준비는 시간과 속도 조건을 함께 본다.</p></section><section class="wiki-section" id="wiki-evade" data-wiki-title="9. 회피 구르기"><h2>9. 회피 구르기</h2>
 <div class="wiki-table-wrap"><table><thead><tr><th>항목</th><th>규칙</th></tr></thead><tbody><tr><td>입력</td><td>전장 탭은 화면→월드 투영 방향, WASD는 화면 기준 상하좌우 방향을 사용. W+D 등 함께 누른 방향은 정규화하며 같은 구르기 실행 경로를 사용</td></tr><tr><td>충전량</td><td>최대 2회; 500ms마다 한 칸씩 순차 회복</td></tr><tr><td>무적</td><td>대시 시작 후 100ms 동안 적 탄환 피해만 무시; 몸체 접촉 피해는 유효</td></tr><tr><td>속도 감각</td><td>추가 Impulse를 적용한 뒤 580ms에 걸쳐 지수 감쇠, 기존 정면 관성 유지</td></tr><tr><td>공격 취소</td><td>구르기 성공 시 공격 잔상·비행·연격 상태 취소, 잔상 발사 비용 반환 없음</td></tr><tr><td>거리 충전</td><td>자동 연격 밖에서 실제 물리 이동은 100% 효율로 충전. 연격 중에는 기본 0%, 기술 해금 시 50%/100%</td></tr><tr><td>VFX</td><td>플레이어 바로 아래 가로 바 2개. 채워진 바=준비, 부분 바=다음 충전 진행, 빈 바=소모</td></tr></tbody></table></div>
 <p>대시가 벽을 통과하거나 장애물을 무조건 무시하도록 위치를 직접 이동시키지 않는다. 구르기 속도는 충돌·마찰로 감소할 수 있으며 정면 방향 기준보다 역방향으로 강제 당기지 않도록 추가 속도 성분만 제거한다.</p></section><section class="wiki-section" id="wiki-chain" data-wiki-title="10. 운동 에너지·집중/도탄 연격"><h2>10. 운동 에너지·집중/도탄 연격</h2>
+<p>「잔상 메아리」의 명중 후 자동 잔상 재발사는 <b>체력·에너지 소모 없이 무료</b>이며, 자동 연격 중 생성되는 잔상도 같은 규칙을 따른다. 직접 입력한 잔상 발사는 현재 체력 10%를 사용하고, <b>자동 돌진에는 아래의 별도 에너지 비용</b>이 적용된다.</p>
 <p>자동 연격은 <b>확률 발동을 사용하지 않는다.</b> 집중/도탄 기술을 해금한 뒤, 처음 시작할 때 <b>현재 최대 에너지가 100%로 가득 차고</b> 수동 잔상 타이밍 50% 이상으로 실제 명중해야 한다. 첫 명중한 물리 틱의 실제 이동거리도 충전한 뒤 100%인지 확정한다. 연격이 시작되면 에너지가 100% 미만이어도 비용을 지불할 수 있는 한 자동 돌진을 이어 가며, 끊긴 뒤 다시 시작하려면 현재 최대 용량 100%가 필요하다.</p>
 <pre><code>energyCapacity = 3 × (1 + 0.5 × unlockedCapacityTiers)
 autoDashCost = 1 × (1 - 0.15 × hasCostEfficiency)
@@ -543,7 +544,7 @@ boss dies -> clear all owned summons -> CLEAR -> new stage/theme/map</code></pre
     </div>
     <footer class="tech-footer"><span>자동 연격 첫 발동은 에너지 100% + 잔상 50% 이상 직접 명중. 연쇄 중 이동 충전은 기본 0%, 기술로 50%→100%. 최대 용량도 100%까지 채워야 해.</span><button id="techRefund">무료 초기화</button></footer>
   </section>
-  <div id="settings"><div class="settings-head"><h2>조작 · 물리 실험</h2><button id="closeSettings" aria-label="설정 닫기">닫기 ✕</button></div><details id="coreboundStats"><summary>기본 능력치 · 8종 <span style="color:#8cbcae;font-size:10px">설정 열기</span></summary><div id="statRows"></div><p class="caption">기본 능력치 8종만 유지합니다. 방어 관통은 대상의 방어력이 있을 때 적용됩니다. 잔상 속도·발사 준비·자동 연격은 각각 기본 물리 설정과 테크트리에서 관리합니다.</p></details><div id="settingRows"></div><p class="tech-settings-note">에너지·도탄·운동·충격 특성 및 영구 스탯은 대기 화면의 「업그레이드」에서 해금합니다.</p><label class="check"><input type="checkbox" id="showCompression" checked>목표 수축 조준선 / 남은 거리 VFX</label><label class="check"><input type="checkbox" id="showLinkPulse" checked>잔상↔목표 에너지 펄스</label><label class="check"><input type="checkbox" id="showDebug">충돌 / 잔상 계측 보이기</label><footer>잔상 차지율은 <b>돌진 시작 충격량과 돌진 비행 중의 가속도만</b> 결정합니다. 공격 피해는 <b>공격력 × 실제 충돌 접근 속도 / 기준 속도</b>이며 차지율·날아간 거리의 피해 배율은 없습니다. 멀리서 정확히 시작하면 더 오래 가속하여 충돌 피해가 커질 수 있습니다. 공격 돌진은 시작 시 횡방향 속도를 제거하며 적을 따라 궤도를 꺾지 않습니다. 전장 탭·WASD는 같은 구르기이고 공격을 취소하며, 충전 2회와 순차 회복 500ms 및 시작 100ms 탄환 무적을 가집니다. 플레이어의 수축 고리는 다음 발사 준비, 목표 주변 에임은 남은 거리 기준 타이밍을 표시합니다. 발사에 현재 HP 10%가 소모되며 자동 재발사도 동일합니다. 피해 회복과 접촉 피해는 실제 적용량을 사용합니다. 기존 50% 차지 손익분기 가정은 새 속도 피해식에서 더 이상 고정되지 않습니다. 초기 수치는 조정용이며 정식 밸런스가 아닙니다.</footer></div>
+  <div id="settings"><div class="settings-head"><h2>조작 · 물리 실험</h2><button id="closeSettings" aria-label="설정 닫기">닫기 ✕</button></div><details id="coreboundStats"><summary>기본 능력치 · 8종 <span style="color:#8cbcae;font-size:10px">설정 열기</span></summary><div id="statRows"></div><p class="caption">기본 능력치 8종만 유지합니다. 방어 관통은 대상의 방어력이 있을 때 적용됩니다. 잔상 속도·발사 준비·자동 연격은 각각 기본 물리 설정과 테크트리에서 관리합니다.</p></details><div id="settingRows"></div><p class="tech-settings-note">에너지·도탄·운동·충격 특성 및 영구 스탯은 대기 화면의 「업그레이드」에서 해금합니다.</p><label class="check"><input type="checkbox" id="showCompression" checked>목표 수축 조준선 / 남은 거리 VFX</label><label class="check"><input type="checkbox" id="showLinkPulse" checked>잔상↔목표 에너지 펄스</label><label class="check"><input type="checkbox" id="showDebug">충돌 / 잔상 계측 보이기</label><footer>잔상 차지율은 <b>돌진 시작 충격량과 돌진 비행 중의 가속도만</b> 결정합니다. 공격 피해는 <b>공격력 × 실제 충돌 접근 속도 / 기준 속도</b>이며 차지율·날아간 거리의 피해 배율은 없습니다. 멀리서 정확히 시작하면 더 오래 가속하여 충돌 피해가 커질 수 있습니다. 공격 돌진은 시작 시 횡방향 속도를 제거하며 적을 따라 궤도를 꺾지 않습니다. 전장 탭·WASD는 같은 구르기이고 공격을 취소하며, 충전 2회와 순차 회복 500ms 및 시작 100ms 탄환 무적을 가집니다. 플레이어의 수축 고리는 다음 발사 준비, 목표 주변 에임은 남은 거리 기준 타이밍을 표시합니다. 수동 잔상 발사에는 현재 HP 10%가 소모됩니다. 잔상 메아리의 자동 재발사는 자동 연격 중에도 체력·에너지를 쓰지 않으며, 자동 돌진의 별도 에너지 비용은 유지됩니다. 피해 회복과 접촉 피해는 실제 적용량을 사용합니다. 기존 50% 차지 손익분기 가정은 새 속도 피해식에서 더 이상 고정되지 않습니다. 초기 수치는 조정용이며 정식 밸런스가 아닙니다.</footer></div>
 </div>
 <div id="gameover"><div class="over-inner"><div class="over-tag">RUN ENDED</div><h1>쓰러졌어</h1><p id="runSummary"></p><button id="retry">대기 화면으로</button></div></div>
 <div id="load"><div id="loadbox"><h1>BOUNKO</h1><p id="loadtext">물리 엔진과 공통 게임 모듈을 불러오는 중…</p><details><summary>라이브러리 정보</summary><p>Matter.js 0.20.0 / Bloom GameKit ESM · 고정 커밋 d1e2c385. 최초 실행에는 인터넷 연결이 필요합니다.</p></details></div></div>
@@ -551,7 +552,7 @@ boss dies -> clear all owned summons -> CLEAR -> new stage/theme/map</code></pre
 <script type="module">
 
 const KIT = 'https://cdn.jsdelivr.net/gh/byh-playground/bloom-gamekit@d1e2c385033ad04a7a004cfbe9558948ef07a6d1/';
-const VERSION = '0.10.3', BUILD_ID = '20261010T040601Z-wasd-direction-dash';
+const VERSION = '0.10.4', BUILD_ID = '20261010T044653Z-free-echo-relaunch';
 const $ = id => document.getElementById(id);
 const loadtext = $('loadtext');
 const ERROR = error => { console.error(error); loadtext.innerHTML = '<strong style="color:#fdb8a9">실행 라이브러리를 불러오지 못했습니다.</strong><br>인터넷 연결 상태를 확인하고 다시 여세요.<br>'+String(error.message||error).replace(/[<>]/g,''); };
@@ -621,7 +622,7 @@ try {
   const TECH_SAVE_KEY='bloom-impulse-progression-v3';
   try { localStorage.removeItem(LEGACY_TECH_KEY); localStorage.removeItem(PREVIOUS_TECH_KEY); } catch(e) {}
   const TECH_NODES=Object.freeze([
-    {id:'echo',branch:'chain',name:'잔상 메아리',symbol:'↻',cost:1,requires:[],desc:'명중한 적에게 잔상 자동 재발사 · 돌진은 직접 입력'},
+    {id:'echo',branch:'chain',name:'잔상 메아리',symbol:'↻',cost:1,requires:[],desc:'명중한 적에게 잔상 무료 자동 재발사 · 돌진은 직접 입력'},
     {id:'energyCore',branch:'chain',name:'운동 에너지',symbol:'◉',cost:1,requires:['echo'],desc:'최대 에너지 100% + 직접 명중으로 연쇄 시작 · 자동 돌진은 에너지 소모'},
     {id:'focusChain',branch:'chain',name:'집중 연격',symbol:'◎',cost:1,requires:['energyCore'],desc:'에너지 100% + 잔상 타이밍 50% 이상 명중하면 같은 적 연속 충돌'},
     {id:'ricochet',branch:'chain',name:'도탄 연격',symbol:'⤳',cost:1,requires:['energyCore'],desc:'에너지 100% + 잔상 타이밍 50% 이상 명중하면 다른 적으로 도탄'},
@@ -1430,9 +1431,9 @@ try {
       x=nx;y=ny;
     }
   }}
-  /** Charge only for a successfully spawned shadow. Buffered, manual and automatic chain launches share this path. */
-  function payShadowCost(){
-    const cost=health*C.player.shadowCostRate;
+  /** Account only for a successfully spawned shadow. Manual input pays HP; echo relaunches are free. */
+  function payShadowCost(source){
+    const cost=source==='echo'?0:health*C.player.shadowCostRate;
     health-=cost; launchCostTotal+=cost; launchCount++;
     if(cost>0)floatText(player.position.x,player.position.y-16,`-${formatCombatNumber(cost)} HP · 발사`,[.98,.65,.43,1]);
     return cost;
@@ -1659,7 +1660,7 @@ try {
     }
   }
   function rayCircleDistance(px,py,dx,dy,x,y,r){const ox=x-px,oy=y-py,along=ox*dx+oy*dy;if(along<0)return Infinity;const side2=ox*ox+oy*oy-along*along;if(side2>r*r)return Infinity;return Math.max(0,along-Math.sqrt(Math.max(0,r*r-side2)));}
-  function launch(dir,target){if(mode!=='READY')return false;
+  function launch(dir,target,source='manual'){if(mode!=='READY')return false;
     const sx=player.position.x,sy=player.position.y,n=norm(dir.x,dir.y);
     const wallDist=Math.min(n.x>0?(C.world.width-30-sx)/n.x:n.x<0?(30-sx)/n.x:Infinity,
       n.y>0?(C.world.height-30-sy)/n.y:n.y<0?(30-sy)/n.y:Infinity);
@@ -1677,8 +1678,9 @@ try {
       travel:0,limit,age:0,targetId:detected?.id??null,followTarget:!!target,
       goalX:sx+n.x*limit,goalY:sy+n.y*limit,initialGap:gap,
       arrived:false,contactAtMs:-Infinity};
-    aimTargetId=detected?.id??null;mode='SHADOW';payShadowCost();burst(sx,sy,65,6,[.45,.9,1,1]);return true;
+    aimTargetId=detected?.id??null;mode='SHADOW';payShadowCost(source);burst(sx,sy,65,6,[.45,.9,1,1]);return true;
   }
+  // Automatic aim still comes from manual input; only the recovery echo uses the free source.
   function launchAuto(){const e=selectedAim();if(e){return launch({x:e.body.position.x-player.position.x,y:e.body.position.y-player.position.y},e);}return launch({x:1,y:0},null);}
   // The shadow can always be launched at a point-blank target, but the body
   // needs actual separation from that shadow before initiating a charge dash.
@@ -2121,7 +2123,7 @@ try {
         const target=e;
         attackOrigin=null;chainTargetId=null;beginReady();
         if(mode==='READY'&&!manualBuffered&&C.chain.enabled&&target&&enoughGap){
-          if(launch({x:target.body.position.x-player.position.x,y:target.body.position.y-player.position.y},target)){
+          if(launch({x:target.body.position.x-player.position.x,y:target.body.position.y-player.position.y},target,'echo')){
             autoDashPlanned=shouldAuto;
             if(autoDashPlanned)ringFx(player.position.x,player.position.y,60,[1,.84,.42,1],370);
           }else{endChain();}
@@ -2677,7 +2679,7 @@ try {
   }
   // DOM layout and settings (render owner handles CSS/DPR; game owns world projection).
   function resize(){const w=Math.max(1,canvas.clientWidth),h=Math.max(1,canvas.clientHeight);renderer.resize(w,h,Math.min(window.devicePixelRatio||1,2));}
-  const settings=[['player.shadowCostRate','잔상 발사 비용 (현재 HP 비율)',0,.25,.01],['shadow.initialSpeed','잔상 초기 속도',20,420,10],['shadow.acceleration','잔상 가속도',400,5300,100],['shadow.range','잔상 사거리',250,980,10],['shadow.minDashDistance','잔상↔플레이어 최소 돌진 거리',10,80,2],['shadow.contactPushSpeed','잔상 넉백 초기 속도(px/s)',0,800,20],['shadow.contactPushControlMs','잔상 넉백 추적 억제(ms)',0,1000,25],['dash.minSpeed','최소 돌진 Δv',80,500,10],['dash.maxSpeed','최대 돌진 Δv',500,1250,10],['dash.acceleration','돌진 추가 가속도 (px/s²)',150,2600,50],['damage.referenceSpeed','공격력 100% 기준 충돌 속도',500,2600,50],['dash.rearmMinMs','재발사 최소 대기(ms)',70,350,5],['dash.rearmMaxMs','재발사 최대 대기(ms)',200,750,10],['dash.rearmSpeed','조기 재발사 속도',250,1050,25],['dash.flightMaxMs','돌진 최대 비행(ms)',800,3500,50],['dash.inputBufferMs','입력 예약 시간(ms)',80,800,10],['physics.restitution','충돌 반발 계수',0.1,1,0.05],['physics.maxSpeed','물리 최대 속도',900,3000,100],['physics.frictionAir','공기 저항',0.001,0.035,0.001],['enemy.contactDamage','접촉 피해',5,50,1],['enemy.chaseRadius','적 공통 감지 상한',200,1100,25],['enemy.knockbackMultiplier','적 피격 반동 배율',0,2,.05],['enemy.projectileDamageMultiplier','원거리 포자탄 피해 배율',0,2,.05],['enemy.types.scout.speed','추적형 속도',50,250,10],['enemy.types.brute.push','중장갑 밀어내기',100,800,20],['enemy.types.spitter.projectileSpeed','포자탄 속도',180,850,20],['timing.bulletStart','불릿타임 시작 차지',.60,.95,.01],['timing.bulletScale','불릿타임 배속',.15,.9,.05],['timing.coyoteMs','코요테 타임(ms)',50,240,5],['timing.shadowHitstopMs','접촉 히트스탑(ms)',10,130,5],['timing.hitstopMs','공격 히트스탑(ms)',10,130,5],['chain.minTriggerCharge','자동 연격 시작 최소 잔상 타이밍',.10,1,.05],['energy.baseChargePerDiameter','몸체 직경당 기본 에너지 충전 (내부 단위)',.01,.30,.01],['energy.baseCapacityCharges','기본 최대 에너지 (내부 단위)',1,5,.25],['energy.baseAutoCostCharges','자동 돌진당 에너지 소비 (내부 단위)',.4,2,.05],['energy.ricochetRangeRate','도탄 탐색 반경 / 잔상 사거리',.2,1,.05],['element.fire.durationMs','점화 지속시간(ms)',500,6000,100],['element.fire.damageRate','화염 기본피해 비율',.05,.8,.05],['element.lightning.markDurationMs','전도 지속시간(ms)',500,5000,100],['fx.intensity','목표 VFX 강도',.2,2,.1],['fx.reticleScale','목표 조준선 크기',.65,1.6,.05],['fx.pulseSpeed','에너지 펄스 속도',.2,2,.1]];
+  const settings=[['player.shadowCostRate','수동 잔상 발사 비용 (현재 HP 비율)',0,.25,.01],['shadow.initialSpeed','잔상 초기 속도',20,420,10],['shadow.acceleration','잔상 가속도',400,5300,100],['shadow.range','잔상 사거리',250,980,10],['shadow.minDashDistance','잔상↔플레이어 최소 돌진 거리',10,80,2],['shadow.contactPushSpeed','잔상 넉백 초기 속도(px/s)',0,800,20],['shadow.contactPushControlMs','잔상 넉백 추적 억제(ms)',0,1000,25],['dash.minSpeed','최소 돌진 Δv',80,500,10],['dash.maxSpeed','최대 돌진 Δv',500,1250,10],['dash.acceleration','돌진 추가 가속도 (px/s²)',150,2600,50],['damage.referenceSpeed','공격력 100% 기준 충돌 속도',500,2600,50],['dash.rearmMinMs','재발사 최소 대기(ms)',70,350,5],['dash.rearmMaxMs','재발사 최대 대기(ms)',200,750,10],['dash.rearmSpeed','조기 재발사 속도',250,1050,25],['dash.flightMaxMs','돌진 최대 비행(ms)',800,3500,50],['dash.inputBufferMs','입력 예약 시간(ms)',80,800,10],['physics.restitution','충돌 반발 계수',0.1,1,0.05],['physics.maxSpeed','물리 최대 속도',900,3000,100],['physics.frictionAir','공기 저항',0.001,0.035,0.001],['enemy.contactDamage','접촉 피해',5,50,1],['enemy.chaseRadius','적 공통 감지 상한',200,1100,25],['enemy.knockbackMultiplier','적 피격 반동 배율',0,2,.05],['enemy.projectileDamageMultiplier','원거리 포자탄 피해 배율',0,2,.05],['enemy.types.scout.speed','추적형 속도',50,250,10],['enemy.types.brute.push','중장갑 밀어내기',100,800,20],['enemy.types.spitter.projectileSpeed','포자탄 속도',180,850,20],['timing.bulletStart','불릿타임 시작 차지',.60,.95,.01],['timing.bulletScale','불릿타임 배속',.15,.9,.05],['timing.coyoteMs','코요테 타임(ms)',50,240,5],['timing.shadowHitstopMs','접촉 히트스탑(ms)',10,130,5],['timing.hitstopMs','공격 히트스탑(ms)',10,130,5],['chain.minTriggerCharge','자동 연격 시작 최소 잔상 타이밍',.10,1,.05],['energy.baseChargePerDiameter','몸체 직경당 기본 에너지 충전 (내부 단위)',.01,.30,.01],['energy.baseCapacityCharges','기본 최대 에너지 (내부 단위)',1,5,.25],['energy.baseAutoCostCharges','자동 돌진당 에너지 소비 (내부 단위)',.4,2,.05],['energy.ricochetRangeRate','도탄 탐색 반경 / 잔상 사거리',.2,1,.05],['element.fire.durationMs','점화 지속시간(ms)',500,6000,100],['element.fire.damageRate','화염 기본피해 비율',.05,.8,.05],['element.lightning.markDurationMs','전도 지속시간(ms)',500,5000,100],['fx.intensity','목표 VFX 강도',.2,2,.1],['fx.reticleScale','목표 조준선 크기',.65,1.6,.05],['fx.pulseSpeed','에너지 펄스 속도',.2,2,.1]];
   for(const [key,label,min,max,stepValue] of settings){const div=document.createElement('div');div.className='setting-row';const labelEl=document.createElement('label');labelEl.textContent=label;const inp=document.createElement('input');inp.type='range';inp.min=min;inp.max=max;inp.step=stepValue;inp.value=key.split('.').reduce((obj,part)=>obj[part],C);inp.id='config_'+key.replaceAll('.','_');const out=document.createElement('output');out.textContent=inp.value;inp.addEventListener('input',()=>{const parts=key.split('.');let target=C;for(let i=0;i<parts.length-1;i++)target=target[parts[i]];target[parts.at(-1)]=Number(inp.value);out.textContent=inp.value;});div.append(labelEl,inp,out);$('settingRows').append(div);}
   // Only the eight stats that affect this game remain; movement and automation belong to their own owners.
   const coreboundStatSettings=[

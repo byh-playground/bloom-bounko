@@ -2,7 +2,7 @@
 
 블룸 세계관의 탑다운 2D 물리 액션 공 튕기기 게임입니다. 잔상을 보내 조준·충전하고, 타이밍에 맞춰 몸체를 돌진시켜 적과 충돌합니다. 전장을 탭해 구르며 피하고, 처치로 모은 성장 자원으로 기술과 기본 능력치를 강화합니다.
 
-게임·스타일·도움말·상세 위키는 `index.html` 하나에 들어 있습니다. 개발 버전 **0.10.3**은 기존 화면 클릭을 유지하며 PC WASD 방향 대시를 추가한 Candidate입니다. 검증 범위는 아래 기록을 참조합니다.
+게임·스타일·도움말·상세 위키는 `index.html` 하나에 들어 있습니다. 현재 버전 **0.10.4**는 테크트리 잔상 메아리의 자동 재발사를 무료로 바꿨습니다. 수동 잔상 발사는 현재 HP 10%, 자동 돌진은 기존 운동 에너지 비용을 유지합니다. 검증 범위는 아래 기록을 참조합니다.
 
 ## 실행
 
@@ -29,7 +29,7 @@ npx --yes http-server . -p 8000 -c-1
 
 게임 화면에서 WASD를 사용합니다. 메뉴·입력란과 Ctrl/Alt/Meta 조합에서는 게임 입력을 제출하지 않으며, 포커스 이탈이나 메뉴 진입 시 눌림과 대기 입력을 해제합니다. WASD와 화면 클릭은 동일한 회피 충전·쿨다운·공격 취소 규칙을 적용합니다.
 
-잔상 발사에는 현재 체력의 10%가 소모됩니다. 공격 성공 시 체력을 회복하며, 피해는 실제 충돌 속도로 계산합니다. 자세한 타이밍·반동·회피·보스·성장 규칙은 내장 위키를 참조합니다.
+수동 잔상 발사에는 현재 체력의 10%가 소모됩니다. 「잔상 메아리」의 명중 후 자동 재발사는 자동 연격 중에도 체력·에너지 소모 없이 무료입니다. 자동 돌진의 별도 운동 에너지 비용은 유지됩니다. 실패한 발사에는 비용이 없습니다. 공격 성공 시 체력을 회복하며, 피해는 실제 충돌 속도로 계산합니다. 자세한 타이밍·반동·회피·보스·성장 규칙은 내장 위키를 참조합니다.
 
 누적 처치·해금 기술·능력치 강화는 같은 브라우저와 같은 주소의 로컬 저장소에 보관됩니다. 진행 중인 판의 위치와 체력은 저장하지 않습니다. 기존 저장 키 `bloom-impulse-progression-v3`와 데이터 형식은 유지했습니다.
 
@@ -39,15 +39,15 @@ npx --yes http-server . -p 8000 -c-1
 - 최초 원본 커밋: `7919b0c80e8dac8d6e16beced368010e7fcdbf16`.
 - 원본 BUILD_ID: `20261010T102147+0900-shadow-contact-recoil`.
 - 원본 SHA-256: `37e85266bd68a823fd0268785b5ecf554a7bb0f915b238fd80e9877d596ecd0a`.
-- 현재 BUILD_ID: `20261010T040601Z-wasd-direction-dash`.
-- 현재 `index.html` SHA-256: `9a0692a1bf29217a8616b3956156c9e9a8ff017f02bd94902a4c5704a7ee78b6`.
+- 현재 BUILD_ID: `20261010T045904Z-free-echo-relaunch`.
+- 현재 `index.html` SHA-256: `8df04d0082b112facbfea38955dafd8cea1129824785e79a15cfa78c27ecb68e`.
 
 | 의존성 | 실제 사용 경로 |
 | --- | --- |
 | Matter.js 0.20.0 | [jsDelivr npm 빌드](https://cdn.jsdelivr.net/npm/matter-js@0.20.0/build/matter.min.js) |
 | Bloom GameKit | 커밋 `d1e2c385033ad04a7a004cfbe9558948ef07a6d1`의 루트 [rendering.js](https://github.com/byh-playground/bloom-gamekit/blob/d1e2c385033ad04a7a004cfbe9558948ef07a6d1/rendering.js), [input.js](https://github.com/byh-playground/bloom-gamekit/blob/d1e2c385033ad04a7a004cfbe9558948ef07a6d1/input.js), [simloop.js](https://github.com/byh-playground/bloom-gamekit/blob/d1e2c385033ad04a7a004cfbe9558948ef07a6d1/simloop.js) |
 
-GameKit은 위 고정 커밋의 루트 ESM을 jsDelivr에서 가져옵니다. 초기 이관에서는 제목·대기 화면·접근성 이름·내장 위키를 BOUNKO로 정리하고, 실제 루트 import와 맞도록 의존성 설명을 수정했습니다. 0.10.2 이관 시 게임 실행 모듈은 BUILD_ID 외에 원본과 동일했습니다. 0.10.3은 기존 GameKit 입력 수집과 회피 실행 경로를 재사용하며, 밸런스·공격 메커니즘·저장 계약을 유지합니다. `.gitattributes`로 HTML의 LF 줄바꿈을 고정했습니다.
+GameKit은 위 고정 커밋의 루트 ESM을 jsDelivr에서 가져옵니다. 초기 이관에서는 제목·대기 화면·접근성 이름·내장 위키를 BOUNKO로 정리하고, 실제 루트 import와 맞도록 의존성 설명을 수정했습니다. 0.10.2 이관 시 게임 실행 모듈은 BUILD_ID 외에 원본과 동일했습니다. 0.10.3은 기존 GameKit 입력 수집과 회피 실행 경로를 재사용하며, 밸런스·공격 메커니즘·저장 계약을 유지합니다. 0.10.4는 공통 `launch`에 발사 원인(`manual` / `echo`)을 명시해 메아리만 무료로 처리합니다. 발사 성공 뒤에만 비용과 발사 횟수를 기록하므로 실패한 발사에는 비용이 없고, 무료 메아리도 발사 횟수에 포함됩니다. `.gitattributes`로 HTML의 LF 줄바꿈을 고정했습니다.
 
 ## Pages 정적 배포
 
@@ -62,6 +62,12 @@ GitHub Pages의 게시 소스는 Settings → Pages → Build and deployment →
 [공통 개발 규칙](https://github.com/byh-playground/bloom-reference/blob/main/rules/development.html)과 [공통 프로젝트 관리 규칙](https://github.com/byh-playground/bloom-reference/blob/main/rules/project-management.html)을 참조합니다. 검증 정책의 원본은 [관리 규칙 §13](https://github.com/byh-playground/bloom-reference/blob/main/rules/project-management.html#verification)입니다. 후속 변경은 브랜치와 Draft PR에서 작업합니다.
 
 ## 실제 검증 범위
+
+0.10.4는 실제 Edge 154.0.4258.62와 고정된 실제 라이브러리로 수동 잔상 HP 100→90, 자동 연격 중 메아리 추가 HP·에너지 비용 0, 자동 돌진 에너지 3→2, 대표 WASD·클릭 이동과 성장 저장 복구를 **PASS (9.168초)** 했습니다. 일반 메아리는 앞선 실제 실행에서 재발사 전후 HP 100→100과 누적 발사 비용 30→30을 관측했고, 이후 제목·HUD 버전/수동 비용 문구·빌드 식별자 외에 게임 로직이 같음을 확인했습니다. 정상 입력·물리·RAF를 사용했고, 초기 성장 저장 35킬 fixture에서 기술을 UI로 구매했습니다. 플레이 중 HP·에너지·설정은 강제 변경하지 않았습니다.
+
+관찰값·각 산출물 해시·최초 누적 기대값 오류, 후속 전투 사망과 게임오버 화면의 검사 도구 버튼 오류는 [메아리 검증 기록](docs/verification-echo-2026-10-10.json)에 남겼습니다. 실패한 발사의 무비용은 기존 선행 guard를 코드 리뷰로 확인했고 브라우저의 벽 발사 실패는 직접 실행하지 않았습니다. 모바일·보스 완주·전체 기술 조합·장시간 플레이는 미검증입니다.
+
+### 0.10.3 WASD 검증
 
 0.10.3 변경은 실제 Edge 154.0.4258.62와 위 고정 라이브러리에서 **PASS (18.536초)** 했습니다. WASD 네 방향·W+D/A+S 대각선의 동일 속도·키 반복·실제 탭 포커스 이탈/복귀·메뉴/입력란·수정 키 조합·충전 소모/회복·기존 클릭·공격 취소·실제 충전 공격 명중·대기 복귀·기존 저장값 복구를 확인했습니다. 정상 입력·물리·RAF를 사용하며 모의 라이브러리나 게임 상태 강제 변경은 없습니다.
 

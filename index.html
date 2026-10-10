@@ -286,7 +286,7 @@ body.lobby-active #stageHud,body.lobby-active #stageBanner{display:none}
 </head><body>
 <canvas id="game" tabindex="0" aria-label="BOUNKO(바운코) 물리 전투 게임"></canvas>
 <div id="hud">
-  <div id="top"><div><div id="brand">BOUNKO<small>PHYSICS ACTION LAB · v0.12.3</small></div><div class="stats"><div><span class="stat-label">HP</span><span class="stat-num" id="playerhp">100</span></div><div><span class="stat-label">COMBO</span><span class="stat-num gold" id="combo">0</span></div><div><span class="stat-label">HITS</span><span class="stat-num" id="hits">0</span></div><div><span class="stat-label">SPEED</span><span class="stat-num" id="speed">0</span></div></div></div><div id="score"><span class="stat-label">KNOCKOUT</span><span class="stat-num gold" id="kills">0</span><div class="pills"><span class="pill" id="fps">-- FPS</span><span class="pill" id="state">READY</span></div></div></div>
+  <div id="top"><div><div id="brand">BOUNKO<small>PHYSICS ACTION LAB · v0.12.4</small></div><div class="stats"><div><span class="stat-label">HP</span><span class="stat-num" id="playerhp">100</span></div><div><span class="stat-label">COMBO</span><span class="stat-num gold" id="combo">0</span></div><div><span class="stat-label">HITS</span><span class="stat-num" id="hits">0</span></div><div><span class="stat-label">SPEED</span><span class="stat-num" id="speed">0</span></div></div></div><div id="score"><span class="stat-label">KNOCKOUT</span><span class="stat-num gold" id="kills">0</span><div class="pills"><span class="pill" id="fps">-- FPS</span><span class="pill" id="state">READY</span></div></div></div>
   <div id="options"><button id="tune" aria-label="설정">설정</button><button id="restart" aria-label="대기 화면으로">대기</button></div><div id="augments" role="group" aria-label="해금된 특성"></div>
   <div id="targetcue" aria-hidden="true"></div>
   <div id="toast" aria-live="polite"></div>
@@ -502,7 +502,12 @@ availableUpgrades = (level - 1) - sum(learnedTechCosts) - sum(statInvestments)</
 <div class="wiki-table-wrap"><table><thead><tr><th>용어</th><th>의미</th></tr></thead><tbody><tr><td>잔상 SHADOW</td><td>적에게 가속하며 접근하는 공격 준비 객체. 플레이어의 이동과 독립</td></tr><tr><td>GOLDEN</td><td>잔상 표면 접촉 직후 짧은 정확 타이밍 상태</td></tr><tr><td>COYOTE</td><td>골든 이후 짧은 늦은 입력 허용 상태. 차지 보상 감소</td></tr><tr><td>회피 구르기</td><td>전장 탭·WASD에 반응하는 별도 이동/회피 행동. 피해 공격 아님</td></tr><tr><td>운동 에너지</td><td>실제 플레이어 본체 이동 거리로 충전되는 자동 돌진 자원</td></tr><tr><td>자동 연격/도탄</td><td>동일 적 반복 충돌 / 인근 다른 적으로 자동 충돌</td></tr><tr><td>전도/점화</td><td>다음 명중 피해 증폭·주변 전파 / 지속 피해와 적끼리 물리 접촉 전염</td></tr><tr><td>후처리 VFX</td><td>게임이 확정한 명중·피해·회복·연결 상태를 그리기만 하는 표현</td></tr></tbody></table></div>
 <p><a href="https://github.com/byh-playground/bloom-reference">BLOOM Reference</a> · <a href="https://github.com/byh-playground/bloom-reference/blob/main/rules/development.html">공통 개발규칙</a> · <a href="https://github.com/byh-playground/bloom-reference/blob/main/rules/project-management.html">관리 규칙</a> · <a href="https://github.com/byh-playground/bloom-reference/blob/main/labs/particles.html">파티클 연구소</a> · <a href="https://github.com/byh-playground/bloom-gamekit">Bloom GameKit</a>.</p></section>
 <section class="wiki-section" id="wiki-audio" data-wiki-title="24. 효과음과 설정"><h2>24. 효과음과 설정</h2><p>수동·메아리 발사, 충돌 강도, 자동 돌진·도탄·연격, 충전·회피, 적·보스 공격, 실제 피해·회복·처치·사망, 성장·스테이지, 알·부화·합성·동행 부활과 메뉴 조작에 효과음이 반응한다. 배경 입자는 소리를 반복하지 않는다.</p><p>로비·설정의 전체 음량과 음소거, 설정의 종류별 음량은 로컬 저장된다. 같은 종류 최소 간격·동시 수·전체 최대 12음과 우선순위로 밀집 전투를 제한한다. 음량·압축 값은 초기 추천이다. 브라우저가 허용한 실제 입력으로 소리를 열며, 중단 시 정리하고 다음 입력에서 재개한다. 잠금·음소거 중 소리는 나중에 재생하지 않는다.</p></section>
-<section class="wiki-section" id="wiki-pets" data-wiki-title="25. 영구 동행 · 알 · 합성"><h2>25. 영구 동행 · 알 · 합성</h2><p>보스 처치마다 그 보스의 정해진 결과인 알 1개를 영구 보유한다. 보유 수는 제한하지 않는다. 기본 동행 1칸에 슬롯 투자 4회로 최대 5칸이며 알과 펫이 같은 칸을 쓴다. 장착 알은 플레이어·펫의 모든 실제 처치마다 각각 +1, 30처치에 같은 UID·슬롯의 Common 펫으로 바뀐다. 예비 알은 진행하지 않는다.</p><p>펫은 접근 → 준비 → 물리 돌진 → 충돌 → 반동 → 재접근한다. 기본 피해 = 펫 공격력 × 충돌 직전 상대 접근 속도 ÷ 1600, 대상 방어를 공통 공식으로 적용한다. 가만히 겹친 몸은 펫에 피해를 주지 않으며 적 돌진과 실제 투사체는 피해를 준다. 펫 사망은 보유를 잃지 않고 3초 뒤 플레이어 근처에 최대 HP로 복귀한다. 수치는 Config의 측정 추천값이며 부활 3000ms는 확정 규칙이다.</p><p>발견한 동행의 대표 능력은 발견 기록에서 확인한다. Rare부터 계열별 추가 능력, Legendary부터 추가 탄막을 더한다. 모든 등급은 기본 물리 공격을 유지한다. 등급별 체력·공격력 ×1.8, 크기·범위 ×1.05를 적용한다.</p><p>같은 종·등급 5마리 합성의 성공률은 Common→Mythic 순 64/32/16/8/4%. 성공은 5마리를 상위 1마리로 바꾸며 실패는 1~4마리를 균등 소모한다. 잠금만 보호하고 장착 여부는 보호하지 않는다. 예비 재료를 먼저 사용하며 연속 합성도 선택한 등급만 처리한다. 알·Mythic은 재료가 아니다. 발견 전에는 알의 정체를 숨기고 처음 부화할 때 모습·이름·대표 능력을 공개한다. 발견 기록은 보유·합성 소모와 독립해 유지한다. 보유·잠금·편성·부화 진행·슬롯 투자는 로컬 저장되어 사망·재시작에 유지된다.</p></section>
+<section class="wiki-section" id="wiki-pets" data-wiki-title="25. 영구 동행 · 알 · 합성"><h2>25. 영구 동행 · 알 · 합성</h2>
+<p>적에게 피해를 주어 처치하면 일반 적과 소환수는 <b>5%</b>, 보스는 <b>10%</b> 확률로 같은 종의 알 1개를 얻는다. 처치당 추첨은 한 번이다. 자폭 완료·소환 만료·스테이지 정리·동행 사망은 처치 보상이 없다. 장착한 모든 알은 직접 적중 처치와 그 적중에서 시작한 상태 피해 처치마다 +1이며 소환수도 포함한다. <b>30처치</b>에 같은 소유 ID·슬롯·종의 Common으로 부화한다. 예비 알은 진행하지 않는다.</p>
+<p>기본 1칸에서 슬롯 강화 4회로 최대 5칸이다. Common은 물리 충돌 돌진을 하고, Uncommon부터 원래 종의 능력을 해금한다. 높은 등급은 기존 능력과 패턴을 성장시키며 Mythic은 완성 패턴을 사용한다. 보스 동행도 같은 능력과 소환수를 사용한다. 원래 보스에 없는 회복 능력을 추가하지 않는다. 동행은 쓰러지면 <b>3초</b> 뒤 최대 HP·새 능력 상태로 복귀한다. 플레이어의 기술·스탯·운동 에너지를 복제하거나 소비하지 않는다.</p>
+<p>적과 동행은 같은 Unit·능력·성체 그림을 사용한다. 목표·이동 의도는 컨트롤러, 색·그림·알의 색과 무늬는 외형 설정, 사망 후 보상·복귀는 각각의 사망 정책이 소유한다. 같은 진영의 충돌·투사체·광역 공격은 피해를 주지 않는다. 보스의 탄막 대기·소환 수는 소유 Unit마다 계산한다.</p>
+<div id="wikiPetSpeciesTable"></div>
+<p>같은 종·등급 5마리를 합성한다. Common→Uncommon→Rare→Epic→Legendary→Mythic 성공률은 64/32/16/8/4%다. 성공은 5마리 소모·상위 1마리 생성, 실패는 1~4마리 균등 소모다. 명시적 잠금만 보호하고 장착 여부는 보호하지 않는다. 예비 재료를 먼저 사용하며 연속 합성도 선택한 등급만 처리한다. 알·Mythic은 재료가 아니다. 발견 전에는 알의 이름·상세를 숨기고 성체에서 온 색과 무늬만 단서로 보여준다. 첫 부화에서 이름·모습·대표 능력을 공개하며, 발견 기록은 합성 소모와 독립해 유지한다. 소유 ID·종 ID·등급·잠금·편성·부화 진행·발견은 같은 저장 키에 보존한다.</p></section>
 <section class="wiki-section" id="wiki-stage-pools" data-wiki-title="26. 스테이지·보스 조합 풀 상세 명세">
 <h2>26. 절차적 생성·보스 시스템 풀</h2>
 <p><b>콘텐츠를 개별 코드로 추가하지 않는다.</b> THEME_POOL 정의는 테마별 최초 등장 스테이지·출현 가중치·색상·지형 연산 레시피·외형·보스 타입만 소유한다. 보스는 BOSS_POOL 정의의 외형 프리셋·행동 풀 참조·소환수·변형률을 조합한다. 신규 테마는 확장 구간 시작(1·4·7…)에 최초 등장하도록 정의하며 이후 구간의 시드 기반 후보에 편입한다.</p>
@@ -583,37 +588,30 @@ next stage -> centered stage number; 4/7/10... expands map/theme segment</code><
 <script type="module">
 
 const KIT = 'https://cdn.jsdelivr.net/gh/byh-playground/bloom-gamekit@d1e2c385033ad04a7a004cfbe9558948ef07a6d1/';
-const VERSION = '0.12.3', BUILD_ID = '20261010T151119Z-volume-enemies';
+const VERSION = '0.12.4', BUILD_ID = '20261010T170000Z-all-species';
 const $ = id => document.getElementById(id);
 const loadtext = $('loadtext');
 const ERROR = error => { console.error(error); loadtext.innerHTML = '<strong style="color:#fdb8a9">실행 라이브러리를 불러오지 못했습니다.</strong><br>인터넷 연결 상태를 확인하고 다시 여세요.<br>'+String(error.message||error).replace(/[<>]/g,''); };
 try {
   if (!window.Matter) throw new Error('Matter.js 0.20.0 스크립트 로딩 실패');
-  const [{Renderer2D}, {ActionState,createDOMInput}, {createLoop}, {petConfig,CompanionCollection,CompanionCombat,companionCapacity,patternAngle}, {audioConfig,AudioPlayer}, {volume,snapshotVolumes,contactWindow,filterMatterVolumes,sweepVerticalContacts,groundArc,stepArc}, {enemyConfig,enemyClasses,enemyWave,enemyVisuals}] = await Promise.all([
-    import(KIT+'rendering.js'),import(KIT+'input.js'),import(KIT+'simloop.js'),import('./pets.js'),import('./audio.js'),import('./abilities.js'),import('./enemies.js')
+  const [{Renderer2D}, {ActionState,createDOMInput}, {createLoop}, {petConfig,CompanionCollection,CompanionRoster,companionCapacity,patternAngle}, {audioConfig,AudioPlayer}, {volume,snapshotVolumes,contactWindow,filterMatterVolumes,sweepVerticalContacts,groundArc,stepArc,DeathReason,hostile,receiveHit,receiveHeal}, {enemyConfig,enemyClasses,enemyWave,enemyRefillWave,enemyVisuals,species,speciesConfig,bossSpecies,bossConfig,drawSpeciesEgg,eggSvg}, {EnemyController,PetController}] = await Promise.all([
+    import(KIT+'rendering.js'),import(KIT+'input.js'),import(KIT+'simloop.js'),import('./pets.js'),import('./audio.js'),import('./abilities.js'),import('./enemies.js'),import('./controllers.js')
   ]);
   const M = window.Matter;
   const sfx=new AudioPlayer(audioConfig);
-  function playImpact(speed,pet=false){return sfx.play(pet?'petImpact':speed<500?'impactLight':speed<1000?'impactMedium':'impactHeavy',Math.min(1,.4+speed/1600));}
+  function playImpact(speed,sound=null){return sfx.play(sound||(speed<500?'impactLight':speed<1000?'impactMedium':'impactHeavy'),Math.min(1,.4+speed/1600));}
   async function playUiSound(){if(await sfx.unlock())sfx.play('ui');}
   // Single source of truth: capability-based, hierarchical configuration.
   const C = {
     world:{width:2500,height:1750}, sim:{tps:60}, player:{radius:16,height:32,mass:2,shadowCostRate:.10,facingTurnRateRadPerSec:Math.PI*3},
     audio:audioConfig,pets:petConfig,stats:{petSlots:petConfig.slots.base,attackPower:100,criticalChance:0,criticalDamage:2,armorPenFlat:0,armorPenPercent:0,maxHp:100,armor:0,healthRegen:0},enemy:{radius:23,count:13,contactDamage:25,contactCooldownMs:450,chaseRadius:690,stopDistance:29,chaseResponse:6,
-      knockbackMultiplier:1,projectileDamageMultiplier:1,types:{...enemyConfig,
-        scout:{radius:20,mass:4.6,hp:105,armor:0,speed:128,detect:700,damage:25,push:250,windupMs:180,lungeSpeed:310,lungeMs:280,recoverMs:740,range:84},
-        brute:{radius:29,mass:8.2,hp:185,armor:24,speed:64,detect:640,damage:34,push:460,windupMs:530,lungeSpeed:360,lungeMs:420,recoverMs:1480,range:132},
-        spitter:{radius:19,mass:4.2,hp:78,armor:8,speed:86,detect:760,damage:15,push:315,windupMs:490,recoverMs:1530,range:480,keepNear:235,keepFar:360,projectileSpeed:420,projectileRadius:8,projectileLifeMs:2450},
-        boss:{radius:48,mass:36,hp:540,armor:12,speed:155,detect:2000,damage:36,push:450,windupMs:640,recoverMs:850,range:800},
-         sprout:{radius:14,mass:3.4,hp:45,armor:0,speed:150,detect:870,damage:12,push:185,windupMs:220,lungeSpeed:250,lungeMs:200,recoverMs:700,range:63},
-         puff:{radius:17,mass:4.6,hp:55,armor:5,speed:105,detect:840,damage:13,push:300,windupMs:300,lungeSpeed:240,lungeMs:290,recoverMs:850,range:80}
-      }},
+      knockbackMultiplier:1,projectileDamageMultiplier:1,types:enemyConfig},
     spatial:{groundZ:0,actorHeightRadiusRate:2,projectileHeightRadiusRate:2,shadowHeight:14,sweep:{insetPx:1}},
     physics:{restitution:.86,frictionAir:.008,maxSpeed:1900},
     evade:{maxCharges:2,rechargeMs:500,durationMs:580,invulnerableMs:100,impulseSpeed:1020,decayPerSec:6.5,particleRateMs:22,
       capacityTierRate:.50,rechargeReductionTierRate:.20,distanceTierRate:.10,projectileWindowBonusRate:.50,hitRechargeRate:.20},
     stage:{initialKills:7,killsPerStage:4,bossEvery:3,mapEvery:3,transitionMs:1650,bossWarningMs:750,entryNoticeMs:1100,bossNoticeMs:1250,noticePriority:{stage:1,boss:3},worldRadius:550,radiusGrowth:.22,maxRadius:1600,initialPopulation:4,populationPerStage:1,maxEnemies:82,enemySpawnMinGap:98,spawnSafeRadius:285,obstaclePer100k:.93,maxObstacles:72,connectivityStep:82,connectivityMin:.92},
-    boss:{radius:48,mass:36,hp:540,armor:12,speed:155,contactDamage:36,contactPush:450,detect:2000,bulletSpeed:450,bulletDamage:23,bulletPush:300,bulletRadius:10,bulletLifeMs:2050,windupMs:640,lockMs:160,recoverMs:850,recoilMs:1000,chargeSpeed:880,chargeDurationMs:760,chargeRecoilSpeed:330,summonPeriodMs:5100,summonAppearMs:390,summonLifeMs:7800,summonCap:4},
+    boss:bossConfig,
     shadow:{initialSpeed:150,acceleration:2500,range:680,minDashDistance:28,contactPushSpeed:300,contactPushControlMs:500},
     dash:{minSpeed:250,maxSpeed:880,acceleration:850,rearmMinMs:150,rearmMaxMs:400,rearmSpeed:700,inputBufferMs:450,flightMinMs:500,flightMaxMs:2400,flightMarginMs:300,missClosingSpeed:45},damage:{referenceSpeed:1600},
     timing:{bulletStart:.80,bulletScale:.32,coyoteMs:150,coyoteStartCharge:.94,coyoteEndCharge:.70,shadowHitstopMs:50,hitstopMs:50},
@@ -643,7 +641,7 @@ try {
   };
   const wikiDefaultConfig=JSON.parse(JSON.stringify(C));
   const World = M.Composite, Body=M.Body, Bodies=M.Bodies, Events=M.Events, Engine=M.Engine;
-  let engine, player, enemies, enemiesById, obstacles, projectiles=[],projectileById=new Map(),enemyShots=0,enemyAttacks=0,enemyPushes=0, shadow=null, mode='READY', phase='LOBBY', modeUntil=0,health=100,hitstopLeftMs=0,dashCharge=0,dashMotion=null,dashFlight=null,dashHits=new Set(),damageTaken=0,healingDone=0,launchCostTotal=0,launchCount=0;
+  let engine, player, playerUnit, unitsById=new Map(), unitsByBody=new Map(), enemies, enemiesById, obstacles, projectiles=[],projectileById=new Map(),enemyShots=0,enemyAttacks=0,enemyPushes=0, shadow=null, mode='READY', phase='LOBBY', modeUntil=0,health=100,hitstopLeftMs=0,dashCharge=0,dashMotion=null,dashFlight=null,dashHits=new Set(),damageTaken=0,healingDone=0,launchCostTotal=0,launchCount=0;
   let timeMs=0, tick=0, combo=0, hits=0,kills=0, toastUntil=0, toastText='', toastColor='#f1c77a', lastComboHitAtMs=-1e6;
   let nextEnemyId=1, randomSeed=82741, aimTargetId=null, previewTargetId=null, attackOrigin=null, trailClock=0, dashStartedAtMs=0, recoverStartedAtMs=0, readyFlashUntilMs=0, bufferedIntent=null, bufferedUntilMs=0, frames=0, frameFps=0, frameFpsStart=performance.now(), playerFacing=0, criticalHits=0, lastHit=null;
   let pending=[], particles=[], particleCursor=0, fxRings=[], renderCamera={x:C.world.width/2,y:C.world.height/2}, cameraZoom=1;
@@ -823,7 +821,7 @@ try {
     rock:[.12,.27,.29,1],rockOutline:[.26,.52,.48,.65],enemy:[.92,.43,.34,1],enemyCore:[1,.71,.48,1],
     hpBack:[.14,.19,.20,1],hp:[.98,.77,.40,1],player:[.30,.90,.65,1],playerCore:[.86,1,.78,1],
     shadow:[.42,.90,1,1],guide:[.43,.92,.84,.35],trail:[.25,.93,.70,.33]};
-  function enemyDef(e){return C.enemy.types[e.type];}
+  function enemyDef(e){return e.config||C.enemy.types[e.type];}
   // Shared operation pools: themes and bosses are DATA recipes, never copies of a generator or AI.
   // New definitions registered here automatically join guaranteed debut and later stage selection.
   const THEME_POOL=Object.freeze({
@@ -846,16 +844,7 @@ try {
         {id:'ridges',name:'굴곡진 균맥',ops:[['ridges',1],['scatter',.35]]}
       ]}
   });
-  const BOSS_POOL=Object.freeze({
-    petalPredator:{id:'petalPredator',name:'꽃잎 포식자',appearance:'petal',summonType:'sprout',
-      base:{hpRate:1,massRate:1,speedRate:1,bulletSpeedRate:1,chargeSpeedRate:1},
-      fan:{count:9,spread:.125},radial:{count:18},summon:{count:3,lifetimeRate:1},
-      variants:[{id:'wide',name:'광폭 꽃잎',fanSpread:1.3,bulletSpeedRate:1},{id:'rapid',name:'재빠른 개화',windupRate:.85,chargeSpeedRate:1.12},{id:'spiral',name:'회전 개화',radialRotation:.33,fanSpread:.85}]},
-    elasticCap:{id:'elasticCap',name:'탄성 버섯왕',appearance:'mushroom',summonType:'puff',
-      base:{hpRate:1.06,massRate:1.35,speedRate:.82,bulletSpeedRate:.86,chargeSpeedRate:.96},
-      fan:{count:7,spread:.18},radial:{count:14},summon:{count:3,lifetimeRate:1.15},
-      variants:[{id:'bouncy',name:'고탄성 갓',recoilSpeedRate:1.25,chargeSpeedRate:1.07},{id:'cloud',name:'포자 폭풍',radialCountRate:1.3,bulletSpeedRate:.9},{id:'dense',name:'균사 집결',summonCountRate:1.3,windupRate:1.06}]}
-  });
+  const BOSS_POOL=bossSpecies;
   function themeForStage(index){
     index=mapStartAtStage(index);
     if(stage.mapStart===index&&THEME_POOL[stage.themeId])return THEME_POOL[stage.themeId];
@@ -870,8 +859,8 @@ try {
     return possible[possible.length-1];
   }
   function bossParameters(b){return b.bossParams||C.boss;}
-  function liveSummons(ownerId=null){return enemies.filter(e=>e.alive&&e.isSummon&&(ownerId===null||e.summonerId===ownerId));}
-  function clearSummons(){for(const e of enemies){if(!e.alive||!e.isSummon)continue;e.alive=false;enemiesById.delete(e.body.id);World.remove(engine.world,e.body);}}
+  function liveSummons(ownerId=null){return [...unitsById.values()].filter(e=>e.alive&&e.isSummon&&(ownerId===null||e.summonerId===ownerId));}
+  function clearSummons(){for(const e of liveSummons())e.die(DeathReason.cleanup);}
 
   // COREBOUND combat adapter: source stats own actual damage/healing/defense; VFX reads the outcome.
   function armorMultiplier(armor){return 100/(100+Math.max(0,armor));}
@@ -879,7 +868,7 @@ try {
     const effectiveArmor=Math.max(0,Math.max(0,targetArmor)*(1-stats.armorPenPercent)-stats.armorPenFlat);
     return Math.max(0,Math.round(raw*armorMultiplier(effectiveArmor)));
   }
-  function incomingDamage(raw){return Math.max(0,raw*armorMultiplier(C.stats.armor));}
+
   function isCritical(){return C.stats.criticalChance>0&&rand()<C.stats.criticalChance;}
   function rearmDelay(ms){return ms*(hasTech('quickRearm')?C.augment.motion.quickRearm:1);}
 
@@ -901,91 +890,91 @@ try {
       if(Math.hypot(p.x-start.x-dx*t,p.y-start.y-dy*t)<o.r+radius+3)return false;}
     return true;
   }
-  function capabilityArea(e,c){const p=e.body.position,blast={position:p,positionPrev:p,plugin:{volume:{feetZ:0,previousFeetZ:0,height:c.height,motion:p}},circleRadius:c.radius};
-    if(contactWindow(blast,player,false,1,1)&&Math.hypot(player.position.x-p.x,player.position.y-p.y)<=c.radius+C.player.radius){hurtPlayer(c.damage,p.x,p.y);const n=norm(player.position.x-p.x,player.position.y-p.y);applyImpulse(player,{x:n.x*c.push*player.mass,y:n.y*c.push*player.mass});die();}
-    for(const actor of petCombat.actors){if(actor.state==='DEAD'||!actor.body)continue;const b=actor.body;
-      if(contactWindow(blast,b,false,1,1)&&Math.hypot(b.position.x-p.x,b.position.y-p.y)<=c.radius+b.circleRadius)petCombat.hurt(actor,c.damage);}
+  const combatWorld={targets:()=>[playerUnit,...unitsById.values()].filter(u=>u?.alive),anchor:()=>player.position};
+  function removeUnit(e){if(unitsById.get(e.unitId)===e)unitsById.delete(e.unitId);unitsByBody.delete(e.body.id);enemiesById.delete(e.body.id);World.remove(engine.world,e.body);if(e.deathReason===DeathReason.cleanup)for(const shot of [...projectiles])if(shot.sourceUnitId===e.unitId)removeProjectile(shot);}
+  function damageUnit(target,payload,source){const damage=receiveHit(target,payload,source,timeMs);
+    if(damage>0)source.combatEvents?.hit?.(target,payload,damage);return damage;}
+  function capabilityArea(source,c){const p=source.body.position,blast={position:p,positionPrev:p,plugin:{volume:{feetZ:0,previousFeetZ:0,height:c.height,motion:p}},circleRadius:c.radius};
+    for(const target of combatWorld.targets()){if(!hostile(source,target))continue;const b=target.body;
+      if(contactWindow(blast,b,false,1,1)&&Math.hypot(b.position.x-p.x,b.position.y-p.y)<=c.radius+b.circleRadius){
+        damageUnit(target,{raw:c.damage,stats:source.config,kind:'area'},source);if(target.alive){const n=norm(b.position.x-p.x,b.position.y-p.y);applyImpulse(b,{x:n.x*c.push*b.mass,y:n.y*c.push*b.mass});}}}
+    die();
   }
-  const enemyAdapter={
+  function addShot(source,{radius,height=radius*2,speed=0,angle=0,damage,push,lifeMs,arc=null,impactRadius,impactHeight,boss=false}){
+    const n={x:Math.cos(angle),y:Math.sin(angle)},p=source.body.position,x=p.x+n.x*(source.config.radius+radius+2),y=p.y+n.y*(source.config.radius+radius+2);
+    const body=Bodies.circle(arc?p.x:x,arc?p.y:y,radius,{label:'projectile',isSensor:true,frictionAir:0,collisionFilter:{category:8,mask:arc?0:1|2|4|16}});
+    volume(body,height,arc?.start.z||0);setSpeed(body,n.x*speed,n.y*speed);
+    const shot={body,sourceUnitId:source.unitId,ownerId:source.unitId,faction:source.faction,payload:{raw:damage,stats:source.config,kind:'projectile'},
+      source,damage,push,bornMs:timeMs,lifeMs,dirX:n.x,dirY:n.y,arc,impactRadius,impactHeight,boss};
+    projectiles.push(shot);projectileById.set(body.id,shot);World.add(engine.world,body);enemyShots++;source.combatEvents?.ability?.();return shot;
+  }
+  const unitAdapter={
     pathClear:clearCapabilityPath,
     brake(e,dt){if(timeMs<(e.shadowKnockbackUntilMs||0))return;const v=speedOf(e.body),q=Math.exp(-9*dt);setSpeed(e.body,v.x*q,v.y*q);},
-    chase(e,dt,{target}){if(timeMs<(e.shadowKnockbackUntilMs||0))return;const p=e.body.position,c=e.config,d=Math.hypot(target.x-p.x,target.y-p.y),n=norm(target.x-p.x,target.y-p.y),v=speedOf(e.body);
-      let speed=d<c.detect&&d>c.radius+C.player.radius+8?c.speed:0,dx=n.x,dy=n.y;
-      if(c.navigation&&d<c.detect){if(d<c.navigation.near)speed=-c.speed;else if(d<=c.navigation.far){speed=c.speed*.5;dx=-n.y*e.strafeSign;dy=n.x*e.strafeSign;}}
-      const q=1-Math.exp(-C.enemy.chaseResponse*dt);setSpeed(e.body,v.x+(dx*speed-v.x)*q,v.y+(dy*speed-v.y)*q);},
+    chase(e,dt,ctx){if(timeMs<(e.shadowKnockbackUntilMs||0))return;const p=e.body.position,c=e.config,v=speedOf(e.body);
+      const n=ctx.navigation||{x:0,y:0},q=1-Math.exp(-(c.navigation?.response||C.enemy.chaseResponse)*dt);setSpeed(e.body,v.x+(n.x-v.x)*q,v.y+(n.y-v.y)*q);},
     moveBy(e,x,y){Body.setPosition(e.body,{x:e.body.position.x+x,y:e.body.position.y+y});},
+    charge(e,speed){applyImpulse(e.body,{x:e.headingX*e.body.mass*speed,y:e.headingY*e.body.mass*speed});enemyAttacks++;sfx.play('enemyLunge');},
+    damage:damageUnit,
+    hurt(e,amount){floatText(e.body.position.x,e.body.position.y,'-'+formatCombatNumber(amount),[.62,.94,1,1]);e.combatEvents?.hurt?.(amount);},
+    impact(e,target,amount){const n=norm(target.body.position.x-e.body.position.x,target.body.position.y-e.body.position.y);
+      applyImpulse(target.body,{x:n.x*e.config.push*target.body.mass,y:n.y*e.config.push*target.body.mass});
+      ringFx(e.body.position.x,e.body.position.y,35,[.66,.94,1,.8],300);playImpact(Math.hypot(e.pre.x,e.pre.y),e.presentation.impactSound);},
     notice(e,kind='prepare'){recordVolume(kind,e);sfx.play(kind==='launch'?'enemyLunge':'enemyNotice');if(kind==='launch')setSpeed(e.body,0,0);},
     land(e){recordVolume('land',e,{damage:0,x:e.body.position.x,y:e.body.position.y});ringFx(e.body.position.x,e.body.position.y,24,[.72,.88,.47,.6],250);},
-    explode(e,c){recordVolume('self-destruct',e);capabilityArea(e,c);sfx.play('spore');ringFx(e.body.position.x,e.body.position.y,c.radius,[1,.62,.28,1],400);},
-    retire(e){e.alive=false;e.cancel();World.remove(engine.world,e.body);enemiesById.delete(e.body.id);spawnReplacement();},
-    spikes(e,c,kind){recordVolume('spike-'+kind,e);sfx.play('enemyShot');for(let i=0;i<c.count;i++){const a=i*Math.PI*2/c.count,n={x:Math.cos(a),y:Math.sin(a)},p=e.body.position;
-      const body=Bodies.circle(p.x+n.x*(e.config.radius+c.radius+2),p.y+n.y*(e.config.radius+c.radius+2),c.radius,{label:'enemyProjectile',isSensor:true,frictionAir:0,collisionFilter:{category:8,mask:1|2|16}});
-      volume(body,c.height);setSpeed(body,n.x*c.speed,n.y*c.speed);
-      const shot={body,ownerId:e.id,damage:c.damage,push:130,bornMs:timeMs,lifeMs:c.lifeMs,dirX:n.x,dirY:n.y};projectiles.push(shot);projectileById.set(body.id,shot);World.add(engine.world,body);enemyShots++;}},
+    explode(e,c){e.combatEvents?.ability?.();recordVolume('self-destruct',e);capabilityArea(e,c);sfx.play('spore');ringFx(e.body.position.x,e.body.position.y,c.radius,[1,.62,.28,1],400);},
+    retire(e){e.die(DeathReason.selfDestruct);},
+    spikes(e,c,kind){recordVolume('spike-'+kind,e);sfx.play('enemyShot');for(let i=0;i<c.count;i++)addShot(e,{...c,angle:i*Math.PI*2/c.count,push:130});},
+    projectile(e,c){addShot(e,{...c,angle:Math.atan2(e.headingY,e.headingX)});sfx.play('enemyShot');},
+    bossStep:updateBoss,
     arcShot(e,aim,height,index){const c=e.arcFire.config.shot,p=e.body.position,a=index*Math.PI*.5,d=index?c.spreadRadius:0,target={x:aim.x+Math.cos(a)*d,y:aim.y+Math.sin(a)*d,z:0};
       if(!clearCapabilityPath(p,target,c.radius))return;
-      const body=Bodies.circle(p.x,p.y,c.radius,{label:'enemyProjectile',isSensor:true,frictionAir:0,collisionFilter:{category:8,mask:0}});
-      volume(body,c.height,c.startZ);const shot={body,ownerId:e.id,damage:c.damage,push:c.push,bornMs:timeMs,arc:groundArc({...p,z:c.startZ},target,c.durationMs,height),impactRadius:c.impactRadius,impactHeight:c.impactHeight,dirX:0,dirY:-1};
-      projectiles.push(shot);projectileById.set(body.id,shot);World.add(engine.world,body);enemyShots++;recordVolume('arc-shot',e,{aim:target,height,abilityTimeMs:e.arcFire.clockMs});sfx.play('enemyShot');}
+      addShot(e,{...c,arc:groundArc({...p,z:c.startZ},target,c.durationMs,height),impactRadius:c.impactRadius,impactHeight:c.impactHeight});
+      recordVolume('arc-shot',e,{aim:target,height,abilityTimeMs:e.arcFire.clockMs});sfx.play('enemyShot');}
   };
   function stepArcShots(dt){for(const shot of [...projectiles]){if(!shot.arc)continue;const pose=stepArc(shot.arc,dt*1000);
-    const p=shot.body.position;if(!clearCapabilityPath(p,pose,shot.body.circleRadius)){recordVolume('arc-blocked',{id:shot.ownerId,type:'rocket'});removeProjectile(shot);continue;}
+    const p=shot.body.position;if(!clearCapabilityPath(p,pose,shot.body.circleRadius)){recordVolume('arc-blocked',shot.source);removeProjectile(shot);continue;}
     Body.setPosition(shot.body,{x:pose.x,y:pose.y});shot.body.plugin.volume.feetZ=pose.z;
-    if(shot.arc.finished){recordVolume('arc-impact',{id:shot.ownerId,type:'rocket'},{x:pose.x,y:pose.y,z:pose.z});removeProjectile(shot);
-      capabilityArea({body:shot.body},{radius:shot.impactRadius,height:shot.impactHeight,damage:shot.damage,push:shot.push});ringFx(pose.x,pose.y,shot.impactRadius,[1,.64,.32,1],360);sfx.play('spore');}
+    if(shot.arc.finished){recordVolume('arc-impact',shot.source,{x:pose.x,y:pose.y,z:pose.z});removeProjectile(shot);
+      capabilityArea({...shot.source,body:shot.body,alive:true},{radius:shot.impactRadius,height:shot.impactHeight,damage:shot.damage,push:shot.push});ringFx(pose.x,pose.y,shot.impactRadius,[1,.64,.32,1],360);sfx.play('spore');}
   }}
-  function drawCapabilityEnemy(e,now){const p=e.body.position,c=e.config,r=c.radius,z=e.spatial.feetZ;
-    renderer.ellipse(p.x,p.y+6,r,r*.58,[0,0,0,.4],16);
-    const aim=e.leap?.aim,flight=e.leap?.phase==='FLIGHT';
-    if(aim&&(flight||e.leap.phase==='PREPARE'))drawArc(aim.x,aim.y,r+5,0,Math.PI*2,24,1.7,[.91,.74,.39,.7]);
-    const attack=e.leap?.phase==='PREPARE'||e.selfDestruct?.phase==='PREPARE'||['PREPARE','ACTIVE'].includes(e.spike?.phase)||['PREPARE','BURST'].includes(e.arcFire?.phase);
-    renderer.ellipse(p.x,p.y-z,r+3,r+3,[.02,.07,.06,.55],22);
-    enemyVisuals[e.type](renderer,{x:p.x,y:p.y-z,radius:r,time:now,id:e.id,attack});
-    const state=e.selfDestruct||e.spike||e.arcFire||e.leap;
-    if(state.phase==='PREPARE'){const q=clamp(1-state.leftMs/state.config.prepareMs,0,1),radius=e.selfDestruct?state.config.radius:r+10;
-      drawArc(p.x,p.y,radius,-Math.PI/2,Math.PI*2*q,28,2.4,[1,.63,.3,.8]);}
-    if(e.hp<e.maxHp){renderer.rect(p.x,p.y-z-r-12,40,4,colors.hpBack);renderer.rect(p.x-20+20*e.hp/e.maxHp,p.y-z-r-12,40*e.hp/e.maxHp,4,colors.hp);}
-  }
   function drawArcShot(shot){const p=shot.body.position,z=shot.body.plugin.volume.feetZ,a=shot.arc.aim;
     renderer.ellipse(p.x,p.y,8,4.5,[0,0,0,.5],12);
     drawArc(a.x,a.y,shot.impactRadius,0,Math.PI*2,24,1.7,[1,.58,.31,.65]);
     renderer.ellipse(p.x,p.y-z,8,6,[1,.54,.25,1],12);renderer.ellipse(p.x-2,p.y-z-2,3,3,[1,.91,.53,1],9);
   }
 
-  function spawnEnemy(x,y,type='scout'){
-    const id=nextEnemyId++,cfg=C.enemy.types[type];
-    const b=Bodies.circle(x,y,cfg.radius,{label:'enemy',restitution:C.physics.restitution,frictionAir:.024,friction:0.005,frictionStatic:0.005,
-      collisionFilter:{category:4,mask:1|2|4|16|32}});
+  function createUnit(x,y,speciesId,{controller,deathPolicy,faction,grade=5,inventoryId=null,physics,config=null}){
+    const id=nextEnemyId++,spec=species[speciesId],cfg=config||speciesConfig(speciesId,grade);
+    const b=Bodies.circle(x,y,cfg.radius,{label:'unit',restitution:C.physics.restitution,frictionAir:.024,friction:0.005,frictionStatic:0.005,collisionFilter:physics});
     Body.setMass(b,cfg.mass);Body.setInertia(b,Infinity);
-    const e=enemyClasses[type]?new enemyClasses[type]({id,type,body:b,config:cfg,adapter:enemyAdapter}):{id,type,body:b,hp:cfg.hp,maxHp:cfg.hp,pre:{x:0,y:0},alive:true,lastTouchMs:-Infinity,burn:null,conductUntilMs:0,
-      state:'PATROL',stateUntilMs:0,attackCount:0,headingX:0,headingY:0,strafeSign:id%2?1:-1};
-    if(!b.plugin.volume)volume(b,cfg.height||cfg.radius*C.spatial.actorHeightRadiusRate);
-    const recycled=enemies.findIndex(unit=>!unit.alive);
-    if(recycled>=0)enemies[recycled]=e;else enemies.push(e);
-    enemiesById.set(b.id,e);World.add(engine.world,b);return e;
+    const e=new spec.Class({unitId:id,type:spec.boss?'boss':speciesId,speciesId,body:b,config:cfg,adapter:unitAdapter,controller,deathPolicy,faction,grade,inventoryId,presentation:{...spec.presentation}});
+    unitsById.set(id,e);unitsByBody.set(b.id,e);World.add(engine.world,b);
+    if(spec.boss)initializeBoss(e,spec.id);return e;
   }
-  // Projectiles are real Matter sensor bodies, but damage/knockback is game-owned.
-  function spawnProjectile(e){
-    const cfg=enemyDef(e),b=e.body,n=norm(e.headingX,e.headingY),r=cfg.projectileRadius;
-    const x=b.position.x+n.x*(cfg.radius+r+5),y=b.position.y+n.y*(cfg.radius+r+5);
-    const orb=Bodies.circle(x,y,r,{label:'enemyProjectile',isSensor:true,frictionAir:0,
-      collisionFilter:{category:8,mask:1|2|16}});
-    Body.setInertia(orb,Infinity);Body.setVelocity(orb,{x:n.x*cfg.projectileSpeed/60,y:n.y*cfg.projectileSpeed/60});
-    const shot={body:orb,ownerId:e.id,damage:cfg.damage,push:cfg.push,bornMs:timeMs,lifeMs:cfg.projectileLifeMs,
-      dirX:n.x,dirY:n.y,lastX:x,lastY:y};
-    volume(orb,r*C.spatial.projectileHeightRadiusRate);projectiles.push(shot);projectileById.set(orb.id,shot);World.add(engine.world,orb);enemyShots++;sfx.play('enemyShot');
-    burst(x,y,90,5,[.71,.51,1,1]);
+  function enemyDeathPolicy(e,{reason,source}){
+    removeUnit(e);if(reason===DeathReason.hit){
+      if(e.selfDestruct?.exploded===false)recordVolume('self-destruct-cancel',e);sfx.play('kill');
+      companions.recordKill();const added=companions.rewardHitDeath(e,rand);recordVolume('egg-roll',e,{rate:species[e.speciesId].boss?.10:.05,added:added.length});
+      source?.combatEvents?.kill?.();
+      if(!e.isSummon){kills++;recordKill();}onEnemyKilled(e);
+    }else if(reason===DeathReason.selfDestruct&&!e.isSummon)spawnReplacement();
   }
-  function spawnBossShot(boss,angle,projectileSpeed=bossParameters(boss).bulletSpeed){
-    const p=bossParameters(boss),dir={x:Math.cos(angle),y:Math.sin(angle)},origin=boss.body.position,r=p.bulletRadius;
-    const x=origin.x+dir.x*(C.boss.radius+r+9),y=origin.y+dir.y*(C.boss.radius+r+9);
-    const b=Bodies.circle(x,y,r,{label:'enemyProjectile',isSensor:true,frictionAir:0,collisionFilter:{category:8,mask:1|2|16}});
-    Body.setInertia(b,Infinity);Body.setVelocity(b,{x:dir.x*projectileSpeed/60,y:dir.y*projectileSpeed/60});
-    const shot={body:b,ownerId:boss.id,damage:p.bulletDamage,push:p.bulletPush,bornMs:timeMs,
-      lifeMs:p.bulletLifeMs,dirX:dir.x,dirY:dir.y,lastX:x,lastY:y,boss:true};
-    volume(b,r*C.spatial.projectileHeightRadiusRate);projectiles.push(shot);projectileById.set(b.id,shot);World.add(engine.world,b);enemyShots++;
+  function spawnEnemy(x,y,type='scout',options={}){
+    const speciesId=type==='boss'?options.speciesId:type;if(!species[speciesId])throw Error('Missing species '+speciesId);
+    const e=createUnit(x,y,speciesId,{controller:new EnemyController(),deathPolicy:enemyDeathPolicy,faction:'wild',physics:{category:4,mask:1|2|4|16|8},...options});
+    const recycled=enemies.findIndex(unit=>!unit.alive);if(recycled>=0)enemies[recycled]=e;else enemies.push(e);enemiesById.set(e.body.id,e);e.spawnSummon=(x,y,id)=>spawnEnemy(x,y,id);return e;
   }
-
+  function spawnBossShot(boss,angle,projectileSpeed=bossParameters(boss).bulletSpeed){const p=bossParameters(boss);
+    addShot(boss,{radius:p.bulletRadius,speed:projectileSpeed,angle,damage:p.bulletDamage,push:p.bulletPush,lifeMs:p.bulletLifeMs,boss:true});}
+  function initializeBoss(boss,id,variety=null){const spec=BOSS_POOL[id],v=variety||spec.variants[0],c=boss.config;
+    boss.bossSpec=spec;boss.bossVariant=v;boss.bossName=spec.name;boss.bossParams={...c,
+      windupMs:c.windupMs*(v.windupRate||1),bulletSpeed:c.bulletSpeed*(v.bulletSpeedRate||spec.base.bulletSpeedRate||1),
+      chargeSpeed:c.chargeSpeed*(v.chargeSpeedRate||spec.base.chargeSpeedRate||1),chargeRecoilSpeed:c.chargeRecoilSpeed*(v.recoilSpeedRate||1),
+      summonCount:Math.max(1,Math.round(spec.summon.count*(v.summonCountRate||1))),summonLifetimeMs:c.summonLifeMs*spec.summon.lifetimeRate};
+    boss.state='BOSS_RECOVER';boss.stateUntilMs=timeMs+520;boss.pattern='CHARGE';boss.headingX=-1;boss.headingY=0;
+    boss.patternStartedAtMs=timeMs;boss.volleys=0;boss.lastPattern='';boss.nextSummonAtMs=timeMs+3400;
+  }
   function removeProjectile(shot){
     if(!shot||!projectileById.has(shot.body.id))return;
     projectileById.delete(shot.body.id);World.remove(engine.world,shot.body);
@@ -1003,13 +992,13 @@ try {
     addParticle(player.position.x,player.position.y,n.x*100,n.y*100,220,7,[1,.74,.48,.84]);
   }
   function hitProjectile(shot){
-    if(shot?.friendly)return;
+    if(shot?.faction===playerUnit.faction)return;
     if(!shot||!projectileById.has(shot.body.id)||mode==='DEAD')return;
     const pos=shot.body.position,dir=norm(shot.dirX,shot.dirY);
     const dmg=shot.damage*C.enemy.projectileDamageMultiplier;
     removeProjectile(shot);
     if(timeMs-evadeStartedAtMs<C.evade.invulnerableMs){burst(pos.x,pos.y,90,6,[.54,.86,1,1]);return;}
-    hurtPlayer(dmg,player.position.x,player.position.y);
+    hurtPlayer(dmg,player.position.x,player.position.y,{...shot.source,alive:true});
     const delta=shot.push*C.enemy.knockbackMultiplier;
     applyImpulse(player,{x:dir.x*delta*player.mass,y:dir.y*delta*player.mass});enemyPushes++;
     burst(pos.x,pos.y,180,16,[.76,.55,1,1]);toast(`포자 피격 -${Math.round(dmg)}`,'#d3a9ff',380);die();
@@ -1184,7 +1173,8 @@ try {
   }
   function clearStageEnemies(){
     for(const shot of [...projectiles])removeProjectile(shot);
-    for(const e of enemies)if(e.alive){e.cancel?.();e.alive=false;World.remove(engine.world,e.body);}
+    for(const actor of petRoster.actors)actor.unit?.cancel();
+    for(const e of [...unitsById.values()])if(e.inventoryId==null)e.die(DeathReason.cleanup);
     enemies.length=0;enemiesById.clear();
   }
   function clearArena(){
@@ -1212,7 +1202,7 @@ try {
     }
     stageHistory.push({index,theme:theme.id,layout:stage.layoutId,radius,playableArea:stage.playableArea,population:stage.targetPopulation,mapTier,mapStart,mapSeed:stage.mapSeed,bossStage:isBossStage(index),seed:stage.seed});
     if(stageHistory.length>20)stageHistory.shift();
-    petCombat.enterStage();if(index>1)sfx.play('stageStart');
+    petRoster.enterStage();if(index>1)sfx.play('stageStart');
     stageNotice(`STAGE ${index}`,C.stage.entryNoticeMs,'stage');
   }
   function stageNotice(message,durationMs,kind){
@@ -1227,25 +1217,14 @@ try {
     const theme=THEME_POOL[stage.themeId],spec=BOSS_POOL[theme.boss];
     if(!spec)throw Error('등록되지 않은 보스 '+theme.boss);
     const pos=findSpawn(Math.min(420,stage.radius*.72),C.boss.radius)||{x:C.world.width/2+stage.radius*.53,y:C.world.height/2};
-    const boss=spawnEnemy(pos.x,pos.y,'boss');
+    const boss=spawnEnemy(pos.x,pos.y,'boss',{speciesId:spec.id});
     const options=spec.variants;
     // Repeat visits choose from the same pool but produce different proportions.
     const variantSeed=(Math.imul(stage.seed^(spec.id.length*39871),2246822519)>>>0);
     const variety=options[variantSeed%options.length];
     const rate=1+(stage.index-1)*.19;
-    boss.bossSpec=spec;boss.bossVariant=variety;boss.bossName=spec.name;
-    boss.bossParams={...C.boss,
-      windupMs:C.boss.windupMs*(variety.windupRate||1),
-      bulletSpeed:C.boss.bulletSpeed*(variety.bulletSpeedRate||spec.base.bulletSpeedRate||1),
-      chargeSpeed:C.boss.chargeSpeed*(variety.chargeSpeedRate||spec.base.chargeSpeedRate||1),
-      chargeRecoilSpeed:C.boss.chargeRecoilSpeed*(variety.recoilSpeedRate||1),
-      summonCount:Math.max(1,Math.round(spec.summon.count*(variety.summonCountRate||1))),
-      summonLifetimeMs:C.boss.summonLifeMs*spec.summon.lifetimeRate};
-    Body.setMass(boss.body,C.boss.mass*spec.base.massRate);
-    boss.maxHp=C.boss.hp*spec.base.hpRate*rate;boss.hp=boss.maxHp;
-    boss.state='BOSS_RECOVER';boss.stateUntilMs=timeMs+520;boss.pattern='FAN';boss.headingX=-1;boss.headingY=0;
-    boss.patternStartedAtMs=timeMs;boss.volleys=0;boss.lastPattern='';boss.nextSummonAtMs=timeMs+3400;
-    stage.boss=boss;stage.phase='BOSS';stage.bossName=spec.name;stage.bossVariant=variety.id;
+    initializeBoss(boss,spec.id,variety);boss.maxHp=boss.config.hp*rate;boss.hp=boss.maxHp;
+    stage.boss=boss;stage.phase='BOSS';stage.bossName=spec.name;stage.bossVariant=variety.id;petRoster.enterStage();
     sfx.play('bossNotice');stageNotice(spec.name,C.stage.bossNoticeMs,'boss');
   }
   function finishStage(){
@@ -1253,55 +1232,32 @@ try {
     sfx.play('stageClear');stage.phase='CLEAR';stage.transitionUntilMs=timeMs+C.stage.transitionMs;stage.noticeUntilMs=timeMs;
     clearStageEnemies();shadow=null;mode='READY';endChain();dashMotion=null;dashFlight=null;bufferedIntent=null;
   }
-  // Every resolved player/pet kill advances equipped eggs exactly once, including summons.
-  function defeatEnemy(e,source='player'){
-    if(!e.alive)return false;if(e.selfDestruct?.phase==='PREPARE')recordVolume('self-destruct-cancel',e);e.cancel?.();sfx.play('kill');e.alive=false;e.burn=null;e.conductUntilMs=0;
-    World.remove(engine.world,e.body);enemiesById.delete(e.body.id);
-    companions.recordKill();if(source==='pet')petCombat.stats.kills++;
-    if(!e.isSummon){kills++;recordKill();}onEnemyKilled(e);return true;
-  }
-  function petDamage(e,raw,stats,actor){
-    if(!e.alive)return 0;const amount=Math.min(e.hp,outgoingDamage(raw,enemyDef(e).armor,stats));
-    if(amount<=0)return 0;e.hp-=amount;floatText(e.body.position.x,e.body.position.y,'-'+formatCombatNumber(amount),[.62,.94,1,1]);
-    if(e.hp<=0)defeatEnemy(e,'pet');else e.onHit?.({damage:amount,source:'pet'});return amount;
-  }
-  function castPetAbility(ability,actor,enemy,damage){
-    const c=petConfig.combat,p=actor.body.position;
-    if(ability.kind==='recoil'){applyImpulse(actor.body,{x:-actor.headingX*ability.impulseSpeed*actor.body.mass,y:-actor.headingY*ability.impulseSpeed*actor.body.mass});return;}
-    if(ability.kind==='healPulse'){
-      if(Math.hypot(player.position.x-p.x,player.position.y-p.y)<=ability.range){const healing=healPlayer(damage*ability.healDamageRate,p.x,p.y);petCombat.stats.supportHealing+=healing;}
-      ringFx(p.x,p.y,ability.range,[.56,1,.68,.65],400);return;
-    }
-    const count=actor.grade===petConfig.grades.length-1?ability.mythicCount:ability.count;
-    const angle=Math.atan2(actor.headingY,actor.headingX);
-    for(let i=0;i<count&&projectiles.filter(shot=>shot.friendly).length<c.maxProjectiles;i++){
-      const a=patternAngle(ability.kind,count,i,ability.kind==='radial'?0:angle,ability.spread);
-      const dx=Math.cos(a),dy=Math.sin(a),r=c.projectileRadius,x=p.x+dx*(actor.settings.radius+r+2),y=p.y+dy*(actor.settings.radius+r+2);
-      const body=Bodies.circle(x,y,r,{label:'petProjectile',isSensor:true,frictionAir:0,collisionFilter:{category:32,mask:1|4}});
-      setSpeed(body,dx*c.projectileSpeed,dy*c.projectileSpeed);
-      const shot={body,friendly:true,ownerPetId:actor.id,raw:actor.lastImpactRaw*ability.damageRate,stats:actor.settings,bornMs:timeMs,lifeMs:c.projectileLifeMs,dirX:dx,dirY:dy,lastX:x,lastY:y};
-      volume(body,r*C.spatial.projectileHeightRadiusRate);projectiles.push(shot);projectileById.set(body.id,shot);World.add(engine.world,body);
-    }
-  }
-  const petCombat=new CompanionCombat(companions,{M,player:()=>player,time:()=>timeMs,enemies:()=>enemies,
-    enemy:id=>enemies.find(e=>e.id===id),addBody:body=>{volume(body,body.circleRadius*C.spatial.actorHeightRadiusRate);World.add(engine.world,body);},removeBody:body=>World.remove(engine.world,body),
-    speedOf,setSpeed,impulse:applyImpulse,referenceSpeed:()=>C.damage.referenceSpeed,
-    enemyDamage:e=>enemyDef(e).damage*C.enemy.contactDamage/25,damage:petDamage,cast:castPetAbility,
-    effect:(kind,actor)=>{const p=actor.body?.position||actor;
-      ringFx(p.x,p.y,kind==='impact'?35:24,kind==='hurt'?[1,.48,.42,.8]:[.66,.94,1,.8],300);
-      if(kind==='impact')playImpact(actor.preVelocity?Math.hypot(actor.preVelocity.x,actor.preVelocity.y):650,true);else if(kind==='revive')sfx.play('petRevive');else if(kind==='hurt')sfx.play('hurt',.55);else if(kind==='death')sfx.play('hurt',.7);
-      if(kind==='death'||kind==='revive')floatText(p.x,p.y,kind==='death'?'동행 · 3초':'동행 복귀',[.72,.93,1,1]);}
+  function defeatEnemy(e,source=playerUnit){return e.die(DeathReason.hit,source);}
+  const petRoster=new CompanionRoster(companions,{
+    anchor:()=>player.position,time:()=>timeMs,
+    create(item,slot,actor){const c=petConfig.combat,angle=(slot+1)*2.399,p=player.position,cfg=speciesConfig(item.speciesId,item.grade,{powerRate:c.gradePowerRate,sizeRate:c.gradeSizeRate,growthRate:c.gradeRangeRate});
+      cfg.hitProtectionMs=c.hitProtectionMs;const e=createUnit(p.x+Math.cos(angle)*c.followRadius,p.y+Math.sin(angle)*c.followRadius,item.speciesId,{
+        controller:new PetController({slot,range:460*Math.pow(c.gradeRangeRate,item.grade),leash:c.leash,followRadius:c.followRadius}),
+        deathPolicy:(unit,{reason})=>{removeUnit(unit);for(const summon of liveSummons(unit.unitId))summon.die(DeathReason.cleanup);petRoster.died(actor,unit,reason);},
+        faction:'garden',grade:item.grade,inventoryId:item.id,physics:{category:16,mask:1|4|8|16},config:cfg});
+      e.presentation.impactSound='petImpact';e.presentation.gradeColor=petConfig.grades[item.grade].color;
+      e.combatEvents={hurt:amount=>{petRoster.stats.taken+=amount;},ability:()=>{petRoster.stats.abilities++;},kill:()=>{petRoster.stats.kills++;},
+        hit:(target,payload,damage)=>{petRoster.stats.hits++;petRoster.stats.damage+=damage;petRoster.stats.lastHit={inventoryId:item.id,unitId:e.unitId,speciesId:e.speciesId,enemyId:target.unitId,damage,raw:payload.raw,atMs:timeMs};}};
+      e.spawnSummon=(x,y,id)=>createUnit(x,y,id,{faction:e.faction,grade:e.grade,controller:new PetController({slot,range:460}),deathPolicy:unit=>removeUnit(unit),physics:{category:16,mask:1|4|8|16}});return e;
+    },
+    remove:(unit,reason)=>unit.die(reason),
+    effect(kind,actor){ringFx(actor.x,actor.y,24,[.66,.94,1,.8],300);sfx.play(kind==='revive'?'petRevive':'hurt');floatText(actor.x,actor.y,kind==='revive'?'동행 복귀':'동행 · 3초',[.72,.93,1,1]);}
   });
-  companions.onChange=event=>{persistTech();petCombat.sync();if($('petPanel').classList.contains('open'))updatePetUi();
+  companions.onChange=event=>{persistTech();petRoster.sync();if($('petPanel').classList.contains('open'))updatePetUi();
     if(event.kind==='reward'){const p=player.position;sfx.play('egg');floatText(p.x,p.y,'알 획득',[.97,.85,.54,1]);ringFx(p.x,p.y,65,[1,.85,.5,.8],500);}
     if(event.hatched?.length){const first=event.firstDiscoveries||[],p=player.position;sfx.play(first.length?'hatchFirst':'hatchRepeat');
       floatText(p.x,p.y,first.length?'새 동행 발견':'알 부화',[.97,.85,.54,1]);ringFx(p.x,p.y,65,[1,.85,.5,.8],500);
-      for(const actor of petCombat.actors)if(event.hatched.includes(actor.id))actor.revealUntilMs=timeMs+1000;
-      if(first.length)revealCompanions(first);}
+
+      updateDiscoveredSpeciesWiki();if(first.length)revealCompanions(first);}
     if(event.kind==='fusion')sfx.play(event.result.successes&&event.result.failures?'fusionMixed':event.result.successes?'fusionSuccess':'fusionFail');
   };
   function onEnemyKilled(e){
-    if(e.type==='boss'){companions.addEgg(e.bossSpec.id);finishStage();return;}
+    if(e===stage.boss){finishStage();return;}
     if(e.isSummon)return;
     if(stage.phase==='WAVE'){
       stage.waveKills++;
@@ -1325,7 +1281,7 @@ try {
     chainEnergy=0;energySpent=0;energyGained=0;energyRestored=0;chainTargetId=null;chainActive=false;pendingChainStart=null;chainStarts=0;chainEnds=0;criticalHits=0;lastHit=null;playerFacing=0;
     shadow=null;mode='READY';modeUntil=0;particles=[];particleCursor=0;lightningArcs=[];fireEmbers=[];fireTransfers=[];fireFxSerial=0;elementalEvents={ignite:0,spread:0,conduct:0,conductSpread:0,conductConsumed:0,conductDamage:0,arc:0,burnDamage:0};health=C.stats.maxHp;hitstopLeftMs=0;
     dashCharge=0;dashMotion=null;dashFlight=null;dashHits.clear();damageTaken=0;healingDone=0;launchCostTotal=0;launchCount=0;
-    enemies=[];enemiesById=new Map();obstacles=[];boundaryWalls=[];arenaVertices=[];projectiles=[];projectileById=new Map();
+    enemies=[];enemiesById=new Map();unitsById=new Map();unitsByBody=new Map();obstacles=[];boundaryWalls=[];arenaVertices=[];projectiles=[];projectileById=new Map();
     terrainDecor=[];terrainChannels=[];stageHistory=[];stageBasePlayableArea=0;generationStats={retries:0,connectivity:1,clearLane:0,obstacles:0};
     enemyShots=0;enemyAttacks=0;enemyPushes=0;pending.length=0;aimTargetId=null;previewTargetId=null;fxRings=[];
     attackOrigin=null;bufferedIntent=null;bufferedUntilMs=0;dashStartedAtMs=0;recoverStartedAtMs=0;readyFlashUntilMs=0;
@@ -1335,7 +1291,10 @@ try {
     player=Bodies.circle(C.world.width*.5,C.world.height*.5,C.player.radius,{label:'player',restitution:C.physics.restitution,
       frictionAir:C.physics.frictionAir,friction:0,frictionStatic:0,collisionFilter:{category:2,mask:1|4|8}});
     Body.setMass(player,C.player.mass);Body.setInertia(player,Infinity);volume(player,C.player.height);World.add(engine.world,player);
-    setupStage(1);petCombat.reset();
+    playerUnit={unitId:0,id:0,faction:'garden',body:player,config:{...C.stats,deferDeath:true,damageRounding:false},pre:{x:0,y:0},preX:player.position.x,preY:player.position.y,
+      get hp(){return health;},set hp(value){health=value;},get maxHp(){return C.stats.maxHp;},get alive(){return mode!=='DEAD';},onHit(){},die(){},
+      adapter:{hurt(target,amount){damageTaken+=amount;if(amount>0){sfx.play('hurt');floatText(player.position.x,player.position.y,'-'+formatCombatNumber(amount),[1,.38,.43,1]);burst(player.position.x,player.position.y,90,8,[1,.36,.46,1]);}}}};
+    setupStage(1);petRoster.reset();
     renderCamera.x=player.position.x;renderCamera.y=player.position.y;
     Events.on(engine,'collisionStart',handleCollision);Events.on(engine,'collisionActive',handleCollision);
     for(const f of textFloats)f.el?.remove();textFloats.length=0;
@@ -1399,18 +1358,10 @@ try {
     $('runSummary').textContent=`처치 ${kills} · 누적 처치 ${tech.kills} · 레벨 ${progressionLevel(tech.kills)} · 명중 ${hits} · 피격 ${Math.round(damageTaken)} · 회복 ${Math.round(healingDone)}`;
     $('gameover').classList.add('show');
   }
-  function hurtPlayer(amount,x,y){if(mode==='DEAD')return 0;
-    const dealt=incomingDamage(amount);
-    health-=dealt;damageTaken+=dealt;if(dealt>0)sfx.play('hurt');
-    if(dealt>0){floatText(x,y,`-${formatCombatNumber(dealt)}`,[1,.38,.43,1]);burst(x,y,90,8,[1,.36,.46,1]);}
-    // Resolve damage and same-collision healing before checking for death.
-    return dealt;
-  }
+  function hurtPlayer(amount,x,y,source={unitId:-1,faction:'wild',alive:true,config:{}}){if(mode==='DEAD')return 0;
+    playerUnit.config.armor=C.stats.armor;return receiveHit(playerUnit,{raw:amount},source,timeMs);}
   function healPlayer(amount,x,y){if(mode==='DEAD'||amount<=0)return 0;
-    const gained=Math.max(0,Math.min(amount,C.stats.maxHp-health));
-    health+=gained;healingDone+=gained;if(gained>0)sfx.play('heal');
-    if(gained>0){floatText(x,y,`+${formatCombatNumber(gained)}`,[.33,1,.68,1]);burst(x,y,120,6,[.24,1,.7,1]);}
-    return gained;
+    const gained=receiveHeal(playerUnit,amount);healingDone+=gained;if(gained>0){sfx.play('heal');floatText(x,y,'+'+formatCombatNumber(gained),[.33,1,.68,1]);burst(x,y,120,6,[.24,1,.7,1]);}return gained;
   }
   // Elemental combat is simulation-owned. The VFX layer reads these finalized events only.
   function addLightningArc(a,b){
@@ -1524,7 +1475,7 @@ try {
       if(b.clockMs>=cfg.tickIntervalMs||b.remainingMs<=0){
         const appliedMs=b.clockMs;b.clockMs=0;
         const inflicted=Math.min(e.hp,b.damagePerSec*appliedMs/1000);
-        if(inflicted>0){e.hp-=inflicted;elementalEvents.burnDamage+=inflicted;
+        if(inflicted>0){receiveHit(e,{raw:inflicted,resolved:true,floating:true,deferDeath:true,kind:'status'},playerUnit,timeMs);elementalEvents.burnDamage+=inflicted;
           healPlayer(inflicted,player.position.x,player.position.y);
           if(e.hp<=0){killByStatus(e);continue;}}
       }
@@ -1650,71 +1601,72 @@ try {
       for(let i=0;i<n;i++)spawnBossShot(b,patternAngle('radial',n,i,rotation));
     }},
     CHARGE:{executionMs:760,fire(b){
-      const p=b.bossParams,v=b.body;
+      const p=b.bossParams,v=b.body;b.collisionAttack.hitIds.clear();
       applyImpulse(v,{x:b.headingX*v.mass*p.chargeSpeed,y:b.headingY*v.mass*p.chargeSpeed});
       burst(v.position.x,v.position.y,230,16,[1,.58,.35,1]);
     }},
     SUMMON:{executionMs:650,fire(b){
       const p=b.bossParams,cfg=C.enemy.types[b.bossSpec.summonType];
-      const available=Math.max(0,C.boss.summonCap-liveSummons(b.id).length);
+      const available=Math.max(0,p.summonCap-liveSummons(b.unitId).length);
       const count=Math.min(available,p.summonCount);
       for(let i=0;i<count;i++){
         let point=null;
         for(let k=0;k<24;k++){
           const a=(i+k*.618)*Math.PI*2/Math.max(1,count)+rand()*.12;
-          const d=C.boss.radius+cfg.radius+70+(k%5)*34;
+          const d=b.config.radius+cfg.radius+70+(k%5)*34;
           const x=b.body.position.x+Math.cos(a)*d,y=b.body.position.y+Math.sin(a)*d;
           if(!boundaryPoint(x,y,cfg.radius+26))continue;
           if(obstacles.some(o=>Math.hypot(o.body.position.x-x,o.body.position.y-y)<o.r+cfg.radius+24))continue;
           if(Math.hypot(player.position.x-x,player.position.y-y)<C.player.radius+cfg.radius+75)continue;
-          if(enemies.some(e=>e.alive&&e.isSummon&&Math.hypot(e.body.position.x-x,e.body.position.y-y)<cfg.radius*3))continue;
+          if(liveSummons().some(e=>Math.hypot(e.body.position.x-x,e.body.position.y-y)<cfg.radius*3))continue;
           point={x,y};break;
         }
         if(!point)point=findSpawn(180,cfg.radius);
         if(!point)continue;
         const {x,y}=point;
-        const minion=spawnEnemy(x,y,b.bossSpec.summonType);
+        const minion=b.spawnSummon(x,y,b.bossSpec.summonType);
         minion.isSummon=true;minion.summonerId=b.id;minion.summonedAtMs=timeMs;
-        minion.summonExpiresAtMs=timeMs+p.summonLifetimeMs;minion.summonGrowUntilMs=timeMs+C.boss.summonAppearMs;
+        minion.summonExpiresAtMs=timeMs+p.summonLifetimeMs;minion.summonGrowUntilMs=timeMs+p.summonAppearMs;
         ringFx(x,y,35,b.bossSpec.appearance==='petal'?[.71,1,.51,1]:[.72,.54,1,1],370);
         burst(x,y,75,7,b.bossSpec.appearance==='petal'?[.74,1,.51,1]:[.69,.57,1,1]);
       }
-      b.nextSummonAtMs=timeMs+C.boss.summonPeriodMs;
+      b.nextSummonAtMs=timeMs+p.summonPeriodMs;
     }}
   };
   function chooseBossPattern(b){
-    const gap=Math.hypot(b.body.position.x-player.position.x,b.body.position.y-player.position.y);
+    const target=b.intent.target,p=bossParameters(b),allowed=Object.entries(b.bossPattern.patterns).filter(([,grade])=>b.grade>=grade).map(([id])=>id);
+    const gap=Math.hypot(b.body.position.x-target.x,b.body.position.y-target.y);
     const blocks=obstacles.some(o=>{
-      const vx=player.position.x-b.body.position.x,vy=player.position.y-b.body.position.y;
+      const vx=target.x-b.body.position.x,vy=target.y-b.body.position.y;
       const wx=o.body.position.x-b.body.position.x,wy=o.body.position.y-b.body.position.y;
       const along=(vx*wx+vy*wy)/(vx*vx+vy*vy||1);
-      return along>0&&along<1&&Math.hypot(wx-vx*along,wy-vy*along)<o.r+C.boss.radius*.6;
+      return along>0&&along<1&&Math.hypot(wx-vx*along,wy-vy*along)<o.r+b.config.radius*.6;
     });
-    if(timeMs>=b.nextSummonAtMs&&liveSummons(b.id).length<C.boss.summonCap)return 'SUMMON';
-    return gap<235?'RADIAL':blocks||gap>405?'CHARGE':'FAN';
+    if(allowed.includes('SUMMON')&&timeMs>=b.nextSummonAtMs&&liveSummons(b.id).length<p.summonCap)return 'SUMMON';
+    const preferred=gap<235?'RADIAL':blocks||gap>405?'CHARGE':'FAN';return allowed.includes(preferred)?preferred:allowed[0];
   }
   function startBossWindup(b,forcePattern=null){
-    b.pattern=forcePattern||chooseBossPattern(b);b.lastPattern=b.pattern;
+    b.pattern=forcePattern&&b.grade>=b.bossPattern.patterns[forcePattern]?forcePattern:chooseBossPattern(b);b.lastPattern=b.pattern;
     if(!BOSS_PATTERNS[b.pattern])throw Error('등록되지 않은 보스 행동 '+b.pattern);
     sfx.play('bossWindup');b.state='BOSS_WINDUP';b.patternStartedAtMs=timeMs;
     b.stateUntilMs=timeMs+bossParameters(b).windupMs;b.volleys=0;
-    stage.patternLog.push(b.pattern);if(stage.patternLog.length>20)stage.patternLog.shift();
+    b.bossPattern.log.push(b.pattern);if(b.bossPattern.log.length>20)b.bossPattern.log.shift();if(b===stage.boss)stage.patternLog=[...b.bossPattern.log];
   }
-  function updateBoss(b,dt){
+  function updateBoss(b,dt,ctx){
     const knockedBack=timeMs<(b.shadowKnockbackUntilMs||0);
-    const p=b.body,P=bossParameters(b),delta=norm(player.position.x-p.position.x,player.position.y-p.position.y);
-    const distance=Math.hypot(player.position.x-p.position.x,player.position.y-p.position.y);
+    const p=b.body,P=bossParameters(b),delta=norm(ctx.target.x-p.position.x,ctx.target.y-p.position.y);
+    const distance=Math.hypot(ctx.target.x-p.position.x,ctx.target.y-p.position.y);
     if(b.state==='BOSS_RECOIL'){
       if(timeMs>=b.stateUntilMs)startBossWindup(b,'CHARGE');return;
     }
     if(b.state==='BOSS_CHARGE'){
       if(timeMs>=b.stateUntilMs){b.state='BOSS_RECOVER';b.stateUntilMs=timeMs+P.recoverMs;}return;
     }
-    if(b.state==='BOSS_RECOVER'&&timeMs>=b.stateUntilMs&&!projectiles.some(s=>s.boss))startBossWindup(b);
+    if(b.state==='BOSS_RECOVER'&&timeMs>=b.stateUntilMs&&!projectiles.some(s=>s.boss&&s.sourceUnitId===b.unitId))startBossWindup(b);
     if(b.state==='BOSS_WINDUP'){
       b.headingX=delta.x;b.headingY=delta.y;
       if(timeMs>=b.stateUntilMs){b.state='BOSS_LOCK';b.stateUntilMs=timeMs+P.lockMs;
-        ringFx(p.position.x,p.position.y,C.boss.radius+31,[1,.62,.3,1],220);}
+        ringFx(p.position.x,p.position.y,b.config.radius+31,[1,.62,.3,1],220);}
     }else if(b.state==='BOSS_LOCK'&&timeMs>=b.stateUntilMs){
       const pattern=BOSS_PATTERNS[b.pattern];
       b.state='BOSS_EXEC';b.stateUntilMs=timeMs+(b.pattern==='CHARGE'?P.chargeDurationMs:pattern.executionMs);
@@ -1728,7 +1680,7 @@ try {
       if(b.pattern==='SUMMON'){
         if(b.volleys===0&&elapsed>=P.summonAppearMs){const before=liveSummons(b.id).length;BOSS_PATTERNS.SUMMON.fire(b,0);if(liveSummons(b.id).length>before)sfx.play('bossSummon');b.volleys++;}
       }else{
-        while(b.volleys<2&&elapsed>=b.volleys*225){sfx.play('boss'+b.pattern[0]+b.pattern.slice(1).toLowerCase());BOSS_PATTERNS[b.pattern].fire(b,b.volleys);b.volleys++;}
+        while(b.volleys<(b.grade>=5?2:1)&&elapsed>=b.volleys*225){sfx.play('boss'+b.pattern[0]+b.pattern.slice(1).toLowerCase());BOSS_PATTERNS[b.pattern].fire(b,b.volleys);b.volleys++;}
       }
       if(timeMs>=b.stateUntilMs){b.state='BOSS_RECOVER';b.stateUntilMs=timeMs+P.recoverMs;}
     }
@@ -1737,12 +1689,7 @@ try {
       const v=speedOf(p),blend=1-Math.exp(-6*dt);setSpeed(p,v.x*(1-blend),v.y*(1-blend));return;
     }
     if(knockedBack)return;
-    // Shared movement controller with profile-specific speed multiplier.
-    const chase=distance>380?1:distance<240?-1:0;
-    const strafe={x:-delta.y*b.strafeSign,y:delta.x*b.strafeSign};
-    const vx=delta.x*chase*.8+strafe.x*.55,vy=delta.y*chase*.8+strafe.y*.55;
-    const vel=speedOf(p),blend=1-Math.exp(-4*dt),spd=P.speed*b.bossSpec.base.speedRate;
-    setSpeed(p,vel.x+(vx*spd-vel.x)*blend,vel.y+(vy*spd-vel.y)*blend);
+    unitAdapter.chase(b,dt,ctx);
   }
   function breakBossObstacle(b,obstacle){
     if(!obstacle||b.state!=='BOSS_CHARGE')return;
@@ -1754,54 +1701,11 @@ try {
     ringFx(pos.x,pos.y,125,[1,.70,.39,1],510);burst(pos.x,pos.y,300,38,[.95,.69,.41,1]);
   }
 
-  function updateEnemies(dt){for(const e of enemies){if(!e.alive)continue;
-      if(e.soundState!==e.state){e.soundState=e.state;if(e.state==='WINDUP')sfx.play('enemyNotice');else if(e.state==='LUNGE')sfx.play('enemyLunge');}
-      if(e.type==='boss'){updateBoss(e,dt);continue;}
-      if(e.update){e.update(dt,{target:player.position});continue;}
-      if(e.isSummon&&timeMs>=e.summonExpiresAtMs){e.alive=false;enemiesById.delete(e.body.id);World.remove(engine.world,e.body);ringFx(e.body.position.x,e.body.position.y,29,[.62,.78,1,1],250);continue;}
-      if(e.isSummon&&timeMs<e.summonGrowUntilMs)continue;
-      // An ordinary enemy must retain the Matter impulse until it has moved away.
-      // Reapply its existing AI after the recoil window, never teleport its body.
-      if(timeMs<(e.shadowKnockbackUntilMs||0))continue;
-      const b=e.body,cfg=enemyDef(e),dx=player.position.x-b.position.x,dy=player.position.y-b.position.y,d=Math.hypot(dx,dy);
-      const dir=norm(dx,dy),inSight=d<Math.min(C.enemy.chaseRadius,cfg.detect),v=speedOf(b);
-      if(!inSight&&e.state!=='LUNGE'){
-        e.state='PATROL';const damping=1-Math.exp(-3*dt);setSpeed(b,v.x*(1-damping),v.y*(1-damping));continue;
-      }
-      if(e.state==='WINDUP'&&timeMs>=e.stateUntilMs){
-        if(e.type==='spitter'){
-          spawnProjectile(e);e.state='RECOVER';e.stateUntilMs=timeMs+cfg.recoverMs;
-        }else{
-          const n=norm(e.headingX,e.headingY);
-          applyImpulse(b,{x:n.x*b.mass*cfg.lungeSpeed,y:n.y*b.mass*cfg.lungeSpeed});
-          e.state='LUNGE';e.stateUntilMs=timeMs+cfg.lungeMs;enemyAttacks++;
-          burst(b.position.x,b.position.y,160,8,[1,.60,.33,1]);
-        }
-      }
-      if(e.state==='LUNGE'&&timeMs>=e.stateUntilMs){e.state='RECOVER';e.stateUntilMs=timeMs+cfg.recoverMs;}
-      if(e.state==='RECOVER'&&timeMs>=e.stateUntilMs)e.state='CHASE';
-      if(e.state==='WINDUP'||e.state==='LUNGE'){
-        if(e.state==='WINDUP'){
-          const damping=1-Math.exp(-9*dt);setSpeed(b,v.x*(1-damping),v.y*(1-damping));
-        }
-        continue;
-      }
-      // One AI state/owner, different per-role navigation and attack cadence.
-      let targetSpeed=0,ax=dir.x,ay=dir.y;
-      if(e.type==='spitter'){
-        if(d<cfg.keepNear){targetSpeed=-cfg.speed;}
-        else if(d>cfg.keepFar){targetSpeed=cfg.speed;}
-        else {targetSpeed=cfg.speed*.50;ax=-dir.y*e.strafeSign;ay=dir.x*e.strafeSign;}
-      }else if(d>cfg.radius+C.player.radius+8)targetSpeed=cfg.speed;
-      if(e.state==='RECOVER')targetSpeed*=.50;
-      const blend=1-Math.exp(-C.enemy.chaseResponse*dt);
-      setSpeed(b,v.x+(ax*targetSpeed-v.x)*blend,v.y+(ay*targetSpeed-v.y)*blend);
-      if(e.state==='RECOVER')continue;
-      const canAttack=e.type==='spitter' ? d<cfg.range&&d>cfg.radius+C.player.radius+10 : d<cfg.range;
-      if(canAttack){e.state='WINDUP';e.stateUntilMs=timeMs+cfg.windupMs;
-        e.headingX=dir.x;e.headingY=dir.y; e.attackCount++;
-      }else e.state='CHASE';
-    }}
+  function updateEnemies(dt){for(const e of [...unitsById.values()]){if(!e.alive)continue;
+    // Expiry precedes every capability; retired summons cannot prepare/fire on their expiry tick.
+    if(e.isSummon&&timeMs>=e.summonExpiresAtMs){e.die(DeathReason.expiry);continue;}
+    if(e.isSummon&&timeMs<e.summonGrowUntilMs)continue;e.step(dt,combatWorld);
+  }}
   function updateProjectiles(){for(let i=projectiles.length-1;i>=0;i--){const shot=projectiles[i];
       // Arc flight owns its simulation-time lifetime, including slow-time/hitstop.
       if(shot.arc)continue;
@@ -1826,7 +1730,7 @@ try {
       const r=Math.hypot(e.body.position.x-x,e.body.position.y-y);
       if(r>=range)continue;
       const dmg=Math.min(e.hp,Math.round(impact*C.augment.spore.damageRate*(storm?1.5:1)*(1-r/range)));
-      if(dmg<=0)continue;const applied=outgoingDamage(dmg,enemyDef(e).armor);e.hp-=applied;total+=applied;
+      if(dmg<=0)continue;const applied=receiveHit(e,{raw:outgoingDamage(dmg,enemyDef(e).armor),resolved:true,deferDeath:true,kind:'area'},playerUnit,timeMs);total+=applied;
       floatText(e.body.position.x,e.body.position.y,'-'+formatCombatNumber(applied),[.68,1,.63,1]);
       if(e.hp<=0){defeatEnemy(e);}
     }
@@ -1841,7 +1745,7 @@ try {
       if(distance>range)continue;
       const amount=Math.min(target.hp,outgoingDamage(damage*(1-distance/range),enemyDef(target).armor));
       if(amount<=0)continue;
-      target.hp-=amount;healed+=amount;count++;
+      receiveHit(target,{raw:amount,resolved:true,deferDeath:true,kind:'area'},playerUnit,timeMs);healed+=amount;count++;
       floatText(target.body.position.x,target.body.position.y,`-${formatCombatNumber(amount)}`,[.65,.94,1,1]);
       burst(target.body.position.x,target.body.position.y,110,5,[.50,.82,1,1]);
       if(target.hp<=0){defeatEnemy(target);}
@@ -2062,25 +1966,17 @@ try {
   }
   function handleCollision(evt){for(const pair of evt.pairs){
       if(!acceptVolumeContact(pair.bodyA,pair.bodyB))continue;
-      if(stage.boss?.alive&&stage.boss.state==='BOSS_CHARGE'){
-        const other=pair.bodyA===stage.boss.body?pair.bodyB:pair.bodyB===stage.boss.body?pair.bodyA:null;
-        if(other?.label==='obstacle'){const obstacle=obstacles.find(o=>o.body===other);if(obstacle)breakBossObstacle(stage.boss,obstacle);continue;}
-      }
-      // Sensor projectile/obstacle contacts are consumed once; terrain never inflicts projectile damage.
+      const unitA=unitsByBody.get(pair.bodyA.id),unitB=unitsByBody.get(pair.bodyB.id);
+      for(const [unit,other] of [[unitA,pair.bodyB],[unitB,pair.bodyA]])if(unit?.bossPattern&&unit.state==='BOSS_CHARGE'&&other.label==='obstacle'){
+        const obstacle=obstacles.find(o=>o.body===other);if(obstacle)breakBossObstacle(unit,obstacle);}
       const shot=projectileById.get(pair.bodyA.id)||projectileById.get(pair.bodyB.id);
-      if(shot){const other=shot.body===pair.bodyA?pair.bodyB:pair.bodyA;
-        const actor=petCombat.byBody.get(other.id),target=enemiesById.get(other.id);
-        if(shot.friendly&&target?.alive){petDamage(target,shot.raw,shot.stats);removeProjectile(shot);}
-        else if(!shot.friendly&&actor){petCombat.hurt(actor,shot.damage*C.enemy.projectileDamageMultiplier);removeProjectile(shot);}
-        else if(!shot.friendly&&other===player)hitProjectile(shot);
-        else if(other.label==='wall'||other.label==='obstacle')removeProjectile(shot);
-        continue;
+      if(shot){const other=shot.body===pair.bodyA?pair.bodyB:pair.bodyA,target=other===player?playerUnit:unitsByBody.get(other.id);
+        // A projectile may outlive its owner; source identity/faction/payload are immutable at spawn.
+        const source={...shot.source,alive:true,faction:shot.faction,unitId:shot.sourceUnitId};
+        if(target&&hostile(source,target)){if(target===playerUnit){hitProjectile(shot);}else{damageUnit(target,shot.payload,source);removeProjectile(shot);}}
+        else if(other.label==='wall'||other.label==='obstacle')removeProjectile(shot);continue;
       }
-      const petA=petCombat.byBody.get(pair.bodyA.id),petB=petCombat.byBody.get(pair.bodyB.id);
-      const contactA=enemiesById.get(pair.bodyA.id),contactB=enemiesById.get(pair.bodyB.id);
-      if(petA&&contactB){petCombat.contact(petA,contactB);continue;}
-      if(petB&&contactA){petCombat.contact(petB,contactA);continue;}
-      if(contactA&&contactB&&contactA!==contactB){spreadFireAtContact(contactA,contactB);continue;}
+      if(unitA&&unitB){if(hostile(unitA,unitB)){unitA.contact(unitB,timeMs);unitB.contact(unitA,timeMs);}else spreadFireAtContact(unitA,unitB);continue;}
       let e=null;
       if(pair.bodyA===player)e=enemiesById.get(pair.bodyB.id);
       else if(pair.bodyB===player)e=enemiesById.get(pair.bodyA.id);
@@ -2103,16 +1999,16 @@ try {
       if(touch){
         recordVolume('contact',e,{feetZ:e.body.plugin.volume.feetZ,previousFeetZ:e.body.plugin.volume.previousFeetZ,damage:cfg.damage*C.enemy.contactDamage/25});
         e.lastTouchMs=timeMs;
-        hurtPlayer(cfg.damage*C.enemy.contactDamage/25,player.position.x,player.position.y);
+        hurtPlayer(cfg.damage*C.enemy.contactDamage/25,player.position.x,player.position.y,e);
       }
       if(inflicted>0){
-        if(e.hp>inflicted)e.onHit?.({damage:inflicted,source:'dash'});
+
         const conductDamage=conducted?Math.max(0,inflicted-Math.min(e.hp,theoretical)):0;
         if(conducted){e.conductUntilMs=0;elementalEvents.conductConsumed++;elementalEvents.conductDamage+=conductDamage;}
         lastHit={tick,enemyId:e.id,automatic:dashAutomatic,critical,criticalMultiplier:critical?C.stats.criticalDamage:1,
           raw,normalDamage:theoretical,boostedDamage:boosted,damage:inflicted,conductDamage,markConsumed:conducted,
           tags:['dash',...(critical?['critical']:[]),...(conducted?['conduct']:[])]};
-        playImpact(impactSpeed);if(critical)sfx.play('perfect');e.hp=Math.max(0,e.hp-inflicted);hits++;combo++;onComboHit(combo);rechargeEvadeOnDashHit();
+        playImpact(impactSpeed);if(critical)sfx.play('perfect');receiveHit(e,{raw:inflicted,resolved:true,deferDeath:true,kind:'dash'},playerUnit,timeMs);hits++;combo++;onComboHit(combo);rechargeEvadeOnDashHit();
         if(!dashAutomatic&&dashPerfect)manualPerfectHits++;
         // A successful manual hit at >= 50% SHADOW timing starts an automatic
         // chain. Auto hits can continue it without requiring another manual tap.
@@ -2217,9 +2113,9 @@ try {
       if(!boundaryPoint(x,y,60))continue;
       if(obstacles.some(o=>Math.hypot(x-o.body.position.x,y-o.body.position.y)<o.r+65))continue;
       if(enemies.some(e=>e.alive&&Math.hypot(x-e.body.position.x,y-e.body.position.y)<C.stage.enemySpawnMinGap))continue;
-      spawnEnemy(x,y,enemyWave[Math.floor(rand()*enemyWave.length)]);return;
+      spawnEnemy(x,y,enemyRefillWave[Math.floor(rand()*enemyRefillWave.length)]);return;
     }
-    const pt=findSpawn(180,28);if(pt)spawnEnemy(pt.x,pt.y,enemyWave[Math.floor(rand()*enemyWave.length)]);
+    const pt=findSpawn(180,28);if(pt)spawnEnemy(pt.x,pt.y,enemyRefillWave[Math.floor(rand()*enemyRefillWave.length)]);
   }
   /** Continuous collision: swept relative segment against each enemy that moved this tick. */
   const shadowVolume={circleRadius:6,position:{x:0,y:0},plugin:{volume:{feetZ:0,previousFeetZ:0,height:C.spatial.shadowHeight,motion:{x:0,y:0}}}};
@@ -2288,12 +2184,12 @@ try {
     const dt=baseMs/1000*scale;
     snapshotVolumes(World.allBodies(engine.world));
     // Snapshot each enemy before the engine moves them, for relative swept collision.
-    for(const e of enemies){if(!e.alive)continue;
+    for(const e of unitsById.values()){if(!e.alive)continue;
       e.preX=e.body.position.x;e.preY=e.body.position.y;
       e.pre=speedOf(e.body);e.body.restitution=C.physics.restitution;}
-    updateEnemies(dt);petCombat.update(dt);petCombat.snapshotMotion();stepArcShots(dt);
+    petRoster.update(dt);updateEnemies(dt);stepArcShots(dt);
     if(mode==='READY'||mode==='RECOVER'||mode==='DASH')aimPreview();
-    const pv=speedOf(player);player.plugin.preX=pv.x;player.plugin.preY=pv.y;player.plugin.prePosX=player.position.x;player.plugin.prePosY=player.position.y;
+    const pv=speedOf(player);playerUnit.pre=pv;playerUnit.preX=player.position.x;playerUnit.preY=player.position.y;player.plugin.preX=pv.x;player.plugin.preY=pv.y;player.plugin.prePosX=player.position.x;player.plugin.prePosY=player.position.y;
     const chargeRate=chainActive?autoChargeRate():1;
     player.restitution=C.physics.restitution;player.frictionAir=C.physics.frictionAir;
     if(mode==='DASH'&&dashMotion){
@@ -2623,58 +2519,28 @@ try {
       [1,.86,.52,.12+.20*progress]);
     renderer.ellipse(q.x,q.y,enemyDef(target).radius+11,enemyDef(target).radius+11,[1,.86,.52,.07+.12*progress],22);
   }
-  const BOSS_VISUALS={
-    petal(b,now){
-      const p=b.body.position,r=b.visualRadius??C.boss.radius,v=b.bossVariant,ang=Math.atan2(b.headingY,b.headingX);
-      const wind=b.state==='BOSS_WINDUP'||b.state==='BOSS_LOCK',charging=b.state==='BOSS_CHARGE';
-      const open=(b.pattern==='FAN'||b.pattern==='RADIAL'||b.pattern==='SUMMON')&&wind?.9:charging?-.28:.21;
-      for(let i=0;i<9;i++){
-        const a=i*Math.PI*2/9+Math.sin(now*.0007+i)*.06;
-        const rr=r*(.72+open*.45+Math.sin(now*.004+i)*.03);
-        renderer.ellipse(p.x+Math.cos(a)*rr,p.y+Math.sin(a)*rr,r*.33,r*.48,[.96,.44+i%3*.065,.58,1],14);
-        renderer.ellipse(p.x+Math.cos(a)*rr*.9,p.y+Math.sin(a)*rr*.9,r*.15,r*.27,[1,.73,.65,.47],10);
-      }
-      renderer.ellipse(p.x,p.y,r*.58,r*.58,[.50,.29,.17,1],22);
-      renderer.ellipse(p.x,p.y,r*.37,r*.37,[1,.85,.39,1],20);
-      for(let i=0;i<8;i++){const a=i*Math.PI*2/8+now*.00023;
-        renderer.ellipse(p.x+Math.cos(a)*r*.3,p.y+Math.sin(a)*r*.3,r*2.5/C.boss.radius,r*2.5/C.boss.radius,[.28,.16,.14,1],8);}
-      renderer.ellipse(p.x+Math.cos(ang)*r*.21,p.y+Math.sin(ang)*r*.21,r*6/C.boss.radius,r*6/C.boss.radius,[.22,.14,.12,1],12);
-    },
-    mushroom(b,now){
-      const p=b.body.position,r=b.visualRadius??C.boss.radius,wind=b.state==='BOSS_WINDUP'||b.state==='BOSS_LOCK';
-      const expand=1+(wind?.12:0)+.045*Math.sin(now*.006);
-      renderer.ellipse(p.x,p.y+r*.33,r*.53,r*.39,[.72,.68,.89,1],20);
-      renderer.ellipse(p.x,p.y-r*.02,r*1.17*expand,r*.83*expand,[.36,.30,.68,1],26);
-      renderer.ellipse(p.x,p.y-r*.20,r*.94*expand,r*.58*expand,[.65,.54,.94,1],24);
-      for(let i=0;i<8;i++){
-        const a=i*Math.PI*2/8+Math.sin(now*.001+i)*.04,rr=r*.62;
-        renderer.ellipse(p.x+Math.cos(a)*rr,p.y-r*.18+Math.sin(a)*rr*.55,r*.105,r*.08,[.88,.85,1,.9],12);
-      }
-      renderer.ellipse(p.x-r*.22,p.y+r*.25,r*3.3/C.boss.radius,r*3.3/C.boss.radius,[.19,.17,.36,1],9);
-      renderer.ellipse(p.x+r*.22,p.y+r*.25,r*3.3/C.boss.radius,r*3.3/C.boss.radius,[.19,.17,.36,1],9);
-    }
-  };
-  function drawCompanions(now){
-    for(const actor of petCombat.actors){const p=actor.body?.position||actor;
-      if(actor.kind==='egg'){
-        const known=petKnown(actor.speciesId),progress=companions.byId.get(actor.id).hatchProgress/petConfig.eggs.hatchKills;const wobble=progress>.33?Math.sin(now*.018+actor.id)*progress*2:0;
-        renderer.ellipse(p.x+wobble,p.y,11,14,known?(actor.speciesId==='petalPredator'?[1,.76,.65,.96]:[.77,.71,1,.96]):[.83,.81,.73,.96],16);
-
-        if(progress>.3)renderer.line(p.x-4,p.y-3,p.x+2,p.y+2,1.8,[.27,.25,.35,1]);
-        if(progress>.6)renderer.line(p.x+2,p.y+2,p.x-3,p.y+7,1.8,[.27,.25,.35,1]);
-        drawArc(p.x,p.y,18,-Math.PI/2,Math.PI*2*progress,24,2,[1,.87,.58,.8]);continue;
-      }
-      if(actor.state==='DEAD'){drawArc(p.x,p.y,18,-Math.PI/2,Math.PI*2*(1-(actor.reviveAtMs-timeMs)/petConfig.combat.reviveMs),24,2,[.67,.86,1,.6]);continue;}
-      const grade=petConfig.grades[actor.grade],hex=grade.color,col=[1,3,5].map(i=>parseInt(hex.slice(i,i+2),16)/255);col.push(.8);
-      renderer.ellipse(p.x,p.y,actor.settings.radius*1.6,actor.settings.radius*1.5,[...col.slice(0,3),.18],24);
-      const state=actor.state==='WINDUP'?'BOSS_WINDUP':actor.state==='CHARGE'?'BOSS_CHARGE':'FOLLOW';
-      BOSS_VISUALS[petConfig.species[actor.speciesId].appearance]({...actor,state,visualRadius:actor.settings.radius*(actor.revealUntilMs>timeMs?1.5:1)},now);
-      renderer.rect(p.x,p.y-actor.settings.radius*1.7,26,3,[.05,.08,.13,.8]);
-      renderer.rect(p.x-13+13*actor.hp/actor.settings.maxHp,p.y-actor.settings.radius*1.7,26*actor.hp/actor.settings.maxHp,3,col);
-    }
+  function drawUnit(unit,now){const p=unit.body.position,r=unit.config.radius,z=unit.spatial.feetZ,pres=unit.presentation;
+    renderer.ellipse(p.x,p.y+6,r,r*.58,[0,0,0,.4],16);
+    const rgb=hexColor(pres.color),original=hexColor(species[unit.speciesId].color);
+    const paint=Object.fromEntries(['ellipse','rect','triangle','line'].map(name=>[name,(...args)=>{
+      const ci=name==='line'?5:name==='triangle'?6:name==='ellipse'?4:4,col=args[ci];if(Array.isArray(col))args[ci]=col.map((v,i)=>i<3?Math.min(1,v*rgb[i]/Math.max(.05,original[i])):v);renderer[name](...args);} ]));
+    if(pres.gradeColor){const gradeColor=hexColor(pres.gradeColor);renderer.ellipse(p.x,p.y,r*1.5,r*1.3,[...gradeColor,.16],24);}
+    if(unit.bossPattern)drawBoss(unit,now);
+    pres.draw(paint,{x:p.x,y:p.y-z,radius:r,time:now,id:unit.unitId,unit,attack:['WINDUP','LEAP_PREPARE','SELF_DESTRUCT_PREPARE','SPIKE_PREPARE','SPIKE_ACTIVE','ARC_PREPARE','ARC_BURST'].includes(unit.state)});
+    const ability=unit.selfDestruct||unit.spike||unit.arcFire||unit.leap||unit.lunge||unit.projectileFire;
+    if(ability?.phase==='PREPARE')drawArc(p.x,p.y,r+12,-Math.PI/2,Math.PI*2*clamp(1-ability.leftMs/ability.config.prepareMs,0,1),26,2.3,[1,.63,.3,.8]);
+    const aim=unit.leap?.aim;if(aim&&['PREPARE','FLIGHT'].includes(unit.leap.phase))drawArc(aim.x,aim.y,r+5,0,Math.PI*2,24,1.7,[.91,.74,.39,.7]);
+    if(unit.hp<unit.maxHp){renderer.rect(p.x,p.y-z-r-14,40,4,colors.hpBack);renderer.rect(p.x-20+20*unit.hp/unit.maxHp,p.y-z-r-14,40*unit.hp/unit.maxHp,4,colors.hp);}
+    drawElementalOverlay(unit,now);
   }
+  function hexColor(hex){return [1,3,5].map(i=>parseInt(hex.slice(i,i+2),16)/255);}
+  function drawCompanions(now){for(const actor of petRoster.actors){const p=actor.unit?.body.position||actor;
+    if(actor.kind==='egg'){const progress=companions.byId.get(actor.inventoryId).hatchProgress/petConfig.eggs.hatchKills;
+      drawSpeciesEgg(renderer,species[actor.speciesId].presentation,p.x,p.y,11,progress,now+actor.inventoryId);drawArc(p.x,p.y,18,-Math.PI/2,Math.PI*2*progress,24,2,[1,.87,.58,.8]);}
+    else if(!actor.unit)drawArc(p.x,p.y,18,-Math.PI/2,Math.PI*2*(1-(actor.reviveAtMs-timeMs)/petConfig.combat.reviveMs),24,2,[.67,.86,1,.6]);
+  }}
   function drawBoss(b,now){
-    const p=b.body.position,r=C.boss.radius,wind=b.state==='BOSS_WINDUP',lock=b.state==='BOSS_LOCK';
+    const p=b.body.position,r=b.config.radius,wind=b.state==='BOSS_WINDUP',lock=b.state==='BOSS_LOCK';
     const age=clamp((timeMs-b.patternStartedAtMs)/Math.max(1,b.bossParams?.windupMs||C.boss.windupMs),0,1);
     renderer.ellipse(p.x+5,p.y+10,r+18,r*.8,[0,0,0,.40],24);
     // Common boss-readable silhouette, regardless of the equipped theme recipe.
@@ -2705,7 +2571,7 @@ try {
         }
       }
     }
-    BOSS_VISUALS[b.bossSpec.appearance](b,now);
+
     if(b.state==='BOSS_CHARGE'){
       const sp=speedOf(b.body),dir=norm(sp.x,sp.y);
       for(let i=-1;i<=1;i++)renderer.line(p.x-dir.x*55-dir.y*i*11,p.y-dir.y*55+dir.x*i*11,
@@ -2726,52 +2592,7 @@ try {
     drawPreAim(now);
     drawTargetCompressionVfx(now);
     drawDashFlightGuide();
-    // Type-specific silhouettes and windup telegraphs: readable before the enemy hits.
-    for(const e of enemies){if(!e.alive)continue;
-      const p=e.body.position,cfg=enemyDef(e),r=cfg.radius,wind=e.state==='WINDUP';
-      const warning=wind?clamp(1-(e.stateUntilMs-timeMs)/cfg.windupMs,0,1):0;
-      if(e.type==='boss'){
-        drawBoss(e,now);drawElementalOverlay(e,now);continue;
-      }
-      if(enemyVisuals[e.type]){drawCapabilityEnemy(e,now);drawElementalOverlay(e,now);continue;}
-      if(e.isSummon&&timeMs<e.summonGrowUntilMs){const t=clamp(1-(e.summonGrowUntilMs-timeMs)/C.boss.summonAppearMs,0,1);
-        renderer.ellipse(p.x,p.y,5+(r-5)*t,5+(r-5)*t,e.type==='sprout'?[.67,1,.48,.77]:[.67,.54,1,.79],14);continue;}
-      const base=e.type==='brute'?[.91,.63,.27,1]:e.type==='spitter'?[.63,.46,.94,1]:e.type==='sprout'?[.52,.80,.29,1]:e.type==='puff'?[.66,.55,.93,1]:colors.enemy;
-      const core=e.type==='brute'?[1,.87,.57,1]:e.type==='spitter'?[.89,.78,1,1]:e.type==='sprout'?[.92,1,.66,1]:e.type==='puff'?[.91,.80,1,1]:colors.enemyCore;
-      renderer.ellipse(p.x+3,p.y+6,r+5,r*.72,[0,0,0,.35],16);
-      renderer.ellipse(p.x,p.y,r+C.visual.actors.enemySilhouettePadding,r+C.visual.actors.enemySilhouettePadding,
-        [.018,.065,.065,C.visual.actors.enemySilhouetteOpacity],22);
-      if(e.type==='sprout'){for(let i=0;i<5;i++){const a=i*Math.PI*2/5+now*.0007;renderer.ellipse(p.x+Math.cos(a)*r*.75,p.y+Math.sin(a)*r*.75,8,5,base,9);}renderer.ellipse(p.x,p.y,r*.55,r*.55,core,12);}
-      else if(e.type==='puff'){renderer.ellipse(p.x,p.y,r*.95,r*.85,base,18);for(let i=0;i<5;i++){const a=i*Math.PI*2/5;renderer.ellipse(p.x+Math.cos(a)*r*.48,p.y+Math.sin(a)*r*.42,3.4,3.4,core,9);}}
-      else if(e.type==='brute'){
-        for(let i=0;i<7;i++){const a=i*Math.PI*2/7+.4;renderer.ellipse(p.x+Math.cos(a)*r*.80,p.y+Math.sin(a)*r*.80,10,10,base,10);}
-        renderer.ellipse(p.x,p.y,r*.85,r*.85,[.38,.24,.21,1],18);
-        renderer.ellipse(p.x,p.y,r*.52,r*.52,core,16);
-        renderer.ellipse(p.x-6,p.y-5,3,3,[.20,.17,.11,1],8);
-        renderer.ellipse(p.x+6,p.y-5,3,3,[.20,.17,.11,1],8);
-      }else if(e.type==='spitter'){
-        for(let i=0;i<3;i++){const a=i*Math.PI*2/3+e.id*.3;renderer.ellipse(p.x+Math.cos(a)*r*.72,p.y+Math.sin(a)*r*.72,12,12,base,12);}
-        renderer.ellipse(p.x,p.y,r*.74,r*.74,core,18);
-        renderer.ellipse(p.x,p.y,6,6,[.32,.15,.51,1],12);
-      }else{
-        for(let i=0;i<6;i++){const a=i*Math.PI/3+e.id*.7;renderer.ellipse(p.x+Math.cos(a)*r*.64,p.y+Math.sin(a)*r*.64,9,9,base,10);}
-        renderer.ellipse(p.x,p.y,r*.70,r*.70,core,14);renderer.ellipse(p.x-4,p.y-5,4,4,[.23,.18,.15,1],9);
-      }
-      if(wind){
-        drawArc(p.x,p.y,r+12,-Math.PI/2,Math.PI*2*warning,26,
-          2.3+C.visual.threats.underlayWidth,[.02,.02,.03,C.visual.threats.underlayOpacity]);
-        drawArc(p.x,p.y,r+12,-Math.PI/2,Math.PI*2*warning,26,2.3,
-          e.type==='spitter'?[.84,.57,1,.9]:[1,.58,.29,.86]);
-        const ax=p.x+e.headingX*cfg.range*.52,ay=p.y+e.headingY*cfg.range*.52;
-        renderer.line(p.x,p.y,ax,ay,C.visual.threats.enemyLineWidth+C.visual.threats.underlayWidth,
-          [.02,.02,.03,C.visual.threats.underlayOpacity*.56]);
-        renderer.line(p.x,p.y,ax,ay,C.visual.threats.enemyLineWidth,e.type==='spitter'?[.82,.55,1,.34+warning*.49]:[1,.52,.27,.32+warning*.46]);
-      }else if(e.state==='LUNGE'){
-        renderer.ellipse(p.x,p.y,r+7,r+7,[1,.69,.35,.30],24);
-      }
-      drawElementalOverlay(e,now);
-      if(e.hp<e.maxHp){renderer.rect(p.x,p.y-r-14,46,5,colors.hpBack);renderer.rect(p.x-23+23*e.hp/e.maxHp,p.y-r-14,46*e.hp/e.maxHp,5,colors.hp);}
-    }
+    for(const unit of unitsById.values())if(unit.alive)drawUnit(unit,now);
     drawCompanions(now);
     drawLightningArcs();
     drawFireEmbersAndTransfers();
@@ -2779,7 +2600,7 @@ try {
     for(const shot of projectiles){if(shot.arc){drawArcShot(shot);continue;}const p=shot.body.position,r=shot.body.circleRadius;
       renderer.line(p.x-shot.dirX*18,p.y-shot.dirY*18,p.x,p.y,3,shot.boss?[1,.42,.26,.72]:[.7,.43,1,.49]);
       renderer.ellipse(p.x,p.y,r+5,r+5,shot.boss?[1,.35,.20,.30]:[.66,.41,1,.23],14);
-      renderer.ellipse(p.x,p.y,r,r,shot.friendly?[.62,1,.84,1]:shot.boss?[1,.59,.39,1]:[.83,.64,1,1],14);
+      renderer.ellipse(p.x,p.y,r,r,shot.faction===playerUnit.faction?[.62,1,.84,1]:shot.boss?[1,.59,.39,1]:[.83,.64,1,1],14);
       renderer.ellipse(p.x,p.y,r*.34,r*.34,[1,.93,1,1],9);
     }
     const p=player.position;const vel=speedOf(player);const rot=playerFacing;
@@ -3008,10 +2829,15 @@ try {
   let selectedPetSlot=0,revealTimer=0;
   const petKnown=id=>companions.discovered.has(id);
   const petName=item=>item.kind==='egg'?(petKnown(item.speciesId)?petConfig.species[item.speciesId].name+'의 알':'정체불명의 알'):petConfig.species[item.speciesId].name;
-  const petIcon=item=>item.kind==='egg'&&!petKnown(item.speciesId)?'◉':petConfig.species[item.speciesId].appearance==='petal'?'❀':'♧';
-  const petAbility=id=>petConfig.species[id].appearance==='petal'?'물리 돌진 · 성장하면 부채 탄막':'탄성 물리 돌진 · 성장하면 반동과 근거리 회복';
+  const petIcon=item=>item.kind==='egg'?'◉':'✿';
+  const petAbility=(id,grade=null)=>grade===null?species[id].description:species[id].gradeNotes[grade];
   function revealCompanions(ids){const reveal=$('petReveal');reveal.replaceChildren();for(const id of ids){const name=document.createElement('b');name.textContent=petIcon({kind:'pet',speciesId:id})+' '+petConfig.species[id].name;const desc=document.createElement('span');desc.textContent=petAbility(id);reveal.append(name,desc);}reveal.classList.add('show');clearTimeout(revealTimer);revealTimer=setTimeout(()=>reveal.classList.remove('show'),2800);}
-  function discoveryCards(target){target.replaceChildren();for(const id of companions.discovered){const card=document.createElement('div');card.className='pet-discovery';card.textContent=petIcon({kind:'pet',speciesId:id})+' '+petConfig.species[id].name+' · '+petAbility(id);target.append(card);}if(!companions.discovered.size)target.textContent='아직 기록된 동행이 없습니다.';}
+  function discoveryCards(target){updateDiscoveredSpeciesWiki();target.replaceChildren();for(const id of companions.discovered){const card=document.createElement('div');card.className='pet-discovery';card.textContent=petIcon({kind:'pet',speciesId:id})+' '+petConfig.species[id].name+' · '+petAbility(id);target.append(card);}if(!companions.discovered.size)target.textContent='아직 기록된 동행이 없습니다.';}
+  function updateDiscoveredSpeciesWiki(){const target=$('wikiPetSpeciesTable');if(!target)return;target.replaceChildren();
+    if(!companions.discovered.size){target.textContent='처음 부화한 동행부터 능력 기록이 열립니다.';return;}
+    const table=document.createElement('table'),header=table.insertRow();for(const title of ['발견한 동행',...petConfig.grades.map(g=>g.name)]){const cell=document.createElement('th');cell.textContent=title;header.append(cell);}
+    for(const id of companions.discovered){const row=table.insertRow();for(const text of [species[id].name,...species[id].gradeNotes]){const cell=row.insertCell();cell.textContent=text;}}target.append(table);
+  }
   function updatePetUi(){
     selectedPetSlot=Math.min(selectedPetSlot,companions.slots.length-1);$('petSlots').replaceChildren();
     companions.companions().forEach((item,i)=>{const button=document.createElement('button');button.type='button';button.classList.toggle('selected',i===selectedPetSlot);button.textContent=(i+1)+'번 · '+(item?petName(item)+(item.kind==='egg'?' '+item.hatchProgress+'/'+petConfig.eggs.hatchKills:' '+petConfig.grades[item.grade].name):'빈 슬롯');button.onclick=()=>{selectedPetSlot=i;updatePetUi();};$('petSlots').append(button);
@@ -3019,14 +2845,14 @@ try {
     const speciesSelect=$('petFusionSpecies'),gradeSelect=$('petFusionGrade'),oldSpecies=speciesSelect.value,oldGrade=gradeSelect.value,owned=companions.inventory.filter(item=>item.kind==='pet');
     speciesSelect.replaceChildren();for(const id of new Set(owned.map(item=>item.speciesId))){const option=document.createElement('option');option.value=id;option.textContent=petConfig.species[id].name;speciesSelect.append(option);}if([...speciesSelect.options].some(o=>o.value===oldSpecies))speciesSelect.value=oldSpecies;
     if(!owned.length){const option=document.createElement('option');option.value='';option.textContent='보유한 펫 없음';speciesSelect.append(option);}speciesSelect.disabled=!owned.length;
-    const species=speciesSelect.value;gradeSelect.replaceChildren();for(const grade of [...new Set(owned.filter(item=>item.speciesId===species).map(item=>item.grade))].sort((a,b)=>a-b)){const option=document.createElement('option');option.value=grade;option.textContent=petConfig.grades[grade].name;gradeSelect.append(option);}if([...gradeSelect.options].some(o=>o.value===oldGrade))gradeSelect.value=oldGrade;gradeSelect.disabled=!owned.length;
-    $('petInventory').replaceChildren();for(const item of companions.inventory){const grade=petConfig.grades[item.grade],slot=companions.slots.indexOf(item.id),card=document.createElement('div');card.className='pet-item';card.dataset.petId=item.id;card.style.setProperty('--grade',item.kind==='egg'?'#d8d4bc':grade.color);
-      const name=document.createElement('b'),icon=document.createElement('span');icon.textContent=petIcon(item)+' ';if(item.kind==='egg'){icon.className='pet-egg-mark'+(item.hatchProgress>=petConfig.eggs.hatchKills/3?' shaking':'');}name.append(icon,document.createTextNode(petName(item)+(item.kind==='pet'?' · '+grade.name:'')));card.append(name);
-      const text=document.createElement('p');text.textContent=item.kind==='egg'?'부화 '+item.hatchProgress+'/'+petConfig.eggs.hatchKills+' · '+(item.hatchProgress>=petConfig.eggs.hatchKills*2/3?'갈라진 껍질':item.hatchProgress>=petConfig.eggs.hatchKills/3?'작은 금':'단단한 껍질'):petAbility(item.speciesId)+(item.grade>=4?' · 원형 탄막':'');card.append(text);
+    const selectedSpecies=speciesSelect.value;gradeSelect.replaceChildren();for(const grade of [...new Set(owned.filter(item=>item.speciesId===selectedSpecies).map(item=>item.grade))].sort((a,b)=>a-b)){const option=document.createElement('option');option.value=grade;option.textContent=petConfig.grades[grade].name;gradeSelect.append(option);}if([...gradeSelect.options].some(o=>o.value===oldGrade))gradeSelect.value=oldGrade;gradeSelect.disabled=!owned.length;
+    $('petInventory').replaceChildren();for(const item of companions.inventory){const grade=petConfig.grades[item.grade],slot=companions.slots.indexOf(item.id),card=document.createElement('div');card.className='pet-item';card.dataset.petId=item.id;card.style.setProperty('--grade',item.kind==='egg'?species[item.speciesId].presentation.color:grade.color);
+      const name=document.createElement('b'),icon=document.createElement('span');icon.textContent=petIcon(item)+' ';if(item.kind==='egg'){icon.className='pet-egg-mark'+(item.hatchProgress>=petConfig.eggs.hatchKills/3?' shaking':'');icon.innerHTML=eggSvg(species[item.speciesId].presentation);}name.append(icon,document.createTextNode(petName(item)+(item.kind==='pet'?' · '+grade.name:'')));card.append(name);
+      const text=document.createElement('p');text.textContent=item.kind==='egg'?'부화 '+item.hatchProgress+'/'+petConfig.eggs.hatchKills+' · '+(item.hatchProgress>=petConfig.eggs.hatchKills*2/3?'갈라진 껍질':item.hatchProgress>=petConfig.eggs.hatchKills/3?'작은 금':'단단한 껍질'):petAbility(item.speciesId,item.grade);card.append(text);
       const equip=document.createElement('button');equip.type='button';equip.textContent=slot>=0?(slot+1)+'번 동행 중':(selectedPetSlot+1)+'번에 장착';equip.dataset.action='equip';equip.disabled=slot===selectedPetSlot;equip.onclick=()=>{if(companions.equip(item.id,selectedPetSlot))$('petResult').textContent='동행을 편성했습니다.';};card.append(equip);
       if(item.kind==='pet'){const lock=document.createElement('button');lock.type='button';lock.dataset.action='lock';lock.textContent=item.locked?'🔒 잠금 해제':'잠금';lock.onclick=()=>companions.setLocked(item.id,!item.locked);card.append(lock);}$('petInventory').append(card);}
-    if(!companions.inventory.length)$('petInventory').textContent='보스를 쓰러뜨리면 알을 받습니다.';discoveryCards($('petDiscoveries'));
-    const grade=Number(gradeSelect.value),count=companions.eligible(species,grade).length,odds=petConfig.fusion.odds[grade];$('petFusionOdds').textContent=!owned.length?'보유한 펫을 선택하세요':odds===undefined?'최고 등급 · 합성 없음':'성공 '+Math.round(odds*100)+'% · 재료 '+count+'/'+petConfig.fusion.required+' (잠금 제외)';$('petFuse').disabled=$('petFuseAll').disabled=!owned.length||odds===undefined||count<petConfig.fusion.required;
+    if(!companions.inventory.length)$('petInventory').textContent='적중 처치 시 일반·소환 5%, 보스 10%로 같은 종의 알을 얻습니다.';discoveryCards($('petDiscoveries'));
+    const grade=Number(gradeSelect.value),count=companions.eligible(selectedSpecies,grade).length,odds=petConfig.fusion.odds[grade];$('petFusionOdds').textContent=!owned.length?'보유한 펫을 선택하세요':odds===undefined?'최고 등급 · 합성 없음':'성공 '+Math.round(odds*100)+'% · 재료 '+count+'/'+petConfig.fusion.required+' (잠금 제외)';$('petFuse').disabled=$('petFuseAll').disabled=!owned.length||odds===undefined||count<petConfig.fusion.required;
   }
   function openPets(open){if(open&&phase!=='LOBBY')return;$('petPanel').classList.toggle('open',open);$('petPanel').setAttribute('aria-hidden',String(!open));if(open){updatePetUi();$('petClose').focus();}}
   $('petOpen').onclick=()=>openPets(true);$('petClose').onclick=()=>openPets(false);$('petPanel').onclick=e=>{if(e.target===$('petPanel'))openPets(false);};$('petFusionSpecies').onchange=$('petFusionGrade').onchange=updatePetUi;
@@ -3217,7 +3043,7 @@ try {
   window.addEventListener('resize',resize);
   document.addEventListener('visibilitychange',()=>{if(document.hidden){pending.length=0;bufferedIntent=null;bufferedUntilMs=0;}else{lastFrame=performance.now();}});
   loop.start();$('load').classList.add('hidden');canvas.focus({preventScroll:true});
-  window.__bloomImpulse={VERSION,BUILD_ID,config:C,getAudio:()=>sfx.snapshot(),audioMeter:()=>sfx.meter(),getCompanions:()=>companions.snapshot(),getState:()=>({volumeEvents:[...volumeEvents],arcShots:projectiles.filter(s=>s.arc).map(s=>({x:s.body.position.x,y:s.body.position.y,z:s.body.plugin.volume.feetZ,aim:{...s.arc.aim},ageMs:s.arc.ageMs,height:s.arc.height,ownerId:s.ownerId})),companions:petCombat.snapshot(),phase,mode,health,maxHp:C.stats.maxHp,aimPreviewId:previewTargetId,augment:{spore:C.augment.spore.enabled,momentum:C.augment.momentum.enabled,relay:C.chain.followKill,chain:C.chain.enabled},tech:{points:availableTech(),level:progressionLevel(tech.kills),totalKills:tech.kills,unlocked:[...tech.unlocked],statLevels:{...tech.statLevels}},autoChainReady,autoDashPlanned,chainActive,chainStarts,chainEnds,chainTriggerCharge:C.chain.minTriggerCharge,energy:{current:chainEnergy,capacity:energyCapacity(),fraction:chainEnergy/energyCapacity(),full:energyFull(),autoRechargeRate:autoChargeRate(),cost:energyCost(),spent:energySpent,gained:energyGained,restored:energyRestored},chainTargetId,autoChainWins,autoChainRolls,automaticDashes,manualPerfectHits,dashAutomatic,dashPerfect,launchCostTotal,launchCount,evade:{charges:evadeCharges,max:C.evade.maxCharges,refillAtMs:evadeRefillAtMs,progress:evadeRefillProgress(),rechargeMs:C.evade.rechargeMs,impulseSpeed:C.evade.impulseSpeed,durationMs:C.evade.durationMs,invulnerableMs:C.evade.invulnerableMs,projectileInvulnerable:timeMs-evadeStartedAtMs<C.evade.invulnerableMs,active:!!evadeMotion,startedAtMs:evadeStartedAtMs,count:evadeActions,hitRechargeEvents:evadeHitRechargeEvents,hitRechargeProgress:evadeHitRechargeProgress,lastHitRecharge:evadeLastHitRecharge?{...evadeLastHitRecharge}:null},stage:{index:stage.index,phase:stage.phase,waveKills:stage.waveKills,killTarget:stage.killTarget,bossHp:stage.boss?.hp??null,bossState:stage.boss?.state??null,bossPattern:stage.boss?.pattern??null,patternLog:[...stage.patternLog],obstacleCount:obstacles.length,broken:bossObstaclesBroken,arenaSides:arenaVertices.length,theme:stage.themeId,themeName:THEME_POOL[stage.themeId]?.name,layout:stage.layoutId,layoutName:stage.layoutName,radius:stage.radius,playableArea:Math.round(stage.playableArea),targetPopulation:stage.targetPopulation,mapTier:stage.mapTier,mapStart:stage.mapStart,mapSeed:stage.mapSeed,bossStage:isBossStage(stage.index),referenceArea:stageBasePlayableArea,bossName:stage.bossName||null,bossVariant:stage.bossVariant||null,bossSummons:stage.boss?liveSummons(stage.boss.id).length:0,seed:stage.seed,generation:{...generationStats}},stageHistory:[...stageHistory],bossPool:Object.keys(BOSS_POOL),themePool:Object.keys(THEME_POOL),mapOperators:Object.keys(MAP_OPERATORS),dashMotion:dashMotion?{...dashMotion}:null,shadow:shadow?{progress:chargeOf(),charge:chargeOf(),dashReady:shadowDashAvailable(),separation:shadowSeparation(),remainingGap:remainingShadowGap(),initialGap:shadow.initialGap,travel:shadow.travel,limit:shadow.limit,targetId:shadow.targetId,arrived:shadow.arrived,speed:shadow.speed}:null,hitstopLeftMs,dashCharge,dashFlight:dashFlight?{...dashFlight,remainingMs:Math.round(dashFlight.untilMs-timeMs)}:null,rearmProgress:rearmProgress(),buffered:!!bufferedIntent,damageTaken,healingDone,position:{...player.position},speed:speedOf(player),hits,kills,combo,comboFxActive:comboFx.classList.contains('active'),enemyMasses:Object.fromEntries(Object.entries(C.enemy.types).map(([type,def])=>[type,def.mass])),tick,timeMs,attackDashSerial,enemies:enemies.filter(e=>e.alive).length,enemyShots,enemyAttacks,enemyPushes,projectiles:projectiles.length,enemyStates:enemies.filter(e=>e.alive).map(e=>({id:e.id,bodyId:e.body.id,type:e.type,state:e.state,z:e.body.plugin.volume.feetZ,height:e.body.plugin.volume.height,ability:e.leap?{phase:e.leap.phase,count:e.leap.count,landings:e.leap.landings,aim:e.leap.aim}:e.selfDestruct?{phase:e.selfDestruct.phase,leftMs:e.selfDestruct.leftMs}:e.spike?{phase:e.spike.phase,pulses:e.spike.pulses,counters:e.spike.counters}:e.arcFire?{phase:e.arcFire.phase,volleys:e.arcFire.volleys,fired:e.arcFire.fired}:null,hp:e.hp,burning:!!e.burn,conducting:e.conductUntilMs>timeMs,radius:enemyDef(e).radius,x:e.body.position.x,y:e.body.position.y,preX:e.preX,preY:e.preY,shadowKnockbackLeftMs:Math.max(0,(e.shadowKnockbackUntilMs||0)-timeMs),attackCount:e.attackCount,playerGap:Math.hypot(e.body.position.x-player.position.x,e.body.position.y-player.position.y)})),rendererState:renderer.state,elemental:{...elementalEvents,fireEmbers:fireEmbers.length,fireTransfers:fireTransfers.length,activeBurning:enemies.filter(e=>e.alive&&e.burn).length,activeConducting:enemies.filter(e=>e.alive&&e.conductUntilMs>timeMs).length},stats:{...C.stats},criticalHits,lastHit:lastHit?{...lastHit,tags:[...lastHit.tags]}:null,fx:{stage:shadow?fxStage(chargeOf()):'none',target:shadow?(getTargetAnchor(fxAnchor)?{x:fxAnchor.x,y:fxAnchor.y,isEnemy:fxAnchor.isEnemy}:null):null,enabled:C.fx.targetCompression}}),auto:()=>{if(phase==='PLAYING')pending.push({kind:'auto'});},point:(x,y)=>{if(phase==='PLAYING')pending.push({kind:'point',x,y});},startRun,enterLobby,reset,dispose:()=>{releaseVolumeFilter?.();sfx.dispose();running=false;loop.stop();input.dispose();document.removeEventListener('focusin',onGameplayFocus);renderer.dispose();window.removeEventListener('resize',resize);}};
+  window.__bloomImpulse={VERSION,BUILD_ID,config:C,getAudio:()=>sfx.snapshot(),audioMeter:()=>sfx.meter(),getCompanions:()=>companions.snapshot(),getState:()=>({unitStates:[...unitsById.values()].map(u=>({unitId:u.unitId,inventoryId:u.inventoryId,speciesId:u.speciesId,faction:u.faction,state:u.state,hp:u.hp,grade:u.grade,isSummon:!!u.isSummon,summonerId:u.summonerId,bossPatterns:u.bossPattern?.log,signature:u.config.signature})),volumeEvents:[...volumeEvents],arcShots:projectiles.filter(s=>s.arc).map(s=>({x:s.body.position.x,y:s.body.position.y,z:s.body.plugin.volume.feetZ,aim:{...s.arc.aim},ageMs:s.arc.ageMs,height:s.arc.height,ownerId:s.ownerId})),companions:petRoster.snapshot(),phase,mode,health,maxHp:C.stats.maxHp,aimPreviewId:previewTargetId,augment:{spore:C.augment.spore.enabled,momentum:C.augment.momentum.enabled,relay:C.chain.followKill,chain:C.chain.enabled},tech:{points:availableTech(),level:progressionLevel(tech.kills),totalKills:tech.kills,unlocked:[...tech.unlocked],statLevels:{...tech.statLevels}},autoChainReady,autoDashPlanned,chainActive,chainStarts,chainEnds,chainTriggerCharge:C.chain.minTriggerCharge,energy:{current:chainEnergy,capacity:energyCapacity(),fraction:chainEnergy/energyCapacity(),full:energyFull(),autoRechargeRate:autoChargeRate(),cost:energyCost(),spent:energySpent,gained:energyGained,restored:energyRestored},chainTargetId,autoChainWins,autoChainRolls,automaticDashes,manualPerfectHits,dashAutomatic,dashPerfect,launchCostTotal,launchCount,evade:{charges:evadeCharges,max:C.evade.maxCharges,refillAtMs:evadeRefillAtMs,progress:evadeRefillProgress(),rechargeMs:C.evade.rechargeMs,impulseSpeed:C.evade.impulseSpeed,durationMs:C.evade.durationMs,invulnerableMs:C.evade.invulnerableMs,projectileInvulnerable:timeMs-evadeStartedAtMs<C.evade.invulnerableMs,active:!!evadeMotion,startedAtMs:evadeStartedAtMs,count:evadeActions,hitRechargeEvents:evadeHitRechargeEvents,hitRechargeProgress:evadeHitRechargeProgress,lastHitRecharge:evadeLastHitRecharge?{...evadeLastHitRecharge}:null},stage:{index:stage.index,phase:stage.phase,waveKills:stage.waveKills,killTarget:stage.killTarget,bossHp:stage.boss?.hp??null,bossState:stage.boss?.state??null,bossPattern:stage.boss?.pattern??null,patternLog:[...stage.patternLog],obstacleCount:obstacles.length,broken:bossObstaclesBroken,arenaSides:arenaVertices.length,theme:stage.themeId,themeName:THEME_POOL[stage.themeId]?.name,layout:stage.layoutId,layoutName:stage.layoutName,radius:stage.radius,playableArea:Math.round(stage.playableArea),targetPopulation:stage.targetPopulation,mapTier:stage.mapTier,mapStart:stage.mapStart,mapSeed:stage.mapSeed,bossStage:isBossStage(stage.index),referenceArea:stageBasePlayableArea,bossName:stage.bossName||null,bossVariant:stage.bossVariant||null,bossSummons:stage.boss?liveSummons(stage.boss.id).length:0,seed:stage.seed,generation:{...generationStats}},stageHistory:[...stageHistory],bossPool:Object.keys(BOSS_POOL),themePool:Object.keys(THEME_POOL),mapOperators:Object.keys(MAP_OPERATORS),dashMotion:dashMotion?{...dashMotion}:null,shadow:shadow?{progress:chargeOf(),charge:chargeOf(),dashReady:shadowDashAvailable(),separation:shadowSeparation(),remainingGap:remainingShadowGap(),initialGap:shadow.initialGap,travel:shadow.travel,limit:shadow.limit,targetId:shadow.targetId,arrived:shadow.arrived,speed:shadow.speed}:null,hitstopLeftMs,dashCharge,dashFlight:dashFlight?{...dashFlight,remainingMs:Math.round(dashFlight.untilMs-timeMs)}:null,rearmProgress:rearmProgress(),buffered:!!bufferedIntent,damageTaken,healingDone,position:{...player.position},speed:speedOf(player),hits,kills,combo,comboFxActive:comboFx.classList.contains('active'),enemyMasses:Object.fromEntries(Object.entries(C.enemy.types).map(([type,def])=>[type,def.mass])),tick,timeMs,attackDashSerial,enemies:enemies.filter(e=>e.alive).length,enemyShots,enemyAttacks,enemyPushes,projectiles:projectiles.length,enemyStates:enemies.filter(e=>e.alive).map(e=>({id:e.id,bodyId:e.body.id,type:e.type,state:e.state,z:e.body.plugin.volume.feetZ,height:e.body.plugin.volume.height,ability:e.leap?{phase:e.leap.phase,count:e.leap.count,landings:e.leap.landings,aim:e.leap.aim}:e.selfDestruct?{phase:e.selfDestruct.phase,leftMs:e.selfDestruct.leftMs}:e.spike?{phase:e.spike.phase,pulses:e.spike.pulses,counters:e.spike.counters}:e.arcFire?{phase:e.arcFire.phase,volleys:e.arcFire.volleys,fired:e.arcFire.fired}:null,hp:e.hp,burning:!!e.burn,conducting:e.conductUntilMs>timeMs,radius:enemyDef(e).radius,x:e.body.position.x,y:e.body.position.y,preX:e.preX,preY:e.preY,shadowKnockbackLeftMs:Math.max(0,(e.shadowKnockbackUntilMs||0)-timeMs),attackCount:e.attackCount,playerGap:Math.hypot(e.body.position.x-player.position.x,e.body.position.y-player.position.y)})),rendererState:renderer.state,elemental:{...elementalEvents,fireEmbers:fireEmbers.length,fireTransfers:fireTransfers.length,activeBurning:enemies.filter(e=>e.alive&&e.burn).length,activeConducting:enemies.filter(e=>e.alive&&e.conductUntilMs>timeMs).length},stats:{...C.stats},criticalHits,lastHit:lastHit?{...lastHit,tags:[...lastHit.tags]}:null,fx:{stage:shadow?fxStage(chargeOf()):'none',target:shadow?(getTargetAnchor(fxAnchor)?{x:fxAnchor.x,y:fxAnchor.y,isEnemy:fxAnchor.isEnemy}:null):null,enabled:C.fx.targetCompression}}),auto:()=>{if(phase==='PLAYING')pending.push({kind:'auto'});},point:(x,y)=>{if(phase==='PLAYING')pending.push({kind:'point',x,y});},startRun,enterLobby,reset,dispose:()=>{releaseVolumeFilter?.();sfx.dispose();running=false;loop.stop();input.dispose();document.removeEventListener('focusin',onGameplayFocus);renderer.dispose();window.removeEventListener('resize',resize);}};
 } catch(e) { ERROR(e); }
 
 </script>

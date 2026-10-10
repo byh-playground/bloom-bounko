@@ -1,0 +1,2386 @@
+{
+  "version": "0.12.4",
+  "buildId": "20261010T170000Z-all-species",
+  "baseCommit": "f8d0742c35707568fffa504b936a3be7b8939646",
+  "ruleCommit": "847b90c4cf911a666cc21a431ea3c3bba2edc29c",
+  "result": "PASS",
+  "browser": "155.0.4283.45",
+  "artifacts": {
+    "index.html": "b98557c5d08bc28425186eaf7ece6f89958a58cb619698682f4d0d671a165d64",
+    "abilities.js": "b1787c3489bc9c2c181c6554830427b75e3d6b754ede2e4750cfc96836debfca",
+    "enemies.js": "ce79413e6416a39f18b73f3f7d31ea1ba9f3a6d07cb1e3915c4c4a84e53ee001",
+    "pets.js": "a627c08d5043d297b92cd0a89cb85e7995faf794c6e601be80f0c608096ad236",
+    "controllers.js": "a15b9cc5367dd8458b238650e3f53d54a94abf5f168a3d26feb6558444435e26",
+    "audio.js": "8543ce14bcd61c07373cd7c7c560b9c696ecf5afb80918d3c5929ef407a84a22"
+  },
+  "verificationFingerprint": "07c90cd37c9d27aefa3af1cf387e9cb74c17d2dcc8043fbc0267645912a18a9d",
+  "ledger": [
+    {
+      "command": "node --check abilities.js/enemies.js/pets.js/controllers.js and extracted HTML module",
+      "owner": "Codex",
+      "result": "PASS",
+      "baseCommit": "f8d0742c35707568fffa504b936a3be7b8939646",
+      "fingerprint": "07c90cd37c9d27aefa3af1cf387e9cb74c17d2dcc8043fbc0267645912a18a9d"
+    },
+    {
+      "command": "node <temporary>/.qa-species-contract.cjs",
+      "owner": "Codex",
+      "result": "PASS",
+      "elapsedMs": 1502,
+      "baseCommit": "f8d0742c35707568fffa504b936a3be7b8939646",
+      "fingerprint": "07c90cd37c9d27aefa3af1cf387e9cb74c17d2dcc8043fbc0267645912a18a9d",
+      "environment": "Actual Microsoft Edge 155.0.4283.45 on Windows, headless"
+    },
+    {
+      "command": "node <temporary>/.qa-species-native.cjs",
+      "owner": "Codex",
+      "result": "PASS",
+      "elapsedMs": 15312,
+      "baseCommit": "f8d0742c35707568fffa504b936a3be7b8939646",
+      "fingerprint": "07c90cd37c9d27aefa3af1cf387e9cb74c17d2dcc8043fbc0267645912a18a9d",
+      "environment": "Actual Microsoft Edge 155.0.4283.45 on Windows, headless"
+    },
+    {
+      "command": "node <temporary>/.qa-species-slate.cjs",
+      "owner": "Codex",
+      "result": "PASS",
+      "elapsedMs": 1773,
+      "baseCommit": "f8d0742c35707568fffa504b936a3be7b8939646",
+      "fingerprint": "07c90cd37c9d27aefa3af1cf387e9cb74c17d2dcc8043fbc0267645912a18a9d",
+      "environment": "Actual Microsoft Edge 155.0.4283.45 on Windows, headless"
+    }
+  ],
+  "native": {
+    "scope": "Native actual Edge UI, persisted roster, inputs, deaths/revival, hatching/fusion and stage progression; no runtime state forcing",
+    "elapsedMs": 15312,
+    "errors": [],
+    "eggCards": [
+      {
+        "name": "도약 사마귀의 알",
+        "color": "#717b3d",
+        "svg": "<svg viewBox=\"0 0 40 48\" width=\"32\" height=\"38\" aria-hidden=\"true\"><ellipse cx=\"20\" cy=\"24\" rx=\"15\" ry=\"20\" fill=\"#717b3d\"></ellipse><polyline points=\"9.5 18 17.75 29.25 8 35.25\" fill=\"none\" stroke=\"#f58f42\" stroke-width=\"2\"></polyline><polyline points=\"30.5 18 22.25 29.25 32 35.25\" fill=\"none\" stroke=\"#f58f42\" stroke-width=\"2\"></polyline></svg>"
+      },
+      {
+        "name": "폭탄 공벌레의 알",
+        "color": "#bd8742",
+        "svg": "<svg viewBox=\"0 0 40 48\" width=\"32\" height=\"38\" aria-hidden=\"true\"><ellipse cx=\"20\" cy=\"24\" rx=\"15\" ry=\"20\" fill=\"#bd8742\"></ellipse><polyline points=\"20 24 32.75 24\" fill=\"none\" stroke=\"#f89b46\" stroke-width=\"2\"></polyline><polyline points=\"20 24 26.375 36.99038105676658\" fill=\"none\" stroke=\"#f89b46\" stroke-width=\"2\"></polyline><polyline points=\"20 24 13.625000000000004 36.99038105676658\" fill=\"none\" stroke=\"#f89b46\" stroke-width=\"2\"></polyline><polyline points=\"20 24 7.25 24.000000000000004\" fill=\"none\" stroke=\"#f89b46\" stroke-width=\"2\"></polyline><polyline points=\"20 24 13.624999999999993 11.009618943233423\" fill=\"none\" stroke=\"#f89b46\" stroke-width=\"2\"></polyline><polyline points=\"20 24 26.375 11.009618943233422\" fill=\"none\" stroke=\"#f89b46\" stroke-width=\"2\"></polyline></svg>"
+      },
+      {
+        "name": "가시 열매의 알",
+        "color": "#789f40",
+        "svg": "<svg viewBox=\"0 0 40 48\" width=\"32\" height=\"38\" aria-hidden=\"true\"><ellipse cx=\"20\" cy=\"24\" rx=\"15\" ry=\"20\" fill=\"#789f40\"></ellipse><path d=\"M29 21.75l-2.25 4.5h4.5Z\" fill=\"#f3a363\"></path><path d=\"M27.281152949374526 27.480906209851614l-2.25 4.5h4.5Z\" fill=\"#f3a363\"></path><path d=\"M22.781152949374526 31.022801033877748l-2.25 4.5h4.5Z\" fill=\"#f3a363\"></path><path d=\"M17.218847050625474 31.022801033877748l-2.25 4.5h4.5Z\" fill=\"#f3a363\"></path><path d=\"M12.718847050625474 27.480906209851614l-2.25 4.5h4.5Z\" fill=\"#f3a363\"></path><path d=\"M11 21.75l-2.25 4.5h4.5Z\" fill=\"#f3a363\"></path><path d=\"M12.718847050625474 16.01909379014839l-2.25 4.5h4.5Z\" fill=\"#f3a363\"></path><path d=\"M17.21884705062547 12.477198966122252l-2.25 4.5h4.5Z\" fill=\"#f3a363\"></path><path d=\"M22.781152949374526 12.477198966122252l-2.25 4.5h4.5Z\" fill=\"#f3a363\"></path><path d=\"M27.281152949374526 16.019093790148386l-2.25 4.5h4.5Z\" fill=\"#f3a363\"></path></svg>"
+      },
+      {
+        "name": "정체불명의 알",
+        "color": "#8a9e40",
+        "svg": "<svg viewBox=\"0 0 40 48\" width=\"32\" height=\"38\" aria-hidden=\"true\"><ellipse cx=\"20\" cy=\"24\" rx=\"15\" ry=\"20\" fill=\"#8a9e40\"></ellipse><circle cx=\"29\" cy=\"24\" r=\"2.25\" fill=\"#ed7861\"></circle><circle cx=\"20\" cy=\"33.75\" r=\"2.25\" fill=\"#ed7861\"></circle><circle cx=\"11\" cy=\"24\" r=\"2.25\" fill=\"#ed7861\"></circle><circle cx=\"20\" cy=\"14.25\" r=\"2.25\" fill=\"#ed7861\"></circle></svg>"
+      },
+      {
+        "name": "정찰 꽃의 알",
+        "color": "#ec7056",
+        "svg": "<svg viewBox=\"0 0 40 48\" width=\"32\" height=\"38\" aria-hidden=\"true\"><ellipse cx=\"20\" cy=\"24\" rx=\"15\" ry=\"20\" fill=\"#ec7056\"></ellipse><circle cx=\"29\" cy=\"24\" r=\"2.6999999999999997\" fill=\"#ffd18f\"></circle><circle cx=\"24.5\" cy=\"32.44374768689828\" r=\"2.6999999999999997\" fill=\"#ffd18f\"></circle><circle cx=\"15.500000000000004\" cy=\"32.44374768689828\" r=\"2.6999999999999997\" fill=\"#ffd18f\"></circle><circle cx=\"11\" cy=\"24\" r=\"2.6999999999999997\" fill=\"#ffd18f\"></circle><circle cx=\"15.499999999999996\" cy=\"15.556252313101725\" r=\"2.6999999999999997\" fill=\"#ffd18f\"></circle><circle cx=\"24.5\" cy=\"15.556252313101723\" r=\"2.6999999999999997\" fill=\"#ffd18f\"></circle><circle cx=\"20\" cy=\"24\" r=\"3.15\" fill=\"#ffd18f\"></circle></svg>"
+      },
+      {
+        "name": "정체불명의 알",
+        "color": "#e8a145",
+        "svg": "<svg viewBox=\"0 0 40 48\" width=\"32\" height=\"38\" aria-hidden=\"true\"><ellipse cx=\"20\" cy=\"24\" rx=\"15\" ry=\"20\" fill=\"#e8a145\"></ellipse><circle cx=\"29\" cy=\"24\" r=\"2.6999999999999997\" fill=\"#ffd967\"></circle><circle cx=\"25.611408216728602\" cy=\"31.62285695406329\" r=\"2.6999999999999997\" fill=\"#ffd967\"></circle><circle cx=\"17.99731159439317\" cy=\"33.50554714377278\" r=\"2.6999999999999997\" fill=\"#ffd967\"></circle><circle cx=\"11.891280188878229\" cy=\"28.230366456396194\" r=\"2.6999999999999997\" fill=\"#ffd967\"></circle><circle cx=\"11.891280188878229\" cy=\"19.76963354360381\" r=\"2.6999999999999997\" fill=\"#ffd967\"></circle><circle cx=\"17.997311594393167\" cy=\"14.49445285622722\" r=\"2.6999999999999997\" fill=\"#ffd967\"></circle><circle cx=\"25.6114082167286\" cy=\"16.37714304593671\" r=\"2.6999999999999997\" fill=\"#ffd967\"></circle><circle cx=\"20\" cy=\"24\" r=\"3.15\" fill=\"#ffd967\"></circle></svg>"
+      },
+      {
+        "name": "정체불명의 알",
+        "color": "#a078ef",
+        "svg": "<svg viewBox=\"0 0 40 48\" width=\"32\" height=\"38\" aria-hidden=\"true\"><ellipse cx=\"20\" cy=\"24\" rx=\"15\" ry=\"20\" fill=\"#a078ef\"></ellipse><circle cx=\"29\" cy=\"24\" r=\"2.6999999999999997\" fill=\"#dda5ff\"></circle><circle cx=\"15.500000000000004\" cy=\"32.44374768689828\" r=\"2.6999999999999997\" fill=\"#dda5ff\"></circle><circle cx=\"15.499999999999996\" cy=\"15.556252313101725\" r=\"2.6999999999999997\" fill=\"#dda5ff\"></circle><circle cx=\"20\" cy=\"24\" r=\"3.15\" fill=\"#dda5ff\"></circle></svg>"
+      },
+      {
+        "name": "정체불명의 알",
+        "color": "#85cc4a",
+        "svg": "<svg viewBox=\"0 0 40 48\" width=\"32\" height=\"38\" aria-hidden=\"true\"><ellipse cx=\"20\" cy=\"24\" rx=\"15\" ry=\"20\" fill=\"#85cc4a\"></ellipse><circle cx=\"29\" cy=\"24\" r=\"2.6999999999999997\" fill=\"#c9ef88\"></circle><circle cx=\"22.781152949374526\" cy=\"33.27280103387775\" r=\"2.6999999999999997\" fill=\"#c9ef88\"></circle><circle cx=\"12.718847050625474\" cy=\"29.730906209851614\" r=\"2.6999999999999997\" fill=\"#c9ef88\"></circle><circle cx=\"12.718847050625474\" cy=\"18.26909379014839\" r=\"2.6999999999999997\" fill=\"#c9ef88\"></circle><circle cx=\"22.781152949374526\" cy=\"14.727198966122252\" r=\"2.6999999999999997\" fill=\"#c9ef88\"></circle><circle cx=\"20\" cy=\"24\" r=\"3.15\" fill=\"#c9ef88\"></circle></svg>"
+      },
+      {
+        "name": "정체불명의 알",
+        "color": "#a88cee",
+        "svg": "<svg viewBox=\"0 0 40 48\" width=\"32\" height=\"38\" aria-hidden=\"true\"><ellipse cx=\"20\" cy=\"24\" rx=\"15\" ry=\"20\" fill=\"#a88cee\"></ellipse><circle cx=\"29\" cy=\"24\" r=\"2.25\" fill=\"#dfcaff\"></circle><circle cx=\"22.781152949374526\" cy=\"33.27280103387775\" r=\"2.25\" fill=\"#dfcaff\"></circle><circle cx=\"12.718847050625474\" cy=\"29.730906209851614\" r=\"2.25\" fill=\"#dfcaff\"></circle><circle cx=\"12.718847050625474\" cy=\"18.26909379014839\" r=\"2.25\" fill=\"#dfcaff\"></circle><circle cx=\"22.781152949374526\" cy=\"14.727198966122252\" r=\"2.25\" fill=\"#dfcaff\"></circle></svg>"
+      },
+      {
+        "name": "꽃잎 포식자의 알",
+        "color": "#f47b9b",
+        "svg": "<svg viewBox=\"0 0 40 48\" width=\"32\" height=\"38\" aria-hidden=\"true\"><ellipse cx=\"20\" cy=\"24\" rx=\"15\" ry=\"20\" fill=\"#f47b9b\"></ellipse><circle cx=\"29\" cy=\"24\" r=\"2.6999999999999997\" fill=\"#ffe174\"></circle><circle cx=\"26.894399988070802\" cy=\"30.267179194443756\" r=\"2.6999999999999997\" fill=\"#ffe174\"></circle><circle cx=\"21.562833599002374\" cy=\"33.60187559186903\" r=\"2.6999999999999997\" fill=\"#ffe174\"></circle><circle cx=\"15.500000000000004\" cy=\"32.44374768689828\" r=\"2.6999999999999997\" fill=\"#ffe174\"></circle><circle cx=\"11.542766412926825\" cy=\"27.334696397425272\" r=\"2.6999999999999997\" fill=\"#ffe174\"></circle><circle cx=\"11.542766412926825\" cy=\"20.66530360257473\" r=\"2.6999999999999997\" fill=\"#ffe174\"></circle><circle cx=\"15.499999999999996\" cy=\"15.556252313101725\" r=\"2.6999999999999997\" fill=\"#ffe174\"></circle><circle cx=\"21.56283359900237\" cy=\"14.398124408130972\" r=\"2.6999999999999997\" fill=\"#ffe174\"></circle><circle cx=\"26.894399988070802\" cy=\"17.732820805556237\" r=\"2.6999999999999997\" fill=\"#ffe174\"></circle><circle cx=\"20\" cy=\"24\" r=\"3.15\" fill=\"#ffe174\"></circle></svg>"
+      },
+      {
+        "name": "탄성 버섯왕의 알",
+        "color": "#a68aee",
+        "svg": "<svg viewBox=\"0 0 40 48\" width=\"32\" height=\"38\" aria-hidden=\"true\"><ellipse cx=\"20\" cy=\"24\" rx=\"15\" ry=\"20\" fill=\"#a68aee\"></ellipse><polyline points=\"8 21.75 20 15.75 32 21.75\" fill=\"none\" stroke=\"#e1d3ff\" stroke-width=\"2\"></polyline><circle cx=\"14.3\" cy=\"24\" r=\"1.5\" fill=\"#e1d3ff\"></circle><circle cx=\"20\" cy=\"24\" r=\"1.5\" fill=\"#e1d3ff\"></circle><circle cx=\"25.7\" cy=\"24\" r=\"1.5\" fill=\"#e1d3ff\"></circle><circle cx=\"14.3\" cy=\"31.5\" r=\"1.5\" fill=\"#e1d3ff\"></circle><circle cx=\"20\" cy=\"31.5\" r=\"1.5\" fill=\"#e1d3ff\"></circle></svg>"
+      }
+    ],
+    "fusionMessage": "합성 1회 · 성공 1 · 실패 0 · 소모 5마리 · 생성 1마리",
+    "input": {
+      "evades": 2,
+      "launches": 1,
+      "manualCost": 28
+    },
+    "combat": {
+      "inventoryCount": 18,
+      "slots": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "hits": 26,
+      "kills": 18,
+      "damage": 2199,
+      "taken": 323,
+      "deaths": 3,
+      "revivals": 2,
+      "abilities": 200,
+      "supportHealing": 0,
+      "lastHit": {
+        "inventoryId": 5,
+        "unitId": 29,
+        "speciesId": "elasticCap",
+        "enemyId": 39,
+        "damage": 78,
+        "raw": 434.60064000000006,
+        "atMs": 9516.666666666668
+      },
+      "actors": [
+        {
+          "id": 1,
+          "inventoryId": 1,
+          "unitId": 30,
+          "kind": "pet",
+          "speciesId": "rogue",
+          "grade": 0,
+          "state": "RECOVER",
+          "hp": 71,
+          "maxHp": 105,
+          "x": 732.1355991704321,
+          "y": 560.8164271637393,
+          "z": 0,
+          "abilities": {
+            "leap": {
+              "phase": "CANCELLED"
+            }
+          },
+          "reviveInMs": 0
+        },
+        {
+          "id": 2,
+          "inventoryId": 2,
+          "unitId": null,
+          "kind": "pet",
+          "speciesId": "pillbug",
+          "grade": 1,
+          "state": "DEAD",
+          "hp": null,
+          "maxHp": null,
+          "x": 728.2231879613179,
+          "y": 694.1472125486457,
+          "z": 0,
+          "abilities": null,
+          "reviveInMs": 250
+        },
+        {
+          "id": 3,
+          "inventoryId": 3,
+          "unitId": 27,
+          "kind": "pet",
+          "speciesId": "thornfruit",
+          "grade": 2,
+          "state": "RECOVER",
+          "hp": 569.4000000000001,
+          "maxHp": 599.4000000000001,
+          "x": 726.812449956942,
+          "y": 951.5918391874291,
+          "z": 0,
+          "abilities": {
+            "spike": {
+              "phase": "CANCELLED"
+            }
+          },
+          "reviveInMs": 0
+        },
+        {
+          "id": 4,
+          "inventoryId": 4,
+          "unitId": 28,
+          "kind": "pet",
+          "speciesId": "petalPredator",
+          "grade": 5,
+          "state": "RECOVER",
+          "hp": 10158.667200000002,
+          "maxHp": 10203.667200000002,
+          "x": 612.2001191880407,
+          "y": 727.9610703041232,
+          "z": 0,
+          "abilities": {
+            "bossPattern": {
+              "log": []
+            }
+          },
+          "reviveInMs": 0
+        },
+        {
+          "id": 5,
+          "inventoryId": 5,
+          "unitId": 29,
+          "kind": "pet",
+          "speciesId": "elasticCap",
+          "grade": 5,
+          "state": "RECOVER",
+          "hp": 10731.887232000001,
+          "maxHp": 10815.887232000001,
+          "x": 869.2087320177031,
+          "y": 776.4063213595515,
+          "z": 0,
+          "abilities": {
+            "bossPattern": {
+              "log": []
+            }
+          },
+          "reviveInMs": 0
+        }
+      ]
+    },
+    "stage": {
+      "index": 2,
+      "phase": "CLEAR",
+      "waveKills": 11,
+      "killTarget": 11,
+      "bossHp": null,
+      "bossState": null,
+      "bossPattern": null,
+      "patternLog": [],
+      "obstacleCount": 6,
+      "broken": 0,
+      "arenaSides": 8,
+      "theme": "garden",
+      "themeName": "화원",
+      "layout": "grove",
+      "layoutName": "빽빽한 화단",
+      "radius": 550,
+      "playableArea": 749631,
+      "targetPopulation": 5,
+      "mapTier": 0,
+      "mapStart": 1,
+      "mapSeed": 2654354052,
+      "bossStage": false,
+      "referenceArea": 749630.913784598,
+      "bossName": null,
+      "bossVariant": null,
+      "bossSummons": 0,
+      "seed": 1013952599,
+      "generation": {
+        "retries": 0,
+        "connectivity": 0.9375,
+        "clearLane": 444,
+        "obstacles": 6
+      }
+    },
+    "defaultBoot": {
+      "version": "0.12.4",
+      "brand": "PHYSICS ACTION LAB · v0.12.4",
+      "hp": 100,
+      "maxHp": 100,
+      "population": 4
+    },
+    "hatch": {
+      "inventoryId": 23,
+      "item": {
+        "id": 23,
+        "speciesId": "rocket",
+        "kind": "pet",
+        "grade": 0,
+        "hatchProgress": 30,
+        "locked": false
+      },
+      "discovered": [
+        "rogue",
+        "pillbug",
+        "thornfruit",
+        "scout",
+        "petalPredator",
+        "elasticCap",
+        "rocket"
+      ],
+      "persisted": {
+        "id": 23,
+        "speciesId": "rocket",
+        "kind": "pet",
+        "grade": 0,
+        "hatchProgress": 30,
+        "locked": false
+      }
+    },
+    "restart": {
+      "units": 9,
+      "enemies": 4,
+      "pets": 5,
+      "stage": 1
+    },
+    "naturalRevival": {
+      "deathObservedAtMs": 3083.3333333333335,
+      "deadlineMs": 5950,
+      "revivalObservedAtMs": 6000,
+      "observationIntervalMs": 150
+    },
+    "observedEggRolls": [
+      {
+        "kind": "egg-roll",
+        "tick": 94,
+        "timeMs": 1566.6666666666667,
+        "id": 1,
+        "type": "rogue",
+        "rate": 0.05,
+        "added": 0
+      },
+      {
+        "kind": "egg-roll",
+        "tick": 213,
+        "timeMs": 3550.0000000000005,
+        "id": 16,
+        "type": "spitter",
+        "rate": 0.05,
+        "added": 0
+      },
+      {
+        "kind": "egg-roll",
+        "tick": 215,
+        "timeMs": 3583.3333333333335,
+        "id": 17,
+        "type": "rocket",
+        "rate": 0.05,
+        "added": 0
+      },
+      {
+        "kind": "egg-roll",
+        "tick": 223,
+        "timeMs": 3716.666666666667,
+        "id": 3,
+        "type": "thornfruit",
+        "rate": 0.05,
+        "added": 0
+      },
+      {
+        "kind": "egg-roll",
+        "tick": 224,
+        "timeMs": 3733.3333333333335,
+        "id": 19,
+        "type": "brute",
+        "rate": 0.05,
+        "added": 0
+      },
+      {
+        "kind": "egg-roll",
+        "tick": 227,
+        "timeMs": 3783.3333333333335,
+        "id": 20,
+        "type": "thornfruit",
+        "rate": 0.05,
+        "added": 0
+      },
+      {
+        "kind": "egg-roll",
+        "tick": 233,
+        "timeMs": 3883.3333333333335,
+        "id": 4,
+        "type": "rocket",
+        "rate": 0.05,
+        "added": 0
+      },
+      {
+        "kind": "egg-roll",
+        "tick": 413,
+        "timeMs": 6883.333333333334,
+        "id": 26,
+        "type": "rogue",
+        "rate": 0.05,
+        "added": 0
+      },
+      {
+        "kind": "egg-roll",
+        "tick": 417,
+        "timeMs": 6950.000000000001,
+        "id": 22,
+        "type": "rogue",
+        "rate": 0.05,
+        "added": 0
+      },
+      {
+        "kind": "egg-roll",
+        "tick": 446,
+        "timeMs": 7433.333333333334,
+        "id": 23,
+        "type": "pillbug",
+        "rate": 0.05,
+        "added": 0
+      },
+      {
+        "kind": "egg-roll",
+        "tick": 448,
+        "timeMs": 7466.666666666667,
+        "id": 24,
+        "type": "thornfruit",
+        "rate": 0.05,
+        "added": 0
+      },
+      {
+        "kind": "egg-roll",
+        "tick": 457,
+        "timeMs": 7616.666666666667,
+        "id": 35,
+        "type": "rocket",
+        "rate": 0.05,
+        "added": 0
+      },
+      {
+        "kind": "egg-roll",
+        "tick": 459,
+        "timeMs": 7650.000000000001,
+        "id": 25,
+        "type": "rocket",
+        "rate": 0.05,
+        "added": 0
+      },
+      {
+        "kind": "egg-roll",
+        "tick": 460,
+        "timeMs": 7666.666666666667,
+        "id": 37,
+        "type": "spitter",
+        "rate": 0.05,
+        "added": 0
+      },
+      {
+        "kind": "egg-roll",
+        "tick": 469,
+        "timeMs": 7816.666666666667,
+        "id": 36,
+        "type": "rogue",
+        "rate": 0.05,
+        "added": 0
+      },
+      {
+        "kind": "egg-roll",
+        "tick": 568,
+        "timeMs": 9466.666666666668,
+        "id": 32,
+        "type": "scout",
+        "rate": 0.05,
+        "added": 0
+      },
+      {
+        "kind": "egg-roll",
+        "tick": 571,
+        "timeMs": 9516.666666666668,
+        "id": 34,
+        "type": "rocket",
+        "rate": 0.05,
+        "added": 0
+      },
+      {
+        "kind": "egg-roll",
+        "tick": 571,
+        "timeMs": 9516.666666666668,
+        "id": 39,
+        "type": "spitter",
+        "rate": 0.05,
+        "added": 0
+      }
+    ],
+    "selectedFrames": [
+      {
+        "tick": 62,
+        "timeMs": 1033.3333333333335,
+        "phase": "PLAYING",
+        "health": 253.02500000000023,
+        "stage": 1,
+        "units": [
+          {
+            "unitId": 1,
+            "inventoryId": null,
+            "speciesId": "rogue",
+            "faction": "wild",
+            "state": "LEAP",
+            "hp": 85,
+            "grade": 5,
+            "isSummon": false,
+            "signature": "leap"
+          },
+          {
+            "unitId": 2,
+            "inventoryId": null,
+            "speciesId": "pillbug",
+            "faction": "wild",
+            "state": "CHASE",
+            "hp": 150,
+            "grade": 5,
+            "isSummon": false,
+            "signature": "selfDestruct"
+          },
+          {
+            "unitId": 3,
+            "inventoryId": null,
+            "speciesId": "thornfruit",
+            "faction": "wild",
+            "state": "SPIKE_ACTIVE",
+            "hp": 185,
+            "grade": 5,
+            "isSummon": false,
+            "signature": "spike"
+          },
+          {
+            "unitId": 4,
+            "inventoryId": null,
+            "speciesId": "rocket",
+            "faction": "wild",
+            "state": "ARC_BURST",
+            "hp": 95,
+            "grade": 5,
+            "isSummon": false,
+            "signature": "arcFire"
+          },
+          {
+            "unitId": 10,
+            "inventoryId": 1,
+            "speciesId": "rogue",
+            "faction": "garden",
+            "state": "WINDUP",
+            "hp": 80,
+            "grade": 0,
+            "isSummon": false,
+            "signature": "leap"
+          },
+          {
+            "unitId": 11,
+            "inventoryId": 2,
+            "speciesId": "pillbug",
+            "faction": "garden",
+            "state": "CHASE",
+            "hp": 270,
+            "grade": 1,
+            "isSummon": false,
+            "signature": "selfDestruct"
+          },
+          {
+            "unitId": 12,
+            "inventoryId": 3,
+            "speciesId": "thornfruit",
+            "faction": "garden",
+            "state": "SPIKE_ACTIVE",
+            "hp": 599.4000000000001,
+            "grade": 2,
+            "isSummon": false,
+            "signature": "spike"
+          },
+          {
+            "unitId": 13,
+            "inventoryId": 4,
+            "speciesId": "petalPredator",
+            "faction": "garden",
+            "state": "BOSS_WINDUP",
+            "hp": 10203.667200000002,
+            "grade": 5,
+            "isSummon": false,
+            "bossPatterns": [
+              "FAN"
+            ],
+            "signature": "bossPattern"
+          },
+          {
+            "unitId": 14,
+            "inventoryId": 5,
+            "speciesId": "elasticCap",
+            "faction": "garden",
+            "state": "BOSS_WINDUP",
+            "hp": 10815.887232000001,
+            "grade": 5,
+            "isSummon": false,
+            "bossPatterns": [
+              "FAN"
+            ],
+            "signature": "bossPattern"
+          }
+        ],
+        "companions": {
+          "inventoryCount": 18,
+          "slots": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "hits": 1,
+          "kills": 0,
+          "damage": 20,
+          "taken": 25,
+          "deaths": 0,
+          "revivals": 0,
+          "abilities": 8,
+          "supportHealing": 0,
+          "lastHit": {
+            "inventoryId": 1,
+            "unitId": 10,
+            "speciesId": "rogue",
+            "enemyId": 1,
+            "damage": 20,
+            "raw": 20.15441434747549,
+            "atMs": 366.6666666666667
+          },
+          "actors": [
+            {
+              "id": 1,
+              "inventoryId": 1,
+              "unitId": 10,
+              "kind": "pet",
+              "speciesId": "rogue",
+              "grade": 0,
+              "state": "WINDUP",
+              "hp": 80,
+              "maxHp": 105,
+              "x": 795.0104195370637,
+              "y": 1124.7606254984817,
+              "z": 0,
+              "abilities": {
+                "leap": {
+                  "phase": "READY"
+                }
+              },
+              "reviveInMs": 0
+            },
+            {
+              "id": 2,
+              "inventoryId": 2,
+              "unitId": 11,
+              "kind": "pet",
+              "speciesId": "pillbug",
+              "grade": 1,
+              "state": "CHASE",
+              "hp": 270,
+              "maxHp": 270,
+              "x": 716.9754889981289,
+              "y": 579.5388983789431,
+              "z": 0,
+              "abilities": {
+                "selfDestruct": {
+                  "phase": "READY"
+                }
+              },
+              "reviveInMs": 0
+            },
+            {
+              "id": 3,
+              "inventoryId": 3,
+              "unitId": 12,
+              "kind": "pet",
+              "speciesId": "thornfruit",
+              "grade": 2,
+              "state": "SPIKE_ACTIVE",
+              "hp": 599.4000000000001,
+              "maxHp": 599.4000000000001,
+              "x": 791.1791729465273,
+              "y": 877.8391471096551,
+              "z": 0,
+              "abilities": {
+                "spike": {
+                  "phase": "ACTIVE"
+                }
+              },
+              "reviveInMs": 0
+            },
+            {
+              "id": 4,
+              "inventoryId": 4,
+              "unitId": 13,
+              "kind": "pet",
+              "speciesId": "petalPredator",
+              "grade": 5,
+              "state": "BOSS_WINDUP",
+              "hp": 10203.667200000002,
+              "maxHp": 10203.667200000002,
+              "x": 647.673164864568,
+              "y": 725.7455263871841,
+              "z": 0,
+              "abilities": {
+                "bossPattern": {
+                  "log": [
+                    "FAN"
+                  ]
+                }
+              },
+              "reviveInMs": 0
+            },
+            {
+              "id": 5,
+              "inventoryId": 5,
+              "unitId": 14,
+              "kind": "pet",
+              "speciesId": "elasticCap",
+              "grade": 5,
+              "state": "BOSS_WINDUP",
+              "hp": 10815.887232000001,
+              "maxHp": 10815.887232000001,
+              "x": 767.588714509156,
+              "y": 691.2563343603209,
+              "z": 0,
+              "abilities": {
+                "bossPattern": {
+                  "log": [
+                    "FAN"
+                  ]
+                }
+              },
+              "reviveInMs": 0
+            }
+          ]
+        }
+      },
+      {
+        "tick": 185,
+        "timeMs": 3083.3333333333335,
+        "phase": "PLAYING",
+        "health": 230.38571428571527,
+        "stage": 1,
+        "units": [
+          {
+            "unitId": 3,
+            "inventoryId": null,
+            "speciesId": "thornfruit",
+            "faction": "wild",
+            "state": "SPIKE_PREPARE",
+            "hp": 119,
+            "grade": 5,
+            "isSummon": false,
+            "signature": "spike"
+          },
+          {
+            "unitId": 4,
+            "inventoryId": null,
+            "speciesId": "rocket",
+            "faction": "wild",
+            "state": "ARC_PREPARE",
+            "hp": 95,
+            "grade": 5,
+            "isSummon": false,
+            "signature": "arcFire"
+          },
+          {
+            "unitId": 12,
+            "inventoryId": 3,
+            "speciesId": "thornfruit",
+            "faction": "garden",
+            "state": "RECOVER",
+            "hp": 591.4000000000001,
+            "grade": 2,
+            "isSummon": false,
+            "signature": "spike"
+          },
+          {
+            "unitId": 13,
+            "inventoryId": 4,
+            "speciesId": "petalPredator",
+            "faction": "garden",
+            "state": "BOSS_WINDUP",
+            "hp": 10187.667200000002,
+            "grade": 5,
+            "isSummon": false,
+            "bossPatterns": [
+              "FAN",
+              "FAN"
+            ],
+            "signature": "bossPattern"
+          },
+          {
+            "unitId": 14,
+            "inventoryId": 5,
+            "speciesId": "elasticCap",
+            "faction": "garden",
+            "state": "BOSS_WINDUP",
+            "hp": 10782.887232000001,
+            "grade": 5,
+            "isSummon": false,
+            "bossPatterns": [
+              "FAN",
+              "RADIAL"
+            ],
+            "signature": "bossPattern"
+          },
+          {
+            "unitId": 15,
+            "inventoryId": null,
+            "speciesId": "rocket",
+            "faction": "wild",
+            "state": "RECOVER",
+            "hp": 95,
+            "grade": 5,
+            "isSummon": false,
+            "signature": "arcFire"
+          },
+          {
+            "unitId": 16,
+            "inventoryId": null,
+            "speciesId": "spitter",
+            "faction": "wild",
+            "state": "WINDUP",
+            "hp": 3,
+            "grade": 5,
+            "isSummon": false,
+            "signature": "projectileFire"
+          }
+        ],
+        "companions": {
+          "inventoryCount": 18,
+          "slots": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "hits": 6,
+          "kills": 1,
+          "damage": 246,
+          "taken": 187,
+          "deaths": 2,
+          "revivals": 0,
+          "abilities": 41,
+          "supportHealing": 0,
+          "lastHit": {
+            "inventoryId": 3,
+            "unitId": 12,
+            "speciesId": "thornfruit",
+            "enemyId": 16,
+            "damage": 75,
+            "raw": 81,
+            "atMs": 2950
+          },
+          "actors": [
+            {
+              "id": 1,
+              "inventoryId": 1,
+              "unitId": null,
+              "kind": "pet",
+              "speciesId": "rogue",
+              "grade": 0,
+              "state": "DEAD",
+              "hp": null,
+              "maxHp": null,
+              "x": 597.3719172924174,
+              "y": 1021.9216428862142,
+              "z": 0,
+              "abilities": null,
+              "reviveInMs": 2783.3333333333335
+            },
+            {
+              "id": 2,
+              "inventoryId": 2,
+              "unitId": null,
+              "kind": "pet",
+              "speciesId": "pillbug",
+              "grade": 1,
+              "state": "DEAD",
+              "hp": null,
+              "maxHp": null,
+              "x": 722.5810689219775,
+              "y": 544.3911496461325,
+              "z": 0,
+              "abilities": null,
+              "reviveInMs": 2866.6666666666665
+            },
+            {
+              "id": 3,
+              "inventoryId": 3,
+              "unitId": 12,
+              "kind": "pet",
+              "speciesId": "thornfruit",
+              "grade": 2,
+              "state": "RECOVER",
+              "hp": 591.4000000000001,
+              "maxHp": 599.4000000000001,
+              "x": 808.6516049489668,
+              "y": 843.8794238509703,
+              "z": 0,
+              "abilities": {
+                "spike": {
+                  "phase": "READY"
+                }
+              },
+              "reviveInMs": 0
+            },
+            {
+              "id": 4,
+              "inventoryId": 4,
+              "unitId": 13,
+              "kind": "pet",
+              "speciesId": "petalPredator",
+              "grade": 5,
+              "state": "BOSS_WINDUP",
+              "hp": 10187.667200000002,
+              "maxHp": 10203.667200000002,
+              "x": 644.9239993606936,
+              "y": 783.4813173836258,
+              "z": 0,
+              "abilities": {
+                "bossPattern": {
+                  "log": [
+                    "FAN",
+                    "FAN"
+                  ]
+                }
+              },
+              "reviveInMs": 0
+            },
+            {
+              "id": 5,
+              "inventoryId": 5,
+              "unitId": 14,
+              "kind": "pet",
+              "speciesId": "elasticCap",
+              "grade": 5,
+              "state": "BOSS_WINDUP",
+              "hp": 10782.887232000001,
+              "maxHp": 10815.887232000001,
+              "x": 723.632672690649,
+              "y": 652.3672459473677,
+              "z": 0,
+              "abilities": {
+                "bossPattern": {
+                  "log": [
+                    "FAN",
+                    "RADIAL"
+                  ]
+                }
+              },
+              "reviveInMs": 0
+            }
+          ]
+        }
+      },
+      {
+        "tick": 340,
+        "timeMs": 5666.666666666667,
+        "phase": "PLAYING",
+        "health": 280,
+        "stage": 2,
+        "units": [
+          {
+            "unitId": 22,
+            "inventoryId": null,
+            "speciesId": "rogue",
+            "faction": "wild",
+            "state": "LEAP_PREPARE",
+            "hp": 105,
+            "grade": 5,
+            "isSummon": false,
+            "signature": "leap"
+          },
+          {
+            "unitId": 23,
+            "inventoryId": null,
+            "speciesId": "pillbug",
+            "faction": "wild",
+            "state": "CHASE",
+            "hp": 150,
+            "grade": 5,
+            "isSummon": false,
+            "signature": "selfDestruct"
+          },
+          {
+            "unitId": 24,
+            "inventoryId": null,
+            "speciesId": "thornfruit",
+            "faction": "wild",
+            "state": "CHASE",
+            "hp": 185,
+            "grade": 5,
+            "isSummon": false,
+            "signature": "spike"
+          },
+          {
+            "unitId": 25,
+            "inventoryId": null,
+            "speciesId": "rocket",
+            "faction": "wild",
+            "state": "ARC_PREPARE",
+            "hp": 95,
+            "grade": 5,
+            "isSummon": false,
+            "signature": "arcFire"
+          },
+          {
+            "unitId": 26,
+            "inventoryId": null,
+            "speciesId": "rogue",
+            "faction": "wild",
+            "state": "CHASE",
+            "hp": 105,
+            "grade": 5,
+            "isSummon": false,
+            "signature": "leap"
+          },
+          {
+            "unitId": 27,
+            "inventoryId": 3,
+            "speciesId": "thornfruit",
+            "faction": "garden",
+            "state": "CHASE",
+            "hp": 577.4000000000001,
+            "grade": 2,
+            "isSummon": false,
+            "signature": "spike"
+          },
+          {
+            "unitId": 28,
+            "inventoryId": 4,
+            "speciesId": "petalPredator",
+            "faction": "garden",
+            "state": "BOSS_RECOVER",
+            "hp": 10179.667200000002,
+            "grade": 5,
+            "isSummon": false,
+            "bossPatterns": [],
+            "signature": "bossPattern"
+          },
+          {
+            "unitId": 29,
+            "inventoryId": 5,
+            "speciesId": "elasticCap",
+            "faction": "garden",
+            "state": "BOSS_RECOVER",
+            "hp": 10774.887232000001,
+            "grade": 5,
+            "isSummon": false,
+            "bossPatterns": [],
+            "signature": "bossPattern"
+          }
+        ],
+        "companions": {
+          "inventoryCount": 18,
+          "slots": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "hits": 13,
+          "kills": 7,
+          "damage": 1003,
+          "taken": 217,
+          "deaths": 2,
+          "revivals": 0,
+          "abilities": 87,
+          "supportHealing": 0,
+          "lastHit": {
+            "inventoryId": 5,
+            "unitId": 14,
+            "speciesId": "elasticCap",
+            "enemyId": 4,
+            "damage": 95,
+            "raw": 434.60064000000006,
+            "atMs": 3883.3333333333335
+          },
+          "actors": [
+            {
+              "id": 1,
+              "inventoryId": 1,
+              "unitId": null,
+              "kind": "pet",
+              "speciesId": "rogue",
+              "grade": 0,
+              "state": "DEAD",
+              "hp": null,
+              "maxHp": null,
+              "x": 750,
+              "y": 750,
+              "z": 0,
+              "abilities": null,
+              "reviveInMs": 200
+            },
+            {
+              "id": 2,
+              "inventoryId": 2,
+              "unitId": null,
+              "kind": "pet",
+              "speciesId": "pillbug",
+              "grade": 1,
+              "state": "DEAD",
+              "hp": null,
+              "maxHp": null,
+              "x": 750,
+              "y": 750,
+              "z": 0,
+              "abilities": null,
+              "reviveInMs": 283.33333333333303
+            },
+            {
+              "id": 3,
+              "inventoryId": 3,
+              "unitId": 27,
+              "kind": "pet",
+              "speciesId": "thornfruit",
+              "grade": 2,
+              "state": "CHASE",
+              "hp": 577.4000000000001,
+              "maxHp": 599.4000000000001,
+              "x": 774.0829050709314,
+              "y": 844.1904857212968,
+              "z": 0,
+              "abilities": {
+                "spike": {
+                  "phase": "READY"
+                }
+              },
+              "reviveInMs": 0
+            },
+            {
+              "id": 4,
+              "inventoryId": 4,
+              "unitId": 28,
+              "kind": "pet",
+              "speciesId": "petalPredator",
+              "grade": 5,
+              "state": "BOSS_RECOVER",
+              "hp": 10179.667200000002,
+              "maxHp": 10203.667200000002,
+              "x": 616.2090346437004,
+              "y": 763.8158138096641,
+              "z": 0,
+              "abilities": {
+                "bossPattern": {
+                  "log": []
+                }
+              },
+              "reviveInMs": 0
+            },
+            {
+              "id": 5,
+              "inventoryId": 5,
+              "unitId": 29,
+              "kind": "pet",
+              "speciesId": "elasticCap",
+              "grade": 5,
+              "state": "BOSS_RECOVER",
+              "hp": 10774.887232000001,
+              "maxHp": 10815.887232000001,
+              "x": 837.3058269564257,
+              "y": 685.7690214282375,
+              "z": 0,
+              "abilities": {
+                "bossPattern": {
+                  "log": []
+                }
+              },
+              "reviveInMs": 0
+            }
+          ]
+        }
+      },
+      {
+        "tick": 360,
+        "timeMs": 6000,
+        "phase": "PLAYING",
+        "health": 280,
+        "stage": 2,
+        "units": [
+          {
+            "unitId": 22,
+            "inventoryId": null,
+            "speciesId": "rogue",
+            "faction": "wild",
+            "state": "LEAP",
+            "hp": 105,
+            "grade": 5,
+            "isSummon": false,
+            "signature": "leap"
+          },
+          {
+            "unitId": 23,
+            "inventoryId": null,
+            "speciesId": "pillbug",
+            "faction": "wild",
+            "state": "CHASE",
+            "hp": 150,
+            "grade": 5,
+            "isSummon": false,
+            "signature": "selfDestruct"
+          },
+          {
+            "unitId": 24,
+            "inventoryId": null,
+            "speciesId": "thornfruit",
+            "faction": "wild",
+            "state": "CHASE",
+            "hp": 185,
+            "grade": 5,
+            "isSummon": false,
+            "signature": "spike"
+          },
+          {
+            "unitId": 25,
+            "inventoryId": null,
+            "speciesId": "rocket",
+            "faction": "wild",
+            "state": "ARC_PREPARE",
+            "hp": 95,
+            "grade": 5,
+            "isSummon": false,
+            "signature": "arcFire"
+          },
+          {
+            "unitId": 26,
+            "inventoryId": null,
+            "speciesId": "rogue",
+            "faction": "wild",
+            "state": "LEAP_PREPARE",
+            "hp": 105,
+            "grade": 5,
+            "isSummon": false,
+            "signature": "leap"
+          },
+          {
+            "unitId": 27,
+            "inventoryId": 3,
+            "speciesId": "thornfruit",
+            "faction": "garden",
+            "state": "CHASE",
+            "hp": 577.4000000000001,
+            "grade": 2,
+            "isSummon": false,
+            "signature": "spike"
+          },
+          {
+            "unitId": 28,
+            "inventoryId": 4,
+            "speciesId": "petalPredator",
+            "faction": "garden",
+            "state": "BOSS_RECOVER",
+            "hp": 10179.667200000002,
+            "grade": 5,
+            "isSummon": false,
+            "bossPatterns": [],
+            "signature": "bossPattern"
+          },
+          {
+            "unitId": 29,
+            "inventoryId": 5,
+            "speciesId": "elasticCap",
+            "faction": "garden",
+            "state": "BOSS_RECOVER",
+            "hp": 10774.887232000001,
+            "grade": 5,
+            "isSummon": false,
+            "bossPatterns": [],
+            "signature": "bossPattern"
+          },
+          {
+            "unitId": 30,
+            "inventoryId": 1,
+            "speciesId": "rogue",
+            "faction": "garden",
+            "state": "CHASE",
+            "hp": 105,
+            "grade": 0,
+            "isSummon": false,
+            "signature": "leap"
+          },
+          {
+            "unitId": 31,
+            "inventoryId": 2,
+            "speciesId": "pillbug",
+            "faction": "garden",
+            "state": "CHASE",
+            "hp": 270,
+            "grade": 1,
+            "isSummon": false,
+            "signature": "selfDestruct"
+          }
+        ],
+        "companions": {
+          "inventoryCount": 18,
+          "slots": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "hits": 13,
+          "kills": 7,
+          "damage": 1003,
+          "taken": 217,
+          "deaths": 2,
+          "revivals": 2,
+          "abilities": 87,
+          "supportHealing": 0,
+          "lastHit": {
+            "inventoryId": 5,
+            "unitId": 14,
+            "speciesId": "elasticCap",
+            "enemyId": 4,
+            "damage": 95,
+            "raw": 434.60064000000006,
+            "atMs": 3883.3333333333335
+          },
+          "actors": [
+            {
+              "id": 1,
+              "inventoryId": 1,
+              "unitId": 30,
+              "kind": "pet",
+              "speciesId": "rogue",
+              "grade": 0,
+              "state": "CHASE",
+              "hp": 105,
+              "maxHp": 105,
+              "x": 711.1483683246586,
+              "y": 776.9306078514817,
+              "z": 0,
+              "abilities": {
+                "leap": {
+                  "phase": "READY"
+                }
+              },
+              "reviveInMs": 0
+            },
+            {
+              "id": 2,
+              "inventoryId": 2,
+              "unitId": 31,
+              "kind": "pet",
+              "speciesId": "pillbug",
+              "grade": 1,
+              "state": "CHASE",
+              "hp": 270,
+              "maxHp": 270,
+              "x": 753.3664519504615,
+              "y": 701.357411364177,
+              "z": 0,
+              "abilities": {
+                "selfDestruct": {
+                  "phase": "READY"
+                }
+              },
+              "reviveInMs": 0
+            },
+            {
+              "id": 3,
+              "inventoryId": 3,
+              "unitId": 27,
+              "kind": "pet",
+              "speciesId": "thornfruit",
+              "grade": 2,
+              "state": "CHASE",
+              "hp": 577.4000000000001,
+              "maxHp": 599.4000000000001,
+              "x": 779.1283652816225,
+              "y": 866.0495961950062,
+              "z": 0,
+              "abilities": {
+                "spike": {
+                  "phase": "READY"
+                }
+              },
+              "reviveInMs": 0
+            },
+            {
+              "id": 4,
+              "inventoryId": 4,
+              "unitId": 28,
+              "kind": "pet",
+              "speciesId": "petalPredator",
+              "grade": 5,
+              "state": "BOSS_RECOVER",
+              "hp": 10179.667200000002,
+              "maxHp": 10203.667200000002,
+              "x": 590.7231694847894,
+              "y": 778.0155519523274,
+              "z": 0,
+              "abilities": {
+                "bossPattern": {
+                  "log": []
+                }
+              },
+              "reviveInMs": 0
+            },
+            {
+              "id": 5,
+              "inventoryId": 5,
+              "unitId": 29,
+              "kind": "pet",
+              "speciesId": "elasticCap",
+              "grade": 5,
+              "state": "BOSS_RECOVER",
+              "hp": 10774.887232000001,
+              "maxHp": 10815.887232000001,
+              "x": 855.873486070893,
+              "y": 683.3118308626704,
+              "z": 0,
+              "abilities": {
+                "bossPattern": {
+                  "log": []
+                }
+              },
+              "reviveInMs": 0
+            }
+          ]
+        }
+      },
+      {
+        "tick": 610,
+        "timeMs": 10166.666666666668,
+        "phase": "PLAYING",
+        "health": 278.3714285714242,
+        "stage": 2,
+        "units": [
+          {
+            "unitId": 27,
+            "inventoryId": 3,
+            "speciesId": "thornfruit",
+            "faction": "garden",
+            "state": "RECOVER",
+            "hp": 569.4000000000001,
+            "grade": 2,
+            "isSummon": false,
+            "signature": "spike"
+          },
+          {
+            "unitId": 28,
+            "inventoryId": 4,
+            "speciesId": "petalPredator",
+            "faction": "garden",
+            "state": "RECOVER",
+            "hp": 10158.667200000002,
+            "grade": 5,
+            "isSummon": false,
+            "bossPatterns": [],
+            "signature": "bossPattern"
+          },
+          {
+            "unitId": 29,
+            "inventoryId": 5,
+            "speciesId": "elasticCap",
+            "faction": "garden",
+            "state": "RECOVER",
+            "hp": 10731.887232000001,
+            "grade": 5,
+            "isSummon": false,
+            "bossPatterns": [],
+            "signature": "bossPattern"
+          },
+          {
+            "unitId": 30,
+            "inventoryId": 1,
+            "speciesId": "rogue",
+            "faction": "garden",
+            "state": "RECOVER",
+            "hp": 71,
+            "grade": 0,
+            "isSummon": false,
+            "signature": "leap"
+          }
+        ],
+        "companions": {
+          "inventoryCount": 18,
+          "slots": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "hits": 26,
+          "kills": 18,
+          "damage": 2199,
+          "taken": 323,
+          "deaths": 3,
+          "revivals": 2,
+          "abilities": 200,
+          "supportHealing": 0,
+          "lastHit": {
+            "inventoryId": 5,
+            "unitId": 29,
+            "speciesId": "elasticCap",
+            "enemyId": 39,
+            "damage": 78,
+            "raw": 434.60064000000006,
+            "atMs": 9516.666666666668
+          },
+          "actors": [
+            {
+              "id": 1,
+              "inventoryId": 1,
+              "unitId": 30,
+              "kind": "pet",
+              "speciesId": "rogue",
+              "grade": 0,
+              "state": "RECOVER",
+              "hp": 71,
+              "maxHp": 105,
+              "x": 733.7971561469495,
+              "y": 560.6317041236244,
+              "z": 0,
+              "abilities": {
+                "leap": {
+                  "phase": "CANCELLED"
+                }
+              },
+              "reviveInMs": 0
+            },
+            {
+              "id": 2,
+              "inventoryId": 2,
+              "unitId": null,
+              "kind": "pet",
+              "speciesId": "pillbug",
+              "grade": 1,
+              "state": "DEAD",
+              "hp": null,
+              "maxHp": null,
+              "x": 728.2231879613179,
+              "y": 694.1472125486457,
+              "z": 0,
+              "abilities": null,
+              "reviveInMs": 266.66666666666606
+            },
+            {
+              "id": 3,
+              "inventoryId": 3,
+              "unitId": 27,
+              "kind": "pet",
+              "speciesId": "thornfruit",
+              "grade": 2,
+              "state": "RECOVER",
+              "hp": 569.4000000000001,
+              "maxHp": 599.4000000000001,
+              "x": 727.0421795864212,
+              "y": 952.4015390945598,
+              "z": 0,
+              "abilities": {
+                "spike": {
+                  "phase": "CANCELLED"
+                }
+              },
+              "reviveInMs": 0
+            },
+            {
+              "id": 4,
+              "inventoryId": 4,
+              "unitId": 28,
+              "kind": "pet",
+              "speciesId": "petalPredator",
+              "grade": 5,
+              "state": "RECOVER",
+              "hp": 10158.667200000002,
+              "maxHp": 10203.667200000002,
+              "x": 612.7959368148454,
+              "y": 729.6818331615398,
+              "z": 0,
+              "abilities": {
+                "bossPattern": {
+                  "log": []
+                }
+              },
+              "reviveInMs": 0
+            },
+            {
+              "id": 5,
+              "inventoryId": 5,
+              "unitId": 29,
+              "kind": "pet",
+              "speciesId": "elasticCap",
+              "grade": 5,
+              "state": "RECOVER",
+              "hp": 10731.887232000001,
+              "maxHp": 10815.887232000001,
+              "x": 870.2213116781887,
+              "y": 777.50383178979,
+              "z": 0,
+              "abilities": {
+                "bossPattern": {
+                  "log": []
+                }
+              },
+              "reviveInMs": 0
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "constructedMatterContract": {
+    "scope": "Constructed actual Edge/Matter common Unit and collection contracts; separate from native game E2E",
+    "elapsedMs": 1502,
+    "errors": [],
+    "registry": {
+      "ids": [
+        "rogue",
+        "pillbug",
+        "thornfruit",
+        "rocket",
+        "scout",
+        "brute",
+        "spitter",
+        "sprout",
+        "puff",
+        "petalPredator",
+        "elasticCap"
+      ],
+      "count": 11,
+      "initialWave": [
+        "rogue",
+        "pillbug",
+        "thornfruit",
+        "rocket"
+      ],
+      "refillWave": [
+        "rogue",
+        "pillbug",
+        "thornfruit",
+        "rocket",
+        "scout",
+        "brute",
+        "spitter"
+      ]
+    },
+    "common": {
+      "sameConstructor": true,
+      "sameDraw": true,
+      "damage": 26,
+      "friendlyDamage": 0
+    },
+    "drops": {
+      "rolls": 5,
+      "normalRate": 0.05,
+      "bossRate": 0.1,
+      "excluded": [
+        {
+          "reason": "selfDestruct",
+          "rngCalls": 0
+        },
+        {
+          "reason": "expiry",
+          "rngCalls": 0
+        },
+        {
+          "reason": "cleanup",
+          "rngCalls": 0
+        }
+      ],
+      "friendlyRngCalls": 0,
+      "exactThresholds": true
+    },
+    "collection": {
+      "hatchKills": 30,
+      "hatchSpecies": "rocket",
+      "fusion": {
+        "ok": true,
+        "speciesId": "rocket",
+        "grade": 0,
+        "resultGrade": 1,
+        "attempts": 1,
+        "successes": 1,
+        "failures": 0,
+        "consumed": [
+          4,
+          5,
+          6,
+          7,
+          1
+        ],
+        "produced": [
+          8
+        ],
+        "survivors": 0
+      },
+      "legacyPreserved": true,
+      "restored": {
+        "inventory": [
+          {
+            "id": 41,
+            "speciesId": "petalPredator",
+            "kind": "pet",
+            "grade": 5,
+            "hatchProgress": 30,
+            "locked": true
+          },
+          {
+            "id": 79,
+            "speciesId": "elasticCap",
+            "kind": "egg",
+            "grade": 0,
+            "hatchProgress": 17,
+            "locked": false
+          }
+        ],
+        "slots": [
+          41,
+          79
+        ],
+        "nextId": 80,
+        "discovered": [
+          "petalPredator"
+        ]
+      }
+    },
+    "grades": {
+      "rocket": [
+        1,
+        2,
+        3,
+        4,
+        4
+      ],
+      "thornCounter": [
+        false,
+        false,
+        true
+      ],
+      "boss": {
+        "CHARGE": 1,
+        "FAN": 2,
+        "RADIAL": 3,
+        "SUMMON": 4
+      }
+    },
+    "revival": {
+      "delayMs": 3000,
+      "oldUnitId": 19,
+      "newUnitId": 20,
+      "blasts": 1,
+      "deaths": 1,
+      "revivals": 1,
+      "phase": "READY",
+      "stagePreservesDeadline": true,
+      "stagePreservesLiveHp": true
+    },
+    "multipleBosses": {
+      "owners": [
+        23,
+        24
+      ],
+      "summonEvents": [
+        {
+          "owner": 23,
+          "id": 25,
+          "speciesId": "sprout",
+          "at": 4866.666666666666
+        },
+        {
+          "owner": 23,
+          "id": 26,
+          "speciesId": "sprout",
+          "at": 4866.666666666666
+        },
+        {
+          "owner": 23,
+          "id": 27,
+          "speciesId": "sprout",
+          "at": 4866.666666666666
+        },
+        {
+          "owner": 24,
+          "id": 28,
+          "speciesId": "puff",
+          "at": 4866.666666666666
+        },
+        {
+          "owner": 24,
+          "id": 29,
+          "speciesId": "puff",
+          "at": 4866.666666666666
+        },
+        {
+          "owner": 24,
+          "id": 30,
+          "speciesId": "puff",
+          "at": 4866.666666666666
+        },
+        {
+          "owner": 23,
+          "id": 31,
+          "speciesId": "sprout",
+          "at": 13416.666666666537
+        },
+        {
+          "owner": 23,
+          "id": 32,
+          "speciesId": "sprout",
+          "at": 13416.666666666537
+        },
+        {
+          "owner": 23,
+          "id": 33,
+          "speciesId": "sprout",
+          "at": 13416.666666666537
+        },
+        {
+          "owner": 24,
+          "id": 34,
+          "speciesId": "puff",
+          "at": 13416.666666666537
+        }
+      ],
+      "shotOwners": [
+        23,
+        24
+      ],
+      "maxPerOwner": 4,
+      "expiryAbilityCalls": 0,
+      "expiryReason": "expiry",
+      "finiteBossDeadlines": true
+    },
+    "spawnContact": {
+      "damage": 24,
+      "hp": 126,
+      "preX": 60,
+      "preY": 0
+    },
+    "height": {
+      "aboveMiss": true,
+      "descentHit": true
+    },
+    "presentation": {
+      "uniqueEggs": 11,
+      "sharedDrawIdentity": true,
+      "paletteApplied": true
+    }
+  },
+  "visual": {
+    "scope": "Actual GameKit GPU renderer; same registered Presentation twice per species plus matching egg motif",
+    "elapsedMs": 1773,
+    "errors": [],
+    "count": 11,
+    "renderer": "ready",
+    "drawIdentity": "same injected callback for each pair",
+    "ids": [
+      "rogue",
+      "pillbug",
+      "thornfruit",
+      "rocket",
+      "scout",
+      "brute",
+      "spitter",
+      "sprout",
+      "puff",
+      "petalPredator",
+      "elasticCap"
+    ],
+    "images": [
+      "all-species-shared-slate.png",
+      "all-species-native-game.png",
+      "all-species-native-inventory.png",
+      "all-species-native-hatch.png"
+    ],
+    "inspected": true
+  },
+  "preservedFunctions": {
+    "payShadowCost": {
+      "unchanged": true,
+      "sha256": "b323b777a2214c4746f278309a5ae99115a7e08e05e1ba8b4f42f4f93b2dcabf"
+    },
+    "launch": {
+      "unchanged": true,
+      "sha256": "1590e5dc401cef50a7d54a776b2f29e9b692dd62a8d56ccea27f145a52dd51d9"
+    },
+    "dash": {
+      "unchanged": true,
+      "sha256": "3d0a830023cf76b78324eb2bdced6220a4f3c792ae09aa2e18d61f49c1d2b10a"
+    },
+    "energyCost": {
+      "unchanged": true,
+      "sha256": "1737927f9b035a57d8ca511fdd643415ec7f40a47650507537a559618c871ba4"
+    },
+    "evade": {
+      "unchanged": true,
+      "sha256": "e910f3aa43777dc868b87d8a294ee587423ca815ed0bf23ecd9cfe1f7e50589a"
+    },
+    "evadeDirection": {
+      "unchanged": true,
+      "sha256": "a67301856f3a30e3d8d935f5526dc73c6b52145a871502ce0298beac70ee1e10"
+    },
+    "progressionLevel": {
+      "unchanged": true,
+      "sha256": "bba95bd5a5a5718411ac6bb584fddb51f3cb5b8769295010fae592a534882a8a"
+    },
+    "loadTech": {
+      "unchanged": true,
+      "sha256": "f2172432c852a6da0dce97786db356538678b06c540eb1f3c80352e6a54dad29"
+    },
+    "applyTech": {
+      "unchanged": true,
+      "sha256": "1f392e04268f387069376642824b21aa311d983fdd531a4575cff0ac8e8c28a4"
+    },
+    "applyEvadeTech": {
+      "unchanged": true,
+      "sha256": "53c5d6946ef0c53d427886cfa5a402a07b77d125a9851cb41d4197bd457c61b4"
+    },
+    "learnStat": {
+      "unchanged": true,
+      "sha256": "7208d94761908b2e612103550670cc2d1ce0271ab45706bf890689eb91e6ab5b"
+    },
+    "mapTierAtStage": {
+      "unchanged": true,
+      "sha256": "377d33a604366d9c549e335fdcabb4cfcbcda1b7b42f8ca0098a2f50c18405ef"
+    },
+    "mapStartAtStage": {
+      "unchanged": true,
+      "sha256": "93f48b3089d79704e5a60fcd0df3809a70e4bf4a703ab963c5343e6762ee4880"
+    },
+    "radiusAtStage": {
+      "unchanged": true,
+      "sha256": "da578755c0198af69f33b40910f51950cd4954ff2906300bc6d34b495ed5beb9"
+    },
+    "populationAtStage": {
+      "unchanged": true,
+      "sha256": "3b27e264565c30833b5ddee68b5ca483732b1dbf095aa7b993ce72a88b325c08"
+    },
+    "isBossStage": {
+      "unchanged": true,
+      "sha256": "0b9f698622d77f357ab37efb81ce903f2e8e5f7eefa0cb2ef398c896abe17820"
+    }
+  },
+  "pagesPackaging": {
+    "scope": "Read existing workflow copy list and SHA coverage; copied exact six sources locally. No GitHub deployment requested.",
+    "copied": {
+      "index.html": "b98557c5d08bc28425186eaf7ece6f89958a58cb619698682f4d0d671a165d64",
+      "pets.js": "a627c08d5043d297b92cd0a89cb85e7995faf794c6e601be80f0c608096ad236",
+      "audio.js": "8543ce14bcd61c07373cd7c7c560b9c696ecf5afb80918d3c5929ef407a84a22",
+      "abilities.js": "b1787c3489bc9c2c181c6554830427b75e3d6b754ede2e4750cfc96836debfca",
+      "enemies.js": "ce79413e6416a39f18b73f3f7d31ea1ba9f3a6d07cb1e3915c4c4a84e53ee001",
+      "controllers.js": "a15b9cc5367dd8458b238650e3f53d54a94abf5f168a3d26feb6558444435e26"
+    },
+    "controllersCopied": true,
+    "controllersProvenance": true
+  },
+  "baselinePublic0123": {
+    "url": "https://byh-playground.github.io/bloom-bounko/",
+    "scope": "Merged PR8 public provenance and native Start boot",
+    "errors": [],
+    "resourceWarnings": [
+      {
+        "text": "Failed to load resource: the server responded with a status of 404 ()",
+        "location": {
+          "url": "https://byh-playground.github.io/favicon.ico",
+          "line": 0,
+          "column": 0,
+          "lineNumber": 0,
+          "columnNumber": 0
+        }
+      },
+      {
+        "text": "Failed to load resource: the server responded with a status of 404 ()",
+        "location": {
+          "url": "https://byh-playground.github.io/favicon.ico",
+          "line": 0,
+          "column": 0,
+          "lineNumber": 0,
+          "columnNumber": 0
+        }
+      }
+    ],
+    "browser": "155.0.4283.45",
+    "build": {
+      "commit": "f8d0742c35707568fffa504b936a3be7b8939646",
+      "built_at_utc": "2026-10-10T16:06:34.375200+00:00",
+      "version": "0.12.3",
+      "build_id": "20261010T151119Z-volume-enemies",
+      "index_sha256": "4e0b34b52a938ea93e521ce08c8eed25bc6e4da2ef20fcca5b9f15469fb73dd1",
+      "pets_sha256": "ee8acfe3ff54cb32e2d728d5b9bbd6ee8f263f86c60a93da7b7253e15282b24e",
+      "abilities_sha256": "f803e6cf5058de6ce7753c3769ad353bf0b521e9b1d2d7dd625bdb965a4ca045",
+      "enemies_sha256": "09313ecb54f22f895290c7ad5052e10221716be0ca37fbda7c3b0f162eafde42",
+      "audio_sha256": "8543ce14bcd61c07373cd7c7c560b9c696ecf5afb80918d3c5929ef407a84a22",
+      "audio_sdk_commit": "2de54d6ef1fd5ae91907c2d10d549abe1043d8b8",
+      "audio_sdk_sha256": "7e3e16d34ce88124e6ba7699f16d23107a3e42ee93ea5a16691e856e5865c14a"
+    },
+    "hashes": {
+      "index.html": {
+        "hash": "4e0b34b52a938ea93e521ce08c8eed25bc6e4da2ef20fcca5b9f15469fb73dd1",
+        "expected": "4e0b34b52a938ea93e521ce08c8eed25bc6e4da2ef20fcca5b9f15469fb73dd1",
+        "matches": true
+      },
+      "abilities.js": {
+        "hash": "f803e6cf5058de6ce7753c3769ad353bf0b521e9b1d2d7dd625bdb965a4ca045",
+        "expected": "f803e6cf5058de6ce7753c3769ad353bf0b521e9b1d2d7dd625bdb965a4ca045",
+        "matches": true
+      },
+      "enemies.js": {
+        "hash": "09313ecb54f22f895290c7ad5052e10221716be0ca37fbda7c3b0f162eafde42",
+        "expected": "09313ecb54f22f895290c7ad5052e10221716be0ca37fbda7c3b0f162eafde42",
+        "matches": true
+      }
+    },
+    "state": {
+      "volumeEvents": [
+        {
+          "kind": "prepare",
+          "tick": 1,
+          "timeMs": 16.666666666666668,
+          "id": 1,
+          "type": "rogue"
+        },
+        {
+          "kind": "prepare",
+          "tick": 1,
+          "timeMs": 16.666666666666668,
+          "id": 4,
+          "type": "rocket"
+        },
+        {
+          "kind": "launch",
+          "tick": 21,
+          "timeMs": 350,
+          "id": 1,
+          "type": "rogue"
+        }
+      ],
+      "arcShots": [],
+      "companions": {
+        "inventoryCount": 0,
+        "slots": [
+          null
+        ],
+        "hits": 0,
+        "kills": 0,
+        "damage": 0,
+        "taken": 0,
+        "deaths": 0,
+        "revivals": 0,
+        "abilities": 0,
+        "supportHealing": 0,
+        "lastHit": null,
+        "actors": []
+      },
+      "phase": "PLAYING",
+      "mode": "READY",
+      "health": 100,
+      "maxHp": 100,
+      "aimPreviewId": 1,
+      "augment": {
+        "spore": false,
+        "momentum": false,
+        "relay": false,
+        "chain": false
+      },
+      "tech": {
+        "points": 0,
+        "level": 1,
+        "totalKills": 0,
+        "unlocked": [],
+        "statLevels": {
+          "attackPower": 0,
+          "criticalChance": 0,
+          "criticalDamage": 0,
+          "armorPenFlat": 0,
+          "armorPenPercent": 0,
+          "maxHp": 0,
+          "armor": 0,
+          "healthRegen": 0,
+          "petSlots": 0
+        }
+      },
+      "autoChainReady": false,
+      "autoDashPlanned": false,
+      "chainActive": false,
+      "chainStarts": 0,
+      "chainEnds": 0,
+      "chainTriggerCharge": 0.5,
+      "energy": {
+        "current": 0,
+        "capacity": 3,
+        "fraction": 0,
+        "full": false,
+        "autoRechargeRate": 0,
+        "cost": 1,
+        "spent": 0,
+        "gained": 0,
+        "restored": 0
+      },
+      "chainTargetId": null,
+      "autoChainWins": 0,
+      "autoChainRolls": 0,
+      "automaticDashes": 0,
+      "manualPerfectHits": 0,
+      "dashAutomatic": false,
+      "dashPerfect": false,
+      "launchCostTotal": 0,
+      "launchCount": 0,
+      "evade": {
+        "charges": 2,
+        "max": 2,
+        "refillAtMs": 0,
+        "progress": 0,
+        "rechargeMs": 500,
+        "impulseSpeed": 1020,
+        "durationMs": 580,
+        "invulnerableMs": 100,
+        "projectileInvulnerable": false,
+        "active": false,
+        "startedAtMs": -1000000000,
+        "count": 0,
+        "hitRechargeEvents": 0,
+        "hitRechargeProgress": 0,
+        "lastHitRecharge": null
+      },
+      "stage": {
+        "index": 1,
+        "phase": "WAVE",
+        "waveKills": 0,
+        "killTarget": 7,
+        "bossHp": null,
+        "bossState": null,
+        "bossPattern": null,
+        "patternLog": [],
+        "obstacleCount": 6,
+        "broken": 0,
+        "arenaSides": 8,
+        "theme": "garden",
+        "themeName": "화원",
+        "layout": "grove",
+        "layoutName": "빽빽한 화단",
+        "radius": 550,
+        "playableArea": 749631,
+        "targetPopulation": 4,
+        "mapTier": 0,
+        "mapStart": 1,
+        "mapSeed": 2654354052,
+        "bossStage": false,
+        "referenceArea": 749630.913784598,
+        "bossName": null,
+        "bossVariant": null,
+        "bossSummons": 0,
+        "seed": 2654354052,
+        "generation": {
+          "retries": 0,
+          "connectivity": 0.9375,
+          "clearLane": 444,
+          "obstacles": 6
+        }
+      },
+      "stageHistory": [
+        {
+          "index": 1,
+          "theme": "garden",
+          "layout": "grove",
+          "radius": 550,
+          "playableArea": 749630.913784598,
+          "population": 4,
+          "mapTier": 0,
+          "mapStart": 1,
+          "mapSeed": 2654354052,
+          "bossStage": false,
+          "seed": 2654354052
+        }
+      ],
+      "bossPool": [
+        "petalPredator",
+        "elasticCap"
+      ],
+      "themePool": [
+        "garden",
+        "cave"
+      ],
+      "mapOperators": [
+        "scatter",
+        "clusters",
+        "ring",
+        "rooms",
+        "ridges"
+      ],
+      "dashMotion": null,
+      "shadow": null,
+      "hitstopLeftMs": 0,
+      "dashCharge": 0,
+      "dashFlight": null,
+      "rearmProgress": 1,
+      "buffered": false,
+      "damageTaken": 0,
+      "healingDone": 0,
+      "position": {
+        "x": 750,
+        "y": 750
+      },
+      "speed": {
+        "x": 0,
+        "y": 0
+      },
+      "hits": 0,
+      "kills": 0,
+      "combo": 0,
+      "comboFxActive": false,
+      "enemyMasses": {
+        "rogue": 4.6,
+        "pillbug": 8.2,
+        "thornfruit": 8.2,
+        "rocket": 4.2,
+        "scout": 4.6,
+        "brute": 8.2,
+        "spitter": 4.2,
+        "boss": 36,
+        "sprout": 3.4,
+        "puff": 4.6
+      },
+      "tick": 21,
+      "timeMs": 350,
+      "attackDashSerial": 0,
+      "enemies": 4,
+      "enemyShots": 0,
+      "enemyAttacks": 0,
+      "enemyPushes": 0,
+      "projectiles": 0,
+      "enemyStates": [
+        {
+          "id": 1,
+          "bodyId": 36,
+          "type": "rogue",
+          "state": "LEAP",
+          "z": 8.994082840236688,
+          "height": 30,
+          "ability": {
+            "phase": "FLIGHT",
+            "count": 1,
+            "landings": 0,
+            "aim": {
+              "x": 750,
+              "y": 750,
+              "z": 0
+            }
+          },
+          "hp": 105,
+          "burning": false,
+          "conducting": false,
+          "radius": 20,
+          "x": 817.6803703382172,
+          "y": 1021.9953617486333,
+          "preX": 819.4614327155388,
+          "preY": 1029.153134426229,
+          "shadowKnockbackLeftMs": 0,
+          "attackCount": 1,
+          "playerGap": 280.28933148068285
+        },
+        {
+          "id": 2,
+          "bodyId": 37,
+          "type": "pillbug",
+          "state": "CHASE",
+          "z": 0,
+          "height": 38,
+          "ability": {
+            "phase": "READY",
+            "leftMs": 0
+          },
+          "hp": 150,
+          "burning": false,
+          "conducting": false,
+          "radius": 23,
+          "x": 768.8339907294925,
+          "y": 401.3688406215182,
+          "preX": 768.8869445253416,
+          "preY": 400.3886265232154,
+          "shadowKnockbackLeftMs": 0,
+          "attackCount": 0,
+          "playerGap": 349.1395201010378
+        },
+        {
+          "id": 3,
+          "bodyId": 38,
+          "type": "thornfruit",
+          "state": "CHASE",
+          "z": 0,
+          "height": 38,
+          "ability": {
+            "phase": "READY",
+            "pulses": 0,
+            "counters": 0
+          },
+          "hp": 185,
+          "burning": false,
+          "conducting": false,
+          "radius": 24,
+          "x": 655.6352522535583,
+          "y": 1058.023136447859,
+          "preX": 655.4052190632791,
+          "preY": 1058.7740052463141,
+          "shadowKnockbackLeftMs": 0,
+          "attackCount": 0,
+          "playerGap": 322.1536251610805
+        },
+        {
+          "id": 4,
+          "bodyId": 39,
+          "type": "rocket",
+          "state": "ARC_PREPARE",
+          "z": 0,
+          "height": 42,
+          "ability": {
+            "phase": "PREPARE",
+            "volleys": 0,
+            "fired": 0
+          },
+          "hp": 95,
+          "burning": false,
+          "conducting": false,
+          "radius": 26,
+          "x": 923.6206008397189,
+          "y": 495.1558247696996,
+          "preX": 923.6206008397189,
+          "preY": 495.1558247696996,
+          "shadowKnockbackLeftMs": 0,
+          "attackCount": 1,
+          "playerGap": 308.36612441180546
+        }
+      ],
+      "rendererState": "ready",
+      "elemental": {
+        "ignite": 0,
+        "spread": 0,
+        "conduct": 0,
+        "conductSpread": 0,
+        "conductConsumed": 0,
+        "conductDamage": 0,
+        "arc": 0,
+        "burnDamage": 0,
+        "fireEmbers": 0,
+        "fireTransfers": 0,
+        "activeBurning": 0,
+        "activeConducting": 0
+      },
+      "stats": {
+        "petSlots": 1,
+        "attackPower": 100,
+        "criticalChance": 0,
+        "criticalDamage": 2,
+        "armorPenFlat": 0,
+        "armorPenPercent": 0,
+        "maxHp": 100,
+        "armor": 0,
+        "healthRegen": 0
+      },
+      "criticalHits": 0,
+      "lastHit": null,
+      "fx": {
+        "stage": "none",
+        "target": null,
+        "enabled": true
+      }
+    },
+    "result": "PASS",
+    "elapsedMs": 9275
+  },
+  "repairs": [
+    "Parent P1: replaced accidentally selected shortened boss profile with complete lock/projectile/charge/summon configuration.",
+    "Parent P1: initialized previous Unit x/y at body creation; immediate contact remains finite.",
+    "Native: preserved 3000ms revival deadline and surviving HP across stage/boss entry; cancelled old abilities/owned projectiles on cleanup.",
+    "Native: removed registry name shadow in inventory UI and corrected renderer variable conversion and slate resize.",
+    "Common boss charge clears per-target contact memory for each execution.",
+    "Verification-only: one-time saved fixture injection no longer overwrites reload; legacy save assertion compares durable fields, not optional false defaults."
+  ],
+  "limits": [
+    "Constructed Unit/Matter tests are separate from native E2E; their injected actor geometry and deterministic RNG are not claimed as organic gameplay.",
+    "Native E2E uses a valid preboot growth/inventory fixture and native UI/input; no runtime HP, position, stage, timing or RNG forcing.",
+    "Native observation is representative and short; no every-species/every-grade matrix, drop-frequency statistical estimate, mobile, long-run balance or performance guarantee.",
+    "Two boss owners and both summon species are proven in the constructed contract; native run proves simultaneous boss pets/abilities without requiring the full summon sequence organically.",
+    "Pages workflow only runs on main; draft PR is not a deployment and public remains 0.12.3 until separately merged."
+  ]
+}

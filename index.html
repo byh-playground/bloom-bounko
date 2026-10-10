@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="ko"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
-<meta name="theme-color" content="#0b141a"><title>BOUNKO · Prototype 0.11.0</title>
+<meta name="theme-color" content="#0b141a"><title>BOUNKO · Prototype 0.11.1</title>
 <style>
 :root{color-scheme:dark;--bg:#0a141a;--ink:#edf9f1;--mute:#9cb2b0;--mint:#72ebc0;--line:#345454;--orange:#fac779}*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,'Noto Sans KR',sans-serif;-webkit-tap-highlight-color:transparent;user-select:none}#game{position:absolute;inset:0;display:block;width:100%;height:100%;touch-action:none;outline:none}#hud{position:absolute;inset:0;pointer-events:none;overflow:hidden}#top{position:absolute;top:env(safe-area-inset-top,0px);left:0;right:0;display:flex;align-items:flex-start;justify-content:space-between;padding:15px 18px;gap:10px;text-shadow:0 2px 8px #091117}#brand{font-size:17px;font-weight:900;letter-spacing:.16em}#brand small{display:block;letter-spacing:.12em;font-size:10px;font-weight:500;color:#84a7a2;margin-top:2px}.stats{display:flex;gap:13px;margin-top:9px}.stat-label{display:block;font-size:10px;color:var(--mute);font-weight:600;letter-spacing:.08em}.stat-num{font-size:22px;font-weight:900;font-variant-numeric:tabular-nums}.stat-num.gold{color:var(--orange)}#score{min-width:68px;text-align:right}.pills{display:flex;gap:6px;align-items:center;justify-content:flex-end;margin-top:3px;flex-wrap:wrap}.pill{border:1px solid #41625d;background:#0d2929bb;color:#abdac8;padding:4px 7px;border-radius:30px;font-size:10px}#controls{pointer-events:auto;position:absolute;bottom:calc(19px + env(safe-area-inset-bottom,0px));right:20px;display:flex;align-items:flex-end;gap:11px}#auto{position:relative;isolation:isolate;width:107px;height:107px;border-radius:50%;border:2px solid #7ef0c2;background:radial-gradient(circle at 35% 27%,#329b80,#155144 67%,#0d332f);box-shadow:0 0 0 6px #15564740,0 15px 34px #0008;color:#f4fff6;font-size:16px;font-weight:900;letter-spacing:.12em;display:flex;align-items:center;justify-content:center;flex-direction:column;touch-action:manipulation;cursor:pointer}#auto small{font-size:10px;letter-spacing:.07em;color:#b9f7d9;margin-top:1px}#auto:active{transform:scale(.93);filter:brightness(1.2)}#auto.ready{border-color:#86f8ca}#auto.shadow{border-color:#ffd580;background:radial-gradient(circle at 35% 27%,#aa8650,#60502a 67%,#3d3422);box-shadow:0 0 0 6px #b9944c38,0 0 42px #ca9b4c44}#auto.dash{border-color:#a7d8cf;background:#345452}#options{position:absolute;top:calc(17px + env(safe-area-inset-top,0px));left:50%;transform:translateX(-50%);pointer-events:auto;border:1px solid #436866;border-radius:8px;background:#0c2425bb;display:flex;align-items:center;overflow:hidden}button{font:inherit}#options button{cursor:pointer;border:0;background:none;color:#d0eadd;padding:9px 11px;font-size:11px}#options button+button{border-left:1px solid #436866}#options button:hover{background:#204b45}#targetcue{position:absolute;left:0;top:0;display:none;min-width:82px;text-align:center;transform:translate(-50%,-50%);font-size:11px;font-weight:900;letter-spacing:.07em;line-height:1.3;white-space:nowrap;text-shadow:0 2px 5px #00151c,0 0 7px #00151c;will-change:transform;z-index:2}#targetcue.active{display:block}#targetcue .tip{font-size:9px;font-weight:600;opacity:.85;letter-spacing:0}#toast{position:absolute;top:28%;left:50%;transform:translateX(-50%);font-size:clamp(20px,5vw,44px);font-weight:950;letter-spacing:.11em;text-align:center;white-space:nowrap;opacity:0;transition:opacity .12s;text-shadow:0 3px 14px #000}#toast.visible{opacity:1}#bars{position:absolute;left:50%;bottom:calc(42px + env(safe-area-inset-bottom,0px));width:140px;transform:translateX(-50%);text-align:center}#bars .label{font-size:10px;color:#a4c8b8;letter-spacing:.15em;margin-bottom:5px}#charge{height:5px;background:#244240;border-radius:5px;overflow:hidden}#chargefill{width:0;height:100%;background:#f0c87a;box-shadow:0 0 8px #f0c87a}#settings{pointer-events:auto;position:absolute;top:70px;left:50%;width:min(430px,calc(100vw - 28px));transform:translateX(-50%);border:1px solid #45625d;border-radius:14px;background:#0e2226f7;box-shadow:0 15px 60px #000b;padding:15px;display:none;max-height:calc(100vh - 105px);overflow-y:auto}#settings.open{display:block}#settings h2{font-size:17px;margin:0 0 8px}.setting-row{display:grid;grid-template-columns:1fr 110px 44px;align-items:center;gap:8px;margin:11px 0;font-size:12px}#settings label{color:#ccdfd8}#settings input[type=range]{accent-color:#70efbb;width:100%}#settings output{font-variant-numeric:tabular-nums;text-align:right;color:#e7c280}#settings .check{display:flex;align-items:center;gap:8px;font-size:12px;margin:10px 0}#settings .check input{accent-color:#70efbb}#settings footer{border-top:1px solid #294c49;padding-top:9px;color:#99ada9;font-size:10px;line-height:1.5}#load{pointer-events:auto;position:absolute;inset:0;display:flex;justify-content:center;align-items:center;background:#081317ef;z-index:20;padding:20px}#loadbox{width:min(420px,100%);text-align:center}#load h1{font-size:26px;letter-spacing:.14em;color:#7aebbe}#load p{color:#b5cbc5;line-height:1.7;font-size:13px}#load details{margin-top:10px;color:#b9c9c8;font-size:11px}#load.hidden{display:none}@media(max-width:650px){#top{padding:12px}#brand{font-size:13px}.stat-num{font-size:18px}.stats{gap:9px}#options{top:auto;bottom:calc(148px + env(safe-area-inset-bottom,0px));left:auto;right:15px;transform:none}#options button{padding:8px;font-size:10px}#controls{right:22px;bottom:calc(20px + env(safe-area-inset-bottom,0px))}#auto{width:99px;height:99px}#bars{bottom:calc(17px + env(safe-area-inset-bottom,0px));width:110px}#settings{top:12px;max-height:calc(100vh - 20px)}}
 .settings-head{display:flex;justify-content:space-between;align-items:center;gap:8px}.settings-head h2{margin:0!important}.settings-head button{cursor:pointer;color:#dcf6e9;border:1px solid #50766a;background:#17483a;border-radius:6px;font-size:12px;padding:7px 10px}#health{height:6px;background:#4b2630;border-radius:5px;margin-top:7px;overflow:hidden}#healthfill{height:100%;width:100%;background:linear-gradient(90deg,#44cda9,#c2ffbd)}#healthlabel{font-size:10px;color:#bcdac5;margin-top:3px}#chargefill{transition:background-color .06s}#gameover{display:none;position:absolute;inset:0;z-index:15;pointer-events:auto;background:#061419c9;align-items:center;justify-content:center;padding:24px;text-align:center}#gameover.show{display:flex}.over-inner{border:1px solid #466f64;background:#122c2b;padding:28px 26px;border-radius:16px;min-width:min(330px,90vw);box-shadow:0 22px 70px #0008}.over-inner h1{font-size:29px;margin:8px 0}.over-inner p{font-size:13px;color:#b9d7c9;line-height:1.7}.over-tag{font-size:11px;font-weight:800;letter-spacing:.18em;color:#fac779}#retry{margin-top:10px;background:#59d8ad;color:#0a2820;border:0;border-radius:8px;padding:13px 25px;font-weight:900;cursor:pointer}#top{pointer-events:none}#auto[data-near="true"]{border-color:#ff776e!important;background:radial-gradient(circle at 35% 27%,#a65a50,#542925 67%,#322121)!important;box-shadow:0 0 0 5px #ad484239,0 0 22px #ec655466!important}
@@ -108,9 +108,9 @@ body.lobby-active #top,body.lobby-active #bars,body.lobby-active #controls,body.
 #treeCenter:hover{background:#276855}
 .tree-viewport{width:100%;overflow-x:auto;overflow-y:hidden;overscroll-behavior-x:contain;scrollbar-color:#5eaa93 #092524;scrollbar-width:auto;touch-action:pan-x pan-y;position:relative;background:radial-gradient(ellipse at 53% 8%,#1e44372b,#081a20b0 82%)}
 .tree-viewport:focus-visible{outline:2px solid #e8c879;outline-offset:-3px}
-.tech-map{position:relative;width:2100px;height:755px;min-width:2100px;overflow:hidden;isolation:isolate;background:linear-gradient(90deg,#164a4020 0 74%,#1b4b6a13 74% 87%,#64452214 87% 100%)}
+.tech-map{position:relative;width:2700px;height:755px;min-width:2700px;overflow:hidden;isolation:isolate;background:linear-gradient(90deg,#164a4020 0 74%,#1b4b6a13 74% 87%,#64452214 87% 100%)}
 .tech-map:before{content:'';position:absolute;left:0;right:0;top:183px;bottom:0;pointer-events:none;background:repeating-linear-gradient(to bottom,transparent 0,transparent 134px,#95baa813 135px,#95baa813 136px);z-index:0}
-.tech-links{position:absolute;inset:0;width:2100px;height:755px;z-index:1;pointer-events:none;overflow:visible}
+.tech-links{position:absolute;inset:0;width:2700px;height:755px;z-index:1;pointer-events:none;overflow:visible}
 .tech-map-root{position:absolute;z-index:3;top:19px;left:468px;width:240px;height:68px;border-radius:13px;border:1px solid #82d6ad;background:linear-gradient(125deg,#235a43,#14352f);box-shadow:0 0 25px #4aef9c15;display:flex;align-items:center;justify-content:center;gap:13px;color:#d6ffe5}
 .tech-map-root .root-icon{font-size:24px;color:#91eebc}
 .tech-map-root b{display:block;font-size:13px}.tech-map-root small{font-size:10px;color:#b2dac4}
@@ -119,6 +119,7 @@ body.lobby-active #top,body.lobby-active #bars,body.lobby-active #controls,body.
 .tech-lane.lane-motion{left:1323px;width:182px;background:#19425470;border-color:#39798f;color:#9addf0}
 .tech-lane.lane-impact{left:1508px;width:182px;background:#50382066;border-color:#9a7750;color:#efcd9d}
 .tech-lane.lane-lightning{left:1694px;width:182px;background:#123e557a;border-color:#509ac0;color:#b7e7ff}
+.tech-lane.lane-evade{left:2066px;width:554px;background:#153f4670;border-color:#5199a6;color:#a1edfa}
 .tech-lane.lane-fire{left:1880px;width:182px;background:#542b2069;border-color:#ba7154;color:#ffbc9a}
 #techGraphNodes{position:absolute;inset:0;z-index:3;pointer-events:none}
 #techGraphNodes .tech-node{position:absolute;pointer-events:auto;width:170px;height:113px;min-height:113px;margin:0;overflow:hidden;box-shadow:0 7px 18px #06121c66;border-width:1px;border-radius:12px;padding:10px 10px 8px;justify-content:flex-start;gap:5px}
@@ -129,6 +130,7 @@ body.lobby-active #top,body.lobby-active #bars,body.lobby-active #controls,body.
 #techGraphNodes .tech-node .node-desc{font-size:10px;line-height:1.27;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
 #techGraphNodes .tech-node .node-price{font-size:10px;line-height:1.2}
 #techGraphNodes .tech-node[data-branch="chain"]{border-color:#44796a}
+#techGraphNodes .tech-node[data-branch="evade"]{border-color:#5199a6;background:#133b42}
 #techGraphNodes .tech-node[data-branch="motion"]{border-color:#416b82;background:#132e3c}
 #techGraphNodes .tech-node[data-branch="impact"]{border-color:#886d4c;background:#32281e}
 #techGraphNodes .tech-node[data-branch="lightning"]{border-color:#598aaa;background:#172f44}
@@ -281,7 +283,7 @@ body.lobby-active #stageHud,body.lobby-active #stageBanner{display:none}
 </head><body>
 <canvas id="game" tabindex="0" aria-label="BOUNKO(바운코) 물리 전투 게임"></canvas>
 <div id="hud">
-  <div id="top"><div><div id="brand">BOUNKO<small>PHYSICS ACTION LAB · v0.11.0</small></div><div class="stats"><div><span class="stat-label">HP</span><span class="stat-num" id="playerhp">100</span></div><div><span class="stat-label">COMBO</span><span class="stat-num gold" id="combo">0</span></div><div><span class="stat-label">HITS</span><span class="stat-num" id="hits">0</span></div><div><span class="stat-label">SPEED</span><span class="stat-num" id="speed">0</span></div></div></div><div id="score"><span class="stat-label">KNOCKOUT</span><span class="stat-num gold" id="kills">0</span><div class="pills"><span class="pill" id="fps">-- FPS</span><span class="pill" id="state">READY</span></div></div></div>
+  <div id="top"><div><div id="brand">BOUNKO<small>PHYSICS ACTION LAB · v0.11.1</small></div><div class="stats"><div><span class="stat-label">HP</span><span class="stat-num" id="playerhp">100</span></div><div><span class="stat-label">COMBO</span><span class="stat-num gold" id="combo">0</span></div><div><span class="stat-label">HITS</span><span class="stat-num" id="hits">0</span></div><div><span class="stat-label">SPEED</span><span class="stat-num" id="speed">0</span></div></div></div><div id="score"><span class="stat-label">KNOCKOUT</span><span class="stat-num gold" id="kills">0</span><div class="pills"><span class="pill" id="fps">-- FPS</span><span class="pill" id="state">READY</span></div></div></div>
   <div id="options"><button id="tune" aria-label="설정">설정</button><button id="restart" aria-label="대기 화면으로">대기</button></div><div id="augments" role="group" aria-label="해금된 특성"></div>
   <div id="targetcue" aria-hidden="true"></div>
   <div id="toast" aria-live="polite"></div>
@@ -316,7 +318,7 @@ body.lobby-active #stageHud,body.lobby-active #stageBanner{display:none}
 <path d="M120 175 Q130 228 218 244" stroke="#8ab8f7" stroke-width="7" stroke-linecap="round" fill="none"/><path d="M205 232l17 14 -20 6" fill="none" stroke="#abd3ff" stroke-width="4"/>
 <g font-size="16" fill="#d8f2ec" font-weight="700"><text x="86" y="84">플레이어</text><text x="414" y="84">적</text><text x="185" y="118">① 먼저 잔상 발사</text><text x="258" y="88" fill="#ffdb8e">② 가까워지면 돌진!</text><text x="97" y="279" fill="#a4caff">전장 탭 = 구르기</text></g></svg></div><p><b>공격 버튼을 누르면</b> 잔상이 적에게 날아가. 적에게 닿은 잔상은 <b>피해 없이 적을 밀어내!</b> 잔상과 충분히 떨어지면 한 번 더 눌러 돌진해. <b>빨간 조준선</b>이면 아직 너무 가까운 상태야.</p>
 <div class="guide-health-rules" aria-label="체력 규칙"><div class="guide-health-rule danger"><span class="health-sign" aria-hidden="true">−</span><div><strong>닿으면 체력 ↓</strong><span>적 몸·탄환에 맞으면 감소</span></div></div><div class="guide-health-rule heal"><span class="health-sign" aria-hidden="true">＋</span><div><strong>맞히면 체력 ↑</strong><span>적에게 준 피해만큼 회복!</span></div></div></div>
-<div class="guide-notes"><div><b>수동 잔상: 현재 체력 10%</b>맞혀서 회복해! 잔상 메아리의 자동 재발사는 무료야.</div><div><b>전장 탭 / WASD = 구르기</b>W 위 · A 왼쪽 · S 아래 · D 오른쪽. 함께 누르면 대각선으로 피해.</div></div></article>
+<div class="guide-notes"><div><b>수동 잔상: 현재 체력 10%</b>맞혀서 회복해! 잔상 메아리의 자동 재발사는 무료야.</div><div><b>전장 탭 / WASD = 구르기</b>W 위 · A 왼쪽 · S 아래 · D 오른쪽. 함께 누르면 대각선으로 피해. 이동 기술로 충전·회피를 강화해.</div></div></article>
   <article class="guide-slide"><h2>02 · 적을 잡고 새 능력을 열자</h2><div class="guide-art"><svg viewBox="0 0 680 300" role="img" aria-label="영구 성장에서 처치 수로 레벨을 올리고 공격·생존 스탯이나 연쇄·속성 기술을 선택하는 테크트리 그림">
 <rect width="680" height="300" fill="#0d2229"/><g stroke="#638e80" stroke-width="3" fill="none"><path d="M340 70V100H126V116 M340 100V116 M340 100H554V116"/><path d="M126 183V205 M340 183V205 M554 183V205"/></g>
 <rect x="254" y="12" width="172" height="62" rx="14" fill="#2d6453" stroke="#92edbc" stroke-width="2"/><text x="340" y="37" text-anchor="middle" font-size="19" font-weight="900" fill="#eefff4">누적 처치 ↑</text><text x="340" y="56" text-anchor="middle" font-size="14" fill="#bdf5d2">레벨마다 강화 1회</text>
@@ -391,7 +393,9 @@ acceleration = dash.acceleration × deltaV / dash.maxSpeed
 // add charge-based impulse once, then force each fixed tick
 // normal collision or swept contact resolves hit; render trail does not change physics</code></pre>
 <p>기본 공격 피해 유효시간은 짧은 고정 대기시간(현재 400ms)으로 끊지 않는다. 원거리 돌진은 목표까지 비행·명중 또는 속도 소멸/수명 종료 판정으로 끝난다. 최대·최소 비행 시간과 목표 거리 여유시간은 Config의 <code>dash.flight*</code> 설정을 참조한다. 재발사 준비는 시간과 속도 조건을 함께 본다.</p></section><section class="wiki-section" id="wiki-evade" data-wiki-title="9. 회피 구르기"><h2>9. 회피 구르기</h2>
-<div class="wiki-table-wrap"><table><thead><tr><th>항목</th><th>규칙</th></tr></thead><tbody><tr><td>입력</td><td>전장 탭은 화면→월드 투영 방향, WASD는 화면 기준 상하좌우 방향을 사용. W+D 등 함께 누른 방향은 정규화하며 같은 구르기 실행 경로를 사용</td></tr><tr><td>충전량</td><td>최대 2회; 500ms마다 한 칸씩 순차 회복</td></tr><tr><td>무적</td><td>대시 시작 후 100ms 동안 적 탄환 피해만 무시; 몸체 접촉 피해는 유효</td></tr><tr><td>속도 감각</td><td>추가 Impulse를 적용한 뒤 580ms에 걸쳐 지수 감쇠, 기존 정면 관성 유지</td></tr><tr><td>공격 취소</td><td>구르기 성공 시 공격 잔상·비행·연격 상태 취소, 잔상 발사 비용 반환 없음</td></tr><tr><td>거리 충전</td><td>자동 연격 밖에서 실제 물리 이동은 100% 효율로 충전. 연격 중에는 기본 0%, 기술 해금 시 50%/100%</td></tr><tr><td>VFX</td><td>플레이어 바로 아래 가로 바 2개. 채워진 바=준비, 부분 바=다음 충전 진행, 빈 바=소모</td></tr></tbody></table></div>
+<div class="wiki-table-wrap"><table><thead><tr><th>항목</th><th>규칙</th></tr></thead><tbody><tr><td>입력</td><td>전장 탭은 화면→월드 투영 방향, WASD는 화면 기준 상하좌우 방향을 사용. W+D 등 함께 누른 방향은 정규화하며 같은 구르기 실행 경로를 사용</td></tr><tr><td>충전량</td><td>기본 2회; 기본 500ms마다 한 칸씩 순차 회복. 이동 기술로 충전량 기본 대비 +50%/+100%, 충전 시간 −20%/−40%</td></tr><tr><td>무적</td><td>기본 100ms 동안 적 탄환 피해만 무시; 「탄환 회피」는 기본 대비 +50%. 몸체 접촉 피해는 유효</td></tr><tr><td>속도 감각</td><td>추가 Impulse를 적용한 뒤 기존 580ms에 걸쳐 지수 감쇠. 이동 거리 기술은 기본 대비 +10%/+20% 추진력, 기존 정면 관성 유지</td></tr><tr><td>공격 취소</td><td>구르기 성공 시 공격 잔상·비행·연격 상태 취소, 잔상 발사 비용 반환 없음</td></tr><tr><td>거리 충전</td><td>자동 연격 밖에서 실제 물리 이동은 100% 효율로 충전. 연격 중에는 기본 0%, 기술 해금 시 50%/100%</td></tr><tr><td>VFX</td><td>플레이어 바로 아래 폭 42px 충전 표시 하나. 실제 최대 충전 수에 따라 2~4칸을 나누며 채워진 칸=준비, 부분 칸=다음 충전 진행, 빈 칸=소모</td></tr></tbody></table></div>
+<p><b>이동 구르기는 무료</b>이며 공격 잔상 HP·자동 돌진 에너지와 별도다. 이동 가지의 각 노드는 1 강화이고 자동 연격을 요구하지 않는다. 충전량 I → 명중 재충전, 충전 시간 I → 탄환 회피가 열리며 거리 가지는 독립이다. 모든 수치는 기본값 대비 누적 비율로 계산한다. 충전량은 2→3→4회이며 증가분을 해금 즉시 지급하고, 충전 시간은 500→400→300ms, 투사체 회피는 100→150ms다. 거리 증가는 이동 시간을 연장하지 않고 기존 추진력·감쇠 경로에 적용하므로 실제 거리는 관성·마찰·벽 충돌에 영향을 받는다.</p>
+<p><b>명중 재충전</b>은 실제 HP 피해를 준 공격 대시당 최초 명중 1회에 다음 이동 충전 진행도 <b>20%</b>를 더한다. 현재 1회 충전 시간을 기준으로 하므로 기본 100ms, 충전 시간 강화 후 80ms/60ms에 해당한다. DoT·포자·폭발의 반복 피해는 이 경로를 호출하지 않는다. 충전 완료를 넘긴 진행도는 다음 칸에 이어지며, 충전이 가득 찼으면 저장해 두지 않는다.</p>
 <p>대시가 벽을 통과하거나 장애물을 무조건 무시하도록 위치를 직접 이동시키지 않는다. 구르기 속도는 충돌·마찰로 감소할 수 있으며 정면 방향 기준보다 역방향으로 강제 당기지 않도록 추가 속도 성분만 제거한다.</p></section><section class="wiki-section" id="wiki-chain" data-wiki-title="10. 자동 연격·운동 에너지·도탄"><h2>10. 자동 연격·운동 에너지·도탄</h2>
 <p>「잔상 메아리」의 명중 후 자동 잔상 재발사는 <b>체력·에너지 소모 없이 무료</b>이며, 자동 연격 중 생성되는 잔상도 같은 규칙을 따른다. 직접 입력한 잔상 발사는 현재 체력 10%를 사용하고, <b>자동 돌진에는 아래의 별도 에너지 비용</b>이 적용된다.</p>
 <p>자동 연격은 <b>확률 발동을 사용하지 않는다.</b> 「자동 연격」(2 강화)을 해금한 뒤, 처음 시작할 때 <b>현재 최대 에너지가 100%로 가득 차고</b> 수동 잔상 타이밍 50% 이상으로 실제 명중해야 한다. 첫 명중한 물리 틱의 실제 이동거리도 충전한 뒤 100%인지 확정한다. 연격이 시작되면 에너지가 100% 미만이어도 비용을 지불할 수 있는 한 자동 돌진을 이어 가며, 끊긴 뒤 다시 시작하려면 현재 최대 용량 100%가 필요하다.</p>
@@ -526,16 +530,17 @@ boss dies -> clear all owned summons -> CLEAR -> new stage/theme/map</code></pre
     <header class="tech-heading"><div><p class="tech-kicker">BOUNKO · EVOLUTION</p><h2 id="techTitle">진화 테크트리</h2><p class="tech-summary">누적 처치로 레벨을 올리고, 레벨마다 기술 또는 스탯 1개를 강화한다.</p></div><button id="techClose" aria-label="테크트리 닫기">✕</button></header>
     <div class="tech-wallet">남은 강화 <strong id="techWallet">0</strong><span>레벨 2: 3킬 · 레벨 3: 8킬 · 레벨 4: 15킬. 명중 포인트 지급 없음</span></div>
     <div class="tech-scroll" id="techScroll">
-      <div class="tree-toolbar"><div><strong>기술 계보</strong><span>위 → 아래: 선행 단계 · 같은 높이: 동일 단계 · 선: 해금 경로</span></div><button id="treeCenter" type="button" title="기본 기술로 이동">◎ 시작점</button></div>
+      <div class="tree-toolbar"><div><strong>기술 계보</strong><span>위 → 아래: 선행 경로 · 선: 실제 해금 조건</span></div><button id="treeCenter" type="button" title="기본 기술로 이동">◎ 시작점</button></div>
       <div class="tree-viewport" id="techViewport" tabindex="0" aria-label="좌우로 이동하여 같은 선행 단계의 기술을 확인하는 테크트리">
         <div class="tech-map" id="techMap">
-          <svg id="techLinks" class="tech-links" viewBox="0 0 2100 755" preserveAspectRatio="xMinYMin meet" aria-hidden="true"></svg>
+          <svg id="techLinks" class="tech-links" viewBox="0 0 2700 755" preserveAspectRatio="xMinYMin meet" aria-hidden="true"></svg>
           <div class="tech-map-root" id="techMapRoot"><span class="root-icon">◈</span><div><b>직접 조작</b><small>잔상 발사 · 돌진 · 속도 피해</small></div></div>
           <div class="tech-lane lane-chain"><span>↻ 연쇄 · 에너지</span></div>
           <div class="tech-lane lane-motion"><span>↗ 운동 · 반동</span></div>
           <div class="tech-lane lane-impact"><span>✳ 충격 · 파급</span></div>
           <div class="tech-lane lane-lightning"><span>ϟ 번개 · 전도</span></div>
           <div class="tech-lane lane-fire"><span>♨ 화염 · 전염</span></div>
+          <div class="tech-lane lane-evade"><span>⇢ 이동 · 회피</span></div>
           <div id="techGraphNodes"></div>
         </div>
       </div>
@@ -552,7 +557,7 @@ boss dies -> clear all owned summons -> CLEAR -> new stage/theme/map</code></pre
 <script type="module">
 
 const KIT = 'https://cdn.jsdelivr.net/gh/byh-playground/bloom-gamekit@d1e2c385033ad04a7a004cfbe9558948ef07a6d1/';
-const VERSION = '0.11.0', BUILD_ID = '20261010T052152Z-useful-tech-unlocks';
+const VERSION = '0.11.1', BUILD_ID = '20261010T100931Z-movement-tech';
 const $ = id => document.getElementById(id);
 const loadtext = $('loadtext');
 const ERROR = error => { console.error(error); loadtext.innerHTML = '<strong style="color:#fdb8a9">실행 라이브러리를 불러오지 못했습니다.</strong><br>인터넷 연결 상태를 확인하고 다시 여세요.<br>'+String(error.message||error).replace(/[<>]/g,''); };
@@ -575,7 +580,8 @@ try {
          puff:{radius:17,mass:4.6,hp:55,armor:5,speed:105,detect:840,damage:13,push:300,windupMs:300,lungeSpeed:240,lungeMs:290,recoverMs:850,range:80}
       }},
     physics:{restitution:.86,frictionAir:.008,maxSpeed:1900},
-    evade:{maxCharges:2,rechargeMs:500,durationMs:580,invulnerableMs:100,impulseSpeed:1020,decayPerSec:6.5,particleRateMs:22},
+    evade:{maxCharges:2,rechargeMs:500,durationMs:580,invulnerableMs:100,impulseSpeed:1020,decayPerSec:6.5,particleRateMs:22,
+      capacityTierRate:.50,rechargeReductionTierRate:.20,distanceTierRate:.10,projectileWindowBonusRate:.50,hitRechargeRate:.20},
     stage:{initialKills:7,killsPerStage:4,transitionMs:1650,worldRadius:550,radiusGrowth:.22,maxRadius:1600,enemyDensityPer100k:.86,maxEnemies:82,enemySpawnMinGap:98,spawnSafeRadius:285,obstaclePer100k:.93,maxObstacles:72,connectivityStep:82,connectivityMin:.92},
     boss:{radius:48,mass:36,hp:540,armor:12,speed:155,contactDamage:36,contactPush:450,detect:2000,bulletSpeed:450,bulletDamage:23,bulletPush:300,bulletRadius:10,bulletLifeMs:2050,windupMs:640,lockMs:160,recoverMs:850,recoilMs:1000,chargeSpeed:880,chargeDurationMs:760,chargeRecoilSpeed:330,summonPeriodMs:5100,summonAppearMs:390,summonLifeMs:7800,summonCap:4},
     shadow:{initialSpeed:150,acceleration:2500,range:680,minDashDistance:28,contactPushSpeed:300,contactPushControlMs:500},
@@ -613,6 +619,7 @@ try {
   let pending=[], particles=[], particleCursor=0, fxRings=[], renderCamera={x:C.world.width/2,y:C.world.height/2}, cameraZoom=1;
   let lightningArcs=[],fireEmbers=[],fireTransfers=[],fireFxSerial=0,elementalEvents={ignite:0,spread:0,conduct:0,conductSpread:0,conductConsumed:0,conductDamage:0,arc:0,burnDamage:0}, chainActive=false, pendingChainStart=null, chainStarts=0, chainEnds=0, autoChainReady=false, autoDashPlanned=false, dashAutomatic=false, dashPerfect=false, automaticDashes=0, manualPerfectHits=0, autoChainWins=0, autoChainRolls=0, chainEnergy=0, chainTargetId=null, energySpent=0, energyGained=0, energyRestored=0;
   let evadeCharges=2,evadeRefillAtMs=0,evadeMotion=null,evadeStartedAtMs=-1e9,evadePreviousPosition=null,evadeActions=0;
+  let attackDashSerial=0,evadeHitRechargeUsed=false,evadeHitRechargeEvents=0,evadeHitRechargeProgress=0,evadeLastHitRecharge=null;
   let stage={index:1,phase:'WAVE',waveKills:0,killTarget:7,startedAtMs:0,transitionUntilMs:0,boss:null,patternLog:[],themeId:'garden',layoutId:'open',radius:550,targetPopulation:8},arenaVertices=[],boundaryWalls=[],bossObstaclesBroken=0;
    let terrainDecor=[],terrainChannels=[],generationStats={retries:0,connectivity:1,clearLane:0,obstacles:0},stageHistory=[];
   // The current Definition owns saved investments. Keep kills and valid choices;
@@ -636,6 +643,14 @@ try {
     {id:'collisionRestore',branch:'chain',name:'충돌 회수',symbol:'✷',cost:1,requires:['autoChain'],desc:'실제 공격 명중 시 20% 확률로 충전 1칸 회복'},
     {id:'restore2',branch:'chain',name:'충돌 회수 II',symbol:'✸',cost:1,requires:['collisionRestore'],desc:'명중 회복 확률 +15%p (합계 35%)'},
     {id:'relay',branch:'chain',name:'처치 후 추적',symbol:'∞',cost:1,requires:['ricochet'],desc:'처치 뒤 다른 적으로 자동 연계 가능'},
+    {id:'evadeCapacity1',branch:'evade',name:'이동 충전 I',symbol:'▰',cost:1,requires:[],desc:'이동 충전량 기본 대비 +50% · 증가분 즉시 지급'},
+    {id:'evadeCapacity2',branch:'evade',name:'이동 충전 II',symbol:'▣',cost:1,requires:['evadeCapacity1'],desc:'이동 충전량 기본 대비 누적 +100% · 증가분 즉시 지급'},
+    {id:'evadeHitRecharge',branch:'evade',name:'명중 재충전',symbol:'✷',cost:1,requires:['evadeCapacity1'],desc:'유효 공격 대시당 1회 · 다음 이동 충전 진행도 +20%'},
+    {id:'evadeRecharge1',branch:'evade',name:'이동 회복 I',symbol:'◐',cost:1,requires:[],desc:'이동 충전 시간 기본 대비 −20%'},
+    {id:'evadeRecharge2',branch:'evade',name:'이동 회복 II',symbol:'◕',cost:1,requires:['evadeRecharge1'],desc:'이동 충전 시간 기본 대비 누적 −40%'},
+    {id:'evadeWindow',branch:'evade',name:'탄환 회피',symbol:'◇',cost:1,requires:['evadeRecharge1'],desc:'투사체 회피 시간 기본 대비 +50% · 몸체 접촉 피해 유지'},
+    {id:'evadeDistance1',branch:'evade',name:'이동 거리 I',symbol:'↗',cost:1,requires:[],desc:'이동 대시 거리 기본 대비 +10% · 이동 시간 유지'},
+    {id:'evadeDistance2',branch:'evade',name:'이동 거리 II',symbol:'➤',cost:1,requires:['evadeDistance1'],desc:'이동 대시 거리 기본 대비 누적 +20% · 이동 시간 유지'},
     {id:'momentum',branch:'motion',name:'관성 증폭',symbol:'↗',cost:1,requires:[],desc:'연속 명중 시 다음 돌진 초기 충격량 강화'},
     {id:'quickRearm',branch:'motion',name:'빠른 재기동',symbol:'◉',cost:1,requires:['momentum'],desc:'돌진 후 재발사 준비시간 -25%'},
     {id:'rebound',branch:'motion',name:'탄성 반동',symbol:'⤴',cost:1,requires:['quickRearm'],desc:'명중 시 추가 반동'},
@@ -665,6 +680,7 @@ try {
     ['healthRegen','체력 재생','기준 최대 체력의 +0.3%/초',.003,'health']
   ]);
   const BASE_STATS=Object.freeze({...C.stats});
+  const BASE_EVADE=Object.freeze({...C.evade});
   const statPathReady=(id,levels)=>id!=='criticalDamage'||levels.criticalChance>=1;
   function progressionLevel(k){return Math.floor(Math.sqrt(k+1));}
   function loadTech(){try{const p=JSON.parse(localStorage.getItem(TECH_SAVE_KEY)||'null');
@@ -681,13 +697,25 @@ try {
   const techSpent=()=>TECH_NODES.reduce((sum,n)=>sum+(hasTech(n.id)?n.cost:0),0)+Object.values(tech.statLevels).reduce((sum,n)=>sum+n,0);
   const availableTech=()=>Math.max(0,progressionLevel(tech.kills)-1-techSpent());
   function persistTech(){try{localStorage.setItem(TECH_SAVE_KEY,JSON.stringify({kills:tech.kills,unlocked:[...tech.unlocked],statLevels:tech.statLevels}));}catch(e){}}
-  function applyTech(){C.chain.enabled=hasTech('echo');C.chain.followKill=hasTech('relay');
+  function applyTech(){applyEvadeTech();C.chain.enabled=hasTech('echo');C.chain.followKill=hasTech('relay');
     C.augment.spore.enabled=hasTech('spore');C.augment.momentum.enabled=hasTech('momentum');
     for(const [key,,label,rate,kind] of STAT_UPGRADES){const n=tech.statLevels[key];const base=BASE_STATS[key];
       C.stats[key]=kind==='relative'?base*(1+n*rate):kind==='point'?base+n*rate:
         kind==='attack'?base+BASE_STATS.attackPower*n*rate:base+BASE_STATS.maxHp*n*rate;
       if(key==='criticalChance'||key==='armorPenPercent')C.stats[key]=Math.min(.95,C.stats[key]);
     }
+  }
+  function evadeRefillProgress(){return evadeRefillAtMs?clamp(1-(evadeRefillAtMs-timeMs)/C.evade.rechargeMs,0,1):0;}
+  function applyEvadeTech(){
+    const oldMax=C.evade.maxCharges,progress=evadeRefillProgress();
+    const tiers=(a,b)=>Number(hasTech(a))+Number(hasTech(b));
+    C.evade.maxCharges=Math.round(BASE_EVADE.maxCharges*(1+BASE_EVADE.capacityTierRate*tiers('evadeCapacity1','evadeCapacity2')));
+    C.evade.rechargeMs=BASE_EVADE.rechargeMs*(1-BASE_EVADE.rechargeReductionTierRate*tiers('evadeRecharge1','evadeRecharge2'));
+    C.evade.impulseSpeed=BASE_EVADE.impulseSpeed*(1+BASE_EVADE.distanceTierRate*tiers('evadeDistance1','evadeDistance2'));
+    C.evade.invulnerableMs=BASE_EVADE.invulnerableMs*(1+(hasTech('evadeWindow')?BASE_EVADE.projectileWindowBonusRate:0));
+    // Capacity additions are ready immediately; speed changes preserve the current progress fraction.
+    evadeCharges=clamp(evadeCharges+C.evade.maxCharges-oldMax,0,C.evade.maxCharges);
+    evadeRefillAtMs=evadeCharges<C.evade.maxCharges?timeMs+(1-progress)*C.evade.rechargeMs:0;
   }
   applyTech();persistTech(); // Save only the current Definition; removed investments become available points.
   function recordKill(){tech.kills++;persistTech();updateTechUi();}
@@ -1136,6 +1164,7 @@ try {
     enemyShots=0;enemyAttacks=0;enemyPushes=0;pending.length=0;aimTargetId=null;previewTargetId=null;fxRings=[];
     attackOrigin=null;bufferedIntent=null;bufferedUntilMs=0;dashStartedAtMs=0;recoverStartedAtMs=0;readyFlashUntilMs=0;
     autoChainReady=false;autoDashPlanned=false;dashAutomatic=false;dashPerfect=false;automaticDashes=0;manualPerfectHits=0;autoChainWins=0;autoChainRolls=0;
+    attackDashSerial=0;evadeHitRechargeUsed=false;evadeHitRechargeEvents=0;evadeHitRechargeProgress=0;evadeLastHitRecharge=null;
     evadeActions=0;evadeCharges=C.evade.maxCharges;evadeRefillAtMs=0;evadeMotion=null;evadeStartedAtMs=-1e9;
     player=Bodies.circle(C.world.width*.5,C.world.height*.5,C.player.radius,{label:'player',restitution:C.physics.restitution,
       frictionAir:C.physics.frictionAir,friction:0,frictionStatic:0,collisionFilter:{category:2,mask:1|4|8}});
@@ -1695,7 +1724,7 @@ try {
   function dash(automatic=false){if(automatic&&chainEnergy+1e-8<energyCost())return false;if((mode!=='SHADOW'&&mode!=='GOLDEN'&&mode!=='COYOTE')||!shadow)return false;
     if(!shadowDashAvailable())return false;
     const charge=chargeOf(),curve=charge*charge*(3-2*charge),delta=C.dash.minSpeed+(C.dash.maxSpeed-C.dash.minSpeed)*curve;
-    const n=norm(shadow.x-player.position.x,shadow.y-player.position.y);dashCharge=charge;dashHits.clear();
+    const n=norm(shadow.x-player.position.x,shadow.y-player.position.y);dashCharge=charge;dashHits.clear();attackDashSerial++;evadeHitRechargeUsed=false;
     if(!automatic){endChain();}else{const cost=energyCost();chainEnergy=Math.max(0,chainEnergy-cost);energySpent+=cost;}
     const dashBonus=C.augment.momentum.enabled?Math.min(C.augment.momentum.maxMultiplier,1+Math.max(0,combo)*C.augment.momentum.perCombo):1;
     // One-time launch alignment: retain only forward momentum. Existing lateral or
@@ -1758,11 +1787,26 @@ try {
     ringFx(player.position.x,player.position.y,29,[.42,.85,1,1],220);
     return true;
   }
-  function updateEvade(dt){
-    if(evadeCharges<C.evade.maxCharges&&evadeRefillAtMs&&timeMs>=evadeRefillAtMs){
-      evadeCharges++;evadeRefillAtMs=evadeCharges<C.evade.maxCharges?timeMs+C.evade.rechargeMs:0;
+  function settleEvadeRecharge(){
+    // Sequential charges share one clock; keep surplus progress from a successful hit.
+    while(evadeCharges<C.evade.maxCharges&&evadeRefillAtMs&&timeMs+1e-8>=evadeRefillAtMs){
+      evadeCharges++;evadeRefillAtMs=evadeCharges<C.evade.maxCharges?evadeRefillAtMs+C.evade.rechargeMs:0;
       burst(player.position.x,player.position.y,75,4,[.44,.9,1,1]);
     }
+  }
+  function rechargeEvadeOnDashHit(){
+    if(!hasTech('evadeHitRecharge')||evadeHitRechargeUsed)return;
+    evadeHitRechargeUsed=true;settleEvadeRecharge();
+    if(evadeCharges>=C.evade.maxCharges||!evadeRefillAtMs)return; // Full charges do not bank credit.
+    const chargesBefore=evadeCharges,progressBefore=evadeRefillProgress();
+    const rate=Math.min(C.evade.hitRechargeRate,C.evade.maxCharges-evadeCharges-progressBefore);
+    const advanceMs=C.evade.rechargeMs*rate;evadeRefillAtMs-=advanceMs;settleEvadeRecharge();
+    evadeHitRechargeEvents++;evadeHitRechargeProgress+=rate;
+    evadeLastHitRecharge={dashSerial:attackDashSerial,atMs:timeMs,rechargeMs:C.evade.rechargeMs,rate,advanceMs,
+      chargesBefore,progressBefore,chargesAfter:evadeCharges,progressAfter:evadeRefillProgress()};
+  }
+  function updateEvade(dt){
+    settleEvadeRecharge();
     if(!evadeMotion)return;
     // Exponential removal of only the extra roll impulse; normal inertia and collisions persist.
     const r=evadeMotion,remainingOld=r.remaining;
@@ -1891,7 +1935,7 @@ try {
         lastHit={tick,enemyId:e.id,automatic:dashAutomatic,critical,criticalMultiplier:critical?C.stats.criticalDamage:1,
           raw,normalDamage:theoretical,boostedDamage:boosted,damage:inflicted,conductDamage,markConsumed:conducted,
           tags:['dash',...(critical?['critical']:[]),...(conducted?['conduct']:[])]};
-        e.hp=Math.max(0,e.hp-inflicted);hits++;combo++;onComboHit(combo);
+        e.hp=Math.max(0,e.hp-inflicted);hits++;combo++;onComboHit(combo);rechargeEvadeOnDashHit();
         if(!dashAutomatic&&dashPerfect)manualPerfectHits++;
         // A successful manual hit at >= 50% SHADOW timing starts an automatic
         // chain. Auto hits can continue it without requiring another manual tap.
@@ -2621,13 +2665,13 @@ try {
         }
       }
     }
-    // Two horizontal bars beneath the actor: filled = ready, partial = recovering.
-    const refill=evadeRefillAtMs?clamp(1-(evadeRefillAtMs-timeMs)/C.evade.rechargeMs,0,1):0;
+    // One compact 42px charge strip: actual ready charges + next-charge progress, always centered.
+    const refill=evadeRefillProgress(),gap=2,width=(42-gap*(C.evade.maxCharges-1))/C.evade.maxCharges;
     for(let i=0;i<C.evade.maxCharges;i++){
-      const x=p.x-20+i*22,y=p.y+27;
+      const x=p.x-21+i*(width+gap),y=p.y+27;
       const full=i<evadeCharges,part=!full&&i===evadeCharges?refill:0;
-      renderer.rect(x+9,y,20,5,[.11,.28,.33,.86]);
-      if(full||part>0)renderer.rect(x+9-10*(1-(full?1:part)),y,20*(full?1:part),5,[.44,.90,1,full?.94:.67]);
+      renderer.rect(x+width/2,y,width,4,[.11,.28,.33,.86]);
+      if(full||part>0){const fill=width*(full?1:part);renderer.rect(x+fill/2,y,fill,4,[.44,.90,1,full?.94:.67]);}
     }
     // Converging readiness ring: no arrow, crosshair or target marker. Radius closes only as launch becomes ready.
     if((mode==='DASH'&&!dashFlight)||mode==='RECOVER'){
@@ -2718,7 +2762,9 @@ try {
   const TECH_LANES=Object.freeze({echo:2.5,autoChain:2.5,ricochet:1,charge1:2,charge2:2,
     capacity1:3,capacity2:3,costEff:4,collisionRestore:5,restore2:5,relay:1,autoRecharge1:6,autoRecharge2:6,
     momentum:7,quickRearm:7,rebound:7,propulsion:7,
-    spore:8,shockPush:8,sporeSplit:8,finisher:8,conduct:9,relayArc:9,ignite:10,spreadFlame:10});
+    spore:8,shockPush:8,sporeSplit:8,finisher:8,conduct:9,relayArc:9,ignite:10,spreadFlame:10,
+    evadeCapacity1:11,evadeCapacity2:11,evadeHitRecharge:11,evadeRecharge1:12,evadeRecharge2:12,evadeWindow:12,
+    evadeDistance1:13,evadeDistance2:13});
   const techElements=new Map(),techGraphPositions=new Map(),techLinkElements=[];
   const graphNodeById=new Map(TECH_NODES.map(n=>[n.id,n]));
   const rankCache=new Map();
@@ -2727,7 +2773,7 @@ try {
     rankCache.set(id,rank);return rank;};
   const GRAPH={startX:38,stepX:186,nodeW:170,topY:190,stepY:137,nodeH:113};
   const graphPosition=node=>({x:GRAPH.startX+TECH_LANES[node.id]*GRAPH.stepX,
-    y:GRAPH.topY+(techRank(node.id)-1)*GRAPH.stepY});
+    y:GRAPH.topY+(techRank(node.id)-1+(['evadeHitRecharge','evadeWindow'].includes(node.id)?1:0))*GRAPH.stepY});
   const graphLink=(sourceId,node)=>{
     const target=techGraphPositions.get(node.id),source=sourceId==='__root__'?{x:468,y:19,w:240,h:68}:techGraphPositions.get(sourceId);
     if(!source||!target)return;
@@ -2817,7 +2863,7 @@ try {
   // authoritative config; neither overlay is permitted to mutate gameplay.
   const wikiSections=Array.from(document.querySelectorAll('#wikiPanel .wiki-section'));
   const wikiNav=$('wikiNav'),wikiTocItems=$('wikiTocItems');
-  const wikiBranchName={chain:'연쇄·에너지',motion:'운동·반동',impact:'충격·파급',lightning:'번개',fire:'화염',synergy:'조합'};
+  const wikiBranchName={chain:'연쇄·에너지',motion:'운동·반동',evade:'이동·회피',impact:'충격·파급',lightning:'번개',fire:'화염',synergy:'조합'};
   const wikiName=(id)=>TECH_NODES.find(n=>n.id===id)?.name||id;
   function makeWikiCell(textContent,tag='td'){
     const cell=document.createElement(tag);cell.textContent=String(textContent);return cell;
@@ -2944,7 +2990,7 @@ try {
   window.addEventListener('resize',resize);
   document.addEventListener('visibilitychange',()=>{if(document.hidden){pending.length=0;bufferedIntent=null;bufferedUntilMs=0;}else{lastFrame=performance.now();}});
   loop.start();$('load').classList.add('hidden');canvas.focus({preventScroll:true});
-  window.__bloomImpulse={VERSION,BUILD_ID,config:C,getState:()=>({phase,mode,health,maxHp:C.stats.maxHp,aimPreviewId:previewTargetId,augment:{spore:C.augment.spore.enabled,momentum:C.augment.momentum.enabled,relay:C.chain.followKill,chain:C.chain.enabled},tech:{points:availableTech(),level:progressionLevel(tech.kills),totalKills:tech.kills,unlocked:[...tech.unlocked],statLevels:{...tech.statLevels}},autoChainReady,autoDashPlanned,chainActive,chainStarts,chainEnds,chainTriggerCharge:C.chain.minTriggerCharge,energy:{current:chainEnergy,capacity:energyCapacity(),fraction:chainEnergy/energyCapacity(),full:energyFull(),autoRechargeRate:autoChargeRate(),cost:energyCost(),spent:energySpent,gained:energyGained,restored:energyRestored},chainTargetId,autoChainWins,autoChainRolls,automaticDashes,manualPerfectHits,dashAutomatic,dashPerfect,launchCostTotal,launchCount,evade:{charges:evadeCharges,max:C.evade.maxCharges,refillAtMs:evadeRefillAtMs,active:!!evadeMotion,startedAtMs:evadeStartedAtMs,count:evadeActions},stage:{index:stage.index,phase:stage.phase,waveKills:stage.waveKills,killTarget:stage.killTarget,bossHp:stage.boss?.hp??null,bossState:stage.boss?.state??null,bossPattern:stage.boss?.pattern??null,patternLog:[...stage.patternLog],obstacleCount:obstacles.length,broken:bossObstaclesBroken,arenaSides:arenaVertices.length,theme:stage.themeId,themeName:THEME_POOL[stage.themeId]?.name,layout:stage.layoutId,layoutName:stage.layoutName,radius:stage.radius,playableArea:Math.round(stage.playableArea),targetPopulation:stage.targetPopulation,bossName:stage.bossName||null,bossVariant:stage.bossVariant||null,bossSummons:stage.boss?liveSummons(stage.boss.id).length:0,seed:stage.seed,generation:{...generationStats}},stageHistory:[...stageHistory],bossPool:Object.keys(BOSS_POOL),themePool:Object.keys(THEME_POOL),mapOperators:Object.keys(MAP_OPERATORS),dashMotion:dashMotion?{...dashMotion}:null,shadow:shadow?{progress:chargeOf(),charge:chargeOf(),dashReady:shadowDashAvailable(),separation:shadowSeparation(),remainingGap:remainingShadowGap(),initialGap:shadow.initialGap,travel:shadow.travel,limit:shadow.limit,targetId:shadow.targetId,arrived:shadow.arrived,speed:shadow.speed}:null,hitstopLeftMs,dashCharge,dashFlight:dashFlight?{...dashFlight,remainingMs:Math.round(dashFlight.untilMs-timeMs)}:null,rearmProgress:rearmProgress(),buffered:!!bufferedIntent,damageTaken,healingDone,position:{...player.position},speed:speedOf(player),hits,kills,combo,comboFxActive:comboFx.classList.contains('active'),enemyMasses:Object.fromEntries(Object.entries(C.enemy.types).map(([type,def])=>[type,def.mass])),tick,enemies:enemies.filter(e=>e.alive).length,enemyShots,enemyAttacks,enemyPushes,projectiles:projectiles.length,enemyStates:enemies.filter(e=>e.alive).map(e=>({id:e.id,bodyId:e.body.id,type:e.type,state:e.state,hp:e.hp,burning:!!e.burn,conducting:e.conductUntilMs>timeMs,radius:enemyDef(e).radius,x:e.body.position.x,y:e.body.position.y,preX:e.preX,preY:e.preY,shadowKnockbackLeftMs:Math.max(0,(e.shadowKnockbackUntilMs||0)-timeMs),attackCount:e.attackCount,playerGap:Math.hypot(e.body.position.x-player.position.x,e.body.position.y-player.position.y)})),rendererState:renderer.state,elemental:{...elementalEvents,fireEmbers:fireEmbers.length,fireTransfers:fireTransfers.length,activeBurning:enemies.filter(e=>e.alive&&e.burn).length,activeConducting:enemies.filter(e=>e.alive&&e.conductUntilMs>timeMs).length},stats:{...C.stats},criticalHits,lastHit:lastHit?{...lastHit,tags:[...lastHit.tags]}:null,fx:{stage:shadow?fxStage(chargeOf()):'none',target:shadow?(getTargetAnchor(fxAnchor)?{x:fxAnchor.x,y:fxAnchor.y,isEnemy:fxAnchor.isEnemy}:null):null,enabled:C.fx.targetCompression}}),auto:()=>{if(phase==='PLAYING')pending.push({kind:'auto'});},point:(x,y)=>{if(phase==='PLAYING')pending.push({kind:'point',x,y});},startRun,enterLobby,reset,dispose:()=>{running=false;loop.stop();input.dispose();document.removeEventListener('focusin',onGameplayFocus);renderer.dispose();window.removeEventListener('resize',resize);}};
+  window.__bloomImpulse={VERSION,BUILD_ID,config:C,getState:()=>({phase,mode,health,maxHp:C.stats.maxHp,aimPreviewId:previewTargetId,augment:{spore:C.augment.spore.enabled,momentum:C.augment.momentum.enabled,relay:C.chain.followKill,chain:C.chain.enabled},tech:{points:availableTech(),level:progressionLevel(tech.kills),totalKills:tech.kills,unlocked:[...tech.unlocked],statLevels:{...tech.statLevels}},autoChainReady,autoDashPlanned,chainActive,chainStarts,chainEnds,chainTriggerCharge:C.chain.minTriggerCharge,energy:{current:chainEnergy,capacity:energyCapacity(),fraction:chainEnergy/energyCapacity(),full:energyFull(),autoRechargeRate:autoChargeRate(),cost:energyCost(),spent:energySpent,gained:energyGained,restored:energyRestored},chainTargetId,autoChainWins,autoChainRolls,automaticDashes,manualPerfectHits,dashAutomatic,dashPerfect,launchCostTotal,launchCount,evade:{charges:evadeCharges,max:C.evade.maxCharges,refillAtMs:evadeRefillAtMs,progress:evadeRefillProgress(),rechargeMs:C.evade.rechargeMs,impulseSpeed:C.evade.impulseSpeed,durationMs:C.evade.durationMs,invulnerableMs:C.evade.invulnerableMs,projectileInvulnerable:timeMs-evadeStartedAtMs<C.evade.invulnerableMs,active:!!evadeMotion,startedAtMs:evadeStartedAtMs,count:evadeActions,hitRechargeEvents:evadeHitRechargeEvents,hitRechargeProgress:evadeHitRechargeProgress,lastHitRecharge:evadeLastHitRecharge?{...evadeLastHitRecharge}:null},stage:{index:stage.index,phase:stage.phase,waveKills:stage.waveKills,killTarget:stage.killTarget,bossHp:stage.boss?.hp??null,bossState:stage.boss?.state??null,bossPattern:stage.boss?.pattern??null,patternLog:[...stage.patternLog],obstacleCount:obstacles.length,broken:bossObstaclesBroken,arenaSides:arenaVertices.length,theme:stage.themeId,themeName:THEME_POOL[stage.themeId]?.name,layout:stage.layoutId,layoutName:stage.layoutName,radius:stage.radius,playableArea:Math.round(stage.playableArea),targetPopulation:stage.targetPopulation,bossName:stage.bossName||null,bossVariant:stage.bossVariant||null,bossSummons:stage.boss?liveSummons(stage.boss.id).length:0,seed:stage.seed,generation:{...generationStats}},stageHistory:[...stageHistory],bossPool:Object.keys(BOSS_POOL),themePool:Object.keys(THEME_POOL),mapOperators:Object.keys(MAP_OPERATORS),dashMotion:dashMotion?{...dashMotion}:null,shadow:shadow?{progress:chargeOf(),charge:chargeOf(),dashReady:shadowDashAvailable(),separation:shadowSeparation(),remainingGap:remainingShadowGap(),initialGap:shadow.initialGap,travel:shadow.travel,limit:shadow.limit,targetId:shadow.targetId,arrived:shadow.arrived,speed:shadow.speed}:null,hitstopLeftMs,dashCharge,dashFlight:dashFlight?{...dashFlight,remainingMs:Math.round(dashFlight.untilMs-timeMs)}:null,rearmProgress:rearmProgress(),buffered:!!bufferedIntent,damageTaken,healingDone,position:{...player.position},speed:speedOf(player),hits,kills,combo,comboFxActive:comboFx.classList.contains('active'),enemyMasses:Object.fromEntries(Object.entries(C.enemy.types).map(([type,def])=>[type,def.mass])),tick,timeMs,attackDashSerial,enemies:enemies.filter(e=>e.alive).length,enemyShots,enemyAttacks,enemyPushes,projectiles:projectiles.length,enemyStates:enemies.filter(e=>e.alive).map(e=>({id:e.id,bodyId:e.body.id,type:e.type,state:e.state,hp:e.hp,burning:!!e.burn,conducting:e.conductUntilMs>timeMs,radius:enemyDef(e).radius,x:e.body.position.x,y:e.body.position.y,preX:e.preX,preY:e.preY,shadowKnockbackLeftMs:Math.max(0,(e.shadowKnockbackUntilMs||0)-timeMs),attackCount:e.attackCount,playerGap:Math.hypot(e.body.position.x-player.position.x,e.body.position.y-player.position.y)})),rendererState:renderer.state,elemental:{...elementalEvents,fireEmbers:fireEmbers.length,fireTransfers:fireTransfers.length,activeBurning:enemies.filter(e=>e.alive&&e.burn).length,activeConducting:enemies.filter(e=>e.alive&&e.conductUntilMs>timeMs).length},stats:{...C.stats},criticalHits,lastHit:lastHit?{...lastHit,tags:[...lastHit.tags]}:null,fx:{stage:shadow?fxStage(chargeOf()):'none',target:shadow?(getTargetAnchor(fxAnchor)?{x:fxAnchor.x,y:fxAnchor.y,isEnemy:fxAnchor.isEnemy}:null):null,enabled:C.fx.targetCompression}}),auto:()=>{if(phase==='PLAYING')pending.push({kind:'auto'});},point:(x,y)=>{if(phase==='PLAYING')pending.push({kind:'point',x,y});},startRun,enterLobby,reset,dispose:()=>{running=false;loop.stop();input.dispose();document.removeEventListener('focusin',onGameplayFocus);renderer.dispose();window.removeEventListener('resize',resize);}};
 } catch(e) { ERROR(e); }
 
 </script>

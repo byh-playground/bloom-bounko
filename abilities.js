@@ -71,9 +71,14 @@ export function sweepVerticalContacts(M,bodies,onContact=()=>{},config={insetPx:
     if(selected){
       // Matter circles are regular polygons. Move at most 1 authored pixel into
       // the valid simultaneous interval so a tangent circle hit reaches its SAT manifold.
-      const travel=Math.hypot(av.motion.toX-av.motion.x,av.motion.toY-av.motion.y);
+      const bv=selected.plugin.volume;
+      const travel=Math.hypot(av.motion.toX-av.motion.x-bv.motion.toX+bv.motion.x,av.motion.toY-av.motion.y-bv.motion.toY+bv.motion.y);
       const t=earliest+Math.min((end-earliest)*.5,config.insetPx/Math.max(1,travel));
-      M.Body.setPosition(a,{x:av.motion.x+(av.motion.toX-av.motion.x)*t,y:av.motion.y+(av.motion.toY-av.motion.y)*t});onContact(a,selected,earliest);}
+      M.Body.setPosition(a,{x:av.motion.x+(av.motion.toX-av.motion.x)*t,y:av.motion.y+(av.motion.toY-av.motion.y)*t});
+      // Both integrated actors must share the impact time. Rewinding only the
+      // vertical mover leaves a moving target at its end pose and loses the pair.
+      if(!selected.isStatic)M.Body.setPosition(selected,{x:bv.motion.x+(bv.motion.toX-bv.motion.x)*t,y:bv.motion.y+(bv.motion.toY-bv.motion.y)*t});
+      onContact(a,selected,earliest);}
   }
 }
 const detectorHooks=new WeakMap();

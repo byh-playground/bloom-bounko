@@ -542,7 +542,7 @@ next stage -> centered stage number; 4/7/10... expands map/theme segment</code><
 <section class="wiki-section" id="wiki-volume-enemies" data-wiki-title="27. 네 적의 능력 조합과 수직 충돌"><h2>27. 네 적의 능력 조합과 수직 충돌</h2>
 <p>첫 웨이브는 기존 4마리 제한을 유지하며 그림자벼룩(rogue)·폭낭 콩벌레(pillbug)·가시열매(thornfruit)·다연발 봉선화(rocket)를 차례로 생성한다. 보충은 같은 네 종류에서 선택한다. 껍질벌레·수호버섯·마법사는 추가하지 않는다. 각 외형은 Rally 89ff07f의 분절 껍질과 폭낭, 열 개 가시, 네 씨방, 큰 뒷다리와 앞다리 도형·비율을 옮겼다.</p>
 <p>enemies.js의 Rogue는 Unit + Leapable, Pillbug는 Unit + SelfDestructible, Thornfruit는 Unit + SpikeCounterable, Rocket은 Unit + ArcFireable이다. abilities.js의 mixin(Base, ...Mixins)·mixin(...Mixins)는 subclass factory를 함수 identity로 중복 제거한다. 생성 시 클래스가 조합되며 프레임마다 새 믹스인을 만들지 않는다. Unit은 몸체·스펙·spatial 데이터를 소유하고 각 능력은 leap, selfDestruct, spike, arcFire의 설정·상태·타이머·행동을 직접 소유한다. 능력 메서드는 명시적인 super 체인으로 공통 추적·생명주기와 연결된다.</p>
-<p><b>벼룩</b>: 320ms 예고 후 650ms, 최고 높이 90의 도약. 발사 때 고정한 목적지 표식과 현재 x/y 그림자는 별개다. 장애물·경계로 막힌 경로는 시작하지 않는다. <b>착지에는 별도 피해나 광역 공격이 없다.</b> 실제 몸체 부피가 겹치는 접촉 경로만 피해를 준다. <b>콩벌레</b>: 가까워지면 1,000ms 자폭 예고. 이 동안 처치하면 취소하며 사망 폭발은 없다. 살아서 완료하면 반경 96 폭발 후 퇴장한다. <b>가시열매</b>: 550ms 준비 → 450ms 가시 활성 → 1,500ms 회복. 활성 시작에 방사 가시를 발사하고, 활성 중 살아남은 직접 타격에는 창당 한 번 반격한다. 준비·회복에도 공격 가능하며 상시 반사는 없다. <b>봉선화</b>: 490ms 예고 후 150ms 간격 4발, 높이 88/96/100/92. 조준 위치를 고정하고 현재 탄 그림자와 고정 착탄 경고를 분리한다. 비행 중 몸체가 겹쳐도 폭발하지 않고 정해진 지점에 한 번만 착탄한다.</p>
+<p><b>벼룩</b>: 320ms 예고 후 650ms, 최고 높이 90의 도약. 발사 때 고정한 목적지 표식과 현재 x/y 그림자는 별개다. 장애물·경계로 막힌 경로는 시작하지 않는다. <b>착지에는 별도 피해나 광역 공격이 없다.</b> 실제 몸체 부피가 겹치는 접촉 경로만 피해를 준다. <b>콩벌레</b>: 가까워지면 1,000ms 자폭 예고. 이 동안 처치하면 취소하며 사망 폭발은 없다. 살아서 완료하면 반경 96 폭발 후 퇴장한다. <b>가시열매</b>: 550ms 준비 → 450ms 가시 활성 → 1,500ms 회복. 활성 시작에 방사 가시를 발사하고, 활성 중 살아남은 직접 타격에는 창당 한 번 반격한다. 준비·회복에도 공격 가능하며 상시 반사는 없다. <b>봉선화</b>: 490ms 예고 후 150ms 간격 4발, 높이 88/96/100/92. 조준 위치를 고정하고 현재 탄 그림자와 고정 착탄 경고를 분리한다. 비행 중 몸체가 겹쳐도 폭발하지 않고 정해진 지점에 한 번만 착탄한다. 곡사 비행·수명은 같은 시뮬레이션 dt를 쓰므로 히트스톱·SHADOW 감속 중 일반 탄의 global-time 만료로 사라지지 않는다.</p>
 <p><b>수직 부피</b>: 플레이어 높이 32, 벼룩 30, 콩벌레·가시열매 38, 봉선화 42. 기존 적·펫은 실제 몸체 반지름의 2배, 일반 탄은 반지름의 2배, 잔상은 높이 14를 사용한다. Matter 몸체의 plugin.volume이 발밑 높이·이전 높이·높이·한 틱 이동 구간의 단일 소유자다. 렌더는 y - feetZ로만 투영한다. 벽·장애물은 지면 경로를 막는 장벽이며 도약·곡사도 통과시키지 않는다.</p>
 <p>Matter 0.20.0의 x/y broadphase와 manifold를 유지하고 Detector 결과를 Pairs와 solver보다 먼저 필터한다. 물리 밀림·접촉 피해·돌진 CCD·일반 투사체·잔상은 같은 contactWindow에서 XY 접촉 시간과 Z 겹침 시간을 교차한다. 높이 분리 중 XY가 오래 겹쳐도 물리 반응이 없고 하강해 상단 높이를 만나면 z=0 전에 접촉할 수 있다. 빠른 수직 이동의 XY 통과는 beforeSolve에서 동시 접촉 위치로 제한하며 원래 적분 끝점을 보존해 후속 피해 판정이 다른 시간을 쓰지 않는다. Matter의 다각형 원 몸체에 닿도록 유효 접촉 구간 안으로 최대 1px만 보정한다. 착지 콜백은 높이·상태·표현만 정리하고 기존 450ms 접촉 재사용 대기와 돌진 중복 타격 방지는 유지한다.</p>
 <p>원본: <a href="https://github.com/byh-playground/rally-frontier/blob/89ff07ffe87de2ff7aa293dc7117aad5992b5513/index.html" target="_blank" rel="noopener">Rally 유닛 도형·도약</a>, <a href="https://github.com/byh-playground/budmori-io/blob/5a9cf03e3be85ab2e506fe441e05f9ccfdfb4cb8/src/game.js" target="_blank" rel="noopener">Budmori x/y/z·고정 착탄 궤적</a>. BOUNKO의 지면은 x/y, 높이는 z이며 Rally의 축 이름을 복사하지 않았다.</p></section>
@@ -890,7 +890,7 @@ try {
     const shot=projectileById.get(a.id)||projectileById.get(b.id);
     if(shot?.arc)return false;
     const hit=contactWindow(a,b,!!(a.circleRadius&&b.circleRadius));
-    if(!hit&&a.circleRadius&&b.circleRadius){const e=enemiesById.get(a.id)||enemiesById.get(b.id);if(e?.spatial?.feetZ>32&&e.lastHeightPassTick!==tick){e.lastHeightPassTick=tick;recordVolume('height-pass',e,{feetZ:e.spatial.feetZ,other:a===e.body?b.label:a.label});}}
+    if(!hit&&a.circleRadius&&b.circleRadius){const e=enemiesById.get(a.id)||enemiesById.get(b.id);if(e?.spatial?.feetZ>C.player.height&&e.lastHeightPassTick!==tick){e.lastHeightPassTick=tick;recordVolume('height-pass',e,{feetZ:e.spatial.feetZ,other:a===e.body?b.label:a.label});}}
     return !!hit;
   }
   function sweepVerticalMotion(){sweepVerticalContacts(M,World.allBodies(engine.world),(body,other,fraction)=>recordVolume('swept-volume',enemiesById.get(body.id),{fraction,feetZ:body.plugin.volume.feetZ,other:other.label}),C.spatial.sweep);}
@@ -925,7 +925,7 @@ try {
     arcShot(e,aim,height,index){const c=e.arcFire.config.shot,p=e.body.position,a=index*Math.PI*.5,d=index?c.spreadRadius:0,target={x:aim.x+Math.cos(a)*d,y:aim.y+Math.sin(a)*d,z:0};
       if(!clearCapabilityPath(p,target,c.radius))return;
       const body=Bodies.circle(p.x,p.y,c.radius,{label:'enemyProjectile',isSensor:true,frictionAir:0,collisionFilter:{category:8,mask:0}});
-      volume(body,c.height,c.startZ);const shot={body,ownerId:e.id,damage:c.damage,push:c.push,bornMs:timeMs,lifeMs:c.durationMs+100,arc:groundArc({...p,z:c.startZ},target,c.durationMs,height),impactRadius:c.impactRadius,impactHeight:c.impactHeight,dirX:0,dirY:-1};
+      volume(body,c.height,c.startZ);const shot={body,ownerId:e.id,damage:c.damage,push:c.push,bornMs:timeMs,arc:groundArc({...p,z:c.startZ},target,c.durationMs,height),impactRadius:c.impactRadius,impactHeight:c.impactHeight,dirX:0,dirY:-1};
       projectiles.push(shot);projectileById.set(body.id,shot);World.add(engine.world,body);enemyShots++;recordVolume('arc-shot',e,{aim:target,height,abilityTimeMs:e.arcFire.clockMs});sfx.play('enemyShot');}
   };
   function stepArcShots(dt){for(const shot of [...projectiles]){if(!shot.arc)continue;const pose=stepArc(shot.arc,dt*1000);
@@ -1803,6 +1803,8 @@ try {
       }else e.state='CHASE';
     }}
   function updateProjectiles(){for(let i=projectiles.length-1;i>=0;i--){const shot=projectiles[i];
+      // Arc flight owns its simulation-time lifetime, including slow-time/hitstop.
+      if(shot.arc)continue;
       if(timeMs-shot.bornMs>shot.lifeMs||shot.body.position.x<5||shot.body.position.y<5||
          shot.body.position.x>C.world.width-5||shot.body.position.y>C.world.height-5){removeProjectile(shot);}
     }}

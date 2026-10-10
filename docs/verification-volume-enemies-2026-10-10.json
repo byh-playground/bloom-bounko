@@ -14,8 +14,8 @@
     "audio_sdk_sha256": "7e3e16d34ce88124e6ba7699f16d23107a3e42ee93ea5a16691e856e5865c14a"
   },
   "finalArtifacts": {
-    "index.html": "a78adf6d7ce02374410eed22094fc0885ea86f7660ac0e96f9683f64c3ab5a9c",
-    "abilities.js": "aa96cfd776ec6d530de01e0b2cbb76cd578ddfa26a5123fe1934a8dd82dc0f57",
+    "index.html": "4e0b34b52a938ea93e521ce08c8eed25bc6e4da2ef20fcca5b9f15469fb73dd1",
+    "abilities.js": "f803e6cf5058de6ce7753c3769ad353bf0b521e9b1d2d7dd625bdb965a4ca045",
     "enemies.js": "09313ecb54f22f895290c7ad5052e10221716be0ca37fbda7c3b0f162eafde42",
     "pets.js": "ee8acfe3ff54cb32e2d728d5b9bbd6ee8f263f86c60a93da7b7253e15282b24e",
     "audio.js": "8543ce14bcd61c07373cd7c7c560b9c696ecf5afb80918d3c5929ef407a84a22"
@@ -37,11 +37,11 @@
   "actualGame": {
     "result": "PASS",
     "browser": "155.0.4283.45",
-    "elapsedMs": 11246,
+    "elapsedMs": 14040,
     "errors": [],
     "artifactHashes": {
-      "index.html": "a78adf6d7ce02374410eed22094fc0885ea86f7660ac0e96f9683f64c3ab5a9c",
-      "abilities.js": "aa96cfd776ec6d530de01e0b2cbb76cd578ddfa26a5123fe1934a8dd82dc0f57",
+      "index.html": "4e0b34b52a938ea93e521ce08c8eed25bc6e4da2ef20fcca5b9f15469fb73dd1",
+      "abilities.js": "f803e6cf5058de6ce7753c3769ad353bf0b521e9b1d2d7dd625bdb965a4ca045",
       "enemies.js": "09313ecb54f22f895290c7ad5052e10221716be0ca37fbda7c3b0f162eafde42",
       "pets.js": "ee8acfe3ff54cb32e2d728d5b9bbd6ee8f263f86c60a93da7b7253e15282b24e",
       "audio.js": "8543ce14bcd61c07373cd7c7c560b9c696ecf5afb80918d3c5929ef407a84a22"
@@ -61,7 +61,7 @@
       "evadeCount": 2,
       "launchCount": 2,
       "hits": 1,
-      "launchHpCostTotal": 21.565357142857028
+      "launchHpCostTotal": 21.572857142857032
     },
     "firstPopulation": 4,
     "firstTypes": [
@@ -79,7 +79,8 @@
       "land",
       "arc-impact",
       "self-destruct",
-      "spike-pulse"
+      "spike-pulse",
+      "swept-volume"
     ],
     "highPass": [
       {
@@ -447,6 +448,11 @@
   "physicalBoundaryHarness": {
     "scope": "Constructed actors in actual Edge with real Matter. Separate from game E2E; physical pushing checked before solver.",
     "errors": [],
+    "artifacts": {
+      "index.html": "acced841a1798c262fddfc1d97e3b552ebe90c6a617044e6656eb89edb009ff3",
+      "abilities.js": "f803e6cf5058de6ce7753c3769ad353bf0b521e9b1d2d7dd625bdb965a4ca045",
+      "enemies.js": "09313ecb54f22f895290c7ad5052e10221716be0ca37fbda7c3b0f162eafde42"
+    },
     "browser": "155.0.4283.45",
     "cases": [
       {
@@ -503,6 +509,23 @@
         "solvedX": 18.638000361999996
       },
       {
+        "case": "descending sweep versus moving target",
+        "relativeClamp": 1,
+        "relativeTouch": 1,
+        "window": [
+          0.36,
+          0.45714285714285713
+        ],
+        "positions": [
+          40.00956884757143,
+          28.647574009571425
+        ],
+        "integratedEnds": [
+          100,
+          50
+        ]
+      },
+      {
         "case": "empty landing / once-only completion",
         "events": [
           {
@@ -514,16 +537,241 @@
       }
     ],
     "result": "PASS",
-    "elapsedMs": 5807
+    "elapsedMs": 1098
+  },
+  "actualSlowedArc": {
+    "result": "PASS",
+    "browser": "155.0.4283.45",
+    "elapsedMs": 10399,
+    "errors": [],
+    "artifactHashes": {
+      "index.html": "4e0b34b52a938ea93e521ce08c8eed25bc6e4da2ef20fcca5b9f15469fb73dd1",
+      "abilities.js": "f803e6cf5058de6ce7753c3769ad353bf0b521e9b1d2d7dd625bdb965a4ca045",
+      "enemies.js": "09313ecb54f22f895290c7ad5052e10221716be0ca37fbda7c3b0f162eafde42"
+    },
+    "fixture": {
+      "kills": 20000,
+      "unlocked": [],
+      "statLevels": {
+        "maxHp": 30,
+        "armor": 10,
+        "healthRegen": 5
+      }
+    },
+    "nativeSpace": true,
+    "slowFrames": 50,
+    "firstLaunch": {
+      "kind": "arc-shot",
+      "tick": 30,
+      "timeMs": 500.00000000000006,
+      "id": 4,
+      "type": "rocket",
+      "aim": {
+        "x": 750,
+        "y": 750,
+        "z": 0
+      },
+      "height": 88,
+      "abilityTimeMs": 500.0000000000002
+    },
+    "firstFixedAimImpacts": [
+      {
+        "kind": "arc-impact",
+        "tick": 125,
+        "timeMs": 2083.3333333333335,
+        "id": 4,
+        "type": "rocket",
+        "x": 750,
+        "y": 750,
+        "z": 0
+      }
+    ],
+    "survivedLegacyExpiryFrames": 31,
+    "survivingSample": {
+      "tick": 94,
+      "time": 1566.6666666666667,
+      "mode": "GOLDEN",
+      "charge": 1,
+      "shots": [
+        {
+          "x": 836.3838638563936,
+          "y": 623.2038454468188,
+          "z": 99.93892914743,
+          "aim": {
+            "x": 750,
+            "y": 750,
+            "z": 0
+          },
+          "ageMs": 477.33333333333263,
+          "height": 88,
+          "ownerId": 4
+        },
+        {
+          "x": 863.7976429363491,
+          "y": 591.2347651472978,
+          "z": 102.45264192059095,
+          "aim": {
+            "x": 750,
+            "y": 774,
+            "z": 0
+          },
+          "ageMs": 327.33333333333326,
+          "height": 96,
+          "ownerId": 4
+        },
+        {
+          "x": 889.227682237438,
+          "y": 539.5076531606571,
+          "z": 77.3219082794706,
+          "aim": {
+            "x": 726,
+            "y": 750,
+            "z": 0
+          },
+          "ageMs": 165.33333333333334,
+          "height": 100,
+          "ownerId": 4
+        },
+        {
+          "x": 920.6964644045237,
+          "y": 499.04372666831523,
+          "z": 29.68929861495845,
+          "aim": {
+            "x": 750,
+            "y": 726,
+            "z": 0
+          },
+          "ageMs": 16,
+          "height": 92,
+          "ownerId": 4
+        }
+      ],
+      "events": [
+        {
+          "kind": "prepare",
+          "tick": 1,
+          "timeMs": 16.666666666666668,
+          "id": 1,
+          "type": "rogue"
+        },
+        {
+          "kind": "prepare",
+          "tick": 1,
+          "timeMs": 16.666666666666668,
+          "id": 4,
+          "type": "rocket"
+        },
+        {
+          "kind": "launch",
+          "tick": 21,
+          "timeMs": 350,
+          "id": 1,
+          "type": "rogue"
+        },
+        {
+          "kind": "arc-shot",
+          "tick": 30,
+          "timeMs": 500.00000000000006,
+          "id": 4,
+          "type": "rocket",
+          "aim": {
+            "x": 750,
+            "y": 750,
+            "z": 0
+          },
+          "height": 88,
+          "abilityTimeMs": 500.0000000000002
+        },
+        {
+          "kind": "arc-shot",
+          "tick": 39,
+          "timeMs": 650,
+          "id": 4,
+          "type": "rocket",
+          "aim": {
+            "x": 750,
+            "y": 774,
+            "z": 0
+          },
+          "height": 96,
+          "abilityTimeMs": 649.9999999999999
+        },
+        {
+          "kind": "arc-shot",
+          "tick": 63,
+          "timeMs": 1050,
+          "id": 4,
+          "type": "rocket",
+          "aim": {
+            "x": 726,
+            "y": 750,
+            "z": 0
+          },
+          "height": 100,
+          "abilityTimeMs": 800.6666666666673
+        },
+        {
+          "kind": "height-pass",
+          "tick": 83,
+          "timeMs": 1383.3333333333335,
+          "id": 1,
+          "type": "rogue",
+          "feetZ": 37.170745562130236,
+          "other": "player"
+        },
+        {
+          "kind": "height-pass",
+          "tick": 84,
+          "timeMs": 1400,
+          "id": 1,
+          "type": "rogue",
+          "feetZ": 34.883408284023695,
+          "other": "player"
+        },
+        {
+          "kind": "height-pass",
+          "tick": 85,
+          "timeMs": 1416.6666666666667,
+          "id": 1,
+          "type": "rogue",
+          "feetZ": 32.54759763313613,
+          "other": "player"
+        },
+        {
+          "kind": "contact",
+          "tick": 86,
+          "timeMs": 1433.3333333333335,
+          "id": 1,
+          "type": "rogue",
+          "feetZ": 30.16331360946746,
+          "previousFeetZ": 32.54759763313613,
+          "damage": 25
+        },
+        {
+          "kind": "arc-shot",
+          "tick": 91,
+          "timeMs": 1516.6666666666667,
+          "id": 4,
+          "type": "rocket",
+          "aim": {
+            "x": 750,
+            "y": 726,
+            "z": 0
+          },
+          "height": 92,
+          "abilityTimeMs": 950.0000000000017
+        }
+      ]
+    }
   },
   "finalBoot": {
     "result": "PASS",
     "browser": "155.0.4283.45",
-    "elapsedMs": 1871,
+    "elapsedMs": 2321,
     "errors": [],
     "artifactHashes": {
-      "index.html": "a78adf6d7ce02374410eed22094fc0885ea86f7660ac0e96f9683f64c3ab5a9c",
-      "abilities.js": "aa96cfd776ec6d530de01e0b2cbb76cd578ddfa26a5123fe1934a8dd82dc0f57",
+      "index.html": "4e0b34b52a938ea93e521ce08c8eed25bc6e4da2ef20fcca5b9f15469fb73dd1",
+      "abilities.js": "f803e6cf5058de6ce7753c3769ad353bf0b521e9b1d2d7dd625bdb965a4ca045",
       "enemies.js": "09313ecb54f22f895290c7ad5052e10221716be0ca37fbda7c3b0f162eafde42",
       "pets.js": "ee8acfe3ff54cb32e2d728d5b9bbd6ee8f263f86c60a93da7b7253e15282b24e",
       "audio.js": "8543ce14bcd61c07373cd7c7c560b9c696ecf5afb80918d3c5929ef407a84a22"
@@ -544,11 +792,12 @@
     "wikiChecked": true
   },
   "verificationTime": {
-    "finalRepresentativeMs": 11246,
+    "finalRepresentativeMs": 14040,
     "actualSpecialsMs": 20960,
-    "finalBootMs": 1871,
-    "finalBoundaryMs": 5807,
-    "totalFinalEvidenceMs": 39884
+    "finalBootMs": 2321,
+    "finalBoundaryMs": 1098,
+    "actualSlowedArcMs": 10399,
+    "totalFinalEvidenceMs": 48818
   },
   "retainedCostFunctions": {
     "launch": {
@@ -588,12 +837,20 @@
     {
       "finding": "First arc burst interval could be 133.3ms because preparation-transition dt was consumed twice",
       "repair": "Start burst at zero after one dt consumption, use epsilon for timer boundary; final actual-game own ability clock proves three 150ms intervals"
+    },
+    {
+      "finding": "Parent review: descending mover clamped alone left a moving target at tick end; actual Matter reproduction had 1 clamp and 0 contacts at x=37 / x=50 despite a valid 0.36–0.457142857 contact interval",
+      "repair": "Clamp both dynamic bodies at the same impact fraction; calculate manifold inset from relative XY displacement. Reproduction and final representative rerun pass."
+    },
+    {
+      "finding": "Parent review: arc flight used scaled dt but ordinary projectile expiry used global ticks; actual native SHADOW reproduction had 47 slow frames and 0 first-aim impacts.",
+      "repair": "Arc simulation flight alone owns lifetime; skip ordinary global-time expiry, retain completion/path-block/stage-clear removal. Actual native slow-time case survives legacy deadline and impacts once."
     }
   ],
   "limitations": [
     "No whole stage/boss/rarity/mobile/long-session matrix; prior public 0.12.2 1-to-6 E2E was not repeated.",
-    "Special cancellation/counter run preceded the 1px physical sweep inset and arc first-interval repair; their interaction hooks were unchanged. Final representative includes both fixes.",
-    "Physical harness preceded only constructor-ancestry mixin dedup and arc-fire clock fixes; height/contact/sweep code remained unchanged. Final representative and fresh game boot use the exact final artifact hashes.",
+    "Special cancellation/counter run preceded the physical sweep repairs and arc timer/lifetime repairs; their interaction hooks were unchanged. Final representative includes all fixes.",
+    "Final representative, actual slowed-arc case and fresh game boot use final artifact hashes. Relative-target physical harness uses the final abilities module; its index snapshot preceded only arc lifetime/doc changes. Earlier cancellation/counter validation is retained separately; no entire matrix was repeated.",
     "Numeric enemy heights, windups, projectile damage/radii and visual clarity are initial config recommendations; subjective balance/performance improvement is not claimed.",
     "Draft branch is not merged/deployed. Pages workflow copy/hash additions were reviewed locally; public deployment awaits parent approval."
   ],

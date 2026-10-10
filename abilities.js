@@ -116,10 +116,17 @@ export function receiveHit(target,payload,source,now=0){
   const calculated=payload.resolved?payload.raw:payload.raw*100/(100+armor);
   const rounded=payload.floating||target.config?.damageRounding===false?calculated:Math.round(calculated);
   const amount=target.config?.deferDeath?Math.max(0,rounded):Math.min(target.hp,Math.max(0,rounded));
-  if(amount<=0)return 0;target.hp-=amount;target.protectedUntilMs=now+(target.config?.hitProtectionMs||0);
+  if(amount<=0)return 0;const effective=Math.min(Math.max(0,target.hp),amount);target.hp-=amount;target.protectedUntilMs=now+(target.config?.hitProtectionMs||0);
+  const attacker=source.attacker||source,rate=Math.max(0,Math.min(1,attacker.config?.lifeSteal||0));
+  const restored=receiveHeal(attacker,effective*rate);if(restored>0)attacker.adapter?.healed?.(attacker,restored);
   target.adapter?.hurt?.(target,amount,source);if(target.hp<=0){if(!target.config?.deferDeath&&!payload.deferDeath)target.die(DeathReason.hit,source);}else target.onHit?.({damage:amount,kind:payload.kind,sourceUnitId:source.unitId});return amount;
 }
-export function receiveHeal(target,amount){if(!target.alive||amount<=0)return 0;const healed=Math.min(target.maxHp-target.hp,amount);target.hp+=healed;return healed;}
+export function receiveHeal(target,amount){if(!target.alive||amount<=0)return 0;const healed=Math.max(0,Math.min(target.maxHp-target.hp,amount));target.hp+=healed;return healed;}
+export const combatConfig={referenceSpeed:1600};
+export function collisionDamage(source,target){const dx=target.preX-source.preX,dy=target.preY-source.preY,d=Math.hypot(dx,dy)||1;
+  const closing=Math.max(0,(source.pre.x-target.pre.x)*dx/d+(source.pre.y-target.pre.y)*dy/d);
+  return (source.config.attackPower||source.config.damage)*closing/(source.config.referenceSpeed||combatConfig.referenceSpeed);
+}
 export class Unit {
   constructor({id,unitId=id,type,speciesId=type,body,config,adapter,controller=null,presentation=null,deathPolicy=()=>{},faction='wild',grade=5,inventoryId=null}) {
     Object.assign(this,{id:unitId,unitId,type,speciesId,body,config,adapter,controller,presentation,deathPolicy,faction,grade,inventoryId,hp:config.hp,maxHp:config.hp,alive:true,pre:{x:0,y:0},
@@ -141,12 +148,10 @@ export class Unit {
     this.adapter.chase(this,dt,context);
   }
   contact(target,now){if(!hostile(this,target)||now-this.lastTouchMs<(this.config.contactCooldownMs||450))return 0;
-    const charge=this.state==='LUNGE'||this.state==='BOSS_CHARGE',passive=this.config.contactMode==='passive'&&this.unlocked(this.config.signature);
-    if(!charge&&!passive)return 0;if(charge&&this.collisionAttack.hitIds.has(target.unitId))return 0;
+    const charge=this.state==='LUNGE'||this.state==='BOSS_CHARGE',active=this.config.contactAttackStates?.includes(this.state)&&this.unlocked(this.config.signature);
+    if(!charge&&!active)return 0;if(charge&&this.collisionAttack.hitIds.has(target.unitId))return 0;
     let raw=this.config.damage;
-    if(charge){const dx=target.preX-this.preX,dy=target.preY-this.preY,d=Math.hypot(dx,dy)||1;
-      const closing=Math.max(0,(this.pre.x-target.pre.x)*dx/d+(this.pre.y-target.pre.y)*dy/d);
-      raw=(this.config.attackPower||this.config.damage)*closing/(this.config.referenceSpeed||1600);}
+    if(charge)raw=collisionDamage(this,target);
     const damage=this.adapter.damage(target,{raw,stats:this.config,kind:'collision'},this);
     if(damage>0){this.lastTouchMs=now;this.collisionAttack.hitIds.add(target.unitId);this.adapter.impact?.(this,target,damage);
       if(this.collisionAttack.phase==='CHARGE'){this.collisionAttack.phase='RECOVER';this.collisionAttack.leftMs=this.config.basicAttack.recoverMs;this.state='RECOVER';}}
@@ -183,6 +188,75 @@ export const BossPatternable=Base=>class BossPatternable extends Base {
   constructor(...args){super(...args);this.bossPattern={patterns:this.config.patterns,log:[]};}
   update(dt,ctx){if(!this.alive)return;if(!this.unlocked('bossPattern')||ctx.attack===false)return super.update(dt,ctx);this.adapter.bossStep(this,dt,ctx);}
   cancel(){this.bossPattern.log=[];super.cancel();}
+};
+export const Sunbeamable=Base=>class Sunbeamable extends Base {
+  constructor(...args){super(...args);this.sunbeam={config:this.config.sunbeam,phase:'READY',leftMs:0,pulseLeftMs:0,target:null,focusMs:0,stage:1,pulses:0};}
+  beamTargetValid(target){const p=this.body.position,c=this.sunbeam.config;
+    return hostile(this,target)&&Math.hypot(target.body.position.x-p.x,target.body.position.y-p.y)<=c.range&&this.adapter.pathClear(p,target.body.position,c.width);
+  }
+  update(dt,ctx){if(!this.alive)return;if(!this.unlocked('sunbeam'))return super.update(dt,ctx);const s=this.sunbeam,c=s.config,ms=dt*1000;
+    if(s.target&&!this.beamTargetValid(s.target)){s.target=null;s.focusMs=0;s.stage=1;
+      if(s.phase==='PREPARE'||s.phase==='FIRE'){s.phase='RECOVER';s.leftMs=c.recoverMs;this.state='RECOVER';}}
+    if(s.phase==='READY'&&ctx.attack!==false){const target=s.target||ctx.targetUnit;
+      if(this.beamTargetValid(target)){if(s.target!==target)s.focusMs=0;s.target=target;s.phase='PREPARE';s.leftMs=c.prepareMs;this.state='SUNBEAM_PREPARE';this.attackCount++;this.adapter.notice(this);}}
+    if(s.phase==='PREPARE'){this.adapter.brake(this,dt);s.leftMs-=ms;if(s.leftMs<=0){s.phase='FIRE';s.leftMs=c.fireMs;s.pulseLeftMs=c.intervalMs;this.state='SUNBEAM_FIRE';}return;}
+    if(s.phase==='FIRE'){this.adapter.brake(this,dt);const activeMs=Math.min(ms,s.leftMs);s.leftMs-=activeMs;s.focusMs+=activeMs;s.pulseLeftMs-=activeMs;
+      while(s.pulseLeftMs<=1e-7&&this.beamTargetValid(s.target)){const focused=s.focusMs+s.pulseLeftMs;
+        const tier=c.focus.filter(t=>this.grade>=t.grade&&focused>=t.afterMs).at(-1);s.stage=tier?.stage||1;
+        this.adapter.beam(this,s.target,c,tier?.multiplier||1);s.pulses++;s.pulseLeftMs+=c.intervalMs;}
+      if(s.leftMs<=1e-7){s.phase='RECOVER';s.leftMs=c.recoverMs;this.state='RECOVER';}return;
+    }
+    if(s.phase==='RECOVER'){s.leftMs-=ms;if(s.leftMs<=0){s.phase='READY';this.state='CHASE';}}
+    super.update(dt,ctx);
+  }
+  cancel(){this.sunbeam.phase='CANCELLED';this.sunbeam.target=null;this.sunbeam.focusMs=0;this.sunbeam.stage=1;super.cancel();}
+};
+// Explicit single-target attacks share reception; idle body contact never attacks.
+export const Meleeable=Base=>class Meleeable extends Base {
+  constructor(...args){super(...args);this.melee={config:this.config.melee,phase:'READY',leftMs:0,target:null,swings:0,hits:0};}
+  meleeTargetValid(target){const c=this.melee.config,p=this.body.position;
+    if(!hostile(this,target))return false;const dx=target.body.position.x-p.x,dy=target.body.position.y-p.y,d=Math.hypot(dx,dy);
+    const a=this.spatial,b=target.body.plugin.volume;
+    return d<=c.range+(target.body.circleRadius||0)&&(!b||a.feetZ+a.height>=b.feetZ&&b.feetZ+b.height>=a.feetZ)&&
+      (d<1||(dx*this.headingX+dy*this.headingY)/d>=Math.cos(c.halfAngle))&&this.adapter.pathClear(p,target.body.position,c.width);
+  }
+  update(dt,ctx){if(!this.alive)return;if(!this.unlocked('melee'))return super.update(dt,ctx);const s=this.melee,c=s.config,ms=dt*1000;
+    if(s.phase==='READY'&&ctx.attack!==false&&hostile(this,ctx.targetUnit)){
+      const p=this.body.position,t=ctx.targetUnit.body.position,d=Math.hypot(t.x-p.x,t.y-p.y);
+      if(d<=c.range+(ctx.targetUnit.body.circleRadius||0)&&this.adapter.pathClear(p,t,c.width)){
+        this.headingX=(t.x-p.x)/Math.max(1,d);this.headingY=(t.y-p.y)/Math.max(1,d);s.target=ctx.targetUnit;
+        s.phase='PREPARE';s.leftMs=c.prepareMs;this.state='MELEE_PREPARE';this.attackCount++;this.adapter.notice(this);}}
+    if(s.phase==='PREPARE'){this.adapter.brake(this,dt);s.leftMs-=ms;
+      if(s.leftMs<=0){s.phase='STRIKE';s.leftMs=c.strikeMs;this.state='MELEE_STRIKE';s.swings++;
+        if(this.meleeTargetValid(s.target)&&this.adapter.melee(this,s.target,c)>0)s.hits++;}return;}
+    if(s.phase==='STRIKE'){this.adapter.brake(this,dt);s.leftMs-=ms;if(s.leftMs<=0){s.phase='RECOVER';s.leftMs=c.recoverMs;this.state='RECOVER';}return;}
+    if(s.phase==='RECOVER'){s.leftMs-=ms;if(s.leftMs<=0){s.phase='READY';s.target=null;this.state='CHASE';}}
+    super.update(dt,ctx);
+  }
+  cancel(){this.melee.phase='CANCELLED';this.melee.target=null;super.cancel();}
+};
+export function healTargetValid(source,target){return !!target&&target!==source&&source.alive&&target.alive&&target.hp>0&&target.faction===source.faction&&target.hp<target.maxHp;}
+export const Healable=Base=>class Healable extends Base {
+  constructor(...args){super(...args);this.heal={config:this.config.heal,phase:'READY',leftMs:0,target:null,casts:0,healed:0,cost:0};}
+  canHeal(){return this.hp>this.heal.config.minHp;}
+  update(dt,ctx){if(!this.alive)return;const s=this.heal,c=s.config,ms=dt*1000;
+    if(!this.unlocked('heal'))return super.update(dt,ctx);
+    if(s.target&&!healTargetValid(this,s.target))s.target=null;
+    if(s.phase==='READY'){s.target=ctx.healTarget||null;
+      if(this.canHeal()&&healTargetValid(this,s.target)&&Math.hypot(s.target.body.position.x-this.body.position.x,s.target.body.position.y-this.body.position.y)<=c.range&&this.adapter.pathClear(this.body.position,s.target.body.position,c.width)){
+        const p=this.body.position,t=s.target.body.position,d=Math.hypot(t.x-p.x,t.y-p.y);this.headingX=(t.x-p.x)/Math.max(1,d);this.headingY=(t.y-p.y)/Math.max(1,d);s.phase='PREPARE';s.leftMs=c.prepareMs;this.state='HEAL_PREPARE';this.adapter.notice(this);}else return super.update(dt,ctx);}
+    if(s.phase==='PREPARE'){this.adapter.brake(this,dt);s.leftMs-=ms;if(s.leftMs<=0){
+      if(this.canHeal()&&healTargetValid(this,s.target)&&Math.hypot(s.target.body.position.x-this.body.position.x,s.target.body.position.y-this.body.position.y)<=c.range&&this.adapter.pathClear(this.body.position,s.target.body.position,c.width)){
+        const gained=receiveHeal(s.target,Math.min(c.amount,Math.max(0,this.hp-c.minHp)*c.efficiency));
+        if(gained>0){const cost=gained/c.efficiency;this.hp=Math.max(c.minHp,this.hp-cost);s.casts++;s.healed+=gained;s.cost+=cost;this.adapter.heal(this,s.target,gained,cost);}}
+      s.phase='RECOVER';s.leftMs=c.recoverMs;this.state='RECOVER';}return;}
+    if(s.phase==='RECOVER'){s.leftMs-=ms;if(s.leftMs<=0){s.phase='READY';this.state='CHASE';}super.update(dt,ctx);}
+  }
+  cancel(){this.heal.phase='CANCELLED';this.heal.target=null;super.cancel();}
+};
+export const Regenerative=Base=>class Regenerative extends Base {
+  constructor(...args){super(...args);this.regeneration={config:this.config.regeneration,healed:0};}
+  update(dt,ctx){if(!this.alive)return;this.regeneration.healed+=receiveHeal(this,this.maxHp*this.regeneration.config.ratePerSecond*dt);super.update(dt,ctx);}
 };
 export const Leapable = Base => class Leapable extends Base {
   constructor(...args){super(...args);this.leap={config:this.config.leap,phase:'READY',leftMs:0,flight:null,count:0,landings:0};}

@@ -1,0 +1,1585 @@
+{
+  "version": "0.12.6",
+  "buildId": "20261010T190000Z-explicit-combat",
+  "base": "fc3733d6e40ea1e65d37f14a7df3d9c4b165ac09",
+  "scope": "실제 Edge/Playwright 대표 입력·유효한 사전 저장 데이터·자연스러운 스테이지 전환·별도 생성한 실제 Matter 능력 계약·실제 GPU 외형",
+  "sourceHashes": {
+    "index.html": "65f35e9e1813b965d56df1541d6de8d547cfd69e6668f17f73091c65d1bcff49",
+    "abilities.js": "9f7a91efa3b8911cb8f944c41c1e6330a49ccca5f15dda173df451e38d6e2b52",
+    "enemies.js": "bba2ec615f685e8a4b31e21c40c1479232db00de38d82483f3c39a802a796b42",
+    "controllers.js": "b49df0ffb0e02990a7fe992202392a7e7c7c89ce9a1a857514146f2cfe1986d1",
+    "pets.js": "bdb19c7898b0bf1b349f669c9c81aaa22289c920731cf07387ab585d25d7eebd",
+    "audio.js": "8543ce14bcd61c07373cd7c7c560b9c696ecf5afb80918d3c5929ef407a84a22"
+  },
+  "reference": {
+    "rally": "89ff07ffe87de2ff7aa293dc7117aad5992b5513",
+    "rules": "847b90c4cf911a666cc21a431ea3c3bba2edc29c"
+  },
+  "representative": {
+    "scope": "Actual Edge fresh-save inputs, valid equipped new-species save and separate constructed real Matter shared-capability contracts",
+    "result": "PASS",
+    "elapsedMs": 8168,
+    "browser": "155.0.4283.45",
+    "errors": [],
+    "contract": {
+      "idleContact": 0,
+      "sharedCollision": {
+        "unit": 65,
+        "player": 50
+      },
+      "lifesteal": {
+        "effectiveDamage": 30,
+        "rate": 0.2,
+        "healed": 6,
+        "realOwner": true,
+        "deadOwner": 0
+      },
+      "melee": {
+        "pikeDamage": 22,
+        "pikePush": 100,
+        "lancerPush": 900,
+        "dodgedSwing": true
+      },
+      "beam": {
+        "pulses": 6,
+        "damage": 54.719478737995814,
+        "focusStage": 2,
+        "reset": true
+      },
+      "medic": {
+        "healed": 2,
+        "cost": 0.6666666666666666,
+        "regen": 1.25,
+        "lowHp": 1,
+        "tpsA": 15.000000000000036,
+        "tpsB": 15
+      },
+      "weights": [
+        {
+          "id": "rogue",
+          "weight": 1
+        },
+        {
+          "id": "pillbug",
+          "weight": 1
+        },
+        {
+          "id": "thornfruit",
+          "weight": 1
+        },
+        {
+          "id": "rocket",
+          "weight": 1
+        },
+        {
+          "id": "scout",
+          "weight": 1
+        },
+        {
+          "id": "brute",
+          "weight": 1
+        },
+        {
+          "id": "spitter",
+          "weight": 1
+        },
+        {
+          "id": "lancer",
+          "weight": 1
+        },
+        {
+          "id": "dandelion",
+          "weight": 1
+        },
+        {
+          "id": "swordsman",
+          "weight": 1
+        },
+        {
+          "id": "pikeman",
+          "weight": 1
+        },
+        {
+          "id": "medic",
+          "weight": 0.25
+        }
+      ]
+    },
+    "start": {
+      "phase": "PLAYING",
+      "mode": "READY",
+      "health": 200,
+      "maxHp": 200,
+      "stats": {
+        "petSlots": 1,
+        "attackPower": 100,
+        "criticalChance": 0,
+        "criticalDamage": 2,
+        "armorPenFlat": 0,
+        "armorPenPercent": 0,
+        "maxHp": 200,
+        "armor": 0,
+        "healthRegen": 0,
+        "lifeSteal": 0
+      },
+      "tech": {
+        "points": 0,
+        "level": 1,
+        "totalKills": 0,
+        "unlocked": [],
+        "statLevels": {
+          "attackPower": 0,
+          "criticalChance": 0,
+          "criticalDamage": 0,
+          "armorPenFlat": 0,
+          "armorPenPercent": 0,
+          "maxHp": 0,
+          "armor": 0,
+          "lifeSteal": 0,
+          "healthRegen": 0,
+          "petSlots": 0
+        }
+      },
+      "launchCount": 0,
+      "launchCostTotal": 0,
+      "automaticDashes": 0,
+      "energy": {
+        "current": 0,
+        "capacity": 3,
+        "fraction": 0,
+        "full": false,
+        "autoRechargeRate": 0,
+        "cost": 1,
+        "spent": 0,
+        "gained": 0,
+        "restored": 0
+      },
+      "healingDone": 0,
+      "damageTaken": 0,
+      "hits": 0,
+      "evades": 0,
+      "tick": 5,
+      "timeMs": 83.33333333333334,
+      "stage": {
+        "index": 1,
+        "phase": "WAVE",
+        "waveKills": 0,
+        "killTarget": 7,
+        "bossHp": null,
+        "bossState": null,
+        "bossPattern": null,
+        "patternLog": [],
+        "obstacleCount": 6,
+        "broken": 0,
+        "arenaSides": 8,
+        "theme": "garden",
+        "themeName": "화원",
+        "layout": "grove",
+        "layoutName": "빽빽한 화단",
+        "radius": 550,
+        "playableArea": 749631,
+        "targetPopulation": 4,
+        "mapTier": 0,
+        "mapStart": 1,
+        "mapSeed": 2654354052,
+        "bossStage": false,
+        "referenceArea": 749630.913784598,
+        "bossName": null,
+        "bossVariant": null,
+        "bossSummons": 0,
+        "seed": 2654354052,
+        "generation": {
+          "retries": 0,
+          "connectivity": 0.9375,
+          "clearLane": 444,
+          "obstacles": 6
+        }
+      },
+      "lastHit": null,
+      "rendererState": "ready",
+      "unitStates": [
+        {
+          "unitId": 1,
+          "inventoryId": null,
+          "speciesId": "rogue",
+          "faction": "wild",
+          "state": "LEAP_PREPARE",
+          "hp": 105,
+          "grade": 5,
+          "isSummon": false,
+          "signature": "leap",
+          "radius": 20,
+          "bodyRadius": 20,
+          "height": 30,
+          "scale": 1,
+          "outline": null,
+          "attackCount": 1,
+          "melee": null,
+          "sunbeam": null,
+          "heal": null,
+          "regenerated": 0
+        },
+        {
+          "unitId": 2,
+          "inventoryId": null,
+          "speciesId": "pillbug",
+          "faction": "wild",
+          "state": "CHASE",
+          "hp": 150,
+          "grade": 5,
+          "isSummon": false,
+          "signature": "selfDestruct",
+          "radius": 23,
+          "bodyRadius": 23,
+          "height": 38,
+          "scale": 1,
+          "outline": null,
+          "attackCount": 0,
+          "melee": null,
+          "sunbeam": null,
+          "heal": null,
+          "regenerated": 0
+        },
+        {
+          "unitId": 3,
+          "inventoryId": null,
+          "speciesId": "thornfruit",
+          "faction": "wild",
+          "state": "CHASE",
+          "hp": 185,
+          "grade": 5,
+          "isSummon": false,
+          "signature": "spike",
+          "radius": 24,
+          "bodyRadius": 24,
+          "height": 38,
+          "scale": 1,
+          "outline": null,
+          "attackCount": 0,
+          "melee": null,
+          "sunbeam": null,
+          "heal": null,
+          "regenerated": 0
+        },
+        {
+          "unitId": 4,
+          "inventoryId": null,
+          "speciesId": "rocket",
+          "faction": "wild",
+          "state": "ARC_PREPARE",
+          "hp": 95,
+          "grade": 5,
+          "isSummon": false,
+          "signature": "arcFire",
+          "radius": 26,
+          "bodyRadius": 26,
+          "height": 42,
+          "scale": 1,
+          "outline": null,
+          "attackCount": 1,
+          "melee": null,
+          "sunbeam": null,
+          "heal": null,
+          "regenerated": 0
+        }
+      ]
+    },
+    "manual": {
+      "phase": "PLAYING",
+      "mode": "SHADOW",
+      "health": 180,
+      "maxHp": 200,
+      "stats": {
+        "petSlots": 1,
+        "attackPower": 100,
+        "criticalChance": 0,
+        "criticalDamage": 2,
+        "armorPenFlat": 0,
+        "armorPenPercent": 0,
+        "maxHp": 200,
+        "armor": 0,
+        "healthRegen": 0,
+        "lifeSteal": 0
+      },
+      "tech": {
+        "points": 0,
+        "level": 1,
+        "totalKills": 0,
+        "unlocked": [],
+        "statLevels": {
+          "attackPower": 0,
+          "criticalChance": 0,
+          "criticalDamage": 0,
+          "armorPenFlat": 0,
+          "armorPenPercent": 0,
+          "maxHp": 0,
+          "armor": 0,
+          "lifeSteal": 0,
+          "healthRegen": 0,
+          "petSlots": 0
+        }
+      },
+      "launchCount": 1,
+      "launchCostTotal": 20,
+      "automaticDashes": 0,
+      "energy": {
+        "current": 0,
+        "capacity": 3,
+        "fraction": 0,
+        "full": false,
+        "autoRechargeRate": 0,
+        "cost": 1,
+        "spent": 0,
+        "gained": 0,
+        "restored": 0
+      },
+      "healingDone": 0,
+      "damageTaken": 0,
+      "hits": 0,
+      "evades": 0,
+      "tick": 10,
+      "timeMs": 166.66666666666669,
+      "stage": {
+        "index": 1,
+        "phase": "WAVE",
+        "waveKills": 0,
+        "killTarget": 7,
+        "bossHp": null,
+        "bossState": null,
+        "bossPattern": null,
+        "patternLog": [],
+        "obstacleCount": 6,
+        "broken": 0,
+        "arenaSides": 8,
+        "theme": "garden",
+        "themeName": "화원",
+        "layout": "grove",
+        "layoutName": "빽빽한 화단",
+        "radius": 550,
+        "playableArea": 749631,
+        "targetPopulation": 4,
+        "mapTier": 0,
+        "mapStart": 1,
+        "mapSeed": 2654354052,
+        "bossStage": false,
+        "referenceArea": 749630.913784598,
+        "bossName": null,
+        "bossVariant": null,
+        "bossSummons": 0,
+        "seed": 2654354052,
+        "generation": {
+          "retries": 0,
+          "connectivity": 0.9375,
+          "clearLane": 444,
+          "obstacles": 6
+        }
+      },
+      "lastHit": null,
+      "rendererState": "ready",
+      "unitStates": [
+        {
+          "unitId": 1,
+          "inventoryId": null,
+          "speciesId": "rogue",
+          "faction": "wild",
+          "state": "LEAP_PREPARE",
+          "hp": 105,
+          "grade": 5,
+          "isSummon": false,
+          "signature": "leap",
+          "radius": 20,
+          "bodyRadius": 20,
+          "height": 30,
+          "scale": 1,
+          "outline": null,
+          "attackCount": 1,
+          "melee": null,
+          "sunbeam": null,
+          "heal": null,
+          "regenerated": 0
+        },
+        {
+          "unitId": 2,
+          "inventoryId": null,
+          "speciesId": "pillbug",
+          "faction": "wild",
+          "state": "CHASE",
+          "hp": 150,
+          "grade": 5,
+          "isSummon": false,
+          "signature": "selfDestruct",
+          "radius": 23,
+          "bodyRadius": 23,
+          "height": 38,
+          "scale": 1,
+          "outline": null,
+          "attackCount": 0,
+          "melee": null,
+          "sunbeam": null,
+          "heal": null,
+          "regenerated": 0
+        },
+        {
+          "unitId": 3,
+          "inventoryId": null,
+          "speciesId": "thornfruit",
+          "faction": "wild",
+          "state": "CHASE",
+          "hp": 185,
+          "grade": 5,
+          "isSummon": false,
+          "signature": "spike",
+          "radius": 24,
+          "bodyRadius": 24,
+          "height": 38,
+          "scale": 1,
+          "outline": null,
+          "attackCount": 0,
+          "melee": null,
+          "sunbeam": null,
+          "heal": null,
+          "regenerated": 0
+        },
+        {
+          "unitId": 4,
+          "inventoryId": null,
+          "speciesId": "rocket",
+          "faction": "wild",
+          "state": "ARC_PREPARE",
+          "hp": 95,
+          "grade": 5,
+          "isSummon": false,
+          "signature": "arcFire",
+          "radius": 26,
+          "bodyRadius": 26,
+          "height": 42,
+          "scale": 1,
+          "outline": null,
+          "attackCount": 1,
+          "melee": null,
+          "sunbeam": null,
+          "heal": null,
+          "regenerated": 0
+        }
+      ]
+    },
+    "inputs": {
+      "evades": 2
+    },
+    "newUnits": {
+      "phase": "PLAYING",
+      "mode": "READY",
+      "health": 251,
+      "maxHp": 260,
+      "stats": {
+        "petSlots": 5,
+        "attackPower": 100,
+        "criticalChance": 0,
+        "criticalDamage": 2,
+        "armorPenFlat": 0,
+        "armorPenPercent": 0,
+        "maxHp": 260,
+        "armor": 0,
+        "healthRegen": 0,
+        "lifeSteal": 0
+      },
+      "tech": {
+        "points": 131,
+        "level": 141,
+        "totalKills": 20001,
+        "unlocked": [],
+        "statLevels": {
+          "attackPower": 0,
+          "criticalChance": 0,
+          "criticalDamage": 0,
+          "armorPenFlat": 0,
+          "armorPenPercent": 0,
+          "maxHp": 5,
+          "armor": 0,
+          "lifeSteal": 0,
+          "healthRegen": 0,
+          "petSlots": 4
+        }
+      },
+      "launchCount": 0,
+      "launchCostTotal": 0,
+      "automaticDashes": 0,
+      "energy": {
+        "current": 0,
+        "capacity": 3,
+        "fraction": 0,
+        "full": false,
+        "autoRechargeRate": 0,
+        "cost": 1,
+        "spent": 0,
+        "gained": 0,
+        "restored": 0
+      },
+      "healingDone": 0,
+      "damageTaken": 9,
+      "hits": 0,
+      "evades": 0,
+      "tick": 301,
+      "timeMs": 5016.666666666667,
+      "stage": {
+        "index": 1,
+        "phase": "WAVE",
+        "waveKills": 1,
+        "killTarget": 7,
+        "bossHp": null,
+        "bossState": null,
+        "bossPattern": null,
+        "patternLog": [],
+        "obstacleCount": 6,
+        "broken": 0,
+        "arenaSides": 8,
+        "theme": "garden",
+        "themeName": "화원",
+        "layout": "grove",
+        "layoutName": "빽빽한 화단",
+        "radius": 550,
+        "playableArea": 749631,
+        "targetPopulation": 4,
+        "mapTier": 0,
+        "mapStart": 1,
+        "mapSeed": 2654354052,
+        "bossStage": false,
+        "referenceArea": 749630.913784598,
+        "bossName": null,
+        "bossVariant": null,
+        "bossSummons": 0,
+        "seed": 2654354052,
+        "generation": {
+          "retries": 0,
+          "connectivity": 0.9375,
+          "clearLane": 444,
+          "obstacles": 6
+        }
+      },
+      "lastHit": null,
+      "rendererState": "ready",
+      "unitStates": [
+        {
+          "unitId": 3,
+          "inventoryId": null,
+          "speciesId": "thornfruit",
+          "faction": "wild",
+          "state": "RECOVER",
+          "hp": 171,
+          "grade": 5,
+          "isSummon": false,
+          "signature": "spike",
+          "radius": 24,
+          "bodyRadius": 24,
+          "height": 38,
+          "scale": 1,
+          "outline": null,
+          "attackCount": 2,
+          "melee": null,
+          "sunbeam": null,
+          "heal": null,
+          "regenerated": 0
+        },
+        {
+          "unitId": 4,
+          "inventoryId": null,
+          "speciesId": "rocket",
+          "faction": "wild",
+          "state": "RECOVER",
+          "hp": 95,
+          "grade": 5,
+          "isSummon": false,
+          "signature": "arcFire",
+          "radius": 26,
+          "bodyRadius": 26,
+          "height": 42,
+          "scale": 1,
+          "outline": null,
+          "attackCount": 2,
+          "melee": null,
+          "sunbeam": null,
+          "heal": null,
+          "regenerated": 0
+        },
+        {
+          "unitId": 10,
+          "inventoryId": 1,
+          "speciesId": "lancer",
+          "faction": "garden",
+          "state": "LUNGE",
+          "hp": 134,
+          "grade": 0,
+          "isSummon": false,
+          "signature": "lunge",
+          "radius": 14.950000000000001,
+          "bodyRadius": 14.950000000000001,
+          "height": 29.900000000000002,
+          "scale": 0.65,
+          "outline": {
+            "width": 2.5,
+            "contrast": {
+              "width": 0.8,
+              "color": "#0c181e",
+              "maxColorDistance": 0.16
+            },
+            "color": "#d8d4bd"
+          },
+          "attackCount": 4,
+          "melee": null,
+          "sunbeam": null,
+          "heal": null,
+          "regenerated": 0
+        },
+        {
+          "unitId": 11,
+          "inventoryId": 2,
+          "speciesId": "dandelion",
+          "faction": "garden",
+          "state": "RECOVER",
+          "hp": 28,
+          "grade": 0,
+          "isSummon": false,
+          "signature": "melee",
+          "radius": 9.1,
+          "bodyRadius": 9.1,
+          "height": 18.2,
+          "scale": 0.65,
+          "outline": {
+            "width": 2.5,
+            "contrast": {
+              "width": 0.8,
+              "color": "#0c181e",
+              "maxColorDistance": 0.16
+            },
+            "color": "#d8d4bd"
+          },
+          "attackCount": 6,
+          "melee": {
+            "phase": "RECOVER",
+            "swings": 6,
+            "hits": 6
+          },
+          "sunbeam": null,
+          "heal": null,
+          "regenerated": 0
+        },
+        {
+          "unitId": 12,
+          "inventoryId": 3,
+          "speciesId": "swordsman",
+          "faction": "garden",
+          "state": "MELEE_PREPARE",
+          "hp": 137,
+          "grade": 0,
+          "isSummon": false,
+          "signature": "melee",
+          "radius": 14.3,
+          "bodyRadius": 14.3,
+          "height": 28.6,
+          "scale": 0.65,
+          "outline": {
+            "width": 2.5,
+            "contrast": {
+              "width": 0.8,
+              "color": "#0c181e",
+              "maxColorDistance": 0.16
+            },
+            "color": "#d8d4bd"
+          },
+          "attackCount": 3,
+          "melee": {
+            "phase": "PREPARE",
+            "swings": 2,
+            "hits": 1
+          },
+          "sunbeam": null,
+          "heal": null,
+          "regenerated": 0
+        },
+        {
+          "unitId": 13,
+          "inventoryId": 4,
+          "speciesId": "pikeman",
+          "faction": "garden",
+          "state": "RECOVER",
+          "hp": 95,
+          "grade": 0,
+          "isSummon": false,
+          "signature": "melee",
+          "radius": 13,
+          "bodyRadius": 13,
+          "height": 26,
+          "scale": 0.65,
+          "outline": {
+            "width": 2.5,
+            "contrast": {
+              "width": 0.8,
+              "color": "#0c181e",
+              "maxColorDistance": 0.16
+            },
+            "color": "#d8d4bd"
+          },
+          "attackCount": 5,
+          "melee": {
+            "phase": "RECOVER",
+            "swings": 5,
+            "hits": 2
+          },
+          "sunbeam": null,
+          "heal": null,
+          "regenerated": 0
+        },
+        {
+          "unitId": 14,
+          "inventoryId": 5,
+          "speciesId": "medic",
+          "faction": "garden",
+          "state": "RECOVER",
+          "hp": 92.49999999999899,
+          "grade": 0,
+          "isSummon": false,
+          "signature": "heal",
+          "radius": 11.05,
+          "bodyRadius": 11.05,
+          "height": 22.1,
+          "scale": 0.65,
+          "outline": {
+            "width": 2.5,
+            "contrast": {
+              "width": 0.8,
+              "color": "#0c181e",
+              "maxColorDistance": 0.16
+            },
+            "color": "#d8d4bd"
+          },
+          "attackCount": 0,
+          "melee": null,
+          "sunbeam": null,
+          "heal": {
+            "phase": "RECOVER",
+            "casts": 3,
+            "healed": 22,
+            "cost": 7.333333333333333,
+            "targetId": 12
+          },
+          "regenerated": 17.83333333333335
+        },
+        {
+          "unitId": 15,
+          "inventoryId": null,
+          "speciesId": "rogue",
+          "faction": "wild",
+          "state": "RECOVER",
+          "hp": 91,
+          "grade": 5,
+          "isSummon": false,
+          "signature": "leap",
+          "radius": 20,
+          "bodyRadius": 20,
+          "height": 30,
+          "scale": 1,
+          "outline": null,
+          "attackCount": 1,
+          "melee": null,
+          "sunbeam": null,
+          "heal": null,
+          "regenerated": 0
+        },
+        {
+          "unitId": 16,
+          "inventoryId": null,
+          "speciesId": "pikeman",
+          "faction": "wild",
+          "state": "CHASE",
+          "hp": 95,
+          "grade": 5,
+          "isSummon": false,
+          "signature": "melee",
+          "radius": 20,
+          "bodyRadius": 20,
+          "height": 40,
+          "scale": 1,
+          "outline": null,
+          "attackCount": 0,
+          "melee": {
+            "phase": "READY",
+            "swings": 0,
+            "hits": 0
+          },
+          "sunbeam": null,
+          "heal": null,
+          "regenerated": 0
+        }
+      ]
+    }
+  },
+  "resources": {
+    "scope": "Native Edge echo/manual/energy and organic stage transition; only preboot valid save, no runtime state/HP/position/tick/RNG forcing",
+    "result": "PASS",
+    "elapsedMs": 14217,
+    "errors": [],
+    "charged": {
+      "energy": {
+        "current": 3,
+        "capacity": 3,
+        "fraction": 1,
+        "full": true,
+        "autoRechargeRate": 0,
+        "cost": 0.85,
+        "spent": 0,
+        "gained": 3,
+        "restored": 0
+      },
+      "evades": 5
+    },
+    "manual": {
+      "health": 387.90000000000003,
+      "launchCount": 1,
+      "launchCostTotal": 43.10000000000001
+    },
+    "after": {
+      "launchCount": 2,
+      "launchCostTotal": 43.10000000000001,
+      "automaticDashes": 1,
+      "spent": 0.85,
+      "healingDone": 0,
+      "hits": 1
+    },
+    "stage": {
+      "clearHp": 171,
+      "stage2Hp": 171,
+      "maxHp": 200,
+      "index": 2
+    }
+  },
+  "focused": {
+    "scope": "Native purchase-to-hit lifesteal and native sunflower beam; constructed LOS/heal target retention/cancel/lifecycle contracts",
+    "result": "PASS_WITH_LIMITS",
+    "elapsedMs": 3565,
+    "errors": [],
+    "limitations": [
+      "당시두실제명중시도미명중한계는후속nativeLifesteal의7.366초실제대표명중으로해소됨. 이기록은당시PASS_WITH_LIMITS결과로보존."
+    ],
+    "learned": {
+      "lifeSteal": 0.02,
+      "level": 1
+    },
+    "contract": {
+      "beamLosReset": true,
+      "lifecycleCancel": true,
+      "healRetainsTarget": true,
+      "approachesNext": true,
+      "noRevive": true,
+      "noHpIdle": true,
+      "baselineBeamDps": 33.67352537722908,
+      "meanCycleDps": 13.991769547325104
+    },
+    "nativeBeam": {
+      "unitId": 6,
+      "inventoryId": 1,
+      "speciesId": "brute",
+      "faction": "garden",
+      "state": "SUNBEAM_FIRE",
+      "hp": 333,
+      "grade": 1,
+      "isSummon": false,
+      "signature": "sunbeam",
+      "radius": 20.88,
+      "bodyRadius": 20.88,
+      "height": 41.76,
+      "scale": 0.72,
+      "outline": {
+        "width": 2.5,
+        "contrast": {
+          "width": 0.8,
+          "color": "#0c181e",
+          "maxColorDistance": 0.16
+        },
+        "color": "#83ce76"
+      },
+      "attackCount": 1,
+      "melee": null,
+      "sunbeam": {
+        "phase": "FIRE",
+        "focusMs": 300,
+        "stage": 1,
+        "pulses": 1,
+        "targetId": 1
+      },
+      "heal": null,
+      "regenerated": 0
+    }
+  },
+  "gpu": {
+    "scope": "Actual Edge GPU shared sunflower and five new species artwork, enemy vs Common/Epic/Mythic",
+    "errors": [],
+    "artifacts": {
+      "index.html": "2eb482712fc600573fde4fb476e1ab9c8e1dfe0eb850785920c02f37324bee3a",
+      "enemies.js": "02ccdbad1d8cb7a74b1c3019fe80304dc7d9ff107148407115b85e6dadaa9715",
+      "pets.js": "bdb19c7898b0bf1b349f669c9c81aaa22289c920731cf07387ab585d25d7eebd"
+    },
+    "browser": "155.0.4283.45",
+    "slate": {
+      "renderer": "ready",
+      "rows": [
+        {
+          "id": "brute",
+          "cols": [
+            {
+              "grade": null,
+              "scale": 1,
+              "radius": 29,
+              "height": 58,
+              "outline": null,
+              "drawShared": true
+            },
+            {
+              "grade": 0,
+              "scale": 0.65,
+              "radius": 18.85,
+              "height": 37.7,
+              "outline": {
+                "width": 2.5,
+                "contrast": {
+                  "width": 0.8,
+                  "color": "#0c181e",
+                  "maxColorDistance": 0.16
+                },
+                "color": "#d8d4bd"
+              },
+              "drawShared": true
+            },
+            {
+              "grade": 3,
+              "scale": 0.86,
+              "radius": 24.94,
+              "height": 49.88,
+              "outline": {
+                "width": 2.5,
+                "contrast": {
+                  "width": 0.8,
+                  "color": "#0c181e",
+                  "maxColorDistance": 0.16
+                },
+                "color": "#bd8cff"
+              },
+              "drawShared": true
+            },
+            {
+              "grade": 5,
+              "scale": 1,
+              "radius": 29,
+              "height": 58,
+              "outline": {
+                "width": 2.5,
+                "contrast": {
+                  "width": 0.8,
+                  "color": "#0c181e",
+                  "maxColorDistance": 0.16
+                },
+                "color": "#ff7086"
+              },
+              "drawShared": true
+            }
+          ]
+        },
+        {
+          "id": "lancer",
+          "cols": [
+            {
+              "grade": null,
+              "scale": 1,
+              "radius": 23,
+              "height": 46,
+              "outline": null,
+              "drawShared": true
+            },
+            {
+              "grade": 0,
+              "scale": 0.65,
+              "radius": 14.950000000000001,
+              "height": 29.900000000000002,
+              "outline": {
+                "width": 2.5,
+                "contrast": {
+                  "width": 0.8,
+                  "color": "#0c181e",
+                  "maxColorDistance": 0.16
+                },
+                "color": "#d8d4bd"
+              },
+              "drawShared": true
+            },
+            {
+              "grade": 3,
+              "scale": 0.86,
+              "radius": 19.78,
+              "height": 39.56,
+              "outline": {
+                "width": 2.5,
+                "contrast": {
+                  "width": 0.8,
+                  "color": "#0c181e",
+                  "maxColorDistance": 0.16
+                },
+                "color": "#bd8cff"
+              },
+              "drawShared": true
+            },
+            {
+              "grade": 5,
+              "scale": 1,
+              "radius": 23,
+              "height": 46,
+              "outline": {
+                "width": 2.5,
+                "contrast": {
+                  "width": 0.8,
+                  "color": "#0c181e",
+                  "maxColorDistance": 0.16
+                },
+                "color": "#ff7086"
+              },
+              "drawShared": true
+            }
+          ]
+        },
+        {
+          "id": "dandelion",
+          "cols": [
+            {
+              "grade": null,
+              "scale": 1,
+              "radius": 14,
+              "height": 28,
+              "outline": null,
+              "drawShared": true
+            },
+            {
+              "grade": 0,
+              "scale": 0.65,
+              "radius": 9.1,
+              "height": 18.2,
+              "outline": {
+                "width": 2.5,
+                "contrast": {
+                  "width": 0.8,
+                  "color": "#0c181e",
+                  "maxColorDistance": 0.16
+                },
+                "color": "#d8d4bd"
+              },
+              "drawShared": true
+            },
+            {
+              "grade": 3,
+              "scale": 0.86,
+              "radius": 12.04,
+              "height": 24.08,
+              "outline": {
+                "width": 2.5,
+                "contrast": {
+                  "width": 0.8,
+                  "color": "#0c181e",
+                  "maxColorDistance": 0.16
+                },
+                "color": "#bd8cff"
+              },
+              "drawShared": true
+            },
+            {
+              "grade": 5,
+              "scale": 1,
+              "radius": 14,
+              "height": 28,
+              "outline": {
+                "width": 2.5,
+                "contrast": {
+                  "width": 0.8,
+                  "color": "#0c181e",
+                  "maxColorDistance": 0.16
+                },
+                "color": "#ff7086"
+              },
+              "drawShared": true
+            }
+          ]
+        },
+        {
+          "id": "swordsman",
+          "cols": [
+            {
+              "grade": null,
+              "scale": 1,
+              "radius": 22,
+              "height": 44,
+              "outline": null,
+              "drawShared": true
+            },
+            {
+              "grade": 0,
+              "scale": 0.65,
+              "radius": 14.3,
+              "height": 28.6,
+              "outline": {
+                "width": 2.5,
+                "contrast": {
+                  "width": 0.8,
+                  "color": "#0c181e",
+                  "maxColorDistance": 0.16
+                },
+                "color": "#d8d4bd"
+              },
+              "drawShared": true
+            },
+            {
+              "grade": 3,
+              "scale": 0.86,
+              "radius": 18.919999999999998,
+              "height": 37.839999999999996,
+              "outline": {
+                "width": 2.5,
+                "contrast": {
+                  "width": 0.8,
+                  "color": "#0c181e",
+                  "maxColorDistance": 0.16
+                },
+                "color": "#bd8cff"
+              },
+              "drawShared": true
+            },
+            {
+              "grade": 5,
+              "scale": 1,
+              "radius": 22,
+              "height": 44,
+              "outline": {
+                "width": 2.5,
+                "contrast": {
+                  "width": 0.8,
+                  "color": "#0c181e",
+                  "maxColorDistance": 0.16
+                },
+                "color": "#ff7086"
+              },
+              "drawShared": true
+            }
+          ]
+        },
+        {
+          "id": "pikeman",
+          "cols": [
+            {
+              "grade": null,
+              "scale": 1,
+              "radius": 20,
+              "height": 40,
+              "outline": null,
+              "drawShared": true
+            },
+            {
+              "grade": 0,
+              "scale": 0.65,
+              "radius": 13,
+              "height": 26,
+              "outline": {
+                "width": 2.5,
+                "contrast": {
+                  "width": 0.8,
+                  "color": "#0c181e",
+                  "maxColorDistance": 0.16
+                },
+                "color": "#d8d4bd"
+              },
+              "drawShared": true
+            },
+            {
+              "grade": 3,
+              "scale": 0.86,
+              "radius": 17.2,
+              "height": 34.4,
+              "outline": {
+                "width": 2.5,
+                "contrast": {
+                  "width": 0.8,
+                  "color": "#0c181e",
+                  "maxColorDistance": 0.16
+                },
+                "color": "#bd8cff"
+              },
+              "drawShared": true
+            },
+            {
+              "grade": 5,
+              "scale": 1,
+              "radius": 20,
+              "height": 40,
+              "outline": {
+                "width": 2.5,
+                "contrast": {
+                  "width": 0.8,
+                  "color": "#0c181e",
+                  "maxColorDistance": 0.16
+                },
+                "color": "#ff7086"
+              },
+              "drawShared": true
+            }
+          ]
+        },
+        {
+          "id": "medic",
+          "cols": [
+            {
+              "grade": null,
+              "scale": 1,
+              "radius": 17,
+              "height": 34,
+              "outline": null,
+              "drawShared": true
+            },
+            {
+              "grade": 0,
+              "scale": 0.65,
+              "radius": 11.05,
+              "height": 22.1,
+              "outline": {
+                "width": 2.5,
+                "contrast": {
+                  "width": 0.8,
+                  "color": "#0c181e",
+                  "maxColorDistance": 0.16
+                },
+                "color": "#d8d4bd"
+              },
+              "drawShared": true
+            },
+            {
+              "grade": 3,
+              "scale": 0.86,
+              "radius": 14.62,
+              "height": 29.24,
+              "outline": {
+                "width": 2.5,
+                "contrast": {
+                  "width": 0.8,
+                  "color": "#0c181e",
+                  "maxColorDistance": 0.16
+                },
+                "color": "#bd8cff"
+              },
+              "drawShared": true
+            },
+            {
+              "grade": 5,
+              "scale": 1,
+              "radius": 17,
+              "height": 34,
+              "outline": {
+                "width": 2.5,
+                "contrast": {
+                  "width": 0.8,
+                  "color": "#0c181e",
+                  "maxColorDistance": 0.16
+                },
+                "color": "#ff7086"
+              },
+              "drawShared": true
+            }
+          ]
+        }
+      ],
+      "grades": [
+        {
+          "name": "Common",
+          "scale": 0.65,
+          "outline": {
+            "width": 2.5,
+            "contrast": {
+              "width": 0.8,
+              "color": "#0c181e",
+              "maxColorDistance": 0.16
+            },
+            "color": "#d8d4bd"
+          }
+        },
+        {
+          "name": "Uncommon",
+          "scale": 0.72,
+          "outline": {
+            "width": 2.5,
+            "contrast": {
+              "width": 0.8,
+              "color": "#0c181e",
+              "maxColorDistance": 0.16
+            },
+            "color": "#83ce76"
+          }
+        },
+        {
+          "name": "Rare",
+          "scale": 0.79,
+          "outline": {
+            "width": 2.5,
+            "contrast": {
+              "width": 0.8,
+              "color": "#0c181e",
+              "maxColorDistance": 0.16
+            },
+            "color": "#78b9ff"
+          }
+        },
+        {
+          "name": "Epic",
+          "scale": 0.86,
+          "outline": {
+            "width": 2.5,
+            "contrast": {
+              "width": 0.8,
+              "color": "#0c181e",
+              "maxColorDistance": 0.16
+            },
+            "color": "#bd8cff"
+          }
+        },
+        {
+          "name": "Legendary",
+          "scale": 0.9299999999999999,
+          "outline": {
+            "width": 2.5,
+            "contrast": {
+              "width": 0.8,
+              "color": "#0c181e",
+              "maxColorDistance": 0.16
+            },
+            "color": "#ffb354"
+          }
+        },
+        {
+          "name": "Mythic",
+          "scale": 1,
+          "outline": {
+            "width": 2.5,
+            "contrast": {
+              "width": 0.8,
+              "color": "#0c181e",
+              "maxColorDistance": 0.16
+            },
+            "color": "#ff7086"
+          }
+        }
+      ]
+    },
+    "result": "PASS",
+    "elapsedMs": 4768
+  },
+  "limitations": [
+    "앞선 두 플레이어 미명중(6.768초/10.086초)은 이력으로 보존한다. 후속 실제 성공 입력 경로에서 대표명중1회와2%회복비율을 검증해 기존 미검증 한계를 해소했다. 전체종류·성장비율 매트릭스를 늘리지는 않았다.",
+    "물리 위치·HP·틱·RNG를 강제한 게임 진행은 없다. 별도 구성한 Matter 계약의 상태/좌표 조작은 자연 플레이 검증과 분리했다.",
+    "전체16종×6등급·장기 밸런스·최대82개체 성능·전 기기 매트릭스는 실행하지 않았다.",
+    "광선 외형은 실제 동행 FIRE와 GPU 공유 외형을 확인했다. 최대집중단계/차폐/치유 생존비용 경계는 별도 공통 능력 계약으로 확인했다."
+  ],
+  "preservedCosts": {
+    "manualShadow": "현재HP10%",
+    "echoShadow": "0 (자동연격포함)",
+    "autoDash": "기본1에너지칸,비용효율해금시0.85칸"
+  },
+  "failureHistory": [
+    {
+      "elapsedMs": 6768,
+      "result": "미명중으로 실제 플레이어 흡혈 비율 미검증"
+    },
+    {
+      "elapsedMs": 10086,
+      "result": "미명중, mode READY/hits0/healing0; 추가 명중 시도 중단"
+    }
+  ],
+  "nativeLifesteal": {
+    "scope": "실제 Edge 흡혈2% 대표명중1회. 성공한 실제WASD 접근/수동발사/돌진 경로에 유효한 시작 저장 fixture만 추가; 실행중 HP/위치/RNG/틱 강제없음",
+    "result": "PASS",
+    "elapsedMs": 7366,
+    "errors": [],
+    "observation": {
+      "rate": 0.02,
+      "statLevel": 1,
+      "attacker": 0,
+      "targetId": 1,
+      "targetBeforeHp": 105,
+      "targetAfterHp": 28,
+      "effectiveDamage": 77,
+      "lastHitDamage": 77,
+      "playerBeforeHp": 387.90000000000003,
+      "playerAfterHp": 389.44000000000005,
+      "healed": 1.54,
+      "expectedHeal": 1.54,
+      "damageTaken": 0,
+      "launchCostInHitWindow": 0,
+      "netHp": 1.5400000000000205,
+      "expectedNetHp": 1.54,
+      "previousTick": 211,
+      "afterTick": 216,
+      "manualLaunchCost": 43.10000000000001,
+      "previousLaunches": 1,
+      "afterLaunches": 1,
+      "healthRegen": 0,
+      "hit": {
+        "tick": 214,
+        "enemyId": 1,
+        "automatic": false,
+        "critical": false,
+        "criticalMultiplier": 1,
+        "raw": 77.06618211774176,
+        "normalDamage": 77,
+        "boostedDamage": 77,
+        "damage": 77,
+        "conductDamage": 0,
+        "markConsumed": false,
+        "tags": [
+          "dash"
+        ]
+      }
+    },
+    "fixture": {
+      "kills": 20000,
+      "unlocked": [
+        "echo",
+        "autoChain",
+        "charge1",
+        "charge2",
+        "costEff"
+      ],
+      "statLevels": {
+        "maxHp": 20,
+        "attackPower": 5,
+        "lifeSteal": 1
+      },
+      "companions": {
+        "inventory": [],
+        "slots": [
+          null
+        ],
+        "nextId": 1,
+        "discovered": []
+      }
+    },
+    "input": "기존 성공한 WASD실제접근→Space수동발사→50%이상Space수동돌진. 매 표본은getState읽기만 수행. 첫명중1회에서중단.",
+    "forcedRuntimeState": false
+  },
+  "deathRegression": {
+    "scope": "별도 구성한 실제 Edge 전체 게임 런타임의 치명타격 계약. 테스트 전용 초기HP1·단일 원거리 적 배치; 자연 플레이로 주장하지 않음. 실제 공통 factory/adapter/step/Matter/사망 UI 사용.",
+    "errors": [],
+    "cases": [
+      {
+        "version": "before",
+        "speciesId": "pikeman",
+        "setup": {
+          "targetId": 5,
+          "gap": 90,
+          "maxHp": 200,
+          "initialHp": 1,
+          "fixture": true
+        },
+        "phase": "PLAYING",
+        "mode": "READY",
+        "health": -21,
+        "attack": {
+          "kind": "melee-thrust",
+          "tick": 21,
+          "timeMs": 350,
+          "id": 5,
+          "type": "pikeman",
+          "targetId": 0,
+          "damage": 22
+        },
+        "projectiles": 0,
+        "deathCalls": 0,
+        "overlay": false,
+        "tick": 73,
+        "laterTick": 89,
+        "guard": null
+      },
+      {
+        "version": "after",
+        "speciesId": "pikeman",
+        "setup": {
+          "targetId": 5,
+          "gap": 90,
+          "maxHp": 200,
+          "initialHp": 1,
+          "fixture": true
+        },
+        "phase": "ENDED",
+        "mode": "DEAD",
+        "health": 0,
+        "attack": {
+          "kind": "melee-thrust",
+          "tick": 19,
+          "timeMs": 316.6666666666667,
+          "id": 5,
+          "type": "pikeman",
+          "targetId": 0,
+          "damage": 22
+        },
+        "projectiles": 0,
+        "deathCalls": 1,
+        "overlay": true,
+        "tick": 19,
+        "laterTick": 19,
+        "guard": {
+          "before": 1,
+          "after": 1,
+          "phase": "ENDED",
+          "mode": "DEAD",
+          "health": 0
+        }
+      },
+      {
+        "version": "after",
+        "speciesId": "brute",
+        "setup": {
+          "targetId": 5,
+          "gap": 300,
+          "maxHp": 200,
+          "initialHp": 1,
+          "fixture": true
+        },
+        "phase": "ENDED",
+        "mode": "DEAD",
+        "health": 0,
+        "attack": {
+          "kind": "sunbeam",
+          "tick": 62,
+          "timeMs": 1033.3333333333335,
+          "id": 5,
+          "type": "brute",
+          "targetId": 0,
+          "damage": 8.41838134430727,
+          "focusMs": 249.99999999999994,
+          "beamStage": 1
+        },
+        "projectiles": 0,
+        "deathCalls": 1,
+        "overlay": true,
+        "tick": 62,
+        "laterTick": 62,
+        "guard": {
+          "before": 1,
+          "after": 1,
+          "phase": "ENDED",
+          "mode": "DEAD",
+          "health": 0
+        }
+      }
+    ],
+    "browser": "155.0.4283.45",
+    "result": "PASS",
+    "elapsedMs": 9547,
+    "beforeHead": "58739460e4b93e81c063446fdb917b80290a749f",
+    "sourceTestSetup": "검증 전용 HTML에 fixture 초기화/사망횟수 계측만 주입. 초기HP1·기존적cleanup·공통spawnEnemy로단일가시창90/해바라기300배치. 실제factory/adapter/step/Matter/사망DOM실행. 자연플레이로주장하지않음.",
+    "fix": "playerUnit.die를실제사망전이에연결하고모든동일틱전투/흡혈수신후step의단일경계에서호출. 기존범위/탄환/몸접촉별die호출제거. 종료뒤재장전/다음재생틱차단. 기존사망가드로효과1회."
+  },
+  "limitationResolution": {
+    "nativePlayerLifesteal": "해소됨: 실제대표첫명중77피해→2%·1.54회복, HP387.90→389.44, 피격/발사비용증가/재생0,7.366초PASS. 앞선미명중2회이력보존.",
+    "rangedPlayerDeath": "해소됨: 기존P1실제전체런타임fixture재현후가시창/광선치명타격사망/정리·중복호출가드9.547초PASS."
+  }
+}

@@ -1,0 +1,103 @@
+{
+  "scope": "Merged PR10 public provenance, six module hashes, native Start and one owned-card equip/unequip",
+  "url": "https://byh-playground.github.io/bloom-bounko/",
+  "commit": "fc3733d6e40ea1e65d37f14a7df3d9c4b165ac09",
+  "sourceHead": "adec66dea871b880b91803bcd25ab647f946e9e5",
+  "errors": [],
+  "resourceWarnings": [
+    {
+      "text": "Failed to load resource: the server responded with a status of 404 ()",
+      "location": {
+        "url": "https://byh-playground.github.io/favicon.ico",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      }
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 404 ()",
+      "location": {
+        "url": "https://byh-playground.github.io/favicon.ico",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      }
+    }
+  ],
+  "hashes": {
+    "pets.js": {
+      "actual": "bdb19c7898b0bf1b349f669c9c81aaa22289c920731cf07387ab585d25d7eebd",
+      "metadata": "bdb19c7898b0bf1b349f669c9c81aaa22289c920731cf07387ab585d25d7eebd",
+      "reviewed": "bdb19c7898b0bf1b349f669c9c81aaa22289c920731cf07387ab585d25d7eebd",
+      "matches": true
+    },
+    "controllers.js": {
+      "actual": "a15b9cc5367dd8458b238650e3f53d54a94abf5f168a3d26feb6558444435e26",
+      "metadata": "a15b9cc5367dd8458b238650e3f53d54a94abf5f168a3d26feb6558444435e26",
+      "reviewed": "a15b9cc5367dd8458b238650e3f53d54a94abf5f168a3d26feb6558444435e26",
+      "matches": true
+    },
+    "audio.js": {
+      "actual": "8543ce14bcd61c07373cd7c7c560b9c696ecf5afb80918d3c5929ef407a84a22",
+      "metadata": "8543ce14bcd61c07373cd7c7c560b9c696ecf5afb80918d3c5929ef407a84a22",
+      "reviewed": "8543ce14bcd61c07373cd7c7c560b9c696ecf5afb80918d3c5929ef407a84a22",
+      "matches": true
+    },
+    "abilities.js": {
+      "actual": "b1787c3489bc9c2c181c6554830427b75e3d6b754ede2e4750cfc96836debfca",
+      "metadata": "b1787c3489bc9c2c181c6554830427b75e3d6b754ede2e4750cfc96836debfca",
+      "reviewed": "b1787c3489bc9c2c181c6554830427b75e3d6b754ede2e4750cfc96836debfca",
+      "matches": true
+    },
+    "enemies.js": {
+      "actual": "a6dfdf62667310b89d7e85f8fb32a01b0b5e4f94cac93e67c1935df77ba7c8b1",
+      "metadata": "a6dfdf62667310b89d7e85f8fb32a01b0b5e4f94cac93e67c1935df77ba7c8b1",
+      "reviewed": "a6dfdf62667310b89d7e85f8fb32a01b0b5e4f94cac93e67c1935df77ba7c8b1",
+      "matches": true
+    },
+    "index.html": {
+      "actual": "c8d539fc729cf4b68722ad798663f80918b06f30d3124bab47cd0985a7e4f7f0",
+      "metadata": "c8d539fc729cf4b68722ad798663f80918b06f30d3124bab47cd0985a7e4f7f0",
+      "reviewed": "c8d539fc729cf4b68722ad798663f80918b06f30d3124bab47cd0985a7e4f7f0",
+      "matches": true
+    }
+  },
+  "browser": "155.0.4283.45",
+  "build": {
+    "commit": "fc3733d6e40ea1e65d37f14a7df3d9c4b165ac09",
+    "built_at_utc": "2026-10-10T17:55:19.865615+00:00",
+    "version": "0.12.5",
+    "build_id": "20261010T180000Z-companion-outline",
+    "index_sha256": "c8d539fc729cf4b68722ad798663f80918b06f30d3124bab47cd0985a7e4f7f0",
+    "pets_sha256": "bdb19c7898b0bf1b349f669c9c81aaa22289c920731cf07387ab585d25d7eebd",
+    "abilities_sha256": "b1787c3489bc9c2c181c6554830427b75e3d6b754ede2e4750cfc96836debfca",
+    "controllers_sha256": "a15b9cc5367dd8458b238650e3f53d54a94abf5f168a3d26feb6558444435e26",
+    "enemies_sha256": "a6dfdf62667310b89d7e85f8fb32a01b0b5e4f94cac93e67c1935df77ba7c8b1",
+    "audio_sha256": "8543ce14bcd61c07373cd7c7c560b9c696ecf5afb80918d3c5929ef407a84a22",
+    "audio_sdk_commit": "2de54d6ef1fd5ae91907c2d10d549abe1043d8b8",
+    "audio_sdk_sha256": "7e3e16d34ce88124e6ba7699f16d23107a3e42ee93ea5a16691e856e5865c14a"
+  },
+  "cards": {
+    "equip": true,
+    "unequip": true
+  },
+  "state": {
+    "phase": "PLAYING",
+    "health": 100,
+    "maxHp": 100,
+    "enemies": 4,
+    "types": [
+      "rogue",
+      "pillbug",
+      "thornfruit",
+      "rocket"
+    ],
+    "tick": 12,
+    "rendererState": "ready"
+  },
+  "result": "PASS",
+  "elapsedMs": 7953,
+  "visibleVersionVerified": true
+}

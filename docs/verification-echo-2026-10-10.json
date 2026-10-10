@@ -1,7 +1,7 @@
 {
-  "startedAt": "2026-10-10T04:54:48.831Z",
+  "startedAt": "2026-10-10T05:00:48.492Z",
   "baseCommit": "c42ab163f8876f8829eeda03d4a0274ac20db5b2",
-  "scenario": "Final actual UI run: unlock echo -> manual HP cost -> lobby -> unlock chain techs -> WASD movement fills default energy -> manual hit -> free chain echo -> paid automatic dash -> save restore. Normal echo cost observation retained from earlier actual run of identical HTML.",
+  "scenario": "Final actual UI run: unlock echo -> manual HP cost -> lobby -> unlock chain techs -> WASD movement fills default energy -> manual hit -> free chain echo -> paid automatic dash -> save restore. Normal echo cost observation retained from earlier actual run; complete source equality verified after normalizing title/HUD version, build metadata and manual-cost caption.",
   "precondition": {
     "savedKills": 35,
     "unlocked": [],
@@ -16,7 +16,7 @@
   "checkpoints": [
     {
       "label": "WASD-up",
-      "atMs": 2531,
+      "atMs": 2574,
       "tick": 3,
       "phase": "PLAYING",
       "mode": "READY",
@@ -57,8 +57,8 @@
     },
     {
       "label": "click-roll",
-      "atMs": 3334,
-      "tick": 44,
+      "atMs": 3345,
+      "tick": 42,
       "phase": "PLAYING",
       "mode": "READY",
       "health": 100,
@@ -85,21 +85,21 @@
       "shadow": null,
       "position": {
         "x": 864.5010263951391,
-        "y": 786.4321447620941
+        "y": 786.432144762094
       },
       "evade": {
         "charges": 2,
         "max": 2,
         "refillAtMs": 0,
         "active": false,
-        "startedAtMs": 66.66666666666667,
+        "startedAtMs": 50,
         "count": 1
       }
     },
     {
       "label": "manual-HP-cost",
-      "atMs": 3386,
-      "tick": 47,
+      "atMs": 3392,
+      "tick": 45,
       "phase": "PLAYING",
       "mode": "SHADOW",
       "health": 90,
@@ -124,12 +124,12 @@
       "chainActive": false,
       "autoDashPlanned": false,
       "shadow": {
-        "progress": 0.027680592318797936,
-        "charge": 0.027680592318797936,
+        "progress": 0.02717239802393856,
+        "charge": 0.02717239802393856,
         "dashReady": false,
-        "separation": 3.1944444444443745,
-        "remainingGap": 171.5584372639144,
-        "initialGap": 176.44246932502236,
+        "separation": 3.1944444444443634,
+        "remainingGap": 174.80763790613736,
+        "initialGap": 179.69025298116375,
         "travel": 3.194444444444444,
         "limit": 680,
         "targetId": 2,
@@ -138,20 +138,20 @@
       },
       "position": {
         "x": 864.5010263951391,
-        "y": 786.4321447620945
+        "y": 786.4321447620944
       },
       "evade": {
         "charges": 2,
         "max": 2,
         "refillAtMs": 0,
         "active": false,
-        "startedAtMs": 66.66666666666667,
+        "startedAtMs": 50,
         "count": 1
       }
     },
     {
       "label": "full-energy-from-movement",
-      "atMs": 6916,
+      "atMs": 7149,
       "tick": 193,
       "phase": "PLAYING",
       "mode": "READY",
@@ -178,27 +178,27 @@
       "autoDashPlanned": false,
       "shadow": null,
       "position": {
-        "x": 743.7749017629798,
-        "y": 903.1240039924672
+        "x": 733.7180409528582,
+        "y": 903.3612959580275
       },
       "evade": {
         "charges": 2,
         "max": 2,
         "refillAtMs": 0,
         "active": false,
-        "startedAtMs": 2600,
+        "startedAtMs": 2583.3333333333335,
         "count": 5
       }
     },
     {
       "label": "chain-hit-attempt-1",
-      "atMs": 7856,
-      "tick": 249,
+      "atMs": 8115,
+      "tick": 251,
       "phase": "PLAYING",
       "mode": "DASH",
-      "health": 26,
+      "health": 37,
       "damageTaken": 90,
-      "healingDone": 22,
+      "healingDone": 33,
       "launchCount": 2,
       "launchCostTotal": 6,
       "hits": 1,
@@ -219,27 +219,27 @@
       "autoDashPlanned": false,
       "shadow": null,
       "position": {
-        "x": 936.918398410446,
-        "y": 934.3762450339472
+        "x": 917.9608962196617,
+        "y": 956.4184980308573
       },
       "evade": {
         "charges": 2,
         "max": 2,
         "refillAtMs": 0,
         "active": false,
-        "startedAtMs": 2600,
+        "startedAtMs": 2583.3333333333335,
         "count": 5
       }
     },
     {
       "label": "automatic-dash-cost",
-      "atMs": 7864,
-      "tick": 250,
+      "atMs": 8124,
+      "tick": 251,
       "phase": "PLAYING",
       "mode": "DASH",
-      "health": 26,
+      "health": 37,
       "damageTaken": 90,
-      "healingDone": 22,
+      "healingDone": 33,
       "launchCount": 2,
       "launchCostTotal": 6,
       "hits": 1,
@@ -260,15 +260,15 @@
       "autoDashPlanned": false,
       "shadow": null,
       "position": {
-        "x": 943.0114932560729,
-        "y": 920.3951459202685
+        "x": 917.9608962196617,
+        "y": 956.4184980308573
       },
       "evade": {
         "charges": 2,
         "max": 2,
         "refillAtMs": 0,
         "active": false,
-        "startedAtMs": 2600,
+        "startedAtMs": 2583.3333333333335,
         "count": 5
       }
     }
@@ -276,7 +276,7 @@
   "observations": [
     {
       "before": {
-        "tick": 46,
+        "tick": 44,
         "phase": "PLAYING",
         "mode": "READY",
         "health": 100,
@@ -302,7 +302,7 @@
         "shadow": null
       },
       "after": {
-        "tick": 47,
+        "tick": 45,
         "phase": "PLAYING",
         "mode": "SHADOW",
         "health": 90,
@@ -326,12 +326,12 @@
         "chain": false,
         "autoPlanned": false,
         "shadow": {
-          "progress": 0.027680592318797936,
-          "charge": 0.027680592318797936,
+          "progress": 0.02717239802393856,
+          "charge": 0.02717239802393856,
           "dashReady": false,
-          "separation": 3.1944444444443745,
-          "remainingGap": 171.5584372639144,
-          "initialGap": 176.44246932502236,
+          "separation": 3.1944444444443634,
+          "remainingGap": 174.80763790613736,
+          "initialGap": 179.69025298116375,
           "travel": 3.194444444444444,
           "limit": 680,
           "targetId": 2,
@@ -342,7 +342,7 @@
     },
     {
       "before": {
-        "tick": 49,
+        "tick": 54,
         "phase": "LOBBY",
         "mode": "SHADOW",
         "health": 90,
@@ -366,17 +366,17 @@
         "chain": false,
         "autoPlanned": false,
         "shadow": {
-          "progress": 0.09486006540413161,
-          "charge": 0.09486006540413161,
-          "dashReady": false,
-          "separation": 11.666666660874371,
-          "remainingGap": 159.70512514478426,
-          "initialGap": 176.44246932502236,
-          "travel": 11.666666666666664,
+          "progress": 0.4457889553351483,
+          "charge": 0.4457889553351483,
+          "dashReady": true,
+          "separation": 63.1944442113578,
+          "remainingGap": 99.58632282078226,
+          "initialGap": 179.69025298116375,
+          "travel": 63.19444444444444,
           "limit": 680,
           "targetId": 2,
           "arrived": false,
-          "speed": 275
+          "speed": 566.6666666666667
         }
       },
       "after": {
@@ -458,12 +458,12 @@
         "chain": false,
         "autoPlanned": false,
         "shadow": {
-          "progress": 0.022871924161751878,
-          "charge": 0.022871924161751878,
+          "progress": 0.01839050474966175,
+          "charge": 0.01839050474966175,
           "dashReady": false,
-          "separation": 12.680095358709812,
-          "remainingGap": 99.15180111301608,
-          "initialGap": 101.47267647381516,
+          "separation": 12.656351732610913,
+          "remainingGap": 108.6817155312938,
+          "initialGap": 110.71787310245699,
           "travel": 3.194444444444444,
           "limit": 680,
           "targetId": 5,
@@ -474,7 +474,7 @@
     },
     {
       "before": {
-        "tick": 225,
+        "tick": 226,
         "phase": "PLAYING",
         "mode": "DASH",
         "health": 54,
@@ -500,12 +500,12 @@
         "shadow": null
       },
       "after": {
-        "tick": 226,
+        "tick": 227,
         "phase": "PLAYING",
         "mode": "RECOVER",
-        "health": 51,
+        "health": 62,
         "damage": 65,
-        "heal": 22,
+        "heal": 33,
         "launches": 1,
         "cost": 6,
         "hits": 1,
@@ -528,12 +528,12 @@
     },
     {
       "before": {
-        "tick": 234,
+        "tick": 239,
         "phase": "PLAYING",
         "mode": "RECOVER",
-        "health": 26,
+        "health": 37,
         "damage": 90,
-        "heal": 22,
+        "heal": 33,
         "launches": 1,
         "cost": 6,
         "hits": 1,
@@ -554,12 +554,12 @@
         "shadow": null
       },
       "after": {
-        "tick": 235,
+        "tick": 240,
         "phase": "PLAYING",
         "mode": "SHADOW",
-        "health": 26,
+        "health": 37,
         "damage": 90,
-        "heal": 22,
+        "heal": 33,
         "launches": 2,
         "cost": 6,
         "hits": 1,
@@ -582,8 +582,8 @@
           "charge": 0,
           "dashReady": false,
           "separation": 0,
-          "remainingGap": 33.22083001628004,
-          "initialGap": 33.22083001628004,
+          "remainingGap": 33.02199416930751,
+          "initialGap": 33.02199416930751,
           "travel": 0,
           "limit": 680,
           "targetId": 2,
@@ -594,12 +594,12 @@
     },
     {
       "before": {
-        "tick": 245,
+        "tick": 249,
         "phase": "PLAYING",
         "mode": "GOLDEN",
-        "health": 26,
+        "health": 37,
         "damage": 90,
-        "heal": 22,
+        "heal": 33,
         "launches": 2,
         "cost": 6,
         "hits": 1,
@@ -621,23 +621,23 @@
           "progress": 1,
           "charge": 1,
           "dashReady": true,
-          "separation": 72.78627862990574,
+          "separation": 58.33547075555387,
           "remainingGap": 0,
-          "initialGap": 33.22083001628004,
-          "travel": 41.86888888888889,
+          "initialGap": 33.02199416930751,
+          "travel": 34.06333333333333,
           "limit": 680,
           "targetId": 2,
           "arrived": true,
-          "speed": 468.33333333333337
+          "speed": 426.6666666666667
         }
       },
       "after": {
-        "tick": 246,
+        "tick": 250,
         "phase": "PLAYING",
         "mode": "DASH",
-        "health": 26,
+        "health": 37,
         "damage": 90,
-        "heal": 22,
+        "heal": 33,
         "launches": 2,
         "cost": 6,
         "hits": 1,
@@ -660,14 +660,14 @@
     }
   ],
   "artifact": {
-    "sha256": "f5252ad21a8151c8643204415235ac37567ffaa65d1add6b59daf125a0512d9a",
-    "bytes": 282101
+    "sha256": "8df04d0082b112facbfea38955dafd8cea1129824785e79a15cfa78c27ecb68e",
+    "bytes": 282108
   },
   "syntax": "PASS",
   "browser": "154.0.4258.62",
   "loaded": {
     "version": "0.10.4",
-    "buildId": "20261010T044653Z-free-echo-relaunch",
+    "buildId": "20261010T045904Z-free-echo-relaunch",
     "matter": "0.20.0",
     "renderer": "ANGLE (NVIDIA, NVIDIA GeForce GTX 1660 Ti (0x00002191) Direct3D11 vs_5_0 ps_5_0, D3D11)",
     "resources": [
@@ -682,7 +682,9 @@
     "result": "FAIL",
     "elapsedMs": 11979,
     "failure": "Error: Free echo after actual hit not observed\n    at assert (C:\\Users\\byh02\\Documents\\Codex\\2026-10-10\\task-3\\.qa-echo-e2e.cjs:8:34)\n    at C:\\Users\\byh02\\Documents\\Codex\\2026-10-10\\task-3\\.qa-echo-e2e.cjs:43:41",
+    "sourceCommit": "07eabc8f70f60309bda30fb1c2dddcbc4b2ca340",
     "sourceSha256": "f5252ad21a8151c8643204415235ac37567ffaa65d1add6b59daf125a0512d9a",
+    "unchangedGameplayVerified": true,
     "events": [
       {
         "before": {
@@ -949,7 +951,7 @@
         }
       }
     ],
-    "note": "Only observed normal echo launch/HP/energy assertions reused; prior whole-run FAIL retained."
+    "note": "Only observed normal echo launch/HP/energy assertions reused; prior whole-run FAIL retained. Candidate differs only in title/HUD version, build metadata and manual-cost caption; complete normalized HTML equality checked."
   },
   "echo": "PASS_OBSERVED",
   "inputs": [
@@ -1011,61 +1013,61 @@
       "type": "pointerdown",
       "code": null,
       "target": "game",
-      "tick": 3
+      "tick": 2
     },
     {
       "type": "pointerdown",
       "code": null,
       "target": "auto",
-      "tick": 46
+      "tick": 44
     },
     {
       "type": "pointerdown",
       "code": null,
       "target": "restart",
-      "tick": 49
+      "tick": 54
     },
     {
       "type": "pointerdown",
       "code": null,
       "target": "techOpen",
-      "tick": 49
+      "tick": 54
     },
     {
       "type": "pointerdown",
       "code": null,
       "target": null,
-      "tick": 49
+      "tick": 54
     },
     {
       "type": "pointerdown",
       "code": null,
       "target": null,
-      "tick": 49
+      "tick": 54
     },
     {
       "type": "pointerdown",
       "code": null,
       "target": null,
-      "tick": 49
+      "tick": 54
     },
     {
       "type": "pointerdown",
       "code": null,
       "target": null,
-      "tick": 49
+      "tick": 54
     },
     {
       "type": "pointerdown",
       "code": null,
       "target": "techClose",
-      "tick": 49
+      "tick": 54
     },
     {
       "type": "pointerdown",
       "code": null,
       "target": "startRun",
-      "tick": 49
+      "tick": 54
     },
     {
       "type": "keydown",
@@ -1089,13 +1091,13 @@
       "type": "keydown",
       "code": "KeyD",
       "target": "game",
-      "tick": 117
+      "tick": 116
     },
     {
       "type": "keydown",
       "code": "KeyD",
       "target": "game",
-      "tick": 155
+      "tick": 154
     },
     {
       "type": "keydown",
@@ -1107,7 +1109,7 @@
       "type": "keydown",
       "code": "Space",
       "target": "game",
-      "tick": 204
+      "tick": 205
     }
   ],
   "costEvidence": {
@@ -1127,7 +1129,7 @@
     "long play",
     "direct failed wall-launch not exercised in browser (unchanged guard reviewed)"
   ],
-  "elapsedMs": 8847,
+  "elapsedMs": 9168,
   "verificationPolicy": "https://github.com/byh-playground/bloom-reference/blob/847b90c4cf911a666cc21a431ea3c3bba2edc29c/rules/project-management.html#verification",
   "rules": {
     "referenceCommit": "847b90c4cf911a666cc21a431ea3c3bba2edc29c",
@@ -1165,11 +1167,29 @@
       "attempt": 4,
       "result": "PASS",
       "elapsedMs": 8847,
+      "sourceSha256": "f5252ad21a8151c8643204415235ac37567ffaa65d1add6b59daf125a0512d9a",
       "errors": [],
-      "classification": "Remaining manual cost, normal movement charge, free automatic-chain echo, automatic dash cost, basic WASD/click and save restore passed."
+      "classification": "Representative remaining costs/input/save flow PASS 8.847s. Screen review then found old title/HUD version and ambiguous cost caption; those displays were corrected without gameplay changes."
+    },
+    {
+      "attempt": 5,
+      "result": "FAIL",
+      "elapsedMs": 16424,
+      "failure": "Error: Chain combat ended\n    at assert (C:\\Users\\byh02\\Documents\\Codex\\2026-10-10\\task-3\\.qa-echo-e2e.cjs:8:34)\n    at C:\\Users\\byh02\\Documents\\Codex\\2026-10-10\\task-3\\.qa-echo-e2e.cjs:54:48",
+      "sourceSha256": "8df04d0082b112facbfea38955dafd8cea1129824785e79a15cfa78c27ecb68e",
+      "errors": [],
+      "classification": "After display-only update, harness sampled READY before queued native attack input was processed and canceled attempts with defensive rolls. Corrected by awaiting observed launch count increase; gameplay source unchanged."
+    },
+    {
+      "attempt": 6,
+      "result": "PASS",
+      "elapsedMs": 9168,
+      "errors": [],
+      "sourceSha256": "8df04d0082b112facbfea38955dafd8cea1129824785e79a15cfa78c27ecb68e",
+      "classification": "Final artifact after display synchronization: remaining manual cost, normal movement charge, free automatic-chain echo, automatic dash cost, basic WASD/click and save restore passed."
     }
   ],
-  "passScope": "Observed manual HP cost, normal echo free HP/energy cost, chain echo free HP/energy cost, automatic dash energy cost, representative WASD/click movement and persistence. All on source SHA-256 recorded below; initial whole-run failures retained.",
+  "passScope": "Observed manual HP cost, normal echo free HP/energy cost, chain echo free HP/energy cost, automatic dash energy cost, representative WASD/click movement and persistence. Final source SHA-256 recorded below; normal echo source and unchanged gameplay comparison recorded in echoReference. Initial whole-run failures retained.",
   "sourceReview": {
     "failedLaunch": "READY and minimum wall-distance guards still return before shadow creation and cost accounting.",
     "unchanged": "Automatic dash energyCost gate/payment, physics config, collision/damage and progression/save contract unchanged."

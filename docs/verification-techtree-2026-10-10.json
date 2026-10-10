@@ -1,0 +1,4056 @@
+{
+  "startedAt": "2026-10-10T05:25:02.085Z",
+  "baseCommit": "d585b1c0bd670aa985ce2e2b8bbced66f18e11ef",
+  "mockLibraries": false,
+  "forcedLiveState": false,
+  "manualTicks": false,
+  "configChanges": false,
+  "scenario": "Legacy save normalization/refund; minimal echo+autoChain unlock -> normal movement energy -> same-target automatic dash; conduct+relay without ricochet -> consume/spread; critical prerequisite/additive UI/wiki; WASD/click; save restore",
+  "cases": [
+    {
+      "name": "existing-save-refund",
+      "fixture": {
+        "kills": 99,
+        "unlocked": [
+          "echo",
+          "energyCore",
+          "focusChain",
+          "ricochet",
+          "charge1",
+          "momentum",
+          "conduct"
+        ],
+        "statLevels": {
+          "criticalDamage": 1,
+          "attackPower": 1
+        }
+      },
+      "checkpoints": [
+        {
+          "label": "normalized-old-save",
+          "atMs": 1740,
+          "tick": 0,
+          "phase": "LOBBY",
+          "mode": "READY",
+          "health": 100,
+          "launches": 0,
+          "cost": 0,
+          "hits": 0,
+          "kills": 0,
+          "autoDashes": 0,
+          "chain": false,
+          "chainStarts": 0,
+          "autoPlanned": false,
+          "energy": {
+            "current": 0,
+            "capacity": 3,
+            "fraction": 0,
+            "full": false,
+            "autoRechargeRate": 0,
+            "cost": 1,
+            "spent": 0,
+            "gained": 0,
+            "restored": 0
+          },
+          "shadow": null,
+          "lastHit": null,
+          "elemental": {
+            "ignite": 0,
+            "spread": 0,
+            "conduct": 0,
+            "conductSpread": 0,
+            "conductConsumed": 0,
+            "conductDamage": 0,
+            "arc": 0,
+            "burnDamage": 0,
+            "fireEmbers": 0,
+            "fireTransfers": 0,
+            "activeBurning": 0,
+            "activeConducting": 0
+          },
+          "stats": {
+            "attackPower": 106,
+            "criticalChance": 0,
+            "criticalDamage": 2,
+            "armorPenFlat": 0,
+            "armorPenPercent": 0,
+            "maxHp": 100,
+            "armor": 0,
+            "healthRegen": 0
+          },
+          "tech": {
+            "points": 5,
+            "level": 10,
+            "totalKills": 99,
+            "unlocked": [
+              "echo",
+              "momentum",
+              "conduct"
+            ],
+            "statLevels": {
+              "attackPower": 1,
+              "criticalChance": 0,
+              "criticalDamage": 0,
+              "armorPenFlat": 0,
+              "armorPenPercent": 0,
+              "maxHp": 0,
+              "armor": 0,
+              "healthRegen": 0
+            }
+          },
+          "damage": 0,
+          "heal": 0,
+          "position": {
+            "x": 750,
+            "y": 750
+          }
+        }
+      ],
+      "events": [],
+      "errors": [],
+      "loaded": {
+        "version": "0.11.0",
+        "buildId": "20261010T052152Z-useful-tech-unlocks",
+        "title": "BOUNKO · Prototype 0.11.0",
+        "hud": "PHYSICS ACTION LAB · v0.11.0",
+        "matter": "0.20.0",
+        "resources": [
+          "https://cdn.jsdelivr.net/npm/matter-js@0.20.0/build/matter.min.js",
+          "https://cdn.jsdelivr.net/gh/byh-playground/bloom-gamekit@d1e2c385033ad04a7a004cfbe9558948ef07a6d1/rendering.js",
+          "https://cdn.jsdelivr.net/gh/byh-playground/bloom-gamekit@d1e2c385033ad04a7a004cfbe9558948ef07a6d1/input.js",
+          "https://cdn.jsdelivr.net/gh/byh-playground/bloom-gamekit@d1e2c385033ad04a7a004cfbe9558948ef07a6d1/simloop.js"
+        ]
+      },
+      "persisted": {
+        "kills": 99,
+        "unlocked": [
+          "echo",
+          "momentum",
+          "conduct"
+        ],
+        "statLevels": {
+          "attackPower": 1,
+          "criticalChance": 0,
+          "criticalDamage": 0,
+          "armorPenFlat": 0,
+          "armorPenPercent": 0,
+          "maxHp": 0,
+          "armor": 0,
+          "healthRegen": 0
+        }
+      },
+      "result": "PASS"
+    },
+    {
+      "name": "minimal-automatic-chain",
+      "fixture": {
+        "kills": 15,
+        "unlocked": [],
+        "statLevels": {}
+      },
+      "checkpoints": [
+        {
+          "label": "minimal-unlocked",
+          "atMs": 3443,
+          "tick": 0,
+          "phase": "LOBBY",
+          "mode": "READY",
+          "health": 100,
+          "launches": 0,
+          "cost": 0,
+          "hits": 0,
+          "kills": 0,
+          "autoDashes": 0,
+          "chain": false,
+          "chainStarts": 0,
+          "autoPlanned": false,
+          "energy": {
+            "current": 0,
+            "capacity": 3,
+            "fraction": 0,
+            "full": false,
+            "autoRechargeRate": 0,
+            "cost": 1,
+            "spent": 0,
+            "gained": 0,
+            "restored": 0
+          },
+          "shadow": null,
+          "lastHit": null,
+          "elemental": {
+            "ignite": 0,
+            "spread": 0,
+            "conduct": 0,
+            "conductSpread": 0,
+            "conductConsumed": 0,
+            "conductDamage": 0,
+            "arc": 0,
+            "burnDamage": 0,
+            "fireEmbers": 0,
+            "fireTransfers": 0,
+            "activeBurning": 0,
+            "activeConducting": 0
+          },
+          "stats": {
+            "attackPower": 100,
+            "criticalChance": 0,
+            "criticalDamage": 2,
+            "armorPenFlat": 0,
+            "armorPenPercent": 0,
+            "maxHp": 100,
+            "armor": 0,
+            "healthRegen": 0
+          },
+          "tech": {
+            "points": 0,
+            "level": 4,
+            "totalKills": 15,
+            "unlocked": [
+              "echo",
+              "autoChain"
+            ],
+            "statLevels": {
+              "attackPower": 0,
+              "criticalChance": 0,
+              "criticalDamage": 0,
+              "armorPenFlat": 0,
+              "armorPenPercent": 0,
+              "maxHp": 0,
+              "armor": 0,
+              "healthRegen": 0
+            }
+          },
+          "damage": 0,
+          "heal": 0,
+          "position": {
+            "x": 750,
+            "y": 750
+          }
+        },
+        {
+          "label": "click-roll",
+          "atMs": 4332,
+          "tick": 44,
+          "phase": "PLAYING",
+          "mode": "READY",
+          "health": 100,
+          "launches": 0,
+          "cost": 0,
+          "hits": 0,
+          "kills": 0,
+          "autoDashes": 0,
+          "chain": false,
+          "chainStarts": 0,
+          "autoPlanned": false,
+          "energy": {
+            "current": 0.3754916857006819,
+            "capacity": 3,
+            "fraction": 0.12516389523356064,
+            "full": false,
+            "autoRechargeRate": 0,
+            "cost": 1,
+            "spent": 0,
+            "gained": 0.3754916857006819,
+            "restored": 0
+          },
+          "shadow": null,
+          "lastHit": null,
+          "elemental": {
+            "ignite": 0,
+            "spread": 0,
+            "conduct": 0,
+            "conductSpread": 0,
+            "conductConsumed": 0,
+            "conductDamage": 0,
+            "arc": 0,
+            "burnDamage": 0,
+            "fireEmbers": 0,
+            "fireTransfers": 0,
+            "activeBurning": 0,
+            "activeConducting": 0
+          },
+          "stats": {
+            "attackPower": 100,
+            "criticalChance": 0,
+            "criticalDamage": 2,
+            "armorPenFlat": 0,
+            "armorPenPercent": 0,
+            "maxHp": 100,
+            "armor": 0,
+            "healthRegen": 0
+          },
+          "tech": {
+            "points": 0,
+            "level": 4,
+            "totalKills": 15,
+            "unlocked": [
+              "echo",
+              "autoChain"
+            ],
+            "statLevels": {
+              "attackPower": 0,
+              "criticalChance": 0,
+              "criticalDamage": 0,
+              "armorPenFlat": 0,
+              "armorPenPercent": 0,
+              "maxHp": 0,
+              "armor": 0,
+              "healthRegen": 0
+            }
+          },
+          "damage": 0,
+          "heal": 0,
+          "position": {
+            "x": 864.5010263951391,
+            "y": 786.4321447620941
+          }
+        },
+        {
+          "label": "full-energy",
+          "atMs": 7797,
+          "tick": 200,
+          "phase": "PLAYING",
+          "mode": "READY",
+          "health": 35,
+          "launches": 0,
+          "cost": 0,
+          "hits": 0,
+          "kills": 0,
+          "autoDashes": 0,
+          "chain": false,
+          "chainStarts": 0,
+          "autoPlanned": false,
+          "energy": {
+            "current": 3,
+            "capacity": 3,
+            "fraction": 1,
+            "full": true,
+            "autoRechargeRate": 0,
+            "cost": 1,
+            "spent": 0,
+            "gained": 3,
+            "restored": 0
+          },
+          "shadow": null,
+          "lastHit": null,
+          "elemental": {
+            "ignite": 0,
+            "spread": 0,
+            "conduct": 0,
+            "conductSpread": 0,
+            "conductConsumed": 0,
+            "conductDamage": 0,
+            "arc": 0,
+            "burnDamage": 0,
+            "fireEmbers": 0,
+            "fireTransfers": 0,
+            "activeBurning": 0,
+            "activeConducting": 0
+          },
+          "stats": {
+            "attackPower": 100,
+            "criticalChance": 0,
+            "criticalDamage": 2,
+            "armorPenFlat": 0,
+            "armorPenPercent": 0,
+            "maxHp": 100,
+            "armor": 0,
+            "healthRegen": 0
+          },
+          "tech": {
+            "points": 0,
+            "level": 4,
+            "totalKills": 15,
+            "unlocked": [
+              "echo",
+              "autoChain"
+            ],
+            "statLevels": {
+              "attackPower": 0,
+              "criticalChance": 0,
+              "criticalDamage": 0,
+              "armorPenFlat": 0,
+              "armorPenPercent": 0,
+              "maxHp": 0,
+              "armor": 0,
+              "healthRegen": 0
+            }
+          },
+          "damage": 65,
+          "heal": 0,
+          "position": {
+            "x": 970.1110147535031,
+            "y": 607.8684980555478
+          }
+        },
+        {
+          "label": "attack-1",
+          "atMs": 9042,
+          "tick": 264,
+          "phase": "PLAYING",
+          "mode": "RECOVER",
+          "health": 99.5,
+          "launches": 2,
+          "cost": 3.5,
+          "hits": 2,
+          "kills": 0,
+          "autoDashes": 1,
+          "chain": true,
+          "chainStarts": 1,
+          "autoPlanned": false,
+          "energy": {
+            "current": 2,
+            "capacity": 3,
+            "fraction": 0.6666666666666666,
+            "full": false,
+            "autoRechargeRate": 0,
+            "cost": 1,
+            "spent": 1,
+            "gained": 3,
+            "restored": 0
+          },
+          "shadow": null,
+          "lastHit": {
+            "tick": 262,
+            "enemyId": 2,
+            "automatic": true,
+            "critical": false,
+            "criticalMultiplier": 1,
+            "raw": 51.44580068058905,
+            "normalDamage": 51,
+            "boostedDamage": 51,
+            "damage": 51,
+            "conductDamage": 0,
+            "markConsumed": false,
+            "tags": [
+              "dash"
+            ]
+          },
+          "elemental": {
+            "ignite": 0,
+            "spread": 0,
+            "conduct": 0,
+            "conductSpread": 0,
+            "conductConsumed": 0,
+            "conductDamage": 0,
+            "arc": 0,
+            "burnDamage": 0,
+            "fireEmbers": 0,
+            "fireTransfers": 0,
+            "activeBurning": 0,
+            "activeConducting": 0
+          },
+          "stats": {
+            "attackPower": 100,
+            "criticalChance": 0,
+            "criticalDamage": 2,
+            "armorPenFlat": 0,
+            "armorPenPercent": 0,
+            "maxHp": 100,
+            "armor": 0,
+            "healthRegen": 0
+          },
+          "tech": {
+            "points": 0,
+            "level": 4,
+            "totalKills": 15,
+            "unlocked": [
+              "echo",
+              "autoChain"
+            ],
+            "statLevels": {
+              "attackPower": 0,
+              "criticalChance": 0,
+              "criticalDamage": 0,
+              "armorPenFlat": 0,
+              "armorPenPercent": 0,
+              "maxHp": 0,
+              "armor": 0,
+              "healthRegen": 0
+            }
+          },
+          "damage": 130,
+          "heal": 133,
+          "position": {
+            "x": 997.9944951226081,
+            "y": 708.0300301386234
+          }
+        },
+        {
+          "label": "same-target-automatic-dash",
+          "atMs": 9097,
+          "tick": 277,
+          "phase": "PLAYING",
+          "mode": "SHADOW",
+          "health": 99.5,
+          "launches": 3,
+          "cost": 3.5,
+          "hits": 2,
+          "kills": 0,
+          "autoDashes": 1,
+          "chain": true,
+          "chainStarts": 1,
+          "autoPlanned": true,
+          "energy": {
+            "current": 2,
+            "capacity": 3,
+            "fraction": 0.6666666666666666,
+            "full": false,
+            "autoRechargeRate": 0,
+            "cost": 1,
+            "spent": 1,
+            "gained": 3,
+            "restored": 0
+          },
+          "shadow": {
+            "progress": 0.9679154206932356,
+            "charge": 0.9679154206932356,
+            "dashReady": true,
+            "separation": 124.81955565267309,
+            "remainingGap": 1.2631374841998344,
+            "initialGap": 39.36899007223464,
+            "travel": 39.37111111111111,
+            "limit": 680,
+            "targetId": 2,
+            "arrived": false,
+            "speed": 455.00000000000006
+          },
+          "lastHit": {
+            "tick": 262,
+            "enemyId": 2,
+            "automatic": true,
+            "critical": false,
+            "criticalMultiplier": 1,
+            "raw": 51.44580068058905,
+            "normalDamage": 51,
+            "boostedDamage": 51,
+            "damage": 51,
+            "conductDamage": 0,
+            "markConsumed": false,
+            "tags": [
+              "dash"
+            ]
+          },
+          "elemental": {
+            "ignite": 0,
+            "spread": 0,
+            "conduct": 0,
+            "conductSpread": 0,
+            "conductConsumed": 0,
+            "conductDamage": 0,
+            "arc": 0,
+            "burnDamage": 0,
+            "fireEmbers": 0,
+            "fireTransfers": 0,
+            "activeBurning": 0,
+            "activeConducting": 0
+          },
+          "stats": {
+            "attackPower": 100,
+            "criticalChance": 0,
+            "criticalDamage": 2,
+            "armorPenFlat": 0,
+            "armorPenPercent": 0,
+            "maxHp": 100,
+            "armor": 0,
+            "healthRegen": 0
+          },
+          "tech": {
+            "points": 0,
+            "level": 4,
+            "totalKills": 15,
+            "unlocked": [
+              "echo",
+              "autoChain"
+            ],
+            "statLevels": {
+              "attackPower": 0,
+              "criticalChance": 0,
+              "criticalDamage": 0,
+              "armorPenFlat": 0,
+              "armorPenPercent": 0,
+              "maxHp": 0,
+              "armor": 0,
+              "healthRegen": 0
+            }
+          },
+          "damage": 130,
+          "heal": 133,
+          "position": {
+            "x": 1024.2948319337079,
+            "y": 842.209887092951
+          }
+        }
+      ],
+      "events": [
+        {
+          "before": {
+            "tick": 202,
+            "phase": "PLAYING",
+            "mode": "READY",
+            "hp": 35,
+            "damage": 65,
+            "heal": 0,
+            "launches": 0,
+            "cost": 0,
+            "hits": 0,
+            "autoDashes": 0,
+            "chain": false,
+            "chainStarts": 0,
+            "autoPlanned": false,
+            "energy": {
+              "current": 3,
+              "capacity": 3,
+              "fraction": 1,
+              "full": true,
+              "autoRechargeRate": 0,
+              "cost": 1,
+              "spent": 0,
+              "gained": 3,
+              "restored": 0
+            },
+            "shadow": null,
+            "lastHit": null,
+            "elemental": {
+              "ignite": 0,
+              "spread": 0,
+              "conduct": 0,
+              "conductSpread": 0,
+              "conductConsumed": 0,
+              "conductDamage": 0,
+              "arc": 0,
+              "burnDamage": 0,
+              "fireEmbers": 0,
+              "fireTransfers": 0,
+              "activeBurning": 0,
+              "activeConducting": 0
+            },
+            "enemies": [
+              {
+                "id": 1,
+                "hp": 185,
+                "conducting": false
+              },
+              {
+                "id": 2,
+                "hp": 105,
+                "conducting": false
+              },
+              {
+                "id": 3,
+                "hp": 78,
+                "conducting": false
+              },
+              {
+                "id": 4,
+                "hp": 105,
+                "conducting": false
+              },
+              {
+                "id": 5,
+                "hp": 105,
+                "conducting": false
+              },
+              {
+                "id": 6,
+                "hp": 105,
+                "conducting": false
+              }
+            ]
+          },
+          "after": {
+            "tick": 203,
+            "phase": "PLAYING",
+            "mode": "SHADOW",
+            "hp": 31.5,
+            "damage": 65,
+            "heal": 0,
+            "launches": 1,
+            "cost": 3.5,
+            "hits": 0,
+            "autoDashes": 0,
+            "chain": false,
+            "chainStarts": 0,
+            "autoPlanned": false,
+            "energy": {
+              "current": 3,
+              "capacity": 3,
+              "fraction": 1,
+              "full": true,
+              "autoRechargeRate": 0,
+              "cost": 1,
+              "spent": 0,
+              "gained": 3,
+              "restored": 0
+            },
+            "shadow": {
+              "progress": 0.008816119073390083,
+              "charge": 0.008816119073390083,
+              "dashReady": false,
+              "separation": 10.920773940269468,
+              "remainingGap": 166.47247768057017,
+              "initialGap": 167.95317285117983,
+              "travel": 3.194444444444444,
+              "limit": 680,
+              "targetId": 6,
+              "arrived": false,
+              "speed": 191.66666666666666
+            },
+            "lastHit": null,
+            "elemental": {
+              "ignite": 0,
+              "spread": 0,
+              "conduct": 0,
+              "conductSpread": 0,
+              "conductConsumed": 0,
+              "conductDamage": 0,
+              "arc": 0,
+              "burnDamage": 0,
+              "fireEmbers": 0,
+              "fireTransfers": 0,
+              "activeBurning": 0,
+              "activeConducting": 0
+            },
+            "enemies": [
+              {
+                "id": 1,
+                "hp": 185,
+                "conducting": false
+              },
+              {
+                "id": 2,
+                "hp": 105,
+                "conducting": false
+              },
+              {
+                "id": 3,
+                "hp": 78,
+                "conducting": false
+              },
+              {
+                "id": 4,
+                "hp": 105,
+                "conducting": false
+              },
+              {
+                "id": 5,
+                "hp": 105,
+                "conducting": false
+              },
+              {
+                "id": 6,
+                "hp": 105,
+                "conducting": false
+              }
+            ]
+          }
+        },
+        {
+          "before": {
+            "tick": 241,
+            "phase": "PLAYING",
+            "mode": "DASH",
+            "hp": 16.5,
+            "damage": 80,
+            "heal": 0,
+            "launches": 1,
+            "cost": 3.5,
+            "hits": 0,
+            "autoDashes": 0,
+            "chain": false,
+            "chainStarts": 0,
+            "autoPlanned": false,
+            "energy": {
+              "current": 3,
+              "capacity": 3,
+              "fraction": 1,
+              "full": true,
+              "autoRechargeRate": 0,
+              "cost": 1,
+              "spent": 0,
+              "gained": 3,
+              "restored": 0
+            },
+            "shadow": null,
+            "lastHit": null,
+            "elemental": {
+              "ignite": 0,
+              "spread": 0,
+              "conduct": 0,
+              "conductSpread": 0,
+              "conductConsumed": 0,
+              "conductDamage": 0,
+              "arc": 0,
+              "burnDamage": 0,
+              "fireEmbers": 0,
+              "fireTransfers": 0,
+              "activeBurning": 0,
+              "activeConducting": 0
+            },
+            "enemies": [
+              {
+                "id": 1,
+                "hp": 185,
+                "conducting": false
+              },
+              {
+                "id": 2,
+                "hp": 105,
+                "conducting": false
+              },
+              {
+                "id": 3,
+                "hp": 78,
+                "conducting": false
+              },
+              {
+                "id": 4,
+                "hp": 105,
+                "conducting": false
+              },
+              {
+                "id": 5,
+                "hp": 105,
+                "conducting": false
+              },
+              {
+                "id": 6,
+                "hp": 105,
+                "conducting": false
+              }
+            ]
+          },
+          "after": {
+            "tick": 242,
+            "phase": "PLAYING",
+            "mode": "RECOVER",
+            "hp": 73.5,
+            "damage": 105,
+            "heal": 82,
+            "launches": 1,
+            "cost": 3.5,
+            "hits": 1,
+            "autoDashes": 0,
+            "chain": true,
+            "chainStarts": 1,
+            "autoPlanned": false,
+            "energy": {
+              "current": 3,
+              "capacity": 3,
+              "fraction": 1,
+              "full": true,
+              "autoRechargeRate": 0,
+              "cost": 1,
+              "spent": 0,
+              "gained": 3,
+              "restored": 0
+            },
+            "shadow": null,
+            "lastHit": {
+              "tick": 242,
+              "enemyId": 6,
+              "automatic": false,
+              "critical": false,
+              "criticalMultiplier": 1,
+              "raw": 81.54354185338845,
+              "normalDamage": 82,
+              "boostedDamage": 82,
+              "damage": 82,
+              "conductDamage": 0,
+              "markConsumed": false,
+              "tags": [
+                "dash"
+              ]
+            },
+            "elemental": {
+              "ignite": 0,
+              "spread": 0,
+              "conduct": 0,
+              "conductSpread": 0,
+              "conductConsumed": 0,
+              "conductDamage": 0,
+              "arc": 0,
+              "burnDamage": 0,
+              "fireEmbers": 0,
+              "fireTransfers": 0,
+              "activeBurning": 0,
+              "activeConducting": 0
+            },
+            "enemies": [
+              {
+                "id": 1,
+                "hp": 185,
+                "conducting": false
+              },
+              {
+                "id": 2,
+                "hp": 105,
+                "conducting": false
+              },
+              {
+                "id": 3,
+                "hp": 78,
+                "conducting": false
+              },
+              {
+                "id": 4,
+                "hp": 105,
+                "conducting": false
+              },
+              {
+                "id": 5,
+                "hp": 105,
+                "conducting": false
+              },
+              {
+                "id": 6,
+                "hp": 23,
+                "conducting": false
+              }
+            ]
+          }
+        },
+        {
+          "before": {
+            "tick": 247,
+            "phase": "PLAYING",
+            "mode": "RECOVER",
+            "hp": 73.5,
+            "damage": 105,
+            "heal": 82,
+            "launches": 1,
+            "cost": 3.5,
+            "hits": 1,
+            "autoDashes": 0,
+            "chain": true,
+            "chainStarts": 1,
+            "autoPlanned": false,
+            "energy": {
+              "current": 3,
+              "capacity": 3,
+              "fraction": 1,
+              "full": true,
+              "autoRechargeRate": 0,
+              "cost": 1,
+              "spent": 0,
+              "gained": 3,
+              "restored": 0
+            },
+            "shadow": null,
+            "lastHit": {
+              "tick": 242,
+              "enemyId": 6,
+              "automatic": false,
+              "critical": false,
+              "criticalMultiplier": 1,
+              "raw": 81.54354185338845,
+              "normalDamage": 82,
+              "boostedDamage": 82,
+              "damage": 82,
+              "conductDamage": 0,
+              "markConsumed": false,
+              "tags": [
+                "dash"
+              ]
+            },
+            "elemental": {
+              "ignite": 0,
+              "spread": 0,
+              "conduct": 0,
+              "conductSpread": 0,
+              "conductConsumed": 0,
+              "conductDamage": 0,
+              "arc": 0,
+              "burnDamage": 0,
+              "fireEmbers": 0,
+              "fireTransfers": 0,
+              "activeBurning": 0,
+              "activeConducting": 0
+            },
+            "enemies": [
+              {
+                "id": 1,
+                "hp": 185,
+                "conducting": false
+              },
+              {
+                "id": 2,
+                "hp": 105,
+                "conducting": false
+              },
+              {
+                "id": 3,
+                "hp": 78,
+                "conducting": false
+              },
+              {
+                "id": 4,
+                "hp": 105,
+                "conducting": false
+              },
+              {
+                "id": 5,
+                "hp": 105,
+                "conducting": false
+              },
+              {
+                "id": 6,
+                "hp": 23,
+                "conducting": false
+              }
+            ]
+          },
+          "after": {
+            "tick": 248,
+            "phase": "PLAYING",
+            "mode": "SHADOW",
+            "hp": 73.5,
+            "damage": 105,
+            "heal": 82,
+            "launches": 2,
+            "cost": 3.5,
+            "hits": 1,
+            "autoDashes": 0,
+            "chain": true,
+            "chainStarts": 1,
+            "autoPlanned": true,
+            "energy": {
+              "current": 3,
+              "capacity": 3,
+              "fraction": 1,
+              "full": true,
+              "autoRechargeRate": 0,
+              "cost": 1,
+              "spent": 0,
+              "gained": 3,
+              "restored": 0
+            },
+            "shadow": {
+              "progress": 0,
+              "charge": 0,
+              "dashReady": false,
+              "separation": 0,
+              "remainingGap": 46.50941700431717,
+              "initialGap": 46.50941700431717,
+              "travel": 0,
+              "limit": 680,
+              "targetId": 6,
+              "arrived": false,
+              "speed": 150
+            },
+            "lastHit": {
+              "tick": 242,
+              "enemyId": 6,
+              "automatic": false,
+              "critical": false,
+              "criticalMultiplier": 1,
+              "raw": 81.54354185338845,
+              "normalDamage": 82,
+              "boostedDamage": 82,
+              "damage": 82,
+              "conductDamage": 0,
+              "markConsumed": false,
+              "tags": [
+                "dash"
+              ]
+            },
+            "elemental": {
+              "ignite": 0,
+              "spread": 0,
+              "conduct": 0,
+              "conductSpread": 0,
+              "conductConsumed": 0,
+              "conductDamage": 0,
+              "arc": 0,
+              "burnDamage": 0,
+              "fireEmbers": 0,
+              "fireTransfers": 0,
+              "activeBurning": 0,
+              "activeConducting": 0
+            },
+            "enemies": [
+              {
+                "id": 1,
+                "hp": 185,
+                "conducting": false
+              },
+              {
+                "id": 2,
+                "hp": 105,
+                "conducting": false
+              },
+              {
+                "id": 3,
+                "hp": 78,
+                "conducting": false
+              },
+              {
+                "id": 4,
+                "hp": 105,
+                "conducting": false
+              },
+              {
+                "id": 5,
+                "hp": 105,
+                "conducting": false
+              },
+              {
+                "id": 6,
+                "hp": 23,
+                "conducting": false
+              }
+            ]
+          }
+        },
+        {
+          "before": {
+            "tick": 261,
+            "phase": "PLAYING",
+            "mode": "GOLDEN",
+            "hp": 73.5,
+            "damage": 105,
+            "heal": 82,
+            "launches": 2,
+            "cost": 3.5,
+            "hits": 1,
+            "autoDashes": 0,
+            "chain": true,
+            "chainStarts": 1,
+            "autoPlanned": true,
+            "energy": {
+              "current": 3,
+              "capacity": 3,
+              "fraction": 1,
+              "full": true,
+              "autoRechargeRate": 0,
+              "cost": 1,
+              "spent": 0,
+              "gained": 3,
+              "restored": 0
+            },
+            "shadow": {
+              "progress": 1,
+              "charge": 1,
+              "dashReady": true,
+              "separation": 131.00635274357037,
+              "remainingGap": 0,
+              "initialGap": 46.50941700431717,
+              "travel": 76.64888888888889,
+              "limit": 680,
+              "targetId": 6,
+              "arrived": true,
+              "speed": 621.6666666666667
+            },
+            "lastHit": {
+              "tick": 242,
+              "enemyId": 6,
+              "automatic": false,
+              "critical": false,
+              "criticalMultiplier": 1,
+              "raw": 81.54354185338845,
+              "normalDamage": 82,
+              "boostedDamage": 82,
+              "damage": 82,
+              "conductDamage": 0,
+              "markConsumed": false,
+              "tags": [
+                "dash"
+              ]
+            },
+            "elemental": {
+              "ignite": 0,
+              "spread": 0,
+              "conduct": 0,
+              "conductSpread": 0,
+              "conductConsumed": 0,
+              "conductDamage": 0,
+              "arc": 0,
+              "burnDamage": 0,
+              "fireEmbers": 0,
+              "fireTransfers": 0,
+              "activeBurning": 0,
+              "activeConducting": 0
+            },
+            "enemies": [
+              {
+                "id": 1,
+                "hp": 185,
+                "conducting": false
+              },
+              {
+                "id": 2,
+                "hp": 105,
+                "conducting": false
+              },
+              {
+                "id": 3,
+                "hp": 78,
+                "conducting": false
+              },
+              {
+                "id": 4,
+                "hp": 105,
+                "conducting": false
+              },
+              {
+                "id": 5,
+                "hp": 105,
+                "conducting": false
+              },
+              {
+                "id": 6,
+                "hp": 23,
+                "conducting": false
+              }
+            ]
+          },
+          "after": {
+            "tick": 263,
+            "phase": "PLAYING",
+            "mode": "RECOVER",
+            "hp": 99.5,
+            "damage": 130,
+            "heal": 133,
+            "launches": 2,
+            "cost": 3.5,
+            "hits": 2,
+            "autoDashes": 1,
+            "chain": true,
+            "chainStarts": 1,
+            "autoPlanned": false,
+            "energy": {
+              "current": 2,
+              "capacity": 3,
+              "fraction": 0.6666666666666666,
+              "full": false,
+              "autoRechargeRate": 0,
+              "cost": 1,
+              "spent": 1,
+              "gained": 3,
+              "restored": 0
+            },
+            "shadow": null,
+            "lastHit": {
+              "tick": 262,
+              "enemyId": 2,
+              "automatic": true,
+              "critical": false,
+              "criticalMultiplier": 1,
+              "raw": 51.44580068058905,
+              "normalDamage": 51,
+              "boostedDamage": 51,
+              "damage": 51,
+              "conductDamage": 0,
+              "markConsumed": false,
+              "tags": [
+                "dash"
+              ]
+            },
+            "elemental": {
+              "ignite": 0,
+              "spread": 0,
+              "conduct": 0,
+              "conductSpread": 0,
+              "conductConsumed": 0,
+              "conductDamage": 0,
+              "arc": 0,
+              "burnDamage": 0,
+              "fireEmbers": 0,
+              "fireTransfers": 0,
+              "activeBurning": 0,
+              "activeConducting": 0
+            },
+            "enemies": [
+              {
+                "id": 1,
+                "hp": 185,
+                "conducting": false
+              },
+              {
+                "id": 2,
+                "hp": 54,
+                "conducting": false
+              },
+              {
+                "id": 3,
+                "hp": 78,
+                "conducting": false
+              },
+              {
+                "id": 4,
+                "hp": 105,
+                "conducting": false
+              },
+              {
+                "id": 5,
+                "hp": 105,
+                "conducting": false
+              },
+              {
+                "id": 6,
+                "hp": 23,
+                "conducting": false
+              }
+            ]
+          }
+        },
+        {
+          "before": {
+            "tick": 268,
+            "phase": "PLAYING",
+            "mode": "RECOVER",
+            "hp": 99.5,
+            "damage": 130,
+            "heal": 133,
+            "launches": 2,
+            "cost": 3.5,
+            "hits": 2,
+            "autoDashes": 1,
+            "chain": true,
+            "chainStarts": 1,
+            "autoPlanned": false,
+            "energy": {
+              "current": 2,
+              "capacity": 3,
+              "fraction": 0.6666666666666666,
+              "full": false,
+              "autoRechargeRate": 0,
+              "cost": 1,
+              "spent": 1,
+              "gained": 3,
+              "restored": 0
+            },
+            "shadow": null,
+            "lastHit": {
+              "tick": 262,
+              "enemyId": 2,
+              "automatic": true,
+              "critical": false,
+              "criticalMultiplier": 1,
+              "raw": 51.44580068058905,
+              "normalDamage": 51,
+              "boostedDamage": 51,
+              "damage": 51,
+              "conductDamage": 0,
+              "markConsumed": false,
+              "tags": [
+                "dash"
+              ]
+            },
+            "elemental": {
+              "ignite": 0,
+              "spread": 0,
+              "conduct": 0,
+              "conductSpread": 0,
+              "conductConsumed": 0,
+              "conductDamage": 0,
+              "arc": 0,
+              "burnDamage": 0,
+              "fireEmbers": 0,
+              "fireTransfers": 0,
+              "activeBurning": 0,
+              "activeConducting": 0
+            },
+            "enemies": [
+              {
+                "id": 1,
+                "hp": 185,
+                "conducting": false
+              },
+              {
+                "id": 2,
+                "hp": 54,
+                "conducting": false
+              },
+              {
+                "id": 3,
+                "hp": 78,
+                "conducting": false
+              },
+              {
+                "id": 4,
+                "hp": 105,
+                "conducting": false
+              },
+              {
+                "id": 5,
+                "hp": 105,
+                "conducting": false
+              },
+              {
+                "id": 6,
+                "hp": 23,
+                "conducting": false
+              }
+            ]
+          },
+          "after": {
+            "tick": 269,
+            "phase": "PLAYING",
+            "mode": "SHADOW",
+            "hp": 99.5,
+            "damage": 130,
+            "heal": 133,
+            "launches": 3,
+            "cost": 3.5,
+            "hits": 2,
+            "autoDashes": 1,
+            "chain": true,
+            "chainStarts": 1,
+            "autoPlanned": true,
+            "energy": {
+              "current": 2,
+              "capacity": 3,
+              "fraction": 0.6666666666666666,
+              "full": false,
+              "autoRechargeRate": 0,
+              "cost": 1,
+              "spent": 1,
+              "gained": 3,
+              "restored": 0
+            },
+            "shadow": {
+              "progress": 0,
+              "charge": 0,
+              "dashReady": false,
+              "separation": 0,
+              "remainingGap": 39.36899007223464,
+              "initialGap": 39.36899007223464,
+              "travel": 0,
+              "limit": 680,
+              "targetId": 2,
+              "arrived": false,
+              "speed": 150
+            },
+            "lastHit": {
+              "tick": 262,
+              "enemyId": 2,
+              "automatic": true,
+              "critical": false,
+              "criticalMultiplier": 1,
+              "raw": 51.44580068058905,
+              "normalDamage": 51,
+              "boostedDamage": 51,
+              "damage": 51,
+              "conductDamage": 0,
+              "markConsumed": false,
+              "tags": [
+                "dash"
+              ]
+            },
+            "elemental": {
+              "ignite": 0,
+              "spread": 0,
+              "conduct": 0,
+              "conductSpread": 0,
+              "conductConsumed": 0,
+              "conductDamage": 0,
+              "arc": 0,
+              "burnDamage": 0,
+              "fireEmbers": 0,
+              "fireTransfers": 0,
+              "activeBurning": 0,
+              "activeConducting": 0
+            },
+            "enemies": [
+              {
+                "id": 1,
+                "hp": 185,
+                "conducting": false
+              },
+              {
+                "id": 2,
+                "hp": 54,
+                "conducting": false
+              },
+              {
+                "id": 3,
+                "hp": 78,
+                "conducting": false
+              },
+              {
+                "id": 4,
+                "hp": 105,
+                "conducting": false
+              },
+              {
+                "id": 5,
+                "hp": 105,
+                "conducting": false
+              },
+              {
+                "id": 6,
+                "hp": 23,
+                "conducting": false
+              }
+            ]
+          }
+        },
+        {
+          "before": {
+            "tick": 279,
+            "phase": "PLAYING",
+            "mode": "GOLDEN",
+            "hp": 99.5,
+            "damage": 130,
+            "heal": 133,
+            "launches": 3,
+            "cost": 3.5,
+            "hits": 2,
+            "autoDashes": 1,
+            "chain": true,
+            "chainStarts": 1,
+            "autoPlanned": true,
+            "energy": {
+              "current": 2,
+              "capacity": 3,
+              "fraction": 0.6666666666666666,
+              "full": false,
+              "autoRechargeRate": 0,
+              "cost": 1,
+              "spent": 1,
+              "gained": 3,
+              "restored": 0
+            },
+            "shadow": {
+              "progress": 1,
+              "charge": 1,
+              "dashReady": true,
+              "separation": 130.96788502839027,
+              "remainingGap": 0,
+              "initialGap": 39.36899007223464,
+              "travel": 41.86888888888889,
+              "limit": 680,
+              "targetId": 2,
+              "arrived": true,
+              "speed": 468.33333333333337
+            },
+            "lastHit": {
+              "tick": 262,
+              "enemyId": 2,
+              "automatic": true,
+              "critical": false,
+              "criticalMultiplier": 1,
+              "raw": 51.44580068058905,
+              "normalDamage": 51,
+              "boostedDamage": 51,
+              "damage": 51,
+              "conductDamage": 0,
+              "markConsumed": false,
+              "tags": [
+                "dash"
+              ]
+            },
+            "elemental": {
+              "ignite": 0,
+              "spread": 0,
+              "conduct": 0,
+              "conductSpread": 0,
+              "conductConsumed": 0,
+              "conductDamage": 0,
+              "arc": 0,
+              "burnDamage": 0,
+              "fireEmbers": 0,
+              "fireTransfers": 0,
+              "activeBurning": 0,
+              "activeConducting": 0
+            },
+            "enemies": [
+              {
+                "id": 1,
+                "hp": 185,
+                "conducting": false
+              },
+              {
+                "id": 2,
+                "hp": 54,
+                "conducting": false
+              },
+              {
+                "id": 3,
+                "hp": 78,
+                "conducting": false
+              },
+              {
+                "id": 4,
+                "hp": 105,
+                "conducting": false
+              },
+              {
+                "id": 5,
+                "hp": 105,
+                "conducting": false
+              },
+              {
+                "id": 6,
+                "hp": 23,
+                "conducting": false
+              }
+            ]
+          },
+          "after": {
+            "tick": 280,
+            "phase": "PLAYING",
+            "mode": "DASH",
+            "hp": 99.5,
+            "damage": 130,
+            "heal": 133,
+            "launches": 3,
+            "cost": 3.5,
+            "hits": 2,
+            "autoDashes": 2,
+            "chain": true,
+            "chainStarts": 1,
+            "autoPlanned": false,
+            "energy": {
+              "current": 1,
+              "capacity": 3,
+              "fraction": 0.3333333333333333,
+              "full": false,
+              "autoRechargeRate": 0,
+              "cost": 1,
+              "spent": 2,
+              "gained": 3,
+              "restored": 0
+            },
+            "shadow": null,
+            "lastHit": {
+              "tick": 262,
+              "enemyId": 2,
+              "automatic": true,
+              "critical": false,
+              "criticalMultiplier": 1,
+              "raw": 51.44580068058905,
+              "normalDamage": 51,
+              "boostedDamage": 51,
+              "damage": 51,
+              "conductDamage": 0,
+              "markConsumed": false,
+              "tags": [
+                "dash"
+              ]
+            },
+            "elemental": {
+              "ignite": 0,
+              "spread": 0,
+              "conduct": 0,
+              "conductSpread": 0,
+              "conductConsumed": 0,
+              "conductDamage": 0,
+              "arc": 0,
+              "burnDamage": 0,
+              "fireEmbers": 0,
+              "fireTransfers": 0,
+              "activeBurning": 0,
+              "activeConducting": 0
+            },
+            "enemies": [
+              {
+                "id": 1,
+                "hp": 185,
+                "conducting": false
+              },
+              {
+                "id": 2,
+                "hp": 54,
+                "conducting": false
+              },
+              {
+                "id": 3,
+                "hp": 78,
+                "conducting": false
+              },
+              {
+                "id": 4,
+                "hp": 105,
+                "conducting": false
+              },
+              {
+                "id": 5,
+                "hp": 105,
+                "conducting": false
+              },
+              {
+                "id": 6,
+                "hp": 23,
+                "conducting": false
+              }
+            ]
+          }
+        }
+      ],
+      "errors": [],
+      "loaded": {
+        "version": "0.11.0",
+        "buildId": "20261010T052152Z-useful-tech-unlocks",
+        "title": "BOUNKO · Prototype 0.11.0",
+        "hud": "PHYSICS ACTION LAB · v0.11.0",
+        "matter": "0.20.0",
+        "resources": [
+          "https://cdn.jsdelivr.net/npm/matter-js@0.20.0/build/matter.min.js",
+          "https://cdn.jsdelivr.net/gh/byh-playground/bloom-gamekit@d1e2c385033ad04a7a004cfbe9558948ef07a6d1/rendering.js",
+          "https://cdn.jsdelivr.net/gh/byh-playground/bloom-gamekit@d1e2c385033ad04a7a004cfbe9558948ef07a6d1/input.js",
+          "https://cdn.jsdelivr.net/gh/byh-playground/bloom-gamekit@d1e2c385033ad04a7a004cfbe9558948ef07a6d1/simloop.js"
+        ]
+      },
+      "result": "PASS"
+    },
+    {
+      "name": "lightning-and-critical",
+      "fixture": {
+        "kills": 99,
+        "unlocked": [],
+        "statLevels": {}
+      },
+      "checkpoints": [
+        {
+          "label": "attack-1",
+          "atMs": 15964,
+          "tick": 101,
+          "phase": "PLAYING",
+          "mode": "READY",
+          "health": 100,
+          "launches": 2,
+          "cost": 10,
+          "hits": 1,
+          "kills": 0,
+          "autoDashes": 0,
+          "chain": false,
+          "chainStarts": 0,
+          "autoPlanned": false,
+          "energy": {
+            "current": 0,
+            "capacity": 3,
+            "fraction": 0,
+            "full": false,
+            "autoRechargeRate": 0,
+            "cost": 1,
+            "spent": 0,
+            "gained": 0,
+            "restored": 0
+          },
+          "shadow": null,
+          "lastHit": {
+            "tick": 71,
+            "enemyId": 2,
+            "automatic": false,
+            "critical": false,
+            "criticalMultiplier": 1,
+            "raw": 53.92446432096629,
+            "normalDamage": 54,
+            "boostedDamage": 54,
+            "damage": 54,
+            "conductDamage": 0,
+            "markConsumed": false,
+            "tags": [
+              "dash"
+            ]
+          },
+          "elemental": {
+            "ignite": 0,
+            "spread": 0,
+            "conduct": 1,
+            "conductSpread": 1,
+            "conductConsumed": 0,
+            "conductDamage": 0,
+            "arc": 1,
+            "burnDamage": 0,
+            "fireEmbers": 0,
+            "fireTransfers": 0,
+            "activeBurning": 0,
+            "activeConducting": 2
+          },
+          "stats": {
+            "attackPower": 100,
+            "criticalChance": 0.02,
+            "criticalDamage": 2.12,
+            "armorPenFlat": 0,
+            "armorPenPercent": 0,
+            "maxHp": 100,
+            "armor": 0,
+            "healthRegen": 0
+          },
+          "tech": {
+            "points": 3,
+            "level": 10,
+            "totalKills": 99,
+            "unlocked": [
+              "echo",
+              "conduct",
+              "relayArc"
+            ],
+            "statLevels": {
+              "attackPower": 0,
+              "criticalChance": 1,
+              "criticalDamage": 2,
+              "armorPenFlat": 0,
+              "armorPenPercent": 0,
+              "maxHp": 0,
+              "armor": 0,
+              "healthRegen": 0
+            }
+          },
+          "damage": 25,
+          "heal": 35,
+          "position": {
+            "x": 832.9158906202323,
+            "y": 841.5222860133592
+          }
+        },
+        {
+          "label": "attack-2",
+          "atMs": 16956,
+          "tick": 161,
+          "phase": "PLAYING",
+          "mode": "READY",
+          "health": 100,
+          "launches": 3,
+          "cost": 20,
+          "hits": 2,
+          "kills": 1,
+          "autoDashes": 0,
+          "chain": false,
+          "chainStarts": 0,
+          "autoPlanned": false,
+          "energy": {
+            "current": 0,
+            "capacity": 3,
+            "fraction": 0,
+            "full": false,
+            "autoRechargeRate": 0,
+            "cost": 1,
+            "spent": 0,
+            "gained": 0,
+            "restored": 0
+          },
+          "shadow": null,
+          "lastHit": {
+            "tick": 138,
+            "enemyId": 2,
+            "automatic": false,
+            "critical": false,
+            "criticalMultiplier": 1,
+            "raw": 58.75869102089366,
+            "normalDamage": 59,
+            "boostedDamage": 73,
+            "damage": 51,
+            "conductDamage": 0,
+            "markConsumed": true,
+            "tags": [
+              "dash",
+              "conduct"
+            ]
+          },
+          "elemental": {
+            "ignite": 0,
+            "spread": 0,
+            "conduct": 2,
+            "conductSpread": 2,
+            "conductConsumed": 1,
+            "conductDamage": 0,
+            "arc": 2,
+            "burnDamage": 0,
+            "fireEmbers": 0,
+            "fireTransfers": 0,
+            "activeBurning": 0,
+            "activeConducting": 1
+          },
+          "stats": {
+            "attackPower": 100,
+            "criticalChance": 0.02,
+            "criticalDamage": 2.12,
+            "armorPenFlat": 0,
+            "armorPenPercent": 0,
+            "maxHp": 100,
+            "armor": 0,
+            "healthRegen": 0
+          },
+          "tech": {
+            "points": 3,
+            "level": 10,
+            "totalKills": 100,
+            "unlocked": [
+              "echo",
+              "conduct",
+              "relayArc"
+            ],
+            "statLevels": {
+              "attackPower": 0,
+              "criticalChance": 1,
+              "criticalDamage": 2,
+              "armorPenFlat": 0,
+              "armorPenPercent": 0,
+              "maxHp": 0,
+              "armor": 0,
+              "healthRegen": 0
+            }
+          },
+          "damage": 50,
+          "heal": 70,
+          "position": {
+            "x": 814.1522915394194,
+            "y": 926.2956493959156
+          }
+        },
+        {
+          "label": "attack-3",
+          "atMs": 17769,
+          "tick": 211,
+          "phase": "PLAYING",
+          "mode": "READY",
+          "health": 100,
+          "launches": 5,
+          "cost": 30,
+          "hits": 3,
+          "kills": 1,
+          "autoDashes": 0,
+          "chain": false,
+          "chainStarts": 0,
+          "autoPlanned": false,
+          "energy": {
+            "current": 0,
+            "capacity": 3,
+            "fraction": 0,
+            "full": false,
+            "autoRechargeRate": 0,
+            "cost": 1,
+            "spent": 0,
+            "gained": 0,
+            "restored": 0
+          },
+          "shadow": null,
+          "lastHit": {
+            "tick": 180,
+            "enemyId": 5,
+            "automatic": false,
+            "critical": false,
+            "criticalMultiplier": 1,
+            "raw": 37.210041942678856,
+            "normalDamage": 37,
+            "boostedDamage": 47,
+            "damage": 47,
+            "conductDamage": 10,
+            "markConsumed": true,
+            "tags": [
+              "dash",
+              "conduct"
+            ]
+          },
+          "elemental": {
+            "ignite": 0,
+            "spread": 0,
+            "conduct": 3,
+            "conductSpread": 3,
+            "conductConsumed": 2,
+            "conductDamage": 10,
+            "arc": 3,
+            "burnDamage": 0,
+            "fireEmbers": 0,
+            "fireTransfers": 0,
+            "activeBurning": 0,
+            "activeConducting": 2
+          },
+          "stats": {
+            "attackPower": 100,
+            "criticalChance": 0.02,
+            "criticalDamage": 2.12,
+            "armorPenFlat": 0,
+            "armorPenPercent": 0,
+            "maxHp": 100,
+            "armor": 0,
+            "healthRegen": 0
+          },
+          "tech": {
+            "points": 3,
+            "level": 10,
+            "totalKills": 100,
+            "unlocked": [
+              "echo",
+              "conduct",
+              "relayArc"
+            ],
+            "statLevels": {
+              "attackPower": 0,
+              "criticalChance": 1,
+              "criticalDamage": 2,
+              "armorPenFlat": 0,
+              "armorPenPercent": 0,
+              "maxHp": 0,
+              "armor": 0,
+              "healthRegen": 0
+            }
+          },
+          "damage": 75,
+          "heal": 105,
+          "position": {
+            "x": 794.0129330815803,
+            "y": 1116.0266218546178
+          }
+        },
+        {
+          "label": "mark-consumed-and-spread",
+          "atMs": 17789,
+          "tick": 212,
+          "phase": "PLAYING",
+          "mode": "READY",
+          "health": 100,
+          "launches": 5,
+          "cost": 30,
+          "hits": 3,
+          "kills": 1,
+          "autoDashes": 0,
+          "chain": false,
+          "chainStarts": 0,
+          "autoPlanned": false,
+          "energy": {
+            "current": 0,
+            "capacity": 3,
+            "fraction": 0,
+            "full": false,
+            "autoRechargeRate": 0,
+            "cost": 1,
+            "spent": 0,
+            "gained": 0,
+            "restored": 0
+          },
+          "shadow": null,
+          "lastHit": {
+            "tick": 180,
+            "enemyId": 5,
+            "automatic": false,
+            "critical": false,
+            "criticalMultiplier": 1,
+            "raw": 37.210041942678856,
+            "normalDamage": 37,
+            "boostedDamage": 47,
+            "damage": 47,
+            "conductDamage": 10,
+            "markConsumed": true,
+            "tags": [
+              "dash",
+              "conduct"
+            ]
+          },
+          "elemental": {
+            "ignite": 0,
+            "spread": 0,
+            "conduct": 3,
+            "conductSpread": 3,
+            "conductConsumed": 2,
+            "conductDamage": 10,
+            "arc": 3,
+            "burnDamage": 0,
+            "fireEmbers": 0,
+            "fireTransfers": 0,
+            "activeBurning": 0,
+            "activeConducting": 2
+          },
+          "stats": {
+            "attackPower": 100,
+            "criticalChance": 0.02,
+            "criticalDamage": 2.12,
+            "armorPenFlat": 0,
+            "armorPenPercent": 0,
+            "maxHp": 100,
+            "armor": 0,
+            "healthRegen": 0
+          },
+          "tech": {
+            "points": 3,
+            "level": 10,
+            "totalKills": 100,
+            "unlocked": [
+              "echo",
+              "conduct",
+              "relayArc"
+            ],
+            "statLevels": {
+              "attackPower": 0,
+              "criticalChance": 1,
+              "criticalDamage": 2,
+              "armorPenFlat": 0,
+              "armorPenPercent": 0,
+              "maxHp": 0,
+              "armor": 0,
+              "healthRegen": 0
+            }
+          },
+          "damage": 75,
+          "heal": 105,
+          "position": {
+            "x": 792.2340274877345,
+            "y": 1121.0783462879178
+          }
+        }
+      ],
+      "events": [
+        {
+          "before": {
+            "tick": 48,
+            "phase": "PLAYING",
+            "mode": "READY",
+            "hp": 100,
+            "damage": 0,
+            "heal": 0,
+            "launches": 0,
+            "cost": 0,
+            "hits": 0,
+            "autoDashes": 0,
+            "chain": false,
+            "chainStarts": 0,
+            "autoPlanned": false,
+            "energy": {
+              "current": 0,
+              "capacity": 3,
+              "fraction": 0,
+              "full": false,
+              "autoRechargeRate": 0,
+              "cost": 1,
+              "spent": 0,
+              "gained": 0,
+              "restored": 0
+            },
+            "shadow": null,
+            "lastHit": null,
+            "elemental": {
+              "ignite": 0,
+              "spread": 0,
+              "conduct": 0,
+              "conductSpread": 0,
+              "conductConsumed": 0,
+              "conductDamage": 0,
+              "arc": 0,
+              "burnDamage": 0,
+              "fireEmbers": 0,
+              "fireTransfers": 0,
+              "activeBurning": 0,
+              "activeConducting": 0
+            },
+            "enemies": [
+              {
+                "id": 1,
+                "hp": 185,
+                "conducting": false
+              },
+              {
+                "id": 2,
+                "hp": 105,
+                "conducting": false
+              },
+              {
+                "id": 3,
+                "hp": 78,
+                "conducting": false
+              },
+              {
+                "id": 4,
+                "hp": 105,
+                "conducting": false
+              },
+              {
+                "id": 5,
+                "hp": 105,
+                "conducting": false
+              },
+              {
+                "id": 6,
+                "hp": 105,
+                "conducting": false
+              }
+            ]
+          },
+          "after": {
+            "tick": 49,
+            "phase": "PLAYING",
+            "mode": "SHADOW",
+            "hp": 90,
+            "damage": 0,
+            "heal": 0,
+            "launches": 1,
+            "cost": 10,
+            "hits": 0,
+            "autoDashes": 0,
+            "chain": false,
+            "chainStarts": 0,
+            "autoPlanned": false,
+            "energy": {
+              "current": 0,
+              "capacity": 3,
+              "fraction": 0,
+              "full": false,
+              "autoRechargeRate": 0,
+              "cost": 1,
+              "spent": 0,
+              "gained": 0,
+              "restored": 0
+            },
+            "shadow": {
+              "progress": 0.028137970913215682,
+              "charge": 0.028137970913215682,
+              "dashReady": false,
+              "separation": 3.1944444444443003,
+              "remainingGap": 168.71094484083113,
+              "initialGap": 173.5955719963268,
+              "travel": 3.194444444444444,
+              "limit": 680,
+              "targetId": 2,
+              "arrived": false,
+              "speed": 191.66666666666666
+            },
+            "lastHit": null,
+            "elemental": {
+              "ignite": 0,
+              "spread": 0,
+              "conduct": 0,
+              "conductSpread": 0,
+              "conductConsumed": 0,
+              "conductDamage": 0,
+              "arc": 0,
+              "burnDamage": 0,
+              "fireEmbers": 0,
+              "fireTransfers": 0,
+              "activeBurning": 0,
+              "activeConducting": 0
+            },
+            "enemies": [
+              {
+                "id": 1,
+                "hp": 185,
+                "conducting": false
+              },
+              {
+                "id": 2,
+                "hp": 105,
+                "conducting": false
+              },
+              {
+                "id": 3,
+                "hp": 78,
+                "conducting": false
+              },
+              {
+                "id": 4,
+                "hp": 105,
+                "conducting": false
+              },
+              {
+                "id": 5,
+                "hp": 105,
+                "conducting": false
+              },
+              {
+                "id": 6,
+                "hp": 105,
+                "conducting": false
+              }
+            ]
+          }
+        },
+        {
+          "before": {
+            "tick": 70,
+            "phase": "PLAYING",
+            "mode": "DASH",
+            "hp": 90,
+            "damage": 0,
+            "heal": 0,
+            "launches": 1,
+            "cost": 10,
+            "hits": 0,
+            "autoDashes": 0,
+            "chain": false,
+            "chainStarts": 0,
+            "autoPlanned": false,
+            "energy": {
+              "current": 0,
+              "capacity": 3,
+              "fraction": 0,
+              "full": false,
+              "autoRechargeRate": 0,
+              "cost": 1,
+              "spent": 0,
+              "gained": 0,
+              "restored": 0
+            },
+            "shadow": null,
+            "lastHit": null,
+            "elemental": {
+              "ignite": 0,
+              "spread": 0,
+              "conduct": 0,
+              "conductSpread": 0,
+              "conductConsumed": 0,
+              "conductDamage": 0,
+              "arc": 0,
+              "burnDamage": 0,
+              "fireEmbers": 0,
+              "fireTransfers": 0,
+              "activeBurning": 0,
+              "activeConducting": 0
+            },
+            "enemies": [
+              {
+                "id": 1,
+                "hp": 185,
+                "conducting": false
+              },
+              {
+                "id": 2,
+                "hp": 105,
+                "conducting": false
+              },
+              {
+                "id": 3,
+                "hp": 78,
+                "conducting": false
+              },
+              {
+                "id": 4,
+                "hp": 105,
+                "conducting": false
+              },
+              {
+                "id": 5,
+                "hp": 105,
+                "conducting": false
+              },
+              {
+                "id": 6,
+                "hp": 105,
+                "conducting": false
+              }
+            ]
+          },
+          "after": {
+            "tick": 71,
+            "phase": "PLAYING",
+            "mode": "RECOVER",
+            "hp": 100,
+            "damage": 25,
+            "heal": 35,
+            "launches": 1,
+            "cost": 10,
+            "hits": 1,
+            "autoDashes": 0,
+            "chain": false,
+            "chainStarts": 0,
+            "autoPlanned": false,
+            "energy": {
+              "current": 0,
+              "capacity": 3,
+              "fraction": 0,
+              "full": false,
+              "autoRechargeRate": 0,
+              "cost": 1,
+              "spent": 0,
+              "gained": 0,
+              "restored": 0
+            },
+            "shadow": null,
+            "lastHit": {
+              "tick": 71,
+              "enemyId": 2,
+              "automatic": false,
+              "critical": false,
+              "criticalMultiplier": 1,
+              "raw": 53.92446432096629,
+              "normalDamage": 54,
+              "boostedDamage": 54,
+              "damage": 54,
+              "conductDamage": 0,
+              "markConsumed": false,
+              "tags": [
+                "dash"
+              ]
+            },
+            "elemental": {
+              "ignite": 0,
+              "spread": 0,
+              "conduct": 1,
+              "conductSpread": 1,
+              "conductConsumed": 0,
+              "conductDamage": 0,
+              "arc": 1,
+              "burnDamage": 0,
+              "fireEmbers": 0,
+              "fireTransfers": 0,
+              "activeBurning": 0,
+              "activeConducting": 2
+            },
+            "enemies": [
+              {
+                "id": 1,
+                "hp": 185,
+                "conducting": false
+              },
+              {
+                "id": 2,
+                "hp": 51,
+                "conducting": true
+              },
+              {
+                "id": 3,
+                "hp": 78,
+                "conducting": false
+              },
+              {
+                "id": 4,
+                "hp": 105,
+                "conducting": false
+              },
+              {
+                "id": 5,
+                "hp": 105,
+                "conducting": true
+              },
+              {
+                "id": 6,
+                "hp": 105,
+                "conducting": false
+              }
+            ]
+          }
+        },
+        {
+          "before": {
+            "tick": 77,
+            "phase": "PLAYING",
+            "mode": "RECOVER",
+            "hp": 100,
+            "damage": 25,
+            "heal": 35,
+            "launches": 1,
+            "cost": 10,
+            "hits": 1,
+            "autoDashes": 0,
+            "chain": false,
+            "chainStarts": 0,
+            "autoPlanned": false,
+            "energy": {
+              "current": 0,
+              "capacity": 3,
+              "fraction": 0,
+              "full": false,
+              "autoRechargeRate": 0,
+              "cost": 1,
+              "spent": 0,
+              "gained": 0,
+              "restored": 0
+            },
+            "shadow": null,
+            "lastHit": {
+              "tick": 71,
+              "enemyId": 2,
+              "automatic": false,
+              "critical": false,
+              "criticalMultiplier": 1,
+              "raw": 53.92446432096629,
+              "normalDamage": 54,
+              "boostedDamage": 54,
+              "damage": 54,
+              "conductDamage": 0,
+              "markConsumed": false,
+              "tags": [
+                "dash"
+              ]
+            },
+            "elemental": {
+              "ignite": 0,
+              "spread": 0,
+              "conduct": 1,
+              "conductSpread": 1,
+              "conductConsumed": 0,
+              "conductDamage": 0,
+              "arc": 1,
+              "burnDamage": 0,
+              "fireEmbers": 0,
+              "fireTransfers": 0,
+              "activeBurning": 0,
+              "activeConducting": 2
+            },
+            "enemies": [
+              {
+                "id": 1,
+                "hp": 185,
+                "conducting": false
+              },
+              {
+                "id": 2,
+                "hp": 51,
+                "conducting": true
+              },
+              {
+                "id": 3,
+                "hp": 78,
+                "conducting": false
+              },
+              {
+                "id": 4,
+                "hp": 105,
+                "conducting": false
+              },
+              {
+                "id": 5,
+                "hp": 105,
+                "conducting": true
+              },
+              {
+                "id": 6,
+                "hp": 105,
+                "conducting": false
+              }
+            ]
+          },
+          "after": {
+            "tick": 78,
+            "phase": "PLAYING",
+            "mode": "SHADOW",
+            "hp": 100,
+            "damage": 25,
+            "heal": 35,
+            "launches": 2,
+            "cost": 10,
+            "hits": 1,
+            "autoDashes": 0,
+            "chain": false,
+            "chainStarts": 0,
+            "autoPlanned": false,
+            "energy": {
+              "current": 0,
+              "capacity": 3,
+              "fraction": 0,
+              "full": false,
+              "autoRechargeRate": 0,
+              "cost": 1,
+              "spent": 0,
+              "gained": 0,
+              "restored": 0
+            },
+            "shadow": {
+              "progress": 0,
+              "charge": 0,
+              "dashReady": false,
+              "separation": 0,
+              "remainingGap": 34.922080686580486,
+              "initialGap": 34.922080686580486,
+              "travel": 0,
+              "limit": 571.1677447365907,
+              "targetId": 2,
+              "arrived": false,
+              "speed": 150
+            },
+            "lastHit": {
+              "tick": 71,
+              "enemyId": 2,
+              "automatic": false,
+              "critical": false,
+              "criticalMultiplier": 1,
+              "raw": 53.92446432096629,
+              "normalDamage": 54,
+              "boostedDamage": 54,
+              "damage": 54,
+              "conductDamage": 0,
+              "markConsumed": false,
+              "tags": [
+                "dash"
+              ]
+            },
+            "elemental": {
+              "ignite": 0,
+              "spread": 0,
+              "conduct": 1,
+              "conductSpread": 1,
+              "conductConsumed": 0,
+              "conductDamage": 0,
+              "arc": 1,
+              "burnDamage": 0,
+              "fireEmbers": 0,
+              "fireTransfers": 0,
+              "activeBurning": 0,
+              "activeConducting": 2
+            },
+            "enemies": [
+              {
+                "id": 1,
+                "hp": 185,
+                "conducting": false
+              },
+              {
+                "id": 2,
+                "hp": 51,
+                "conducting": true
+              },
+              {
+                "id": 3,
+                "hp": 78,
+                "conducting": false
+              },
+              {
+                "id": 4,
+                "hp": 105,
+                "conducting": false
+              },
+              {
+                "id": 5,
+                "hp": 105,
+                "conducting": true
+              },
+              {
+                "id": 6,
+                "hp": 105,
+                "conducting": false
+              }
+            ]
+          }
+        },
+        {
+          "before": {
+            "tick": 104,
+            "phase": "PLAYING",
+            "mode": "READY",
+            "hp": 100,
+            "damage": 25,
+            "heal": 35,
+            "launches": 2,
+            "cost": 10,
+            "hits": 1,
+            "autoDashes": 0,
+            "chain": false,
+            "chainStarts": 0,
+            "autoPlanned": false,
+            "energy": {
+              "current": 0,
+              "capacity": 3,
+              "fraction": 0,
+              "full": false,
+              "autoRechargeRate": 0,
+              "cost": 1,
+              "spent": 0,
+              "gained": 0,
+              "restored": 0
+            },
+            "shadow": null,
+            "lastHit": {
+              "tick": 71,
+              "enemyId": 2,
+              "automatic": false,
+              "critical": false,
+              "criticalMultiplier": 1,
+              "raw": 53.92446432096629,
+              "normalDamage": 54,
+              "boostedDamage": 54,
+              "damage": 54,
+              "conductDamage": 0,
+              "markConsumed": false,
+              "tags": [
+                "dash"
+              ]
+            },
+            "elemental": {
+              "ignite": 0,
+              "spread": 0,
+              "conduct": 1,
+              "conductSpread": 1,
+              "conductConsumed": 0,
+              "conductDamage": 0,
+              "arc": 1,
+              "burnDamage": 0,
+              "fireEmbers": 0,
+              "fireTransfers": 0,
+              "activeBurning": 0,
+              "activeConducting": 2
+            },
+            "enemies": [
+              {
+                "id": 1,
+                "hp": 185,
+                "conducting": false
+              },
+              {
+                "id": 2,
+                "hp": 51,
+                "conducting": true
+              },
+              {
+                "id": 3,
+                "hp": 78,
+                "conducting": false
+              },
+              {
+                "id": 4,
+                "hp": 105,
+                "conducting": false
+              },
+              {
+                "id": 5,
+                "hp": 105,
+                "conducting": true
+              },
+              {
+                "id": 6,
+                "hp": 105,
+                "conducting": false
+              }
+            ]
+          },
+          "after": {
+            "tick": 105,
+            "phase": "PLAYING",
+            "mode": "SHADOW",
+            "hp": 90,
+            "damage": 25,
+            "heal": 35,
+            "launches": 3,
+            "cost": 20,
+            "hits": 1,
+            "autoDashes": 0,
+            "chain": false,
+            "chainStarts": 0,
+            "autoPlanned": false,
+            "energy": {
+              "current": 0,
+              "capacity": 3,
+              "fraction": 0,
+              "full": false,
+              "autoRechargeRate": 0,
+              "cost": 1,
+              "spent": 0,
+              "gained": 0,
+              "restored": 0
+            },
+            "shadow": {
+              "progress": 0,
+              "charge": 0,
+              "dashReady": false,
+              "separation": 5.952218300763398,
+              "remainingGap": 160.77182992039064,
+              "initialGap": 160.70330917035741,
+              "travel": 3.194444444444444,
+              "limit": 649.7797767032107,
+              "targetId": 2,
+              "arrived": false,
+              "speed": 191.66666666666666
+            },
+            "lastHit": {
+              "tick": 71,
+              "enemyId": 2,
+              "automatic": false,
+              "critical": false,
+              "criticalMultiplier": 1,
+              "raw": 53.92446432096629,
+              "normalDamage": 54,
+              "boostedDamage": 54,
+              "damage": 54,
+              "conductDamage": 0,
+              "markConsumed": false,
+              "tags": [
+                "dash"
+              ]
+            },
+            "elemental": {
+              "ignite": 0,
+              "spread": 0,
+              "conduct": 1,
+              "conductSpread": 1,
+              "conductConsumed": 0,
+              "conductDamage": 0,
+              "arc": 1,
+              "burnDamage": 0,
+              "fireEmbers": 0,
+              "fireTransfers": 0,
+              "activeBurning": 0,
+              "activeConducting": 2
+            },
+            "enemies": [
+              {
+                "id": 1,
+                "hp": 185,
+                "conducting": false
+              },
+              {
+                "id": 2,
+                "hp": 51,
+                "conducting": true
+              },
+              {
+                "id": 3,
+                "hp": 78,
+                "conducting": false
+              },
+              {
+                "id": 4,
+                "hp": 105,
+                "conducting": false
+              },
+              {
+                "id": 5,
+                "hp": 105,
+                "conducting": true
+              },
+              {
+                "id": 6,
+                "hp": 105,
+                "conducting": false
+              }
+            ]
+          }
+        },
+        {
+          "before": {
+            "tick": 137,
+            "phase": "PLAYING",
+            "mode": "DASH",
+            "hp": 90,
+            "damage": 25,
+            "heal": 35,
+            "launches": 3,
+            "cost": 20,
+            "hits": 1,
+            "autoDashes": 0,
+            "chain": false,
+            "chainStarts": 0,
+            "autoPlanned": false,
+            "energy": {
+              "current": 0,
+              "capacity": 3,
+              "fraction": 0,
+              "full": false,
+              "autoRechargeRate": 0,
+              "cost": 1,
+              "spent": 0,
+              "gained": 0,
+              "restored": 0
+            },
+            "shadow": null,
+            "lastHit": {
+              "tick": 71,
+              "enemyId": 2,
+              "automatic": false,
+              "critical": false,
+              "criticalMultiplier": 1,
+              "raw": 53.92446432096629,
+              "normalDamage": 54,
+              "boostedDamage": 54,
+              "damage": 54,
+              "conductDamage": 0,
+              "markConsumed": false,
+              "tags": [
+                "dash"
+              ]
+            },
+            "elemental": {
+              "ignite": 0,
+              "spread": 0,
+              "conduct": 1,
+              "conductSpread": 1,
+              "conductConsumed": 0,
+              "conductDamage": 0,
+              "arc": 1,
+              "burnDamage": 0,
+              "fireEmbers": 0,
+              "fireTransfers": 0,
+              "activeBurning": 0,
+              "activeConducting": 2
+            },
+            "enemies": [
+              {
+                "id": 1,
+                "hp": 185,
+                "conducting": false
+              },
+              {
+                "id": 2,
+                "hp": 51,
+                "conducting": true
+              },
+              {
+                "id": 3,
+                "hp": 78,
+                "conducting": false
+              },
+              {
+                "id": 4,
+                "hp": 105,
+                "conducting": false
+              },
+              {
+                "id": 5,
+                "hp": 105,
+                "conducting": true
+              },
+              {
+                "id": 6,
+                "hp": 105,
+                "conducting": false
+              }
+            ]
+          },
+          "after": {
+            "tick": 138,
+            "phase": "PLAYING",
+            "mode": "RECOVER",
+            "hp": 100,
+            "damage": 50,
+            "heal": 70,
+            "launches": 3,
+            "cost": 20,
+            "hits": 2,
+            "autoDashes": 0,
+            "chain": false,
+            "chainStarts": 0,
+            "autoPlanned": false,
+            "energy": {
+              "current": 0,
+              "capacity": 3,
+              "fraction": 0,
+              "full": false,
+              "autoRechargeRate": 0,
+              "cost": 1,
+              "spent": 0,
+              "gained": 0,
+              "restored": 0
+            },
+            "shadow": null,
+            "lastHit": {
+              "tick": 138,
+              "enemyId": 2,
+              "automatic": false,
+              "critical": false,
+              "criticalMultiplier": 1,
+              "raw": 58.75869102089366,
+              "normalDamage": 59,
+              "boostedDamage": 73,
+              "damage": 51,
+              "conductDamage": 0,
+              "markConsumed": true,
+              "tags": [
+                "dash",
+                "conduct"
+              ]
+            },
+            "elemental": {
+              "ignite": 0,
+              "spread": 0,
+              "conduct": 2,
+              "conductSpread": 2,
+              "conductConsumed": 1,
+              "conductDamage": 0,
+              "arc": 2,
+              "burnDamage": 0,
+              "fireEmbers": 0,
+              "fireTransfers": 0,
+              "activeBurning": 0,
+              "activeConducting": 1
+            },
+            "enemies": [
+              {
+                "id": 1,
+                "hp": 185,
+                "conducting": false
+              },
+              {
+                "id": 7,
+                "hp": 78,
+                "conducting": false
+              },
+              {
+                "id": 3,
+                "hp": 78,
+                "conducting": false
+              },
+              {
+                "id": 4,
+                "hp": 105,
+                "conducting": false
+              },
+              {
+                "id": 5,
+                "hp": 105,
+                "conducting": true
+              },
+              {
+                "id": 6,
+                "hp": 105,
+                "conducting": false
+              }
+            ]
+          }
+        },
+        {
+          "before": {
+            "tick": 163,
+            "phase": "PLAYING",
+            "mode": "READY",
+            "hp": 100,
+            "damage": 50,
+            "heal": 70,
+            "launches": 3,
+            "cost": 20,
+            "hits": 2,
+            "autoDashes": 0,
+            "chain": false,
+            "chainStarts": 0,
+            "autoPlanned": false,
+            "energy": {
+              "current": 0,
+              "capacity": 3,
+              "fraction": 0,
+              "full": false,
+              "autoRechargeRate": 0,
+              "cost": 1,
+              "spent": 0,
+              "gained": 0,
+              "restored": 0
+            },
+            "shadow": null,
+            "lastHit": {
+              "tick": 138,
+              "enemyId": 2,
+              "automatic": false,
+              "critical": false,
+              "criticalMultiplier": 1,
+              "raw": 58.75869102089366,
+              "normalDamage": 59,
+              "boostedDamage": 73,
+              "damage": 51,
+              "conductDamage": 0,
+              "markConsumed": true,
+              "tags": [
+                "dash",
+                "conduct"
+              ]
+            },
+            "elemental": {
+              "ignite": 0,
+              "spread": 0,
+              "conduct": 2,
+              "conductSpread": 2,
+              "conductConsumed": 1,
+              "conductDamage": 0,
+              "arc": 2,
+              "burnDamage": 0,
+              "fireEmbers": 0,
+              "fireTransfers": 0,
+              "activeBurning": 0,
+              "activeConducting": 1
+            },
+            "enemies": [
+              {
+                "id": 1,
+                "hp": 185,
+                "conducting": false
+              },
+              {
+                "id": 7,
+                "hp": 78,
+                "conducting": false
+              },
+              {
+                "id": 3,
+                "hp": 78,
+                "conducting": false
+              },
+              {
+                "id": 4,
+                "hp": 105,
+                "conducting": false
+              },
+              {
+                "id": 5,
+                "hp": 105,
+                "conducting": true
+              },
+              {
+                "id": 6,
+                "hp": 105,
+                "conducting": false
+              }
+            ]
+          },
+          "after": {
+            "tick": 164,
+            "phase": "PLAYING",
+            "mode": "SHADOW",
+            "hp": 90,
+            "damage": 50,
+            "heal": 70,
+            "launches": 4,
+            "cost": 30,
+            "hits": 2,
+            "autoDashes": 0,
+            "chain": false,
+            "chainStarts": 0,
+            "autoPlanned": false,
+            "energy": {
+              "current": 0,
+              "capacity": 3,
+              "fraction": 0,
+              "full": false,
+              "autoRechargeRate": 0,
+              "cost": 1,
+              "spent": 0,
+              "gained": 0,
+              "restored": 0
+            },
+            "shadow": {
+              "progress": 0.032583198171768024,
+              "charge": 0.032583198171768024,
+              "dashReady": false,
+              "separation": 7.701425459805746,
+              "remainingGap": 41.963905127843915,
+              "initialGap": 43.37727549132927,
+              "travel": 3.194444444444444,
+              "limit": 564.2904683648993,
+              "targetId": 5,
+              "arrived": false,
+              "speed": 191.66666666666666
+            },
+            "lastHit": {
+              "tick": 138,
+              "enemyId": 2,
+              "automatic": false,
+              "critical": false,
+              "criticalMultiplier": 1,
+              "raw": 58.75869102089366,
+              "normalDamage": 59,
+              "boostedDamage": 73,
+              "damage": 51,
+              "conductDamage": 0,
+              "markConsumed": true,
+              "tags": [
+                "dash",
+                "conduct"
+              ]
+            },
+            "elemental": {
+              "ignite": 0,
+              "spread": 0,
+              "conduct": 2,
+              "conductSpread": 2,
+              "conductConsumed": 1,
+              "conductDamage": 0,
+              "arc": 2,
+              "burnDamage": 0,
+              "fireEmbers": 0,
+              "fireTransfers": 0,
+              "activeBurning": 0,
+              "activeConducting": 1
+            },
+            "enemies": [
+              {
+                "id": 1,
+                "hp": 185,
+                "conducting": false
+              },
+              {
+                "id": 7,
+                "hp": 78,
+                "conducting": false
+              },
+              {
+                "id": 3,
+                "hp": 78,
+                "conducting": false
+              },
+              {
+                "id": 4,
+                "hp": 105,
+                "conducting": false
+              },
+              {
+                "id": 5,
+                "hp": 105,
+                "conducting": true
+              },
+              {
+                "id": 6,
+                "hp": 105,
+                "conducting": false
+              }
+            ]
+          }
+        },
+        {
+          "before": {
+            "tick": 179,
+            "phase": "PLAYING",
+            "mode": "DASH",
+            "hp": 90,
+            "damage": 50,
+            "heal": 70,
+            "launches": 4,
+            "cost": 30,
+            "hits": 2,
+            "autoDashes": 0,
+            "chain": false,
+            "chainStarts": 0,
+            "autoPlanned": false,
+            "energy": {
+              "current": 0,
+              "capacity": 3,
+              "fraction": 0,
+              "full": false,
+              "autoRechargeRate": 0,
+              "cost": 1,
+              "spent": 0,
+              "gained": 0,
+              "restored": 0
+            },
+            "shadow": null,
+            "lastHit": {
+              "tick": 138,
+              "enemyId": 2,
+              "automatic": false,
+              "critical": false,
+              "criticalMultiplier": 1,
+              "raw": 58.75869102089366,
+              "normalDamage": 59,
+              "boostedDamage": 73,
+              "damage": 51,
+              "conductDamage": 0,
+              "markConsumed": true,
+              "tags": [
+                "dash",
+                "conduct"
+              ]
+            },
+            "elemental": {
+              "ignite": 0,
+              "spread": 0,
+              "conduct": 2,
+              "conductSpread": 2,
+              "conductConsumed": 1,
+              "conductDamage": 0,
+              "arc": 2,
+              "burnDamage": 0,
+              "fireEmbers": 0,
+              "fireTransfers": 0,
+              "activeBurning": 0,
+              "activeConducting": 1
+            },
+            "enemies": [
+              {
+                "id": 1,
+                "hp": 185,
+                "conducting": false
+              },
+              {
+                "id": 7,
+                "hp": 78,
+                "conducting": false
+              },
+              {
+                "id": 3,
+                "hp": 78,
+                "conducting": false
+              },
+              {
+                "id": 4,
+                "hp": 105,
+                "conducting": false
+              },
+              {
+                "id": 5,
+                "hp": 105,
+                "conducting": true
+              },
+              {
+                "id": 6,
+                "hp": 105,
+                "conducting": false
+              }
+            ]
+          },
+          "after": {
+            "tick": 180,
+            "phase": "PLAYING",
+            "mode": "RECOVER",
+            "hp": 100,
+            "damage": 75,
+            "heal": 105,
+            "launches": 4,
+            "cost": 30,
+            "hits": 3,
+            "autoDashes": 0,
+            "chain": false,
+            "chainStarts": 0,
+            "autoPlanned": false,
+            "energy": {
+              "current": 0,
+              "capacity": 3,
+              "fraction": 0,
+              "full": false,
+              "autoRechargeRate": 0,
+              "cost": 1,
+              "spent": 0,
+              "gained": 0,
+              "restored": 0
+            },
+            "shadow": null,
+            "lastHit": {
+              "tick": 180,
+              "enemyId": 5,
+              "automatic": false,
+              "critical": false,
+              "criticalMultiplier": 1,
+              "raw": 37.210041942678856,
+              "normalDamage": 37,
+              "boostedDamage": 47,
+              "damage": 47,
+              "conductDamage": 10,
+              "markConsumed": true,
+              "tags": [
+                "dash",
+                "conduct"
+              ]
+            },
+            "elemental": {
+              "ignite": 0,
+              "spread": 0,
+              "conduct": 3,
+              "conductSpread": 3,
+              "conductConsumed": 2,
+              "conductDamage": 10,
+              "arc": 3,
+              "burnDamage": 0,
+              "fireEmbers": 0,
+              "fireTransfers": 0,
+              "activeBurning": 0,
+              "activeConducting": 2
+            },
+            "enemies": [
+              {
+                "id": 1,
+                "hp": 185,
+                "conducting": false
+              },
+              {
+                "id": 7,
+                "hp": 78,
+                "conducting": false
+              },
+              {
+                "id": 3,
+                "hp": 78,
+                "conducting": false
+              },
+              {
+                "id": 4,
+                "hp": 105,
+                "conducting": false
+              },
+              {
+                "id": 5,
+                "hp": 58,
+                "conducting": true
+              },
+              {
+                "id": 6,
+                "hp": 105,
+                "conducting": true
+              }
+            ]
+          }
+        },
+        {
+          "before": {
+            "tick": 187,
+            "phase": "PLAYING",
+            "mode": "RECOVER",
+            "hp": 100,
+            "damage": 75,
+            "heal": 105,
+            "launches": 4,
+            "cost": 30,
+            "hits": 3,
+            "autoDashes": 0,
+            "chain": false,
+            "chainStarts": 0,
+            "autoPlanned": false,
+            "energy": {
+              "current": 0,
+              "capacity": 3,
+              "fraction": 0,
+              "full": false,
+              "autoRechargeRate": 0,
+              "cost": 1,
+              "spent": 0,
+              "gained": 0,
+              "restored": 0
+            },
+            "shadow": null,
+            "lastHit": {
+              "tick": 180,
+              "enemyId": 5,
+              "automatic": false,
+              "critical": false,
+              "criticalMultiplier": 1,
+              "raw": 37.210041942678856,
+              "normalDamage": 37,
+              "boostedDamage": 47,
+              "damage": 47,
+              "conductDamage": 10,
+              "markConsumed": true,
+              "tags": [
+                "dash",
+                "conduct"
+              ]
+            },
+            "elemental": {
+              "ignite": 0,
+              "spread": 0,
+              "conduct": 3,
+              "conductSpread": 3,
+              "conductConsumed": 2,
+              "conductDamage": 10,
+              "arc": 3,
+              "burnDamage": 0,
+              "fireEmbers": 0,
+              "fireTransfers": 0,
+              "activeBurning": 0,
+              "activeConducting": 2
+            },
+            "enemies": [
+              {
+                "id": 1,
+                "hp": 185,
+                "conducting": false
+              },
+              {
+                "id": 7,
+                "hp": 78,
+                "conducting": false
+              },
+              {
+                "id": 3,
+                "hp": 78,
+                "conducting": false
+              },
+              {
+                "id": 4,
+                "hp": 105,
+                "conducting": false
+              },
+              {
+                "id": 5,
+                "hp": 58,
+                "conducting": true
+              },
+              {
+                "id": 6,
+                "hp": 105,
+                "conducting": true
+              }
+            ]
+          },
+          "after": {
+            "tick": 188,
+            "phase": "PLAYING",
+            "mode": "SHADOW",
+            "hp": 100,
+            "damage": 75,
+            "heal": 105,
+            "launches": 5,
+            "cost": 30,
+            "hits": 3,
+            "autoDashes": 0,
+            "chain": false,
+            "chainStarts": 0,
+            "autoPlanned": false,
+            "energy": {
+              "current": 0,
+              "capacity": 3,
+              "fraction": 0,
+              "full": false,
+              "autoRechargeRate": 0,
+              "cost": 1,
+              "spent": 0,
+              "gained": 0,
+              "restored": 0
+            },
+            "shadow": {
+              "progress": 0,
+              "charge": 0,
+              "dashReady": false,
+              "separation": 0,
+              "remainingGap": 32.78886678304436,
+              "initialGap": 32.78886678304436,
+              "travel": 0,
+              "limit": 650.0387293618724,
+              "targetId": 5,
+              "arrived": false,
+              "speed": 150
+            },
+            "lastHit": {
+              "tick": 180,
+              "enemyId": 5,
+              "automatic": false,
+              "critical": false,
+              "criticalMultiplier": 1,
+              "raw": 37.210041942678856,
+              "normalDamage": 37,
+              "boostedDamage": 47,
+              "damage": 47,
+              "conductDamage": 10,
+              "markConsumed": true,
+              "tags": [
+                "dash",
+                "conduct"
+              ]
+            },
+            "elemental": {
+              "ignite": 0,
+              "spread": 0,
+              "conduct": 3,
+              "conductSpread": 3,
+              "conductConsumed": 2,
+              "conductDamage": 10,
+              "arc": 3,
+              "burnDamage": 0,
+              "fireEmbers": 0,
+              "fireTransfers": 0,
+              "activeBurning": 0,
+              "activeConducting": 2
+            },
+            "enemies": [
+              {
+                "id": 1,
+                "hp": 185,
+                "conducting": false
+              },
+              {
+                "id": 7,
+                "hp": 78,
+                "conducting": false
+              },
+              {
+                "id": 3,
+                "hp": 78,
+                "conducting": false
+              },
+              {
+                "id": 4,
+                "hp": 105,
+                "conducting": false
+              },
+              {
+                "id": 5,
+                "hp": 58,
+                "conducting": true
+              },
+              {
+                "id": 6,
+                "hp": 105,
+                "conducting": true
+              }
+            ]
+          }
+        }
+      ],
+      "errors": [],
+      "loaded": {
+        "version": "0.11.0",
+        "buildId": "20261010T052152Z-useful-tech-unlocks",
+        "title": "BOUNKO · Prototype 0.11.0",
+        "hud": "PHYSICS ACTION LAB · v0.11.0",
+        "matter": "0.20.0",
+        "resources": [
+          "https://cdn.jsdelivr.net/npm/matter-js@0.20.0/build/matter.min.js",
+          "https://cdn.jsdelivr.net/gh/byh-playground/bloom-gamekit@d1e2c385033ad04a7a004cfbe9558948ef07a6d1/rendering.js",
+          "https://cdn.jsdelivr.net/gh/byh-playground/bloom-gamekit@d1e2c385033ad04a7a004cfbe9558948ef07a6d1/input.js",
+          "https://cdn.jsdelivr.net/gh/byh-playground/bloom-gamekit@d1e2c385033ad04a7a004cfbe9558948ef07a6d1/simloop.js"
+        ]
+      },
+      "result": "PASS"
+    }
+  ],
+  "errors": [],
+  "warnings": [],
+  "artifact": {
+    "sha256": "be6f4a4ad740dc5ab4de5d3531328f142b64161569a42422c69cadc9859d94ec",
+    "bytes": 285791
+  },
+  "audit": {
+    "originalTechCount": 29,
+    "currentTechCount": 28,
+    "statCount": 8,
+    "tech": [
+      {
+        "id": "echo",
+        "branch": "chain",
+        "name": "잔상 메아리",
+        "symbol": "↻",
+        "cost": 1,
+        "requires": [],
+        "desc": "명중한 적에게 잔상 무료 자동 재발사 · 돌진은 직접 입력",
+        "consumer": "applyTech -> C.chain.enabled -> recovery launch(source=echo), free HP/energy relaunch",
+        "assessment": "Has a concrete consumer when prerequisites are satisfied; whole-tree combination play not claimed."
+      },
+      {
+        "id": "autoChain",
+        "branch": "chain",
+        "name": "자동 연격",
+        "symbol": "◉",
+        "cost": 2,
+        "requires": [
+          "echo"
+        ],
+        "desc": "에너지 100%·타이밍 50% 명중 → 같은 적 자동 돌진 · 에너지 소비",
+        "consumer": "followTargetAfterHit same enemy -> resolveChainStart at full energy -> recovery shadow -> dash(true); movement energy charge",
+        "assessment": "Has a concrete consumer when prerequisites are satisfied; whole-tree combination play not claimed."
+      },
+      {
+        "id": "ricochet",
+        "branch": "chain",
+        "name": "도탄 연격",
+        "symbol": "⤳",
+        "cost": 1,
+        "requires": [
+          "autoChain"
+        ],
+        "desc": "에너지 100% + 잔상 타이밍 50% 이상 명중하면 다른 적으로 도탄",
+        "consumer": "followTargetAfterHit -> ricochetTarget; conducts priority as an extra synergy",
+        "assessment": "Has a concrete consumer when prerequisites are satisfied; whole-tree combination play not claimed."
+      },
+      {
+        "id": "charge1",
+        "branch": "chain",
+        "name": "운동 회수 I",
+        "symbol": "+",
+        "cost": 1,
+        "requires": [
+          "autoChain"
+        ],
+        "desc": "실제 이동 거리당 에너지 충전 +20%",
+        "consumer": "energyChargePerPixel: normal movement +20%",
+        "assessment": "Has a concrete consumer when prerequisites are satisfied; whole-tree combination play not claimed."
+      },
+      {
+        "id": "charge2",
+        "branch": "chain",
+        "name": "운동 회수 II",
+        "symbol": "✚",
+        "cost": 1,
+        "requires": [
+          "charge1"
+        ],
+        "desc": "일반 이동 거리당 충전 효율 추가 +20% (합계 +40%)",
+        "consumer": "energyChargePerPixel: additional +20%, total +40%",
+        "assessment": "Has a concrete consumer when prerequisites are satisfied; whole-tree combination play not claimed."
+      },
+      {
+        "id": "autoRecharge1",
+        "branch": "chain",
+        "name": "연쇄 회수 I",
+        "symbol": "◐",
+        "cost": 1,
+        "requires": [
+          "autoChain"
+        ],
+        "desc": "자동 연쇄 진행 중 이동 충전 효율: 기본 0% → 50%",
+        "consumer": "autoChargeRate: automatic-chain movement 0% -> 50%",
+        "assessment": "Has a concrete consumer when prerequisites are satisfied; whole-tree combination play not claimed."
+      },
+      {
+        "id": "autoRecharge2",
+        "branch": "chain",
+        "name": "연쇄 회수 II",
+        "symbol": "◕",
+        "cost": 1,
+        "requires": [
+          "autoRecharge1"
+        ],
+        "desc": "자동 연쇄 진행 중 이동 충전 효율: 50% → 100%",
+        "consumer": "autoChargeRate: automatic-chain movement 50% -> 100%",
+        "assessment": "Has a concrete consumer when prerequisites are satisfied; whole-tree combination play not claimed."
+      },
+      {
+        "id": "capacity1",
+        "branch": "chain",
+        "name": "에너지 저장 I",
+        "symbol": "▰",
+        "cost": 1,
+        "requires": [
+          "autoChain"
+        ],
+        "desc": "최대 충전 용량 기본값 대비 +50%",
+        "consumer": "energyCapacity: max 3 -> 4.5; full-capacity start and extra follow-up capacity",
+        "assessment": "Has a concrete consumer when prerequisites are satisfied; whole-tree combination play not claimed."
+      },
+      {
+        "id": "capacity2",
+        "branch": "chain",
+        "name": "에너지 저장 II",
+        "symbol": "▣",
+        "cost": 1,
+        "requires": [
+          "capacity1"
+        ],
+        "desc": "최대 충전 용량 기본값 대비 +100%",
+        "consumer": "energyCapacity: max -> 6",
+        "assessment": "Has a concrete consumer when prerequisites are satisfied; whole-tree combination play not claimed."
+      },
+      {
+        "id": "costEff",
+        "branch": "chain",
+        "name": "연격 절약",
+        "symbol": "◇",
+        "cost": 1,
+        "requires": [
+          "autoChain"
+        ],
+        "desc": "자동 돌진 에너지 소비 -15%",
+        "consumer": "energyCost: automatic dash 1 -> 0.85",
+        "assessment": "Has a concrete consumer when prerequisites are satisfied; whole-tree combination play not claimed."
+      },
+      {
+        "id": "collisionRestore",
+        "branch": "chain",
+        "name": "충돌 회수",
+        "symbol": "✷",
+        "cost": 1,
+        "requires": [
+          "autoChain"
+        ],
+        "desc": "실제 공격 명중 시 20% 확률로 충전 1칸 회복",
+        "consumer": "restoreChargeOnHit: direct hit 20% chance to restore 1 charge",
+        "assessment": "Has a concrete consumer when prerequisites are satisfied; whole-tree combination play not claimed."
+      },
+      {
+        "id": "restore2",
+        "branch": "chain",
+        "name": "충돌 회수 II",
+        "symbol": "✸",
+        "cost": 1,
+        "requires": [
+          "collisionRestore"
+        ],
+        "desc": "명중 회복 확률 +15%p (합계 35%)",
+        "consumer": "restoreChargeOnHit: restoration chance 20% -> 35%",
+        "assessment": "Has a concrete consumer when prerequisites are satisfied; whole-tree combination play not claimed."
+      },
+      {
+        "id": "relay",
+        "branch": "chain",
+        "name": "처치 후 추적",
+        "symbol": "∞",
+        "cost": 1,
+        "requires": [
+          "ricochet"
+        ],
+        "desc": "처치 뒤 다른 적으로 자동 연계 가능",
+        "consumer": "followTargetAfterHit: killed target and no nearby ricochet candidate -> any/chooseEnemy",
+        "assessment": "Has a concrete consumer when prerequisites are satisfied; whole-tree combination play not claimed."
+      },
+      {
+        "id": "momentum",
+        "branch": "motion",
+        "name": "관성 증폭",
+        "symbol": "↗",
+        "cost": 1,
+        "requires": [],
+        "desc": "연속 명중 시 다음 돌진 초기 충격량 강화",
+        "consumer": "applyTech momentum -> dash initial impulse per combo",
+        "assessment": "Has a concrete consumer when prerequisites are satisfied; whole-tree combination play not claimed."
+      },
+      {
+        "id": "quickRearm",
+        "branch": "motion",
+        "name": "빠른 재기동",
+        "symbol": "◉",
+        "cost": 1,
+        "requires": [
+          "momentum"
+        ],
+        "desc": "돌진 후 재발사 준비시간 -25%",
+        "consumer": "rearmDelay -> post-dash ready delay",
+        "assessment": "Has a concrete consumer when prerequisites are satisfied; whole-tree combination play not claimed."
+      },
+      {
+        "id": "rebound",
+        "branch": "motion",
+        "name": "탄성 반동",
+        "symbol": "⤴",
+        "cost": 1,
+        "requires": [
+          "quickRearm"
+        ],
+        "desc": "명중 시 추가 반동",
+        "consumer": "handleCollision -> additional player rebound impulse",
+        "assessment": "Has a concrete consumer when prerequisites are satisfied; whole-tree combination play not claimed."
+      },
+      {
+        "id": "propulsion",
+        "branch": "motion",
+        "name": "추진력 강화",
+        "symbol": "➤",
+        "cost": 1,
+        "requires": [
+          "rebound"
+        ],
+        "desc": "돌진 중 가속 +32%",
+        "consumer": "dash -> motion acceleration multiplier",
+        "assessment": "Has a concrete consumer when prerequisites are satisfied; whole-tree combination play not claimed."
+      },
+      {
+        "id": "spore",
+        "branch": "impact",
+        "name": "충격 포자",
+        "symbol": "✳",
+        "cost": 1,
+        "requires": [],
+        "desc": "충돌 시 주변 적에게 포자 피해 확산",
+        "consumer": "pulseSporeDamage -> nearby enemies actual damage/healing",
+        "assessment": "Has a concrete consumer when prerequisites are satisfied; whole-tree combination play not claimed."
+      },
+      {
+        "id": "shockPush",
+        "branch": "impact",
+        "name": "충격파",
+        "symbol": "◎",
+        "cost": 1,
+        "requires": [
+          "spore"
+        ],
+        "desc": "충돌 시 주변 적을 물리적으로 밀어냄",
+        "consumer": "impactPush -> nearby physical impulses",
+        "assessment": "Has a concrete consumer when prerequisites are satisfied; whole-tree combination play not claimed."
+      },
+      {
+        "id": "sporeSplit",
+        "branch": "impact",
+        "name": "분열 포자",
+        "symbol": "❖",
+        "cost": 1,
+        "requires": [
+          "shockPush"
+        ],
+        "desc": "주변 적에게 포자 조각 피해",
+        "consumer": "impactArea -> two nearby targets after successful impact",
+        "assessment": "Has a concrete consumer when prerequisites are satisfied; whole-tree combination play not claimed."
+      },
+      {
+        "id": "finisher",
+        "branch": "impact",
+        "name": "처치 폭발",
+        "symbol": "✺",
+        "cost": 1,
+        "requires": [
+          "sporeSplit"
+        ],
+        "desc": "적 처치 시 범위 폭발",
+        "consumer": "killed impact -> impactArea explosion",
+        "assessment": "Has a concrete consumer when prerequisites are satisfied; whole-tree combination play not claimed."
+      },
+      {
+        "id": "storm",
+        "branch": "synergy",
+        "name": "포자 폭풍",
+        "symbol": "✻",
+        "cost": 1,
+        "requires": [
+          "autoChain",
+          "spore"
+        ],
+        "desc": "자동 연격 중 포자 파급 범위·위력 상승",
+        "consumer": "autoChain + spore -> automatic-impact spore radius/damage amplification",
+        "assessment": "Has a concrete consumer when prerequisites are satisfied; whole-tree combination play not claimed."
+      },
+      {
+        "id": "chainDrive",
+        "branch": "synergy",
+        "name": "가속 연격",
+        "symbol": "⇢",
+        "cost": 1,
+        "requires": [
+          "autoChain",
+          "propulsion"
+        ],
+        "desc": "연속 명중마다 후속 돌진 가속 상승",
+        "consumer": "autoChain + propulsion -> dash automatic combo acceleration",
+        "assessment": "Has a concrete consumer when prerequisites are satisfied; whole-tree combination play not claimed."
+      },
+      {
+        "id": "elasticBlast",
+        "branch": "synergy",
+        "name": "탄성 폭발",
+        "symbol": "◈",
+        "cost": 1,
+        "requires": [
+          "propulsion",
+          "shockPush"
+        ],
+        "desc": "고속 충돌의 넉백 강화",
+        "consumer": "propulsion + shockPush -> high-speed impactPush amplification",
+        "assessment": "Has a concrete consumer when prerequisites are satisfied; whole-tree combination play not claimed."
+      },
+      {
+        "id": "conduct",
+        "branch": "lightning",
+        "name": "전도 표식",
+        "symbol": "ϟ",
+        "cost": 1,
+        "requires": [],
+        "desc": "표식 대상의 다음 유효 돌진 명중 피해 +25% · 1회 소비 · 도탄 우선 시너지",
+        "consumer": "handleCollision -> expired/positive-hit check -> raw next-hit +25% -> outgoingDamage -> one common HP/heal/kill event; mark consumption then re-mark",
+        "assessment": "Has a concrete consumer when prerequisites are satisfied; whole-tree combination play not claimed."
+      },
+      {
+        "id": "relayArc",
+        "branch": "lightning",
+        "name": "연결 방전",
+        "symbol": "↯",
+        "cost": 1,
+        "requires": [
+          "conduct"
+        ],
+        "desc": "명중 시 근처 다른 적 1개에 같은 추가 피해 표식 전파 · 연쇄 전파 없음",
+        "consumer": "applyConduct -> nearest other enemy mark, conductSpread/arc event; no recursive applyConduct call",
+        "assessment": "Has a concrete consumer when prerequisites are satisfied; whole-tree combination play not claimed."
+      },
+      {
+        "id": "ignite",
+        "branch": "fire",
+        "name": "점화",
+        "symbol": "♨",
+        "cost": 1,
+        "requires": [],
+        "desc": "명중 피해에 비례하는 화염 지속 피해 · 기본 충돌 피해 불변",
+        "consumer": "applyIgnite -> updateBurning periodic damage",
+        "assessment": "Has a concrete consumer when prerequisites are satisfied; whole-tree combination play not claimed."
+      },
+      {
+        "id": "spreadFlame",
+        "branch": "fire",
+        "name": "접촉 전염",
+        "symbol": "🔥",
+        "cost": 1,
+        "requires": [
+          "ignite"
+        ],
+        "desc": "불타는 적이 다른 적에 실제로 닿으면 점화 전염 · 거리 전파 없음",
+        "consumer": "spreadFireAtContact -> actual enemy-enemy Matter contact",
+        "assessment": "Has a concrete consumer when prerequisites are satisfied; whole-tree combination play not claimed."
+      }
+    ],
+    "removed": [
+      {
+        "id": "energyCore",
+        "mergedInto": "autoChain"
+      },
+      {
+        "id": "focusChain",
+        "mergedInto": "autoChain"
+      }
+    ],
+    "stats": [
+      {
+        "id": "attackPower",
+        "name": "공격력",
+        "step": "+6%",
+        "rate": 0.06,
+        "kind": "relative",
+        "consumer": "speed-based direct collision damage"
+      },
+      {
+        "id": "criticalChance",
+        "name": "치명타 확률",
+        "step": "+2%p",
+        "rate": 0.02,
+        "kind": "point",
+        "consumer": "isCritical probability"
+      },
+      {
+        "id": "criticalDamage",
+        "name": "치명타 피해",
+        "step": "+6%p",
+        "rate": 0.06,
+        "kind": "point",
+        "consumer": "direct critical raw multiplier = 2 + investments*0.06; criticalChance investment >=1 purchase/load prerequisite"
+      },
+      {
+        "id": "armorPenFlat",
+        "name": "고정 관통",
+        "step": "기준 공격력의 +3%",
+        "rate": 0.03,
+        "kind": "attack",
+        "consumer": "outgoingDamage target effective armor subtraction"
+      },
+      {
+        "id": "armorPenPercent",
+        "name": "퍼센트 관통",
+        "step": "+3%p",
+        "rate": 0.03,
+        "kind": "point",
+        "consumer": "outgoingDamage target armor reduction"
+      },
+      {
+        "id": "maxHp",
+        "name": "최대 체력",
+        "step": "+6%",
+        "rate": 0.06,
+        "kind": "relative",
+        "consumer": "max health/health clamp/run reset"
+      },
+      {
+        "id": "armor",
+        "name": "방어력",
+        "step": "기준 공격력의 +4%",
+        "rate": 0.04,
+        "kind": "attack",
+        "consumer": "incomingDamage armor reduction"
+      },
+      {
+        "id": "healthRegen",
+        "name": "체력 재생",
+        "step": "기준 최대 체력의 +0.3%/초",
+        "rate": 0.003,
+        "kind": "health",
+        "consumer": "step actual HP regeneration"
+      }
+    ],
+    "scopeExclusions": [
+      "Repeated-stat cap rework",
+      "Armor penetration consolidation",
+      "GameKit update",
+      "Other balance changes"
+    ]
+  },
+  "syntax": "PASS",
+  "browser": "154.0.4258.62",
+  "result": "PASS",
+  "limits": [
+    "Mobile hardware",
+    "boss/clear/long play",
+    "all tech/stat combination playtests",
+    "random critical proc frequency/damage distribution (base/additive actual runtime/UI verified)",
+    "expired/zero-damage mark consumption guards reviewed, not forced in browser"
+  ],
+  "elapsedMs": 19507,
+  "rulesReferenceCommit": "847b90c4cf911a666cc21a431ea3c3bba2edc29c",
+  "savePolicy": {
+    "key": "bloom-impulse-progression-v3",
+    "format": "{kills,unlocked,statLevels}",
+    "kept": "Cumulative kills plus remaining Definition-valid techs/stats",
+    "refund": "Omit removed/invalid prerequisite IDs and criticalDamage levels without criticalChance; available points use actual current node costs",
+    "aliases": false,
+    "automaticOldIdTranslation": false
+  },
+  "contract": {
+    "version": "0.11.0",
+    "autoChainCost": 2,
+    "autoChainIncludes": "Energy resource/charge + same-target focused continuation",
+    "mark": {
+      "nextHitBonusRate": 0.25,
+      "durationMs": 2400,
+      "consume": "One positive direct dash hit; after raw critical multiplier, before common armor/rounding/remaining-HP clamp; re-mark once via the same dash event",
+      "relay": "Closest other enemy receives identical mark; spread cannot recursively spread"
+    },
+    "critical": {
+      "base": 2,
+      "upgradePerInvestment": 0.06,
+      "kind": "percentage-point addition",
+      "prerequisite": "criticalChance investment >=1"
+    }
+  }
+}

@@ -2,7 +2,7 @@
 
 블룸 세계관의 탑다운 2D 물리 액션 공 튕기기 게임입니다. 잔상을 보내 조준·충전하고, 타이밍에 맞춰 몸체를 돌진시켜 적과 충돌합니다. 전장을 탭해 구르며 피하고, 처치로 모은 성장 자원으로 기술과 기본 능력치를 강화합니다.
 
-게임·스타일·도움말·상세 위키는 `index.html` 하나에 들어 있습니다. 현재 버전 **0.10.2**는 지정된 원본 Candidate를 이관한 등록본입니다. 아래 대표 사용자 흐름을 실제 브라우저로 확인했으며, Stable 승격과 Pages 배포는 진행하지 않았습니다.
+게임·스타일·도움말·상세 위키는 `index.html` 하나에 들어 있습니다. 현재 버전 **0.10.2**는 지정된 원본 Candidate를 이관한 등록본입니다. 아래 대표 사용자 흐름을 실제 브라우저로 확인했으며, 등록 상태는 Candidate를 유지하며, 공개 배포 구성은 아래에서 안내합니다.
 
 ## 실행
 
@@ -14,7 +14,7 @@ cd bloom-bounko
 npx --yes http-server . -p 8000 -c-1
 ```
 
-브라우저에서 `http://localhost:8000/`을 열고 **게임 시작**을 선택합니다. 외부 라이브러리의 최초 로딩에는 인터넷 연결이 필요합니다. GitHub Pages는 설정되어 있지 않습니다.
+브라우저에서 `http://localhost:8000/`을 열고 **게임 시작**을 선택합니다. 외부 라이브러리의 최초 로딩에는 인터넷 연결이 필요합니다. 공개 실행: **[BOUNKO](https://byh-playground.github.io/bloom-bounko/)**.
 
 ## 플레이와 조작
 
@@ -45,6 +45,14 @@ npx --yes http-server . -p 8000 -c-1
 | Bloom GameKit | 커밋 `d1e2c385033ad04a7a004cfbe9558948ef07a6d1`의 루트 [rendering.js](https://github.com/byh-playground/bloom-gamekit/blob/d1e2c385033ad04a7a004cfbe9558948ef07a6d1/rendering.js), [input.js](https://github.com/byh-playground/bloom-gamekit/blob/d1e2c385033ad04a7a004cfbe9558948ef07a6d1/input.js), [simloop.js](https://github.com/byh-playground/bloom-gamekit/blob/d1e2c385033ad04a7a004cfbe9558948ef07a6d1/simloop.js) |
 
 GameKit은 위 고정 커밋의 루트 ESM을 jsDelivr에서 가져옵니다. 초기 이관에서는 제목·대기 화면·접근성 이름·내장 위키를 BOUNKO로 정리하고, 실제 루트 import와 맞도록 의존성 설명을 수정했습니다. 게임 실행 모듈은 BUILD_ID 외에 원본과 동일하며, 밸런스·메커니즘·저장 계약을 유지했습니다. `.gitattributes`로 HTML의 LF 줄바꿈을 고정했습니다.
+
+## Pages 정적 배포
+
+[Pages workflow](.github/workflows/pages.yml)는 main 변경과 수동 실행에서 검증한 HTML을 정적 파일로 게시합니다. 한 job에서 checkout → Pages 설정 → 파일 준비 → artifact 업로드 → 배포를 수행합니다. 별도 게임 빌드나 테스트 매트릭스는 추가하지 않습니다.
+
+배포 파일은 index.html, build.json, .nojekyll입니다. HTML은 저장소의 바이트를 그대로 사용하며, [build.json](https://byh-playground.github.io/bloom-bounko/build.json)에 배포 커밋·UTC 빌드 시각·게임 버전·BUILD_ID·HTML SHA-256을 자동으로 기록합니다. HTML의 BUILD_ID는 검증한 게임 원본을, build.json의 commit은 그 파일을 게시한 커밋을 식별합니다. 배포 상태는 저장소의 Actions에서 확인합니다.
+
+GitHub Pages의 게시 소스는 Settings → Pages → Build and deployment → GitHub Actions입니다. 정적 파일 게시가 성공한 뒤에도 실제 공개 주소의 라이브러리 로딩과 부팅을 별도로 확인합니다.
 
 ## 개발 기준
 

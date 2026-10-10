@@ -445,5 +445,5 @@
     "long play",
     "old-origin storage transfer"
   ],
-  "projectStatus": "Candidate; no Stable promotion or Pages deployment."
+  "projectStatus": "Candidate; no Stable promotion. Pages deployment provenance is generated in public build.json and GitHub Actions."
 }

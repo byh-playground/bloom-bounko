@@ -1,0 +1,719 @@
+{
+  "startedAt": "2026-10-10T04:19:20.915Z",
+  "baseCommit": "a7a906bae906de375b95ef187e087bfebb2da865",
+  "scenario": "PC WASD/diagonal/hold/focus/menu/cooldown/click/attack/combat/save",
+  "mockLibraries": false,
+  "forcedGameState": false,
+  "errors": [],
+  "warnings": [
+    {
+      "url": "http://127.0.0.1:8766/favicon.ico",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    }
+  ],
+  "checkpoints": [
+    {
+      "name": "W-up",
+      "atMs": 6519,
+      "tick": 5,
+      "phase": "PLAYING",
+      "mode": "READY",
+      "evade": {
+        "charges": 1,
+        "max": 2,
+        "refillAtMs": 550,
+        "active": true,
+        "startedAtMs": 50,
+        "count": 1
+      },
+      "position": {
+        "x": 750,
+        "y": 709.4536705902891
+      },
+      "speed": {
+        "x": 0,
+        "y": -717.3587090650517
+      },
+      "launches": 0,
+      "launchCost": 0,
+      "hits": 0,
+      "kills": 0,
+      "totalKills": 0
+    },
+    {
+      "name": "A-left",
+      "atMs": 6686,
+      "tick": 3,
+      "phase": "PLAYING",
+      "mode": "READY",
+      "evade": {
+        "charges": 1,
+        "max": 2,
+        "refillAtMs": 550,
+        "active": true,
+        "startedAtMs": 50,
+        "count": 1
+      },
+      "position": {
+        "x": 734.867453236842,
+        "y": 750
+      },
+      "speed": {
+        "x": -907.9528057894777,
+        "y": 0
+      },
+      "launches": 0,
+      "launchCost": 0,
+      "hits": 0,
+      "kills": 0,
+      "totalKills": 0
+    },
+    {
+      "name": "S-down",
+      "atMs": 6845,
+      "tick": 3,
+      "phase": "PLAYING",
+      "mode": "READY",
+      "evade": {
+        "charges": 1,
+        "max": 2,
+        "refillAtMs": 550,
+        "active": true,
+        "startedAtMs": 50,
+        "count": 1
+      },
+      "position": {
+        "x": 750,
+        "y": 765.132546763158
+      },
+      "speed": {
+        "x": 0,
+        "y": 907.9528057894777
+      },
+      "launches": 0,
+      "launchCost": 0,
+      "hits": 0,
+      "kills": 0,
+      "totalKills": 0
+    },
+    {
+      "name": "D-right",
+      "atMs": 7012,
+      "tick": 3,
+      "phase": "PLAYING",
+      "mode": "READY",
+      "evade": {
+        "charges": 1,
+        "max": 2,
+        "refillAtMs": 550,
+        "active": true,
+        "startedAtMs": 50,
+        "count": 1
+      },
+      "position": {
+        "x": 765.132546763158,
+        "y": 750
+      },
+      "speed": {
+        "x": 907.9528057894777,
+        "y": 0
+      },
+      "launches": 0,
+      "launchCost": 0,
+      "hits": 0,
+      "kills": 0,
+      "totalKills": 0
+    },
+    {
+      "name": "WD-diagonal",
+      "atMs": 7187,
+      "tick": 3,
+      "phase": "PLAYING",
+      "mode": "READY",
+      "evade": {
+        "charges": 1,
+        "max": 2,
+        "refillAtMs": 550,
+        "active": true,
+        "startedAtMs": 50,
+        "count": 1
+      },
+      "position": {
+        "x": 760.7003264328515,
+        "y": 739.2996735671485
+      },
+      "speed": {
+        "x": 642.0195859710907,
+        "y": -642.0195859710907
+      },
+      "launches": 0,
+      "launchCost": 0,
+      "hits": 0,
+      "kills": 0,
+      "totalKills": 0
+    },
+    {
+      "name": "AS-diagonal",
+      "atMs": 7362,
+      "tick": 3,
+      "phase": "PLAYING",
+      "mode": "READY",
+      "evade": {
+        "charges": 1,
+        "max": 2,
+        "refillAtMs": 550,
+        "active": true,
+        "startedAtMs": 50,
+        "count": 1
+      },
+      "position": {
+        "x": 739.2996735671485,
+        "y": 760.7003264328515
+      },
+      "speed": {
+        "x": -642.0195859710907,
+        "y": 642.0195859710907
+      },
+      "launches": 0,
+      "launchCost": 0,
+      "hits": 0,
+      "kills": 0,
+      "totalKills": 0
+    },
+    {
+      "name": "hold-repeat",
+      "atMs": 8221,
+      "tick": 44,
+      "phase": "PLAYING",
+      "mode": "READY",
+      "evade": {
+        "charges": 2,
+        "max": 2,
+        "refillAtMs": 0,
+        "active": false,
+        "startedAtMs": 50,
+        "count": 1
+      },
+      "position": {
+        "x": 750,
+        "y": 629.8426605757805
+      },
+      "speed": {
+        "x": 0,
+        "y": 0
+      },
+      "launches": 0,
+      "launchCost": 0,
+      "hits": 0,
+      "kills": 0,
+      "totalKills": 0
+    },
+    {
+      "name": "focus-return-right",
+      "atMs": 8745,
+      "tick": 16,
+      "phase": "PLAYING",
+      "mode": "READY",
+      "evade": {
+        "charges": 0,
+        "max": 2,
+        "refillAtMs": 550,
+        "active": true,
+        "startedAtMs": 266.6666666666667,
+        "count": 2
+      },
+      "position": {
+        "x": 765.132546763158,
+        "y": 645.0956468209403
+      },
+      "speed": {
+        "x": 907.9528057894777,
+        "y": 0
+      },
+      "launches": 0,
+      "launchCost": 0,
+      "hits": 0,
+      "kills": 0,
+      "totalKills": 0
+    },
+    {
+      "name": "settings-open",
+      "atMs": 8879,
+      "tick": 19,
+      "phase": "PLAYING",
+      "mode": "READY",
+      "evade": {
+        "charges": 0,
+        "max": 2,
+        "refillAtMs": 550,
+        "active": true,
+        "startedAtMs": 266.6666666666667,
+        "count": 2
+      },
+      "position": {
+        "x": 801.1556377410827,
+        "y": 645.0956468209403
+      },
+      "speed": {
+        "x": 636.5584998823101,
+        "y": 0
+      },
+      "launches": 0,
+      "launchCost": 0,
+      "hits": 0,
+      "kills": 0,
+      "totalKills": 0
+    },
+    {
+      "name": "settings-return",
+      "atMs": 9250,
+      "tick": 27,
+      "phase": "PLAYING",
+      "mode": "READY",
+      "evade": {
+        "charges": 0,
+        "max": 2,
+        "refillAtMs": 550,
+        "active": true,
+        "startedAtMs": 266.6666666666667,
+        "count": 2
+      },
+      "position": {
+        "x": 851.5929970529488,
+        "y": 645.0956468209403
+      },
+      "speed": {
+        "x": 228.82452709488007,
+        "y": 0
+      },
+      "launches": 0,
+      "launchCost": 0,
+      "hits": 0,
+      "kills": 0,
+      "totalKills": 0
+    },
+    {
+      "name": "modifier-shortcuts",
+      "atMs": 9507,
+      "tick": 8,
+      "phase": "PLAYING",
+      "mode": "READY",
+      "evade": {
+        "charges": 2,
+        "max": 2,
+        "refillAtMs": 0,
+        "active": false,
+        "startedAtMs": -1000000000,
+        "count": 0
+      },
+      "position": {
+        "x": 750,
+        "y": 750
+      },
+      "speed": {
+        "x": 0,
+        "y": 0
+      },
+      "launches": 0,
+      "launchCost": 0,
+      "hits": 0,
+      "kills": 0,
+      "totalKills": 0
+    },
+    {
+      "name": "charges-empty",
+      "atMs": 9659,
+      "tick": 17,
+      "phase": "PLAYING",
+      "mode": "READY",
+      "evade": {
+        "charges": 0,
+        "max": 2,
+        "refillAtMs": 666.6666666666667,
+        "active": true,
+        "startedAtMs": 183.33333333333334,
+        "count": 2
+      },
+      "position": {
+        "x": 826.225681347226,
+        "y": 734.867453236842
+      },
+      "speed": {
+        "x": 440.9320571714238,
+        "y": 0
+      },
+      "launches": 0,
+      "launchCost": 0,
+      "hits": 0,
+      "kills": 0,
+      "totalKills": 0
+    },
+    {
+      "name": "refill-with-held-key",
+      "atMs": 10204,
+      "tick": 50,
+      "phase": "PLAYING",
+      "mode": "READY",
+      "evade": {
+        "charges": 1,
+        "max": 2,
+        "refillAtMs": 1166.6666666666667,
+        "active": false,
+        "startedAtMs": 183.33333333333334,
+        "count": 2
+      },
+      "position": {
+        "x": 870.1573394242195,
+        "y": 734.867453236842
+      },
+      "speed": {
+        "x": 0,
+        "y": 0
+      },
+      "launches": 0,
+      "launchCost": 0,
+      "hits": 0,
+      "kills": 0,
+      "totalKills": 0
+    },
+    {
+      "name": "fresh-press-after-refill",
+      "atMs": 10223,
+      "tick": 51,
+      "phase": "PLAYING",
+      "mode": "READY",
+      "evade": {
+        "charges": 0,
+        "max": 2,
+        "refillAtMs": 1166.6666666666667,
+        "active": true,
+        "startedAtMs": 850.0000000000001,
+        "count": 3
+      },
+      "position": {
+        "x": 870.1573394242195,
+        "y": 750
+      },
+      "speed": {
+        "x": 0,
+        "y": 907.9528057894777
+      },
+      "launches": 0,
+      "launchCost": 0,
+      "hits": 0,
+      "kills": 0,
+      "totalKills": 0
+    },
+    {
+      "name": "WASD-cancels-offense",
+      "atMs": 10440,
+      "tick": 6,
+      "phase": "PLAYING",
+      "mode": "READY",
+      "evade": {
+        "charges": 1,
+        "max": 2,
+        "refillAtMs": 583.3333333333334,
+        "active": true,
+        "startedAtMs": 83.33333333333334,
+        "count": 1
+      },
+      "position": {
+        "x": 721.4096490747066,
+        "y": 750
+      },
+      "speed": {
+        "x": -807.4682497281242,
+        "y": 0
+      },
+      "launches": 1,
+      "launchCost": 10,
+      "hits": 0,
+      "kills": 0,
+      "totalKills": 0
+    },
+    {
+      "name": "existing-click",
+      "atMs": 11904,
+      "tick": 45,
+      "phase": "PLAYING",
+      "mode": "READY",
+      "evade": {
+        "charges": 2,
+        "max": 2,
+        "refillAtMs": 0,
+        "active": false,
+        "startedAtMs": 83.33333333333334,
+        "count": 1
+      },
+      "position": {
+        "x": 864.5010263951391,
+        "y": 786.4321447620941
+      },
+      "speed": {
+        "x": 0,
+        "y": 6.821210263296962e-12
+      },
+      "launches": 0,
+      "launchCost": 0,
+      "hits": 0,
+      "kills": 0,
+      "totalKills": 0
+    },
+    {
+      "name": "real-shadow-recoil",
+      "atMs": 12300,
+      "tick": 69,
+      "phase": "PLAYING",
+      "mode": "GOLDEN",
+      "evade": {
+        "charges": 2,
+        "max": 2,
+        "refillAtMs": 0,
+        "active": false,
+        "startedAtMs": 83.33333333333334,
+        "count": 1
+      },
+      "position": {
+        "x": 864.5010263951391,
+        "y": 786.4321447620962
+      },
+      "speed": {
+        "x": 0,
+        "y": 0
+      },
+      "launches": 1,
+      "launchCost": 10,
+      "hits": 0,
+      "kills": 0,
+      "totalKills": 0
+    },
+    {
+      "name": "real-combat",
+      "atMs": 13398,
+      "tick": 135,
+      "phase": "PLAYING",
+      "mode": "READY",
+      "evade": {
+        "charges": 2,
+        "max": 2,
+        "refillAtMs": 0,
+        "active": false,
+        "startedAtMs": 83.33333333333334,
+        "count": 1
+      },
+      "position": {
+        "x": 906.4919032959684,
+        "y": 733.1167357132117
+      },
+      "speed": {
+        "x": 48.67183000341356,
+        "y": 112.60689199637
+      },
+      "launches": 2,
+      "launchCost": 19,
+      "hits": 1,
+      "kills": 0,
+      "totalKills": 0
+    },
+    {
+      "name": "progression-reload",
+      "atMs": 14221,
+      "tick": 0,
+      "phase": "LOBBY",
+      "mode": "READY",
+      "evade": {
+        "charges": 2,
+        "max": 2,
+        "refillAtMs": 0,
+        "active": false,
+        "startedAtMs": -1000000000,
+        "count": 0
+      },
+      "position": {
+        "x": 750,
+        "y": 750
+      },
+      "speed": {
+        "x": 0,
+        "y": 0
+      },
+      "launches": 0,
+      "launchCost": 0,
+      "hits": 0,
+      "kills": 0,
+      "totalKills": 0
+    }
+  ],
+  "artifact": {
+    "sha256": "9a0692a1bf29217a8616b3956156c9e9a8ff017f02bd94902a4c5704a7ee78b6",
+    "bytes": 281142
+  },
+  "browser": "154.0.4258.62",
+  "focusEmulation": false,
+  "loaded": {
+    "version": "0.10.3",
+    "buildId": "20261010T040601Z-wasd-direction-dash",
+    "matter": "0.20.0",
+    "visibility": "visible",
+    "renderer": "ANGLE (NVIDIA, NVIDIA GeForce GTX 1660 Ti (0x00002191) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+    "resources": [
+      "https://cdn.jsdelivr.net/npm/matter-js@0.20.0/build/matter.min.js",
+      "https://cdn.jsdelivr.net/gh/byh-playground/bloom-gamekit@d1e2c385033ad04a7a004cfbe9558948ef07a6d1/rendering.js",
+      "https://cdn.jsdelivr.net/gh/byh-playground/bloom-gamekit@d1e2c385033ad04a7a004cfbe9558948ef07a6d1/input.js",
+      "https://cdn.jsdelivr.net/gh/byh-playground/bloom-gamekit@d1e2c385033ad04a7a004cfbe9558948ef07a6d1/simloop.js"
+    ]
+  },
+  "directions": {
+    "W-up": {
+      "mag": 717.3587090650517,
+      "count": 1,
+      "speed": {
+        "x": 0,
+        "y": -717.3587090650517
+      }
+    },
+    "A-left": {
+      "mag": 907.9528057894777,
+      "count": 1,
+      "speed": {
+        "x": -907.9528057894777,
+        "y": 0
+      }
+    },
+    "S-down": {
+      "mag": 907.9528057894777,
+      "count": 1,
+      "speed": {
+        "x": 0,
+        "y": 907.9528057894777
+      }
+    },
+    "D-right": {
+      "mag": 907.9528057894777,
+      "count": 1,
+      "speed": {
+        "x": 907.9528057894777,
+        "y": 0
+      }
+    },
+    "WD-diagonal": {
+      "mag": 907.9528057894757,
+      "count": 1,
+      "speed": {
+        "x": 642.0195859710907,
+        "y": -642.0195859710907
+      }
+    },
+    "AS-diagonal": {
+      "mag": 907.9528057894757,
+      "count": 1,
+      "speed": {
+        "x": -642.0195859710907,
+        "y": 642.0195859710907
+      }
+    }
+  },
+  "tabFocusLoss": {
+    "focused": false,
+    "visible": "visible"
+  },
+  "combatScope": {
+    "actualHit": "PASS",
+    "killsObserved": 0,
+    "killClearObjective": "Not a passing objective of this WASD verification; prior supplemental kill attempts failed and are recorded separately."
+  },
+  "result": "PASS",
+  "passScope": "Requested PC input behavior, real attack hit, lobby transition and unchanged saved state restore",
+  "limits": [
+    "enemy kill/clear objective (prior supplemental attempts failed)",
+    "mobile hardware",
+    "boss clear",
+    "full upgrade tree",
+    "long play",
+    "public deployment of this unmerged feature"
+  ],
+  "elapsedMs": 18536,
+  "sourceReview": {
+    "configurationUnchanged": true,
+    "sharedEvadeMechanicsUnchanged": true,
+    "dependencyPinsUnchanged": true,
+    "saveKey": "bloom-impulse-progression-v3"
+  },
+  "environment": {
+    "host": "Windows",
+    "headless": true,
+    "playwright": "1.64.0",
+    "viewport": {
+      "width": 1000,
+      "height": 800
+    },
+    "focus": "Protocol focus emulation disabled after navigation; actual same-context second tab observed document.hasFocus=false, followed by real focus return. No synthetic DOM blur events."
+  },
+  "projectStatus": "Representative scenario validated; draft feature branch, not merged, not deployed, no Stable promotion.",
+  "priorAttempts": [
+    {
+      "startedAt": "2026-10-10T04:08:46.168Z",
+      "elapsedMs": 4247,
+      "result": "FAIL",
+      "failure": "Error: Actual second-tab focus loss not observed",
+      "lastCheckpoint": "hold-repeat",
+      "artifactSha256": "9a0692a1bf29217a8616b3956156c9e9a8ff017f02bd94902a4c5704a7ee78b6",
+      "classification": "Environment: headless focus emulation stayed active; later navigation-aware disabling allowed actual focus loss."
+    },
+    {
+      "startedAt": "2026-10-10T04:10:41.474Z",
+      "elapsedMs": 4562,
+      "result": "FAIL",
+      "failure": "Error: Please use browser.newContext()",
+      "lastCheckpoint": "hold-repeat",
+      "artifactSha256": "9a0692a1bf29217a8616b3956156c9e9a8ff017f02bd94902a4c5704a7ee78b6",
+      "classification": "Harness setup: convenience browser.newPage owns its context; switched to explicit browser.newContext for second tab."
+    },
+    {
+      "startedAt": "2026-10-10T04:11:28.652Z",
+      "elapsedMs": 3011,
+      "result": "FAIL",
+      "failure": "Error: Wrong direction WD-diagonal",
+      "lastCheckpoint": "WD-diagonal",
+      "artifactSha256": "9a0692a1bf29217a8616b3956156c9e9a8ff017f02bd94902a4c5704a7ee78b6",
+      "classification": "Harness observation race: read first cardinal edge before second chord key reached the next tick; now waits for observable resulting direction."
+    },
+    {
+      "startedAt": "2026-10-10T04:12:22.243Z",
+      "elapsedMs": 4164,
+      "result": "FAIL",
+      "failure": "Error: Actual second-tab focus loss not observed",
+      "lastCheckpoint": "hold-repeat",
+      "artifactSha256": "9a0692a1bf29217a8616b3956156c9e9a8ff017f02bd94902a4c5704a7ee78b6",
+      "classification": "Environment: focus emulation reapplied by navigation; disabled after navigation."
+    },
+    {
+      "startedAt": "2026-10-10T04:13:31.105Z",
+      "elapsedMs": 12679,
+      "result": "FAIL",
+      "failure": "Error: Actual combat hit/kill missing",
+      "lastCheckpoint": "real-combat",
+      "artifactSha256": "9a0692a1bf29217a8616b3956156c9e9a8ff017f02bd94902a4c5704a7ee78b6",
+      "classification": "Supplemental combat kill expectation failed after multiple runs: 2 hits, no kill, player died. No game state mutation or balance change was used to force a passing kill result."
+    },
+    {
+      "startedAt": "2026-10-10T04:15:06.681Z",
+      "elapsedMs": 10623,
+      "result": "FAIL",
+      "failure": "Error: Stuck W after focus loss",
+      "lastCheckpoint": "focus-return-right",
+      "artifactSha256": "9a0692a1bf29217a8616b3956156c9e9a8ff017f02bd94902a4c5704a7ee78b6",
+      "classification": "Velocity-only focus assertion after live combat observed positive Y inertia, not W direction. Final fixed focus flow prepares the second tab before a normal new run and switches immediately after the key press, before enemy contact."
+    },
+    {
+      "startedAt": "2026-10-10T04:17:05.761Z",
+      "elapsedMs": 20816,
+      "result": "FAIL",
+      "failure": "Error: Actual combat hit/kill missing",
+      "lastCheckpoint": "real-combat",
+      "artifactSha256": "9a0692a1bf29217a8616b3956156c9e9a8ff017f02bd94902a4c5704a7ee78b6",
+      "classification": "Requested input checks passed, but supplemental combat kill expectation failed after normal reload/start: 5 hits, no kill, player died. Final PASS is explicitly scoped to the requested WASD behavior and actual attack hit/lobby/saved-state flow; kill/clear is not claimed as passing."
+    }
+  ]
+}

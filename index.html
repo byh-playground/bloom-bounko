@@ -3016,7 +3016,7 @@ try {
     $('guidePanel').classList.toggle('open',open);$('guidePanel').setAttribute('aria-hidden',String(!open));
     if(open){showGuideSlide(0);$('guideClose').focus();}else $('guideOpen').focus();
   }
-  function openWiki(open){if(open)refreshWikiStats();
+  function openWiki(open){if(open){refreshWikiStats();updateDiscoveredSpeciesWiki();}
     if(open&&phase!=='LOBBY')return;
     if(open)openGuide(false);
     $('wikiPanel').classList.toggle('open',open);$('wikiPanel').setAttribute('aria-hidden',String(!open));

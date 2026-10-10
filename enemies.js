@@ -156,14 +156,16 @@ const rgb=h=>[1,3,5].map(i=>parseInt(h.slice(i,i+2),16)/255);
 // Replay one species' authored geometry: opaque primitives form the silhouette.
 // The injected outline decorates any Presentation without knowing its faction.
 export function drawSpecies(r,pres,view){
+  if(!pres.outline&&pres.color===species[view.unit.speciesId].color){pres.draw(r,view);return;}
   const methods={ellipse:{color:4,points:[0,1]},rect:{color:4,points:[0,1]},
     triangle:{color:6,points:[0,1,2,3,4,5]},line:{color:5,points:[0,1,2,3]}};
-  const tint=rgb(pres.color),original=rgb(species[view.unit.speciesId].color),commands=[];
+  const tint=rgb(pres.color),original=rgb(species[view.unit.speciesId].color),commands=pres.outline?[]:null;
   const paint=Object.fromEntries(Object.entries(methods).map(([name,shape])=>[name,(...args)=>{
     const color=args[shape.color];args[shape.color]=color.map((v,i)=>i<3?Math.min(1,v*tint[i]/Math.max(.05,original[i])):v);
-    commands.push({name,shape,args});
+    if(commands)commands.push({name,shape,args});else r[name](...args);
   }]));
   pres.draw(paint,view);
+  if(!commands)return;
   if(pres.outline){const passes=[pres.outline],contrast=pres.outline.contrast,edgeColor=rgb(pres.outline.color);
     if(contrast&&Math.hypot(...tint.map((v,i)=>v-edgeColor[i]))<contrast.maxColorDistance)passes.push(contrast);
     for(const pass of passes){const color=[...rgb(pass.color),1];

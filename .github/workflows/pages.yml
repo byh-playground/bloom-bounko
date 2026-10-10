@@ -29,6 +29,7 @@ jobs:
         run: |
           mkdir -p _site
           cp index.html _site/index.html
+          cp pets.js _site/pets.js
           touch _site/.nojekyll
           python3 - <<'PY'
           import datetime, hashlib, json, os, pathlib, re
@@ -41,6 +42,7 @@ jobs:
               'version': re.search(r"VERSION = '([^']+)'", html).group(1),
               'build_id': re.search(r"BUILD_ID = '([^']+)'", html).group(1),
               'index_sha256': hashlib.sha256(data).hexdigest(),
+              'pets_sha256': hashlib.sha256(pathlib.Path('_site/pets.js').read_bytes()).hexdigest(),
           }
           pathlib.Path('_site/build.json').write_text(json.dumps(metadata, indent=2) + '\n', encoding='utf-8')
           PY

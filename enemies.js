@@ -132,9 +132,9 @@ const metadata={
   sprout:['꽃잎 새싹','#85cc4a','짧은 돌진'],puff:['포자 방울','#a88cee','탄성 돌진'],petalPredator:['꽃잎 포식자','#f47b9b','부채·돌진·원형 탄막·새싹 소환'],elasticCap:['탄성 버섯왕','#a68aee','돌진·부채·원형 탄막·포자 소환']};
 export const species=Object.fromEntries(Object.entries(metadata).map(([id,[name,color,description]],i)=>[id,{id,name,color,description,boss:!!bossSpecies[id],
   egg:{color,mark:i%3,spots:2+i%4},config:enemyConfig[id],Class:enemyClasses[id],presentation:{draw:enemyVisuals[id],color,egg:{motif:id}} }]));
-export function speciesConfig(id,grade=5,{powerRate=1,sizeRate=1,growthRate=1}={}){
+export function speciesConfig(id,grade=5,{powerRate=1,sizeRate=1,bodyScale=1,growthRate=1}={}){
   const base=species[id].config,c=structuredClone(base),power=Math.pow(powerRate,grade),size=Math.pow(sizeRate,grade);
-  c.hp*=power;c.damage*=power;c.attackPower=65*power;c.radius*=size;c.height*=size;c.armorPenPercent=0;c.armorPenFlat=0;
+  c.hp*=power;c.damage*=power;c.attackPower=65*power;c.radius*=bodyScale;c.height*=bodyScale;c.armorPenPercent=0;c.armorPenFlat=0;
   if(c.leap){c.leap.range*=Math.pow(growthRate,grade);c.leap.height*=Math.pow(growthRate,grade);}
   if(c.selfDestruct){c.selfDestruct.damage*=power;c.selfDestruct.radius*=size;}
   if(c.spike)c.spike.damage*=power;
@@ -153,6 +153,32 @@ const eggMotifs={
 };
 for(const spec of Object.values(species))Object.assign(spec.presentation.egg,eggMotifs[spec.id]);
 const rgb=h=>[1,3,5].map(i=>parseInt(h.slice(i,i+2),16)/255);
+// Replay one species' authored geometry: opaque primitives form the silhouette.
+// The injected outline decorates any Presentation without knowing its faction.
+export function drawSpecies(r,pres,view){
+  if(!pres.outline&&pres.color===species[view.unit.speciesId].color){pres.draw(r,view);return;}
+  const methods={ellipse:{color:4,points:[0,1]},rect:{color:4,points:[0,1]},
+    triangle:{color:6,points:[0,1,2,3,4,5]},line:{color:5,points:[0,1,2,3]}};
+  const tint=rgb(pres.color),original=rgb(species[view.unit.speciesId].color),commands=pres.outline?[]:null;
+  const paint=Object.fromEntries(Object.entries(methods).map(([name,shape])=>[name,(...args)=>{
+    const color=args[shape.color];args[shape.color]=color.map((v,i)=>i<3?Math.min(1,v*tint[i]/Math.max(.05,original[i])):v);
+    if(commands)commands.push({name,shape,args});else r[name](...args);
+  }]));
+  pres.draw(paint,view);
+  if(!commands)return;
+  if(pres.outline){const passes=[pres.outline],contrast=pres.outline.contrast,edgeColor=rgb(pres.outline.color);
+    if(contrast&&Math.hypot(...tint.map((v,i)=>v-edgeColor[i]))<contrast.maxColorDistance)passes.push(contrast);
+    for(const pass of passes){const color=[...rgb(pass.color),1];
+      for(let i=0;i<8;i++){const angle=i*Math.PI/4,dx=Math.cos(angle)*pass.width,dy=Math.sin(angle)*pass.width;
+        for(const {name,shape,args} of commands){if(args[shape.color][3]<.8)continue;
+          const edge=[...args];edge[shape.color]=color;
+          for(const index of shape.points)edge[index]+=index%2?dy:dx;r[name](...edge);
+        }
+      }
+    }
+  }
+  for(const {name,args} of commands)r[name](...args);
+}
 // Both UI SVG and world primitives consume the same presentation palette/motif.
 function motifSegments(presentation,x,y,q){const m=presentation.egg,items=[];
   if(m.kind==='v')for(const sign of [-1,1])items.push({kind:'line',points:[x+sign*q*.7,y-q*.4,x+sign*q*.15,y+q*.35,x+sign*q*.8,y+q*.75]});

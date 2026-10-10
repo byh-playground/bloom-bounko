@@ -10,13 +10,19 @@ export const petConfig = {
     {name:'Rare',color:'#78b9ff'}, {name:'Epic',color:'#bd8cff'},
     {name:'Legendary',color:'#ffb354'}, {name:'Mythic',color:'#ff7086'}],
   species,
-  combat:{gradePowerRate:1.8,gradeSizeRate:1.05,gradeRangeRate:1.05,hitProtectionMs:500,reviveMs:3000,followRadius:48,leash:600}
+  presentation:{size:{min:.65,max:1},outline:{width:2.5,contrast:{width:.8,color:'#0c181e',maxColorDistance:.16}}},
+  combat:{gradePowerRate:1.8,gradeSkillSizeRate:1.05,gradeRangeRate:1.05,hitProtectionMs:500,reviveMs:3000,followRadius:48,leash:600}
 };
 
 // Shared boss/companion projectile geometry; the caller owns count and damage.
 export function patternAngle(kind,count,index,heading=0,spread=0){return kind==='radial'?index*Math.PI*2/count+heading:heading+(index-(count-1)*.5)*spread;}
 
 const integer=(n,min,max)=>Number.isSafeInteger(n)?Math.max(min,Math.min(max,n)):min;
+export function companionPresentation(grade,config=petConfig){
+  const index=integer(grade,0,config.grades.length-1),size=config.presentation.size;
+  return {scale:size.min+(size.max-size.min)*index/Math.max(1,config.grades.length-1),
+    outline:{...config.presentation.outline,color:config.grades[index].color}};
+}
 export function companionCapacity(config,level){
   return config.slots.base+integer(level,0,config.slots.maxLevel)*config.slots.perLevel;
 }

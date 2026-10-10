@@ -1,0 +1,1192 @@
+{
+  "version": "0.12.5",
+  "base": "169d6bf0d0c494b5edcf45532145a12192717ba3",
+  "reference": "847b90c4cf911a666cc21a431ea3c3bba2edc29c",
+  "runtimeSha256": {
+    "index.html": "884d74d265630e3181ed13e8932f53aecbd6ca25b91fe83bbd93d37b4957edc3",
+    "enemies.js": "0701457599fa65ec68749a70760c97ad97012f79e3719f024c8336fe0cb2fae3",
+    "pets.js": "bdb19c7898b0bf1b349f669c9c81aaa22289c920731cf07387ab585d25d7eebd",
+    "abilities.js": "b1787c3489bc9c2c181c6554830427b75e3d6b754ede2e4750cfc96836debfca",
+    "controllers.js": "a15b9cc5367dd8458b238650e3f53d54a94abf5f168a3d26feb6558444435e26",
+    "audio.js": "8543ce14bcd61c07373cd7c7c560b9c696ecf5afb80918d3c5929ef407a84a22"
+  },
+  "results": {
+    "nativeAndConstructedMs": 4556,
+    "gpuMs": 1680,
+    "totalFinalMs": 6236,
+    "errors": [],
+    "gpuErrors": []
+  },
+  "native": {
+    "scope": "Valid preboot inventory/progression fixture and actual Edge click/key/touch input; no runtime HP, position, stage, tick or RNG forcing",
+    "fixture": {
+      "inventory": [
+        {
+          "id": 1,
+          "speciesId": "rogue",
+          "kind": "pet",
+          "grade": 0,
+          "hatchProgress": 30,
+          "locked": false
+        },
+        {
+          "id": 2,
+          "speciesId": "rogue",
+          "kind": "pet",
+          "grade": 3,
+          "hatchProgress": 30,
+          "locked": false
+        },
+        {
+          "id": 3,
+          "speciesId": "rogue",
+          "kind": "pet",
+          "grade": 5,
+          "hatchProgress": 30,
+          "locked": false
+        },
+        {
+          "id": 4,
+          "speciesId": "rocket",
+          "kind": "egg",
+          "grade": 0,
+          "hatchProgress": 29,
+          "locked": false
+        },
+        {
+          "id": 5,
+          "speciesId": "rogue",
+          "kind": "egg",
+          "grade": 0,
+          "hatchProgress": 0,
+          "locked": false
+        },
+        {
+          "id": 6,
+          "speciesId": "scout",
+          "kind": "pet",
+          "grade": 0,
+          "hatchProgress": 30,
+          "locked": true
+        },
+        {
+          "id": 7,
+          "speciesId": "scout",
+          "kind": "pet",
+          "grade": 0,
+          "hatchProgress": 30,
+          "locked": false
+        },
+        {
+          "id": 8,
+          "speciesId": "spitter",
+          "kind": "pet",
+          "grade": 2,
+          "hatchProgress": 30,
+          "locked": false
+        }
+      ],
+      "slots": [
+        4,
+        2,
+        3,
+        1,
+        7
+      ],
+      "nextId": 9,
+      "discovered": [
+        "rogue",
+        "scout",
+        "spitter"
+      ]
+    },
+    "fullBefore": [
+      4,
+      2,
+      3,
+      6,
+      7
+    ],
+    "fullAfter": [
+      4,
+      2,
+      3,
+      6,
+      7
+    ],
+    "fullNotice": "동행 슬롯이 가득 찼어요. 장착 슬롯을 탭해서 먼저 비워주세요.",
+    "inputs": {
+      "evades": 2,
+      "launches": 1,
+      "petHits": 2,
+      "petDamage": 200
+    },
+    "liveUnits": [
+      {
+        "unitId": 1,
+        "inventoryId": null,
+        "speciesId": "rogue",
+        "faction": "wild",
+        "state": "CHASE",
+        "hp": 105,
+        "grade": 5,
+        "isSummon": false,
+        "signature": "leap",
+        "radius": 20,
+        "bodyRadius": 20,
+        "height": 30,
+        "scale": 1,
+        "outline": null
+      },
+      {
+        "unitId": 2,
+        "inventoryId": null,
+        "speciesId": "pillbug",
+        "faction": "wild",
+        "state": "CHASE",
+        "hp": 150,
+        "grade": 5,
+        "isSummon": false,
+        "signature": "selfDestruct",
+        "radius": 23,
+        "bodyRadius": 23,
+        "height": 38,
+        "scale": 1,
+        "outline": null
+      },
+      {
+        "unitId": 3,
+        "inventoryId": null,
+        "speciesId": "thornfruit",
+        "faction": "wild",
+        "state": "CHASE",
+        "hp": 185,
+        "grade": 5,
+        "isSummon": false,
+        "signature": "spike",
+        "radius": 24,
+        "bodyRadius": 24,
+        "height": 38,
+        "scale": 1,
+        "outline": null
+      },
+      {
+        "unitId": 4,
+        "inventoryId": null,
+        "speciesId": "rocket",
+        "faction": "wild",
+        "state": "CHASE",
+        "hp": 95,
+        "grade": 5,
+        "isSummon": false,
+        "signature": "arcFire",
+        "radius": 26,
+        "bodyRadius": 26,
+        "height": 42,
+        "scale": 1,
+        "outline": null
+      },
+      {
+        "unitId": 9,
+        "inventoryId": 2,
+        "speciesId": "rogue",
+        "faction": "garden",
+        "state": "CHASE",
+        "hp": 612.3600000000001,
+        "grade": 3,
+        "isSummon": false,
+        "signature": "leap",
+        "radius": 17.2,
+        "bodyRadius": 17.2,
+        "height": 25.8,
+        "scale": 0.86,
+        "outline": {
+          "width": 2.5,
+          "contrast": {
+            "width": 0.8,
+            "color": "#0c181e",
+            "maxColorDistance": 0.16
+          },
+          "color": "#bd8cff"
+        }
+      },
+      {
+        "unitId": 10,
+        "inventoryId": 3,
+        "speciesId": "rogue",
+        "faction": "garden",
+        "state": "CHASE",
+        "hp": 1984.0464000000002,
+        "grade": 5,
+        "isSummon": false,
+        "signature": "leap",
+        "radius": 20,
+        "bodyRadius": 20,
+        "height": 30,
+        "scale": 1,
+        "outline": {
+          "width": 2.5,
+          "contrast": {
+            "width": 0.8,
+            "color": "#0c181e",
+            "maxColorDistance": 0.16
+          },
+          "color": "#ff7086"
+        }
+      },
+      {
+        "unitId": 11,
+        "inventoryId": 1,
+        "speciesId": "rogue",
+        "faction": "garden",
+        "state": "CHASE",
+        "hp": 105,
+        "grade": 0,
+        "isSummon": false,
+        "signature": "leap",
+        "radius": 13,
+        "bodyRadius": 13,
+        "height": 19.5,
+        "scale": 0.65,
+        "outline": {
+          "width": 2.5,
+          "contrast": {
+            "width": 0.8,
+            "color": "#0c181e",
+            "maxColorDistance": 0.16
+          },
+          "color": "#d8d4bd"
+        }
+      },
+      {
+        "unitId": 12,
+        "inventoryId": 7,
+        "speciesId": "scout",
+        "faction": "garden",
+        "state": "CHASE",
+        "hp": 105,
+        "grade": 0,
+        "isSummon": false,
+        "signature": "lunge",
+        "radius": 13,
+        "bodyRadius": 13,
+        "height": 26,
+        "scale": 0.65,
+        "outline": {
+          "width": 2.5,
+          "contrast": {
+            "width": 0.8,
+            "color": "#0c181e",
+            "maxColorDistance": 0.16
+          },
+          "color": "#d8d4bd"
+        }
+      }
+    ],
+    "hatch": {
+      "item": {
+        "id": 4,
+        "speciesId": "rocket",
+        "kind": "pet",
+        "grade": 0,
+        "hatchProgress": 30,
+        "locked": false
+      },
+      "slots": [
+        4,
+        2,
+        3,
+        1,
+        7
+      ],
+      "slotText": "1번 슬롯\n✿\n로켓 봉오리\nCommon\n탭해서 해제"
+    },
+    "reloadSlots": [
+      4,
+      2,
+      3,
+      1,
+      7
+    ],
+    "mobile": {
+      "collection": {
+        "inventory": [
+          {
+            "id": 1,
+            "speciesId": "rogue",
+            "kind": "pet",
+            "grade": 0,
+            "hatchProgress": 30,
+            "locked": false
+          },
+          {
+            "id": 2,
+            "speciesId": "rogue",
+            "kind": "pet",
+            "grade": 3,
+            "hatchProgress": 30,
+            "locked": false
+          },
+          {
+            "id": 3,
+            "speciesId": "rogue",
+            "kind": "pet",
+            "grade": 5,
+            "hatchProgress": 30,
+            "locked": false
+          },
+          {
+            "id": 4,
+            "speciesId": "rocket",
+            "kind": "egg",
+            "grade": 0,
+            "hatchProgress": 29,
+            "locked": false
+          },
+          {
+            "id": 5,
+            "speciesId": "rogue",
+            "kind": "egg",
+            "grade": 0,
+            "hatchProgress": 0,
+            "locked": false
+          },
+          {
+            "id": 6,
+            "speciesId": "scout",
+            "kind": "pet",
+            "grade": 0,
+            "hatchProgress": 30,
+            "locked": true
+          },
+          {
+            "id": 7,
+            "speciesId": "scout",
+            "kind": "pet",
+            "grade": 0,
+            "hatchProgress": 30,
+            "locked": false
+          },
+          {
+            "id": 8,
+            "speciesId": "spitter",
+            "kind": "pet",
+            "grade": 2,
+            "hatchProgress": 30,
+            "locked": false
+          }
+        ],
+        "slots": [
+          1
+        ],
+        "nextId": 9,
+        "discovered": [
+          "rogue",
+          "scout",
+          "spitter"
+        ]
+      },
+      "notice": "동행 슬롯이 가득 찼어요. 장착 슬롯을 탭해서 먼저 비워주세요.",
+      "panelWidth": 372,
+      "panelScrollWidth": 372,
+      "touchTarget": 140
+    }
+  },
+  "constructed": {
+    "scope": "Isolated actual Matter bodies and source-extracted actual Unit/companion factory and drawUnit; separate from native game E2E",
+    "grades": [
+      {
+        "name": "Common",
+        "scale": 0.65,
+        "outline": {
+          "width": 2.5,
+          "contrast": {
+            "width": 0.8,
+            "color": "#0c181e",
+            "maxColorDistance": 0.16
+          },
+          "color": "#d8d4bd"
+        }
+      },
+      {
+        "name": "Uncommon",
+        "scale": 0.72,
+        "outline": {
+          "width": 2.5,
+          "contrast": {
+            "width": 0.8,
+            "color": "#0c181e",
+            "maxColorDistance": 0.16
+          },
+          "color": "#83ce76"
+        }
+      },
+      {
+        "name": "Rare",
+        "scale": 0.79,
+        "outline": {
+          "width": 2.5,
+          "contrast": {
+            "width": 0.8,
+            "color": "#0c181e",
+            "maxColorDistance": 0.16
+          },
+          "color": "#78b9ff"
+        }
+      },
+      {
+        "name": "Epic",
+        "scale": 0.86,
+        "outline": {
+          "width": 2.5,
+          "contrast": {
+            "width": 0.8,
+            "color": "#0c181e",
+            "maxColorDistance": 0.16
+          },
+          "color": "#bd8cff"
+        }
+      },
+      {
+        "name": "Legendary",
+        "scale": 0.9299999999999999,
+        "outline": {
+          "width": 2.5,
+          "contrast": {
+            "width": 0.8,
+            "color": "#0c181e",
+            "maxColorDistance": 0.16
+          },
+          "color": "#ffb354"
+        }
+      },
+      {
+        "name": "Mythic",
+        "scale": 1,
+        "outline": {
+          "width": 2.5,
+          "contrast": {
+            "width": 0.8,
+            "color": "#0c181e",
+            "maxColorDistance": 0.16
+          },
+          "color": "#ff7086"
+        }
+      }
+    ],
+    "stats": [
+      {
+        "id": "rogue",
+        "grade": 0,
+        "radius": 13,
+        "height": 19.5,
+        "unchangedCombat": true
+      },
+      {
+        "id": "rogue",
+        "grade": 1,
+        "radius": 14.399999999999999,
+        "height": 21.599999999999998,
+        "unchangedCombat": true
+      },
+      {
+        "id": "rogue",
+        "grade": 2,
+        "radius": 15.8,
+        "height": 23.700000000000003,
+        "unchangedCombat": true
+      },
+      {
+        "id": "rogue",
+        "grade": 3,
+        "radius": 17.2,
+        "height": 25.8,
+        "unchangedCombat": true
+      },
+      {
+        "id": "rogue",
+        "grade": 4,
+        "radius": 18.599999999999998,
+        "height": 27.9,
+        "unchangedCombat": true
+      },
+      {
+        "id": "rogue",
+        "grade": 5,
+        "radius": 20,
+        "height": 30,
+        "unchangedCombat": true
+      },
+      {
+        "id": "pillbug",
+        "grade": 5,
+        "radius": 23,
+        "height": 38,
+        "unchangedCombat": true
+      },
+      {
+        "id": "spitter",
+        "grade": 5,
+        "radius": 19,
+        "height": 38,
+        "unchangedCombat": true
+      },
+      {
+        "id": "petalPredator",
+        "grade": 5,
+        "radius": 48,
+        "height": 96,
+        "unchangedCombat": true
+      }
+    ],
+    "common": {
+      "bodyRadius": 13,
+      "height": 19.5,
+      "shadow": {
+        "name": "ellipse",
+        "args": [
+          -35.36245842126934,
+          38.45761134778709,
+          13,
+          7.539999999999999,
+          [
+            0,
+            0,
+            0,
+            0.4
+          ],
+          16
+        ]
+      },
+      "outside35": false,
+      "inside30": true,
+      "outline": {
+        "width": 2.5,
+        "contrast": {
+          "width": 0.8,
+          "color": "#0c181e",
+          "maxColorDistance": 0.16
+        },
+        "color": "#d8d4bd"
+      }
+    },
+    "summon": {
+      "radius": 13.02,
+      "height": 26.04,
+      "scale": 0.9299999999999999,
+      "outline": {
+        "width": 2.5,
+        "contrast": {
+          "width": 0.8,
+          "color": "#0c181e",
+          "maxColorDistance": 0.16
+        },
+        "color": "#ffb354"
+      },
+      "owner": 2
+    }
+  },
+  "gpu": {
+    "renderer": "ready",
+    "rows": [
+      {
+        "id": "rogue",
+        "cols": [
+          {
+            "grade": null,
+            "scale": 1,
+            "radius": 20,
+            "height": 30,
+            "outline": null,
+            "drawShared": true
+          },
+          {
+            "grade": 0,
+            "scale": 0.65,
+            "radius": 13,
+            "height": 19.5,
+            "outline": {
+              "width": 2.5,
+              "contrast": {
+                "width": 0.8,
+                "color": "#0c181e",
+                "maxColorDistance": 0.16
+              },
+              "color": "#d8d4bd"
+            },
+            "drawShared": true
+          },
+          {
+            "grade": 3,
+            "scale": 0.86,
+            "radius": 17.2,
+            "height": 25.8,
+            "outline": {
+              "width": 2.5,
+              "contrast": {
+                "width": 0.8,
+                "color": "#0c181e",
+                "maxColorDistance": 0.16
+              },
+              "color": "#bd8cff"
+            },
+            "drawShared": true
+          },
+          {
+            "grade": 5,
+            "scale": 1,
+            "radius": 20,
+            "height": 30,
+            "outline": {
+              "width": 2.5,
+              "contrast": {
+                "width": 0.8,
+                "color": "#0c181e",
+                "maxColorDistance": 0.16
+              },
+              "color": "#ff7086"
+            },
+            "drawShared": true
+          }
+        ]
+      },
+      {
+        "id": "pillbug",
+        "cols": [
+          {
+            "grade": null,
+            "scale": 1,
+            "radius": 23,
+            "height": 38,
+            "outline": null,
+            "drawShared": true
+          },
+          {
+            "grade": 0,
+            "scale": 0.65,
+            "radius": 14.950000000000001,
+            "height": 24.7,
+            "outline": {
+              "width": 2.5,
+              "contrast": {
+                "width": 0.8,
+                "color": "#0c181e",
+                "maxColorDistance": 0.16
+              },
+              "color": "#d8d4bd"
+            },
+            "drawShared": true
+          },
+          {
+            "grade": 3,
+            "scale": 0.86,
+            "radius": 19.78,
+            "height": 32.68,
+            "outline": {
+              "width": 2.5,
+              "contrast": {
+                "width": 0.8,
+                "color": "#0c181e",
+                "maxColorDistance": 0.16
+              },
+              "color": "#bd8cff"
+            },
+            "drawShared": true
+          },
+          {
+            "grade": 5,
+            "scale": 1,
+            "radius": 23,
+            "height": 38,
+            "outline": {
+              "width": 2.5,
+              "contrast": {
+                "width": 0.8,
+                "color": "#0c181e",
+                "maxColorDistance": 0.16
+              },
+              "color": "#ff7086"
+            },
+            "drawShared": true
+          }
+        ]
+      },
+      {
+        "id": "thornfruit",
+        "cols": [
+          {
+            "grade": null,
+            "scale": 1,
+            "radius": 24,
+            "height": 38,
+            "outline": null,
+            "drawShared": true
+          },
+          {
+            "grade": 0,
+            "scale": 0.65,
+            "radius": 15.600000000000001,
+            "height": 24.7,
+            "outline": {
+              "width": 2.5,
+              "contrast": {
+                "width": 0.8,
+                "color": "#0c181e",
+                "maxColorDistance": 0.16
+              },
+              "color": "#d8d4bd"
+            },
+            "drawShared": true
+          },
+          {
+            "grade": 3,
+            "scale": 0.86,
+            "radius": 20.64,
+            "height": 32.68,
+            "outline": {
+              "width": 2.5,
+              "contrast": {
+                "width": 0.8,
+                "color": "#0c181e",
+                "maxColorDistance": 0.16
+              },
+              "color": "#bd8cff"
+            },
+            "drawShared": true
+          },
+          {
+            "grade": 5,
+            "scale": 1,
+            "radius": 24,
+            "height": 38,
+            "outline": {
+              "width": 2.5,
+              "contrast": {
+                "width": 0.8,
+                "color": "#0c181e",
+                "maxColorDistance": 0.16
+              },
+              "color": "#ff7086"
+            },
+            "drawShared": true
+          }
+        ]
+      },
+      {
+        "id": "rocket",
+        "cols": [
+          {
+            "grade": null,
+            "scale": 1,
+            "radius": 26,
+            "height": 42,
+            "outline": null,
+            "drawShared": true
+          },
+          {
+            "grade": 0,
+            "scale": 0.65,
+            "radius": 16.900000000000002,
+            "height": 27.3,
+            "outline": {
+              "width": 2.5,
+              "contrast": {
+                "width": 0.8,
+                "color": "#0c181e",
+                "maxColorDistance": 0.16
+              },
+              "color": "#d8d4bd"
+            },
+            "drawShared": true
+          },
+          {
+            "grade": 3,
+            "scale": 0.86,
+            "radius": 22.36,
+            "height": 36.12,
+            "outline": {
+              "width": 2.5,
+              "contrast": {
+                "width": 0.8,
+                "color": "#0c181e",
+                "maxColorDistance": 0.16
+              },
+              "color": "#bd8cff"
+            },
+            "drawShared": true
+          },
+          {
+            "grade": 5,
+            "scale": 1,
+            "radius": 26,
+            "height": 42,
+            "outline": {
+              "width": 2.5,
+              "contrast": {
+                "width": 0.8,
+                "color": "#0c181e",
+                "maxColorDistance": 0.16
+              },
+              "color": "#ff7086"
+            },
+            "drawShared": true
+          }
+        ]
+      },
+      {
+        "id": "petalPredator",
+        "cols": [
+          {
+            "grade": null,
+            "scale": 1,
+            "radius": 48,
+            "height": 96,
+            "outline": null,
+            "drawShared": true
+          },
+          {
+            "grade": 0,
+            "scale": 0.65,
+            "radius": 31.200000000000003,
+            "height": 62.400000000000006,
+            "outline": {
+              "width": 2.5,
+              "contrast": {
+                "width": 0.8,
+                "color": "#0c181e",
+                "maxColorDistance": 0.16
+              },
+              "color": "#d8d4bd"
+            },
+            "drawShared": true
+          },
+          {
+            "grade": 3,
+            "scale": 0.86,
+            "radius": 41.28,
+            "height": 82.56,
+            "outline": {
+              "width": 2.5,
+              "contrast": {
+                "width": 0.8,
+                "color": "#0c181e",
+                "maxColorDistance": 0.16
+              },
+              "color": "#bd8cff"
+            },
+            "drawShared": true
+          },
+          {
+            "grade": 5,
+            "scale": 1,
+            "radius": 48,
+            "height": 96,
+            "outline": {
+              "width": 2.5,
+              "contrast": {
+                "width": 0.8,
+                "color": "#0c181e",
+                "maxColorDistance": 0.16
+              },
+              "color": "#ff7086"
+            },
+            "drawShared": true
+          }
+        ]
+      },
+      {
+        "id": "elasticCap",
+        "cols": [
+          {
+            "grade": null,
+            "scale": 1,
+            "radius": 48,
+            "height": 96,
+            "outline": null,
+            "drawShared": true
+          },
+          {
+            "grade": 0,
+            "scale": 0.65,
+            "radius": 31.200000000000003,
+            "height": 62.400000000000006,
+            "outline": {
+              "width": 2.5,
+              "contrast": {
+                "width": 0.8,
+                "color": "#0c181e",
+                "maxColorDistance": 0.16
+              },
+              "color": "#d8d4bd"
+            },
+            "drawShared": true
+          },
+          {
+            "grade": 3,
+            "scale": 0.86,
+            "radius": 41.28,
+            "height": 82.56,
+            "outline": {
+              "width": 2.5,
+              "contrast": {
+                "width": 0.8,
+                "color": "#0c181e",
+                "maxColorDistance": 0.16
+              },
+              "color": "#bd8cff"
+            },
+            "drawShared": true
+          },
+          {
+            "grade": 5,
+            "scale": 1,
+            "radius": 48,
+            "height": 96,
+            "outline": {
+              "width": 2.5,
+              "contrast": {
+                "width": 0.8,
+                "color": "#0c181e",
+                "maxColorDistance": 0.16
+              },
+              "color": "#ff7086"
+            },
+            "drawShared": true
+          }
+        ]
+      },
+      {
+        "id": "sprout",
+        "cols": [
+          {
+            "grade": null,
+            "scale": 1,
+            "radius": 14,
+            "height": 28,
+            "outline": null,
+            "drawShared": true
+          },
+          {
+            "grade": 0,
+            "scale": 0.65,
+            "radius": 9.1,
+            "height": 18.2,
+            "outline": {
+              "width": 2.5,
+              "contrast": {
+                "width": 0.8,
+                "color": "#0c181e",
+                "maxColorDistance": 0.16
+              },
+              "color": "#d8d4bd"
+            },
+            "drawShared": true
+          },
+          {
+            "grade": 3,
+            "scale": 0.86,
+            "radius": 12.04,
+            "height": 24.08,
+            "outline": {
+              "width": 2.5,
+              "contrast": {
+                "width": 0.8,
+                "color": "#0c181e",
+                "maxColorDistance": 0.16
+              },
+              "color": "#bd8cff"
+            },
+            "drawShared": true
+          },
+          {
+            "grade": 5,
+            "scale": 1,
+            "radius": 14,
+            "height": 28,
+            "outline": {
+              "width": 2.5,
+              "contrast": {
+                "width": 0.8,
+                "color": "#0c181e",
+                "maxColorDistance": 0.16
+              },
+              "color": "#ff7086"
+            },
+            "drawShared": true
+          }
+        ]
+      },
+      {
+        "id": "puff",
+        "cols": [
+          {
+            "grade": null,
+            "scale": 1,
+            "radius": 17,
+            "height": 34,
+            "outline": null,
+            "drawShared": true
+          },
+          {
+            "grade": 0,
+            "scale": 0.65,
+            "radius": 11.05,
+            "height": 22.1,
+            "outline": {
+              "width": 2.5,
+              "contrast": {
+                "width": 0.8,
+                "color": "#0c181e",
+                "maxColorDistance": 0.16
+              },
+              "color": "#d8d4bd"
+            },
+            "drawShared": true
+          },
+          {
+            "grade": 3,
+            "scale": 0.86,
+            "radius": 14.62,
+            "height": 29.24,
+            "outline": {
+              "width": 2.5,
+              "contrast": {
+                "width": 0.8,
+                "color": "#0c181e",
+                "maxColorDistance": 0.16
+              },
+              "color": "#bd8cff"
+            },
+            "drawShared": true
+          },
+          {
+            "grade": 5,
+            "scale": 1,
+            "radius": 17,
+            "height": 34,
+            "outline": {
+              "width": 2.5,
+              "contrast": {
+                "width": 0.8,
+                "color": "#0c181e",
+                "maxColorDistance": 0.16
+              },
+              "color": "#ff7086"
+            },
+            "drawShared": true
+          }
+        ]
+      }
+    ],
+    "grades": [
+      {
+        "name": "Common",
+        "scale": 0.65,
+        "outline": {
+          "width": 2.5,
+          "contrast": {
+            "width": 0.8,
+            "color": "#0c181e",
+            "maxColorDistance": 0.16
+          },
+          "color": "#d8d4bd"
+        }
+      },
+      {
+        "name": "Uncommon",
+        "scale": 0.72,
+        "outline": {
+          "width": 2.5,
+          "contrast": {
+            "width": 0.8,
+            "color": "#0c181e",
+            "maxColorDistance": 0.16
+          },
+          "color": "#83ce76"
+        }
+      },
+      {
+        "name": "Rare",
+        "scale": 0.79,
+        "outline": {
+          "width": 2.5,
+          "contrast": {
+            "width": 0.8,
+            "color": "#0c181e",
+            "maxColorDistance": 0.16
+          },
+          "color": "#78b9ff"
+        }
+      },
+      {
+        "name": "Epic",
+        "scale": 0.86,
+        "outline": {
+          "width": 2.5,
+          "contrast": {
+            "width": 0.8,
+            "color": "#0c181e",
+            "maxColorDistance": 0.16
+          },
+          "color": "#bd8cff"
+        }
+      },
+      {
+        "name": "Legendary",
+        "scale": 0.9299999999999999,
+        "outline": {
+          "width": 2.5,
+          "contrast": {
+            "width": 0.8,
+            "color": "#0c181e",
+            "maxColorDistance": 0.16
+          },
+          "color": "#ffb354"
+        }
+      },
+      {
+        "name": "Mythic",
+        "scale": 1,
+        "outline": {
+          "width": 2.5,
+          "contrast": {
+            "width": 0.8,
+            "color": "#0c181e",
+            "maxColorDistance": 0.16
+          },
+          "color": "#ff7086"
+        }
+      }
+    ]
+  },
+  "preserved": [
+    "payShadowCost",
+    "launch",
+    "dash",
+    "energyCost",
+    "evade",
+    "evadeDirection",
+    "mapTierAtStage",
+    "mapStartAtStage",
+    "radiusAtStage",
+    "populationAtStage",
+    "isBossStage"
+  ],
+  "screenshots": [
+    "companion-size-outline-slate.png",
+    "companion-cards-desktop.png",
+    "companion-cards-mobile.png",
+    "companion-size-native-game.png"
+  ],
+  "limits": [
+    "Representative browser acceptance only; no complete species-by-grade game matrix",
+    "Owner summon policy verified with actual extracted factory and GPU art, not an organic summon sequence",
+    "No long-run balance, mobile combat, subjective audio, or performance benchmark",
+    "Primitive silhouette replay increases draw geometry; representative game rendered normally, but maximum-population performance was not measured"
+  ],
+  "harnessRepair": {
+    "error": "The first isolated source extraction picked the destructured parameter brace, before any native acceptance actions; fixed the harness body boundary and reran.",
+    "initialMs": 1575,
+    "applicationRuntimeErrors": 0
+  }
+}

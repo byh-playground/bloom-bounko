@@ -123,12 +123,12 @@ body.lobby-active #top,body.lobby-active #bars,body.lobby-active #controls,body.
 .tech-lane.lane-evade{left:1339px;width:554px;background:#153f4670;border-color:#5199a6;color:#a1edfa}
 .tech-lane.lane-fire{left:1153px;width:182px;background:#542b2069;border-color:#ba7154;color:#ffbc9a}
 #techGraphNodes{position:absolute;inset:0;z-index:3;pointer-events:none}
-#techGraphNodes .tech-node{position:absolute;pointer-events:auto;width:170px;height:159px;min-height:159px;margin:0;overflow:hidden;box-shadow:0 7px 18px #06121c66;border-width:1px;border-radius:12px;padding:10px 10px 8px;justify-content:flex-start;gap:5px}
+#techGraphNodes .tech-node{position:absolute;pointer-events:auto;width:170px;height:204px;min-height:204px;margin:0;overflow:hidden;box-shadow:0 7px 18px #06121c66;border-width:1px;border-radius:12px;padding:10px 10px 8px;justify-content:flex-start;gap:4px;cursor:default}
 #techGraphNodes .tech-node:before{display:none!important}
 #techGraphNodes .tech-node .node-head{gap:7px}
 #techGraphNodes .tech-node b{font-size:12px;line-height:1.2}
 #techGraphNodes .tech-node .node-icon{font-size:20px}
-#techGraphNodes .tech-node .node-desc{font-size:10px;line-height:1.27;display:-webkit-box;-webkit-line-clamp:6;-webkit-box-orient:vertical;overflow:hidden}
+#techGraphNodes .tech-node .node-desc{font-size:10px;line-height:1.27;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
 #techGraphNodes .tech-node .node-price{font-size:10px;line-height:1.2}
 #techGraphNodes .tech-node[data-branch="chain"]{border-color:#44796a}
 #techGraphNodes .tech-node[data-branch="shadow"]{border-color:#969167;background:#383b26}
@@ -293,11 +293,16 @@ body.lobby-active #stageHud,body.lobby-active #stageBanner{display:none}
 
 #ultimateHud{position:absolute;left:50%;bottom:calc(18px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);width:166px;z-index:4;pointer-events:none;text-align:center;color:#d7efe6}#ultimateHud[hidden],body.lobby-active #ultimateHud{display:none!important}.ultimate-hud-head{display:flex;justify-content:space-between;font-size:9px;margin:0 2px 4px;color:#9ab8af}#ultimateCombatSlots{display:flex;gap:5px}.ultimate-hud-slot{--ready:0%;--skill:#55756b;position:relative;width:52px;height:46px;border-radius:12px;background:linear-gradient(#0a2429,#0a2429) padding-box,conic-gradient(var(--skill) var(--ready),#315049 0) border-box;border:2px solid transparent;display:flex;align-items:center;justify-content:center;gap:5px;box-shadow:0 3px 12px #0005}.ultimate-hud-slot b{font-size:23px;color:var(--skill)}.ultimate-hud-slot small{font-size:10px;color:#ceeee1}.ultimate-hud-slot[data-next=true]{box-shadow:0 0 0 1px #edfddd,0 0 13px #79dbba33}.ultimate-hud-slot[data-locked=true]{opacity:.4}.ultimate-hud-slot[data-casting=true]{background:var(--skill);box-shadow:0 0 21px var(--skill)}.ultimate-hud-slot[data-casting=true] b,.ultimate-hud-slot[data-casting=true] small{color:#082c31}#ultimateStatus{font-size:9px;display:block;margin-top:4px;min-height:12px;color:#b7d4c7;white-space:nowrap}#ultimatePanel{display:none;position:absolute;inset:0;z-index:14;background:#061416c9;pointer-events:auto;padding:16px;align-items:center;justify-content:center}#ultimatePanel.open{display:flex}.ultimate-dialog{width:min(480px,100%);max-height:95%;overflow:auto;padding:18px;background:#102a2dfc;border:1px solid #547e72;border-radius:17px;color:#e6f9ef;box-shadow:0 20px 70px #0008}.ultimate-dialog header{display:flex;justify-content:space-between;align-items:center}.ultimate-dialog header button{width:34px;height:34px;background:#1c3c3d;border:1px solid #50736b;color:#e8fff2;border-radius:8px}.ultimate-dialog p{font-size:12px;color:#b4d1c4;line-height:1.7}#ultimateEquipSlots{display:flex;gap:7px;margin:14px 0 8px}.ultimate-equip-slot{flex:1;min-width:0;display:flex;flex-wrap:wrap;gap:3px}.ultimate-equip-slot button{border:1px solid #426a60;background:#163b34;color:#d9f4e5;border-radius:8px;padding:7px;cursor:pointer}.ultimate-equip-slot button:disabled{opacity:.42;cursor:default}.ultimate-equipped{width:100%;min-height:56px;font-size:11px}.ultimate-order{flex:1}#ultimateEquipNotice{font-size:10px;color:#a5c4b5}#ultimateLibrary{display:grid;gap:7px;margin-top:16px}.ultimate-choice{display:grid;grid-template-columns:32px 1fr auto;gap:3px 9px;text-align:left;border:1px solid #527e72;background:#153936;border-radius:11px;padding:12px;color:#e0f6e9;cursor:pointer}.ultimate-choice b{grid-row:1/3;font-size:28px;color:var(--skill);align-self:center}.ultimate-choice strong{font-size:13px}.ultimate-choice span{font-size:11px;color:#b4d0c2;grid-column:2/4;line-height:1.4}.ultimate-choice small{font-size:10px;color:#e6d397;grid-column:3;grid-row:1}.ultimate-choice:disabled{opacity:.52;cursor:default}.ultimate-choice[data-equipped=true]{opacity:1;border-color:#9addb9}.tech-node[data-branch=ultimate]{border-color:#81adc9!important;background:linear-gradient(130deg,#173c44,#202f46)!important}.tech-link.ultimate{stroke:#88d9e9}.tech-prereqs{display:flex;flex-wrap:wrap;gap:3px;font-size:9px}.tech-prereqs span{border:1px solid #4a6b63;border-radius:5px;padding:2px}.tech-prereqs span[data-ready=true]{color:#b9f7c8;border-color:#78b791}.lobby-resource-buttons{flex-wrap:wrap}#lobby{overflow:auto}.lobby-resource-buttons button{min-width:100px}@media(max-width:650px){#augments{bottom:calc(92px + env(safe-area-inset-bottom,0px))!important}#ultimateHud{width:151px;bottom:calc(16px + env(safe-area-inset-bottom,0px))}.ultimate-hud-slot{width:47px;height:41px}.ultimate-hud-slot b{font-size:21px}.ultimate-dialog{padding:14px}}
 
-.ultimate-library-row{display:grid;grid-template-columns:minmax(0,1fr) 70px;gap:6px}.ultimate-preview-button{border:1px solid #719b8a;border-radius:9px;background:#20443b;color:#e4f9eb;font-size:12px;font-weight:750;cursor:pointer;min-height:38px}.ultimate-preview-button:focus-visible,#previewPanel button:focus-visible{outline:2px solid #dcf9b5;outline-offset:3px}.tech-preview-button{position:absolute;z-index:2;pointer-events:auto;width:64px;min-height:28px;font-size:10px}.tech-node[data-branch=ultimate] .node-price{padding-right:66px}
+.ultimate-library-row{display:grid;grid-template-columns:minmax(0,1fr) 70px;gap:6px}.ultimate-preview-button{border:1px solid #719b8a;border-radius:9px;background:#20443b;color:#e4f9eb;font-size:12px;font-weight:750;cursor:pointer;min-height:38px}.ultimate-preview-button:focus-visible,#previewPanel button:focus-visible{outline:2px solid #dcf9b5;outline-offset:3px}.tech-preview-button{position:static;z-index:2;pointer-events:auto;width:60px;min-height:30px;font-size:10px;flex-shrink:0}
 #previewPanel{position:fixed;inset:0;z-index:140;background:#061416ed;display:flex;align-items:center;justify-content:center;padding:max(10px,env(safe-area-inset-top)) 12px}#previewPanel[hidden]{display:none}.preview-dialog{width:min(920px,100%);max-height:96dvh;overflow:auto;background:#112b2a;border:1px solid #658c7b;border-radius:16px;padding:14px;color:#e8f8eb;box-shadow:0 20px 70px #0009}.preview-dialog header{display:flex;align-items:center;justify-content:space-between;gap:12px}.preview-dialog p{font-size:12px;line-height:1.5;color:#b5cdc1;margin:10px 0}.preview-dialog button{background:#25483e;color:#eff9df;border:1px solid #6b947b;border-radius:8px;padding:9px 14px;cursor:pointer}.preview-dialog button:disabled{opacity:.45}#previewViewport{height:min(60dvh,540px);min-height:220px;border-radius:10px;overflow:hidden;background:#0a1714}#previewViewport iframe{border:0;width:100%;height:100%;display:block;pointer-events:none}.preview-dialog footer{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:10px;font-size:12px}.preview-dialog label{display:flex;gap:5px;align-items:center}.preview-dialog input{accent-color:#a5d980}#previewStatus{margin-left:auto;color:#b9d5c5;font-size:11px}
 body.preview-scene #hud>[id]:not(#ultimateHud),body.preview-scene .language-control,body.preview-scene #lobby,body.preview-scene #settings,body.preview-scene #augments,body.preview-scene #auto,body.preview-scene #stageBanner,body.preview-scene #gameover{display:none!important}body.preview-scene #game{pointer-events:none}body.preview-scene #ultimateHud{bottom:10px}
 @media(max-width:650px){.preview-dialog{padding:10px}.preview-dialog header strong{font-size:14px}.preview-dialog button{padding:9px 11px}.preview-dialog footer{gap:6px}#previewStatus{margin-left:0}.ultimate-library-row{grid-template-columns:minmax(0,1fr) 62px}}
 #buildVersion{position:fixed;right:calc(8px + env(safe-area-inset-right,0px));bottom:calc(3px + env(safe-area-inset-bottom,0px));z-index:10;font-size:10px;line-height:12px;color:#9cb2b0;font-variant-numeric:tabular-nums;pointer-events:none}body.preview-scene #buildVersion{display:none}
+
+#techGraphNodes .tech-node[data-state=locked]{opacity:1}#techGraphNodes .tech-node[data-related=false]{opacity:.55}#techGraphNodes .tech-node[data-selected=true]{box-shadow:0 0 0 2px #f4e2a4,0 7px 18px #06121c66}#techGraphNodes .tech-node[data-combination=true][data-ready=true]{border-color:#9ae4b6!important}
+.tech-select{display:flex;flex-direction:column;gap:4px;width:100%;text-align:left;padding:0;border:0;background:none;color:inherit;cursor:pointer}.tech-select:focus-visible,.tech-buy:focus-visible,.tech-prereqs button:focus-visible{outline:2px solid #ffdfa0;outline-offset:2px}#techGraphNodes .tech-node .node-head b{line-height:1.15}
+#techGraphNodes .tech-prereqs{gap:3px;align-items:center;min-height:0}#techGraphNodes .tech-prereqs button{display:flex;align-items:center;gap:3px;max-width:100%;border:1px solid #59766c;border-radius:5px;padding:3px 4px;background:#132b2b;color:#c3d8cf;font-size:9px;line-height:1.1;cursor:pointer}#techGraphNodes .tech-prereqs button[data-ready=true]{border-color:#8fcfa3;color:#daf9e2;background:#214638}#techGraphNodes .tech-prereqs button span{border:0;padding:0;font-size:inherit;color:inherit}#techGraphNodes .tech-node>*{flex-shrink:0}.condition-name{overflow-wrap:anywhere}.condition-icon{white-space:nowrap;font-weight:850;font-size:12px}.recipe-plus{padding:0!important;border:0!important;font-size:12px!important;font-weight:900;color:#ecedd0}.tech-condition-progress{font-size:10px;color:#dbe5c7}#techGraphNodes .tech-node .node-price{margin-top:0;padding-right:0;font-size:9px;line-height:1.15;color:#bed1c2}
+.tech-actions{display:flex;gap:4px;margin-top:auto}.tech-buy{flex:1;min-height:30px;border:1px solid #d6c486;border-radius:7px;background:#36513c;color:#f7efcf;font-size:10px;font-weight:800;cursor:pointer}.tech-buy:disabled{opacity:.55;cursor:default}.tech-link[data-state=locked]{stroke-dasharray:2 5}.tech-link[data-state=available]{stroke-dasharray:none}.tech-link[data-focused=false],.tech-junction[data-focused=false]{opacity:.2}.tech-link[data-focused=true]{stroke-width:3}.tech-junction circle{fill:#132c2a;stroke:#779d8c;stroke-width:1.5}.tech-junction text{font-size:13px;font-weight:900;fill:#d7e6d8}.tech-junction[data-ready=true] circle{stroke:#b2efbe;fill:#28543b}.tech-junction .junction-check{fill:#d2ffdc;font-size:12px}
 </style>
 </head><body>
 <label class="language-control"><span data-i18n="ui.language">언어</span> <select id="languageSelect" data-i18n-aria-label="ui.language"><option value="ko">한국어</option><option value="en">English</option></select></label>
@@ -604,10 +609,10 @@ next stage -&gt; centered stage number; 4/7/10... expands map/theme segment</cod
           <div id="techGraphNodes"></div>
         </div>
       </div>
-      <p class="tree-pan-hint" data-i18n-html="dom.techScroll.html.1">↔ 좌우로 이동해 분기를 탐색해. 기술을 누르면 해금하고, 선을 따라 다음 기술을 찾아갈 수 있어.</p>
+      <p class="tree-pan-hint" data-i18n-html="dom.techScroll.html.1">↔ 좌우로 이동해 분기를 탐색해. 카드를 누르면 조건과 선행 경로를 확인하고, 조건 칩을 누르면 선행 기술로 이동해. 해금은 별도 구매 버튼으로 진행해.</p>
       <section class="tech-lower"><h3 class="synergy-heading" data-i18n-html="dom.techScroll.html.3">✦ 기본 능력치 <small>레벨마다 원하는 능력치에 투자</small></h3><div id="techStats" class="tech-combos"></div></section>
     </div>
-    <footer class="tech-footer"><span><span data-i18n="dom.techPanel.text.3">새 잔상은 탄 1개, 이미 만든 잔상으로 돌진은 무료. 자동 연격은 잔상 50% 이상 직접 명중 + 다음 탄이 필요해.</span></span><button id="techRefund" data-i18n-html="dom.techRefund.html.1">무료 초기화</button></footer>
+    <footer class="tech-footer"><span><span data-i18n="dom.techPanel.text.3">카드: 조건 확인 · 조건 칩: 선행 기술로 이동 · 구매 버튼: 포인트 사용</span></span><button id="techRefund" data-i18n-html="dom.techRefund.html.1">무료 초기화</button></footer>
   </section>
   <div id="settings"><div class="settings-head"><h2 data-i18n-html="dom.settings.html.1">조작 · 물리 실험</h2><button id="closeSettings" aria-label="설정 닫기" data-i18n-html="dom.closeSettings.html.1" data-i18n-aria-label="dom.closeSettings.aria-label.1">닫기 ✕</button></div><details id="coreboundStats"><summary><span data-i18n="dom.coreboundStats.text.1">기본 능력치 </span><span style="color:#8cbcae;font-size:10px"><span data-i18n="dom.coreboundStats.text.2">설정 열기</span></span></summary><div id="statRows"></div><p class="caption" data-i18n-html="dom.coreboundStats.html.1">흡혈은 기본 0%이며 별도 성장으로 강화합니다. 방어 관통은 대상의 방어력이 있을 때 적용됩니다. 잔상 속도·발사 준비·자동 연격은 각각 기본 물리 설정과 테크트리에서 관리합니다.</p></details><div id="settingRows"></div><p class="tech-settings-note" data-i18n-html="dom.settings.html.2">공격 탄·도탄·운동·충격 특성 및 영구 스탯은 대기 화면의 「업그레이드」에서 해금합니다.</p><label class="check"><input type="checkbox" id="showCompression" checked=""><span data-i18n="dom.settings.text.1">목표 수축 조준선 / 남은 거리 VFX</span></label><label class="check"><input type="checkbox" id="showLinkPulse" checked=""><span data-i18n="dom.settings.text.2">잔상↔목표 펄스</span></label><label class="check"><input type="checkbox" id="showDebug"><span data-i18n="dom.settings.text.3">충돌 / 잔상 계측 보이기</span></label><footer><span data-i18n="dom.settings.text.4">잔상 차지율은 </span><b><span data-i18n="dom.settings.text.5">돌진 시작 충격량과 돌진 비행 중의 가속도만</span></b><span data-i18n="dom.settings.text.6"> 결정합니다. 공격 피해는 </span><b><span data-i18n="dom.settings.text.7">공격력 × 실제 충돌 접근 속도 / 기준 속도</span></b><span data-i18n="dom.settings.text.8">이며 차지율·날아간 거리의 피해 배율은 없습니다. 멀리서 정확히 시작하면 더 오래 가속하여 충돌 피해가 커질 수 있습니다. 공격 돌진은 시작 시 횡방향 속도를 제거하며 적을 따라 궤도를 꺾지 않습니다. 전장 탭·WASD는 같은 구르기이고 공격을 취소하며, 충전 2회와 순차 회복 500ms 및 시작 100ms 탄환 무적을 가집니다. 플레이어의 수축 고리는 다음 발사 준비, 목표 주변 에임은 남은 거리 기준 타이밍을 표시합니다. 수동 잔상 발사는 기본 2발의 별도 탄을 쓰며 1,500ms마다 1발씩 순차 장전합니다. HP는 쓰지 않습니다. 수동·메아리·연격의 새 잔상은 같은 탄 1개를 쓰며 기존 잔상으로 돌진은 무료입니다. 이동 충전·명중 환급 없이 자연 장전만 진행합니다. 평상 접촉 피해는0이며 실제 공격 피해에 투자한 흡혈률만 회복합니다. 기존 50% 차지 손익분기 가정은 새 속도 피해식에서 더 이상 고정되지 않습니다. 초기 수치는 조정용이며 정식 밸런스가 아닙니다.</span></footer></div>
 </div>
@@ -626,7 +631,7 @@ import {t as tr,language,setLanguage,onLanguageChanged,translateDocument,localiz
 
 
 const KIT = 'https://cdn.jsdelivr.net/gh/byh-playground/bloom-gamekit@d1e2c385033ad04a7a004cfbe9558948ef07a6d1/';
-const VERSION = '0.14.2', BUILD_ID = '20261011T095226Z-lobby-version';
+const VERSION = '0.14.3', BUILD_ID = '20261011T103038Z-tech-combinations';
 const $ = id => document.getElementById(id);
 document.querySelectorAll('[data-game-version]').forEach(el=>el.textContent='v'+VERSION);
 const loadtext = $('loadtext');translateDocument();document.title=tr('app.title');$('languageSelect').value=language();$('languageSelect').disabled=true;
@@ -3010,40 +3015,44 @@ try {
     echo:2,autoChain:2,ricochet:2,relay:2,momentum:3,rebound:3,propulsion:3,
     spore:4,shockPush:4,sporeSplit:4,finisher:4,conduct:5,relayArc:5,ignite:6,spreadFlame:6,
     evadeCapacity1:7,evadeCapacity2:7,evadeHitRecharge:7,evadeRecharge1:8,evadeRecharge2:8,evadeWindow:8,evadeDistance1:9,evadeDistance2:9});
-  const techElements=new Map(),techGraphPositions=new Map(),techLinkElements=[];
+  const techElements=new Map(),techGraphPositions=new Map(),techLinkElements=[],techJunctions=[];
+  let selectedTechId=null;
   const graphNodeById=new Map(TECH_NODES.map(n=>[n.id,n]));
   const rankCache=new Map();
   const techRank=(id)=>{if(rankCache.has(id))return rankCache.get(id);
     const node=graphNodeById.get(id);const rank=node.requires.length?Math.max(...node.requires.map(techRank))+1:1;
     rankCache.set(id,rank);return rank;};
-  const GRAPH={startX:38,stepX:186,nodeW:170,topY:190,stepY:185,nodeH:159};
+  const GRAPH={startX:38,stepX:186,nodeW:170,topY:190,stepY:252,nodeH:204};
   const graphPosition=node=>({x:GRAPH.startX+(node.lane??TECH_LANES[node.id])*GRAPH.stepX,
     y:GRAPH.topY+(techRank(node.id)-1+(node.rowOffset||0)+(['evadeHitRecharge','evadeWindow'].includes(node.id)?1:0))*GRAPH.stepY});
-  const graphLink=(sourceId,node)=>{
-    const target=techGraphPositions.get(node.id),source=sourceId==='__root__'?{x:376,y:19,w:240,h:68}:techGraphPositions.get(sourceId);
-    if(!source||!target)return;
-    const fromX=source.x+(source.w??GRAPH.nodeW)/2,fromY=source.y+(source.h??GRAPH.nodeH),toX=target.x+GRAPH.nodeW/2,toY=target.y;
-    const mid=fromY+(toY-fromY)*.47;
-    const path=document.createElementNS('http://www.w3.org/2000/svg','path');
-    path.setAttribute('d',`M ${fromX} ${fromY} V ${mid} H ${toX} V ${toY}`);
-    path.setAttribute('class','tech-link '+node.branch);path.setAttribute('data-state','locked');
-    $('techLinks').append(path);techLinkElements.push({path,sourceId,targetId:node.id});
-  };
-  for(const node of TECH_NODES){const button=document.createElement('button');button.type='button';button.className='tech-node';button.id='tech_'+node.id;
-    const head=document.createElement('div');head.className='node-head';const symbol=document.createElement('span');symbol.className='node-icon';symbol.textContent=node.symbol;
-    const name=document.createElement('b');name.textContent=node.name;head.append(symbol,name);
-    const desc=document.createElement('span');desc.className='node-desc';desc.textContent=node.desc;
-    const price=document.createElement('span');price.className='node-price';button.append(head,desc,price);
-    button.addEventListener('click',()=>{if(learnTech(node.id))updateTechUi();});
-    if(node.requires.length>1){const req=document.createElement('div');req.className='tech-prereqs';for(const id of node.requires){const chip=document.createElement('span');chip.dataset.prereq=id;chip.textContent=graphNodeById.get(id).name;req.append(chip);}button.insertBefore(req,price);}
-    const pos=graphPosition(node);button.style.left=pos.x+'px';button.style.top=pos.y+'px';button.dataset.branch=node.branch;
-    $('techGraphNodes').append(button);if(C.ultimates.skills[node.id]){const preview=makePreviewButton(node.id);preview.classList.add('tech-preview-button');preview.style.left=(pos.x+GRAPH.nodeW-68)+'px';preview.style.top=(pos.y+GRAPH.nodeH-35)+'px';$('techGraphNodes').append(preview);}techGraphPositions.set(node.id,{...pos,w:GRAPH.nodeW,h:GRAPH.nodeH});
-    techElements.set(node.id,{button,price});
+  const svgElement=(tag,attributes={})=>{const el=document.createElementNS('http://www.w3.org/2000/svg',tag);for(const [key,value]of Object.entries(attributes))el.setAttribute(key,value);return el;};
+  function requirementState(node){let completed=0;for(const id of node.requires)if(hasTech(id))completed++;return {completed,total:node.requires.length,ready:completed===node.requires.length};}
+  function selectTech(id,center=true){selectedTechId=id;updateTechSelection();if(center){const el=techElements.get(id).card;el.scrollIntoView({block:'center',inline:'center'});techElements.get(id).select.focus({preventScroll:true});}}
+  function updateTechSelection(){const related=new Set(),queue=selectedTechId?[selectedTechId]:[];while(queue.length){const id=queue.pop();if(related.has(id))continue;related.add(id);queue.push(...graphNodeById.get(id).requires);}
+    for(const [id,elem]of techElements){elem.card.dataset.selected=String(id===selectedTechId);elem.card.dataset.related=String(!selectedTechId||related.has(id));elem.select.setAttribute('aria-pressed',String(id===selectedTechId));}
+    for(const link of techLinkElements)link.path.dataset.focused=String(!selectedTechId||related.has(link.targetId)&&(link.sourceId===null||link.sourceId==='__root__'||related.has(link.sourceId)));
+    for(const join of techJunctions)join.group.dataset.focused=String(!selectedTechId||related.has(join.targetId));
+  }
+  function addTechLink(sourceId,node,d){const path=svgElement('path',{d,class:'tech-link '+node.branch,'data-state':'locked','data-source':sourceId??'junction','data-target':node.id});$('techLinks').append(path);techLinkElements.push({path,sourceId,targetId:node.id});}
+  function graphLinks(node){const target=techGraphPositions.get(node.id),toX=target.x+GRAPH.nodeW/2,toY=target.y,combination=node.requires.length>1,joinY=toY-20;
+    for(const [index,sourceId]of (node.requires.length?node.requires:['__root__']).entries()){const source=sourceId==='__root__'?{x:376,y:19,w:240,h:68}:techGraphPositions.get(sourceId),fromX=source.x+source.w/2,fromY=source.y+source.h;
+      if(combination){const portX=toX-9+index*18/(node.requires.length-1),mid=Math.max(fromY+4,joinY-12-(node.requires.length-1-index)*6);addTechLink(sourceId,node,'M '+fromX+' '+fromY+' V '+mid+' H '+portX+' V '+joinY+' H '+toX);}
+      else{const mid=fromY+(toY-fromY)*.47;addTechLink(sourceId,node,'M '+fromX+' '+fromY+' V '+mid+' H '+toX+' V '+toY);}}
+    if(combination){addTechLink(null,node,'M '+toX+' '+(joinY+9)+' V '+toY);const group=svgElement('g',{class:'tech-junction','data-target':node.id,role:'img'}),circle=svgElement('circle',{cx:toX,cy:joinY,r:9}),plus=svgElement('text',{x:toX,y:joinY+4,'text-anchor':'middle'}),check=svgElement('text',{x:toX+13,y:joinY+4,class:'junction-check'});plus.textContent='+';group.append(circle,plus,check);$('techLinks').append(group);techJunctions.push({group,check,targetId:node.id});}
+  }
+  for(const node of TECH_NODES){const card=document.createElement('article');card.className='tech-node';card.id='tech_'+node.id;card.dataset.combination=String(node.requires.length>1);
+    const select=document.createElement('button');select.type='button';select.className='tech-select';select.dataset.techSelect=node.id;select.onclick=()=>selectTech(node.id);
+    const head=document.createElement('div');head.className='node-head';const symbol=document.createElement('span');symbol.className='node-icon';symbol.textContent=node.symbol;const name=document.createElement('b');name.textContent=node.name;head.append(symbol,name);
+    const desc=document.createElement('span');desc.className='node-desc';desc.textContent=node.desc;select.append(head,desc);card.append(select);
+    const recipe=document.createElement('div');recipe.className='tech-prereqs';const chips=[];
+    for(const [index,id]of node.requires.entries()){if(index){const plus=document.createElement('span');plus.className='recipe-plus';plus.textContent='+';plus.setAttribute('aria-hidden','true');recipe.append(plus);}const chip=document.createElement('button');chip.type='button';chip.dataset.prereq=id;const icon=document.createElement('span'),label=document.createElement('span');icon.className='condition-icon';label.className='condition-name';chip.append(icon,label);chip.onclick=()=>selectTech(id,true);recipe.append(chip);chips.push({chip,icon,label,id});}card.append(recipe);
+    const progress=document.createElement('small');progress.className='tech-condition-progress';const price=document.createElement('span');price.className='node-price';card.append(progress,price);
+    const actions=document.createElement('div');actions.className='tech-actions';const buy=document.createElement('button');buy.type='button';buy.className='tech-buy';buy.dataset.techBuy=node.id;buy.onclick=()=>learnTech(node.id);actions.append(buy);
+    if(C.ultimates.skills[node.id]){const preview=makePreviewButton(node.id);preview.classList.add('tech-preview-button');actions.append(preview);}card.append(actions);card.onclick=event=>{if(!event.target.closest('button'))selectTech(node.id);};
+    const pos=graphPosition(node);card.style.left=pos.x+'px';card.style.top=pos.y+'px';card.dataset.branch=node.branch;$('techGraphNodes').append(card);techGraphPositions.set(node.id,{...pos,w:GRAPH.nodeW,h:GRAPH.nodeH});techElements.set(node.id,{card,select,name,desc,price,progress,buy,chips});
   }
   const graphHeight=Math.max(...[...techGraphPositions.values()].map(p=>p.y+p.h))+24;$('techMap').style.height=graphHeight+'px';$('techLinks').style.height=graphHeight+'px';
-  for(const node of TECH_NODES){
-    for(const parent of node.requires.length?node.requires:['__root__'])graphLink(parent,node);
-  }
+  for(const node of TECH_NODES)graphLinks(node);
   function centerTechRoot(){const view=$('techViewport');const pos=techGraphPositions.get('echo');
     view.scrollLeft=Math.max(0,pos.x+GRAPH.nodeW/2-view.clientWidth/2);}
   $('treeCenter').addEventListener('click',centerTechRoot);
@@ -3100,18 +3109,16 @@ try {
     b.addEventListener('click',()=>learnStat(key));$('techStats').append(b);statElements.set(key,b);}
   function updateTechUi(){const points=availableTech();$('techWallet').textContent=String(points);$('techPoints').textContent=String(points);
     let purchasable=false;
-    for(const node of TECH_NODES){const learned=hasTech(node.id),pathReady=node.requires.every(hasTech),affordable=points>=node.cost;
-      const elem=techElements.get(node.id);if(!elem)continue;elem.button.querySelector('b').textContent=node.name;elem.button.querySelector('.node-desc').textContent=node.desc;for(const chip of elem.button.querySelectorAll('[data-prereq]'))chip.textContent=graphNodeById.get(chip.dataset.prereq).name;
-      const state=learned?'unlocked':pathReady&&affordable?'available':'locked';elem.button.dataset.state=state;
-      elem.button.disabled=learned||!pathReady||!affordable;
-      elem.price.textContent=learned?tr("runtime.214"):!pathReady?tr("runtime.215"):affordable?tr("runtime.216",{v0:node.cost}):tr("runtime.217",{v0:node.cost,v1:node.cost-points});
-      for(const chip of elem.button.querySelectorAll('[data-prereq]'))chip.dataset.ready=String(hasTech(chip.dataset.prereq));
+    for(const node of TECH_NODES){const learned=hasTech(node.id),conditions=requirementState(node),pathReady=conditions.ready,affordable=points>=node.cost,elem=techElements.get(node.id);elem.name.textContent=node.name;elem.desc.textContent=node.desc;
+      const state=learned?'unlocked':pathReady&&affordable?'available':'locked';elem.card.dataset.state=state;elem.card.dataset.ready=String(pathReady);elem.buy.disabled=learned||!pathReady||!affordable;elem.buy.textContent=learned?tr('runtime.214'):tr('tech.buy',{cost:node.cost});
+      elem.progress.textContent=conditions.total?tr('tech.conditions',{completed:conditions.completed,total:conditions.total}):tr('tech.noConditions');elem.select.setAttribute('aria-label',node.name+' \u00b7 '+node.desc+' \u00b7 '+elem.progress.textContent);elem.buy.setAttribute('aria-label',tr('tech.buyNamed',{name:node.name,cost:node.cost}));
+      elem.price.textContent=learned?tr('runtime.214'):!pathReady?tr('tech.missing'):affordable?tr('tech.ready'):tr('runtime.217',{v0:node.cost,v1:node.cost-points});
+      for(const {chip,icon,label,id}of elem.chips){const ready=hasTech(id),parent=graphNodeById.get(id);chip.dataset.ready=String(ready);icon.textContent=(ready?'✓ ':'')+parent.symbol;label.textContent=parent.name;chip.setAttribute('aria-label',tr('tech.inspectCondition',{name:parent.name,state:tr(ready?'tech.met':'tech.notMet')}));}
       if(state==='available')purchasable=true;
     }
-    for(const link of techLinkElements){const target=graphNodeById.get(link.targetId);
-      link.path.dataset.state=hasTech(link.targetId)?'unlocked':
-        (link.sourceId==='__root__'||hasTech(link.sourceId))&&target.requires.every(hasTech)?'available':'locked';
-    }
+    for(const link of techLinkElements){const target=graphNodeById.get(link.targetId),ready=link.sourceId===null?requirementState(target).ready:link.sourceId==='__root__'||hasTech(link.sourceId);link.path.dataset.state=hasTech(link.targetId)?'unlocked':ready?'available':'locked';}
+    for(const join of techJunctions){const node=graphNodeById.get(join.targetId),conditions=requirementState(node);join.group.dataset.ready=String(conditions.ready);join.check.textContent=conditions.ready?'✓':'';join.group.setAttribute('aria-label',node.name+' \u00b7 '+tr('tech.conditions',{completed:conditions.completed,total:conditions.total}));}
+    updateTechSelection();
     for(const [key,name,amount,,,maxLevel=Infinity] of STAT_UPGRADES){const b=statElements.get(key);if(!b)continue;b.querySelector('b').textContent=name;b.querySelector('.node-desc').textContent=tr('ui.statGain',{amount});const pathReady=statPathReady(key,tech.statLevels);
       const capped=tech.statLevels[key]>=maxLevel;b.disabled=points<1||!pathReady||capped;b.dataset.state=capped?'unlocked':points>0&&pathReady?'available':'locked';
       b.querySelector('.node-price').textContent=capped?(key==='petSlots'?tr("runtime.phrase.5",{v0:C.stats[key]}):tr("runtime.phrase.4",{v0:Math.round(C.stats[key]*100)})):!pathReady?tr("runtime.221"):tr("runtime.222",{v0:tech.statLevels[key]});

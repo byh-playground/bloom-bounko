@@ -626,7 +626,7 @@ next stage -&gt; centered stage number; 4/7/10... expands map/theme segment</cod
     </div>
     <footer class="tech-footer"><span><span data-i18n="dom.techPanel.text.3">카드: 조건 확인 · 조건 칩: 선행 기술로 이동 · 구매 버튼: 포인트 사용</span></span><button id="techRefund" data-i18n-html="dom.techRefund.html.1">무료 초기화</button></footer>
   </section>
-  <div id="settings"><div class="settings-head"><h2 data-i18n-html="dom.settings.html.1">조작 · 물리 실험</h2><button id="closeSettings" aria-label="설정 닫기" data-i18n-html="dom.closeSettings.html.1" data-i18n-aria-label="dom.closeSettings.aria-label.1">닫기 ✕</button></div><details id="coreboundStats"><summary><span data-i18n="dom.coreboundStats.text.1">기본 능력치 </span><span style="color:#8cbcae;font-size:10px"><span data-i18n="dom.coreboundStats.text.2">설정 열기</span></span></summary><div id="statRows"></div><p class="caption" data-i18n-html="dom.coreboundStats.html.1">흡혈은 기본 0%이며 별도 성장으로 강화합니다. 방어 관통은 대상의 방어력이 있을 때 적용됩니다. 잔상 속도·발사 준비·자동 연격은 각각 기본 물리 설정과 테크트리에서 관리합니다.</p></details><div id="settingRows"></div><p class="tech-settings-note" data-i18n-html="dom.settings.html.2">공격 탄·도탄·운동·충격 특성 및 영구 스탯은 대기 화면의 「업그레이드」에서 해금합니다.</p><label class="check"><input type="checkbox" id="showCompression" checked=""><span data-i18n="dom.settings.text.1">목표 수축 조준선 / 남은 거리 VFX</span></label><label class="check"><input type="checkbox" id="showLinkPulse" checked=""><span data-i18n="dom.settings.text.2">잔상↔목표 펄스</span></label><label class="check"><input type="checkbox" id="showDebug"><span data-i18n="dom.settings.text.3">충돌 / 잔상 계측 보이기</span></label><footer><span data-i18n="dom.settings.text.4">잔상 차지율은 </span><b><span data-i18n="dom.settings.text.5">돌진 시작 충격량과 돌진 비행 중의 가속도만</span></b><span data-i18n="dom.settings.text.6"> 결정합니다. 공격 피해는 </span><b><span data-i18n="dom.settings.text.7">공격력 × 실제 충돌 접근 속도 / 기준 속도</span></b><span data-i18n="dom.settings.text.8">이며 차지율·날아간 거리의 피해 배율은 없습니다. 멀리서 정확히 시작하면 더 오래 가속하여 충돌 피해가 커질 수 있습니다. 공격 돌진은 시작 시 횡방향 속도를 제거하며 적을 따라 궤도를 꺾지 않습니다. 전장 탭·WASD는 같은 구르기이고 공격을 취소하며, 충전 2회와 순차 회복 500ms 및 시작 100ms 탄환 무적을 가집니다. 플레이어의 수축 고리는 다음 발사 준비, 목표 주변 에임은 남은 거리 기준 타이밍을 표시합니다. 수동 잔상 발사는 기본 2발의 별도 탄을 쓰며 1,500ms마다 1발씩 순차 장전합니다. HP는 쓰지 않습니다. 수동·메아리·연격의 새 잔상은 같은 탄 1개를 쓰며 기존 잔상으로 돌진은 무료입니다. 이동 충전·명중 환급 없이 자연 장전만 진행합니다. 평상 접촉 피해는0이며 실제 공격 피해에 투자한 흡혈률만 회복합니다. 기존 50% 차지 손익분기 가정은 새 속도 피해식에서 더 이상 고정되지 않습니다. 초기 수치는 조정용이며 정식 밸런스가 아닙니다.</span></footer></div>
+  <div id="settings" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="settingsTitle"><div class="settings-head"><h2 id="settingsTitle" data-i18n-html="dom.settings.html.1">조작 · 물리 실험</h2><button id="closeSettings" aria-label="설정 닫기" data-i18n-html="dom.closeSettings.html.1" data-i18n-aria-label="dom.closeSettings.aria-label.1">닫기 ✕</button></div><details id="coreboundStats"><summary><span data-i18n="dom.coreboundStats.text.1">기본 능력치 </span><span style="color:#8cbcae;font-size:10px"><span data-i18n="dom.coreboundStats.text.2">설정 열기</span></span></summary><div id="statRows"></div><p class="caption" data-i18n-html="dom.coreboundStats.html.1">흡혈은 기본 0%이며 별도 성장으로 강화합니다. 방어 관통은 대상의 방어력이 있을 때 적용됩니다. 잔상 속도·발사 준비·자동 연격은 각각 기본 물리 설정과 테크트리에서 관리합니다.</p></details><div id="settingRows"></div><p class="tech-settings-note" data-i18n-html="dom.settings.html.2">공격 탄·도탄·운동·충격 특성 및 영구 스탯은 대기 화면의 「업그레이드」에서 해금합니다.</p><label class="check"><input type="checkbox" id="showCompression" checked=""><span data-i18n="dom.settings.text.1">목표 수축 조준선 / 남은 거리 VFX</span></label><label class="check"><input type="checkbox" id="showLinkPulse" checked=""><span data-i18n="dom.settings.text.2">잔상↔목표 펄스</span></label><label class="check"><input type="checkbox" id="showDebug"><span data-i18n="dom.settings.text.3">충돌 / 잔상 계측 보이기</span></label><footer><span data-i18n="dom.settings.text.4">잔상 차지율은 </span><b><span data-i18n="dom.settings.text.5">돌진 시작 충격량과 돌진 비행 중의 가속도만</span></b><span data-i18n="dom.settings.text.6"> 결정합니다. 공격 피해는 </span><b><span data-i18n="dom.settings.text.7">공격력 × 실제 충돌 접근 속도 / 기준 속도</span></b><span data-i18n="dom.settings.text.8">이며 차지율·날아간 거리의 피해 배율은 없습니다. 멀리서 정확히 시작하면 더 오래 가속하여 충돌 피해가 커질 수 있습니다. 공격 돌진은 시작 시 횡방향 속도를 제거하며 적을 따라 궤도를 꺾지 않습니다. 전장 탭·WASD는 같은 구르기이고 공격을 취소하며, 충전 2회와 순차 회복 500ms 및 시작 100ms 탄환 무적을 가집니다. 플레이어의 수축 고리는 다음 발사 준비, 목표 주변 에임은 남은 거리 기준 타이밍을 표시합니다. 수동 잔상 발사는 기본 2발의 별도 탄을 쓰며 1,500ms마다 1발씩 순차 장전합니다. HP는 쓰지 않습니다. 수동·메아리·연격의 새 잔상은 같은 탄 1개를 쓰며 기존 잔상으로 돌진은 무료입니다. 이동 충전·명중 환급 없이 자연 장전만 진행합니다. 평상 접촉 피해는0이며 실제 공격 피해에 투자한 흡혈률만 회복합니다. 기존 50% 차지 손익분기 가정은 새 속도 피해식에서 더 이상 고정되지 않습니다. 초기 수치는 조정용이며 정식 밸런스가 아닙니다.</span></footer></div>
 </div>
 <div id="gameover"><div class="over-inner"><div class="over-tag">RUN ENDED</div><h1 data-i18n-html="dom.gameover.html.1">쓰러졌어</h1><p id="runSummary"></p><button id="retry" data-i18n-html="dom.retry.html.1">대기 화면으로</button></div></div>
 <div id="load"><div id="loadbox"><h1>BOUNKO</h1><p id="loadtext" data-i18n-html="dom.loadtext.html.1">물리 엔진과 공통 게임 모듈을 불러오는 중…</p><details><summary><span data-i18n="dom.loadbox.text.1">라이브러리 정보</span></summary><p data-i18n-html="dom.loadbox.html.1">Matter.js 0.20.0 / Bloom GameKit ESM · 고정 커밋 d1e2c385. 최초 실행에는 인터넷 연결이 필요합니다.</p></details></div></div>
@@ -649,7 +649,7 @@ import {t as tr,language,setLanguage,onLanguageChanged,translateDocument,localiz
 
 
 const KIT = 'https://cdn.jsdelivr.net/gh/byh-playground/bloom-gamekit@d1e2c385033ad04a7a004cfbe9558948ef07a6d1/';
-const VERSION = '0.14.6', BUILD_ID = '20261011T111545Z-tech-routing'
+const VERSION = '0.14.7', BUILD_ID = '20261011T114508Z-menu-routes'
 const $ = id => document.getElementById(id);
 document.querySelectorAll('[data-game-version]').forEach(el=>el.textContent='v'+VERSION);
 const loadtext = $('loadtext');translateDocument();document.title=tr('app.title');$('languageSelect').value=language();$('languageSelect').disabled=true;
@@ -664,7 +664,7 @@ try {
   const previewAudio=previewSkill&&window.parent!==window?window.parent.__bloomImpulse?.getAudio():null;
   if(introScene)sfx.setMuted(true);
   if(previewAudio){sfx.setVolume(previewAudio.volume);sfx.setMuted(previewAudio.muted);for(const [category,value]of Object.entries(previewAudio.categoryVolumes))sfx.setCategoryVolume(category,value);}
-  let introHost=null,introEvent=0,introChapter=0,introDashPending=false,introMetrics=[];
+  let menuRouter=null,introHost=null,introEvent=0,introChapter=0,introDashPending=false,introMetrics=[];
   let previewHost=null,previewPaused=false,previewEnded=false,previewOrigin=null,previewHitCount=0;
   function playImpact(speed,sound=null){return sfx.play(sound||(speed<500?'impactLight':speed<1000?'impactMedium':'impactHeavy'),Math.min(1,.4+speed/1600));}
   async function playUiSound(){if(await sfx.unlock())sfx.play('ui');}
@@ -2250,7 +2250,7 @@ try {
     $('ultimateEquipNotice').textContent=tr('ultimate.preparationHint');
   }
   function makePreviewButton(id){const button=document.createElement('button');button.type='button';button.className='ultimate-preview-button';button.dataset.previewId=id;button.textContent=tr('preview.open');button.setAttribute('aria-label',tr('preview.title',{name:tr('ultimate.'+id+'.name')}));button.onclick=()=>previewHost.open(id,button);return button;}
-  function openUltimates(open){if(open&&phase!=='LOBBY')return;$('ultimatePanel').classList.toggle('open',open);$('ultimatePanel').setAttribute('aria-hidden',String(!open));if(open){updateUltimatePreparation();$('ultimateClose').focus();}else if(phase==='LOBBY')$('ultimateOpen').focus();}
+  function openUltimates(open){if(menuRouter&&!menuRouter.applying)return routeMenu("ultimates",open);if(open&&phase!=='LOBBY')return;$('ultimatePanel').classList.toggle('open',open);$('ultimatePanel').setAttribute('aria-hidden',String(!open));if(open){updateUltimatePreparation();$('ultimateClose').focus();}}
   $('ultimateOpen').onclick=()=>openUltimates(true);$('ultimateClose').onclick=()=>openUltimates(false);$('ultimatePanel').onclick=event=>{if(event.target===$('ultimatePanel'))openUltimates(false);};
 
   function onComboHit(count){
@@ -3050,7 +3050,7 @@ try {
     y:GRAPH.topY+(techRank(node.id)-1+(node.rowOffset||0)+(['evadeHitRecharge','evadeWindow'].includes(node.id)?1:0))*GRAPH.stepY});
   const svgElement=(tag,attributes={})=>{const el=document.createElementNS('http://www.w3.org/2000/svg',tag);for(const [key,value]of Object.entries(attributes))el.setAttribute(key,value);return el;};
   function requirementState(node){let completed=0;for(const id of node.requires)if(hasTech(id))completed++;return {completed,total:node.requires.length,ready:completed===node.requires.length};}
-  function selectTech(id,center=true){selectedTechId=id;updateTechSelection();if(center){const el=techElements.get(id).card;el.scrollIntoView({block:'center',inline:'center'});techElements.get(id).select.focus({preventScroll:true});}}
+  function selectTech(id,center=true){if(menuRouter&&!menuRouter.applying&&menuRouter.current.screen==="tech")return menuRouter.go({screen:"tech",item:id},{force:true});selectedTechId=id;updateTechSelection();if(center){const el=techElements.get(id).card;el.scrollIntoView({block:'center',inline:'center'});techElements.get(id).select.focus({preventScroll:true});}}
   function updateTechSelection(){const related=new Set(),queue=selectedTechId?[selectedTechId]:[];while(queue.length){const id=queue.pop();if(related.has(id))continue;related.add(id);queue.push(...graphNodeById.get(id).requires);}
     for(const [id,elem]of techElements){elem.card.dataset.selected=String(id===selectedTechId);elem.card.dataset.related=String(!selectedTechId||related.has(id));elem.select.setAttribute('aria-pressed',String(id===selectedTechId));}
     for(const link of techLinkElements){link.path.dataset.focused=String(!selectedTechId||related.has(link.targetId)&&(link.sourceId===null||link.sourceId==='__root__'||related.has(link.sourceId)));for(const crossing of link.crossings??[])crossing.dataset.focused=link.path.dataset.focused;}
@@ -3156,7 +3156,7 @@ try {
     if(!companions.inventory.length){const empty=document.createElement('div');empty.className='pet-inventory-empty';empty.textContent=tr("runtime.200");$('petInventory').append(empty);}
     const grade=Number(gradeSelect.value),count=companions.eligible(selectedSpecies,grade).length,odds=petConfig.fusion.odds[grade];$('petFusionOdds').textContent=!owned.length?tr("runtime.201"):odds===undefined?tr("runtime.202"):tr("runtime.phrase.7",{v0:Math.round(odds*100),v1:count,v2:petConfig.fusion.required});$('petFuse').disabled=$('petFuseAll').disabled=!owned.length||odds===undefined||count<petConfig.fusion.required;
   }
-  function openPets(open){if(open&&phase!=='LOBBY')return;$('petPanel').classList.toggle('open',open);$('petPanel').setAttribute('aria-hidden',String(!open));if(open){updatePetUi();$('petClose').focus();}}
+  function openPets(open){if(menuRouter&&!menuRouter.applying)return routeMenu("pets",open);if(open&&phase!=='LOBBY')return;$('petPanel').classList.toggle('open',open);$('petPanel').setAttribute('aria-hidden',String(!open));if(open){updatePetUi();$('petClose').focus();}}
   $('petOpen').onclick=()=>openPets(true);$('petClose').onclick=()=>openPets(false);$('petPanel').onclick=e=>{if(e.target===$('petPanel'))openPets(false);};$('petFusionSpecies').onchange=$('petFusionGrade').onchange=updatePetUi;
   for(const [id,all] of [['petFuse',false],['petFuseAll',true]])$(id).onclick=()=>{const result=companions.fuse($('petFusionSpecies').value,Number($('petFusionGrade').value),all);setPetResult(result.ok?message('ui.fusion',{count:result.attempts,success:result.successes,failure:result.failures,consumed:result.consumed.length,produced:result.produced.length}):message("runtime.212"));updatePetUi();};
   const statElements=new Map();
@@ -3186,16 +3186,17 @@ try {
     $('techWallet').textContent=`${points} / LV ${progressionLevel(tech.kills)}`;
     for(const [id] of augmentButtons){$('augment_'+id).dataset.enabled=String(hasTech(id));$('augment_'+id).hidden=!hasTech(id);}
   }
-  function openTech(open){if(open&&phase!=='LOBBY')return;$('techPanel').classList.toggle('open',open);$('techBackdrop').classList.toggle('open',open);
+  function openTech(open){if(menuRouter&&!menuRouter.applying)return routeMenu("tech",open);if(open&&phase!=='LOBBY')return;$('techPanel').classList.toggle('open',open);$('techBackdrop').classList.toggle('open',open);
     $('techPanel').setAttribute('aria-hidden',String(!open));if(open){updateTechUi();centerTechRoot();$('techClose').focus();}
     loop?.resetTiming?.();}
   $('techOpen').addEventListener('click',()=>openTech(true));$('techClose').addEventListener('click',()=>openTech(false));
   $('techBackdrop').addEventListener('click',()=>openTech(false));$('techRefund').addEventListener('click',()=>refundTech());
   $('showDebug').addEventListener('change',e=>C.debug.show=e.target.checked);$('showCompression').addEventListener('change',e=>C.fx.targetCompression=e.target.checked);$('showLinkPulse').addEventListener('change',e=>C.fx.linkPulse=e.target.checked);
-  function toggleSettings(open){$('settings').classList.toggle('open',open);if(open)input.releaseAll('settings');loop.resetTiming?.();}
+  function toggleSettings(open){if(menuRouter&&!menuRouter.applying)return routeMenu("settings",open);$('settings').classList.toggle('open',open);$('settings').setAttribute('aria-hidden',String(!open));if(open)input.releaseAll('settings');loop.resetTiming?.();}
   $('tune').addEventListener('click',()=>toggleSettings(!$('settings').classList.contains('open')));
   $('closeSettings').addEventListener('click',()=>toggleSettings(false));
   function enterLobby(){
+    menuRouter?.go({screen:'main'});
     ultimateRunner.cancel('lobby');openUltimates(false);
     openPets(false);openGuide(false);openWiki(false);
     // Keep earned progress, but never run combat in the lobby or while choosing a node.
@@ -3206,6 +3207,7 @@ try {
     $('lobby').classList.remove('hidden');document.body.classList.add('lobby-active');updateTechUi();loop.resetTiming?.();
   }
   function startRun(){
+    menuRouter?.go({screen:'main'},{replace:true});
     openUltimates(false);openPets(false);openGuide(false);openWiki(false);openTech(false);toggleSettings(false);reset();input.releaseAll();actions.consume();phase='PLAYING';
     sfx.play('stageStart');$('lobby').classList.add('hidden');document.body.classList.remove('lobby-active');
     pending.length=0;loop.resetTiming?.();if(!isolatedScene)canvas.focus({preventScroll:true});
@@ -3263,6 +3265,7 @@ try {
     const name=section.dataset.wikiTitle;
     const btn=document.createElement('button');btn.type='button';btn.className='wiki-nav-btn';btn.textContent=name;
     btn.addEventListener('click',()=>{
+      if(menuRouter&&!menuRouter.applying)return menuRouter.go({screen:'wiki',item:section.id.slice(5)},{force:true});
       const scroller=$('wikiScroll');
       // offsetTop may be relative to a different offsetParent (e.g. the
       // absolutely positioned modal), so convert both DOMRects to the same
@@ -3273,7 +3276,7 @@ try {
       for(const el of wikiNav.children)el.classList.toggle('active',el===btn);
     });
     wikiNav.append(btn);
-    const a=document.createElement('a');a.href='#'+section.id;a.textContent=name;
+    const a=document.createElement('a');a.href='#/wiki/'+section.id.slice(5);a.textContent=name;
     a.addEventListener('click',event=>{event.preventDefault();btn.click();});wikiTocItems.append(a);
   }
   function wikiSearch(text){
@@ -3291,7 +3294,7 @@ try {
   $('wikiMenu').addEventListener('click',()=>$('wikiSidebar').classList.toggle('mobile-open'));
   let guideIndex=0;
   const guideSlides=[...document.querySelectorAll('.guide-slide')];
-  function showGuideSlide(next){
+  function showGuideSlide(next){if(menuRouter&&!menuRouter.applying&&menuRouter.current.screen==="help")return menuRouter.go({screen:"help",item:String(clamp(next+1,1,guideSlides.length))},{force:true});
     guideIndex=Math.max(0,Math.min(guideSlides.length-1,next));
     guideSlides.forEach((node,index)=>node.classList.toggle('active',index===guideIndex));
     document.querySelectorAll('.guide-dot').forEach((node,index)=>node.classList.toggle('active',index===guideIndex));
@@ -3299,18 +3302,18 @@ try {
     $('guideNext').textContent=guideIndex===guideSlides.length-1?tr("runtime.274"):tr("runtime.275");
     $('guideStage').scrollTop=0;
   }
-  function openGuide(open){
+  function openGuide(open){if(menuRouter&&!menuRouter.applying)return routeMenu("help",open);
     if(open&&phase!=='LOBBY')return;
     if(open)openWiki(false);
     $('guidePanel').classList.toggle('open',open);$('guidePanel').setAttribute('aria-hidden',String(!open));
-    if(open){showGuideSlide(0);$('guideClose').focus();}else $('guideOpen').focus();
+    if(open){showGuideSlide(0);$('guideClose').focus();}
   }
-  function openWiki(open){if(open){refreshWikiTables();updateDiscoveredSpeciesWiki();}
+  function openWiki(open){if(menuRouter&&!menuRouter.applying)return routeMenu("wiki",open);if(open){refreshWikiTables();updateDiscoveredSpeciesWiki();}
     if(open&&phase!=='LOBBY')return;
     if(open)openGuide(false);
     $('wikiPanel').classList.toggle('open',open);$('wikiPanel').setAttribute('aria-hidden',String(!open));
     if(open){$('wikiSearch').value='';wikiSearch('');$('wikiScroll').scrollTop=0;$('wikiSidebar').classList.remove('mobile-open');$('wikiClose').focus();}
-    else $('wikiOpen').focus();
+
   }
   $('guideOpen').addEventListener('click',()=>openGuide(true));
   $('guideClose').addEventListener('click',()=>openGuide(false));
@@ -3378,9 +3381,59 @@ try {
   }
   function prepareIntro(){startRun();previewOrigin={...player.position};introEvent=0;introMetrics=[];previewEnded=false;previewPaused=false;lastFrame=0;advanceIntro();}
 
-  previewHost=isolatedScene?null:createPreviewHost({translate:tr,pause(){loop.stop();sfx.stopAll();input.releaseAll('preview');},resume(){loop.resetTiming();lastFrame=performance.now();loop.start();}});
-  introHost=isolatedScene?null:createIntroHost({translate:tr,pause(){loop.stop();sfx.stopAll();input.releaseAll('intro');},resume(){loop.resetTiming();lastFrame=performance.now();loop.start();},play:startRun});
-  $('introOpen').onclick=()=>introHost?.open();
+  function createMenuRouter(){
+    const views={wiki:{panel:$('wikiPanel'),open:openWiki,entry:$('wikiOpen'),close:$('wikiClose')},help:{panel:$('guidePanel'),open:openGuide,entry:$('guideOpen'),close:$('guideClose')},tech:{panel:$('techPanel'),open:openTech,entry:$('techOpen'),close:$('techClose')},ultimates:{panel:$('ultimatePanel'),open:openUltimates,entry:$('ultimateOpen'),close:$('ultimateClose')},pets:{panel:$('petPanel'),open:openPets,entry:$('petOpen'),close:$('petClose')},settings:{panel:$('settings'),open:toggleSettings,entry:$('tune'),close:$('closeSettings')}};
+    let current={screen:'main'},applying=false,inert=[];
+    const key=route=>route.screen+'/'+(route.item??'');
+    function normalize(route){
+      const screen=route.screen==='intro'||Object.hasOwn(views,route.screen)?route.screen:'main';
+      if(phase!=='LOBBY'&&!['main','settings'].includes(screen))return {screen:'main'};
+      let item=route.item;
+      if(screen==='wiki')item=wikiSections.some(section=>section.id==='wiki-'+item)?item:null;
+      else if(screen==='help')item=String(clamp(Number.isInteger(Number(item))?Number(item):1,1,guideSlides.length));
+      else if(screen==='tech')item=graphNodeById.has(item)?item:null;
+      else item=null;
+      return {screen,item};
+    }
+    function read(){const parts=location.hash.replace(/^#\/?/,'').split('/').map(part=>{try{return decodeURIComponent(part);}catch{return '';}});return normalize({screen:parts[0]||(new URLSearchParams(location.search).get('showcase')==='1'?'intro':'main'),item:parts[1]});}
+    function url(route){const value=new URL(location.href);value.searchParams.delete('showcase');value.hash='';if(route.screen==='intro')value.searchParams.set('showcase','1');else if(route.screen!=='main')value.hash='/'+route.screen+(route.item?'/'+encodeURIComponent(route.item):'');return value;}
+    function restoreInert(){for(const [element,value]of inert)element.inert=value;inert=[];}
+    function apply(next,previous){
+      if(previewHost?.active)previewHost.close();
+      if(next.screen!==previous.screen){
+        restoreInert();if(introHost?.active)introHost.close({notify:false});
+        for(const view of Object.values(views))if(view.panel.classList.contains('open'))view.open(false);
+        if(next.screen==='intro'){introHost.open();return;}
+        if(next.screen!=='main'){
+          const view=views[next.screen];view.open(true);view.panel.setAttribute('aria-hidden','false');
+          for(let active=view.panel;active&&active!==document.body;active=active.parentElement)for(const element of active.parentElement.children)if(element!==active&&element.tagName!=='SCRIPT'&&!element.classList.contains('language-control')&&!['previewPanel','introPanel'].includes(element.id)&&!(next.screen==='tech'&&element.id==='techBackdrop'))inert.push([element,element.inert]);
+          for(const [element]of inert)element.inert=true;
+          input.releaseAll('menu');sfx.stopAll();loop.stop();view.close.focus({preventScroll:true});
+        }else{resumeMenuGame();(views[previous.screen]?.entry??$('introOpen')).focus({preventScroll:true});}
+      }
+      if(next.screen==='wiki'){if(next.item){$('wikiSearch').value='';wikiSearch('');wikiNav.children[wikiSections.findIndex(section=>section.id==='wiki-'+next.item)].click();}else{$('wikiScroll').scrollTop=0;for(const button of wikiNav.children)button.classList.remove('active');}}
+      else if(next.screen==='help')showGuideSlide(Number(next.item)-1);
+      else if(next.screen==='tech'){if(next.item)selectTech(next.item);else{selectedTechId=null;updateTechSelection();centerTechRoot();}}
+    }
+    function go(route,{replace=false,fromHistory=false,force=false}={}){
+      const next=normalize(route),previous=current,target=url(next);
+      if(location.href!==target.href)history[fromHistory||replace?'replaceState':'pushState'](null,'',target);
+      if(!force&&key(next)===key(previous))return;
+      current=next;applying=true;try{apply(next,previous);}finally{applying=false;}
+    }
+    const restore=()=>go(read(),{fromHistory:true});
+    function keyboard(event){const view=views[current.screen];if(!view||previewHost?.active||introHost?.active)return;
+      if(event.key==='Escape'){event.preventDefault();event.stopImmediatePropagation();go({screen:'main'});}
+      else if(event.key==='Tab'){const controls=[...view.panel.querySelectorAll('button:not(:disabled),input:not(:disabled),select:not(:disabled),a[href]')].filter(element=>element.getClientRects().length),first=controls[0],last=controls.at(-1);if(event.shiftKey&&document.activeElement===first){event.preventDefault();last?.focus();}else if(!event.shiftKey&&document.activeElement===last){event.preventDefault();first?.focus();}}
+    }
+    addEventListener('popstate',restore);addEventListener('hashchange',restore);document.addEventListener('keydown',keyboard,true);
+    return {go,get current(){return current;},get applying(){return applying;},init(){go(read(),{replace:true,force:true});},dispose(){removeEventListener('popstate',restore);removeEventListener('hashchange',restore);document.removeEventListener('keydown',keyboard,true);restoreInert();}};
+  }
+  function routeMenu(screen,open){if(open)menuRouter.go({screen});else if(menuRouter.current.screen===screen)menuRouter.go({screen:'main'});}
+  function resumeMenuGame(){if(menuRouter&&menuRouter.current.screen!=='main')return;loop.resetTiming();lastFrame=performance.now();loop.start();}
+  previewHost=isolatedScene?null:createPreviewHost({translate:tr,pause(){loop.stop();sfx.stopAll();input.releaseAll('preview');},resume:resumeMenuGame});
+  introHost=isolatedScene?null:createIntroHost({translate:tr,pause(){loop.stop();sfx.stopAll();input.releaseAll('intro');},resume:resumeMenuGame,play:startRun,onClose:()=>menuRouter?.go({screen:"main"})});
+  $('introOpen').onclick=()=>menuRouter?.go({screen:'intro'});
   window.addEventListener('resize',resize);
   document.addEventListener('visibilitychange',()=>{if(document.hidden){pending.length=0;bufferedIntent=null;bufferedUntilMs=0;}else{lastFrame=performance.now();}});
 
@@ -3408,8 +3461,8 @@ try {
   onLanguageChanged(refreshLanguageUi);refreshLanguageUi();$('languageSelect').disabled=false;
 
   if(!isolatedScene)loop.start();$('load').classList.add('hidden');if(!isolatedScene)canvas.focus({preventScroll:true});
-  window.__bloomImpulse={VERSION,BUILD_ID,config:C,intro:introScene?{snapshot:()=>({timeMs,tick,chapter:introChapter,ended:previewEnded,metrics:introMetrics,hits,kills,combo,ultimate:introScenes[introChapter].ultimate??null,ultimateDamage:ultimateRunner.damage,pets:petRoster.snapshot(),seed:introScenes[introChapter].seed}),async setSound(enabled){if(!running)return false;sfx.setMuted(!enabled);if(!enabled){sfx.stopAll();return true;}const unlocked=await sfx.unlock();if(!running)return false;if(!unlocked)sfx.setMuted(true);return unlocked;}}:null,preview:previewSkill?{snapshot:()=>({id:previewSkill,seed:previewScenario.seed,tick,paused:previewPaused,ended:previewEnded,hits:previewHitCount,damage:ultimateRunner.damage}),setPaused(value){previewPaused=!!value;if(previewPaused)sfx.stopAll();else void sfx.unlock();loop.resetTiming();}}:null,getUltimates:()=>ultimateRunner.snapshot(),getAudio:()=>sfx.snapshot(),audioMeter:()=>sfx.meter(),getCompanions:()=>companions.snapshot(),getState:()=>({drops:{...lootDrops.debug(),magnetRadius:magnetRadius()},unitStates:[...unitsById.values()].map(u=>({unitId:u.unitId,inventoryId:u.inventoryId,speciesId:u.speciesId,faction:u.faction,state:u.state,hp:u.hp,grade:u.grade,isSummon:!!u.isSummon,summonerId:u.summonerId,bossPatterns:u.bossPattern?.log,signature:u.config.signature,radius:u.config.radius,bodyRadius:u.body.circleRadius,height:u.spatial.height,scale:u.presentation.scale??1,outline:u.presentation.outline??null,attackCount:u.attackCount,melee:u.melee?{phase:u.melee.phase,swings:u.melee.swings,hits:u.melee.hits}:null,sunbeam:u.sunbeam?{phase:u.sunbeam.phase,focusMs:u.sunbeam.focusMs,stage:u.sunbeam.stage,pulses:u.sunbeam.pulses,targetId:u.sunbeam.target?.unitId}:null,heal:u.heal?{phase:u.heal.phase,casts:u.heal.casts,healed:u.heal.healed,cost:u.heal.cost,targetId:u.heal.target?.unitId}:null,regenerated:u.regeneration?.healed??0})),volumeEvents:[...volumeEvents],arcShots:projectiles.filter(s=>s.arc).map(s=>({x:s.body.position.x,y:s.body.position.y,z:s.body.plugin.volume.feetZ,aim:{...s.arc.aim},ageMs:s.arc.ageMs,height:s.arc.height,ownerId:s.ownerId})),companions:petRoster.snapshot(),phase,mode,health,maxHp:C.stats.maxHp,aimPreviewId:previewTargetId,augment:{spore:C.augment.spore.enabled,momentum:C.augment.momentum.enabled,relay:C.chain.followKill,chain:C.chain.enabled},tech:{points:availableTech(),level:progressionLevel(tech.kills),totalKills:tech.defeats,collectedGrowth:tech.kills,unlocked:[...tech.unlocked],statLevels:{...tech.statLevels}},autoChainReady,autoDashPlanned,chainActive,chainStarts,chainEnds,chainTriggerCharge:C.chain.minTriggerCharge,chainTargetId,autoChainWins,autoChainRolls,automaticDashes,manualPerfectHits,dashAutomatic,dashPerfect,launchCount,manualLaunchCount,echoLaunchCount,chainLaunchCount,attackAmmo:attackAmmo.snapshot(),missRecovery:{active:missRecoveryActive,events:missRecoveryEvents,firstHintShown:missHintShown},evade:{charges:evadeCharges,max:C.evade.maxCharges,refillAtMs:evadeRefillAtMs,progress:evadeRefillProgress(),rechargeMs:C.evade.rechargeMs,impulseSpeed:C.evade.impulseSpeed,durationMs:C.evade.durationMs,invulnerableMs:C.evade.invulnerableMs,projectileInvulnerable:timeMs-evadeStartedAtMs<C.evade.invulnerableMs,active:!!evadeMotion,startedAtMs:evadeStartedAtMs,count:evadeActions,hitRechargeEvents:evadeHitRechargeEvents,hitRechargeProgress:evadeHitRechargeProgress,lastHitRecharge:evadeLastHitRecharge?{...evadeLastHitRecharge}:null},stage:{index:stage.index,phase:stage.phase,waveKills:stage.waveKills,killTarget:stage.killTarget,bossHp:stage.boss?.hp??null,bossState:stage.boss?.state??null,bossPattern:stage.boss?.pattern??null,patternLog:[...stage.patternLog],obstacleCount:obstacles.length,broken:bossObstaclesBroken,arenaSides:arenaVertices.length,theme:stage.themeId,themeName:THEME_POOL[stage.themeId]?.name,layout:stage.layoutId,layoutName:THEME_POOL[stage.themeId].layouts.find(l=>l.id===stage.layoutId)?.name,radius:stage.radius,playableArea:Math.round(stage.playableArea),targetPopulation:stage.targetPopulation,mapTier:stage.mapTier,mapStart:stage.mapStart,mapSeed:stage.mapSeed,bossStage:isBossStage(stage.index),referenceArea:stageBasePlayableArea,bossName:stage.boss?BOSS_POOL[THEME_POOL[stage.themeId].boss]?.name:null,bossVariant:stage.bossVariant||null,bossSummons:stage.boss?liveSummons(stage.boss.id).length:0,seed:stage.seed,generation:{...generationStats}},stageHistory:[...stageHistory],bossPool:Object.keys(BOSS_POOL),themePool:Object.keys(THEME_POOL),mapOperators:Object.keys(MAP_OPERATORS),dashMotion:dashMotion?{...dashMotion}:null,camera:{base:{...cameraView.camera},render:{...renderer.camera},shake:cameraShake?{...cameraShake}:null,offset:cameraShakeOffset()},launchRecoil:launchRecoil?{...launchRecoil}:null,alignment:pendingLaunch?{...pendingLaunch,durationMs:C.shadow.orbit.alignMs}:null,orbit:ammoOrbitStates(player.position,timeMs),shadow:shadow?{source:shadow.source,slot:shadow.slot,dirX:shadow.dirX,dirY:shadow.dirY,x:shadow.x,y:shadow.y,startX:shadow.startX,startY:shadow.startY,visualRadius:shadowShardRadius(),launchedAtMs:shadow.launchedAtMs,progress:chargeOf(),charge:chargeOf(),dashReady:shadowDashAvailable(),separation:shadowSeparation(),remainingGap:remainingShadowGap(),initialGap:shadow.initialGap,travel:shadow.travel,limit:shadow.limit,targetId:shadow.targetId,arrived:shadow.arrived,speed:shadow.speed}:null,hitstopLeftMs,dashCharge,dashFlight:dashFlight?{...dashFlight,remainingMs:Math.round(dashFlight.untilMs-timeMs)}:null,rearmProgress:rearmProgress(),buffered:!!bufferedIntent,damageTaken,healingDone,position:{...player.position},speed:speedOf(player),hits,kills,combo,comboFxActive:comboFx.classList.contains('active'),enemyMasses:Object.fromEntries(Object.entries(C.enemy.types).map(([type,def])=>[type,def.mass])),tick,timeMs,attackDashSerial,enemies:enemies.filter(e=>e.alive).length,enemyShots,enemyAttacks,enemyPushes,projectiles:projectiles.length,enemyStates:enemies.filter(e=>e.alive).map(e=>({id:e.id,bodyId:e.body.id,type:e.type,state:e.state,z:e.body.plugin.volume.feetZ,height:e.body.plugin.volume.height,ability:e.leap?{phase:e.leap.phase,count:e.leap.count,landings:e.leap.landings,aim:e.leap.aim}:e.selfDestruct?{phase:e.selfDestruct.phase,leftMs:e.selfDestruct.leftMs}:e.spike?{phase:e.spike.phase,pulses:e.spike.pulses,counters:e.spike.counters}:e.arcFire?{phase:e.arcFire.phase,volleys:e.arcFire.volleys,fired:e.arcFire.fired}:null,hp:e.hp,burning:!!e.burn,conducting:e.conductUntilMs>timeMs,radius:enemyDef(e).radius,x:e.body.position.x,y:e.body.position.y,preX:e.preX,preY:e.preY,shadowKnockbackLeftMs:Math.max(0,(e.shadowKnockbackUntilMs||0)-timeMs),attackCount:e.attackCount,playerGap:Math.hypot(e.body.position.x-player.position.x,e.body.position.y-player.position.y)})),rendererState:renderer.state,elemental:{...elementalEvents,fireEmbers:fireEmbers.length,fireTransfers:fireTransfers.length,activeBurning:enemies.filter(e=>e.alive&&e.burn).length,activeConducting:enemies.filter(e=>e.alive&&e.conductUntilMs>timeMs).length},stats:{...C.stats},criticalHits,lastHit:lastHit?{...lastHit,tags:[...lastHit.tags]}:null,fx:{stage:shadow?fxStage(chargeOf()):'none',target:shadow?(getTargetAnchor(fxAnchor)?{x:fxAnchor.x,y:fxAnchor.y,isEnemy:fxAnchor.isEnemy}:null):null,enabled:C.fx.targetCompression}}),auto:()=>{if(phase==='PLAYING')pending.push({kind:'auto'});},point:(x,y)=>{if(phase==='PLAYING')pending.push({kind:'point',x,y});},startRun,enterLobby,reset,dispose:()=>{if(!running)return;if(isolatedScene){ultimateRunner.cancel('dispose');petRoster.clear();clearStageEnemies();World.clear(engine.world,false);}releaseVolumeFilter?.();sfx.dispose();running=false;loop.stop();input.dispose();document.removeEventListener('focusin',onGameplayFocus);renderer.dispose();window.removeEventListener('resize',resize);}};
-  if(!isolatedScene&&new URLSearchParams(location.search).get('showcase')==='1'){$('introOpen').focus({preventScroll:true});introHost.open();}
+  window.__bloomImpulse={VERSION,BUILD_ID,config:C,intro:introScene?{snapshot:()=>({timeMs,tick,chapter:introChapter,ended:previewEnded,metrics:introMetrics,hits,kills,combo,ultimate:introScenes[introChapter].ultimate??null,ultimateDamage:ultimateRunner.damage,pets:petRoster.snapshot(),seed:introScenes[introChapter].seed}),async setSound(enabled){if(!running)return false;sfx.setMuted(!enabled);if(!enabled){sfx.stopAll();return true;}const unlocked=await sfx.unlock();if(!running)return false;if(!unlocked)sfx.setMuted(true);return unlocked;}}:null,preview:previewSkill?{snapshot:()=>({id:previewSkill,seed:previewScenario.seed,tick,paused:previewPaused,ended:previewEnded,hits:previewHitCount,damage:ultimateRunner.damage}),setPaused(value){previewPaused=!!value;if(previewPaused)sfx.stopAll();else void sfx.unlock();loop.resetTiming();}}:null,getUltimates:()=>ultimateRunner.snapshot(),getAudio:()=>sfx.snapshot(),audioMeter:()=>sfx.meter(),getCompanions:()=>companions.snapshot(),getState:()=>({drops:{...lootDrops.debug(),magnetRadius:magnetRadius()},unitStates:[...unitsById.values()].map(u=>({unitId:u.unitId,inventoryId:u.inventoryId,speciesId:u.speciesId,faction:u.faction,state:u.state,hp:u.hp,grade:u.grade,isSummon:!!u.isSummon,summonerId:u.summonerId,bossPatterns:u.bossPattern?.log,signature:u.config.signature,radius:u.config.radius,bodyRadius:u.body.circleRadius,height:u.spatial.height,scale:u.presentation.scale??1,outline:u.presentation.outline??null,attackCount:u.attackCount,melee:u.melee?{phase:u.melee.phase,swings:u.melee.swings,hits:u.melee.hits}:null,sunbeam:u.sunbeam?{phase:u.sunbeam.phase,focusMs:u.sunbeam.focusMs,stage:u.sunbeam.stage,pulses:u.sunbeam.pulses,targetId:u.sunbeam.target?.unitId}:null,heal:u.heal?{phase:u.heal.phase,casts:u.heal.casts,healed:u.heal.healed,cost:u.heal.cost,targetId:u.heal.target?.unitId}:null,regenerated:u.regeneration?.healed??0})),volumeEvents:[...volumeEvents],arcShots:projectiles.filter(s=>s.arc).map(s=>({x:s.body.position.x,y:s.body.position.y,z:s.body.plugin.volume.feetZ,aim:{...s.arc.aim},ageMs:s.arc.ageMs,height:s.arc.height,ownerId:s.ownerId})),companions:petRoster.snapshot(),phase,mode,health,maxHp:C.stats.maxHp,aimPreviewId:previewTargetId,augment:{spore:C.augment.spore.enabled,momentum:C.augment.momentum.enabled,relay:C.chain.followKill,chain:C.chain.enabled},tech:{points:availableTech(),level:progressionLevel(tech.kills),totalKills:tech.defeats,collectedGrowth:tech.kills,unlocked:[...tech.unlocked],statLevels:{...tech.statLevels}},autoChainReady,autoDashPlanned,chainActive,chainStarts,chainEnds,chainTriggerCharge:C.chain.minTriggerCharge,chainTargetId,autoChainWins,autoChainRolls,automaticDashes,manualPerfectHits,dashAutomatic,dashPerfect,launchCount,manualLaunchCount,echoLaunchCount,chainLaunchCount,attackAmmo:attackAmmo.snapshot(),missRecovery:{active:missRecoveryActive,events:missRecoveryEvents,firstHintShown:missHintShown},evade:{charges:evadeCharges,max:C.evade.maxCharges,refillAtMs:evadeRefillAtMs,progress:evadeRefillProgress(),rechargeMs:C.evade.rechargeMs,impulseSpeed:C.evade.impulseSpeed,durationMs:C.evade.durationMs,invulnerableMs:C.evade.invulnerableMs,projectileInvulnerable:timeMs-evadeStartedAtMs<C.evade.invulnerableMs,active:!!evadeMotion,startedAtMs:evadeStartedAtMs,count:evadeActions,hitRechargeEvents:evadeHitRechargeEvents,hitRechargeProgress:evadeHitRechargeProgress,lastHitRecharge:evadeLastHitRecharge?{...evadeLastHitRecharge}:null},stage:{index:stage.index,phase:stage.phase,waveKills:stage.waveKills,killTarget:stage.killTarget,bossHp:stage.boss?.hp??null,bossState:stage.boss?.state??null,bossPattern:stage.boss?.pattern??null,patternLog:[...stage.patternLog],obstacleCount:obstacles.length,broken:bossObstaclesBroken,arenaSides:arenaVertices.length,theme:stage.themeId,themeName:THEME_POOL[stage.themeId]?.name,layout:stage.layoutId,layoutName:THEME_POOL[stage.themeId].layouts.find(l=>l.id===stage.layoutId)?.name,radius:stage.radius,playableArea:Math.round(stage.playableArea),targetPopulation:stage.targetPopulation,mapTier:stage.mapTier,mapStart:stage.mapStart,mapSeed:stage.mapSeed,bossStage:isBossStage(stage.index),referenceArea:stageBasePlayableArea,bossName:stage.boss?BOSS_POOL[THEME_POOL[stage.themeId].boss]?.name:null,bossVariant:stage.bossVariant||null,bossSummons:stage.boss?liveSummons(stage.boss.id).length:0,seed:stage.seed,generation:{...generationStats}},stageHistory:[...stageHistory],bossPool:Object.keys(BOSS_POOL),themePool:Object.keys(THEME_POOL),mapOperators:Object.keys(MAP_OPERATORS),dashMotion:dashMotion?{...dashMotion}:null,camera:{base:{...cameraView.camera},render:{...renderer.camera},shake:cameraShake?{...cameraShake}:null,offset:cameraShakeOffset()},launchRecoil:launchRecoil?{...launchRecoil}:null,alignment:pendingLaunch?{...pendingLaunch,durationMs:C.shadow.orbit.alignMs}:null,orbit:ammoOrbitStates(player.position,timeMs),shadow:shadow?{source:shadow.source,slot:shadow.slot,dirX:shadow.dirX,dirY:shadow.dirY,x:shadow.x,y:shadow.y,startX:shadow.startX,startY:shadow.startY,visualRadius:shadowShardRadius(),launchedAtMs:shadow.launchedAtMs,progress:chargeOf(),charge:chargeOf(),dashReady:shadowDashAvailable(),separation:shadowSeparation(),remainingGap:remainingShadowGap(),initialGap:shadow.initialGap,travel:shadow.travel,limit:shadow.limit,targetId:shadow.targetId,arrived:shadow.arrived,speed:shadow.speed}:null,hitstopLeftMs,dashCharge,dashFlight:dashFlight?{...dashFlight,remainingMs:Math.round(dashFlight.untilMs-timeMs)}:null,rearmProgress:rearmProgress(),buffered:!!bufferedIntent,damageTaken,healingDone,position:{...player.position},speed:speedOf(player),hits,kills,combo,comboFxActive:comboFx.classList.contains('active'),enemyMasses:Object.fromEntries(Object.entries(C.enemy.types).map(([type,def])=>[type,def.mass])),tick,timeMs,attackDashSerial,enemies:enemies.filter(e=>e.alive).length,enemyShots,enemyAttacks,enemyPushes,projectiles:projectiles.length,enemyStates:enemies.filter(e=>e.alive).map(e=>({id:e.id,bodyId:e.body.id,type:e.type,state:e.state,z:e.body.plugin.volume.feetZ,height:e.body.plugin.volume.height,ability:e.leap?{phase:e.leap.phase,count:e.leap.count,landings:e.leap.landings,aim:e.leap.aim}:e.selfDestruct?{phase:e.selfDestruct.phase,leftMs:e.selfDestruct.leftMs}:e.spike?{phase:e.spike.phase,pulses:e.spike.pulses,counters:e.spike.counters}:e.arcFire?{phase:e.arcFire.phase,volleys:e.arcFire.volleys,fired:e.arcFire.fired}:null,hp:e.hp,burning:!!e.burn,conducting:e.conductUntilMs>timeMs,radius:enemyDef(e).radius,x:e.body.position.x,y:e.body.position.y,preX:e.preX,preY:e.preY,shadowKnockbackLeftMs:Math.max(0,(e.shadowKnockbackUntilMs||0)-timeMs),attackCount:e.attackCount,playerGap:Math.hypot(e.body.position.x-player.position.x,e.body.position.y-player.position.y)})),rendererState:renderer.state,elemental:{...elementalEvents,fireEmbers:fireEmbers.length,fireTransfers:fireTransfers.length,activeBurning:enemies.filter(e=>e.alive&&e.burn).length,activeConducting:enemies.filter(e=>e.alive&&e.conductUntilMs>timeMs).length},stats:{...C.stats},criticalHits,lastHit:lastHit?{...lastHit,tags:[...lastHit.tags]}:null,fx:{stage:shadow?fxStage(chargeOf()):'none',target:shadow?(getTargetAnchor(fxAnchor)?{x:fxAnchor.x,y:fxAnchor.y,isEnemy:fxAnchor.isEnemy}:null):null,enabled:C.fx.targetCompression}}),auto:()=>{if(phase==='PLAYING')pending.push({kind:'auto'});},point:(x,y)=>{if(phase==='PLAYING')pending.push({kind:'point',x,y});},startRun,enterLobby,reset,dispose:()=>{if(!running)return;menuRouter?.dispose();if(isolatedScene){ultimateRunner.cancel('dispose');petRoster.clear();clearStageEnemies();World.clear(engine.world,false);}releaseVolumeFilter?.();sfx.dispose();running=false;loop.stop();input.dispose();document.removeEventListener('focusin',onGameplayFocus);renderer.dispose();window.removeEventListener('resize',resize);}};
+  if(!isolatedScene){menuRouter=createMenuRouter();menuRouter.init();}
   if(introScene){prepareIntro();loop.start();}
   if(previewSkill){preparePreview();void sfx.unlock().then(()=>{if(running)loop.start();});}
   window.addEventListener('pagehide',()=>window.__bloomImpulse.dispose(),{once:true});

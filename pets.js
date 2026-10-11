@@ -1,4 +1,5 @@
 import {species} from './enemies.js';
+import {companionIdlePoint} from './controllers.js';
 // Permanent companion ownership is separate from bounded in-run actors.
 // Initial combat recommendations are config-owned; revival is the confirmed 3000ms rule.
 export const petConfig = {
@@ -10,7 +11,7 @@ export const petConfig = {
     {name:'Rare',color:'#78b9ff'}, {name:'Epic',color:'#bd8cff'},
     {name:'Legendary',color:'#ffb354'}, {name:'Mythic',color:'#ff7086'}],
   species,
-  presentation:{size:{min:.65,max:1},outline:{width:2.5,contrast:{width:.8,color:'#0c181e',maxColorDistance:.16}}},
+  presentation:{eggFollow:{responseHz:1.8,trailDistance:20,teleportDistance:220,hoverHeight:7,hoverAmplitude:2.5,hoverHz:.8},size:{min:.65,max:1},outline:{width:2.5,contrast:{width:.8,color:'#0c181e',maxColorDistance:.16}}},
   combat:{gradePowerRate:1.8,gradeSkillSizeRate:1.05,gradeRangeRate:1.05,hitProtectionMs:500,reviveMs:3000,followRadius:64,leash:600}
 };
 
@@ -60,15 +61,16 @@ export class CompanionCollection {
     this.slots.length=Math.min(this.slots.length,size);while(this.slots.length<size)this.slots.push(null);
     this.changed({kind:'slots',capacity:size});return true;
   }
-  addEgg(speciesId){
-    if(!this.config.species[speciesId])return [];const item={id:this.nextId++,speciesId,kind:'egg',grade:0,hatchProgress:0,locked:false};
-    this.inventory.push(item);this.byId.set(item.id,item);this.changed({kind:'reward',speciesId,added:[item.id]});return [item.id];
+  addEgg(speciesId,count=1){
+    if(!this.config.species[speciesId]||!Number.isSafeInteger(count)||count<1)return [];const added=[];
+    for(let i=0;i<count;i++){const item={id:this.nextId++,speciesId,kind:'egg',grade:0,hatchProgress:0,locked:false};this.inventory.push(item);this.byId.set(item.id,item);added.push(item.id);}
+    this.changed({kind:'reward',speciesId,added});return added;
   }
-  rewardHitDeath(unit,random=Math.random){
-    if(unit.deathReason!=='hit'||unit.faction!=='wild'||unit.eggRollResolved)return [];
-    unit.eggRollResolved=true;const spec=this.config.species[unit.speciesId];if(!spec)return [];
+  rollHitDeath(unit,random=Math.random){
+    if(unit.deathReason!=='hit'||unit.faction!=='wild'||unit.eggRollResolved)return null;
+    unit.eggRollResolved=true;const spec=this.config.species[unit.speciesId];if(!spec)return null;
     const rate=spec.boss?this.config.eggs.bossDropRate:this.config.eggs.normalDropRate;
-    return random()<rate?this.addEgg(unit.speciesId):[];
+    return random()<rate?unit.speciesId:null;
   }
   equip(id,index){
     if(!this.byId.has(id)||!Number.isInteger(index)||index<0||index>=this.slots.length)return false;
@@ -125,31 +127,40 @@ export class CompanionCollection {
 
 // Collection/run identity and revival lifecycle only. Combat belongs to Unit.
 export class CompanionRoster {
-  constructor(collection,adapter){this.collection=collection;this.a=adapter;this.actors=[];this.stats={hits:0,kills:0,damage:0,taken:0,deaths:0,revivals:0,abilities:0,supportHealing:0,lastHit:null};}
+  constructor(collection,adapter){this.collection=collection;this.a=adapter;this.actors=[];this.stats={hits:0,kills:0,damage:0,taken:0,deaths:0,revivals:0,abilities:0,supportHealing:0,lastHit:null};this.eggHeading={x:1,y:0};this.previousAnchor=null;}
   clear(){for(const actor of this.actors)if(actor.unit)this.a.remove(actor.unit,'cleanup');this.actors=[];}
-  reset(){this.clear();for(const key of Object.keys(this.stats))this.stats[key]=key==='lastHit'?null:0;this.sync();}
+  reset(){this.clear();this.eggHeading={x:1,y:0};this.previousAnchor={...this.a.anchor()};for(const key of Object.keys(this.stats))this.stats[key]=key==='lastHit'?null:0;this.sync();}
   sync(){const current=new Map(this.actors.map(a=>[a.inventoryId,a])),next=[];
     for(const [slot,item] of this.collection.companions().entries()){if(!item)continue;let actor=current.get(item.id);
       if(actor&&(actor.kind!==item.kind||actor.grade!==item.grade)){if(actor.unit)this.a.remove(actor.unit,'cleanup');actor=null;}
       if(!actor){const p=this.a.anchor();actor={inventoryId:item.id,id:item.id,slot,kind:item.kind,speciesId:item.speciesId,grade:item.grade,x:p.x,y:p.y,unit:null,reviveAtMs:0};
-        if(item.kind==='pet')actor.unit=this.a.create(item,slot,actor);}
+        if(item.kind==='pet')actor.unit=this.a.create(item,slot,actor);else this.resetEgg(actor,p);}
       actor.slot=slot;if(actor.unit?.controller)actor.unit.controller.slot=slot;next.push(actor);current.delete(item.id);
     }
     for(const actor of current.values())if(actor.unit)this.a.remove(actor.unit,'cleanup');this.actors=next;
   }
-  enterStage(){for(const actor of this.actors)if(actor.kind==='pet'){
+  resetEgg(actor,anchor){const target=this.eggTarget(actor,anchor);Object.assign(actor,target,{vx:0,vy:0,floatZ:this.collection.config.presentation.eggFollow.hoverHeight});}
+  eggTarget(actor,anchor){const c=this.collection.config,p=companionIdlePoint(anchor,actor.slot,c.combat.followRadius),lag=c.presentation.eggFollow.trailDistance;return {x:p.x-this.eggHeading.x*lag,y:p.y-this.eggHeading.y*lag};}
+  enterStage(){this.previousAnchor={...this.a.anchor()};for(const actor of this.actors){if(actor.kind==='egg'){this.resetEgg(actor,this.previousAnchor);continue;}if(actor.kind==='pet'){
     if(!actor.unit){const p=this.a.anchor();actor.x=p.x;actor.y=p.y;continue;}
     const hp=actor.unit.hp;this.a.remove(actor.unit,'cleanup');const item=this.collection.byId.get(actor.inventoryId);
     actor.unit=this.a.create(item,actor.slot,actor);actor.unit.hp=Math.min(actor.unit.maxHp,hp);actor.reviveAtMs=0;
-  }}
+  }}}
   died(actor,unit,reason){if(reason==='cleanup')return;Object.assign(actor,{x:unit.body.position.x,y:unit.body.position.y,unit:null,reviveAtMs:this.a.time()+this.collection.config.combat.reviveMs});this.stats.deaths++;this.a.effect('death',actor);}
-  update(dt){const p=this.a.anchor();for(const actor of this.actors){if(actor.kind==='egg'){const angle=(actor.slot+1)*2.399;
-      actor.x+=(p.x+Math.cos(angle)*this.collection.config.combat.followRadius-actor.x)*Math.min(1,dt*8);actor.y+=(p.y+Math.sin(angle)*this.collection.config.combat.followRadius-actor.y)*Math.min(1,dt*8);}
+  update(dt){const p=this.a.anchor(),c=this.collection.config.presentation.eggFollow,motion=this.a.anchorVelocity(),speed=Math.hypot(motion.x,motion.y);
+    const teleported=Math.hypot(p.x-this.previousAnchor.x,p.y-this.previousAnchor.y)>c.teleportDistance;this.previousAnchor={...p};
+    if(speed>20&&!teleported)this.eggHeading={x:motion.x/speed,y:motion.y/speed};
+    const w=c.responseHz*Math.PI*2,decay=Math.exp(-w*dt);
+    for(const actor of this.actors){if(actor.kind==='egg'){if(teleported)this.resetEgg(actor,p);const target=this.eggTarget(actor,p);
+      // Exact critically damped spring for each fixed-step interval, independent of display FPS.
+      for(const axis of ['x','y']){const v='v'+axis,offset=actor[axis]-target[axis],j=actor[v]+w*offset;actor[axis]=target[axis]+(offset+j*dt)*decay;actor[v]=(actor[v]-w*j*dt)*decay;}
+      actor.floatZ=c.hoverHeight+Math.sin(this.a.time()*Math.PI*2*c.hoverHz/1000+actor.slot*2.399)*c.hoverAmplitude;
+    }
     else if(!actor.unit&&this.a.time()>=actor.reviveAtMs){const item=this.collection.byId.get(actor.inventoryId);actor.unit=this.a.create(item,actor.slot,actor);this.stats.revivals++;this.a.effect('revive',actor);}}
   }
   snapshot(){return {inventoryCount:this.collection.inventory.length,slots:[...this.collection.slots],...this.stats,actors:this.actors.map(a=>({
     id:a.inventoryId,inventoryId:a.inventoryId,unitId:a.unit?.unitId??null,kind:a.kind,speciesId:a.speciesId,grade:a.grade,state:a.kind==='egg'?'FOLLOW':a.unit?.state||'DEAD',
-    hp:a.unit?.hp??null,maxHp:a.unit?.maxHp??null,x:a.unit?.body.position.x??a.x,y:a.unit?.body.position.y??a.y,z:a.unit?.spatial.feetZ??0,
+    hp:a.unit?.hp??null,maxHp:a.unit?.maxHp??null,x:a.unit?.body.position.x??a.x,y:a.unit?.body.position.y??a.y,z:a.unit?.spatial.feetZ??a.floatZ??0,velocity:a.kind==='egg'?{x:a.vx,y:a.vy}:null,
     abilities:a.unit?Object.fromEntries(['leap','selfDestruct','spike','arcFire','lunge','projectileFire','bossPattern'].filter(k=>a.unit[k]).map(k=>[k,{phase:a.unit[k].phase,log:a.unit[k].log}])):null,
     reviveInMs:a.kind==='pet'&&!a.unit?Math.max(0,a.reviveAtMs-this.a.time()):0}))};}
 }

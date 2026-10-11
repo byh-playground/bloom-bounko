@@ -26,6 +26,7 @@ export const audioConfig={
     bossCharge:{category:'danger',layers:[tone(120,38,330,.24),noise(160,.13,1200)]},
     bossSummon:{category:'danger',layers:[tone(230,350,350,.15,'triangle'),tone(345,520,300,.10,'sine',60)]},
     petRevive:{category:'reward',layers:[tone(330,440,180,.13),tone(660,880,220,.11,'sine',90)]},
+    pickup:{category:'reward',gapMs:90,layers:[tone(660,880,80,.07),tone(990,1100,90,.04,'sine',30)]},
     egg:{category:'reward',layers:[tone(520,650,170,.14),tone(780,910,150,.10,'sine',65)]},
     hatchFirst:{category:'reward',priority:7,gapMs:0,layers:[tone(440,440,180,.16,'triangle'),tone(660,660,240,.15,'sine',100),tone(880,1100,360,.13,'sine',200)]},
     hatchRepeat:{category:'reward',layers:[tone(660,880,160,.13),tone(990,990,200,.10,'sine',80)]},

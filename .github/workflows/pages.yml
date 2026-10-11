@@ -32,6 +32,7 @@ jobs:
           cp pets.js _site/pets.js
           cp audio.js _site/audio.js
           cp abilities.js _site/abilities.js
+          cp drops.js _site/drops.js
           cp enemies.js _site/enemies.js
           cp controllers.js _site/controllers.js
           touch _site/.nojekyll
@@ -47,6 +48,7 @@ jobs:
               'build_id': re.search(r"BUILD_ID = '([^']+)'", html).group(1),
               'index_sha256': hashlib.sha256(data).hexdigest(),
               'pets_sha256': hashlib.sha256(pathlib.Path('_site/pets.js').read_bytes()).hexdigest(),
+              'drops_sha256': hashlib.sha256(pathlib.Path('_site/drops.js').read_bytes()).hexdigest(),
               'abilities_sha256': hashlib.sha256(pathlib.Path('_site/abilities.js').read_bytes()).hexdigest(),
               'controllers_sha256': hashlib.sha256(pathlib.Path('_site/controllers.js').read_bytes()).hexdigest(),
               'enemies_sha256': hashlib.sha256(pathlib.Path('_site/enemies.js').read_bytes()).hexdigest(),

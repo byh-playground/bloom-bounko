@@ -166,6 +166,6 @@ export class CompanionRoster {
   snapshot(){return {inventoryCount:this.collection.inventory.length,slots:[...this.collection.slots],...this.stats,actors:this.actors.map(a=>({
     id:a.inventoryId,inventoryId:a.inventoryId,unitId:a.unit?.unitId??null,kind:a.kind,speciesId:a.speciesId,grade:a.grade,state:a.kind==='egg'?a.followMode:a.unit?.state||'DEAD',
     hp:a.unit?.hp??null,maxHp:a.unit?.maxHp??null,x:a.unit?.body.position.x??a.x,y:a.unit?.body.position.y??a.y,z:a.unit?.spatial.feetZ??a.floatZ??0,velocity:a.kind==='egg'?{x:a.vx,y:a.vy}:null,
-    abilities:a.unit?Object.fromEntries(['leap','selfDestruct','spike','arcFire','lunge','projectileFire','bossPattern'].filter(k=>a.unit[k]).map(k=>[k,{phase:a.unit[k].phase,log:a.unit[k].log}])):null,
+    abilities:a.unit?Object.fromEntries(['leap','selfDestruct','spike','arcFire','lunge','projectileFire','bossPattern','burrow','summon','returnFlight','hook'].filter(k=>a.unit[k]).map(k=>[k,{phase:a.unit[k].phase,log:a.unit[k].log}])):null,
     reviveInMs:a.kind==='pet'&&!a.unit?Math.max(0,a.reviveAtMs-this.a.time()):0}))};}
 }

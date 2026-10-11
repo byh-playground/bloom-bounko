@@ -33,3 +33,15 @@ export class PetController {
     const point=target?.body.position||idlePoint;
     return {target:{...point},targetUnit:target,attack:!!target,navigation:navigation(unit,point,!!target)};}
 }
+
+// Ownership changes the search/leash anchor, never the child Unit's combat implementation.
+export class SummonController {
+  constructor(owner){this.owner=owner;}
+  intent(unit,world){const home=this.owner.body.position,c=unit.config.returnFlight,targets=world.targets();
+    let target=null,best=Infinity;
+    for(const candidate of targets){if(!hostile(unit,candidate)||gap(candidate.body.position,home)>c.leash)continue;
+      const d=gap(candidate.body.position,unit.body.position);if(d<best){best=d;target=candidate;}}
+    const point=target?.body.position||companionIdlePoint(home,unit.summonSlot,Math.max(90,this.owner.config.radius+unit.config.radius+20));
+    return {target:{...point},targetUnit:target,attack:!!target,navigation:navigation(unit,point,!!target)};
+  }
+}

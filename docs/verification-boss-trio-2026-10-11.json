@@ -1,0 +1,70 @@
+{
+  "version": "0.16.0",
+  "browser": "155.0.4283.45",
+  "pass": true,
+  "seconds": 4.27,
+  "method": "Seeded actual Edge/WebGL scenes; accelerated fixed ticks use production Unit/Matter/reception/render paths. QA-only fixture is injected by the local test server, not shipped.",
+  "checks": [
+    "existing 3-stage wave/boss transition and growth drops; both theme pools spawn all five",
+    "three real boss renders and ground collision damage",
+    "worm short burrow/trail/warning/eruption/exposed bursts/rupture",
+    "carrier four-slot deployment/wounded return/dock/heal/relaunch/owner cleanup",
+    "12000ms summon expiry and bounded replacement",
+    "committed hook target position; dodge/miss and retrieval",
+    "hook actual arc height/hit/pull/retrieval/recovery",
+    "all three Common pets use shared render/controller and useful basic ability",
+    "Rare paired hook; 3000ms pet revival",
+    "all five 10% boss eggs; ko/en wiki; existing showcase/main/F5"
+  ],
+  "errors": [],
+  "pools": {
+    "garden": [
+      "petalPredator",
+      "hivecarrier",
+      "clawhunter"
+    ],
+    "cave": [
+      "elasticCap",
+      "deathworm"
+    ]
+  },
+  "growth": {
+    "kills": 15,
+    "drops": 15
+  },
+  "worm": {
+    "buried": true,
+    "dives": 1,
+    "emerges": 1,
+    "shots": 12,
+    "ruptures": 3
+  },
+  "carrier": {
+    "deployed": 4,
+    "capacity": 4,
+    "childId": 6,
+    "docked": true,
+    "returns": 1,
+    "launches": 1,
+    "healed": 42,
+    "orphans": 0
+  },
+  "expiry": {
+    "expired": 4,
+    "deployed": 6,
+    "living": 2
+  },
+  "hookMiss": {
+    "hits": 0,
+    "returned": 2,
+    "aimUnchanged": true
+  },
+  "hook": {
+    "hits": 2,
+    "returned": 2,
+    "maxZ": 94.99999999999999,
+    "pullX": 185.5757338894225
+  },
+  "bossEggRate": 0.1,
+  "petReviveMs": 3000
+}

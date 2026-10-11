@@ -649,7 +649,7 @@ import {t as tr,language,setLanguage,onLanguageChanged,translateDocument,localiz
 
 
 const KIT = 'https://cdn.jsdelivr.net/gh/byh-playground/bloom-gamekit@d1e2c385033ad04a7a004cfbe9558948ef07a6d1/';
-const VERSION = '0.14.7', BUILD_ID = '20261011T114508Z-menu-routes'
+const VERSION = '0.15.0', BUILD_ID = '20261011T122601Z-showcase-hash'
 const $ = id => document.getElementById(id);
 document.querySelectorAll('[data-game-version]').forEach(el=>el.textContent='v'+VERSION);
 const loadtext = $('loadtext');translateDocument();document.title=tr('app.title');$('languageSelect').value=language();$('languageSelect').disabled=true;
@@ -3383,27 +3383,31 @@ try {
 
   function createMenuRouter(){
     const views={wiki:{panel:$('wikiPanel'),open:openWiki,entry:$('wikiOpen'),close:$('wikiClose')},help:{panel:$('guidePanel'),open:openGuide,entry:$('guideOpen'),close:$('guideClose')},tech:{panel:$('techPanel'),open:openTech,entry:$('techOpen'),close:$('techClose')},ultimates:{panel:$('ultimatePanel'),open:openUltimates,entry:$('ultimateOpen'),close:$('ultimateClose')},pets:{panel:$('petPanel'),open:openPets,entry:$('petOpen'),close:$('petClose')},settings:{panel:$('settings'),open:toggleSettings,entry:$('tune'),close:$('closeSettings')}};
-    let current={screen:'main'},applying=false,inert=[];
-    const key=route=>route.screen+'/'+(route.item??'');
+    let current={screen:'main',query:new URLSearchParams()},applying=false,inert=[];
+    const key=route=>route.screen+'/'+(route.item??'')+'?'+route.query;
     function normalize(route){
-      const screen=route.screen==='intro'||Object.hasOwn(views,route.screen)?route.screen:'main';
-      if(phase!=='LOBBY'&&!['main','settings'].includes(screen))return {screen:'main'};
+      let screen=route.screen==='showcase'||Object.hasOwn(views,route.screen)?route.screen:'main';
+      if(phase!=='LOBBY'&&!['main','settings'].includes(screen))screen='main';
       let item=route.item;
       if(screen==='wiki')item=wikiSections.some(section=>section.id==='wiki-'+item)?item:null;
       else if(screen==='help')item=String(clamp(Number.isInteger(Number(item))?Number(item):1,1,guideSlides.length));
       else if(screen==='tech')item=graphNodeById.has(item)?item:null;
       else item=null;
-      return {screen,item};
+      return {screen,item,query:new URLSearchParams(screen==='main'?'':route.query)};
     }
-    function read(){const parts=location.hash.replace(/^#\/?/,'').split('/').map(part=>{try{return decodeURIComponent(part);}catch{return '';}});return normalize({screen:parts[0]||(new URLSearchParams(location.search).get('showcase')==='1'?'intro':'main'),item:parts[1]});}
-    function url(route){const value=new URL(location.href);value.searchParams.delete('showcase');value.hash='';if(route.screen==='intro')value.searchParams.set('showcase','1');else if(route.screen!=='main')value.hash='/'+route.screen+(route.item?'/'+encodeURIComponent(route.item):'');return value;}
+    function read(){
+      const hash=location.hash.replace(/^#\/?/,''),separator=hash.indexOf('?'),path=separator<0?hash:hash.slice(0,separator),query=separator<0?'':hash.slice(separator+1);
+      const parts=path.split('/').map(part=>{try{return decodeURIComponent(part);}catch{return '';}});
+      return normalize({screen:parts[0],item:parts[1],query});
+    }
+    function url(route){const value=new URL(location.href);value.hash=route.screen==='main'?'':'/'+route.screen+(route.item?'/'+encodeURIComponent(route.item):'')+(route.query.size?'?'+route.query:'');return value;}
     function restoreInert(){for(const [element,value]of inert)element.inert=value;inert=[];}
     function apply(next,previous){
       if(previewHost?.active)previewHost.close();
       if(next.screen!==previous.screen){
         restoreInert();if(introHost?.active)introHost.close({notify:false});
         for(const view of Object.values(views))if(view.panel.classList.contains('open'))view.open(false);
-        if(next.screen==='intro'){introHost.open();return;}
+        if(next.screen==='showcase'){introHost.open();return;}
         if(next.screen!=='main'){
           const view=views[next.screen];view.open(true);view.panel.setAttribute('aria-hidden','false');
           for(let active=view.panel;active&&active!==document.body;active=active.parentElement)for(const element of active.parentElement.children)if(element!==active&&element.tagName!=='SCRIPT'&&!element.classList.contains('language-control')&&!['previewPanel','introPanel'].includes(element.id)&&!(next.screen==='tech'&&element.id==='techBackdrop'))inert.push([element,element.inert]);
@@ -3433,7 +3437,7 @@ try {
   function resumeMenuGame(){if(menuRouter&&menuRouter.current.screen!=='main')return;loop.resetTiming();lastFrame=performance.now();loop.start();}
   previewHost=isolatedScene?null:createPreviewHost({translate:tr,pause(){loop.stop();sfx.stopAll();input.releaseAll('preview');},resume:resumeMenuGame});
   introHost=isolatedScene?null:createIntroHost({translate:tr,pause(){loop.stop();sfx.stopAll();input.releaseAll('intro');},resume:resumeMenuGame,play:startRun,onClose:()=>menuRouter?.go({screen:"main"})});
-  $('introOpen').onclick=()=>menuRouter?.go({screen:'intro'});
+  $('introOpen').onclick=()=>menuRouter?.go({screen:'showcase'});
   window.addEventListener('resize',resize);
   document.addEventListener('visibilitychange',()=>{if(document.hidden){pending.length=0;bufferedIntent=null;bufferedUntilMs=0;}else{lastFrame=performance.now();}});
 

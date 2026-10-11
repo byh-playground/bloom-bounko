@@ -52,7 +52,7 @@
   ],
   "sha256": {
     "index.html": "f36cb18932357128b83b81ea43ebaed125d3ec22d9f0fbe3d6889a0dffe095bf",
-    "drops.js": "84c4c297770d83f9ff5b174c29bd97d912c1594d1a9540040fe1284930c57b40",
+    "drops.js": "c653c9915634214012d5e61cb94ae3fad510bd97e0bb6ff7409737c5000516bd",
     "abilities.js": "8c6f91139e71de7be2baa96a185cd68eebc1ad57b34ece719faac14fbde33b7e",
     "pets.js": "b7f664d045cdde4427c4be1f5e1bff686a80749aff788d5a9511e8cf301049ea",
     "controllers.js": "b39463ea0140202545beae75d2e66e72ef4aaa16fd8965c30a13085af24930d7",
@@ -5852,5 +5852,23 @@
       "drops-egg-turn.png"
     ],
     "observed": "Ground drop egg uses original species palette and shadow; growth is a warm gold seed, visibly distinct from cyan inner ammo and loose outer equipped egg. Pickup +growth/egg texts are compact. Equipped egg turn/stop stays outside inner ammo orbit."
+  },
+  "servedSha256": {
+    "index.html": "f36cb18932357128b83b81ea43ebaed125d3ec22d9f0fbe3d6889a0dffe095bf",
+    "drops.js": "84c4c297770d83f9ff5b174c29bd97d912c1594d1a9540040fe1284930c57b40",
+    "abilities.js": "8c6f91139e71de7be2baa96a185cd68eebc1ad57b34ece719faac14fbde33b7e",
+    "pets.js": "b7f664d045cdde4427c4be1f5e1bff686a80749aff788d5a9511e8cf301049ea",
+    "controllers.js": "b39463ea0140202545beae75d2e66e72ef4aaa16fd8965c30a13085af24930d7",
+    "enemies.js": "bba2ec615f685e8a4b31e21c40c1479232db00de38d82483f3c39a802a796b42",
+    "audio.js": "453468b142ac7642f697333b20c4e2f9d4e9013a173484e43a34df59432c3dae"
+  },
+  "byteNormalization": {
+    "files": [
+      "drops.js"
+    ],
+    "from": "CRLF",
+    "to": "LF",
+    "onlyLineEndings": true,
+    "explanation": "servedSha256 preserves the exact browser-served bytes; sha256 identifies Git-canonical committed bytes. The only differing module is drops.js, normalized by existing .gitattributes. All JS tokens and behavior are identical."
   }
 }

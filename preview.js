@@ -29,16 +29,18 @@ export function createPreviewHost({translate,pause,resume}){
 export const introScenes=Object.freeze([
   {seed:28101,copy:'breakthrough',camera:{x:0,y:-65,width:400,height:650,follow:true},targets:[{x:0,y:-190},...Array.from({length:7},(_,i)=>({x:Math.cos(i*Math.PI*2/7)*155,y:Math.sin(i*Math.PI*2/7)*155}))]},
   {seed:28102,copy:'combo',camera:{x:0,y:-45,width:400,height:650,follow:true},targets:Array.from({length:10},(_,i)=>({x:Math.cos(i*Math.PI/5)*190,y:Math.sin(i*Math.PI/5)*190,hp:38}))},
-  {seed:28103,copy:'laser',laser:true,camera:{x:-25,y:-175,width:370,height:700},targets:[{x:0,y:-130,hp:2500},{x:-78,y:-260,hp:2500},{x:-156,y:-390,hp:2500},{x:115,y:-260,hp:2500}]},
+  {seed:28103,copy:'laser',ultimate:'laserBloom',camera:{x:-25,y:-175,width:370,height:700},targets:[{x:0,y:-130,hp:2500},{x:-78,y:-260,hp:2500},{x:-156,y:-390,hp:2500},{x:115,y:-260,hp:2500}]},
+  {seed:28106,copy:'chainDrive',ultimate:'chainDrive',camera:{x:0,y:-25,width:400,height:650},targets:[{x:-110,y:-130,hp:1000},{x:110,y:-130,hp:1000},{x:0,y:145,hp:1000}]},
+  {seed:28107,copy:'elasticBlast',ultimate:'elasticBlast',camera:{x:0,y:0,width:440,height:700},targets:Array.from({length:6},(_,i)=>({x:Math.cos(i*Math.PI/3)*134,y:Math.sin(i*Math.PI/3)*134,hp:1000}))},
   {seed:28104,copy:'pets',pets:true,camera:{x:0,y:-80,width:420,height:700,follow:true},targets:[{x:0,y:-180,type:'pillbug',hp:2500},{x:-120,y:-210,type:'rogue',hp:2500},{x:130,y:-220,hp:2500},{x:0,y:160,hp:2500}]},
   {seed:28105,copy:'final',camera:{x:0,y:0,width:370,height:700},targets:[]}
 ]);
 export const introTimeline=Object.freeze([
   {atMs:0,chapter:0},{atMs:180,action:'attack'},{atMs:1800,action:'attack'},
   {atMs:4000,chapter:1},{atMs:4200,action:'attack'},{atMs:5500,action:'attack'},{atMs:6800,action:'attack'},{atMs:8100,action:'attack'},{atMs:9400,action:'attack'},
-  {atMs:10000,chapter:2},{atMs:10800,action:'laser'},{atMs:13400,action:'laser'},{atMs:16000,action:'laser'},
-  {atMs:18000,chapter:3},{atMs:18400,action:'attack'},{atMs:20000,action:'attack'},{atMs:21800,action:'attack'},{atMs:23200,action:'attack'},
-  {atMs:24000,chapter:4}
+  {atMs:10000,chapter:2},{atMs:10300,action:'ultimate'},{atMs:12800,chapter:3},{atMs:13100,action:'ultimate'},{atMs:15400,chapter:4},{atMs:15700,action:'ultimate'},
+  {atMs:18000,chapter:5},{atMs:18400,action:'attack'},{atMs:20000,action:'attack'},{atMs:21800,action:'attack'},{atMs:23200,action:'attack'},
+  {atMs:24000,chapter:6}
 ]);
 export function createIntroHost({translate,pause,resume,play}){
   const $=id=>document.getElementById(id),modal=$('introPanel'),viewport=$('introViewport'),sound=$('introSound'),copy=$('introCopy'),sub=$('introSub');

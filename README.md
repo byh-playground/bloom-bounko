@@ -10,6 +10,8 @@
 
 Edge 155, 390×844 실제 Matter/WebGL에서 네 방향 조준·발사·돌진, 반대 넉백의 시선 유지, 키보드 구르기와 복귀, 실제 충돌 압축과 지연 흔들림을 확인했습니다. v0.17.0 main과 소개 1,680 tick 및 레이저 240 / 냉기·산성 270 tick의 위치·속도·HP·명중·피해·적 상태가 동일했습니다. 격리 장면 저장 쓰기 0회, JS 오류 0건입니다. 표시 모델은 30/144Hz dt 비교와 읽기 전용 보간을 검증했습니다. [검증 결과](docs/verification-player-2026-10-11.json), [아래쪽 조준](docs/seed-aim-down.png), [돌진](docs/seed-dash-mobile.png), [구르기](docs/seed-roll-mobile.png), [충돌](docs/seed-impact-mobile.png), [소개](docs/seed-intro-mobile.png), [프리뷰](docs/seed-preview-mobile.png).
 
+PR33의 최초 자동 발사 예약 수정까지 최신 main `e563e09`를 통합했습니다. 냉기·산성 프리뷰 각 270 tick을 다시 비교해 전투 상태 동일·저장 쓰기 0·오류 0을 확인했습니다. [최신 main 재검증](docs/verification-player-main-update-2026-10-11.json).
+
 ## 냉기·산성·두 신규 테마 (0.17.0)
 
 냉기는 잔상 감속 → 즉시 빙결 → 돌진 파쇄의 3단계입니다. 2단계 돌진은 빙결을 유지하고, 3단계는 실제 돌진 피해 명중 시 빙결을 소비해 공격력 50% 파쇄 피해를 추가합니다. 퍼펙트 플래그는 조건이 아니며 정지 접촉은 발동하지 않습니다. 1.2초 빙결과 해제 후 2초 재빙결 방지는 공통 Unit 상태입니다. 물리 몸체·외부 넉백과 기존 상대접근속도 피해식은 유지합니다.

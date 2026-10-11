@@ -1,0 +1,22 @@
+{
+  "baseline": "e563e09d055af39908b09d693d8ec84b043fba1c",
+  "mainPR33Integrated": true,
+  "browser": "155.0.4283.45",
+  "viewport": {
+    "width": 390,
+    "height": 844
+  },
+  "parity": {
+    "coldTouch": {
+      "ticks": 270,
+      "combatIdentical": true,
+      "storageWrites": 0
+    },
+    "acidPool": {
+      "ticks": 270,
+      "combatIdentical": true,
+      "storageWrites": 0
+    }
+  },
+  "errors": []
+}

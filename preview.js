@@ -42,7 +42,7 @@ export const introTimeline=Object.freeze([
   {atMs:18000,chapter:5},{atMs:18400,action:'attack'},{atMs:20000,action:'attack'},{atMs:21800,action:'attack'},{atMs:23200,action:'attack'},
   {atMs:24000,chapter:6}
 ]);
-export function createIntroHost({translate,pause,resume,play}){
+export function createIntroHost({translate,pause,resume,play,onClose}){
   const $=id=>document.getElementById(id),modal=$('introPanel'),viewport=$('introViewport'),sound=$('introSound'),copy=$('introCopy'),sub=$('introSub');
   let frame=null,animation=0,focus=null,inert=[],mountedAt=0,soundEnabled=false,chapter=-1;
   const api=()=>frame?.contentWindow?.__bloomImpulse;
@@ -57,7 +57,7 @@ export function createIntroHost({translate,pause,resume,play}){
   function mount(){destroy();chapter=-1;soundEnabled=false;sound.disabled=false;sound.textContent=translate('intro.soundOn');sound.setAttribute('aria-pressed','false');copy.textContent='BOUNKO';sub.textContent=translate('intro.loading');$('introProgress').firstElementChild.style.width='0%';$('introTime').textContent='0 / 28';mountedAt=performance.now();
     frame=document.createElement('iframe');frame.title=translate('intro.open');frame.tabIndex=-1;frame.allow='autoplay';frame.src=new URL('?intro=1',location.href).href;viewport.replaceChildren(frame);observe();
   }
-  function shut({start=false}={}){if(!active())return;destroy();modal.hidden=true;modal.setAttribute('aria-hidden','true');for(const [el,value]of inert)el.inert=value;inert=[];resume();if(start)play();else focus?.focus({preventScroll:true});}
+  function shut({start=false,notify=true}={}){if(!active())return;destroy();modal.hidden=true;modal.setAttribute('aria-hidden','true');for(const [el,value]of inert)el.inert=value;inert=[];resume();if(notify)onClose?.();if(start)play();else focus?.focus({preventScroll:true});}
   function open(){if(active())return;focus=document.activeElement;pause();inert=[...document.body.children].filter(el=>el!==modal&&el.tagName!=='SCRIPT').map(el=>[el,el.inert]);for(const [el]of inert)el.inert=true;modal.hidden=false;modal.setAttribute('aria-hidden','false');mount();$('introClose').focus({preventScroll:true});}
   sound.onclick=async()=>{const child=api()?.intro;if(!child)return;const enabled=!soundEnabled;if(await child.setSound(enabled)){if(!active())return;soundEnabled=enabled;sound.textContent=translate(enabled?'intro.soundOff':'intro.soundOn');sound.setAttribute('aria-pressed',String(enabled));}};
   $('introReplay').onclick=mount;$('introClose').onclick=()=>shut();$('introSkip').onclick=()=>shut();$('introPlay').onclick=()=>shut({start:true});

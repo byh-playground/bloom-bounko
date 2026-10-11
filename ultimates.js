@@ -1,18 +1,18 @@
 // HAS-A loadout and one bounded sequence runner; attacks/movement are supplied by the game.
 export const ultimateConfig={
   slots:{base:1,max:3,unlockNodes:['ultimateSlot2','ultimateSlot3']},
-  trigger:{comboHits:5,ammo:1,rechargeHits:15},
+  trigger:{comboHits:4,ammo:1,rechargeHits:12},
   presentation:{trailIntervalMs:24,trailLifetimeMs:300,maxTrails:24,maxEffects:36},
   skills:{
-    laserBloom:{symbol:'✦',color:[.35,.86,1],cost:5,requires:['autoChain','shadowRecharge2'],lane:1,range:520,targetLossPolicy:'finishCommitted',
+    laserBloom:{trigger:{comboHits:5,rechargeHits:15},symbol:'✦',color:[.35,.86,1],cost:5,requires:['autoChain','shadowRecharge2'],lane:1,range:520,targetLossPolicy:'finishCommitted',
       sequence:[
         {id:'move',durationMs:160,move:'side',distance:78,sound:'ultimateMove'},
         {id:'condense',durationMs:600,move:'hold',charge:true,chargeStyle:'beam',compression:.28,aim:'nearest',sound:'laserCharge',soundScope:'phase'},
-        {id:'release',durationMs:800,move:'recoil',distance:16,recoil:{amplitude:1.1,frequencyHz:22},commit:true,attack:{kind:'beam',atMs:Array.from({length:10},(_,i)=>i*80),length:620,width:30,openMs:65,fadeMs:110,damageBudget:1.65,hitText:{fractionDigits:1,sizePx:17,lifetimeMs:430,risePxPerMs:.26}},sound:'laserSustain',soundScope:'phase',shake:'hit',shakeIntervalMs:80},
+        {id:'release',durationMs:800,move:'recoil',distance:16,recoil:{amplitude:1.1,frequencyHz:22},commit:true,tracking:{angularSpeedDegPerSec:120},attack:{kind:'beam',atMs:Array.from({length:10},(_,i)=>i*80),length:620,width:30,openMs:65,fadeMs:110,damageBudget:1.65,hitText:{fractionDigits:1,sizePx:17,lifetimeMs:430,risePxPerMs:.26}},sound:'laserSustain',soundScope:'phase',shake:'hit',shakeIntervalMs:80},
         {id:'recoil',durationMs:130,move:'recoil',distance:6,sound:'laserFade',soundScope:'phase'},
         {id:'afterglow',durationMs:170,move:'return',fade:true,sound:'ultimateReturn'}
       ]},
-    storm:{symbol:'✻',color:[.62,1,.52],cost:3,requires:['autoChain','spore'],lane:4,rowOffset:2,range:430,trailLifetimeMs:450,
+    storm:{trigger:{comboHits:3,rechargeHits:10},symbol:'✻',color:[.62,1,.52],cost:3,requires:['autoChain','spore'],lane:4,rowOffset:2,range:430,trailLifetimeMs:450,
       sequence:[
         {id:'condense',durationMs:280,move:'hold',charge:true,chargeStyle:'swirl',compression:.18,sound:'ultimateCharge'},
         {id:'release',durationMs:880,timeScale:.9,move:'orbit',distance:48,visual:'vortex',trailWidth:15,attack:{kind:'spores',atMs:[0,110,220,330,440,550,660,770],count:3,power:.24,speed:410,lifeMs:750},sound:'ultimateSpore',soundScope:'phase'},
@@ -34,6 +34,12 @@ export const ultimateConfig={
 };
 const bounded=(value,min,max)=>Math.max(min,Math.min(max,value));
 const position=p=>({x:p.x,y:p.y});
+export function turnToward(direction,aim,radiansPerSecond,dtMs){
+  if(!(Math.hypot(aim.x,aim.y)>0))return direction;
+  const delta=Math.atan2(direction.x*aim.y-direction.y*aim.x,direction.x*aim.x+direction.y*aim.y);
+  const angle=Math.atan2(direction.y,direction.x)+bounded(delta,-radiansPerSecond*dtMs/1000,radiansPerSecond*dtMs/1000);
+  return {x:Math.cos(angle),y:Math.sin(angle)};
+}
 export class UltimateLoadout {
   constructor(config,saved={}){this.config=config;this.slots=Array.from({length:config.slots.max},(_,i)=>typeof saved?.slots?.[i]==='string'?saved.slots[i]:null);this.capacity=config.slots.base;this.remaining=new Map();this.cursor=0;this.lastHit=-1;this.unlocked=new Set();}
   requirements(id){return {...this.config.trigger,...this.config.skills[id]?.trigger};}
@@ -82,6 +88,8 @@ export class UltimateRunner {
     const attack=s.phase.attack;if(attack)while(s.pulse<attack.atMs.length&&attack.atMs[s.pulse]<=s.elapsedMs){s.pending.push({attack,pulse:s.pulse});s.pulse++;}
   }
   afterPhysics(dtMs){const s=this.state;if(!s)return;
+    if(s.phase.tracking){const targets=this.adapter.targets(s.skill.range),target=targets.find(unit=>unit.unitId===s.trackingTargetId)||targets[0];
+      s.trackingTargetId=target?.unitId??null;if(target){const p=this.adapter.position();s.direction=turnToward(s.direction,{x:target.body.position.x-p.x,y:target.body.position.y-p.y},s.phase.tracking.angularSpeedDegPerSec*Math.PI/180,dtMs);}}
     this.adapter.pose?.(s);
     for(const emission of s.pending){if(!this.active)break;this.adapter.attack(emission.attack,s,emission.pulse);}s.pending.length=0;
     if(this.active&&s.phase.contact)this.adapter.contact(s.phase.contact,s,this.progress());
@@ -95,7 +103,7 @@ export class UltimateRunner {
   progress(){return this.state?bounded(this.state.elapsedMs/this.state.phase.durationMs,0,1):0;}
   cancel(reason='cancel'){if(!this.state)return;const id=this.state.id;this.state.voice?.stop();this.state=null;this.lastEnd={id,reason};this.adapter.end(reason);}
   reset(){this.cancel('reset');this.effects.length=0;this.loadout.reset();this.starts=0;this.normalHits=0;this.damage=0;this.lastEnd=null;}
-  snapshot(){const s=this.state;return {active:this.active,id:s?.id??null,phase:s?.phase.id??null,progress:this.progress(),timeScale:this.timeScale,committed:s?.committed??false,pulses:s?.pulse??0,beam:s?.beam?{...s.beam}:null,starts:this.starts,normalHits:this.normalHits,damage:this.damage,lastEnd:this.lastEnd,...this.loadout.snapshot()};}
+  snapshot(){const s=this.state;return {active:this.active,id:s?.id??null,phase:s?.phase.id??null,progress:this.progress(),timeScale:this.timeScale,committed:s?.committed??false,direction:s?{...s.direction}:null,trackingTargetId:s?.trackingTargetId??null,pulses:s?.pulse??0,beam:s?.beam?{...s.beam}:null,starts:this.starts,normalHits:this.normalHits,damage:this.damage,lastEnd:this.lastEnd,...this.loadout.snapshot()};}
 }
 function ring(r,x,y,radius,width,color,segments=28,rotation=0){for(let i=0;i<segments;i++){const a=rotation+i*Math.PI*2/segments,b=rotation+(i+.82)*Math.PI*2/segments;r.line(x+Math.cos(a)*radius,y+Math.sin(a)*radius,x+Math.cos(b)*radius,y+Math.sin(b)*radius,width,color);}}
 

@@ -54,6 +54,12 @@ Object.assign(audioConfig.sounds,{
  stageStart:{category:'reward',layers:[tone(220,330,160,.10),tone(440,550,220,.10,'sine',80)]},
  stageClear:{category:'reward',priority:6,gapMs:0,layers:[tone(440,550,160,.12),tone(660,880,260,.12,'sine',95)]},
  level:{category:'reward',priority:6,layers:[tone(550,660,140,.10),tone(880,1100,200,.09,'sine',80)]},
- chainStart:{category:'motion',layers:[tone(330,660,130,.09,'triangle')]}
+ chainStart:{category:'motion',layers:[tone(330,660,130,.09,'triangle')]},
+ ultimateMove:{category:'motion',priority:4,gapMs:70,layers:[noise(100,.13,2700),tone(260,1050,130,.12,'triangle')]},
+ ultimateCharge:{category:'magic',priority:5,gapMs:0,layers:[tone(180,1120,300,.13,'triangle'),tone(360,1800,300,.07,'sine',40)]},
+ ultimateBeam:{category:'magic',priority:6,gapMs:0,layers:[noise(160,.16,4200),tone(1560,380,240,.14,'sawtooth'),tone(880,220,260,.09)]},
+ ultimateSpore:{category:'magic',priority:5,layers:[noise(240,.13,2100),tone(520,300,260,.1,'triangle')]},
+ ultimateWave:{category:'impact',priority:6,gapMs:0,layers:[tone(140,30,330,.28),noise(220,.18,950)]},
+ ultimateReturn:{category:'motion',priority:4,layers:[tone(840,260,150,.09),noise(70,.07,2600)]}
 });
 audioConfig.sounds.fusionMixed={category:'reward',layers:[...audioConfig.sounds.fusionSuccess.layers,...audioConfig.sounds.fusionFail.layers.map(layer=>({...layer,delay:(layer.delay||0)+330}))]};

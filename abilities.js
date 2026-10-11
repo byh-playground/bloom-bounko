@@ -138,7 +138,7 @@ export function stepArc(flight,dtMs) {
 export const DeathReason=Object.freeze({hit:'hit',selfDestruct:'selfDestruct',expiry:'expiry',cleanup:'cleanup'});
 export const hostile=(a,b)=>!!a&&!!b&&a.alive&&b.alive&&a.faction!==b.faction;
 export function receiveHit(target,payload,source,now=0){
-  if(!hostile(source,target)||now<(target.protectedUntilMs||0))return 0;
+  if(!hostile(source,target)||target.invulnerable||now<(target.protectedUntilMs||0))return 0;
   const stats=payload.stats||{},armor=Math.max(0,(target.config?.armor||0)*(1-(stats.armorPenPercent||0))-(stats.armorPenFlat||0));
   const calculated=payload.resolved?payload.raw:payload.raw*100/(100+armor);
   const rounded=payload.floating||target.config?.damageRounding===false?calculated:Math.round(calculated);

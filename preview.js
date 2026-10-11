@@ -24,3 +24,41 @@ export function createPreviewHost({translate,pause,resume}){
   document.addEventListener('keydown',event=>{if(!active())return;if(event.key==='Escape'){event.preventDefault();event.stopImmediatePropagation();shut();}else if(event.key==='Tab'){const buttons=[...modal.querySelectorAll('button:not(:disabled),input')],first=buttons[0],last=buttons.at(-1);if(event.shiftKey&&document.activeElement===first){event.preventDefault();last.focus();}else if(!event.shiftKey&&document.activeElement===last){event.preventDefault();first.focus();}}},true);
   return {open,close:shut,get active(){return active();}};
 }
+
+// Milliseconds describe cuts, real commands and presentation; no alternate combat renderer.
+export const introScenes=Object.freeze([
+  {seed:28101,copy:'breakthrough',camera:{x:0,y:-65,width:400,height:650,follow:true},targets:[{x:0,y:-190},...Array.from({length:7},(_,i)=>({x:Math.cos(i*Math.PI*2/7)*155,y:Math.sin(i*Math.PI*2/7)*155}))]},
+  {seed:28102,copy:'combo',camera:{x:0,y:-45,width:400,height:650,follow:true},targets:Array.from({length:10},(_,i)=>({x:Math.cos(i*Math.PI/5)*190,y:Math.sin(i*Math.PI/5)*190,hp:38}))},
+  {seed:28103,copy:'laser',laser:true,camera:{x:-25,y:-175,width:370,height:700},targets:[{x:0,y:-130,hp:2500},{x:-78,y:-260,hp:2500},{x:-156,y:-390,hp:2500},{x:115,y:-260,hp:2500}]},
+  {seed:28104,copy:'pets',pets:true,camera:{x:0,y:-80,width:420,height:700,follow:true},targets:[{x:0,y:-180,type:'pillbug',hp:2500},{x:-120,y:-210,type:'rogue',hp:2500},{x:130,y:-220,hp:2500},{x:0,y:160,hp:2500}]},
+  {seed:28105,copy:'final',camera:{x:0,y:0,width:370,height:700},targets:[]}
+]);
+export const introTimeline=Object.freeze([
+  {atMs:0,chapter:0},{atMs:180,action:'attack'},{atMs:1800,action:'attack'},
+  {atMs:4000,chapter:1},{atMs:4200,action:'attack'},{atMs:5500,action:'attack'},{atMs:6800,action:'attack'},{atMs:8100,action:'attack'},{atMs:9400,action:'attack'},
+  {atMs:10000,chapter:2},{atMs:10800,action:'laser'},{atMs:13400,action:'laser'},{atMs:16000,action:'laser'},
+  {atMs:18000,chapter:3},{atMs:18400,action:'attack'},{atMs:20000,action:'attack'},{atMs:21800,action:'attack'},{atMs:23200,action:'attack'},
+  {atMs:24000,chapter:4}
+]);
+export function createIntroHost({translate,pause,resume,play}){
+  const $=id=>document.getElementById(id),modal=$('introPanel'),viewport=$('introViewport'),sound=$('introSound'),copy=$('introCopy'),sub=$('introSub');
+  let frame=null,animation=0,focus=null,inert=[],mountedAt=0,soundEnabled=false,chapter=-1;
+  const api=()=>frame?.contentWindow?.__bloomImpulse;
+  const active=()=>!modal.hidden;
+  function destroy(){cancelAnimationFrame(animation);animation=0;api()?.dispose();frame?.remove();frame=null;}
+  function setCopy(scene){if(chapter===scene.chapter)return;chapter=scene.chapter;const key=introScenes[chapter].copy;copy.textContent=translate('intro.'+key);sub.textContent=translate('intro.'+key+'Sub');modal.dataset.chapter=key;}
+  function observe(){if(!active())return;const scene=api()?.intro?.snapshot();
+    if(scene){setCopy(scene);$('introProgress').firstElementChild.style.width=Math.min(100,scene.timeMs/280)+'%';$('introTime').textContent=Math.floor(scene.timeMs/1000)+' / 28';sound.disabled=scene.ended;}
+    else if(performance.now()-mountedAt>15000)sub.textContent=translate('intro.failed');
+    animation=requestAnimationFrame(observe);
+  }
+  function mount(){destroy();chapter=-1;soundEnabled=false;sound.disabled=false;sound.textContent=translate('intro.soundOn');sound.setAttribute('aria-pressed','false');copy.textContent='BOUNKO';sub.textContent=translate('intro.loading');$('introProgress').firstElementChild.style.width='0%';$('introTime').textContent='0 / 28';mountedAt=performance.now();
+    frame=document.createElement('iframe');frame.title=translate('intro.open');frame.tabIndex=-1;frame.allow='autoplay';frame.src=new URL('?intro=1',location.href).href;viewport.replaceChildren(frame);observe();
+  }
+  function shut({start=false}={}){if(!active())return;destroy();modal.hidden=true;modal.setAttribute('aria-hidden','true');for(const [el,value]of inert)el.inert=value;inert=[];resume();if(start)play();else focus?.focus({preventScroll:true});}
+  function open(){if(active())return;focus=document.activeElement;pause();inert=[...document.body.children].filter(el=>el!==modal&&el.tagName!=='SCRIPT').map(el=>[el,el.inert]);for(const [el]of inert)el.inert=true;modal.hidden=false;modal.setAttribute('aria-hidden','false');mount();$('introClose').focus({preventScroll:true});}
+  sound.onclick=async()=>{const child=api()?.intro;if(!child)return;const enabled=!soundEnabled;if(await child.setSound(enabled)){if(!active())return;soundEnabled=enabled;sound.textContent=translate(enabled?'intro.soundOff':'intro.soundOn');sound.setAttribute('aria-pressed',String(enabled));}};
+  $('introReplay').onclick=mount;$('introClose').onclick=()=>shut();$('introSkip').onclick=()=>shut();$('introPlay').onclick=()=>shut({start:true});
+  document.addEventListener('keydown',event=>{if(!active())return;if(event.key==='Escape'){event.preventDefault();event.stopImmediatePropagation();shut();}else if(event.key==='Tab'){const buttons=[...modal.querySelectorAll('button:not(:disabled)')],first=buttons[0],last=buttons.at(-1);if(event.shiftKey&&document.activeElement===first){event.preventDefault();last.focus();}else if(!event.shiftKey&&document.activeElement===last){event.preventDefault();first.focus();}}},true);
+  return {open,close:shut,get active(){return active();}};
+}

@@ -1,0 +1,536 @@
+{
+  "browser": "155.0.4283.45",
+  "viewport": {
+    "width": 390,
+    "height": 844
+  },
+  "baseMain": "17c0673cc868da51c3dfaaa5ef22a80bc571f06a",
+  "fixture": "Growth 9999, defeats 10500, nine unlocks, attack+4, pet slots+1, egg at7/30, locked Rare+1 lancer, ultimate and pending growth/egg",
+  "saveSha256": "e6aabb623f25616038f5c7619220616f290fea8a2def1c2a8b64fde1a6a084b8",
+  "storageUnchanged": true,
+  "childStorageWrites": 0,
+  "deterministicChapterMetrics": true,
+  "ko": {
+    "language": "ko",
+    "sound": false,
+    "maxCombo": 9,
+    "laserFrames": 26,
+    "petHits": 14,
+    "maxVoices": 0,
+    "realMs": 28399,
+    "ended": {
+      "timeMs": 28000.000000000004,
+      "tick": 1680,
+      "chapter": 4,
+      "ended": true,
+      "metrics": [
+        {
+          "chapter": 0,
+          "atMs": 4000.0000000000005,
+          "hits": 5,
+          "kills": 0,
+          "combo": 5,
+          "laserDamage": 0,
+          "pets": {
+            "inventoryCount": 2,
+            "slots": [
+              null,
+              null
+            ],
+            "hits": 0,
+            "kills": 0,
+            "damage": 0,
+            "taken": 0,
+            "deaths": 0,
+            "revivals": 0,
+            "abilities": 0,
+            "supportHealing": 0,
+            "lastHit": null,
+            "actors": []
+          }
+        },
+        {
+          "chapter": 1,
+          "atMs": 10000,
+          "hits": 14,
+          "kills": 9,
+          "combo": 9,
+          "laserDamage": 0,
+          "pets": {
+            "inventoryCount": 2,
+            "slots": [
+              null,
+              null
+            ],
+            "hits": 0,
+            "kills": 0,
+            "damage": 0,
+            "taken": 0,
+            "deaths": 0,
+            "revivals": 0,
+            "abilities": 0,
+            "supportHealing": 0,
+            "lastHit": null,
+            "actors": []
+          }
+        },
+        {
+          "chapter": 2,
+          "atMs": 18000,
+          "hits": 14,
+          "kills": 9,
+          "combo": 0,
+          "laserDamage": 1484.9999999999998,
+          "pets": {
+            "inventoryCount": 2,
+            "slots": [
+              null,
+              null
+            ],
+            "hits": 0,
+            "kills": 0,
+            "damage": 0,
+            "taken": 0,
+            "deaths": 0,
+            "revivals": 0,
+            "abilities": 0,
+            "supportHealing": 0,
+            "lastHit": null,
+            "actors": []
+          }
+        },
+        {
+          "chapter": 3,
+          "atMs": 24000,
+          "hits": 18,
+          "kills": 9,
+          "combo": 1,
+          "laserDamage": 1484.9999999999998,
+          "pets": {
+            "inventoryCount": 2,
+            "slots": [
+              1,
+              2
+            ],
+            "hits": 14,
+            "kills": 0,
+            "damage": 876.8577777777778,
+            "taken": 0,
+            "deaths": 0,
+            "revivals": 0,
+            "abilities": 11,
+            "supportHealing": 0,
+            "lastHit": {
+              "inventoryId": 2,
+              "unitId": 28,
+              "speciesId": "brute",
+              "enemyId": 29,
+              "damage": 40.91333333333334,
+              "raw": 40.91333333333334,
+              "atMs": 23833.333333333336
+            },
+            "actors": [
+              {
+                "id": 1,
+                "inventoryId": 1,
+                "unitId": 27,
+                "kind": "pet",
+                "speciesId": "lancer",
+                "grade": 2,
+                "state": "RECOVER",
+                "hp": 486.00000000000006,
+                "maxHp": 486.00000000000006,
+                "x": 772.1410669531393,
+                "y": 517.8552994176282,
+                "z": 0,
+                "velocity": null,
+                "abilities": {
+                  "lunge": {
+                    "phase": "RECOVER"
+                  }
+                },
+                "reviveInMs": 0
+              },
+              {
+                "id": 2,
+                "inventoryId": 2,
+                "unitId": 28,
+                "kind": "pet",
+                "speciesId": "brute",
+                "grade": 2,
+                "state": "SUNBEAM_FIRE",
+                "hp": 599.4000000000001,
+                "maxHp": 599.4000000000001,
+                "x": 737.1068234533124,
+                "y": 732.4209858595843,
+                "z": 0,
+                "velocity": null,
+                "abilities": {},
+                "reviveInMs": 0
+              }
+            ]
+          }
+        },
+        {
+          "chapter": 4,
+          "atMs": 28000.000000000004,
+          "hits": 18,
+          "kills": 9,
+          "combo": 0,
+          "laserDamage": 1484.9999999999998,
+          "pets": {
+            "inventoryCount": 2,
+            "slots": [
+              null,
+              null
+            ],
+            "hits": 0,
+            "kills": 0,
+            "damage": 0,
+            "taken": 0,
+            "deaths": 0,
+            "revivals": 0,
+            "abilities": 0,
+            "supportHealing": 0,
+            "lastHit": null,
+            "actors": []
+          }
+        }
+      ],
+      "hits": 18,
+      "kills": 9,
+      "combo": 0,
+      "laserDamage": 1484.9999999999998,
+      "pets": {
+        "inventoryCount": 2,
+        "slots": [
+          null,
+          null
+        ],
+        "hits": 0,
+        "kills": 0,
+        "damage": 0,
+        "taken": 0,
+        "deaths": 0,
+        "revivals": 0,
+        "abilities": 0,
+        "supportHealing": 0,
+        "lastHit": null,
+        "actors": []
+      },
+      "seed": 28105
+    },
+    "audio": {
+      "state": "locked",
+      "volume": 0.7,
+      "muted": true,
+      "voices": 0,
+      "categoryVolumes": {
+        "enemy": 0.65,
+        "impact": 1,
+        "motion": 0.8,
+        "danger": 0.9,
+        "reward": 0.85,
+        "magic": 0.55,
+        "ui": 0.5
+      },
+      "lastError": null,
+      "played": 0,
+      "dropped": 0,
+      "blocked": 0,
+      "maxObserved": 0,
+      "bySound": {}
+    }
+  },
+  "en": {
+    "language": "en",
+    "sound": true,
+    "maxCombo": 9,
+    "laserFrames": 26,
+    "petHits": 14,
+    "maxVoices": 4,
+    "realMs": 28150,
+    "ended": {
+      "timeMs": 28000.000000000004,
+      "tick": 1680,
+      "chapter": 4,
+      "ended": true,
+      "metrics": [
+        {
+          "chapter": 0,
+          "atMs": 4000.0000000000005,
+          "hits": 5,
+          "kills": 0,
+          "combo": 5,
+          "laserDamage": 0,
+          "pets": {
+            "inventoryCount": 2,
+            "slots": [
+              null,
+              null
+            ],
+            "hits": 0,
+            "kills": 0,
+            "damage": 0,
+            "taken": 0,
+            "deaths": 0,
+            "revivals": 0,
+            "abilities": 0,
+            "supportHealing": 0,
+            "lastHit": null,
+            "actors": []
+          }
+        },
+        {
+          "chapter": 1,
+          "atMs": 10000,
+          "hits": 14,
+          "kills": 9,
+          "combo": 9,
+          "laserDamage": 0,
+          "pets": {
+            "inventoryCount": 2,
+            "slots": [
+              null,
+              null
+            ],
+            "hits": 0,
+            "kills": 0,
+            "damage": 0,
+            "taken": 0,
+            "deaths": 0,
+            "revivals": 0,
+            "abilities": 0,
+            "supportHealing": 0,
+            "lastHit": null,
+            "actors": []
+          }
+        },
+        {
+          "chapter": 2,
+          "atMs": 18000,
+          "hits": 14,
+          "kills": 9,
+          "combo": 0,
+          "laserDamage": 1484.9999999999998,
+          "pets": {
+            "inventoryCount": 2,
+            "slots": [
+              null,
+              null
+            ],
+            "hits": 0,
+            "kills": 0,
+            "damage": 0,
+            "taken": 0,
+            "deaths": 0,
+            "revivals": 0,
+            "abilities": 0,
+            "supportHealing": 0,
+            "lastHit": null,
+            "actors": []
+          }
+        },
+        {
+          "chapter": 3,
+          "atMs": 24000,
+          "hits": 18,
+          "kills": 9,
+          "combo": 1,
+          "laserDamage": 1484.9999999999998,
+          "pets": {
+            "inventoryCount": 2,
+            "slots": [
+              1,
+              2
+            ],
+            "hits": 14,
+            "kills": 0,
+            "damage": 876.8577777777778,
+            "taken": 0,
+            "deaths": 0,
+            "revivals": 0,
+            "abilities": 11,
+            "supportHealing": 0,
+            "lastHit": {
+              "inventoryId": 2,
+              "unitId": 28,
+              "speciesId": "brute",
+              "enemyId": 29,
+              "damage": 40.91333333333334,
+              "raw": 40.91333333333334,
+              "atMs": 23833.333333333336
+            },
+            "actors": [
+              {
+                "id": 1,
+                "inventoryId": 1,
+                "unitId": 27,
+                "kind": "pet",
+                "speciesId": "lancer",
+                "grade": 2,
+                "state": "RECOVER",
+                "hp": 486.00000000000006,
+                "maxHp": 486.00000000000006,
+                "x": 772.1410669531393,
+                "y": 517.8552994176282,
+                "z": 0,
+                "velocity": null,
+                "abilities": {
+                  "lunge": {
+                    "phase": "RECOVER"
+                  }
+                },
+                "reviveInMs": 0
+              },
+              {
+                "id": 2,
+                "inventoryId": 2,
+                "unitId": 28,
+                "kind": "pet",
+                "speciesId": "brute",
+                "grade": 2,
+                "state": "SUNBEAM_FIRE",
+                "hp": 599.4000000000001,
+                "maxHp": 599.4000000000001,
+                "x": 737.1068234533124,
+                "y": 732.4209858595843,
+                "z": 0,
+                "velocity": null,
+                "abilities": {},
+                "reviveInMs": 0
+              }
+            ]
+          }
+        },
+        {
+          "chapter": 4,
+          "atMs": 28000.000000000004,
+          "hits": 18,
+          "kills": 9,
+          "combo": 0,
+          "laserDamage": 1484.9999999999998,
+          "pets": {
+            "inventoryCount": 2,
+            "slots": [
+              null,
+              null
+            ],
+            "hits": 0,
+            "kills": 0,
+            "damage": 0,
+            "taken": 0,
+            "deaths": 0,
+            "revivals": 0,
+            "abilities": 0,
+            "supportHealing": 0,
+            "lastHit": null,
+            "actors": []
+          }
+        }
+      ],
+      "hits": 18,
+      "kills": 9,
+      "combo": 0,
+      "laserDamage": 1484.9999999999998,
+      "pets": {
+        "inventoryCount": 2,
+        "slots": [
+          null,
+          null
+        ],
+        "hits": 0,
+        "kills": 0,
+        "damage": 0,
+        "taken": 0,
+        "deaths": 0,
+        "revivals": 0,
+        "abilities": 0,
+        "supportHealing": 0,
+        "lastHit": null,
+        "actors": []
+      },
+      "seed": 28105
+    },
+    "audio": {
+      "state": "running",
+      "volume": 0.7,
+      "muted": false,
+      "voices": 0,
+      "categoryVolumes": {
+        "enemy": 0.65,
+        "impact": 1,
+        "motion": 0.8,
+        "danger": 0.9,
+        "reward": 0.85,
+        "magic": 0.55,
+        "ui": 0.5
+      },
+      "lastError": null,
+      "played": 142,
+      "dropped": 44,
+      "blocked": 0,
+      "maxObserved": 4,
+      "bySound": {
+        "launch": 5,
+        "chargeHalf": 20,
+        "dash": 5,
+        "impactMedium": 15,
+        "chainStart": 4,
+        "lightning": 18,
+        "echo": 16,
+        "chargeReady": 11,
+        "ricochet": 2,
+        "impactHeavy": 3,
+        "kill": 9,
+        "pickup": 5,
+        "level": 2,
+        "ultimateMove": 3,
+        "laserCharge": 3,
+        "laserSustain": 3,
+        "laserFade": 3,
+        "ultimateReturn": 3,
+        "enemyNotice": 4,
+        "enemyLunge": 3,
+        "petImpact": 3,
+        "autoDash": 2
+      }
+    }
+  },
+  "disposal": {
+    "audio": {
+      "state": "disposed",
+      "volume": 0.7,
+      "muted": true,
+      "voices": 0,
+      "categoryVolumes": {
+        "enemy": 0.65,
+        "impact": 1,
+        "motion": 0.8,
+        "danger": 0.9,
+        "reward": 0.85,
+        "magic": 0.55,
+        "ui": 0.5
+      },
+      "lastError": null,
+      "played": 0,
+      "dropped": 0,
+      "blocked": 0,
+      "maxObserved": 0,
+      "bySound": {}
+    },
+    "tick": 26,
+    "before": 25
+  },
+  "existingPreview": {
+    "id": "laserBloom",
+    "seed": 82741,
+    "tick": 240,
+    "paused": false,
+    "ended": true,
+    "hits": 30,
+    "damage": 494.99999999999994
+  },
+  "jsErrors": [],
+  "requestFailures": []
+}

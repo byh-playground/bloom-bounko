@@ -1,0 +1,43 @@
+{
+  "version": "0.12.11",
+  "buildId": "20261011T043931Z-ko-en-i18n",
+  "base": "35515fc4e7f8244ed6b9d827143f3b748cd7cb0a",
+  "browser": "155.0.4283.45",
+  "dependencies": {
+    "i18next": "26.4.3 official ESM; HTTP 200",
+    "i18nextSha256": "4fb2e0c4dfd13dda4f6cb292ae0f9c5260a13b28bab05ee723915351bdaf00a1",
+    "matter": "0.20.0",
+    "gamekit": "d1e2c385033ad04a7a004cfbe9558948ef07a6d1",
+    "renderer": "GameKit Renderer2D WebGL1; no mocked renderer"
+  },
+  "inheritedVerification": {
+    "source": "i18n-flow-result.json from interrupted session",
+    "pass": true,
+    "elapsedSeconds": 12.662,
+    "errors": [],
+    "scenarios": [
+      "saved/browser/fallback language",
+      "panels/focus/state preservation",
+      "help/wiki/search/dynamic tables",
+      "egg hatch/fusion/narrow English cards",
+      "WASD/click/egg CATCH_UP to FORMATION"
+    ]
+  },
+  "currentVerification": {
+    "pass": true,
+    "elapsedSeconds": 1.545,
+    "errors": [],
+    "referenceCommit": "89ff07ffe87de2ff7aa293dc7117aad5992b5513",
+    "scenario": "Actual Renderer2D comparison at zoom 1 and 3: pinned Rally functions, previous/current monsters, Common and Mythic pets via shared drawSpecies",
+    "screenshot": "rally-two-species-comparison.png"
+  },
+  "limits": "Constructed visual slate and seeded prior UI flow; no new natural-combat, long balance, or maximum-population benchmark claims.",
+  "sha256": {
+    "index.html": "a374d33daafd7632d622f64f0370a67a361e961096ef8c86b14bb6ab4b492c87",
+    "pets.js": "ee58cc98ae8d3163c51d332ce172442ca7f5f0bdae7fb8eb52707a6dc2866cf9",
+    "enemies.js": "fbe50b257f9e30981f4d3dee4482489d6d65742c0ab554abb26e7decf0d19a41",
+    "i18n.js": "ac9f8ed08c44bb06f10118a038d267cbb2d2ecdb1b2d9f79c026921454ecd10f",
+    "locales/ko.js": "196000808b72141335c0ae386b3f8473b3af079927ef2653a5a1620924348491",
+    "locales/en.js": "8c6e4b5abddc033bba9131ce4cf36c1db577e20cf25715feefbbf7c9e3753767"
+  }
+}

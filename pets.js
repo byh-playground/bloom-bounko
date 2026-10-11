@@ -1,3 +1,4 @@
+import {t as tr} from './i18n.js';
 import {species} from './enemies.js';
 import {companionIdlePoint} from './controllers.js';
 // Permanent companion ownership is separate from bounded in-run actors.
@@ -7,11 +8,11 @@ export const petConfig = {
   eggs:{rewardCount:1,hatchKills:30,normalDropRate:.05,bossDropRate:.10},
   fusion:{required:5,odds:[.64,.32,.16,.08,.04],failureLoss:[1,2,3,4]},
   grades:[
-    {name:'Common',color:'#d8d4bd'}, {name:'Uncommon',color:'#83ce76'},
-    {name:'Rare',color:'#78b9ff'}, {name:'Epic',color:'#bd8cff'},
-    {name:'Legendary',color:'#ffb354'}, {name:'Mythic',color:'#ff7086'}],
+    {get name(){return tr('rarity.common');},color:'#d8d4bd'}, {get name(){return tr('rarity.uncommon');},color:'#83ce76'},
+    {get name(){return tr('rarity.rare');},color:'#78b9ff'}, {get name(){return tr('rarity.epic');},color:'#bd8cff'},
+    {get name(){return tr('rarity.legendary');},color:'#ffb354'}, {get name(){return tr('rarity.mythic');},color:'#ff7086'}],
   species,
-  presentation:{eggFollow:{responseHz:1.8,trailDistance:20,teleportDistance:220,hoverHeight:7,hoverAmplitude:2.5,hoverHz:.8},size:{min:.65,max:1},outline:{width:2.5,contrast:{width:.8,color:'#0c181e',maxColorDistance:.16}}},
+  presentation:{eggFollow:{responseHz:1.8,trailDistance:20,catchUpDistance:110,returnDistance:85,teleportDistance:220,hoverHeight:7,hoverAmplitude:2.5,hoverHz:.8},size:{min:.65,max:1},outline:{width:2.5,contrast:{width:.8,color:'#0c181e',maxColorDistance:.16}}},
   combat:{gradePowerRate:1.8,gradeSkillSizeRate:1.05,gradeRangeRate:1.05,hitProtectionMs:500,reviveMs:3000,followRadius:64,leash:600}
 };
 
@@ -139,7 +140,7 @@ export class CompanionRoster {
     }
     for(const actor of current.values())if(actor.unit)this.a.remove(actor.unit,'cleanup');this.actors=next;
   }
-  resetEgg(actor,anchor){const target=this.eggTarget(actor,anchor);Object.assign(actor,target,{vx:0,vy:0,floatZ:this.collection.config.presentation.eggFollow.hoverHeight});}
+  resetEgg(actor,anchor){const target=this.eggTarget(actor,anchor);Object.assign(actor,target,{followMode:'FORMATION',vx:0,vy:0,floatZ:this.collection.config.presentation.eggFollow.hoverHeight});}
   eggTarget(actor,anchor){const c=this.collection.config,p=companionIdlePoint(anchor,actor.slot,c.combat.followRadius),lag=c.presentation.eggFollow.trailDistance;return {x:p.x-this.eggHeading.x*lag,y:p.y-this.eggHeading.y*lag};}
   enterStage(){this.previousAnchor={...this.a.anchor()};for(const actor of this.actors){if(actor.kind==='egg'){this.resetEgg(actor,this.previousAnchor);continue;}if(actor.kind==='pet'){
     if(!actor.unit){const p=this.a.anchor();actor.x=p.x;actor.y=p.y;continue;}
@@ -151,7 +152,11 @@ export class CompanionRoster {
     const teleported=Math.hypot(p.x-this.previousAnchor.x,p.y-this.previousAnchor.y)>c.teleportDistance;this.previousAnchor={...p};
     if(speed>20&&!teleported)this.eggHeading={x:motion.x/speed,y:motion.y/speed};
     const w=c.responseHz*Math.PI*2,decay=Math.exp(-w*dt);
-    for(const actor of this.actors){if(actor.kind==='egg'){if(teleported)this.resetEgg(actor,p);const target=this.eggTarget(actor,p);
+    for(const actor of this.actors){if(actor.kind==='egg'){if(teleported)this.resetEgg(actor,p);
+      const gap=Math.hypot(actor.x-p.x,actor.y-p.y);
+      if(actor.followMode==='FORMATION'&&gap>c.catchUpDistance)actor.followMode='CATCH_UP';
+      else if(actor.followMode==='CATCH_UP'&&gap<c.returnDistance)actor.followMode='FORMATION';
+      const target=actor.followMode==='CATCH_UP'?p:this.eggTarget(actor,p);
       // Exact critically damped spring for each fixed-step interval, independent of display FPS.
       for(const axis of ['x','y']){const v='v'+axis,offset=actor[axis]-target[axis],j=actor[v]+w*offset;actor[axis]=target[axis]+(offset+j*dt)*decay;actor[v]=(actor[v]-w*j*dt)*decay;}
       actor.floatZ=c.hoverHeight+Math.sin(this.a.time()*Math.PI*2*c.hoverHz/1000+actor.slot*2.399)*c.hoverAmplitude;
@@ -159,7 +164,7 @@ export class CompanionRoster {
     else if(!actor.unit&&this.a.time()>=actor.reviveAtMs){const item=this.collection.byId.get(actor.inventoryId);actor.unit=this.a.create(item,actor.slot,actor);this.stats.revivals++;this.a.effect('revive',actor);}}
   }
   snapshot(){return {inventoryCount:this.collection.inventory.length,slots:[...this.collection.slots],...this.stats,actors:this.actors.map(a=>({
-    id:a.inventoryId,inventoryId:a.inventoryId,unitId:a.unit?.unitId??null,kind:a.kind,speciesId:a.speciesId,grade:a.grade,state:a.kind==='egg'?'FOLLOW':a.unit?.state||'DEAD',
+    id:a.inventoryId,inventoryId:a.inventoryId,unitId:a.unit?.unitId??null,kind:a.kind,speciesId:a.speciesId,grade:a.grade,state:a.kind==='egg'?a.followMode:a.unit?.state||'DEAD',
     hp:a.unit?.hp??null,maxHp:a.unit?.maxHp??null,x:a.unit?.body.position.x??a.x,y:a.unit?.body.position.y??a.y,z:a.unit?.spatial.feetZ??a.floatZ??0,velocity:a.kind==='egg'?{x:a.vx,y:a.vy}:null,
     abilities:a.unit?Object.fromEntries(['leap','selfDestruct','spike','arcFire','lunge','projectileFire','bossPattern'].filter(k=>a.unit[k]).map(k=>[k,{phase:a.unit[k].phase,log:a.unit[k].log}])):null,
     reviveInMs:a.kind==='pet'&&!a.unit?Math.max(0,a.reviveAtMs-this.a.time()):0}))};}

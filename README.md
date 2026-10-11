@@ -2,7 +2,7 @@
 
 블룸 세계관의 탑다운 2D 물리 액션 공 튕기기 게임입니다. 잔상을 보내 조준·충전하고, 타이밍에 맞춰 몸체를 돌진시켜 적과 충돌합니다. 전장을 탭해 구르며 피하고, 처치 후 지면 드롭을 자석으로 회수한 성장으로 기술과 기본 능력치를 강화합니다.
 
-게임·스타일·도움말·상세 위키는 `index.html`, 드롭 상태와 회수 이동은 `drops.js`, 소유·편성은 `pets.js`, 공통 Unit·능력은 `abilities.js`, 종·외형은 `enemies.js`, 목표·이동 의도는 `controllers.js`, 효과음 정의는 `audio.js`에 들어 있습니다. 현재 후보 **0.12.10**은 클리어 후 1.5초 동안 전체 지면 보상을 자석으로 끌어오고, 실제 도착분만 지급한 뒤 미회수분을 삭제합니다. 기존 처치 성장과 알은 가까이 가서 회수합니다. 자석 범위는 현재 플레이어 지름의2.5배이며 기본 대비+10%씩 투자합니다. 바깥 장착 알은 부드러운 가속·감쇠로 느슨하게 따라오고 정지하면 가볍게 떠 있습니다. 기존 공격·회피·전투 펫·알 확률·부화 조건은 유지합니다.
+게임·스타일·도움말·상세 위키는 `index.html`, 드롭 상태와 회수 이동은 `drops.js`, 소유·편성은 `pets.js`, 공통 Unit·능력은 `abilities.js`, 종·외형은 `enemies.js`, 목표·이동 의도는 `controllers.js`, 효과음 정의는 `audio.js`에 들어 있습니다. 현재 후보 **0.12.11**은 한국어·영어 UI/도움말/위키 전환과 저장 언어 우선 적용을 지원합니다. `i18n.js`는 공개 i18next 코어를 연결하고 `locales/ko.js`·`locales/en.js`는 표시 문구를 소유합니다. 장착 알은 110px 이상 뒤처지면 플레이어를 따라잡고 85px 안에서 원래 포메이션으로 복귀합니다. 클리어 후 회수 규칙은 그대로이며, 클리어 후 1.5초 동안 전체 지면 보상을 자석으로 끌어오고, 실제 도착분만 지급한 뒤 미회수분을 삭제합니다. 기존 처치 성장과 알은 가까이 가서 회수합니다. 자석 범위는 현재 플레이어 지름의2.5배이며 기본 대비+10%씩 투자합니다. 바깥 장착 알은 부드러운 가속·감쇠로 느슨하게 따라오고 정지하면 가볍게 떠 있습니다. 기존 공격·회피·전투 펫·알 확률·부화 조건은 유지합니다.
 
 ## 실행
 
@@ -32,6 +32,16 @@ npx --yes http-server . -p 8000 -c-1
 새 잔상 생성은 수동·메아리·자동 연격 모두 공통 공격 탄 1발을 사용합니다. 기본 2발, 1,500ms마다 1발 순차 장전하며 HP 비용은 없습니다. 준비 탄이 80ms 정렬한 뒤 실제 생성 성공 시에만 차감하고 정렬 취소는 무료입니다. 이미 만들어진 잔상으로 수동·자동 돌진은 무료이고 회피 구르기는 별도 충전을 사용합니다. 실패한 생성은 소모하지 않습니다. 흡혈은 기본0%이며 실제 HP 피해에 투자한 비율만 회복합니다. 평상 접촉 피해는0, 명시적 공격만 피해를 주며 단계 전환은 현재 HP를 유지합니다. 돌진 피해는 공통 실제 충돌 속도 공식으로 계산합니다. 자세한 타이밍·반동·회피·보스·성장 규칙은 내장 위키를 참조합니다.
 
 누적 처치·해금 기술·능력치 강화·알과 펫 소유권은 같은 브라우저와 같은 주소의 로컬 저장소에 보관됩니다. 진행 중인 판의 위치와 체력은 저장하지 않습니다. 저장 키 `bloom-impulse-progression-v3`는 유지하고 `{kills, defeats, unlocked, statLevels, companions:{inventory,slots,nextId}, pendingDrops:{pending}}`로 확장합니다. 기존 저장의 동행 필드가 없으면 빈 목록과 기본 1칸으로 시작합니다. 0.11.0의 현재 Definition에서 제거된 기술·선행 조건을 잃은 기술, 치명확률 투자 없이 남은 치명피해 투자만 제외해 포인트를 환불합니다. 누적 처치와 유효한 나머지 기술·스탯은 보존하고, 옛 기술 ID를 새 기술로 자동 변환하지 않습니다. 재선택할 자동 연격의 비용은 2 강화입니다.
+
+## 한국어·영어 표시
+
+상단 언어 선택은 열린 패널과 전투 중에도 사용할 수 있습니다. `bounko-language-v1`의 유효한 ko/en 설정을 우선하며, 없으면 브라우저 언어의 ko-KR/en-US 같은 지역 코드를 읽고 미지원 언어는 영어로 표시합니다. 기술/종/슬롯/저장 ID는 번역하지 않습니다. 언어 전환은 진행도·HP·공격 탄·물리 상태·패널·선택/포커스·스크롤·안내 수명을 초기화하지 않습니다. 위키 목차·검색·동적 표, 기술/능력치, 발견/알/합성, 설정/접근성 문구도 같은 언어로 갱신합니다.
+
+i18next의 fallback·interpolation·plural과 Intl 숫자/백분율 서식을 사용합니다. 숫자 count는 원래 숫자로 전달합니다. 자체 번역 엔진이나 GameKit 신규 모듈은 추가하지 않습니다. 작성된 정적 위키/도움말 마크업만 HTML 리소스로 표시하고, 동적 값은 textContent/속성 경로로 표시합니다.
+
+민들레 주자와 이슬 치유사는 [Rally 원본](https://github.com/byh-playground/rally-frontier/blob/89ff07ffe87de2ff7aa293dc7117aad5992b5513/index.html)의 파란 몸체·밝은 강조색·선폭을 공유합니다. 몹과 펫은 같은 종 렌더를 사용하며, 펫 등급 테두리는 몸체에만 적용해 민들레 방사선과 이슬 하이라이트를 보존합니다.
+
+기존 한국어·영어 대표 흐름은 실제 Edge에서 PASS 12.662초·오류 0, 이번 두 종 공통 렌더 비교는 PASS 1.545초·오류 0입니다. [짧은 검증 기록](docs/verification-i18n-rally-2026-10-11.json)과 [원본·수정 전후 화면](docs/rally-two-species-comparison.png)을 참조합니다.
 
 ## 영구 동행
 
@@ -113,13 +123,11 @@ Unit은 몸·HP·높이·공통 피해/회복·사망을 소유하고 능력 믹
 - 최초 원본 커밋: `7919b0c80e8dac8d6e16beced368010e7fcdbf16`.
 - 원본 BUILD_ID: `20261010T102147+0900-shadow-contact-recoil`.
 - 원본 SHA-256: `37e85266bd68a823fd0268785b5ecf554a7bb0f915b238fd80e9877d596ecd0a`.
-- 현재 BUILD_ID: `20261010T142132Z-stage-cadence`.
-- 현재 `pets.js` SHA-256: `ee8acfe3ff54cb32e2d728d5b9bbd6ee8f263f86c60a93da7b7253e15282b24e`.
-- 현재 `audio.js` SHA-256: `8543ce14bcd61c07373cd7c7c560b9c696ecf5afb80918d3c5929ef407a84a22`.
-- 현재 `index.html` SHA-256: `024a901aaaab9e665aac56d27e6be29dca2711bebad8dfcc772a940b534f6bd2`.
+- 현재 BUILD_ID: `20261011T043931Z-ko-en-i18n`.
 
 | 의존성 | 실제 사용 경로 |
 | --- | --- |
+| i18next 26.4.3 (MIT) | [공식 native ESM](https://cdn.jsdelivr.net/npm/i18next@26.4.3/dist/esm/i18next.js), 실제 HTTP 200·SHA-256 `4fb2e0c4dfd13dda4f6cb292ae0f9c5260a13b28bab05ee723915351bdaf00a1` |
 | Matter.js 0.20.0 | [jsDelivr npm 빌드](https://cdn.jsdelivr.net/npm/matter-js@0.20.0/build/matter.min.js) |
 | Bloom GameKit audio | 실제 dist 커밋 `2de54d6ef1fd5ae91907c2d10d549abe1043d8b8`의 [audio.js](https://github.com/byh-playground/bloom-gamekit/blob/2de54d6ef1fd5ae91907c2d10d549abe1043d8b8/audio.js), SHA-256 `7e3e16d34ce88124e6ba7699f16d23107a3e42ee93ea5a16691e856e5865c14a` · [모듈 계약](https://github.com/byh-playground/bloom-gamekit/blob/6032f77a56668e31fa73672ef4a388741d7b6e6b/modules/audio/README.md) |
 | Bloom GameKit | 커밋 `d1e2c385033ad04a7a004cfbe9558948ef07a6d1`의 루트 [rendering.js](https://github.com/byh-playground/bloom-gamekit/blob/d1e2c385033ad04a7a004cfbe9558948ef07a6d1/rendering.js), [input.js](https://github.com/byh-playground/bloom-gamekit/blob/d1e2c385033ad04a7a004cfbe9558948ef07a6d1/input.js), [simloop.js](https://github.com/byh-playground/bloom-gamekit/blob/d1e2c385033ad04a7a004cfbe9558948ef07a6d1/simloop.js), [camera.js](https://github.com/byh-playground/bloom-gamekit/blob/d1e2c385033ad04a7a004cfbe9558948ef07a6d1/camera.js) |
@@ -130,7 +138,7 @@ GameKit은 위 고정 커밋의 루트 ESM을 jsDelivr에서 가져옵니다. �
 
 [Pages workflow](.github/workflows/pages.yml)는 main 변경과 수동 실행에서 검증한 HTML을 정적 파일로 게시합니다. 한 job에서 checkout → Pages 설정 → 파일 준비 → artifact 업로드 → 배포를 수행합니다. 별도 게임 빌드나 테스트 매트릭스는 추가하지 않습니다.
 
-배포 파일은 index.html, pets.js, audio.js, build.json, .nojekyll입니다. HTML은 저장소의 바이트를 그대로 사용하며, [build.json](https://byh-playground.github.io/bloom-bounko/build.json)에 배포 커밋·UTC 빌드 시각·게임 버전·BUILD_ID·HTML/펫/오디오 정의 모듈 SHA-256과 고정 오디오 SDK 커밋·SHA-256을 자동으로 기록합니다. HTML의 BUILD_ID는 검증한 게임 원본을, build.json의 commit은 그 파일을 게시한 커밋을 식별합니다. 배포 상태는 저장소의 Actions에서 확인합니다.
+배포 파일은 index.html, pets.js, audio.js, abilities.js, drops.js, enemies.js, controllers.js, i18n.js, locales/ko.js, locales/en.js, build.json, .nojekyll입니다. HTML은 저장소의 바이트를 그대로 사용하며, [build.json](https://byh-playground.github.io/bloom-bounko/build.json)에 배포 커밋·UTC 빌드 시각·게임 버전·BUILD_ID·모든 게임/번역 파일 SHA-256 및 i18next 버전·ESM SHA-256과 고정 오디오 SDK 커밋·SHA-256을 자동으로 기록합니다. HTML의 BUILD_ID는 검증한 게임 원본을, build.json의 commit은 그 파일을 게시한 커밋을 식별합니다. 배포 상태는 저장소의 Actions에서 확인합니다.
 
 GitHub Pages의 게시 소스는 Settings → Pages → Build and deployment → GitHub Actions입니다. 정적 파일 게시가 성공한 뒤에도 실제 공개 주소의 라이브러리 로딩과 부팅을 별도로 확인합니다.
 

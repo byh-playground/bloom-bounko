@@ -1,0 +1,120 @@
+{
+  "baseline": "d37011dfd3bf0e95910f93d5bfb58ccbedd40e56",
+  "directions": [
+    {
+      "name": "right",
+      "angle": 0,
+      "shadowDirection": {
+        "x": 1,
+        "y": 0
+      },
+      "dashStretch": 1.189620035435636,
+      "sprout": {
+        "x": -3.794759464634932,
+        "y": 0
+      },
+      "knockbackFacePreserved": true
+    },
+    {
+      "name": "down",
+      "angle": 1.5707963267948966,
+      "shadowDirection": {
+        "x": 0,
+        "y": 1
+      },
+      "dashStretch": 1.189620035435636,
+      "sprout": {
+        "x": 0,
+        "y": -1.9798745032877905
+      },
+      "knockbackFacePreserved": true
+    },
+    {
+      "name": "left",
+      "angle": 3.141592653589793,
+      "shadowDirection": {
+        "x": -1,
+        "y": 0
+      },
+      "dashStretch": 1.189620035435636,
+      "sprout": {
+        "x": 3.794759464634932,
+        "y": 0
+      },
+      "knockbackFacePreserved": true
+    },
+    {
+      "name": "up",
+      "angle": -1.5707963267948966,
+      "shadowDirection": {
+        "x": 0,
+        "y": -1
+      },
+      "dashStretch": 1.189620035435636,
+      "sprout": {
+        "x": 0,
+        "y": 1.9798745032877905
+      },
+      "knockbackFacePreserved": true
+    }
+  ],
+  "errors": [],
+  "parity": {
+    "intro": {
+      "ticks": 1680,
+      "combatIdentical": true,
+      "storageWrites": 0
+    },
+    "laserBloom": {
+      "ticks": 240,
+      "combatIdentical": true,
+      "storageWrites": 0
+    },
+    "coldTouch": {
+      "ticks": 270,
+      "combatIdentical": true,
+      "storageWrites": 0
+    },
+    "acidPool": {
+      "ticks": 270,
+      "combatIdentical": true,
+      "storageWrites": 0
+    }
+  },
+  "screens": [
+    "seed-aim-right.png",
+    "seed-dash-mobile.png",
+    "seed-aim-down.png",
+    "seed-aim-left.png",
+    "seed-aim-up.png",
+    "seed-roll-mobile.png",
+    "seed-impact-mobile.png",
+    "seed-intro-mobile.png",
+    "seed-preview-mobile.png"
+  ],
+  "browser": "155.0.4283.45",
+  "roll": {
+    "keyboardInput": true,
+    "shortRotation": true,
+    "uprightAfterMs": 1083.3333333333335
+  },
+  "impact": {
+    "actualContact": true,
+    "atMs": 1233.3333333333335,
+    "hits": 1,
+    "bodyRecovered": true,
+    "delayedSprout": true
+  },
+  "viewport": {
+    "width": 390,
+    "height": 844
+  },
+  "model": {
+    "constantIntentDtIndependent": [
+      30,
+      144
+    ],
+    "tolerance": 1e-12,
+    "renderInterpolationReadOnly": true
+  }
+}

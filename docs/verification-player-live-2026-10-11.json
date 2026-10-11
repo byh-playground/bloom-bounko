@@ -1,0 +1,14 @@
+{
+  "liveLoop": true,
+  "mobile": {
+    "tick": 139,
+    "fps": "120 FPS",
+    "launchCount": 1,
+    "rollCount": 1
+  },
+  "desktop": {
+    "width": 1280,
+    "height": 800
+  },
+  "errors": []
+}

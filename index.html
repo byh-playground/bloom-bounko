@@ -409,7 +409,7 @@ acceleration = dash.acceleration × deltaV / dash.maxSpeed
 <p><b>이동 구르기는 무료</b>이며 공격 탄과 별도다. 이동 가지의 각 노드는 1 강화이고 자동 연격을 요구하지 않는다. 충전량 I → 명중 재충전, 충전 시간 I → 탄환 회피가 열리며 거리 가지는 독립이다. 모든 수치는 기본값 대비 누적 비율로 계산한다. 충전량은 2→3→4회이며 증가분을 해금 즉시 지급하고, 충전 시간은 500→400→300ms, 투사체 회피는 100→150ms다. 거리 증가는 이동 시간을 연장하지 않고 기존 추진력·감쇠 경로에 적용하므로 실제 거리는 관성·마찰·벽 충돌에 영향을 받는다.</p>
 <p><b>명중 재충전</b>은 실제 HP 피해를 준 공격 대시당 최초 명중 1회에 다음 이동 충전 진행도 <b>20%</b>를 더한다. 현재 1회 충전 시간을 기준으로 하므로 기본 100ms, 충전 시간 강화 후 80ms/60ms에 해당한다. DoT·포자·폭발의 반복 피해는 이 경로를 호출하지 않는다. 충전 완료를 넘긴 진행도는 다음 칸에 이어지며, 충전이 가득 찼으면 저장해 두지 않는다.</p>
 <p>대시가 벽을 통과하거나 장애물을 무조건 무시하도록 위치를 직접 이동시키지 않는다. 구르기 속도는 충돌·마찰로 감소할 수 있으며 정면 방향 기준보다 역방향으로 강제 당기지 않도록 추가 속도 성분만 제거한다.</p></section><section class="wiki-section" id="wiki-chain" data-wiki-title="10. 메아리·자동 연격·도탄"><h2>10. 메아리·자동 연격·도탄</h2>
-<p>준비 탄 하나가 현재 공전 위치에서 발사 방향으로 짧게 정렬한 뒤 같은 조각으로 날아간다. 수동·메아리·연격은 모두 기본 80ms 정렬을 거쳐 실제 잔상을 생성한다. 생성 순간 반대 방향 45px/s의 작은 물리 반동이 최대120ms 동안 감쇠(18/s)하고 몸이 짧게 눌렸다 돌아온다. 탄 뒤 분출과90ms 꼬리, 기존 발사음이 같은 성공 이벤트에 연결된다. 발사 화면 흔들림은1.8 CSS px/85ms, 950px/s 이상 강한 명중은4px/150ms이고 가장 강한 남은 이벤트만 유지하며5px 상한을 둔다. HUD는 고정되고 카메라 변환과 입력 역변환이 같은 좌표를 사용한다. 정렬 전에 탄을 차감하거나 접촉을 판정하지 않으며, 구르기·사망·단계 전환으로 취소되면 발사되지 않는다.</p>
+<p>준비 탄 하나가 현재 공전 위치에서 발사 방향으로 짧게 정렬한 뒤 같은 조각으로 날아간다. 수동·메아리·연격은 모두 기본 80ms 정렬을 거쳐 실제 잔상을 생성한다. 생성 순간 반대 방향 45px/s의 작은 물리 반동이 최대120ms 동안 감쇠(18/s)하고 몸이 짧게 눌렸다 돌아온다. 반동 성분은 전진 속도와 별도로 추적하고 실제 Matter 공기 저항을 함께 반영한다. 후속 돌진·구르기 전에 남은 반동을 정리하며, 실제 고체 충돌이나 속도 전체 교체 뒤에는 이전 반동을 복원하지 않는다. 탄 뒤 분출과90ms 꼬리, 기존 발사음이 같은 성공 이벤트에 연결된다. 발사 화면 흔들림은1.8 CSS px/85ms, 950px/s 이상 강한 명중은4px/150ms이고 가장 강한 남은 이벤트만 유지하며5px 상한을 둔다. HUD는 고정되고 카메라 변환과 입력 역변환이 같은 좌표를 사용한다. 정렬 전에 탄을 차감하거나 접촉을 판정하지 않으며, 구르기·사망·단계 전환으로 취소되면 발사되지 않는다.</p>
 <p><b>새 잔상을 만들 때 공격 탄 1개, 이미 만들어진 잔상으로 돌진은 무료</b>다. 수동·명중 후 메아리·연격의 다음 잔상 모두 같은 충전 정책을 사용한다. 실패한 생성은 소모하지 않는다. 공격 탄은 자연 장전으로만 회복한다.</p>
 <p>「잔상 메아리」는 명중 뒤 다음 잔상을 자동 생성하며 돌진은 직접 입력한다. 「자동 연격」(2 강화)은 메아리를 선행으로, <b>수동 잔상 타이밍 50% 이상 실제 명중 + 다음 탄 보유</b> 시 후속 잔상과 돌진까지 연결한다. 후속 명중은 같은 수동 타이밍을 다시 요구하지 않는다. 마지막 탄으로 생성한 잔상도 자동 돌진할 수 있다. 더 만들 탄이 없거나 대상이 사라지면 연결이 종료되고, 장전 완료만으로 자동 연격이 다시 시작하지 않는다.</p>
 <pre><code>if (newShadowActuallyCreated): ammo -= 1
@@ -828,9 +828,11 @@ try {
   function clamp(v,a,b){return Math.max(a,Math.min(b,v));}
   function norm(x,y){const n=Math.hypot(x,y);return n>1e-6?{x:x/n,y:y/n}:{x:1,y:0};}
   function speedOf(body){const v=Body.getVelocity(body);return {x:v.x*60,y:v.y*60};}
-  function setSpeed(body,vx,vy){Body.setVelocity(body,{x:vx/60,y:vy/60});}
+  function writeSpeed(body,vx,vy){Body.setVelocity(body,{x:vx/60,y:vy/60});}
+  // Replacing total velocity retires an old recoil component; additive impulses preserve it.
+  function setSpeed(body,vx,vy){if(body===player)launchRecoil=null;writeSpeed(body,vx,vy);}
   /** Impulse contract: kg·(world-pixels/second). Adds to existing velocity; not Matter applyForce. */
-  function applyImpulse(body,j){const v=speedOf(body);setSpeed(body,v.x+j.x/body.mass,v.y+j.y/body.mass);}
+  function applyImpulse(body,j){const v=speedOf(body);writeSpeed(body,v.x+j.x/body.mass,v.y+j.y/body.mass);}
   const colors={clear:[.038,.073,.087,1],grid:[.12,.22,.23,.45],halo:[.2,.95,.7,.10],
     rock:[.12,.27,.29,1],rockOutline:[.26,.52,.48,.65],enemy:[.92,.43,.34,1],enemyCore:[1,.71,.48,1],
     hpBack:[.14,.19,.20,1],hp:[.98,.77,.40,1],player:[.30,.90,.65,1],playerCore:[.86,1,.78,1],
@@ -1841,8 +1843,8 @@ try {
   }
   function applyLaunchRecoil(n,x,y){
     shakeCamera('launch',{x:-n.x,y:-n.y});
-    const c=C.shadow.recoil,velocity=speedOf(player),back={x:-n.x,y:-n.y};
-    launchRecoil={x:back.x,y:back.y,remaining:c.speed,startedAtMs:timeMs,baseline:Math.max(0,velocity.x*back.x+velocity.y*back.y)};
+    const c=C.shadow.recoil,back={x:-n.x,y:-n.y};
+    launchRecoil={x:back.x,y:back.y,remaining:c.speed,startedAtMs:timeMs};
     applyImpulse(player,{x:back.x*player.mass*c.speed,y:back.y*player.mass*c.speed});
     const v=C.visual.launch;
     for(let i=0;i<v.exhaustParticles;i++){const side=(i/(Math.max(1,v.exhaustParticles-1))-.5)*2;
@@ -1851,11 +1853,13 @@ try {
   function updateLaunchRecoil(dtMs){if(!launchRecoil)return;
     const r=launchRecoil,c=C.shadow.recoil,elapsed=timeMs-r.startedAtMs;
     const next=elapsed>=c.durationMs?0:r.remaining*Math.exp(-c.decayPerSec*dtMs/1000);
-    const velocity=speedOf(player),forward=velocity.x*r.x+velocity.y*r.y;
-    const baseline=r.baseline*Math.exp(-C.physics.frictionAir*elapsed/(1000/C.sim.tps));
-    const removable=Math.min(r.remaining-next,Math.max(0,forward-baseline));
+    const removable=r.remaining-next;
     if(removable>0)applyImpulse(player,{x:-r.x*player.mass*removable,y:-r.y*player.mass*removable});
     r.remaining=next;if(!next)launchRecoil=null;
+  }
+  function finishLaunchRecoil(){if(!launchRecoil)return;
+    const r=launchRecoil;launchRecoil=null;
+    applyImpulse(player,{x:-r.x*player.mass*r.remaining,y:-r.y*player.mass*r.remaining});
   }
   // Aim mode and launch cause are independent; every cause uses the same charge policy.
   function launchAuto(){const e=selectedAim();if(e){return launch({x:e.body.position.x-player.position.x,y:e.body.position.y-player.position.y},e);}return launch({x:1,y:0},null);}
@@ -1865,7 +1869,7 @@ try {
   function shadowDashAvailable(){return !!shadow&&shadowSeparation()+1e-6>=C.shadow.minDashDistance;}
   function dash(automatic=false){if((mode!=='SHADOW'&&mode!=='GOLDEN'&&mode!=='COYOTE')||!shadow)return false;
     if(!shadowDashAvailable())return false;
-    launchRecoil=null;
+    finishLaunchRecoil();
     const charge=chargeOf(),curve=charge*charge*(3-2*charge),delta=C.dash.minSpeed+(C.dash.maxSpeed-C.dash.minSpeed)*curve;
     const n=norm(shadow.x-player.position.x,shadow.y-player.position.y);dashCharge=charge;dashHits.clear();attackDashSerial++;evadeHitRechargeUsed=false;
     if(!automatic)endChain(); // The existing shadow already paid for this attack; all dashes are free.
@@ -1906,7 +1910,7 @@ try {
   }
   function evadeDirection(x,y){
     if(phase!=='PLAYING'||mode==='DEAD'||evadeCharges<1||Math.hypot(x,y)<1e-6)return false;
-    const direction=norm(x,y);launchRecoil=null;
+    const direction=norm(x,y);finishLaunchRecoil();
     // Roll interrupts the offensive dash. Already-spent shadow charges are not refunded.
     if(mode==='ALIGN'||mode==='SHADOW'||mode==='GOLDEN'||mode==='COYOTE'||mode==='DASH'||mode==='RECOVER'){
       shadow=null;setReadyState();dashHits.clear();
@@ -2000,7 +2004,7 @@ try {
     if(!missHintShown){missHintShown=true;missRecoveryHintUntilMs=timeMs+C.visual.missRecovery.hintMs;}
   }
   function setAttackMode(next){if(next!=='ALIGN')cancelPendingLaunch();mode=next;missRecoveryActive=false;}
-  function setReadyState(){setAttackMode('READY');modeUntil=0;dashMotion=null;dashFlight=null;launchRecoil=null;}
+  function setReadyState(){setAttackMode('READY');modeUntil=0;dashMotion=null;dashFlight=null;finishLaunchRecoil();}
   function beginReady(){setReadyState();readyFlashUntilMs=timeMs+200;
     tryBufferedLaunch();
   }
@@ -2047,6 +2051,8 @@ try {
   }
   function handleCollision(evt){for(const pair of evt.pairs){
       if(!acceptVolumeContact(pair.bodyA,pair.bodyB))continue;
+      // A solid solver contact owns the outgoing velocity. Never undo pre-contact recoil after a bounce.
+      if(launchRecoil&&((pair.bodyA===player&&!pair.bodyB.isSensor)||(pair.bodyB===player&&!pair.bodyA.isSensor)))launchRecoil=null;
       const unitA=unitsByBody.get(pair.bodyA.id),unitB=unitsByBody.get(pair.bodyB.id);
       for(const [unit,other] of [[unitA,pair.bodyB],[unitB,pair.bodyA]])if(unit?.bossPattern&&unit.state==='BOSS_CHARGE'&&other.label==='obstacle'){
         const obstacle=obstacles.find(o=>o.body===other);if(obstacle)breakBossObstacle(unit,obstacle);}
@@ -2256,6 +2262,8 @@ try {
       Body.applyForce(player,player.position,{x:dashMotion.dirX*a,y:dashMotion.dirY*a});
     }
     engine.timing.timeScale=scale;Engine.update(engine,baseMs);
+    // Track only our remaining velocity component through the same Matter air drag.
+    if(launchRecoil)launchRecoil.remaining*=Math.max(0,1-player.frictionAir*player.deltaTime/(1000/60));
     if(mode==='DEAD')return;
     sweepDashContact();
     updateBurning(dt*1000);updateProjectiles();

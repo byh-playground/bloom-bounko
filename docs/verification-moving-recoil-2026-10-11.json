@@ -1,0 +1,640 @@
+{
+  "base": "c7b3011a0ccc2a9570daaf2e15ed0dd7dbde6420",
+  "scope": "Focused production-runtime fixture: 100px/s forward motion, same actual ALIGN→SHADOW launch, compared to recoil.speed=0 control. Real Edge/Matter. Isolated velocity comparison plus separately labelled actual solid-wall solver contact and dash/roll/stage/velocity-replacement fixture boundaries; one natural native Start/WASD/click/Space flow.",
+  "errors": [],
+  "verifiedAtUtc": "2026-10-11T02:57:32.044Z",
+  "sha256": {
+    "index.html": "bbeddd10904186dbc90a48100aa181dc953157daa68f5b215694f7cd9cfc3e9c",
+    "abilities.js": "8c6f91139e71de7be2baa96a185cd68eebc1ad57b34ece719faac14fbde33b7e",
+    "pets.js": "05dbc4262d389843afd65f721ee20df02083a61f9bfebc8fd3222d3d769b9843",
+    "controllers.js": "b49df0ffb0e02990a7fe992202392a7e7c7c89ce9a1a857514146f2cfe1986d1",
+    "enemies.js": "bba2ec615f685e8a4b31e21c40c1479232db00de38d82483f3c39a802a796b42",
+    "audio.js": "8543ce14bcd61c07373cd7c7c560b9c696ecf5afb80918d3c5929ef407a84a22"
+  },
+  "baselineIndexSha256": "57c9373682d89a1af17c1cdb3ca63a470256816ad1b1893a538f8c78b57c1b9c",
+  "limitations": [
+    "Fixture prepares empty arena, initial velocities and actual solid wall; it uses real runtime launch, fixed loop and Matter solver, not natural combat.",
+    "Natural flow is limited to Start, one D roll, one click roll and one Space shot.",
+    "Full original orbit/shake/source/cancellation matrix, mobile devices, long-term balance and maximum-load checks were not repeated for this focused fix."
+  ],
+  "browser": "155.0.4283.45",
+  "baseline": {
+    "control": {
+      "born1": {
+        "timeMs": 83.33333333333334,
+        "velocity": {
+          "x": 96.06349004472122,
+          "y": 0
+        },
+        "recoil": {
+          "x": -1,
+          "y": 0,
+          "remaining": 0,
+          "startedAtMs": 83.33333333333334,
+          "baseline": 0
+        },
+        "spent": 1
+      },
+      "33ms1": {
+        "timeMs": 116.66666666666667,
+        "velocity": {
+          "x": 94.53262226737252,
+          "y": 0
+        },
+        "recoil": null
+      },
+      "ended1": {
+        "timeMs": 216.66666666666669,
+        "velocity": {
+          "x": 90.08484549137847,
+          "y": 0
+        },
+        "recoil": null,
+        "spent": 1
+      },
+      "born2": {
+        "timeMs": 300,
+        "velocity": {
+          "x": 86.53864658042266,
+          "y": 0
+        },
+        "recoil": {
+          "x": -1,
+          "y": 0,
+          "remaining": 0,
+          "startedAtMs": 300,
+          "baseline": 0
+        },
+        "spent": 2
+      },
+      "33ms2": {
+        "timeMs": 333.33333333333337,
+        "velocity": {
+          "x": 85.15956670851438,
+          "y": 0
+        },
+        "recoil": null
+      },
+      "ended2": {
+        "timeMs": 433.33333333333337,
+        "velocity": {
+          "x": 81.15279387206783,
+          "y": 0
+        },
+        "recoil": null,
+        "spent": 2
+      }
+    },
+    "recoil": {
+      "born1": {
+        "timeMs": 83.33333333333334,
+        "velocity": {
+          "x": 51.06349004472122,
+          "y": 0
+        },
+        "recoil": {
+          "x": -1,
+          "y": 0,
+          "remaining": 45,
+          "startedAtMs": 83.33333333333334,
+          "baseline": 0
+        },
+        "spent": 1
+      },
+      "33ms1": {
+        "timeMs": 116.66666666666667,
+        "velocity": {
+          "x": 50.249742267369584,
+          "y": 0
+        },
+        "recoil": {
+          "x": -1,
+          "y": 0,
+          "remaining": 24.696523624231194,
+          "startedAtMs": 83.33333333333334,
+          "baseline": 0
+        }
+      },
+      "ended1": {
+        "timeMs": 216.66666666666669,
+        "velocity": {
+          "x": 47.885482911231065,
+          "y": 0
+        },
+        "recoil": null,
+        "spent": 1
+      },
+      "born2": {
+        "timeMs": 300,
+        "velocity": {
+          "x": 1.0004661092989409,
+          "y": 0
+        },
+        "recoil": {
+          "x": -1,
+          "y": 0,
+          "remaining": 45,
+          "startedAtMs": 300,
+          "baseline": 0
+        },
+        "spent": 2
+      },
+      "33ms2": {
+        "timeMs": 333.33333333333337,
+        "velocity": {
+          "x": 0.9845226813808949,
+          "y": 0
+        },
+        "recoil": {
+          "x": -1,
+          "y": 0,
+          "remaining": 24.696523624231194,
+          "startedAtMs": 300,
+          "baseline": 0
+        }
+      },
+      "ended2": {
+        "timeMs": 433.33333333333337,
+        "velocity": {
+          "x": 0.9382007132376202,
+          "y": 0
+        },
+        "recoil": null,
+        "spent": 2
+      }
+    },
+    "differences": {
+      "born1": -45,
+      "33ms1": -44.28288000000293,
+      "ended1": -42.19936258014741,
+      "born2": -85.53818047112372,
+      "33ms2": -84.17504402713348,
+      "ended2": -80.21459315883021
+    }
+  },
+  "current": {
+    "control": {
+      "born1": {
+        "timeMs": 83.33333333333334,
+        "velocity": {
+          "x": 96.06349004472122,
+          "y": 0
+        },
+        "recoil": {
+          "x": -1,
+          "y": 0,
+          "remaining": 0,
+          "startedAtMs": 83.33333333333334
+        },
+        "spent": 1
+      },
+      "33ms1": {
+        "timeMs": 116.66666666666667,
+        "velocity": {
+          "x": 94.53262226737252,
+          "y": 0
+        },
+        "recoil": null
+      },
+      "ended1": {
+        "timeMs": 216.66666666666669,
+        "velocity": {
+          "x": 90.08484549137847,
+          "y": 0
+        },
+        "recoil": null,
+        "spent": 1
+      },
+      "born2": {
+        "timeMs": 300,
+        "velocity": {
+          "x": 86.53864658042266,
+          "y": 0
+        },
+        "recoil": {
+          "x": -1,
+          "y": 0,
+          "remaining": 0,
+          "startedAtMs": 300
+        },
+        "spent": 2
+      },
+      "33ms2": {
+        "timeMs": 333.33333333333337,
+        "velocity": {
+          "x": 85.15956670851438,
+          "y": 0
+        },
+        "recoil": null
+      },
+      "ended2": {
+        "timeMs": 433.33333333333337,
+        "velocity": {
+          "x": 81.15279387206783,
+          "y": 0
+        },
+        "recoil": null,
+        "spent": 2
+      }
+    },
+    "recoil": {
+      "born1": {
+        "timeMs": 83.33333333333334,
+        "velocity": {
+          "x": 51.06349004472122,
+          "y": 0
+        },
+        "recoil": {
+          "x": -1,
+          "y": 0,
+          "remaining": 45,
+          "startedAtMs": 83.33333333333334
+        },
+        "spent": 1
+      },
+      "33ms1": {
+        "timeMs": 116.66666666666667,
+        "velocity": {
+          "x": 70.22966244361442,
+          "y": 0
+        },
+        "recoil": {
+          "x": -1,
+          "y": 0,
+          "remaining": 24.302959823755444,
+          "startedAtMs": 83.33333333333334
+        }
+      },
+      "ended1": {
+        "timeMs": 216.66666666666669,
+        "velocity": {
+          "x": 90.0848454913853,
+          "y": 0
+        },
+        "recoil": null,
+        "spent": 1
+      },
+      "born2": {
+        "timeMs": 300,
+        "velocity": {
+          "x": 41.538646580429486,
+          "y": 0
+        },
+        "recoil": {
+          "x": -1,
+          "y": 0,
+          "remaining": 45,
+          "startedAtMs": 300
+        },
+        "spent": 2
+      },
+      "33ms2": {
+        "timeMs": 333.33333333333337,
+        "velocity": {
+          "x": 60.85660688476992,
+          "y": 0
+        },
+        "recoil": {
+          "x": -1,
+          "y": 0,
+          "remaining": 24.302959823755444,
+          "startedAtMs": 300
+        }
+      },
+      "ended2": {
+        "timeMs": 433.33333333333337,
+        "velocity": {
+          "x": 81.15279387207465,
+          "y": 0
+        },
+        "recoil": null,
+        "spent": 2
+      }
+    },
+    "differences": {
+      "born1": -45,
+      "33ms1": -24.3029598237581,
+      "ended1": 6.821210263296962e-12,
+      "born2": -44.99999999999318,
+      "33ms2": -24.30295982374446,
+      "ended2": 6.821210263296962e-12
+    }
+  },
+  "stopped": {
+    "born1": {
+      "timeMs": 83.33333333333334,
+      "velocity": {
+        "x": -45,
+        "y": 0
+      },
+      "recoil": {
+        "x": -1,
+        "y": 0,
+        "remaining": 45,
+        "startedAtMs": 83.33333333333334
+      },
+      "spent": 1
+    },
+    "33ms1": {
+      "timeMs": 116.66666666666667,
+      "velocity": {
+        "x": -24.30295982375128,
+        "y": 0
+      },
+      "recoil": {
+        "x": -1,
+        "y": 0,
+        "remaining": 24.302959823755444,
+        "startedAtMs": 83.33333333333334
+      }
+    },
+    "ended1": {
+      "timeMs": 216.66666666666669,
+      "velocity": {
+        "x": -6.821210263296962e-12,
+        "y": 0
+      },
+      "recoil": null,
+      "spent": 1
+    },
+    "born2": {
+      "timeMs": 300,
+      "velocity": {
+        "x": -45.00000000000682,
+        "y": 0
+      },
+      "recoil": {
+        "x": -1,
+        "y": 0,
+        "remaining": 45,
+        "startedAtMs": 300
+      },
+      "spent": 2
+    },
+    "33ms2": {
+      "timeMs": 333.33333333333337,
+      "velocity": {
+        "x": -24.3029598237581,
+        "y": 0
+      },
+      "recoil": {
+        "x": -1,
+        "y": 0,
+        "remaining": 24.302959823755444,
+        "startedAtMs": 300
+      }
+    },
+    "ended2": {
+      "timeMs": 433.33333333333337,
+      "velocity": {
+        "x": -1.3642420526593924e-11,
+        "y": 0
+      },
+      "recoil": null,
+      "spent": 2
+    }
+  },
+  "interruptions": {
+    "dash": {
+      "control": {
+        "mode": "DASH",
+        "velocity": {
+          "x": 347.31960333648203,
+          "y": 0
+        },
+        "recoil": null,
+        "spent": 1
+      },
+      "recoil": {
+        "mode": "DASH",
+        "velocity": {
+          "x": 347.31960333648203,
+          "y": 0
+        },
+        "recoil": null,
+        "spent": 1
+      }
+    },
+    "roll": {
+      "control": {
+        "mode": "READY",
+        "velocity": {
+          "x": 95.29498212436465,
+          "y": 907.9528057894777
+        },
+        "recoil": null,
+        "spent": 1
+      },
+      "recoil": {
+        "mode": "READY",
+        "velocity": {
+          "x": 95.29498212436465,
+          "y": 907.9528057894777
+        },
+        "recoil": null,
+        "spent": 1
+      }
+    },
+    "stage": {
+      "control": {
+        "mode": "READY",
+        "velocity": {
+          "x": 0,
+          "y": 0
+        },
+        "recoil": null,
+        "spent": 1
+      },
+      "recoil": {
+        "mode": "READY",
+        "velocity": {
+          "x": 0,
+          "y": 0
+        },
+        "recoil": null,
+        "spent": 1
+      }
+    },
+    "replace": {
+      "control": {
+        "mode": "SHADOW",
+        "velocity": {
+          "x": 198.40000000000373,
+          "y": 0
+        },
+        "recoil": null,
+        "spent": 1
+      },
+      "recoil": {
+        "mode": "SHADOW",
+        "velocity": {
+          "x": 198.40000000000373,
+          "y": 0
+        },
+        "recoil": null,
+        "spent": 1
+      }
+    }
+  },
+  "wall": {
+    "born": {
+      "velocity": {
+        "x": 45,
+        "y": 0
+      },
+      "recoil": {
+        "x": 1,
+        "y": 0,
+        "remaining": 45,
+        "startedAtMs": 83.33333333333334
+      }
+    },
+    "contacts": [
+      {
+        "timeMs": 100,
+        "recoil": null
+      }
+    ],
+    "trace": [
+      {
+        "timeMs": 100,
+        "velocity": {
+          "x": 9.895174362743546,
+          "y": 0
+        },
+        "recoil": null
+      },
+      {
+        "timeMs": 116.66666666666667,
+        "velocity": {
+          "x": -3.415264014759032,
+          "y": 0
+        },
+        "recoil": null
+      },
+      {
+        "timeMs": 133.33333333333334,
+        "velocity": {
+          "x": -3.38794190264025,
+          "y": 0
+        },
+        "recoil": null
+      },
+      {
+        "timeMs": 150,
+        "velocity": {
+          "x": -3.360838367418637,
+          "y": 0
+        },
+        "recoil": null
+      },
+      {
+        "timeMs": 166.66666666666669,
+        "velocity": {
+          "x": -3.3339516604769415,
+          "y": 0
+        },
+        "recoil": null
+      },
+      {
+        "timeMs": 183.33333333333334,
+        "velocity": {
+          "x": -3.307280047195036,
+          "y": 0
+        },
+        "recoil": null
+      },
+      {
+        "timeMs": 200,
+        "velocity": {
+          "x": -3.280821806820313,
+          "y": 0
+        },
+        "recoil": null
+      },
+      {
+        "timeMs": 216.66666666666669,
+        "velocity": {
+          "x": -3.2545752323653687,
+          "y": 0
+        },
+        "recoil": null
+      },
+      {
+        "timeMs": 233.33333333333334,
+        "velocity": {
+          "x": -3.228538630505682,
+          "y": 0
+        },
+        "recoil": null
+      },
+      {
+        "timeMs": 250.00000000000003,
+        "velocity": {
+          "x": -3.2027103214636554,
+          "y": 0
+        },
+        "recoil": null
+      },
+      {
+        "timeMs": 266.6666666666667,
+        "velocity": {
+          "x": -3.1770886388926556,
+          "y": 0
+        },
+        "recoil": null
+      },
+      {
+        "timeMs": 283.33333333333337,
+        "velocity": {
+          "x": -3.1516719297815143,
+          "y": 0
+        },
+        "recoil": null
+      },
+      {
+        "timeMs": 300,
+        "velocity": {
+          "x": -3.1264585543453904,
+          "y": 0
+        },
+        "recoil": null
+      },
+      {
+        "timeMs": 316.6666666666667,
+        "velocity": {
+          "x": -3.1014468859098088,
+          "y": 0
+        },
+        "recoil": null
+      }
+    ]
+  },
+  "native": {
+    "mode": "SHADOW",
+    "evade": 2,
+    "launchCount": 1,
+    "spent": 1,
+    "recoil": null,
+    "speed": {
+      "x": 71.10662417792355,
+      "y": 103.87165809442422
+    }
+  },
+  "result": "PASS",
+  "elapsedMs": 2993,
+  "summary": {
+    "originalForwardLossPxPerSec": {
+      "firstShot": 42.19936258014741,
+      "secondShot": 80.21459315883021
+    },
+    "fixedForwardLossPxPerSec": {
+      "firstShot": 6.821210263296962e-12,
+      "secondShot": 6.821210263296962e-12
+    },
+    "tolerancePxPerSec": 1e-7,
+    "wallPeakAfterContactPxPerSec": 9.895174362743546,
+    "wallOwnershipReleased": true,
+    "interruptionsMatchNoRecoilControl": true
+  }
+}

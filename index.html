@@ -2527,7 +2527,7 @@ try {
   function step(){tick++;const baseMs=1000/C.sim.tps;timeMs=tick*baseMs;
     playerUnit.status.update(baseMs);for(const unit of unitsById.values())unit.status.update(baseMs);
     if(introScene)advanceIntro();
-    if(previewScenario?.elemental){if(timeMs>=150&&launchCount===0)pending.push({kind:'auto'});if(shadow?.arrived&&timeMs-shadow.contactAtMs>=previewScenario.dashDelayMs&&['GOLDEN','COYOTE'].includes(mode))pending.push({kind:'auto'});}
+    if(previewScenario?.elemental){if(timeMs>=150&&launchCount===0&&mode==='READY')pending.push({kind:'auto'});if(shadow?.arrived&&timeMs-shadow.contactAtMs>=previewScenario.dashDelayMs&&['GOLDEN','COYOTE'].includes(mode))pending.push({kind:'auto'});}
     if(bufferedIntent&&timeMs>bufferedUntilMs){bufferedIntent=null;bufferedUntilMs=0;}
     attackAmmo.update(baseMs); // Real tick time: recharge continues during shadow flight, dash, recovery and hitstop.
     processInputs();if(mode==='DEAD')return;

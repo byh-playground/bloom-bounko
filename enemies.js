@@ -1,5 +1,5 @@
 import {t as tr,localizedList} from './i18n.js';
-import {Unit,mixin,Leapable,SelfDestructible,SpikeCounterable,ArcFireable,Lungeable,ProjectileFireable,BossPatternable,Sunbeamable,Meleeable,Healable,Regenerative,Burrowable,Summonable,Returnable,Hookable} from './abilities.js';
+import {Unit,mixin,Leapable,SelfDestructible,SpikeCounterable,ArcFireable,Lungeable,ProjectileFireable,BossPatternable,Sunbeamable,Meleeable,Healable,Regenerative,Burrowable,Summonable,Returnable,Hookable,GroundAttackable,ConeBreathable} from './abilities.js';
 
 // Unit identity/spec/appearance (IS-A); each selected behavior owns its namespace (CAN-BE).
 export class Rogue extends mixin(Unit,Leapable) {}
@@ -135,6 +135,15 @@ Object.assign(enemyVisuals,{
   }
 });
 
+
+// Rally root/ant/moth silhouettes and proportions; frost tips and acid sacs are BOUNKO adaptations.
+Object.assign(enemyVisuals,{
+ rootstalker(r,{x,y,radius:q}){circle(r,x,y+q*.14,q*.72,[.43,.31,.18,1]);for(let k=0;k<5;k++){const a=-Math.PI*.85+k*.42;r.line(x,y+q*.15,x+Math.cos(a)*q*.95,y+Math.sin(a)*q*.95,Math.max(1.5,q*.13),[.36,.23,.12,1]);}circle(r,x,y-q*.34,q*.32,[.50,.34,.18,1]);triangle(r,x,y-q*.82,q*.24,[.65,.91,1,1],-Math.PI/2);},
+ deepthorn(r,{x,y,radius:q}){const root=[.27,.38,.16,1];circle(r,x,y+q*.30,q*1.02,[.15,.23,.10,1],16);for(let k=0;k<8;k++){const a=k*Math.PI/4,d=(1.10+k%2*.16)*q;r.line(x+Math.cos(a)*q*.42,y+q*.3+Math.sin(a)*q*.23,x+Math.cos(a)*d,y+q*.3+Math.sin(a)*d*.55,q*.13,root);triangle(r,x+Math.cos(a)*d,y+q*.3+Math.sin(a)*d*.55,q*.16,[.63,.87,.94,1],a);}polygon(r,[[x-q*.62,y+q*.34],[x-q*.50,y-q*.26],[x-q*.28,y-q*.58],[x,y-q*.72],[x+q*.28,y-q*.58],[x+q*.50,y-q*.26],[x+q*.62,y+q*.34]],root);triangle(r,x,y-q*.44,q*.75,[.68,.91,.97,1],-Math.PI/2);r.line(x,y-q*1.12,x,y-q*.22,q*.08,[.92,1,1,1]);},
+ sporemoth(renderer,{x,y,radius:q,unit,time=0,attack=false}){const r=facing(renderer,x,y,unit),flap=.86+.15*Math.sin(time*.006);for(const sign of [-1,1])polygon(r,[[x+q*.18,y+sign*q*.12],[x+q*.02,y+sign*q*.98*flap],[x-q*.54,y+sign*q*.82*flap],[x-q*.68,y+sign*q*.28],[x-q*.20,y+sign*q*.08]],[.61,.52,.30,.8]);circle(r,x-q*.06,y,q*.48,[.20,.17,.12,1]);circle(r,x+q*.32,y,q*.27,[.48,.35,.22,1]);circle(r,x-q*.48,y,q*(attack?.42:.34),[.54,.69,.25,1]);circle(r,x-q*.48,y,q*.17,[.83,.95,.45,1]);},
+ fireant(renderer,{x,y,radius:q,unit}){const r=facing(renderer,x,y,unit),antDark=[.20,.055,.025,1],antBody=[.66,.12,.045,1];for(const sign of [-1,1])for(let k=0;k<3;k++)r.line(x+sign*q*.16,y+(k-1)*q*.27,x+sign*q*.82,y+(k-1)*q*.48,q*.09,antDark);circle(r,x,y+q*.58,q*.48,antDark);circle(r,x,y+q*.58,q*.39,antBody);circle(r,x,y,q*.32,antBody);circle(r,x,y-q*.54,q*.3,antBody);for(const sign of [-1,1])r.line(x+sign*q*.14,y-q*.68,x+sign*q*.38,y-q*1.03,q*.07,antDark);circle(r,x,y+q*.64,q*.20,[1,.34,.07,1]);circle(r,x,y+q*.61,q*.10,[1,.72,.18,1]);}
+});
+
 const bossVisuals={
     petal(renderer,b,now){
       const p=b.body.position,r=b.visualRadius??48,v=b.bossVariant,ang=Math.atan2(b.headingY,b.headingX);
@@ -236,11 +245,24 @@ beam.sunbeam={range:420,width:2,prepareMs:beam.windupMs,fireMs:1600,recoverMs:be
 const beamTiming=beam.sunbeam,legacyCycleMs=beam.windupMs+beam.lungeMs+beam.recoverMs;
 // Preserve mean damage over the complete old cycle; only completed pulses deal damage.
 beamTiming.dps=beam.damage*(beamTiming.prepareMs+beamTiming.fireMs+beamTiming.recoverMs)/(legacyCycleMs*(Math.floor(beamTiming.fireMs/beamTiming.intervalMs)*beamTiming.intervalMs/1000));
+Object.assign(enemyConfig,{
+  rootstalker:{radius:23,height:42,mass:8,hp:155,armor:8,speed:48,detect:850,damage:20,push:100,signature:'groundAttack',unlocks:{groundAttack:0,freeze:2},navigation:{near:150,far:230},
+    groundAttack:{kind:'line',range:330,width:35,height:32,prepareMs:700,recoverMs:1250,damage:22,push:120},elementHit:{frost:{freeze:true}}},
+  deepthorn:{radius:34,height:66,mass:16,hp:300,armor:18,speed:32,detect:950,damage:28,push:180,signature:'groundAttack',unlocks:{groundAttack:0,freeze:2,secondary:2},navigation:{near:210,far:290},
+    groundAttack:{kind:'eruption',range:420,radius:50,height:60,prepareMs:650,recoverMs:1550,damage:28,push:160,secondaryCount:3,secondaryDelayMs:450,secondaryOffset:100,secondaryDamageRate:.5},elementHit:{frost:{freeze:true}}},
+  sporemoth:{radius:25,height:44,mass:5,hp:135,armor:5,speed:65,detect:900,damage:14,push:70,signature:'arcFire',unlocks:{arcFire:0,acidPool:1},navigation:{near:220,far:330},elementHit:{acid:{}},
+    arcFire:{range:460,prepareMs:450,recoverMs:1700,intervalMs:250,heights:[50,50],maxShotsByGrade:[1,1,2,2,2,2],shot:{radius:5,height:10,startZ:24,durationMs:800,impactRadius:50,impactHeight:24,damage:16,push:80,spreadRadius:32,color:[.69,.88,.36]}}},
+  fireant:{radius:20,height:36,mass:4,hp:110,armor:6,speed:80,detect:800,damage:16,push:70,signature:'coneBreath',unlocks:{projectileFire:0,coneBreath:1,acidPool:2},navigation:{near:100,far:145},elementHit:{acid:{}},
+    projectileFire:{range:210,prepareMs:250,recoverMs:850,speed:300,radius:4,height:8,lifeMs:1300,damage:13,push:60,color:[.69,.88,.36]},
+    coneBreath:{range:190,halfAngle:Math.PI/12,height:34,prepareMs:500,fireMs:1000,intervalMs:250,damage:7,push:0,recoverMs:1500}}
+});
+const Ground=mixin(Unit,GroundAttackable),Ant=mixin(Unit,ProjectileFireable,ConeBreathable);
 const Sunflower=mixin(Unit,Sunbeamable),Melee=mixin(Unit,Meleeable),Medic=mixin(Unit,Healable,Regenerative);
 const Lunger=mixin(Unit,Lungeable),Spitter=mixin(Unit,ProjectileFireable),Boss=mixin(Unit,BossPatternable);
 const Worm=mixin(Unit,ProjectileFireable,Burrowable),Carrier=mixin(Unit,Summonable),Hunter=mixin(Unit,Meleeable,Hookable),Mite=mixin(Unit,ProjectileFireable,Returnable);
-export const enemyClasses={deathworm:Worm,hivecarrier:Carrier,clawhunter:Hunter,carriermite:Mite,rogue:Rogue,pillbug:Pillbug,thornfruit:Thornfruit,rocket:Rocket,scout:Lunger,brute:Sunflower,sprout:Lunger,puff:Lunger,spitter:Spitter,petalPredator:Boss,elasticCap:Boss,lancer:Lunger,dandelion:Melee,swordsman:Melee,pikeman:Melee,medic:Medic};
+export const enemyClasses={rootstalker:Ground,deepthorn:Ground,sporemoth:Rocket,fireant:Ant,deathworm:Worm,hivecarrier:Carrier,clawhunter:Hunter,carriermite:Mite,rogue:Rogue,pillbug:Pillbug,thornfruit:Thornfruit,rocket:Rocket,scout:Lunger,brute:Sunflower,sprout:Lunger,puff:Lunger,spitter:Spitter,petalPredator:Boss,elasticCap:Boss,lancer:Lunger,dandelion:Melee,swordsman:Melee,pikeman:Melee,medic:Medic};
 const metadata={
+  ...Object.fromEntries([['rootstalker','#91cedb'],['deepthorn','#b9e2e8'],['sporemoth','#b6cb64'],['fireant','#a83d18']].map(([id,color])=>[id,localizedList([()=>tr('species.'+id+'.name'),color,()=>tr('species.'+id+'.desc')])])),
   lancer:localizedList([()=>tr("species.80"),'#9bab46',()=>tr("species.81")]),dandelion:localizedList([()=>tr("species.78"),'#2e6eed',()=>tr("species.79")]),swordsman:localizedList([()=>tr("species.76"),'#75bd52',()=>tr("species.77")]),pikeman:localizedList([()=>tr("species.74"),'#8aaa4e',()=>tr("species.75")]),medic:localizedList([()=>tr("species.72"),'#2e6eed',()=>tr("species.73")]),
   rogue:localizedList([()=>tr("species.70"),'#717b3d',()=>tr("species.71")]),pillbug:localizedList([()=>tr("species.68"),'#bd8742',()=>tr("species.69")]),thornfruit:localizedList([()=>tr("species.66"),'#789f40',()=>tr("species.67")]),rocket:localizedList([()=>tr("species.64"),'#8a9e40',()=>tr("species.65")]),
   scout:localizedList([()=>tr("species.62"),'#ec7056',()=>tr("species.63")]),brute:localizedList([()=>tr("species.60"),'#e8a145',()=>tr("species.61")]),spitter:localizedList([()=>tr("species.58"),'#a078ef',()=>tr("species.59")]),
@@ -270,12 +292,15 @@ export function speciesConfig(id,grade=5,{powerRate=1,sizeRate=1,bodyScale=1,gro
   if(c.hook&&grade<c.unlocks.hook)c.navigation={near:65,far:90,response:4};
   if(c.hook){c.hook.damage*=power;c.hook.count=c.hook.countByGrade[grade];c.hook.range*=Math.pow(growthRate,grade);}
   if(c.returnFlight)c.returnFlight.healRate=grade>=3?1.5:1;
-  if(c.arcFire)c.arcFire.heights=c.arcFire.heights.slice(0,grade<2?1:grade<3?2:grade<4?3:4);
+  if(c.arcFire)c.arcFire.heights=c.arcFire.heights.slice(0,c.arcFire.maxShotsByGrade?.[grade]??(grade<2?1:grade<3?2:grade<4?3:4));
+  if(c.groundAttack){c.groundAttack.damage*=power;c.groundAttack.range*=Math.pow(growthRate,grade);}
+  if(c.coneBreath){c.coneBreath.damage*=power;c.coneBreath.range*=Math.pow(growthRate,grade);}
+  if(c.elementHit?.frost)c.elementHit.frost.freeze=grade>=(c.unlocks.freeze??2);
   if(c.spike){c.spike.count=grade<2?4:8;c.unlocks.spikeCounter=2;}
   return c;
 }
 
-const eggMotifs={
+const eggMotifs={rootstalker:{kind:'triangles',count:3,color:'#d5f7ff'},deepthorn:{kind:'triangles',count:6,color:'#eefcff'},sporemoth:{kind:'dots',count:2,color:'#e8ff99'},fireant:{kind:'segments',count:3,color:'#e8ff99'},
   deathworm:{kind:'segments',count:18,color:'#ffe0ab'},hivecarrier:{kind:'dots',count:4,color:'#efc74d'},clawhunter:{kind:'v',count:2,color:'#ff8f42'},carriermite:{kind:'triangles',count:2,color:'#efc74d'},
   lancer:{kind:'v',count:2,color:'#d1b77a'},dandelion:{kind:'segments',count:9,color:'#edf2cf'},swordsman:{kind:'triangles',count:3,color:'#9be372'},pikeman:{kind:'triangles',count:2,color:'#c7e392'},medic:{kind:'dots',count:3,color:'#baf7e2'},
   rogue:{kind:'v',count:2,color:'#f58f42'},pillbug:{kind:'segments',count:6,color:'#f89b46'},thornfruit:{kind:'triangles',count:10,color:'#f3a363'},rocket:{kind:'dots',count:4,color:'#ed7861'},
@@ -337,6 +362,7 @@ export function eggSvg(pres){let svg='<svg viewBox="0 0 40 48" width="32" height
 }
 
 const gradeNotes={
+  ...Object.fromEntries(['rootstalker','deepthorn','sporemoth','fireant'].map(id=>[id,localizedList(Array.from({length:6},(_,grade)=>()=>tr('species.'+id+'.grade'+grade)))])),
   ...Object.fromEntries(['deathworm','hivecarrier','clawhunter','carriermite'].map(id=>[id,localizedList(Array.from({length:6},(_,grade)=>()=>tr('species.'+id+'.grade'+grade)))])),
   rogue:localizedList([()=>tr("species.44"),()=>tr("species.45"),()=>tr("species.46"),()=>tr("species.47"),()=>tr("species.48"),()=>tr("species.49")]),
   pillbug:localizedList([()=>tr("species.38"),()=>tr("species.39"),()=>tr("species.40"),()=>tr("species.41"),()=>tr("species.42"),()=>tr("species.43")]),
@@ -353,5 +379,5 @@ for(const [id,notes] of Object.entries(gradeNotes))species[id].gradeNotes=notes;
 
 // The first four retain PR8's debut; replacements can award every normal species.
 export const enemyRefillWave=[...enemyWave,'scout','brute','spitter','lancer','dandelion','swordsman','pikeman','medic'];
-export function pickRefillSpecies(random){const total=enemyRefillWave.reduce((n,id)=>n+(species[id].config.spawnWeight??1),0);let draw=random()*total;
-  for(const id of enemyRefillWave){draw-=species[id].config.spawnWeight??1;if(draw<0)return id;}return enemyRefillWave.at(-1);}
+export function pickRefillSpecies(random,pool=enemyRefillWave){const total=pool.reduce((n,id)=>n+(species[id].config.spawnWeight??1),0);let draw=random()*total;
+  for(const id of pool){draw-=species[id].config.spawnWeight??1;if(draw<0)return id;}return pool.at(-1);}

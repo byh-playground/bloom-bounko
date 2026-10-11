@@ -1,0 +1,158 @@
+{
+  "browser": "155.0.4283.45",
+  "runtimeChecks": 51,
+  "failures": [],
+  "verified": [
+    "shadow slow",
+    "tier 2 keeps freeze",
+    "tier 3 damaging dash shatters",
+    "non-perfect dash allowed",
+    "stationary contact excluded",
+    "refreeze boundary",
+    "physical knockback preserved",
+    "shared armor",
+    "acid faction/source/tick/expiry",
+    "four enemy abilities",
+    "four shared pet classes",
+    "player roll slow"
+  ],
+  "timings": [
+    {
+      "level": 2,
+      "delay": 0,
+      "d": 260,
+      "contactToHitMs": 316.66666666666663,
+      "damage": 50,
+      "shatter": 0
+    },
+    {
+      "level": 3,
+      "delay": 0,
+      "d": 120,
+      "contactToHitMs": 133.33333333333337,
+      "damage": 42,
+      "shatter": 50
+    },
+    {
+      "level": 3,
+      "delay": 0,
+      "d": 300,
+      "contactToHitMs": 366.66666666666663,
+      "damage": 52,
+      "shatter": 50
+    },
+    {
+      "level": 3,
+      "delay": 0,
+      "d": 480,
+      "contactToHitMs": 566.6666666666667,
+      "damage": 60,
+      "shatter": 50
+    },
+    {
+      "level": 3,
+      "delay": 150,
+      "d": 300,
+      "contactToHitMs": 583.3333333333333,
+      "damage": 49,
+      "shatter": 50
+    },
+    {
+      "level": 3,
+      "delay": 150,
+      "d": 650,
+      "contactToHitMs": 850.0000000000001,
+      "damage": 60,
+      "shatter": 50
+    }
+  ],
+  "ui": {
+    "mobile": [
+      {
+        "lang": "ko",
+        "family": "frost",
+        "cards": 3,
+        "overlap": false
+      },
+      {
+        "lang": "ko",
+        "family": "acid",
+        "cards": 3,
+        "overlap": false
+      },
+      {
+        "lang": "en",
+        "family": "frost",
+        "cards": 3,
+        "overlap": false
+      },
+      {
+        "lang": "en",
+        "family": "acid",
+        "cards": 3,
+        "overlap": false
+      }
+    ],
+    "pc": [
+      {
+        "id": "tech_iceShatter",
+        "x": 1898,
+        "y": 694,
+        "w": 170
+      },
+      {
+        "id": "tech_acidPool",
+        "x": 2084,
+        "y": 442,
+        "w": 170
+      },
+      {
+        "id": "tech_acidSpread",
+        "x": 2084,
+        "y": 694,
+        "w": 170
+      },
+      {
+        "id": "tech_freezeTouch",
+        "x": 1898,
+        "y": 442,
+        "w": 170
+      },
+      {
+        "id": "tech_coldTouch",
+        "x": 1898,
+        "y": 190,
+        "w": 170
+      },
+      {
+        "id": "tech_acidTouch",
+        "x": 2084,
+        "y": 190,
+        "w": 170
+      }
+    ]
+  },
+  "errors": [],
+  "reviewFixes": [
+    {
+      "name": "ALIGN freeze -> READY -> thaw -> attack without roll",
+      "pass": true,
+      "before": "ALIGN",
+      "frozen": "READY",
+      "after": "SHADOW",
+      "thawTicks": 73,
+      "launches": 1,
+      "rolls": 0,
+      "cancelPreservesAmmo": true
+    },
+    {
+      "name": "ACTIVE thornfruit frozen by shadow: dash damage accepted, freeze kept, counter blocked; thaw restores counter",
+      "pass": true,
+      "counterWhileFrozen": 0,
+      "shotsWhileFrozen": 0,
+      "counterAfterThaw": 1,
+      "shotsAfterThaw": 8,
+      "damageIncludingThawedControl": 51
+    }
+  ]
+}

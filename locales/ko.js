@@ -1,4 +1,8 @@
 export default {
+  "intro.chainDrive": "끊임없이, 돌진해.",
+  "intro.chainDriveSub": "세 번의 돌진, 하나의 흐름.",
+  "intro.elasticBlast": "모아서, 터뜨려.",
+  "intro.elasticBlastSub": "전장을 흔드는 탄성 폭발.",
   "tech.buy": "구매 · {{cost,gameNumber}}",
   "tech.buyNamed": "{{name}} 구매 · {{cost,gameNumber}} 포인트",
   "tech.conditions": "조건 {{completed,gameNumber}}/{{total,gameNumber}}",
@@ -23,7 +27,7 @@ export default {
   "intro.final": "BOUNKO",
   "intro.breakthroughSub": "내 몸이 곧 무기.",
   "intro.comboSub": "충돌이 다음 충돌로 이어져요.",
-  "intro.laserSub": "궁극기를 펼칠 시간.",
+  "intro.laserSub": "관통 레이저를 펼칠 시간.",
   "intro.petsSub": "동료와 함께 싸워요.",
   "intro.finalSub": "다음 충돌은 당신의 차례.",
   "preview.open": "프리뷰",

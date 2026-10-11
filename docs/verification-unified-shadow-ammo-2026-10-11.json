@@ -1,0 +1,1306 @@
+{
+  "scope": "Bounded real Edge native controls/combat plus separately labelled full-runtime fixture for resource boundaries and actual GPU mobile orbit; fixture mutates state/positions only in test HTML, never production",
+  "errors": [],
+  "artifacts": {
+    "index.html": "d68bb225d2008cdff488cb2346289d289f1fd73d9d0e8490069e47e137d89aae",
+    "abilities.js": "8d161730c8f6379c5c739f6a48e9ed9ecd5dafecb836cefc86c8b4f73d2aed48",
+    "pets.js": "05dbc4262d389843afd65f721ee20df02083a61f9bfebc8fd3222d3d769b9843",
+    "controllers.js": "b49df0ffb0e02990a7fe992202392a7e7c7c89ce9a1a857514146f2cfe1986d1",
+    "enemies.js": "bba2ec615f685e8a4b31e21c40c1479232db00de38d82483f3c39a802a796b42",
+    "audio.js": "8543ce14bcd61c07373cd7c7c560b9c696ecf5afb80918d3c5929ef407a84a22"
+  },
+  "browser": "155.0.4283.45",
+  "controls": {
+    "timeMs": 700,
+    "phase": "PLAYING",
+    "mode": "READY",
+    "health": 440.00000000000006,
+    "damageTaken": 0,
+    "healingDone": 0,
+    "ammo": {
+      "charges": 2,
+      "maxCharges": 2,
+      "rechargeMs": 1000,
+      "progress": 0,
+      "spent": 0
+    },
+    "launchCount": 0,
+    "manual": 0,
+    "echo": 0,
+    "chain": 0,
+    "automaticDashes": 0,
+    "chainActive": false,
+    "chainStarts": 0,
+    "chainEnds": 0,
+    "shadow": null,
+    "evade": {
+      "charges": 1,
+      "max": 2,
+      "refillAtMs": 1100,
+      "progress": 0.19999999999999996,
+      "rechargeMs": 500,
+      "impulseSpeed": 1020,
+      "durationMs": 580,
+      "invulnerableMs": 100,
+      "projectileInvulnerable": false,
+      "active": true,
+      "startedAtMs": 266.6666666666667,
+      "count": 2,
+      "hitRechargeEvents": 0,
+      "hitRechargeProgress": 0,
+      "lastHitRecharge": null
+    },
+    "tech": {
+      "points": 112,
+      "level": 141,
+      "totalKills": 20000,
+      "unlocked": [
+        "echo",
+        "autoChain"
+      ],
+      "statLevels": {
+        "attackPower": 5,
+        "criticalChance": 0,
+        "criticalDamage": 0,
+        "armorPenFlat": 0,
+        "armorPenPercent": 0,
+        "maxHp": 20,
+        "armor": 0,
+        "lifeSteal": 0,
+        "healthRegen": 0,
+        "petSlots": 0
+      }
+    },
+    "petHits": 0,
+    "hits": 0
+  },
+  "attempts": [
+    {
+      "timeMs": 1483.3333333333335,
+      "phase": "PLAYING",
+      "mode": "READY",
+      "health": 440.00000000000006,
+      "damageTaken": 0,
+      "healingDone": 0,
+      "ammo": {
+        "charges": 1,
+        "maxCharges": 2,
+        "rechargeMs": 1000,
+        "progress": 0.7666666666666663,
+        "spent": 1
+      },
+      "launchCount": 1,
+      "manual": 1,
+      "echo": 0,
+      "chain": 0,
+      "automaticDashes": 0,
+      "chainActive": false,
+      "chainStarts": 0,
+      "chainEnds": 0,
+      "shadow": null,
+      "evade": {
+        "charges": 2,
+        "max": 2,
+        "refillAtMs": 0,
+        "progress": 0,
+        "rechargeMs": 500,
+        "impulseSpeed": 1020,
+        "durationMs": 580,
+        "invulnerableMs": 100,
+        "projectileInvulnerable": false,
+        "active": false,
+        "startedAtMs": 266.6666666666667,
+        "count": 2,
+        "hitRechargeEvents": 0,
+        "hitRechargeProgress": 0,
+        "lastHitRecharge": null
+      },
+      "tech": {
+        "points": 112,
+        "level": 141,
+        "totalKills": 20000,
+        "unlocked": [
+          "echo",
+          "autoChain"
+        ],
+        "statLevels": {
+          "attackPower": 5,
+          "criticalChance": 0,
+          "criticalDamage": 0,
+          "armorPenFlat": 0,
+          "armorPenPercent": 0,
+          "maxHp": 20,
+          "armor": 0,
+          "lifeSteal": 0,
+          "healthRegen": 0,
+          "petSlots": 0
+        }
+      },
+      "petHits": 0,
+      "hits": 0
+    },
+    {
+      "timeMs": 2350,
+      "phase": "PLAYING",
+      "mode": "DASH",
+      "health": 440.00000000000006,
+      "damageTaken": 0,
+      "healingDone": 0,
+      "ammo": {
+        "charges": 0,
+        "maxCharges": 2,
+        "rechargeMs": 1000,
+        "progress": 0.6333333333333333,
+        "spent": 3
+      },
+      "launchCount": 3,
+      "manual": 2,
+      "echo": 0,
+      "chain": 1,
+      "automaticDashes": 1,
+      "chainActive": true,
+      "chainStarts": 1,
+      "chainEnds": 0,
+      "shadow": null,
+      "evade": {
+        "charges": 2,
+        "max": 2,
+        "refillAtMs": 0,
+        "progress": 0,
+        "rechargeMs": 500,
+        "impulseSpeed": 1020,
+        "durationMs": 580,
+        "invulnerableMs": 100,
+        "projectileInvulnerable": false,
+        "active": false,
+        "startedAtMs": 266.6666666666667,
+        "count": 2,
+        "hitRechargeEvents": 0,
+        "hitRechargeProgress": 0,
+        "lastHitRecharge": null
+      },
+      "tech": {
+        "points": 112,
+        "level": 141,
+        "totalKills": 20000,
+        "unlocked": [
+          "echo",
+          "autoChain"
+        ],
+        "statLevels": {
+          "attackPower": 5,
+          "criticalChance": 0,
+          "criticalDamage": 0,
+          "armorPenFlat": 0,
+          "armorPenPercent": 0,
+          "maxHp": 20,
+          "armor": 0,
+          "lifeSteal": 0,
+          "healthRegen": 0,
+          "petSlots": 0
+        }
+      },
+      "petHits": 0,
+      "hits": 1
+    }
+  ],
+  "manualFirst": {
+    "before": {
+      "timeMs": 700,
+      "phase": "PLAYING",
+      "mode": "READY",
+      "health": 440.00000000000006,
+      "damageTaken": 0,
+      "healingDone": 0,
+      "ammo": {
+        "charges": 2,
+        "maxCharges": 2,
+        "rechargeMs": 1000,
+        "progress": 0,
+        "spent": 0
+      },
+      "launchCount": 0,
+      "manual": 0,
+      "echo": 0,
+      "chain": 0,
+      "automaticDashes": 0,
+      "chainActive": false,
+      "chainStarts": 0,
+      "chainEnds": 0,
+      "shadow": null,
+      "evade": {
+        "charges": 1,
+        "max": 2,
+        "refillAtMs": 1100,
+        "progress": 0.19999999999999996,
+        "rechargeMs": 500,
+        "impulseSpeed": 1020,
+        "durationMs": 580,
+        "invulnerableMs": 100,
+        "projectileInvulnerable": false,
+        "active": true,
+        "startedAtMs": 266.6666666666667,
+        "count": 2,
+        "hitRechargeEvents": 0,
+        "hitRechargeProgress": 0,
+        "lastHitRecharge": null
+      },
+      "tech": {
+        "points": 112,
+        "level": 141,
+        "totalKills": 20000,
+        "unlocked": [
+          "echo",
+          "autoChain"
+        ],
+        "statLevels": {
+          "attackPower": 5,
+          "criticalChance": 0,
+          "criticalDamage": 0,
+          "armorPenFlat": 0,
+          "armorPenPercent": 0,
+          "maxHp": 20,
+          "armor": 0,
+          "lifeSteal": 0,
+          "healthRegen": 0,
+          "petSlots": 0
+        }
+      },
+      "petHits": 0,
+      "hits": 0
+    },
+    "after": {
+      "timeMs": 750,
+      "phase": "PLAYING",
+      "mode": "SHADOW",
+      "health": 440.00000000000006,
+      "damageTaken": 0,
+      "healingDone": 0,
+      "ammo": {
+        "charges": 1,
+        "maxCharges": 2,
+        "rechargeMs": 1000,
+        "progress": 0.03333333333333333,
+        "spent": 1
+      },
+      "launchCount": 1,
+      "manual": 1,
+      "echo": 0,
+      "chain": 0,
+      "automaticDashes": 0,
+      "chainActive": false,
+      "chainStarts": 0,
+      "chainEnds": 0,
+      "shadow": {
+        "source": "manual",
+        "progress": 1,
+        "charge": 1,
+        "dashReady": false,
+        "separation": 2.817170768323865,
+        "remainingGap": 0,
+        "initialGap": 0,
+        "travel": 2.826666666666667,
+        "limit": 680,
+        "targetId": 1,
+        "arrived": false,
+        "speed": 190.00000000000003
+      },
+      "evade": {
+        "charges": 1,
+        "max": 2,
+        "refillAtMs": 1100,
+        "progress": 0.30000000000000004,
+        "rechargeMs": 500,
+        "impulseSpeed": 1020,
+        "durationMs": 580,
+        "invulnerableMs": 100,
+        "projectileInvulnerable": false,
+        "active": true,
+        "startedAtMs": 266.6666666666667,
+        "count": 2,
+        "hitRechargeEvents": 0,
+        "hitRechargeProgress": 0,
+        "lastHitRecharge": null
+      },
+      "tech": {
+        "points": 112,
+        "level": 141,
+        "totalKills": 20000,
+        "unlocked": [
+          "echo",
+          "autoChain"
+        ],
+        "statLevels": {
+          "attackPower": 5,
+          "criticalChance": 0,
+          "criticalDamage": 0,
+          "armorPenFlat": 0,
+          "armorPenPercent": 0,
+          "maxHp": 20,
+          "armor": 0,
+          "lifeSteal": 0,
+          "healthRegen": 0,
+          "petSlots": 0
+        }
+      },
+      "petHits": 0,
+      "hits": 0
+    }
+  },
+  "last": {
+    "timeMs": 2350,
+    "phase": "PLAYING",
+    "mode": "DASH",
+    "health": 440.00000000000006,
+    "damageTaken": 0,
+    "healingDone": 0,
+    "ammo": {
+      "charges": 0,
+      "maxCharges": 2,
+      "rechargeMs": 1000,
+      "progress": 0.6333333333333333,
+      "spent": 3
+    },
+    "launchCount": 3,
+    "manual": 2,
+    "echo": 0,
+    "chain": 1,
+    "automaticDashes": 1,
+    "chainActive": true,
+    "chainStarts": 1,
+    "chainEnds": 0,
+    "shadow": null,
+    "evade": {
+      "charges": 2,
+      "max": 2,
+      "refillAtMs": 0,
+      "progress": 0,
+      "rechargeMs": 500,
+      "impulseSpeed": 1020,
+      "durationMs": 580,
+      "invulnerableMs": 100,
+      "projectileInvulnerable": false,
+      "active": false,
+      "startedAtMs": 266.6666666666667,
+      "count": 2,
+      "hitRechargeEvents": 0,
+      "hitRechargeProgress": 0,
+      "lastHitRecharge": null
+    },
+    "tech": {
+      "points": 112,
+      "level": 141,
+      "totalKills": 20000,
+      "unlocked": [
+        "echo",
+        "autoChain"
+      ],
+      "statLevels": {
+        "attackPower": 5,
+        "criticalChance": 0,
+        "criticalDamage": 0,
+        "armorPenFlat": 0,
+        "armorPenPercent": 0,
+        "maxHp": 20,
+        "armor": 0,
+        "lifeSteal": 0,
+        "healthRegen": 0,
+        "petSlots": 0
+      }
+    },
+    "petHits": 0,
+    "hits": 1
+  },
+  "native": {
+    "timeMs": 2350,
+    "phase": "PLAYING",
+    "mode": "DASH",
+    "health": 440.00000000000006,
+    "damageTaken": 0,
+    "healingDone": 0,
+    "ammo": {
+      "charges": 0,
+      "maxCharges": 2,
+      "rechargeMs": 1000,
+      "progress": 0.6333333333333333,
+      "spent": 3
+    },
+    "launchCount": 3,
+    "manual": 2,
+    "echo": 0,
+    "chain": 1,
+    "automaticDashes": 1,
+    "chainActive": true,
+    "chainStarts": 1,
+    "chainEnds": 0,
+    "shadow": null,
+    "evade": {
+      "charges": 2,
+      "max": 2,
+      "refillAtMs": 0,
+      "progress": 0,
+      "rechargeMs": 500,
+      "impulseSpeed": 1020,
+      "durationMs": 580,
+      "invulnerableMs": 100,
+      "projectileInvulnerable": false,
+      "active": false,
+      "startedAtMs": 266.6666666666667,
+      "count": 2,
+      "hitRechargeEvents": 0,
+      "hitRechargeProgress": 0,
+      "lastHitRecharge": null
+    },
+    "tech": {
+      "points": 112,
+      "level": 141,
+      "totalKills": 20000,
+      "unlocked": [
+        "echo",
+        "autoChain"
+      ],
+      "statLevels": {
+        "attackPower": 5,
+        "criticalChance": 0,
+        "criticalDamage": 0,
+        "armorPenFlat": 0,
+        "armorPenPercent": 0,
+        "maxHp": 20,
+        "armor": 0,
+        "lifeSteal": 0,
+        "healthRegen": 0,
+        "petSlots": 0
+      }
+    },
+    "petHits": 0,
+    "hits": 1
+  },
+  "nativeResult": "PASS",
+  "boundaries": {
+    "sameFrame": {
+      "launchCount": 1,
+      "hp": 200,
+      "ammo": {
+        "charges": 1,
+        "maxCharges": 2,
+        "rechargeMs": 1000,
+        "progress": 0,
+        "spent": 1
+      }
+    },
+    "failed": {
+      "launchCount": 1,
+      "ammo": {
+        "charges": 1,
+        "maxCharges": 2,
+        "rechargeMs": 1000,
+        "progress": 0,
+        "spent": 1
+      }
+    },
+    "causes": {
+      "mode": "DASH",
+      "manualLaunchCount": 1,
+      "echoLaunchCount": 1,
+      "chainLaunchCount": 1,
+      "launchCount": 3,
+      "automaticDashes": 1,
+      "ammo": {
+        "charges": 0,
+        "maxCharges": 2,
+        "rechargeMs": 1000,
+        "progress": 0,
+        "spent": 3
+      }
+    },
+    "beforeRefill": {
+      "timeMs": 983.3333333333334,
+      "ammo": {
+        "charges": 0,
+        "maxCharges": 2,
+        "rechargeMs": 1000,
+        "progress": 0.9833333333333325,
+        "spent": 2
+      }
+    },
+    "firstRefill": {
+      "timeMs": 1000.0000000000001,
+      "ammo": {
+        "charges": 1,
+        "maxCharges": 2,
+        "rechargeMs": 1000,
+        "progress": 0,
+        "spent": 2
+      }
+    },
+    "fullRefill": {
+      "timeMs": 2000.0000000000002,
+      "ammo": {
+        "charges": 2,
+        "maxCharges": 2,
+        "rechargeMs": 1000,
+        "progress": 0,
+        "spent": 2
+      }
+    },
+    "capacityI": {
+      "charges": 2,
+      "maxCharges": 3,
+      "rechargeMs": 1000,
+      "progress": 0.25,
+      "spent": 1
+    },
+    "capacityII": {
+      "charges": 3,
+      "maxCharges": 4,
+      "rechargeMs": 1000,
+      "progress": 0.25,
+      "spent": 1
+    },
+    "rechargeI": {
+      "charges": 3,
+      "maxCharges": 4,
+      "rechargeMs": 800,
+      "progress": 0.25,
+      "spent": 1
+    },
+    "rechargeII": {
+      "charges": 3,
+      "maxCharges": 4,
+      "rechargeMs": 600,
+      "progress": 0.25,
+      "spent": 1
+    },
+    "chainGenerated": {
+      "mode": "SHADOW",
+      "source": "chain",
+      "chainActive": true,
+      "autoDashPlanned": true,
+      "ammo": {
+        "charges": 0,
+        "maxCharges": 2,
+        "rechargeMs": 1000,
+        "progress": 0.016666666666666666,
+        "spent": 2
+      }
+    },
+    "exhausted": {
+      "mode": "READY",
+      "chainActive": false,
+      "chainStarts": 1,
+      "ammo": {
+        "charges": 0,
+        "maxCharges": 2,
+        "rechargeMs": 1000,
+        "progress": 0.03333333333333333,
+        "spent": 2
+      }
+    },
+    "reloadedNoRestart": {
+      "mode": "READY",
+      "chainActive": false,
+      "chainStarts": 1,
+      "ammo": {
+        "charges": 1,
+        "maxCharges": 2,
+        "rechargeMs": 1000,
+        "progress": 0.2833333333333333,
+        "spent": 2
+      }
+    },
+    "emptyHitThenRefill": {
+      "hits": 1,
+      "mode": "READY",
+      "attackOrigin": null,
+      "chainActive": false,
+      "ammo": {
+        "charges": 1,
+        "maxCharges": 2,
+        "rechargeMs": 1000,
+        "progress": 0.11666666666666668,
+        "spent": 2
+      }
+    },
+    "emptyBuffer": {
+      "mode": "READY",
+      "chainActive": false,
+      "buffered": false,
+      "ammo": {
+        "charges": 0,
+        "maxCharges": 2,
+        "rechargeMs": 1000,
+        "progress": 0.016666666666666666,
+        "spent": 2
+      }
+    },
+    "bufferPriority": {
+      "mode": "SHADOW",
+      "source": "manual",
+      "launchCount": 1,
+      "ammo": {
+        "charges": 0,
+        "maxCharges": 2,
+        "rechargeMs": 1000,
+        "progress": 0.016666666666666666,
+        "spent": 2
+      }
+    },
+    "orbit": {
+      "orbs": [
+        {
+          "slot": 0,
+          "ready": true,
+          "progress": 1,
+          "x": 750,
+          "y": 716,
+          "radius": 3.8
+        },
+        {
+          "slot": 1,
+          "ready": false,
+          "progress": 0.25,
+          "x": 750,
+          "y": 769.65625,
+          "radius": 2.5765625
+        }
+      ],
+      "distance": 19.65625,
+      "later": [
+        {
+          "slot": 0,
+          "ready": true,
+          "progress": 1,
+          "x": 777.6561271628387,
+          "y": 730.222774958228,
+          "radius": 3.8
+        },
+        {
+          "slot": 1,
+          "ready": false,
+          "progress": 0.25,
+          "x": 734.0113014839839,
+          "y": 761.4337082272745,
+          "radius": 2.5765625
+        }
+      ],
+      "renderReadOnly": true
+    },
+    "pet": {
+      "idleRadius": 64,
+      "range": 460,
+      "leash": 600,
+      "attack": true
+    },
+    "missMin": {
+      "timeMs": 150,
+      "mode": "READY"
+    },
+    "missFast": {
+      "timeMs": 400,
+      "mode": "READY"
+    },
+    "missFeedback": {
+      "hint": "돌진이 빗나가면 잠시 자세를 회복해요.",
+      "evadeCharges": 1,
+      "hintUntil": 2616.6666666666665,
+      "repeatHintUntil": 2616.6666666666665
+    }
+  },
+  "cleaned": {
+    "timeMs": 0,
+    "phase": "LOBBY",
+    "mode": "READY",
+    "health": 200,
+    "damageTaken": 0,
+    "healingDone": 0,
+    "ammo": {
+      "charges": 2,
+      "maxCharges": 2,
+      "rechargeMs": 1000,
+      "progress": 0,
+      "spent": 0
+    },
+    "launchCount": 0,
+    "manual": 0,
+    "echo": 0,
+    "chain": 0,
+    "automaticDashes": 0,
+    "chainActive": false,
+    "chainStarts": 0,
+    "chainEnds": 0,
+    "shadow": null,
+    "evade": {
+      "charges": 2,
+      "max": 2,
+      "refillAtMs": 0,
+      "progress": 0,
+      "rechargeMs": 500,
+      "impulseSpeed": 1020,
+      "durationMs": 580,
+      "invulnerableMs": 100,
+      "projectileInvulnerable": false,
+      "active": false,
+      "startedAtMs": -1000000000,
+      "count": 0,
+      "hitRechargeEvents": 0,
+      "hitRechargeProgress": 0,
+      "lastHitRecharge": null
+    },
+    "tech": {
+      "points": 132,
+      "level": 141,
+      "totalKills": 20000,
+      "unlocked": [
+        "echo",
+        "autoChain",
+        "ricochet",
+        "relay",
+        "momentum",
+        "rebound",
+        "propulsion"
+      ],
+      "statLevels": {
+        "attackPower": 0,
+        "criticalChance": 0,
+        "criticalDamage": 0,
+        "armorPenFlat": 0,
+        "armorPenPercent": 0,
+        "maxHp": 0,
+        "armor": 0,
+        "lifeSteal": 0,
+        "healthRegen": 0,
+        "petSlots": 0
+      }
+    },
+    "petHits": 0,
+    "hits": 0
+  },
+  "saved": {
+    "kills": 20000,
+    "unlocked": [
+      "echo",
+      "autoChain",
+      "ricochet",
+      "relay",
+      "momentum",
+      "rebound",
+      "propulsion"
+    ],
+    "statLevels": {
+      "attackPower": 0,
+      "criticalChance": 0,
+      "criticalDamage": 0,
+      "armorPenFlat": 0,
+      "armorPenPercent": 0,
+      "maxHp": 0,
+      "armor": 0,
+      "lifeSteal": 0,
+      "healthRegen": 0,
+      "petSlots": 0
+    },
+    "companions": {
+      "inventory": [],
+      "slots": [
+        null
+      ],
+      "nextId": 1,
+      "discovered": []
+    }
+  },
+  "upgradeBefore": {
+    "timeMs": 283.33333333333337,
+    "phase": "LOBBY",
+    "mode": "SHADOW",
+    "health": 200,
+    "damageTaken": 0,
+    "healingDone": 0,
+    "ammo": {
+      "charges": 1,
+      "maxCharges": 2,
+      "rechargeMs": 1000,
+      "progress": 0.21666666666666662,
+      "spent": 1
+    },
+    "launchCount": 1,
+    "manual": 1,
+    "echo": 0,
+    "chain": 0,
+    "automaticDashes": 0,
+    "chainActive": false,
+    "chainStarts": 0,
+    "chainEnds": 0,
+    "shadow": {
+      "source": "manual",
+      "progress": 0.4124224313750109,
+      "charge": 0.4124224313750109,
+      "dashReady": true,
+      "separation": 107.91666666666671,
+      "remainingGap": 153.74869985298153,
+      "initialGap": 261.6653665196482,
+      "travel": 107.91666666666666,
+      "limit": 680,
+      "targetId": 1,
+      "arrived": false,
+      "speed": 733.3333333333333
+    },
+    "evade": {
+      "charges": 2,
+      "max": 2,
+      "refillAtMs": 0,
+      "progress": 0,
+      "rechargeMs": 500,
+      "impulseSpeed": 1020,
+      "durationMs": 580,
+      "invulnerableMs": 100,
+      "projectileInvulnerable": false,
+      "active": false,
+      "startedAtMs": -1000000000,
+      "count": 0,
+      "hitRechargeEvents": 0,
+      "hitRechargeProgress": 0,
+      "lastHitRecharge": null
+    },
+    "tech": {
+      "points": 132,
+      "level": 141,
+      "totalKills": 20000,
+      "unlocked": [
+        "echo",
+        "autoChain",
+        "ricochet",
+        "relay",
+        "momentum",
+        "rebound",
+        "propulsion"
+      ],
+      "statLevels": {
+        "attackPower": 0,
+        "criticalChance": 0,
+        "criticalDamage": 0,
+        "armorPenFlat": 0,
+        "armorPenPercent": 0,
+        "maxHp": 0,
+        "armor": 0,
+        "lifeSteal": 0,
+        "healthRegen": 0,
+        "petSlots": 0
+      }
+    },
+    "petHits": 0,
+    "hits": 0
+  },
+  "upgradeAfter": {
+    "timeMs": 283.33333333333337,
+    "phase": "LOBBY",
+    "mode": "SHADOW",
+    "health": 200,
+    "damageTaken": 0,
+    "healingDone": 0,
+    "ammo": {
+      "charges": 3,
+      "maxCharges": 4,
+      "rechargeMs": 600,
+      "progress": 0.21666666666666662,
+      "spent": 1
+    },
+    "launchCount": 1,
+    "manual": 1,
+    "echo": 0,
+    "chain": 0,
+    "automaticDashes": 0,
+    "chainActive": false,
+    "chainStarts": 0,
+    "chainEnds": 0,
+    "shadow": {
+      "source": "manual",
+      "progress": 0.4124224313750109,
+      "charge": 0.4124224313750109,
+      "dashReady": true,
+      "separation": 107.91666666666671,
+      "remainingGap": 153.74869985298153,
+      "initialGap": 261.6653665196482,
+      "travel": 107.91666666666666,
+      "limit": 680,
+      "targetId": 1,
+      "arrived": false,
+      "speed": 733.3333333333333
+    },
+    "evade": {
+      "charges": 2,
+      "max": 2,
+      "refillAtMs": 0,
+      "progress": 0,
+      "rechargeMs": 500,
+      "impulseSpeed": 1020,
+      "durationMs": 580,
+      "invulnerableMs": 100,
+      "projectileInvulnerable": false,
+      "active": false,
+      "startedAtMs": -1000000000,
+      "count": 0,
+      "hitRechargeEvents": 0,
+      "hitRechargeProgress": 0,
+      "lastHitRecharge": null
+    },
+    "tech": {
+      "points": 128,
+      "level": 141,
+      "totalKills": 20000,
+      "unlocked": [
+        "echo",
+        "autoChain",
+        "ricochet",
+        "relay",
+        "momentum",
+        "rebound",
+        "propulsion",
+        "shadowCapacity1",
+        "shadowCapacity2",
+        "shadowRecharge1",
+        "shadowRecharge2"
+      ],
+      "statLevels": {
+        "attackPower": 0,
+        "criticalChance": 0,
+        "criticalDamage": 0,
+        "armorPenFlat": 0,
+        "armorPenPercent": 0,
+        "maxHp": 0,
+        "armor": 0,
+        "lifeSteal": 0,
+        "healthRegen": 0,
+        "petSlots": 0
+      }
+    },
+    "petHits": 0,
+    "hits": 0
+  },
+  "laneLayout": [
+    {
+      "name": "shadow",
+      "left": 36,
+      "width": 368
+    },
+    {
+      "name": "chain",
+      "left": 409,
+      "width": 182
+    },
+    {
+      "name": "motion",
+      "left": 595,
+      "width": 182
+    },
+    {
+      "name": "impact",
+      "left": 781,
+      "width": 182
+    },
+    {
+      "name": "lightning",
+      "left": 967,
+      "width": 182
+    },
+    {
+      "name": "fire",
+      "left": 1153,
+      "width": 182
+    },
+    {
+      "name": "evade",
+      "left": 1339,
+      "width": 554
+    }
+  ],
+  "restart": {
+    "timeMs": 0,
+    "phase": "PLAYING",
+    "mode": "READY",
+    "health": 200,
+    "damageTaken": 0,
+    "healingDone": 0,
+    "ammo": {
+      "charges": 4,
+      "maxCharges": 4,
+      "rechargeMs": 600,
+      "progress": 0,
+      "spent": 0
+    },
+    "launchCount": 0,
+    "manual": 0,
+    "echo": 0,
+    "chain": 0,
+    "automaticDashes": 0,
+    "chainActive": false,
+    "chainStarts": 0,
+    "chainEnds": 0,
+    "shadow": null,
+    "evade": {
+      "charges": 2,
+      "max": 2,
+      "refillAtMs": 0,
+      "progress": 0,
+      "rechargeMs": 500,
+      "impulseSpeed": 1020,
+      "durationMs": 580,
+      "invulnerableMs": 100,
+      "projectileInvulnerable": false,
+      "active": false,
+      "startedAtMs": -1000000000,
+      "count": 0,
+      "hitRechargeEvents": 0,
+      "hitRechargeProgress": 0,
+      "lastHitRecharge": null
+    },
+    "tech": {
+      "points": 128,
+      "level": 141,
+      "totalKills": 20000,
+      "unlocked": [
+        "echo",
+        "autoChain",
+        "ricochet",
+        "relay",
+        "momentum",
+        "rebound",
+        "propulsion",
+        "shadowCapacity1",
+        "shadowCapacity2",
+        "shadowRecharge1",
+        "shadowRecharge2"
+      ],
+      "statLevels": {
+        "attackPower": 0,
+        "criticalChance": 0,
+        "criticalDamage": 0,
+        "armorPenFlat": 0,
+        "armorPenPercent": 0,
+        "maxHp": 0,
+        "armor": 0,
+        "lifeSteal": 0,
+        "healthRegen": 0,
+        "petSlots": 0
+      }
+    },
+    "petHits": 0,
+    "hits": 0
+  },
+  "reload": {
+    "timeMs": 0,
+    "phase": "LOBBY",
+    "mode": "READY",
+    "health": 200,
+    "damageTaken": 0,
+    "healingDone": 0,
+    "ammo": {
+      "charges": 4,
+      "maxCharges": 4,
+      "rechargeMs": 600,
+      "progress": 0,
+      "spent": 0
+    },
+    "launchCount": 0,
+    "manual": 0,
+    "echo": 0,
+    "chain": 0,
+    "automaticDashes": 0,
+    "chainActive": false,
+    "chainStarts": 0,
+    "chainEnds": 0,
+    "shadow": null,
+    "evade": {
+      "charges": 2,
+      "max": 2,
+      "refillAtMs": 0,
+      "progress": 0,
+      "rechargeMs": 500,
+      "impulseSpeed": 1020,
+      "durationMs": 580,
+      "invulnerableMs": 100,
+      "projectileInvulnerable": false,
+      "active": false,
+      "startedAtMs": -1000000000,
+      "count": 0,
+      "hitRechargeEvents": 0,
+      "hitRechargeProgress": 0,
+      "lastHitRecharge": null
+    },
+    "tech": {
+      "points": 128,
+      "level": 141,
+      "totalKills": 20000,
+      "unlocked": [
+        "echo",
+        "autoChain",
+        "ricochet",
+        "relay",
+        "shadowCapacity1",
+        "shadowCapacity2",
+        "shadowRecharge1",
+        "shadowRecharge2",
+        "momentum",
+        "rebound",
+        "propulsion"
+      ],
+      "statLevels": {
+        "attackPower": 0,
+        "criticalChance": 0,
+        "criticalDamage": 0,
+        "armorPenFlat": 0,
+        "armorPenPercent": 0,
+        "maxHp": 0,
+        "armor": 0,
+        "lifeSteal": 0,
+        "healthRegen": 0,
+        "petSlots": 0
+      }
+    },
+    "petHits": 0,
+    "hits": 0
+  },
+  "mobile": {
+    "ammo": {
+      "charges": 2,
+      "maxCharges": 4,
+      "rechargeMs": 600,
+      "progress": 0.25,
+      "spent": 2
+    },
+    "orbits": [
+      {
+        "slot": 0,
+        "ready": true,
+        "progress": 1,
+        "x": 750,
+        "y": 716,
+        "radius": 3.8
+      },
+      {
+        "slot": 1,
+        "ready": true,
+        "progress": 1,
+        "x": 784,
+        "y": 750,
+        "radius": 3.8
+      },
+      {
+        "slot": 2,
+        "ready": false,
+        "progress": 0.25,
+        "x": 750,
+        "y": 769.65625,
+        "radius": 2.5765625
+      }
+    ],
+    "evadeCharges": 2,
+    "companions": {
+      "inventoryCount": 2,
+      "slots": [
+        1,
+        2
+      ],
+      "hits": 0,
+      "kills": 0,
+      "damage": 0,
+      "taken": 0,
+      "deaths": 0,
+      "revivals": 0,
+      "abilities": 0,
+      "supportHealing": 0,
+      "lastHit": null,
+      "actors": [
+        {
+          "id": 1,
+          "inventoryId": 1,
+          "unitId": 6,
+          "kind": "pet",
+          "speciesId": "rogue",
+          "grade": 0,
+          "state": "CHASE",
+          "hp": 105,
+          "maxHp": 105,
+          "x": 702.8500554383075,
+          "y": 793.2768151303828,
+          "z": 0,
+          "abilities": {
+            "leap": {
+              "phase": "READY"
+            }
+          },
+          "reviveInMs": 0
+        },
+        {
+          "id": 2,
+          "inventoryId": 2,
+          "unitId": null,
+          "kind": "egg",
+          "speciesId": "rocket",
+          "grade": 0,
+          "state": "FOLLOW",
+          "hp": null,
+          "maxHp": null,
+          "x": 755.4724147553335,
+          "y": 686.23439268112,
+          "z": 0,
+          "abilities": null,
+          "reviveInMs": 0
+        }
+      ]
+    },
+    "petRadius": 64,
+    "screen": {
+      "x": 195,
+      "y": 422
+    },
+    "width": 390,
+    "scrollWidth": 390
+  },
+  "mobileLater": [
+    {
+      "slot": 0,
+      "ready": true,
+      "progress": 1,
+      "x": 775.6554111485759,
+      "y": 727.6885706688809,
+      "radius": 3.8
+    },
+    {
+      "slot": 1,
+      "ready": true,
+      "progress": 1,
+      "x": 772.3114293311191,
+      "y": 775.6554111485759,
+      "radius": 3.8
+    },
+    {
+      "slot": 2,
+      "ready": false,
+      "progress": 0.25,
+      "x": 735.1679654297295,
+      "y": 762.8987950820533,
+      "radius": 2.5765625
+    }
+  ],
+  "result": "PASS",
+  "elapsedMs": 7442,
+  "baseCommit": "6e31fa96b2582047cc31c951cc2ce00ead5d1453",
+  "version": "0.12.7",
+  "buildId": "20261011T180000Z-unified-shadow-ammo",
+  "reference": {
+    "url": "https://github.com/byh020907/ball-fight-simulator/blob/main/src/abilities/orbitAbility.js",
+    "gitBlob": "469185a34f54be2b406550ca37de2bbf76600896",
+    "used": "Even orbit placement plus center-to-orbit easeOutCubic and scale; existing BOUNKO shadow appearance/fire VFX",
+    "excluded": "Yellow square art, contact attacks, volley/spin burst and rechargeGap160ms"
+  },
+  "limitations": [
+    "Native input used only a valid preboot progression fixture; no runtime HP/position/config/RNG/tick forcing. One first dash missed before the second manual launch hit; no unrelated balance change.",
+    "Boundary/GPU fixture uses test-only state/position setup and direct source functions; not presented as organic play.",
+    "Headless actual Edge, desktop pointer/keyboard; mobile uses a390px browser touch-capable viewport and actual GPU rendering. Physical mobile device and broad species/grade/performance matrices not tested."
+  ],
+  "staticChecks": [
+    "Inline module node --check",
+    "abilities.js / pets.js node --check",
+    "git diff --check",
+    "Removed movement-energy config/state/consumers/settings/metrics, 9energy nodes and quickRearm; independent controller/enemy/audio files unchanged"
+  ]
+}

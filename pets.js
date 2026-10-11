@@ -11,7 +11,7 @@ export const petConfig = {
     {name:'Legendary',color:'#ffb354'}, {name:'Mythic',color:'#ff7086'}],
   species,
   presentation:{size:{min:.65,max:1},outline:{width:2.5,contrast:{width:.8,color:'#0c181e',maxColorDistance:.16}}},
-  combat:{gradePowerRate:1.8,gradeSkillSizeRate:1.05,gradeRangeRate:1.05,hitProtectionMs:500,reviveMs:3000,followRadius:48,leash:600}
+  combat:{gradePowerRate:1.8,gradeSkillSizeRate:1.05,gradeRangeRate:1.05,hitProtectionMs:500,reviveMs:3000,followRadius:64,leash:600}
 };
 
 // Shared boss/companion projectile geometry; the caller owns count and damage.
@@ -144,7 +144,7 @@ export class CompanionRoster {
   }}
   died(actor,unit,reason){if(reason==='cleanup')return;Object.assign(actor,{x:unit.body.position.x,y:unit.body.position.y,unit:null,reviveAtMs:this.a.time()+this.collection.config.combat.reviveMs});this.stats.deaths++;this.a.effect('death',actor);}
   update(dt){const p=this.a.anchor();for(const actor of this.actors){if(actor.kind==='egg'){const angle=(actor.slot+1)*2.399;
-      actor.x+=(p.x+Math.cos(angle)*48-actor.x)*Math.min(1,dt*8);actor.y+=(p.y+Math.sin(angle)*48-actor.y)*Math.min(1,dt*8);}
+      actor.x+=(p.x+Math.cos(angle)*this.collection.config.combat.followRadius-actor.x)*Math.min(1,dt*8);actor.y+=(p.y+Math.sin(angle)*this.collection.config.combat.followRadius-actor.y)*Math.min(1,dt*8);}
     else if(!actor.unit&&this.a.time()>=actor.reviveAtMs){const item=this.collection.byId.get(actor.inventoryId);actor.unit=this.a.create(item,actor.slot,actor);this.stats.revivals++;this.a.effect('revive',actor);}}
   }
   snapshot(){return {inventoryCount:this.collection.inventory.length,slots:[...this.collection.slots],...this.stats,actors:this.actors.map(a=>({

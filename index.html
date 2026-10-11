@@ -108,19 +108,20 @@ body.lobby-active #top,body.lobby-active #bars,body.lobby-active #controls,body.
 #treeCenter:hover{background:#276855}
 .tree-viewport{width:100%;overflow-x:auto;overflow-y:hidden;overscroll-behavior-x:contain;scrollbar-color:#5eaa93 #092524;scrollbar-width:auto;touch-action:pan-x pan-y;position:relative;background:radial-gradient(ellipse at 53% 8%,#1e44372b,#081a20b0 82%)}
 .tree-viewport:focus-visible{outline:2px solid #e8c879;outline-offset:-3px}
-.tech-map{position:relative;width:2700px;height:755px;min-width:2700px;overflow:hidden;isolation:isolate;background:linear-gradient(90deg,#164a4020 0 74%,#1b4b6a13 74% 87%,#64452214 87% 100%)}
+.tech-map{position:relative;width:1940px;height:755px;min-width:1940px;overflow:hidden;isolation:isolate;background:linear-gradient(90deg,#164a4020 0 74%,#1b4b6a13 74% 87%,#64452214 87% 100%)}
 .tech-map:before{content:'';position:absolute;left:0;right:0;top:183px;bottom:0;pointer-events:none;background:repeating-linear-gradient(to bottom,transparent 0,transparent 134px,#95baa813 135px,#95baa813 136px);z-index:0}
-.tech-links{position:absolute;inset:0;width:2700px;height:755px;z-index:1;pointer-events:none;overflow:visible}
-.tech-map-root{position:absolute;z-index:3;top:19px;left:468px;width:240px;height:68px;border-radius:13px;border:1px solid #82d6ad;background:linear-gradient(125deg,#235a43,#14352f);box-shadow:0 0 25px #4aef9c15;display:flex;align-items:center;justify-content:center;gap:13px;color:#d6ffe5}
+.tech-links{position:absolute;inset:0;width:1940px;height:755px;z-index:1;pointer-events:none;overflow:visible}
+.tech-map-root{position:absolute;z-index:3;top:19px;left:376px;width:240px;height:68px;border-radius:13px;border:1px solid #82d6ad;background:linear-gradient(125deg,#235a43,#14352f);box-shadow:0 0 25px #4aef9c15;display:flex;align-items:center;justify-content:center;gap:13px;color:#d6ffe5}
 .tech-map-root .root-icon{font-size:24px;color:#91eebc}
 .tech-map-root b{display:block;font-size:13px}.tech-map-root small{font-size:10px;color:#b2dac4}
 .tech-lane{position:absolute;top:116px;height:33px;z-index:2;border:1px solid #3d7665;background:#1c473d99;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;letter-spacing:.025em;color:#a7f7c8}
-.tech-lane.lane-chain{left:36px;width:1280px}
-.tech-lane.lane-motion{left:1323px;width:182px;background:#19425470;border-color:#39798f;color:#9addf0}
-.tech-lane.lane-impact{left:1508px;width:182px;background:#50382066;border-color:#9a7750;color:#efcd9d}
-.tech-lane.lane-lightning{left:1694px;width:182px;background:#123e557a;border-color:#509ac0;color:#b7e7ff}
-.tech-lane.lane-evade{left:2066px;width:554px;background:#153f4670;border-color:#5199a6;color:#a1edfa}
-.tech-lane.lane-fire{left:1880px;width:182px;background:#542b2069;border-color:#ba7154;color:#ffbc9a}
+.tech-lane.lane-chain{left:409px;width:182px}
+.tech-lane.lane-motion{left:595px;width:182px;background:#19425470;border-color:#39798f;color:#9addf0}
+.tech-lane.lane-impact{left:781px;width:182px;background:#50382066;border-color:#9a7750;color:#efcd9d}
+.tech-lane.lane-lightning{left:967px;width:182px;background:#123e557a;border-color:#509ac0;color:#b7e7ff}
+.tech-lane.lane-shadow{left:36px;width:368px;background:#3b3e2669;border-color:#959266;color:#f4e7b3}
+.tech-lane.lane-evade{left:1339px;width:554px;background:#153f4670;border-color:#5199a6;color:#a1edfa}
+.tech-lane.lane-fire{left:1153px;width:182px;background:#542b2069;border-color:#ba7154;color:#ffbc9a}
 #techGraphNodes{position:absolute;inset:0;z-index:3;pointer-events:none}
 #techGraphNodes .tech-node{position:absolute;pointer-events:auto;width:170px;height:113px;min-height:113px;margin:0;overflow:hidden;box-shadow:0 7px 18px #06121c66;border-width:1px;border-radius:12px;padding:10px 10px 8px;justify-content:flex-start;gap:5px}
 #techGraphNodes .tech-node:before{display:none!important}
@@ -130,6 +131,7 @@ body.lobby-active #top,body.lobby-active #bars,body.lobby-active #controls,body.
 #techGraphNodes .tech-node .node-desc{font-size:10px;line-height:1.27;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
 #techGraphNodes .tech-node .node-price{font-size:10px;line-height:1.2}
 #techGraphNodes .tech-node[data-branch="chain"]{border-color:#44796a}
+#techGraphNodes .tech-node[data-branch="shadow"]{border-color:#969167;background:#383b26}
 #techGraphNodes .tech-node[data-branch="evade"]{border-color:#5199a6;background:#133b42}
 #techGraphNodes .tech-node[data-branch="motion"]{border-color:#416b82;background:#132e3c}
 #techGraphNodes .tech-node[data-branch="impact"]{border-color:#886d4c;background:#32281e}
@@ -282,13 +284,18 @@ body.lobby-active #stageHud,body.lobby-active #stageBanner{display:none}
 
 .pet-panel{position:fixed;inset:0;z-index:90;background:#061014d9;display:none;align-items:center;justify-content:center;padding:18px}.pet-panel.open{display:flex}.pet-card{width:min(820px,100%);max-height:90dvh;overflow:auto;border:1px solid #71928b;border-radius:18px;background:#112529;color:#e4f0e7;padding:20px}.pet-head{position:sticky;top:-20px;background:#112529;z-index:1;padding:8px 0;display:flex;justify-content:space-between;align-items:center;gap:10px}.pet-head h2{margin:8px 0;font-size:22px}.pet-card button,.pet-card select{background:#233c3c;color:#e9f4df;border:1px solid #71928b;border-radius:8px;padding:9px;cursor:pointer}.pet-card button:disabled{cursor:default}.pet-card button:focus-visible{outline:2px solid #c5ffdf;outline-offset:3px}.pet-slots{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px;margin:14px 0}.pet-slots .pet-slot{min-width:0;min-height:140px;border:2px solid var(--grade,#587a70);border-radius:13px;padding:9px 6px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;background:linear-gradient(160deg,#29443e,#102527)}.pet-slot[data-state="empty"]{border-style:dashed;color:#91b9ac}.pet-slot[data-state="locked"]{opacity:.5;background:#14252a;border-color:#476259}.pet-slot-index{font-size:10px;color:#a7c9bb}.pet-slot-action{font-size:10px;color:#bbd8c9}.pet-inventory{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}.pet-item{min-width:0;border:1px solid var(--grade,#839f92);border-radius:13px;padding:6px;background:linear-gradient(150deg,#29443e,#102527)}.pet-item[data-equipped="true"]{background:#1d3932}.pet-card .pet-card-tap{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;width:100%;min-height:152px;border:0;background:transparent;padding:8px 4px}.pet-card-tap:disabled{opacity:.7}.pet-face-icon{font-size:30px;line-height:1.2;display:flex;align-items:center;justify-content:center;height:40px}.pet-face-name{font-size:13px;color:var(--grade,#e7dfbc);font-weight:850;text-align:center;line-height:1.25}.pet-face-grade{font-size:10px;color:var(--grade,#c8decf)}.pet-face-count{font-size:10px;color:#a8cfc0}.pet-face-progress{width:85%;height:4px;border-radius:9px;overflow:hidden;background:#07191c}.pet-face-progress span{display:block;height:100%;background:var(--grade,#e7dfbc)}.pet-card-action{font-size:11px;color:#d6eedb;margin-top:4px}.pet-card .pet-lock{min-height:36px;width:100%;font-size:11px;padding:5px;background:#18312e}.pet-fusion{display:flex;gap:8px;flex-wrap:wrap;align-items:center;border-top:1px solid #53706a;margin:20px 0 12px;padding-top:16px}.pet-result{min-height:1.5em;color:#f2d596;font-size:13px;margin:8px 0}.pet-note{font-size:12px;line-height:1.5;color:#b8d4c8;margin:7px 0}.pet-note small{display:block;color:#9bbbae}.pet-inventory-empty{grid-column:1/-1;padding:20px;border:1px dashed #567569;border-radius:12px;text-align:center;font-size:13px;color:#bdd8c8}@media(max-width:650px){.pet-panel{padding:8px}.pet-card{padding:12px;max-height:94dvh;border-radius:13px}.pet-head{top:-12px;padding:5px 0}.pet-head h2{font-size:19px}.pet-slots{grid-template-columns:repeat(3,minmax(0,1fr));gap:7px}.pet-slots .pet-slot{min-height:116px}.pet-inventory{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.pet-card .pet-card-tap{min-height:140px}.pet-card .pet-lock{min-height:44px}}
 #petReveal{position:fixed;left:18px;bottom:130px;z-index:28;max-width:min(340px,75vw);padding:12px 16px;background:#10262bea;border:1px solid #f2cc79;border-radius:12px;color:#eaf1e3;pointer-events:none;opacity:0;transform:translateY(8px);transition:opacity .15s,transform .15s}#petReveal.show{opacity:1;transform:none}#petReveal b{display:block;color:#f2d896;font-size:15px}#petReveal span{font-size:12px;line-height:1.6}.pet-egg-mark{display:inline-block;transform-origin:50% 80%}.pet-egg-mark.shaking{animation:eggShake .8s ease-in-out infinite}@keyframes eggShake{0%,100%{transform:rotate(-6deg)}50%{transform:rotate(6deg)}}.audio-controls{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:8px 0}.audio-controls input[type=range]{max-width:180px}.audio-controls label{font-size:13px}.audio-controls button{cursor:pointer}
+#missHint{position:absolute;left:50%;bottom:140px;max-width:88%;transform:translateX(-50%);font-size:12px;line-height:1.5;color:#ffddb5;background:#162a2fe8;border:1px solid #ad946650;border-radius:7px;padding:7px 10px;opacity:0;transition:opacity .12s;pointer-events:none;text-align:center;z-index:8}
+#missHint.show{opacity:1}
+#auto.miss-recovery{border-color:#e1b47b;background:#3b3a2b;box-shadow:0 0 10px #e1b47b25}
+#auto[data-ammo-empty="true"]{border-color:#868d79}
 </style>
 </head><body>
 <canvas id="game" tabindex="0" aria-label="BOUNKO(바운코) 물리 전투 게임"></canvas>
 <div id="hud">
-  <div id="top"><div><div id="brand">BOUNKO<small>PHYSICS ACTION LAB · v0.12.6</small></div><div class="stats"><div><span class="stat-label">HP</span><span class="stat-num" id="playerhp">200</span></div><div><span class="stat-label">COMBO</span><span class="stat-num gold" id="combo">0</span></div><div><span class="stat-label">HITS</span><span class="stat-num" id="hits">0</span></div><div><span class="stat-label">SPEED</span><span class="stat-num" id="speed">0</span></div></div></div><div id="score"><span class="stat-label">KNOCKOUT</span><span class="stat-num gold" id="kills">0</span><div class="pills"><span class="pill" id="fps">-- FPS</span><span class="pill" id="state">READY</span></div></div></div>
+  <div id="top"><div><div id="brand">BOUNKO<small>PHYSICS ACTION LAB · v0.12.7</small></div><div class="stats"><div><span class="stat-label">HP</span><span class="stat-num" id="playerhp">200</span></div><div><span class="stat-label">COMBO</span><span class="stat-num gold" id="combo">0</span></div><div><span class="stat-label">HITS</span><span class="stat-num" id="hits">0</span></div><div><span class="stat-label">SPEED</span><span class="stat-num" id="speed">0</span></div></div></div><div id="score"><span class="stat-label">KNOCKOUT</span><span class="stat-num gold" id="kills">0</span><div class="pills"><span class="pill" id="fps">-- FPS</span><span class="pill" id="state">READY</span></div></div></div>
   <div id="options"><button id="tune" aria-label="설정">설정</button><button id="restart" aria-label="대기 화면으로">대기</button></div><div id="augments" role="group" aria-label="해금된 특성"></div>
   <div id="targetcue" aria-hidden="true"></div>
+  <div id="missHint" role="status" aria-live="polite">돌진이 빗나가면 잠시 자세를 회복해요.</div>
   <div id="toast" aria-live="polite"></div>
   <div id="stageHud" aria-live="polite"><span id="stageLabel">STAGE 1</span><span id="stageProgress">0 / 7</span><div id="bossHealthTrack"><div id="bossHealthFill"></div></div></div>
   <div id="stageBanner" aria-hidden="true"></div>
@@ -321,17 +328,17 @@ body.lobby-active #stageHud,body.lobby-active #stageBanner{display:none}
 <path d="M120 175 Q130 228 218 244" stroke="#8ab8f7" stroke-width="7" stroke-linecap="round" fill="none"/><path d="M205 232l17 14 -20 6" fill="none" stroke="#abd3ff" stroke-width="4"/>
 <g font-size="16" fill="#d8f2ec" font-weight="700"><text x="86" y="84">플레이어</text><text x="414" y="84">적</text><text x="185" y="118">① 먼저 잔상 발사</text><text x="258" y="88" fill="#ffdb8e">② 가까워지면 돌진!</text><text x="97" y="279" fill="#a4caff">전장 탭 = 구르기</text></g></svg></div><p><b>공격 버튼을 누르면</b> 잔상이 적에게 날아가. 적에게 닿은 잔상은 <b>피해 없이 적을 밀어내!</b> 잔상과 충분히 떨어지면 한 번 더 눌러 돌진해. <b>빨간 조준선</b>이면 아직 너무 가까운 상태야.</p>
 <div class="guide-health-rules" aria-label="체력 규칙"><div class="guide-health-rule danger"><span class="health-sign" aria-hidden="true">−</span><div><strong>적 공격에 체력 ↓</strong><span>명시적인 공격·탄환에 맞으면 감소</span></div></div><div class="guide-health-rule heal"><span class="health-sign" aria-hidden="true">＋</span><div><strong>흡혈을 배우면 체력 ↑</strong><span>기본 0% · 실제 피해 × 흡혈률</span></div></div></div>
-<div class="guide-notes"><div><b>수동 잔상: 현재 체력 10%</b>HP를 관리해! 잔상 메아리의 자동 재발사는 무료야.</div><div><b>전장 탭 / WASD = 구르기</b>W 위 · A 왼쪽 · S 아래 · D 오른쪽. 함께 누르면 대각선으로 피해. 이동 기술로 충전·회피를 강화해.</div></div></article>
+<div class="guide-notes"><div><b>수동 잔상: 기본 2발</b>1,000ms마다 1발씩 장전해. 메아리도 같은 탄을 1개 써.</div><div><b>전장 탭 / WASD = 구르기</b>W 위 · A 왼쪽 · S 아래 · D 오른쪽. 함께 누르면 대각선으로 피해. 이동 기술로 충전·회피를 강화해.</div></div></article>
   <article class="guide-slide"><h2>02 · 적을 잡고 새 능력을 열자</h2><div class="guide-art"><svg viewBox="0 0 680 300" role="img" aria-label="영구 성장에서 처치 수로 레벨을 올리고 공격·생존 스탯이나 연쇄·속성 기술을 선택하는 테크트리 그림">
 <rect width="680" height="300" fill="#0d2229"/><g stroke="#638e80" stroke-width="3" fill="none"><path d="M340 70V100H126V116 M340 100V116 M340 100H554V116"/><path d="M126 183V205 M340 183V205 M554 183V205"/></g>
 <rect x="254" y="12" width="172" height="62" rx="14" fill="#2d6453" stroke="#92edbc" stroke-width="2"/><text x="340" y="37" text-anchor="middle" font-size="19" font-weight="900" fill="#eefff4">누적 처치 ↑</text><text x="340" y="56" text-anchor="middle" font-size="14" fill="#bdf5d2">레벨마다 강화 1회</text>
 <g font-family="system-ui" text-anchor="middle"><rect x="27" y="116" width="198" height="66" rx="13" fill="#22384a" stroke="#76b6e4" stroke-width="2"/><text x="126" y="144" fill="#e0f4ff" font-size="18" font-weight="900">몸 더 강하게</text><text x="126" y="166" fill="#a2cae3" font-size="13">공격력 · 체력 · 방어력</text>
-<rect x="241" y="116" width="198" height="66" rx="13" fill="#213b36" stroke="#82d7ad" stroke-width="2"/><text x="340" y="144" fill="#e8ffeb" font-size="18" font-weight="900">연속 공격</text><text x="340" y="166" fill="#a1dfbf" font-size="13">자동 연격 · 에너지</text>
+<rect x="241" y="116" width="198" height="66" rx="13" fill="#213b36" stroke="#82d7ad" stroke-width="2"/><text x="340" y="144" fill="#e8ffeb" font-size="18" font-weight="900">연속 공격</text><text x="340" y="166" fill="#a1dfbf" font-size="13">자동 연격 · 공격 탄</text>
 <rect x="455" y="116" width="198" height="66" rx="13" fill="#412a2d" stroke="#f0a56e" stroke-width="2"/><text x="554" y="144" fill="#fff1e2" font-size="18" font-weight="900">번개 · 불꽃</text><text x="554" y="166" fill="#ffd5a8" font-size="13">번개 전도 · 화염 전염</text>
 <rect x="49" y="205" width="154" height="47" rx="9" fill="#152b32" stroke="#6e95aa"/><text x="126" y="234" fill="#c2dbe6" font-size="14">능력치 올리기</text>
 <rect x="263" y="205" width="154" height="47" rx="9" fill="#152c29" stroke="#729f86"/><text x="340" y="234" fill="#c1e8ce" font-size="14">스스로 이어 때리기</text>
 <rect x="477" y="205" width="154" height="47" rx="9" fill="#2a2429" stroke="#ab796f"/><text x="554" y="234" fill="#ffd1b5" font-size="14">적에게 효과 남기기</text></g>
-<text x="340" y="282" text-anchor="middle" fill="#b9d3ca" font-size="14">대기 화면의 「업그레이드」에서만 투자 가능</text></svg></div><p>적을 잡을수록 레벨이 올라가고, <b>레벨마다 강화 하나</b>를 고를 수 있어. 공격력·체력을 높이거나, 연속 공격과 번개·화염 같은 새 기술을 열어 보자. <b>강화는 대기 화면의 「업그레이드」</b>에서 해.</p><div class="guide-notes"><div><b>멀리서 제대로 맞히면</b>돌진 중 더 빨라져 큰 피해를 줘.</div><div><b>연속 공격을 열면</b>에너지 100%를 모아야 연격 시작!</div></div></article>
+<text x="340" y="282" text-anchor="middle" fill="#b9d3ca" font-size="14">대기 화면의 「업그레이드」에서만 투자 가능</text></svg></div><p>적을 잡을수록 레벨이 올라가고, <b>레벨마다 강화 하나</b>를 고를 수 있어. 공격력·체력을 높이거나, 연속 공격과 번개·화염 같은 새 기술을 열어 보자. <b>강화는 대기 화면의 「업그레이드」</b>에서 해.</p><div class="guide-notes"><div><b>멀리서 제대로 맞히면</b>돌진 중 더 빨라져 큰 피해를 줘.</div><div><b>연속 공격을 열면</b>타이밍 50% 이상 명중 + 다음 탄이 필요해!</div></div></article>
   <article class="guide-slide"><h2>03 · 보스가 조준하면 구르며 피해!</h2><div class="guide-art"><svg viewBox="0 0 680 300" role="img" aria-label="보스가 탄막 방향을 추적하다 잠그면 장애물 뒤로 엄폐하거나 전장 탭 대시로 회피하는 그림">
 <rect width="680" height="300" fill="#11232d"/><g opacity=".25" stroke="#5b9298"><path d="M0 100H680M0 200H680 M113 0V300 M226 0V300 M339 0V300 M452 0V300 M565 0V300"/></g>
 <circle cx="180" cy="138" r="38" fill="#c46d53" stroke="#ffcc93" stroke-width="5"/><circle cx="180" cy="138" r="17" fill="#f4a576"/>
@@ -352,7 +359,7 @@ body.lobby-active #stageHud,body.lobby-active #stageBanner{display:none}
  <div id="wikiToc" class="wiki-toc-box"><strong>목차 바로가기</strong><div id="wikiTocItems"></div></div>
  <section class="wiki-section" id="wiki-overview" data-wiki-title="1. 게임 개요와 설계 목표"><h2>1. 게임 개요와 설계 목표</h2>
 <p><b>BOUNKO</b>는 블룸 세계관의 탑다운 2D 물리 액션 게임이다. 공격 버튼을 두 번 눌러 적에게 돌진하고, 전장을 탭하거나 WASD를 눌러 구르며 피한다. 멀리서 빠르게 충돌할수록 공격이 강해진다. 조작감 자체의 재미를 우선하며 성장과 이펙트는 이 흐름을 돕는다.</p>
-<div class="wiki-info"><b>먼저 알아야 할 체력 규칙</b><br>① <b>수동 잔상 발사</b>에는 현재 체력의 10%가 든다. <b>잔상 메아리의 자동 재발사</b>는 체력·에너지 소모 없이 무료다.<br>② <b>평상 몸 접촉 피해는 0</b>이다. 준비를 마친 돌진·근접·광선·탄환 등 명시적 공격에 맞으면 피해를 입는다.<br>③ <b>흡혈은 기본 0%</b>이며 투자 후 실제 HP 피해 × 흡혈률만 회복한다. 시작 최대 HP는 200, 단계 전환으로는 회복하지 않는다.<br>④ 공격 버튼은 <b>잔상 발사 → 돌진</b>, 전장 탭과 WASD는 <b>회피 구르기</b>다.</div>
+<div class="wiki-info"><b>먼저 알아야 할 체력 규칙</b><br>① <b>수동 잔상 발사</b>는 기본 2발의 공격 탄을 쓰고 1,000ms마다 1발씩 순차 장전한다. HP는 쓰지 않는다. <b>메아리와 자동 연격의 새 잔상</b>도 같은 탄 1개를 쓴다. 이미 만든 잔상으로 돌진은 무료다.<br>② <b>평상 몸 접촉 피해는 0</b>이다. 준비를 마친 돌진·근접·광선·탄환 등 명시적 공격에 맞으면 피해를 입는다.<br>③ <b>흡혈은 기본 0%</b>이며 투자 후 실제 HP 피해 × 흡혈률만 회복한다. 시작 최대 HP는 200, 단계 전환으로는 회복하지 않는다.<br>④ 공격 버튼은 <b>잔상 발사 → 돌진</b>, 전장 탭과 WASD는 <b>회피 구르기</b>다.</div>
 <div class="wiki-tags"><span>모바일 우선</span><span>탑다운</span><span>Matter.js 물리</span><span>Bloom GameKit</span><span>랜덤 다각형 스테이지</span><span>보스 탄막</span><span>영구 테크트리</span></div>
 <div class="wiki-info">이 위키는 현재 단일 HTML 프로토타입의 <b>실제 기본 설정과 동작</b>을 설명한다. 테크트리·수치 표는 HTML 안의 런타임 Definition에서 생성한다. 이는 정식 출시 계획이 아니라 현재 실행 중인 프로토타입의 구현 기준이다.</div>
 <p><b>설계 불변 조건</b>: 첫 공격은 플레이어 입력으로 시작하며, 차지율은 초기 충격량과 비행 가속만 결정한다. 기본 직접 피해는 실제 충돌 접근 속도로 결정한다. 잔상 조준, 공격용 물리 돌진, 이동용 회피 구르기는 별도 행동이다. 표현 파티클은 HP나 시뮬레이션을 수정하지 않는다.</p></section><section class="wiki-section" id="wiki-flow" data-wiki-title="2. 전체 게임 흐름과 화면"><h2>2. 전체 게임 흐름과 화면</h2>
@@ -367,7 +374,9 @@ body.lobby-active #stageHud,body.lobby-active #stageBanner{display:none}
 shadow.pos += normalize(target - shadow.pos) * shadow.speed * dt
 remainingGap = max(0, distance(shadow, currentEnemy) - enemyRadius - 6)
 charge = clamp(1 - remainingGap / initialGap, 0, 1)</code></pre>
-<p><b>잔상 접촉</b>은 피해를 주지 않고 적에게 물리 충격을 가한다. 기본 설정에서는 개방된 공간의 표준 적이 <b>약 100 월드 단위</b> 밀려나는 체감을 목표로 한다. <code>shadow.contactPushSpeed=300</code>은 적 질량을 고려한 초기 반동 속도(px/s)이고, <code>shadow.contactPushControlMs=500</code> 동안 추적 AI의 이동 보정이 실제 Matter.js 반동을 지우지 않게 한다. 기존 접근 속도가 있으면 방향 성분을 보정한 충격량(<code>enemy.mass × max(0, speed - dot(velocity, direction))</code>)만 주며, 좌표를 순간이동시키지 않는다. 장애물·다른 유닛과의 실제 충돌, 동작 중인 공격 패턴, 공기 저항에 따라 이동 거리는 달라질 수 있다. 보스는 공격 예고·실행 타이머를 멈추지 않는다. 적과 붙어 있어도 잔상 발사 자체를 막지 않는다. 단, 돌진은 플레이어와 현재 잔상 사이 거리가 <code>shadow.minDashDistance</code> 이상이어야 하며 너무 가까운 조준선은 빨간색으로 나타난다. 재발사와 발사 비용은 기존 규칙을 따른다.</p><p><b>차지 기준</b>은 잔상이 이동한 누적거리가 아니라 <b>현재 목표 표면까지 남은 거리</b>이다. 적이 움직이면 매 물리 틱 새 거리를 반영한다. 빈 공간을 수동 잔상 발사하는 과거 기능은 현재 조작에서 제거되었지만, 내부 목적지 개념은 남아 있다.</p>
+<p>공격 탄은 기본 <b>2발</b>, <b>1,000ms/발</b>이며 공격·돌진·명중 회복·히트스톱 중에도 실제 틱 시간으로 순차 장전한다. 「잔상 비축 I/II」는 기본 대비 +50%/+100%로 <b>3/4발</b>이 되며 증가분은 즉시 지급한다. 「빠른 장전 I/II」는 기본 대비 −20%/−40%로 <b>800/600ms</b>가 되며 진행 중 장전 비율을 보존한다. 각 1 강화, I은 선행 없음, II는 같은 I만 요구한다. 수동·메아리·자동 연격 모두 실제 새 잔상 생성에만 1발을 쓴다. 0발에서도 기존 잔상 돌진은 가능하며, 새 잔상을 만들 수 없으면 자동 연결이 끝나고 장전만으로 다시 시작하지 않는다.</p>
+<p>작은 청록 잔상 조각은 캐릭터 가까운 일정한 궤도를 공전한다. 다음 한 발만 본체 중심에서 궤도로 이동하며 자라나고, 충전 완료된 조각은 궤도에 남는다. 탄에는 접촉 공격이 없다. 아래 청록 막대는 별도 이동 충전이며 관성·포자는 실제 발동 VFX로 확인한다. 동료는 대기 시 더 바깥에 서지만 추적·공격 범위는 같다.</p>
+<p><b>잔상 접촉</b>은 피해를 주지 않고 적에게 물리 충격을 가한다. 기본 설정에서는 개방된 공간의 표준 적이 <b>약 100 월드 단위</b> 밀려나는 체감을 목표로 한다. <code>shadow.contactPushSpeed=300</code>은 적 질량을 고려한 초기 반동 속도(px/s)이고, <code>shadow.contactPushControlMs=500</code> 동안 추적 AI의 이동 보정이 실제 Matter.js 반동을 지우지 않게 한다. 기존 접근 속도가 있으면 방향 성분을 보정한 충격량(<code>enemy.mass × max(0, speed - dot(velocity, direction))</code>)만 주며, 좌표를 순간이동시키지 않는다. 장애물·다른 유닛과의 실제 충돌, 동작 중인 공격 패턴, 공기 저항에 따라 이동 거리는 달라질 수 있다. 보스는 공격 예고·실행 타이머를 멈추지 않는다. 적과 붙어 있어도 잔상 발사 자체를 막지 않는다. 단, 돌진은 플레이어와 현재 잔상 사이 거리가 <code>shadow.minDashDistance</code> 이상이어야 하며 너무 가까운 조준선은 빨간색으로 나타난다. 실제 수동 발사 성공 시에만 탄 1발을 쓴다. 실패한 발사·기존 잔상으로 돌진은 추가 탄을 쓰지 않는다.</p><p><b>차지 기준</b>은 잔상이 이동한 누적거리가 아니라 <b>현재 목표 표면까지 남은 거리</b>이다. 적이 움직이면 매 물리 틱 새 거리를 반영한다. 빈 공간을 수동 잔상 발사하는 과거 기능은 현재 조작에서 제거되었지만, 내부 목적지 개념은 남아 있다.</p>
 <p>잔상 접촉 순간 GOLDEN 상태로 들어가 차지율 100%를 제공하고 50ms 히트스탑을 적용한다. 이후 150ms COYOTE 창에는 차지율이 기본 94%에서 70%로 감소한다. 접근 말기 80% 차지부터 시뮬레이션 시간 비율 0.32의 불릿타임을 사용한다. <b>100% 타이밍은 최대 피해 보증이 아니다.</b> 피해는 실제 충돌 속도가 결정한다.</p>
 <p>VFX: 정상 거리 초록 조준 레이저 / 너무 가까운 적은 빨간 조준 레이저(발사와 밀어내기는 가능), 대상 주위 4방향 수축 에임, 잔상→표면 남은 거리 연결선, GOLDEN 금색, COYOTE 푸른 잔광. 글자 안내보다 위치·거리의 변화로 타이밍을 읽게 한다.</p></section><section class="wiki-section" id="wiki-physics" data-wiki-title="6. Matter.js 물리와 좌표·시간"><h2>6. Matter.js 물리와 좌표·시간</h2>
 <p>좌표는 +X 오른쪽, +Y 아래인 월드 픽셀 기준이며 Z는 지면 위 발밑 높이다. 몸체의 수직 구간은 feetZ부터 feetZ + height까지다. 월드 크기, 질량·반발 계수·최대 속도 등은 아래 원본 Config 표를 따른다. 중력은 0. Matter.js 0.20.0의 <code>Engine.update</code>를 60 TPS 고정 스텝으로 실행한다.</p>
@@ -386,7 +395,7 @@ outgoingDamage = round(criticalRaw * 100 / (100 + effectiveArmor))
 inflicted = min(enemyRemainingHP, max(0, outgoingDamage))
 heal = min(effectiveHPDamage * attacker.lifeSteal, attackerMaxHP - attackerHP) // base lifeSteal = 0</code></pre>
 <p><b>충전율·이동거리의 피해 배율은 없다.</b> 차지율은 초기 Impulse와 지속 가속만 바꾸므로 장거리 정타는 비행 중 실제 충돌 속도가 상승하는 방식으로 보상받는다. 공격마다 치명타는 <code>criticalChance</code> 확률로 판정하고 기본 2배(200%)에 투자당 6%p가 가산된 <code>criticalDamage</code>를 곱한다. 관통은 퍼센트 관통 후 고정 관통 순으로 적용한다.</p>
-<p><b>체력의 기본 흐름</b>: 시작 최대 HP는 200이며 기존 최대 체력 투자당 기본값의 +6%를 유지한다. 수동 잔상은 현재 HP 10%, 메아리 자동 재발사는 자동 연격 중에도 무료다. 수동 돌진은 무료이고 자동 돌진은 별도 운동 에너지를 소모한다. 평상 몸 접촉 피해는 0이며, 준비를 마친 돌진·도약·근접·광선·탄환·폭발만 공통 피해 수신에 전달된다. 플레이어와 동행의 돌진은 같은 공격력 × 상대 접근속도 / 1600 공식을 사용한다. 단계 전환은 현재 HP를 유지하고 새 판 시작만 최대 HP로 초기화한다.</p>
+<p><b>체력의 기본 흐름</b>: 시작 최대 HP는 200이며 기존 최대 체력 투자당 기본값의 +6%를 유지한다. 수동·메아리·자동 연격의 새 잔상은 공통 공격 탄 1발을 쓴다. HP 비용은 없으며 이미 만든 잔상으로 수동·자동 돌진은 무료다. 평상 몸 접촉 피해는 0이며, 준비를 마친 돌진·도약·근접·광선·탄환·폭발만 공통 피해 수신에 전달된다. 플레이어와 동행의 돌진은 같은 공격력 × 상대 접근속도 / 1600 공식을 사용한다. 단계 전환은 현재 HP를 유지하고 새 판 시작만 최대 HP로 초기화한다.</p>
 <p><b>흡혈</b>: 기본 0%, 투자당 +2%p, 최대 15회·30%다. 방어·보호 시간·반올림을 적용하고 실제 줄어든 HP만 기준으로 하므로 과잉 피해는 회복을 늘리지 않는다. 직접·범위·화상·투사체 공격이 같은 수신 규칙을 사용하며 실제 공격자가 회복한다. 소멸한 투사체 소유자는 회복하지 않는다. 체력 재생과 치유 동행의 회복은 별도로 유지하며 최대 HP까지만 회복한다. 모든 공격의 같은 틱 피해와 흡혈을 반영한 뒤 HP가 0 이하면 게임을 종료하며 사망 효과는 한 번만 처리한다.</p>
 <div class="wiki-info wiki-warning">화염 지속 피해도 흡혈률이 0%면 회복하지 않고, 투자한 흡혈률만 적용한다. 감속·충돌 등 시뮬레이션 결과 없는 단순 VFX만으로는 피해·회복이 발생하지 않는다.</div></section><section class="wiki-section" id="wiki-attackdash" data-wiki-title="8. 돌진 가속·비행·회복"><h2>8. 돌진 가속·비행·회복</h2>
 <p>돌진 시작 시 차지율을 부드럽게 매핑하여 최소/최대 초기 속도 변화를 계산하고, 그 결과의 크기에 비례하는 지속 가속을 설정한다. 발동 순간 목표 방향이 고정되고 기존 횡관성만 제거된다. 같은 속도로 충돌하면 첫 차지율이 달라도 같은 피해를 입힌다.</p>
@@ -395,25 +404,21 @@ deltaV = dash.minSpeed + (dash.maxSpeed - dash.minSpeed) × chargeSmooth
 acceleration = dash.acceleration × deltaV / dash.maxSpeed
 // add charge-based impulse once, then force each fixed tick
 // normal collision or swept contact resolves hit; render trail does not change physics</code></pre>
-<p>기본 공격 피해 유효시간은 짧은 고정 대기시간(현재 400ms)으로 끊지 않는다. 원거리 돌진은 목표까지 비행·명중 또는 속도 소멸/수명 종료 판정으로 끝난다. 최대·최소 비행 시간과 목표 거리 여유시간은 Config의 <code>dash.flight*</code> 설정을 참조한다. 재발사 준비는 시간과 속도 조건을 함께 본다.</p></section><section class="wiki-section" id="wiki-evade" data-wiki-title="9. 회피 구르기"><h2>9. 회피 구르기</h2>
-<div class="wiki-table-wrap"><table><thead><tr><th>항목</th><th>규칙</th></tr></thead><tbody><tr><td>입력</td><td>전장 탭은 화면→월드 투영 방향, WASD는 화면 기준 상하좌우 방향을 사용. W+D 등 함께 누른 방향은 정규화하며 같은 구르기 실행 경로를 사용</td></tr><tr><td>충전량</td><td>기본 2회; 기본 500ms마다 한 칸씩 순차 회복. 이동 기술로 충전량 기본 대비 +50%/+100%, 충전 시간 −20%/−40%</td></tr><tr><td>무적</td><td>기본 100ms 동안 적 탄환 피해만 무시; 「탄환 회피」는 기본 대비 +50%. 명시적 몸체 돌진 공격 피해는 유효</td></tr><tr><td>속도 감각</td><td>추가 Impulse를 적용한 뒤 기존 580ms에 걸쳐 지수 감쇠. 이동 거리 기술은 기본 대비 +10%/+20% 추진력, 기존 정면 관성 유지</td></tr><tr><td>공격 취소</td><td>구르기 성공 시 공격 잔상·비행·연격 상태 취소, 잔상 발사 비용 반환 없음</td></tr><tr><td>거리 충전</td><td>자동 연격 밖에서 실제 물리 이동은 100% 효율로 충전. 연격 중에는 기본 0%, 기술 해금 시 50%/100%</td></tr><tr><td>VFX</td><td>플레이어 바로 아래 폭 42px 충전 표시 하나. 실제 최대 충전 수에 따라 2~4칸을 나누며 채워진 칸=준비, 부분 칸=다음 충전 진행, 빈 칸=소모</td></tr></tbody></table></div>
-<p><b>이동 구르기는 무료</b>이며 공격 잔상 HP·자동 돌진 에너지와 별도다. 이동 가지의 각 노드는 1 강화이고 자동 연격을 요구하지 않는다. 충전량 I → 명중 재충전, 충전 시간 I → 탄환 회피가 열리며 거리 가지는 독립이다. 모든 수치는 기본값 대비 누적 비율로 계산한다. 충전량은 2→3→4회이며 증가분을 해금 즉시 지급하고, 충전 시간은 500→400→300ms, 투사체 회피는 100→150ms다. 거리 증가는 이동 시간을 연장하지 않고 기존 추진력·감쇠 경로에 적용하므로 실제 거리는 관성·마찰·벽 충돌에 영향을 받는다.</p>
+<p>기본 공격 피해 유효시간은 짧은 고정 대기시간(현재 400ms)으로 끊지 않는다. 원거리 돌진은 목표까지 비행·명중 또는 속도 소멸/수명 종료 판정으로 끝난다. 최대·최소 비행 시간과 목표 거리 여유시간은 Config의 <code>dash.flight*</code> 설정을 참조한다. 빗나가거나 멈춘 돌진은 최소 <b>150ms</b> 뒤 속도 700px/s 이하이면 끝나고, 고속일 때는 <b>400ms</b>까지 기다린다. 살아 있는 목표에 접근 중이면 비행 판정을 유지한다. 명중 뒤 RECOVER는 기존 100ms·거리 조건·최대 300ms를 사용한다. 이 자세 회복 중 다음 발사는 최대 450ms 예약할 수 있으며, 구르기로 공격을 취소할 수 있다. 첫 빗나감 때 작은 안내를 한 번 보여준다. 탄 장전과 자세 회복은 별도 상태다.</p></section><section class="wiki-section" id="wiki-evade" data-wiki-title="9. 회피 구르기"><h2>9. 회피 구르기</h2>
+<div class="wiki-table-wrap"><table><thead><tr><th>항목</th><th>규칙</th></tr></thead><tbody><tr><td>입력</td><td>전장 탭은 화면→월드 투영 방향, WASD는 화면 기준 상하좌우 방향을 사용. W+D 등 함께 누른 방향은 정규화하며 같은 구르기 실행 경로를 사용</td></tr><tr><td>충전량</td><td>기본 2회; 기본 500ms마다 한 칸씩 순차 회복. 이동 기술로 충전량 기본 대비 +50%/+100%, 충전 시간 −20%/−40%</td></tr><tr><td>무적</td><td>기본 100ms 동안 적 탄환 피해만 무시; 「탄환 회피」는 기본 대비 +50%. 명시적 몸체 돌진 공격 피해는 유효</td></tr><tr><td>속도 감각</td><td>추가 Impulse를 적용한 뒤 기존 580ms에 걸쳐 지수 감쇠. 이동 거리 기술은 기본 대비 +10%/+20% 추진력, 기존 정면 관성 유지</td></tr><tr><td>공격 취소</td><td>구르기 성공 시 공격 잔상·비행·연격 상태 취소, 잔상 발사 비용 반환 없음</td></tr><tr><td>VFX</td><td>플레이어 바로 아래 폭 42px 충전 표시 하나. 실제 최대 충전 수에 따라 2~4칸을 나누며 채워진 칸=준비, 부분 칸=다음 충전 진행, 빈 칸=소모</td></tr></tbody></table></div>
+<p><b>이동 구르기는 무료</b>이며 공격 탄과 별도다. 이동 가지의 각 노드는 1 강화이고 자동 연격을 요구하지 않는다. 충전량 I → 명중 재충전, 충전 시간 I → 탄환 회피가 열리며 거리 가지는 독립이다. 모든 수치는 기본값 대비 누적 비율로 계산한다. 충전량은 2→3→4회이며 증가분을 해금 즉시 지급하고, 충전 시간은 500→400→300ms, 투사체 회피는 100→150ms다. 거리 증가는 이동 시간을 연장하지 않고 기존 추진력·감쇠 경로에 적용하므로 실제 거리는 관성·마찰·벽 충돌에 영향을 받는다.</p>
 <p><b>명중 재충전</b>은 실제 HP 피해를 준 공격 대시당 최초 명중 1회에 다음 이동 충전 진행도 <b>20%</b>를 더한다. 현재 1회 충전 시간을 기준으로 하므로 기본 100ms, 충전 시간 강화 후 80ms/60ms에 해당한다. DoT·포자·폭발의 반복 피해는 이 경로를 호출하지 않는다. 충전 완료를 넘긴 진행도는 다음 칸에 이어지며, 충전이 가득 찼으면 저장해 두지 않는다.</p>
-<p>대시가 벽을 통과하거나 장애물을 무조건 무시하도록 위치를 직접 이동시키지 않는다. 구르기 속도는 충돌·마찰로 감소할 수 있으며 정면 방향 기준보다 역방향으로 강제 당기지 않도록 추가 속도 성분만 제거한다.</p></section><section class="wiki-section" id="wiki-chain" data-wiki-title="10. 자동 연격·운동 에너지·도탄"><h2>10. 자동 연격·운동 에너지·도탄</h2>
-<p>「잔상 메아리」의 명중 후 자동 잔상 재발사는 <b>체력·에너지 소모 없이 무료</b>이며, 자동 연격 중 생성되는 잔상도 같은 규칙을 따른다. 직접 입력한 잔상 발사는 현재 체력 10%를 사용하고, <b>자동 돌진에는 아래의 별도 에너지 비용</b>이 적용된다.</p>
-<p>자동 연격은 <b>확률 발동을 사용하지 않는다.</b> 「자동 연격」(2 강화)을 해금한 뒤, 처음 시작할 때 <b>현재 최대 에너지가 100%로 가득 차고</b> 수동 잔상 타이밍 50% 이상으로 실제 명중해야 한다. 첫 명중한 물리 틱의 실제 이동거리도 충전한 뒤 100%인지 확정한다. 연격이 시작되면 에너지가 100% 미만이어도 비용을 지불할 수 있는 한 자동 돌진을 이어 가며, 끊긴 뒤 다시 시작하려면 현재 최대 용량 100%가 필요하다.</p>
-<pre><code>energyCapacity = 3 × (1 + 0.5 × unlockedCapacityTiers)
-autoDashCost = 1 × (1 - 0.15 × hasCostEfficiency)
-energyChargePerPixel = (0.10 / (2 × player.radius)) × (1 + 0.20 × unlockedChargeTiers)
-distanceRate = chainActive ? (0 + 0.50 × unlockedAutoRechargeTiers) : 1.00
-energy += actualPlayerBodyDisplacement × energyChargePerPixel × distanceRate
-energy = min(energy, energyCapacity)
-if (manualHit &amp;&amp; shadowCharge &gt;= 0.50 &amp;&amp; energy == energyCapacity): chainActive = true
-if (chainActive &amp;&amp; automaticDash &amp;&amp; energy &gt;= autoDashCost): energy -= autoDashCost
-// 연격 종료 시 chainActive=false; 다음 시작은 현재 최대 에너지 100% 필요</code></pre>
-<p>평상시에는 수동 돌진·구르기·반동 모두 실제 이동 거리당 100% 효율로 충전한다. <b>자동 연쇄가 진행되는 동안에는 기본 충전 효율 0%</b>이며, 「연쇄 회수 I」로 50%, 「연쇄 회수 II」로 100%까지 해금된다. 잔상의 독립 비행은 충전하지 않는다. <b>자동 연격</b>에는 같은 살아 있는 대상 재공격이 기본 포함되며, <b>도탄 연격</b>은 반경 내 다른 적으로 대상을 변경한다. <b>처치 후 추적</b>은 죽은 대상 이후 다음 적 선택을 허용한다. 대상 탐색은 실제 거리 기반, 전도 표식이 있으면 선택 점수를 낮춘다.</p>
-<p><b>충돌 회수 특성</b>은 명중마다 20%(2단계 시 35%) 확률로 기본 비용 1칸을 회복한다. 이것은 자동 연격 발동 자체의 확률이 아니다. 에너지가 자동 돌진 비용보다 부족할 때는 자동 돌진이 실행되지 않는다. 플레이어는 직접 공격을 계속할 수 있지만, 연격 종료 후 새 자동 연격은 현재 최대 에너지 100%가 필요하다.</p>
-<p><b>UI</b>: 플레이어 주변 원형 에너지 게이지가 자동 돌진 자원을 나타내며, 게이지가 100% 차면 금빛으로 변해 새 연쇄 시작 준비를 알려준다. 실제 타이밍은 적 주변 4방향 에임이 알려준다. `×1, ×2, ×3...` 콤보는 HP를 실제 감소시킨 명중만 센다.</p></section><section class="wiki-section" id="wiki-enemies" data-wiki-title="11. 일반 적 AI·타입"><h2>11. 일반 적 AI·타입</h2>
+<p>대시가 벽을 통과하거나 장애물을 무조건 무시하도록 위치를 직접 이동시키지 않는다. 구르기 속도는 충돌·마찰로 감소할 수 있으며 정면 방향 기준보다 역방향으로 강제 당기지 않도록 추가 속도 성분만 제거한다.</p></section><section class="wiki-section" id="wiki-chain" data-wiki-title="10. 메아리·자동 연격·도탄"><h2>10. 메아리·자동 연격·도탄</h2>
+<p><b>새 잔상을 만들 때 공격 탄 1개, 이미 만들어진 잔상으로 돌진은 무료</b>다. 수동·명중 후 메아리·연격의 다음 잔상 모두 같은 충전 정책을 사용한다. 실패한 생성은 소모하지 않는다. 이동 에너지·확률 명중 환급은 없고 자연 장전만 사용한다.</p>
+<p>「잔상 메아리」는 명중 뒤 다음 잔상을 자동 생성하며 돌진은 직접 입력한다. 「자동 연격」(2 강화)은 메아리를 선행으로, <b>수동 잔상 타이밍 50% 이상 실제 명중 + 다음 탄 보유</b> 시 후속 잔상과 돌진까지 연결한다. 후속 명중은 같은 수동 타이밍을 다시 요구하지 않는다. 마지막 탄으로 생성한 잔상도 자동 돌진할 수 있다. 더 만들 탄이 없거나 대상이 사라지면 연결이 종료되고, 장전 완료만으로 자동 연격이 다시 시작하지 않는다.</p>
+<pre><code>if (newShadowActuallyCreated): ammo -= 1
+// manual / echo / chain share this single creation policy
+if (existingShadowDash): noAdditionalCost
+if (manualHit &amp;&amp; shadowTiming &gt;= 0.50 &amp;&amp; ammo &gt; 0): chainActive = true
+if (nextShadowCreationFails): chainActive = false
+// no movement charge, hit refund or automatic restart after reload</code></pre>
+<p>자동 연격에는 같은 살아 있는 대상의 재공격이 포함된다. 도탄 연격은 기존 반경 내 다른 적을 선택하고 처치 후 추적은 죽은 대상 뒤 다른 적 선택을 허용한다. 전도 표식의 대상 선택 우선순위는 유지한다. 수동 예약이 성공하면 직접 조작이 우선하고, 실패한 예약 자체로 탄을 차감하지 않는다.</p>
+<p>작은 공전 잔상 조각은 공격 탄, 캐릭터 아래 막대는 별도 회피 충전이다. 적 주변 조준선은 실제 잔상 타이밍을 표시한다. 콤보는 실제 HP를 감소시킨 명중만 센다. 삭제된 이동 에너지 기술과 빠른 재기동은 현재 저장 Definition에서 제외하여 해당 포인트를 한 번 환급하고 처치·유효 기술을 유지한다.</p></section><section class="wiki-section" id="wiki-enemies" data-wiki-title="11. 일반 적 AI·타입"><h2>11. 일반 적 AI·타입</h2>
 <p>공통 상태는 <code>PATROL → CHASE → WINDUP → LUNGE/발사 → RECOVER</code>. 감지 반경 안에서만 플레이어를 추적하고 예고 중에는 정지·감속한다. 물리적 질량은 모두 플레이어보다 높아 적 공격 시 플레이어가 더 크게 튕기도록 설계됐다.</p>
 <div class="wiki-table-wrap"><table><thead><tr><th>타입</th><th>행동</th><th>전술 대응</th></tr></thead><tbody><tr><td>추적 돌진형 (scout)</td><td>감지 시 빠르게 추적, 짧은 예고 이후 Impulse 돌진</td><td>측면 구르기·속도 유지</td></tr><tr><td>중장갑형 (brute)</td><td>느리고 무거움, 긴 예고 및 강한 넉백</td><td>거리 벌린 후 장거리 정타·방어 관통</td></tr><tr><td>원거리 포자사수 (spitter)</td><td>너무 가까우면 후퇴, 중간 거리 측면 이동, 멀면 접근; 예고 후 Matter 센서 탄 발사</td><td>엄폐·구르기, 발사 방향 확인</td></tr></tbody></table></div>
 <p>적 공격 접촉은 <code>contactCooldownMs</code>로 중복 피해를 제한하고, 실제 밀어내는 Impulse를 양측에 적용한다. 포자탄은 플레이어와 장애물·외벽에 충돌하면 제거되며 살아 있는 시간도 별도로 제한한다. 적 상태·예고·발사 방향은 별도 기술명 텍스트 없이 형상과 선으로 표현한다.</p></section><section class="wiki-section" id="wiki-boss" data-wiki-title="12. 보스 AI·탄막·예고"><h2>12. 보스 AI·탄막·예고</h2>
@@ -433,7 +438,7 @@ stage 1 targetEnemies = initialPopulation // 4
 proportional = round((initialPopulation + (stageIndex - 1) × populationPerStage) × playableArea / firstPlayableArea)
 stage 2+ targetEnemies = min(maxEnemies, max(previousPopulation + populationPerStage, proportional))
 killTarget = initialKills + (stageIndex - 1) × killsPerStage</code></pre>
-<p>테마는 확장 구간의 시작에 선택하며 구간 안에서는 반경·테마·지형 seed가 같다. 일반 적 배치와 보스 변형은 각 단계 seed를 사용한다. 자세한 생성 계약은 26절을 따른다. 매 단계 시작에 플레이어를 중앙으로 돌려보내고 공격·연격·에너지·구르기 자원을 초기화한다. 동시 생존 적 목표는 첫 4마리에서 단계당 1과 첫 맵 대비 실제 플레이 면적 비율로 늘고, 다음 구간의 랜덤 형상이 작게 나와도 이전 목표보다 최소 1 늘린다(최대 82).</p>
+<p>테마는 확장 구간의 시작에 선택하며 구간 안에서는 반경·테마·지형 seed가 같다. 일반 적 배치와 보스 변형은 각 단계 seed를 사용한다. 자세한 생성 계약은 26절을 따른다. 매 단계 시작에 플레이어를 중앙으로 돌려보내고 공격·연격·구르기 상태를 초기화한다. 공격 탄의 충전 진행은 유지한다. 동시 생존 적 목표는 첫 4마리에서 단계당 1과 첫 맵 대비 실제 플레이 면적 비율로 늘고, 다음 구간의 랜덤 형상이 작게 나와도 이전 목표보다 최소 1 늘린다(최대 82).</p>
 <p>일반 단계는 처치 목표 달성으로 다음 단계에 넘어가고, 3의 배수 단계는 보스를 처치해야 넘어간다. 각 전이 뒤 현재 체력을 유지하며 4·7…단계에서 맵이 확장된다. 중앙의 STAGE 번호는 1,100ms 뒤 사라지고 입력·게임 틱을 막지 않는다. 보스 예고는 같은 배너의 더 높은 우선순위를 사용하며 별도 clear 문구는 중앙에 겹치지 않는다. 현재 구현은 완전 자유 형태·오목 다각형·내비메시 생성기를 제공하지 않는다. 아래 26절의 테마·보스 정의 자동 표와 생성 파이프라인을 현행 기준으로 사용한다.</p></section><section class="wiki-section" id="wiki-elements" data-wiki-title="14. 속성 · 번개와 화염"><h2>14. 속성 · 번개와 화염</h2>
 <div class="wiki-table-wrap"><table><thead><tr><th>속성/테크</th><th>효과</th><th>VFX</th></tr></thead><tbody><tr><td>번개 I — 전도 표식</td><td>직접 돌진 명중 시 2,400ms 표식. 다음 유효 돌진 명중의 피해 +25%, 1회 소비; 도탄 우선 선택은 추가 시너지</td><td>적 주변 청백색 브래킷·스파크</td></tr><tr><td>번개 II — 연결 방전</td><td>직접 명중 시 가장 가까운 다른 적 1개에 같은 추가 피해 표식을 전파; 표식 전파가 다시 전파를 일으키지 않음</td><td>적↔적 청백 연결선, 약 220ms</td></tr><tr><td>화염 I — 점화</td><td>실제 명중 피해의 30%를 3,000ms에 걸쳐 화상으로 배분; 매 200ms 피해 처리</td><td>대상 표면 불꽃·불씨</td></tr><tr><td>화염 II — 접촉 전염</td><td>불타는 적이 다른 살아 있는 적과 실제 충돌할 때만 점화 전파. 피해 강도 70%, 시간 85%</td><td>접촉면으로 불씨가 옮겨가는 짧은 입자 흐름</td></tr></tbody></table></div>
 <p>전도 표식은 <b>다음 유효 돌진 명중의 피해 +25%</b>를 1회 소비한다. 기본 충돌 피해·치명 배율에 이 비율을 적용한 뒤 공통 방어·반올림·남은 HP 제한을 적용한다. 피해·명중·회복·처치는 한 번만 처리한다. 해당 명중 후 새 표식을 다시 부여할 수 있지만, 추가 피해나 전파가 별도 명중을 발생시키지는 않는다. 표식은 2,400ms 후 만료되고 중첩 없이 갱신된다. 도탄 기술 없이도 효과를 소비할 수 있으며, <b>도탄 대상 우선 선택</b>은 추가 시너지다. 화염은 단순 근접 거리만으로 전염하지 않으며 <code>collisionStart/collisionActive</code>에 들어온 실제 두 적 강체 쌍을 검사한다. 이미 타는 대상에는 중복 신규 점화를 만들지 않으며, 직접 재점화 시 더 센 DPS만 채택하고 지속시간을 갱신한다.</p>
@@ -444,13 +449,13 @@ availableUpgrades = (level - 1) - sum(learnedTechCosts) - sum(statInvestments)</
 <p>누적 처치 3/8/15/24/35/48/... 회에서 레벨이 오른다. 레벨당 <b>강화 기회 1개</b>를 지급해 기본 스탯 1회 투자 또는 테크 노드 1개를 선택한다. 명중·완벽 명중은 별도 성장 포인트를 지급하지 않는다. 기술별 비용은 기본적으로 1, 「자동 연격」은 기존 두 능력을 묶어 2 강화이며 선행 노드를 해금해야 한다. 무료 초기화는 투자한 능력치·기술을 모두 환불하지만 누적 처치/레벨은 유지한다.</p>
 <p>로컬 저장소 키는 <code>bloom-impulse-progression-v3</code>이며 <code>{kills, unlocked, statLevels, companions:{inventory,slots,nextId}}</code>를 보존한다. 알·펫 보유, 잠금, 알 진행, 편성과 슬롯 투자는 사망·재시작에도 유지한다. 현재 Definition에 없는 기술 ID와 선행 조건을 잃은 투자만 제외해 사용 포인트를 환불한다. 누적 처치와 유효한 나머지 기술·스탯은 보존하며, 제거된 기술을 새 ID로 자동 변환하지 않는다. 치명타 확률 투자 없이 저장된 치명피해 투자는 같은 방식으로 환불한다. 이후 저장은 현행 Definition만 기록한다. 오래된 <code>bloom-impulse-tech-v1</code>과 <code>bloom-impulse-progression-v2</code>는 계속 사용하지 않는다.</p>
 <div class="wiki-info">기술 속성/선행관계의 정확한 목록은 아래 <b>기술 Definition 전체 표</b>를 기준으로 한다. 플레이어가 선택한 실제 구매 상태는 이 테이블의 원본이 아니다.</div></section><section class="wiki-section" id="wiki-techtree" data-wiki-title="16. 테크트리 전체 Definition"><h2>16. 테크트리 전체 Definition</h2>
-<p>연쇄·에너지 / 운동·반동 / 충격·파급 / 번개·전도 / 화염·전염 / 조합 기술을 포함한 전체 노드. 같은 깊이의 노드는 기술 트리 화면에서 같은 높이에 배치되며, 왼쪽→오른쪽으로 다른 분기를 탐색한다.</p>
+<p>잔상 탄 / 연쇄 / 운동·반동 / 충격·파급 / 번개·전도 / 화염·전염 / 조합 기술을 포함한 전체 노드. 같은 깊이의 노드는 기술 트리 화면에서 같은 높이에 배치되며, 왼쪽→오른쪽으로 다른 분기를 탐색한다.</p>
 <div id="wikiTechTable"></div>
 <p><b>선행관계</b>: 루트 기술은 즉시 해금 후보, 나머지는 requires에 기록된 모든 기술 습득이 필요하다. 조합 기술도 동일한 선행 검사로 구매한다. 기술 설명에 기재된 퍼센트는 기본 Config에 대한 증가·감소율이며, 별도 생명주기나 피해를 암묵적으로 추가하지 않는다.</p></section><section class="wiki-section" id="wiki-stats" data-wiki-title="17. 기본 능력치·흡혈·투자량"><h2>17. 기본 능력치·흡혈·투자량</h2>
 <p>공격·치명·관통·최대 HP·방어·재생·흡혈과 동행 슬롯을 정의한 공통 성장 표를 사용한다. 흡혈은 기본 0%에서 별도 투자하며, 자동 탭 속도·회전속도·발사속도·탄환속도 성장은 없다. 게임의 자동화와 돌진은 기술·물리 설정이 소유한다.</p>
 <div id="wikiStatTable"></div>
 <p><b>증가 규칙</b>: 상대값은 기본 수치 × (1 + 투자횟수 × 보너스), 확률류와 치명피해는 %p 가산, 고정 관통과 방어력은 기준 공격력 비례 절대량 증가, 체력 재생은 기준 최대 체력 대비 초당 회복량 증가. 확률·퍼센트 관통 상한은 95%다. <b>치명피해는 기본 200% + 투자횟수 × 6%p</b>로 1회 206%, 2회 212%가 되며 현재 배율에 다시 곱하지 않는다. 치명타 확률에 1회 투자한 뒤 치명피해 구매가 열린다. 위 표의 현재 실제 값은 저장 투자와 구매를 반영한다.</p></section><section class="wiki-section" id="wiki-vfx" data-wiki-title="18. 전투 피드백과 VFX 사양"><h2>18. 전투 피드백과 VFX 사양</h2>
-<div class="wiki-table-wrap"><table><thead><tr><th>전투 상태·이벤트</th><th>읽히는 신호</th><th>데이터 소유</th></tr></thead><tbody><tr><td>발사 전</td><td>정상 거리: 초록 레이저 / 너무 가까움: 빨간 레이저(발사는 가능, 잔상 접촉으로 밀어내기)</td><td>자동 조준 판정</td></tr><tr><td>잔상 접근</td><td>거리 부족 시 빨간 에임, 충분하면 차지 색으로 변하는 네 방향 수축 에임, 잔상→적 표면 에너지 끈</td><td>남은 거리 기반 차지</td></tr><tr><td>50% 손익 부근</td><td>주황 조준 에임·펄스</td><td>차지율(피해 확정 X)</td></tr><tr><td>정타 임박/접촉</td><td>금색 압축·짧은 히트스탑</td><td>GOLDEN 판정</td></tr><tr><td>늦은 탭</td><td>차가운 파란 에임·깨지는 잔광</td><td>COYOTE</td></tr><tr><td>돌진/구르기</td><td>플레이어 속도 비례 잔광, 구르기 파란 꼬리</td><td>실제 속도·시간</td></tr><tr><td>명시적 적 공격·탄환 피격</td><td>빨간색 -피해 숫자, 몸체 피격 파편·넉백, 체력바 감소</td><td>실제 받은 피해</td></tr><tr><td>공격 명중·회복</td><td>접촉점 스파크·충격파·적 피해 숫자와 별도로 플레이어 쪽 초록색 +회복 숫자</td><td>실제 가한 피해·받은 회복(최대 HP 적용)</td></tr><tr><td>연속 명중</td><td>×1→×2→×3 콤보 탄성·금색 강화</td><td>실제 양수 피해 명중 수</td></tr><tr><td>에너지</td><td>플레이어 주변 원형 고리: 미충전 청록, 최대 용량 100%는 금색</td><td>이동 거리·자동 돌진 비용</td></tr><tr><td>구르기 준비</td><td>캐릭터 아래 가로 바 2개</td><td>회피 충전량/회복시간</td></tr><tr><td>번개/화염</td><td>전도 브래킷·방전 아크 / 표면 불꽃·접촉 전염 불씨</td><td>속성 상태·실제 접촉</td></tr><tr><td>보스 예고</td><td>몸체 모양 변화, 조준 추적→고정 시 신호</td><td>보스 상태 기계</td></tr><tr><td>스테이지·성장</td><td>배너·해금과 레벨 표</td><td>전투·영구 성장 결과</td></tr></tbody></table></div>
+<div class="wiki-table-wrap"><table><thead><tr><th>전투 상태·이벤트</th><th>읽히는 신호</th><th>데이터 소유</th></tr></thead><tbody><tr><td>발사 전</td><td>정상 거리: 초록 레이저 / 너무 가까움: 빨간 레이저(발사는 가능, 잔상 접촉으로 밀어내기)</td><td>자동 조준 판정</td></tr><tr><td>잔상 접근</td><td>거리 부족 시 빨간 에임, 충분하면 차지 색으로 변하는 네 방향 수축 에임, 잔상→적 표면 연결선</td><td>남은 거리 기반 차지</td></tr><tr><td>50% 손익 부근</td><td>주황 조준 에임·펄스</td><td>차지율(피해 확정 X)</td></tr><tr><td>정타 임박/접촉</td><td>금색 압축·짧은 히트스탑</td><td>GOLDEN 판정</td></tr><tr><td>늦은 탭</td><td>차가운 파란 에임·깨지는 잔광</td><td>COYOTE</td></tr><tr><td>돌진/구르기</td><td>플레이어 속도 비례 잔광, 구르기 파란 꼬리</td><td>실제 속도·시간</td></tr><tr><td>명시적 적 공격·탄환 피격</td><td>빨간색 -피해 숫자, 몸체 피격 파편·넉백, 체력바 감소</td><td>실제 받은 피해</td></tr><tr><td>공격 명중·회복</td><td>접촉점 스파크·충격파·적 피해 숫자와 별도로 플레이어 쪽 초록색 +회복 숫자</td><td>실제 가한 피해·받은 회복(최대 HP 적용)</td></tr><tr><td>연속 명중</td><td>×1→×2→×3 콤보 탄성·금색 강화</td><td>실제 양수 피해 명중 수</td></tr><tr><td>공격 탄</td><td>작은 청록 잔상 조각 공전. 다음 한 발은 중심에서 궤도로 이동하며 성장</td><td>공통 잔상 생성·순차 충전 상태</td></tr><tr><td>구르기 준비</td><td>캐릭터 아래 가로 바 2개</td><td>회피 충전량/회복시간</td></tr><tr><td>번개/화염</td><td>전도 브래킷·방전 아크 / 표면 불꽃·접촉 전염 불씨</td><td>속성 상태·실제 접촉</td></tr><tr><td>보스 예고</td><td>몸체 모양 변화, 조준 추적→고정 시 신호</td><td>보스 상태 기계</td></tr><tr><td>스테이지·성장</td><td>배너·해금과 레벨 표</td><td>전투·영구 성장 결과</td></tr></tbody></table></div>
 <h3>화면 읽기 우선순위 · 시각적 계층 구조 (v0.10.1)</h3>
 <p>시각 표현은 <b>게임 판정의 중요도에 따라</b> 설계한다. 배경은 분위기를 전달하고 캐릭터·공격 예고는 최우선으로 보이게 한다. 이 정책은 <code>C.visual</code>과 각 <code>THEME_POOL[theme].visual</code>에 선언되어 있으며 <b>렌더 표현 전용</b>이다. 충돌 모양, AI, 피해 공식, 스폰, 물리 질량·속도에 영향을 주지 않는다.</p>
 <div class="wiki-table-wrap"><table><thead><tr><th>우선 순위</th><th>해당 대상</th><th>표현 규칙</th></tr></thead><tbody>
@@ -469,7 +474,7 @@ availableUpgrades = (level - 1) - sum(learnedTechCosts) - sum(statInvestments)</
 <p><b>시간</b>: 설정의 모든 지속시간·쿨다운은 밀리초 단위다. Engine 물리 스텝에서 dt는 초 단위로 변환한다. 렌더 프레임 수에 맞춰 피해나 적 AI가 두 번 갱신되면 안 된다.</p></section><section class="wiki-section" id="wiki-config" data-wiki-title="20. 모든 기본 Config 값 (실행 코드 동기화)"><h2>20. 모든 기본 Config 값 (실행 코드 동기화)</h2>
 <p>이 표는 해당 HTML 게임의 <code>const C</code>를 초기화 직후 복사한 <b>원본 초기값</b>에서 생성한다. 테크트리 구매나 테스트 설정 슬라이더가 현재값을 바꿔도 아래 기본 계약은 변하지 않는다. 속성의 퍼센트는 원본 내부에서 0~1 비율로 저장한다.</p>
 <details open><summary>전체 계층형 설정 · 검색 가능</summary><div class="wiki-table-wrap" id="wikiConfigTable"></div></details>
-<p>대표 단위: <code>...Ms</code>=밀리초, <code>...Rate</code>=비율, <code>...Speed</code>=월드 픽셀/초(예외: 명시 스탯/배율), <code>...Radius</code>=월드 픽셀, <code>...Chance</code>=0~1 확률. 임의 값을 변경할 땐 충돌 누락·에너지 무한 연쇄·보스 탄막 차단 등 전체 흐름을 함께 검증한다.</p></section><section class="wiki-section" id="wiki-algorithms" data-wiki-title="21. 구현 의사코드 · 순서 계약"><h2>21. 구현 의사코드 · 순서 계약</h2>
+<p>대표 단위: <code>...Ms</code>=밀리초, <code>...Rate</code>=비율, <code>...Speed</code>=월드 픽셀/초(예외: 명시 스탯/배율), <code>...Radius</code>=월드 픽셀, <code>...Chance</code>=0~1 확률. 임의 값을 변경할 땐 충돌 누락·공격 탄 부족/연격 종료·보스 탄막 차단 등 전체 흐름을 함께 검증한다.</p></section><section class="wiki-section" id="wiki-algorithms" data-wiki-title="21. 구현 의사코드 · 순서 계약"><h2>21. 구현 의사코드 · 순서 계약</h2>
 <pre><code>매 고정 틱(step):
   1. pending 입력과 ActionState edge를 수집·소비
   2. 스테이지 전환과 회피 충전/감쇠 진행
@@ -496,15 +501,15 @@ availableUpgrades = (level - 1) - sum(learnedTechCosts) - sum(statInvestments)</
       update kill+level once if enemy died
   resolve final player death after same-hit healing</code></pre>
 <p><b>경계</b>: 자동 도탄은 매 충돌 시 실제 비용을 소비하는 물리 돌진이다. 속성 VFX는 이미 계산된 이벤트를 그리며, UI 버튼 이벤트에서 임의로 시뮬레이션 위치를 수정하지 않는다.</p></section><section class="wiki-section" id="wiki-qa" data-wiki-title="22. E2E 시나리오·알려진 범위"><h2>22. E2E 시나리오·알려진 범위</h2>
-<div class="wiki-table-wrap"><table><thead><tr><th>사용자 흐름</th><th>최소 확인 기준</th></tr></thead><tbody><tr><td>대기→게임 시작</td><td>로비 종료, STAGE 1 생성, 조작 가능</td></tr><tr><td>공격 버튼 2회</td><td>SHADOW 발사→골든/코요테 타이밍→DASH→실제 적 HP 변화·투자한 흡혈만 회복</td></tr><tr><td>잔상 접촉 반동</td><td>적 HP 변화 0, 초기 접촉 속도 300px/s·AI 제어 대기 500ms, 탁 트인 지역에서 대략 100 월드 단위 이동. 장애물·다른 유닛 충돌은 유지</td></tr><tr><td>전장 탭 / WASD 회피</td><td>구르기 2회 차감·500ms 충전·100ms 탄환 무적·몸체 충돌 유효</td></tr><tr><td>가속 피해</td><td>동일 충돌 접근속도에서 차지별 피해 동일, 높은 속도일수록 높은 피해</td></tr><tr><td>자동 연격/도탄</td><td>최대 에너지 100% + 잔상 50% 이상 직접 명중 시 시작, 연쇄 중 에너지 소비·충전 0/50/100%, 종료 후 재시작은 다시 100%</td></tr><tr><td>번개·화염</td><td>번개 표식→다음 유효 명중 +25% 1회 소비/주변 전파(도탄 불필요), 화염 실제 적-적 충돌에서만 전염</td></tr><tr><td>일반 단계→다음 단계 / 보스 단계</td><td>1·2단계 목표→clear→다음 단계, 3단계 목표→보스. 이후 3단계마다 보스</td></tr><tr><td>보스 장애물 충돌</td><td>탄막은 장애물로 소멸, 보스 CHARGE만 장애물 파괴→반동→1초 재돌진</td></tr><tr><td>보스 처치→다음 스테이지</td><td>다음 단계 번호·처치 목표, 3→4·6→7에서 맵 확장·테마 선택, 영구 성장은 유지</td></tr><tr><td>대기 업그레이드</td><td>누적 처치 레벨에 따라 1회 투자, 저장/초기화 후 새 판 적용</td></tr><tr><td>도움말·위키</td><td>대기 화면 팝업 열기/닫기, 슬라이드·목차·검색·모바일 탐색</td></tr></tbody></table></div>
+<div class="wiki-table-wrap"><table><thead><tr><th>사용자 흐름</th><th>최소 확인 기준</th></tr></thead><tbody><tr><td>대기→게임 시작</td><td>로비 종료, STAGE 1 생성, 조작 가능</td></tr><tr><td>공격 버튼 2회</td><td>SHADOW 발사→골든/코요테 타이밍→DASH→실제 적 HP 변화·투자한 흡혈만 회복</td></tr><tr><td>잔상 접촉 반동</td><td>적 HP 변화 0, 초기 접촉 속도 300px/s·AI 제어 대기 500ms, 탁 트인 지역에서 대략 100 월드 단위 이동. 장애물·다른 유닛 충돌은 유지</td></tr><tr><td>전장 탭 / WASD 회피</td><td>구르기 2회 차감·500ms 충전·100ms 탄환 무적·몸체 충돌 유효</td></tr><tr><td>가속 피해</td><td>동일 충돌 접근속도에서 차지별 피해 동일, 높은 속도일수록 높은 피해</td></tr><tr><td>자동 연격/도탄</td><td>다음 탄 보유 + 잔상 50% 이상 직접 명중 시 시작. 새 잔상마다1발, 기존 잔상 돌진 무료. 소진 후 자연 장전만으로 재시작 없음</td></tr><tr><td>번개·화염</td><td>번개 표식→다음 유효 명중 +25% 1회 소비/주변 전파(도탄 불필요), 화염 실제 적-적 충돌에서만 전염</td></tr><tr><td>일반 단계→다음 단계 / 보스 단계</td><td>1·2단계 목표→clear→다음 단계, 3단계 목표→보스. 이후 3단계마다 보스</td></tr><tr><td>보스 장애물 충돌</td><td>탄막은 장애물로 소멸, 보스 CHARGE만 장애물 파괴→반동→1초 재돌진</td></tr><tr><td>보스 처치→다음 스테이지</td><td>다음 단계 번호·처치 목표, 3→4·6→7에서 맵 확장·테마 선택, 영구 성장은 유지</td></tr><tr><td>대기 업그레이드</td><td>누적 처치 레벨에 따라 1회 투자, 저장/초기화 후 새 판 적용</td></tr><tr><td>도움말·위키</td><td>대기 화면 팝업 열기/닫기, 슬라이드·목차·검색·모바일 탐색</td></tr></tbody></table></div>
 <div class="wiki-info wiki-warning">과거 v0.8.0~v0.9.0의 검증 이력에는 모의 라이브러리를 이용한 브라우저 통합 검사와 개별 Matter.js 검사가 포함돼 있다. v0.10.1의 실제 검증 결과는 별도로 판단해야 하며, 모의 통합 검사와 실제 패키지 결합 검사를 동일한 PASS로 취급하지 않는다. 본 문서는 실행 코드에서 도출한 계약이지 검증 완료·Stable 선언이 아니다.</div>
 <p><b>향후 범위 밖</b>: 화염 폭발형 3단계·냉기·중력, 체력별 보스 패턴 중첩, 게임 전체의 상용 저장/네트워크는 현재 구현 계약에 포함되지 않는다.</p></section><section class="wiki-section" id="wiki-glossary" data-wiki-title="23. 용어·개발 참고"><h2>23. 용어·개발 참고</h2>
-<div class="wiki-table-wrap"><table><thead><tr><th>용어</th><th>의미</th></tr></thead><tbody><tr><td>잔상 SHADOW</td><td>적에게 가속하며 접근하는 공격 준비 객체. 플레이어의 이동과 독립</td></tr><tr><td>GOLDEN</td><td>잔상 표면 접촉 직후 짧은 정확 타이밍 상태</td></tr><tr><td>COYOTE</td><td>골든 이후 짧은 늦은 입력 허용 상태. 차지 보상 감소</td></tr><tr><td>회피 구르기</td><td>전장 탭·WASD에 반응하는 별도 이동/회피 행동. 피해 공격 아님</td></tr><tr><td>운동 에너지</td><td>실제 플레이어 본체 이동 거리로 충전되는 자동 돌진 자원</td></tr><tr><td>자동 연격/도탄</td><td>동일 적 반복 충돌 / 인근 다른 적으로 자동 충돌</td></tr><tr><td>전도/점화</td><td>다음 명중 피해 증폭·주변 전파 / 지속 피해와 적끼리 물리 접촉 전염</td></tr><tr><td>후처리 VFX</td><td>게임이 확정한 명중·피해·회복·연결 상태를 그리기만 하는 표현</td></tr></tbody></table></div>
+<div class="wiki-table-wrap"><table><thead><tr><th>용어</th><th>의미</th></tr></thead><tbody><tr><td>잔상 SHADOW</td><td>적에게 가속하며 접근하는 공격 준비 객체. 플레이어의 이동과 독립</td></tr><tr><td>GOLDEN</td><td>잔상 표면 접촉 직후 짧은 정확 타이밍 상태</td></tr><tr><td>COYOTE</td><td>골든 이후 짧은 늦은 입력 허용 상태. 차지 보상 감소</td></tr><tr><td>회피 구르기</td><td>전장 탭·WASD에 반응하는 별도 이동/회피 행동. 피해 공격 아님</td></tr><tr><td>공격 탄</td><td>수동·메아리·연격의 새 잔상 생성에 공통으로 쓰는 순차 장전 자원</td></tr><tr><td>자동 연격/도탄</td><td>동일 적 반복 충돌 / 인근 다른 적으로 자동 충돌</td></tr><tr><td>전도/점화</td><td>다음 명중 피해 증폭·주변 전파 / 지속 피해와 적끼리 물리 접촉 전염</td></tr><tr><td>후처리 VFX</td><td>게임이 확정한 명중·피해·회복·연결 상태를 그리기만 하는 표현</td></tr></tbody></table></div>
 <p><a href="https://github.com/byh-playground/bloom-reference">BLOOM Reference</a> · <a href="https://github.com/byh-playground/bloom-reference/blob/main/rules/development.html">공통 개발규칙</a> · <a href="https://github.com/byh-playground/bloom-reference/blob/main/rules/project-management.html">관리 규칙</a> · <a href="https://github.com/byh-playground/bloom-reference/blob/main/labs/particles.html">파티클 연구소</a> · <a href="https://github.com/byh-playground/bloom-gamekit">Bloom GameKit</a>.</p></section>
 <section class="wiki-section" id="wiki-audio" data-wiki-title="24. 효과음과 설정"><h2>24. 효과음과 설정</h2><p>수동·메아리 발사, 충돌 강도, 자동 돌진·도탄·연격, 충전·회피, 적·보스 공격, 실제 피해·회복·처치·사망, 성장·스테이지, 알·부화·합성·동행 부활과 메뉴 조작에 효과음이 반응한다. 배경 입자는 소리를 반복하지 않는다.</p><p>로비·설정의 전체 음량과 음소거, 설정의 종류별 음량은 로컬 저장된다. 같은 종류 최소 간격·동시 수·전체 최대 12음과 우선순위로 밀집 전투를 제한한다. 음량·압축 값은 초기 추천이다. 브라우저가 허용한 실제 입력으로 소리를 열며, 중단 시 정리하고 다음 입력에서 재개한다. 잠금·음소거 중 소리는 나중에 재생하지 않는다.</p></section>
 <section class="wiki-section" id="wiki-pets" data-wiki-title="25. 영구 동행 · 알 · 합성"><h2>25. 영구 동행 · 알 · 합성</h2>
 <p>적에게 피해를 주어 처치하면 일반 적과 소환수는 <b>5%</b>, 보스는 <b>10%</b> 확률로 같은 종의 알 1개를 얻는다. 처치당 추첨은 한 번이다. 자폭 완료·소환 만료·스테이지 정리·동행 사망은 처치 보상이 없다. 장착한 모든 알은 직접 적중 처치와 그 적중에서 시작한 상태 피해 처치마다 +1이며 소환수도 포함한다. <b>30처치</b>에 같은 소유 ID·슬롯·종의 Common으로 부화한다. 예비 알은 진행하지 않는다.</p>
-<p>기본 1칸에서 슬롯 강화 4회로 최대 5칸이다. 기존 종 Common은 물리 충돌 돌진을 하고 Uncommon부터 원래 종의 능력을 해금한다. 신규 왕사슴·민들레·칼잎·가시창은 Common부터 각각 돌진·짧은 근접·휘두르기·단일 찌르기를 쓰며 이슬치유사는 Common부터 공격 없이 치유한다. 높은 등급은 기존 능력과 패턴을 성장시키며 Mythic은 완성 패턴을 사용한다. 보스 동행도 같은 능력과 소환수를 사용한다. 원래 보스에 없는 회복 능력을 추가하지 않는다. 동행은 쓰러지면 <b>3초</b> 뒤 최대 HP·새 능력 상태로 복귀한다. 플레이어의 기술·스탯·운동 에너지를 복제하거나 소비하지 않는다.</p>
+<p>기본 1칸에서 슬롯 강화 4회로 최대 5칸이다. 기존 종 Common은 물리 충돌 돌진을 하고 Uncommon부터 원래 종의 능력을 해금한다. 신규 왕사슴·민들레·칼잎·가시창은 Common부터 각각 돌진·짧은 근접·휘두르기·단일 찌르기를 쓰며 이슬치유사는 Common부터 공격 없이 치유한다. 높은 등급은 기존 능력과 패턴을 성장시키며 Mythic은 완성 패턴을 사용한다. 보스 동행도 같은 능력과 소환수를 사용한다. 원래 보스에 없는 회복 능력을 추가하지 않는다. 동행은 쓰러지면 <b>3초</b> 뒤 최대 HP·새 능력 상태로 복귀한다. 플레이어의 기술·스탯·공격 탄을 복제하거나 소비하지 않는다.</p>
 <p>적과 동행은 같은 Unit·능력·성체 그림을 사용한다. 목표·이동 의도는 컨트롤러, 색·그림·알의 색과 무늬는 외형 설정, 사망 후 보상·복귀는 각각의 사망 정책이 소유한다. 같은 진영의 충돌·투사체·광역 공격은 피해를 주지 않는다. 보스의 탄막 대기·소환 수는 소유 Unit마다 계산한다.</p>
 <div id="wikiPetSpeciesTable"></div>
 <p>같은 종·등급 5마리를 합성한다. Common→Uncommon→Rare→Epic→Legendary→Mythic 성공률은 64/32/16/8/4%다. 성공은 5마리 소모·상위 1마리 생성, 실패는 1~4마리 균등 소모다. 명시적 잠금만 보호하고 장착 여부는 보호하지 않는다. 예비 재료를 먼저 사용하며 연속 합성도 선택한 등급만 처리한다. 알·Mythic은 재료가 아니다. 발견 전에는 알의 이름·상세를 숨기고 성체에서 온 색과 무늬만 단서로 보여준다. 첫 부화에서 이름·모습·대표 능력을 공개하며, 발견 기록은 합성 소모와 독립해 유지한다. 소유 ID·종 ID·등급·잠금·편성·부화 진행·발견은 같은 저장 키에 보존한다.</p><p><b>동행 크기·아군 표시:</b> 같은 종 적의 기준 몸체 대비 Common 65% → Uncommon 72% → Rare 79% → Epic 86% → Legendary 93% → Mythic 100%다. 실제 6등급을 선형 정규화한 한 설정을 반지름·높이·몸 그림자·선택과 피격 판정에 함께 사용한다. 등급색 외곽선은 원래 종 몸체 실루엣을 따르며, 몸 색과 등급색이 가까울 때만 얇은 중립 대비선을 안쪽에 더한다. 아군 소환수는 소유자의 크기·등급색 표시 정책을 이어받는다. HP·피해·질량과 스킬 범위·투사체 성장 규칙은 유지한다.</p>
@@ -571,23 +576,24 @@ next stage -> centered stage number; 4/7/10... expands map/theme segment</code><
       <div class="tree-toolbar"><div><strong>기술 계보</strong><span>위 → 아래: 선행 경로 · 선: 실제 해금 조건</span></div><button id="treeCenter" type="button" title="기본 기술로 이동">◎ 시작점</button></div>
       <div class="tree-viewport" id="techViewport" tabindex="0" aria-label="좌우로 이동하여 같은 선행 단계의 기술을 확인하는 테크트리">
         <div class="tech-map" id="techMap">
-          <svg id="techLinks" class="tech-links" viewBox="0 0 2700 755" preserveAspectRatio="xMinYMin meet" aria-hidden="true"></svg>
+          <svg id="techLinks" class="tech-links" viewBox="0 0 1940 755" preserveAspectRatio="xMinYMin meet" aria-hidden="true"></svg>
           <div class="tech-map-root" id="techMapRoot"><span class="root-icon">◈</span><div><b>직접 조작</b><small>잔상 발사 · 돌진 · 속도 피해</small></div></div>
-          <div class="tech-lane lane-chain"><span>↻ 연쇄 · 에너지</span></div>
+          <div class="tech-lane lane-chain"><span>↻ 연쇄</span></div>
           <div class="tech-lane lane-motion"><span>↗ 운동 · 반동</span></div>
           <div class="tech-lane lane-impact"><span>✳ 충격 · 파급</span></div>
           <div class="tech-lane lane-lightning"><span>ϟ 번개 · 전도</span></div>
           <div class="tech-lane lane-fire"><span>♨ 화염 · 전염</span></div>
           <div class="tech-lane lane-evade"><span>⇢ 이동 · 회피</span></div>
+          <div class="tech-lane lane-shadow"><span>▰ 잔상 탄 · 장전</span></div>
           <div id="techGraphNodes"></div>
         </div>
       </div>
       <p class="tree-pan-hint">↔ 좌우로 이동해 분기를 탐색해. 기술을 누르면 해금하고, 선을 따라 다음 기술을 찾아갈 수 있어.</p>
       <section class="tech-lower"><h3 class="synergy-heading">✦ 조합 진화 <small>필요한 두 기술을 모두 익히면 열려</small></h3><div class="tech-combos" id="techSynergy"></div><h3 class="synergy-heading">✦ 기본 능력치 <small>레벨마다 원하는 능력치에 투자</small></h3><div id="techStats" class="tech-combos"></div></section>
     </div>
-    <footer class="tech-footer"><span>자동 연격 첫 발동은 에너지 100% + 잔상 50% 이상 직접 명중. 연쇄 중 이동 충전은 기본 0%, 기술로 50%→100%. 최대 용량도 100%까지 채워야 해.</span><button id="techRefund">무료 초기화</button></footer>
+    <footer class="tech-footer"><span>새 잔상은 탄 1개, 이미 만든 잔상으로 돌진은 무료. 자동 연격은 잔상 50% 이상 직접 명중 + 다음 탄이 필요해.</span><button id="techRefund">무료 초기화</button></footer>
   </section>
-  <div id="settings"><div class="settings-head"><h2>조작 · 물리 실험</h2><button id="closeSettings" aria-label="설정 닫기">닫기 ✕</button></div><details id="coreboundStats"><summary>기본 능력치 <span style="color:#8cbcae;font-size:10px">설정 열기</span></summary><div id="statRows"></div><p class="caption">흡혈은 기본 0%이며 별도 성장으로 강화합니다. 방어 관통은 대상의 방어력이 있을 때 적용됩니다. 잔상 속도·발사 준비·자동 연격은 각각 기본 물리 설정과 테크트리에서 관리합니다.</p></details><div id="settingRows"></div><p class="tech-settings-note">에너지·도탄·운동·충격 특성 및 영구 스탯은 대기 화면의 「업그레이드」에서 해금합니다.</p><label class="check"><input type="checkbox" id="showCompression" checked>목표 수축 조준선 / 남은 거리 VFX</label><label class="check"><input type="checkbox" id="showLinkPulse" checked>잔상↔목표 에너지 펄스</label><label class="check"><input type="checkbox" id="showDebug">충돌 / 잔상 계측 보이기</label><footer>잔상 차지율은 <b>돌진 시작 충격량과 돌진 비행 중의 가속도만</b> 결정합니다. 공격 피해는 <b>공격력 × 실제 충돌 접근 속도 / 기준 속도</b>이며 차지율·날아간 거리의 피해 배율은 없습니다. 멀리서 정확히 시작하면 더 오래 가속하여 충돌 피해가 커질 수 있습니다. 공격 돌진은 시작 시 횡방향 속도를 제거하며 적을 따라 궤도를 꺾지 않습니다. 전장 탭·WASD는 같은 구르기이고 공격을 취소하며, 충전 2회와 순차 회복 500ms 및 시작 100ms 탄환 무적을 가집니다. 플레이어의 수축 고리는 다음 발사 준비, 목표 주변 에임은 남은 거리 기준 타이밍을 표시합니다. 수동 잔상 발사에는 현재 HP 10%가 소모됩니다. 잔상 메아리의 자동 재발사는 자동 연격 중에도 체력·에너지를 쓰지 않으며, 자동 돌진의 별도 에너지 비용은 유지됩니다. 평상 접촉 피해는0이며 실제 공격 피해에 투자한 흡혈률만 회복합니다. 기존 50% 차지 손익분기 가정은 새 속도 피해식에서 더 이상 고정되지 않습니다. 초기 수치는 조정용이며 정식 밸런스가 아닙니다.</footer></div>
+  <div id="settings"><div class="settings-head"><h2>조작 · 물리 실험</h2><button id="closeSettings" aria-label="설정 닫기">닫기 ✕</button></div><details id="coreboundStats"><summary>기본 능력치 <span style="color:#8cbcae;font-size:10px">설정 열기</span></summary><div id="statRows"></div><p class="caption">흡혈은 기본 0%이며 별도 성장으로 강화합니다. 방어 관통은 대상의 방어력이 있을 때 적용됩니다. 잔상 속도·발사 준비·자동 연격은 각각 기본 물리 설정과 테크트리에서 관리합니다.</p></details><div id="settingRows"></div><p class="tech-settings-note">공격 탄·도탄·운동·충격 특성 및 영구 스탯은 대기 화면의 「업그레이드」에서 해금합니다.</p><label class="check"><input type="checkbox" id="showCompression" checked>목표 수축 조준선 / 남은 거리 VFX</label><label class="check"><input type="checkbox" id="showLinkPulse" checked>잔상↔목표 펄스</label><label class="check"><input type="checkbox" id="showDebug">충돌 / 잔상 계측 보이기</label><footer>잔상 차지율은 <b>돌진 시작 충격량과 돌진 비행 중의 가속도만</b> 결정합니다. 공격 피해는 <b>공격력 × 실제 충돌 접근 속도 / 기준 속도</b>이며 차지율·날아간 거리의 피해 배율은 없습니다. 멀리서 정확히 시작하면 더 오래 가속하여 충돌 피해가 커질 수 있습니다. 공격 돌진은 시작 시 횡방향 속도를 제거하며 적을 따라 궤도를 꺾지 않습니다. 전장 탭·WASD는 같은 구르기이고 공격을 취소하며, 충전 2회와 순차 회복 500ms 및 시작 100ms 탄환 무적을 가집니다. 플레이어의 수축 고리는 다음 발사 준비, 목표 주변 에임은 남은 거리 기준 타이밍을 표시합니다. 수동 잔상 발사는 기본 2발의 별도 탄을 쓰며 1,000ms마다 1발씩 순차 장전합니다. HP는 쓰지 않습니다. 수동·메아리·연격의 새 잔상은 같은 탄 1개를 쓰며 기존 잔상으로 돌진은 무료입니다. 이동 충전·명중 환급 없이 자연 장전만 진행합니다. 평상 접촉 피해는0이며 실제 공격 피해에 투자한 흡혈률만 회복합니다. 기존 50% 차지 손익분기 가정은 새 속도 피해식에서 더 이상 고정되지 않습니다. 초기 수치는 조정용이며 정식 밸런스가 아닙니다.</footer></div>
 </div>
 <div id="gameover"><div class="over-inner"><div class="over-tag">RUN ENDED</div><h1>쓰러졌어</h1><p id="runSummary"></p><button id="retry">대기 화면으로</button></div></div>
 <div id="load"><div id="loadbox"><h1>BOUNKO</h1><p id="loadtext">물리 엔진과 공통 게임 모듈을 불러오는 중…</p><details><summary>라이브러리 정보</summary><p>Matter.js 0.20.0 / Bloom GameKit ESM · 고정 커밋 d1e2c385. 최초 실행에는 인터넷 연결이 필요합니다.</p></details></div></div>
@@ -597,13 +603,13 @@ next stage -> centered stage number; 4/7/10... expands map/theme segment</code><
 <script type="module">
 
 const KIT = 'https://cdn.jsdelivr.net/gh/byh-playground/bloom-gamekit@d1e2c385033ad04a7a004cfbe9558948ef07a6d1/';
-const VERSION = '0.12.6', BUILD_ID = '20261010T190000Z-explicit-combat';
+const VERSION = '0.12.7', BUILD_ID = '20261011T180000Z-unified-shadow-ammo';
 const $ = id => document.getElementById(id);
 const loadtext = $('loadtext');
 const ERROR = error => { console.error(error); loadtext.innerHTML = '<strong style="color:#fdb8a9">실행 라이브러리를 불러오지 못했습니다.</strong><br>인터넷 연결 상태를 확인하고 다시 여세요.<br>'+String(error.message||error).replace(/[<>]/g,''); };
 try {
   if (!window.Matter) throw new Error('Matter.js 0.20.0 스크립트 로딩 실패');
-  const [{Renderer2D}, {ActionState,createDOMInput}, {createLoop}, {petConfig,CompanionCollection,CompanionRoster,companionCapacity,companionPresentation,patternAngle}, {audioConfig,AudioPlayer}, {volume,snapshotVolumes,contactWindow,filterMatterVolumes,sweepVerticalContacts,groundArc,stepArc,DeathReason,hostile,receiveHit,receiveHeal,combatConfig,collisionDamage}, {enemyConfig,enemyClasses,enemyWave,enemyRefillWave,pickRefillSpecies,enemyVisuals,species,speciesConfig,bossSpecies,bossConfig,drawSpecies,drawSpeciesEgg,eggSvg}, {EnemyController,PetController}] = await Promise.all([
+  const [{Renderer2D}, {ActionState,createDOMInput}, {createLoop}, {petConfig,CompanionCollection,CompanionRoster,companionCapacity,companionPresentation,patternAngle}, {audioConfig,AudioPlayer}, {volume,snapshotVolumes,contactWindow,filterMatterVolumes,sweepVerticalContacts,groundArc,stepArc,DeathReason,hostile,receiveHit,receiveHeal,combatConfig,collisionDamage,ChargePool}, {enemyConfig,enemyClasses,enemyWave,enemyRefillWave,pickRefillSpecies,enemyVisuals,species,speciesConfig,bossSpecies,bossConfig,drawSpecies,drawSpeciesEgg,eggSvg}, {EnemyController,PetController}] = await Promise.all([
     import(KIT+'rendering.js'),import(KIT+'input.js'),import(KIT+'simloop.js'),import('./pets.js'),import('./audio.js'),import('./abilities.js'),import('./enemies.js'),import('./controllers.js')
   ]);
   const M = window.Matter;
@@ -612,7 +618,7 @@ try {
   async function playUiSound(){if(await sfx.unlock())sfx.play('ui');}
   // Single source of truth: capability-based, hierarchical configuration.
   const C = {
-    world:{width:2500,height:1750}, sim:{tps:60}, player:{radius:16,height:32,mass:2,shadowCostRate:.10,facingTurnRateRadPerSec:Math.PI*3},
+    world:{width:2500,height:1750}, sim:{tps:60}, player:{radius:16,height:32,mass:2,facingTurnRateRadPerSec:Math.PI*3},
     audio:audioConfig,pets:petConfig,stats:{petSlots:petConfig.slots.base,attackPower:100,criticalChance:0,criticalDamage:2,armorPenFlat:0,armorPenPercent:0,maxHp:200,armor:0,healthRegen:0,lifeSteal:0},enemy:{radius:23,count:13,chaseRadius:690,stopDistance:29,chaseResponse:6,
       knockbackMultiplier:1,projectileDamageMultiplier:1,types:enemyConfig},
     spatial:{groundZ:0,actorHeightRadiusRate:2,projectileHeightRadiusRate:2,shadowHeight:14,sweep:{insetPx:1}},
@@ -621,14 +627,13 @@ try {
       capacityTierRate:.50,rechargeReductionTierRate:.20,distanceTierRate:.10,projectileWindowBonusRate:.50,hitRechargeRate:.20},
     stage:{initialKills:7,killsPerStage:4,bossEvery:3,mapEvery:3,transitionMs:1650,bossWarningMs:750,entryNoticeMs:1100,bossNoticeMs:1250,noticePriority:{stage:1,boss:3},worldRadius:550,radiusGrowth:.22,maxRadius:1600,initialPopulation:4,populationPerStage:1,maxEnemies:82,enemySpawnMinGap:98,spawnSafeRadius:285,obstaclePer100k:.93,maxObstacles:72,connectivityStep:82,connectivityMin:.92},
     boss:bossConfig,
-    shadow:{initialSpeed:150,acceleration:2500,range:680,minDashDistance:28,contactPushSpeed:300,contactPushControlMs:500},
+    shadow:{ammo:{maxCharges:2,rechargeMs:1000,capacityTierRate:.50,rechargeReductionTierRate:.20},initialSpeed:150,acceleration:2500,range:680,minDashDistance:28,contactPushSpeed:300,contactPushControlMs:500},
     dash:{minSpeed:250,maxSpeed:880,acceleration:850,rearmMinMs:150,rearmMaxMs:400,rearmSpeed:700,inputBufferMs:450,flightMinMs:500,flightMaxMs:2400,flightMarginMs:300,missClosingSpeed:45},damage:combatConfig,
     timing:{bulletStart:.80,bulletScale:.32,coyoteMs:150,coyoteStartCharge:.94,coyoteEndCharge:.70,shadowHitstopMs:50,hitstopMs:50},
-    chain:{enabled:false,followKill:false,minTriggerCharge:.50,targetMinGap:58,recoverMinMs:100,maxWaitMs:300,autoDashGoldDelayMs:30},
-    energy:{baseCapacityCharges:3,baseChargePerDiameter:0.10,baseAutoCostCharges:1,chargeBonusTierRate:.20,capacityBonusTierRate:.50,autoCostBonusTierRate:.15,autoRechargeTierRate:.50,collisionRestoreChance:.20,collisionRestoreBonusRate:.15,ricochetRangeRate:.60},
+    chain:{enabled:false,followKill:false,minTriggerCharge:.50,targetMinGap:58,recoverMinMs:100,maxWaitMs:300,autoDashGoldDelayMs:30,ricochetRangeRate:.60},
     augment:{
       spore:{enabled:false,radius:130,damageRate:.30},momentum:{enabled:false,perCombo:.07,maxMultiplier:1.28},
-      motion:{quickRearm:0.75,reboundImpulse:140,propulsionMultiplier:1.32,chainAccelPerHit:.10},
+      motion:{reboundImpulse:140,propulsionMultiplier:1.32,chainAccelPerHit:.10},
       impact:{pushRadius:145,pushStrength:220,splitDamageRate:.17,finishRadius:160,finishDamageRate:.24,elasticThreshold:950}
     },
     element:{lightning:{markDurationMs:2400,nextHitBonusRate:.25,relayRadiusPct:.48,arcDurationMs:220},
@@ -641,6 +646,8 @@ try {
         maxTransferGapPx:18,opacity:.91}},
     // Visual-only hierarchy. No physics, target, damage or AI consumer may use these values.
     visual:{
+      ammoOrbit:{radius:34,shardRadius:3.8,minShardRadius:.9,angularSpeedRadPerSec:.95,phaseRad:-Math.PI/2},
+      missRecovery:{pulseMs:180,hintMs:2600},
       scenery:{densityRate:.84,focusRadius:88,focusFeather:112,focusMinOpacity:.54,bossOpacityRate:.78},
       terrain:{gridOpacityRate:.55,edgeOpacityRate:.71,outlineWidth:2.4,accentOpacityRate:.63},
       actors:{enemySilhouettePadding:4.2,enemySilhouetteOpacity:.73,playerSilhouetteRadius:23.5,playerSilhouetteOpacity:.88},
@@ -650,11 +657,13 @@ try {
   };
   const wikiDefaultConfig=JSON.parse(JSON.stringify(C));
   const World = M.Composite, Body=M.Body, Bodies=M.Bodies, Events=M.Events, Engine=M.Engine;
-  let engine, player, playerUnit, unitsById=new Map(), unitsByBody=new Map(), enemies, enemiesById, obstacles, projectiles=[],projectileById=new Map(),enemyShots=0,enemyAttacks=0,enemyPushes=0, shadow=null, mode='READY', phase='LOBBY', modeUntil=0,health=100,hitstopLeftMs=0,dashCharge=0,dashMotion=null,dashFlight=null,dashHits=new Set(),damageTaken=0,healingDone=0,launchCostTotal=0,launchCount=0;
+  let engine, player, playerUnit, unitsById=new Map(), unitsByBody=new Map(), enemies, enemiesById, obstacles, projectiles=[],projectileById=new Map(),enemyShots=0,enemyAttacks=0,enemyPushes=0, shadow=null, mode='READY', phase='LOBBY', modeUntil=0,health=100,hitstopLeftMs=0,dashCharge=0,dashMotion=null,dashFlight=null,dashHits=new Set(),damageTaken=0,healingDone=0,launchCount=0,manualLaunchCount=0,echoLaunchCount=0,chainLaunchCount=0;
+  const attackAmmo=new ChargePool(C.shadow.ammo);
+  let missRecoveryActive=false,missRecoveryPulseUntilMs=0,missRecoveryHintUntilMs=0,missRecoveryEvents=0,missRecoverySerial=-1,missHintShown=false;
   let timeMs=0, tick=0, combo=0, hits=0,kills=0, toastUntil=0, toastText='', toastColor='#f1c77a', lastComboHitAtMs=-1e6;
   let nextEnemyId=1, randomSeed=82741, aimTargetId=null, previewTargetId=null, attackOrigin=null, trailClock=0, dashStartedAtMs=0, recoverStartedAtMs=0, readyFlashUntilMs=0, bufferedIntent=null, bufferedUntilMs=0, frames=0, frameFps=0, frameFpsStart=performance.now(), playerFacing=0, criticalHits=0, lastHit=null;
   let pending=[], particles=[], particleCursor=0, fxRings=[], renderCamera={x:C.world.width/2,y:C.world.height/2}, cameraZoom=1;
-  let lightningArcs=[],fireEmbers=[],fireTransfers=[],fireFxSerial=0,elementalEvents={ignite:0,spread:0,conduct:0,conductSpread:0,conductConsumed:0,conductDamage:0,arc:0,burnDamage:0}, chainActive=false, pendingChainStart=null, chainStarts=0, chainEnds=0, autoChainReady=false, autoDashPlanned=false, dashAutomatic=false, dashPerfect=false, automaticDashes=0, manualPerfectHits=0, autoChainWins=0, autoChainRolls=0, chainEnergy=0, chainTargetId=null, energySpent=0, energyGained=0, energyRestored=0;
+  let lightningArcs=[],fireEmbers=[],fireTransfers=[],fireFxSerial=0,elementalEvents={ignite:0,spread:0,conduct:0,conductSpread:0,conductConsumed:0,conductDamage:0,arc:0,burnDamage:0}, chainActive=false, chainStarts=0, chainEnds=0, autoChainReady=false, autoDashPlanned=false, dashAutomatic=false, dashPerfect=false, automaticDashes=0, manualPerfectHits=0, autoChainWins=0, autoChainRolls=0, chainTargetId=null;
   let evadeCharges=2,evadeRefillAtMs=0,evadeMotion=null,evadeStartedAtMs=-1e9,evadePreviousPosition=null,evadeActions=0;
   let attackDashSerial=0,evadeHitRechargeUsed=false,evadeHitRechargeEvents=0,evadeHitRechargeProgress=0,evadeLastHitRecharge=null;
   let stage={index:1,phase:'WAVE',waveKills:0,killTarget:7,startedAtMs:0,transitionUntilMs:0,boss:null,patternLog:[],themeId:'garden',layoutId:'open',radius:550,targetPopulation:4,mapTier:0,mapStart:1},arenaVertices=[],boundaryWalls=[],bossObstaclesBroken=0;
@@ -667,18 +676,9 @@ try {
   const TECH_SAVE_KEY='bloom-impulse-progression-v3';
   try { localStorage.removeItem(LEGACY_TECH_KEY); localStorage.removeItem(PREVIOUS_TECH_KEY); } catch(e) {}
   const TECH_NODES=Object.freeze([
-    {id:'echo',branch:'chain',name:'잔상 메아리',symbol:'↻',cost:1,requires:[],desc:'명중한 적에게 잔상 무료 자동 재발사 · 돌진은 직접 입력'},
-    {id:'autoChain',branch:'chain',name:'자동 연격',symbol:'◉',cost:2,requires:['echo'],desc:'에너지 100%·타이밍 50% 명중 → 같은 적 자동 돌진 · 에너지 소비'},
-    {id:'ricochet',branch:'chain',name:'도탄 연격',symbol:'⤳',cost:1,requires:['autoChain'],desc:'에너지 100% + 잔상 타이밍 50% 이상 명중하면 다른 적으로 도탄'},
-    {id:'charge1',branch:'chain',name:'운동 회수 I',symbol:'+',cost:1,requires:['autoChain'],desc:'실제 이동 거리당 에너지 충전 +20%'},
-    {id:'charge2',branch:'chain',name:'운동 회수 II',symbol:'✚',cost:1,requires:['charge1'],desc:'일반 이동 거리당 충전 효율 추가 +20% (합계 +40%)'},
-    {id:'autoRecharge1',branch:'chain',name:'연쇄 회수 I',symbol:'◐',cost:1,requires:['autoChain'],desc:'자동 연쇄 진행 중 이동 충전 효율: 기본 0% → 50%'},
-    {id:'autoRecharge2',branch:'chain',name:'연쇄 회수 II',symbol:'◕',cost:1,requires:['autoRecharge1'],desc:'자동 연쇄 진행 중 이동 충전 효율: 50% → 100%'},
-    {id:'capacity1',branch:'chain',name:'에너지 저장 I',symbol:'▰',cost:1,requires:['autoChain'],desc:'최대 충전 용량 기본값 대비 +50%'},
-    {id:'capacity2',branch:'chain',name:'에너지 저장 II',symbol:'▣',cost:1,requires:['capacity1'],desc:'최대 충전 용량 기본값 대비 +100%'},
-    {id:'costEff',branch:'chain',name:'연격 절약',symbol:'◇',cost:1,requires:['autoChain'],desc:'자동 돌진 에너지 소비 -15%'},
-    {id:'collisionRestore',branch:'chain',name:'충돌 회수',symbol:'✷',cost:1,requires:['autoChain'],desc:'실제 공격 명중 시 20% 확률로 충전 1칸 회복'},
-    {id:'restore2',branch:'chain',name:'충돌 회수 II',symbol:'✸',cost:1,requires:['collisionRestore'],desc:'명중 회복 확률 +15%p (합계 35%)'},
+    {id:'echo',branch:'chain',name:'잔상 메아리',symbol:'↻',cost:1,requires:[],desc:'명중 뒤 다음 잔상 자동 생성 · 탄 1개 · 돌진은 직접 입력'},
+    {id:'autoChain',branch:'chain',name:'자동 연격',symbol:'◉',cost:2,requires:['echo'],desc:'타이밍 50% 이상 명중 + 탄 보유 → 후속 잔상·돌진 자동 연결'},
+    {id:'ricochet',branch:'chain',name:'도탄 연격',symbol:'⤳',cost:1,requires:['autoChain'],desc:'자동 연격의 후속 잔상 대상을 반경 내 다른 적으로 변경'},
     {id:'relay',branch:'chain',name:'처치 후 추적',symbol:'∞',cost:1,requires:['ricochet'],desc:'처치 뒤 다른 적으로 자동 연계 가능'},
     {id:'evadeCapacity1',branch:'evade',name:'이동 충전 I',symbol:'▰',cost:1,requires:[],desc:'이동 충전량 기본 대비 +50% · 증가분 즉시 지급'},
     {id:'evadeCapacity2',branch:'evade',name:'이동 충전 II',symbol:'▣',cost:1,requires:['evadeCapacity1'],desc:'이동 충전량 기본 대비 누적 +100% · 증가분 즉시 지급'},
@@ -688,9 +688,12 @@ try {
     {id:'evadeWindow',branch:'evade',name:'탄환 회피',symbol:'◇',cost:1,requires:['evadeRecharge1'],desc:'투사체 회피 시간 기본 대비 +50% · 몸체 접촉 피해 유지'},
     {id:'evadeDistance1',branch:'evade',name:'이동 거리 I',symbol:'↗',cost:1,requires:[],desc:'이동 대시 거리 기본 대비 +10% · 이동 시간 유지'},
     {id:'evadeDistance2',branch:'evade',name:'이동 거리 II',symbol:'➤',cost:1,requires:['evadeDistance1'],desc:'이동 대시 거리 기본 대비 누적 +20% · 이동 시간 유지'},
+    {id:'shadowCapacity1',branch:'shadow',name:'잔상 비축 I',symbol:'▰',cost:1,requires:[],desc:'탄 최대 +50% → 3발 · 증가분 즉시 지급'},
+    {id:'shadowCapacity2',branch:'shadow',name:'잔상 비축 II',symbol:'▣',cost:1,requires:['shadowCapacity1'],desc:'탄 최대 누적 +100% → 4발 · 증가분 즉시 지급'},
+    {id:'shadowRecharge1',branch:'shadow',name:'빠른 장전 I',symbol:'◐',cost:1,requires:[],desc:'장전 시간 −20% → 800ms/발 · 진행 비율 유지'},
+    {id:'shadowRecharge2',branch:'shadow',name:'빠른 장전 II',symbol:'◕',cost:1,requires:['shadowRecharge1'],desc:'장전 시간 누적 −40% → 600ms/발 · 진행 비율 유지'},
     {id:'momentum',branch:'motion',name:'관성 증폭',symbol:'↗',cost:1,requires:[],desc:'연속 명중 시 다음 돌진 초기 충격량 강화'},
-    {id:'quickRearm',branch:'motion',name:'빠른 재기동',symbol:'◉',cost:1,requires:['momentum'],desc:'돌진 후 재발사 준비시간 -25%'},
-    {id:'rebound',branch:'motion',name:'탄성 반동',symbol:'⤴',cost:1,requires:['quickRearm'],desc:'명중 시 추가 반동'},
+    {id:'rebound',branch:'motion',name:'탄성 반동',symbol:'⤴',cost:1,requires:['momentum'],desc:'명중 시 추가 반동'},
     {id:'propulsion',branch:'motion',name:'추진력 강화',symbol:'➤',cost:1,requires:['rebound'],desc:'돌진 중 가속 +32%'},
     {id:'spore',branch:'impact',name:'충격 포자',symbol:'✳',cost:1,requires:[],desc:'충돌 시 주변 적에게 포자 피해 확산'},
     {id:'shockPush',branch:'impact',name:'충격파',symbol:'◎',cost:1,requires:['spore'],desc:'충돌 시 주변 적을 물리적으로 밀어냄'},
@@ -720,6 +723,7 @@ try {
   ]);
   const BASE_STATS=Object.freeze({...C.stats});
   const BASE_EVADE=Object.freeze({...C.evade});
+  const BASE_ATTACK_AMMO=Object.freeze({...C.shadow.ammo});
   const statPathReady=(id,levels)=>id!=='criticalDamage'||levels.criticalChance>=1;
   function progressionLevel(k){return Math.floor(Math.sqrt(k+1));}
   function loadTech(){try{const p=JSON.parse(localStorage.getItem(TECH_SAVE_KEY)||'null');
@@ -737,7 +741,7 @@ try {
   const techSpent=()=>TECH_NODES.reduce((sum,n)=>sum+(hasTech(n.id)?n.cost:0),0)+Object.values(tech.statLevels).reduce((sum,n)=>sum+n,0);
   const availableTech=()=>Math.max(0,progressionLevel(tech.kills)-1-techSpent());
   function persistTech(){try{localStorage.setItem(TECH_SAVE_KEY,JSON.stringify({kills:tech.kills,unlocked:[...tech.unlocked],statLevels:tech.statLevels,companions:companions.snapshot()}));}catch(e){}}
-  function applyTech(){applyEvadeTech();C.chain.enabled=hasTech('echo');C.chain.followKill=hasTech('relay');
+  function applyTech(){applyEvadeTech();applyAttackAmmoTech();C.chain.enabled=hasTech('echo');C.chain.followKill=hasTech('relay');
     C.augment.spore.enabled=hasTech('spore');C.augment.momentum.enabled=hasTech('momentum');
     for(const [key,,label,rate,kind] of STAT_UPGRADES){const n=tech.statLevels[key];const base=BASE_STATS[key];
       C.stats[key]=kind==='slot'?companionCapacity(petConfig,n):kind==='relative'?base*(1+n*rate):kind==='point'?base+n*rate:
@@ -745,6 +749,12 @@ try {
       if(key==='criticalChance'||key==='armorPenPercent')C.stats[key]=Math.min(.95,C.stats[key]);
     }
     companions.setSlotLevel(tech.statLevels.petSlots);
+  }
+  function applyAttackAmmoTech(){
+    const tiers=(a,b)=>Number(hasTech(a))+Number(hasTech(b));
+    C.shadow.ammo.maxCharges=Math.round(BASE_ATTACK_AMMO.maxCharges*(1+BASE_ATTACK_AMMO.capacityTierRate*tiers('shadowCapacity1','shadowCapacity2')));
+    C.shadow.ammo.rechargeMs=BASE_ATTACK_AMMO.rechargeMs*(1-BASE_ATTACK_AMMO.rechargeReductionTierRate*tiers('shadowRecharge1','shadowRecharge2'));
+    attackAmmo.configure(C.shadow.ammo);
   }
   function evadeRefillProgress(){return evadeRefillAtMs?clamp(1-(evadeRefillAtMs-timeMs)/C.evade.rechargeMs,0,1):0;}
   function applyEvadeTech(){
@@ -766,32 +776,19 @@ try {
     tech.statLevels[id]++;sfx.play('upgrade');applyTech();persistTech();updateTechUi();return true;}
   function refundTech(){tech.unlocked.clear();for(const key of Object.keys(tech.statLevels))tech.statLevels[key]=0;
     endChain();applyTech();persistTech();updateTechUi();}
-  function energyCapacity(){return C.energy.baseCapacityCharges*(1+(hasTech('capacity1')?C.energy.capacityBonusTierRate:0)+(hasTech('capacity2')?C.energy.capacityBonusTierRate:0));}
-  function energyCost(){return C.energy.baseAutoCostCharges*(1-(hasTech('costEff')?C.energy.autoCostBonusTierRate:0));}
-  function energyChargePerPixel(){return C.energy.baseChargePerDiameter*(1+C.energy.chargeBonusTierRate*((hasTech('charge1')?1:0)+(hasTech('charge2')?1:0)))/(C.player.radius*2);}
-  // No partial-energy chain starts. The current capacity includes every capacity upgrade.
-  function energyFull(){return chainEnergy+1e-7>=energyCapacity();}
-  function autoChargeRate(){return C.energy.autoRechargeTierRate*((hasTech('autoRecharge1')?1:0)+(hasTech('autoRecharge2')?1:0));}
   function endChain(){
     if(chainActive)chainEnds++;
-    chainActive=false;pendingChainStart=null;autoChainReady=false;autoDashPlanned=false;chainTargetId=null;
+    chainActive=false;autoChainReady=false;autoDashPlanned=false;chainTargetId=null;
   }
-  // A manual qualifying collision occurs inside Engine.update, before movement
-  // distance for this physics step has been credited. Resolve start once AFTER
-  // that step's normal 100% charge has been added, not one tick early or late.
-  function resolveChainStart(){
-    if(pendingChainStart==null)return;
-    const targetId=pendingChainStart;pendingChainStart=null;
-    if(energyFull()&&hasTech('autoChain')){
-      chainActive=true;chainTargetId=targetId;autoChainReady=true;chainStarts++;autoChainWins++;sfx.play('chainStart');
-      ringFx(player.position.x,player.position.y,49,[1,.86,.50,1],350);
-    }else{autoChainReady=false;chainTargetId=null;}
+  function prepareChainFollowup(targetId,automatic){
+    // A hit may continue only with a target and a charge for its next shadow. Reloading alone never starts a chain.
+    if(targetId==null||attackAmmo.charges<1){endChain();return;}
+    chainTargetId=targetId;
+    if(automatic){autoChainReady=chainActive;if(autoChainReady)autoChainWins++;}
+    else{chainActive=true;autoChainReady=true;chainStarts++;autoChainWins++;sfx.play('chainStart');
+      ringFx(player.position.x,player.position.y,49,[1,.86,.50,1],350);}
   }
-  function restoreChargeOnHit(x,y){if(!hasTech('collisionRestore'))return;
-    const probability=C.energy.collisionRestoreChance+(hasTech('restore2')?C.energy.collisionRestoreBonusRate:0);
-    if(rand()<probability){const before=chainEnergy;chainEnergy=Math.min(energyCapacity(),chainEnergy+C.energy.baseAutoCostCharges);
-      energyRestored+=chainEnergy-before;ringFx(x,y,64,[.45,1,.77,1],390);}}
-  function ricochetTarget(from){const r=C.shadow.range*C.energy.ricochetRangeRate;let chosen=null,best=Infinity;
+  function ricochetTarget(from){const r=C.shadow.range*C.chain.ricochetRangeRate;let chosen=null,best=Infinity;
     for(const e of enemies){if(!e.alive||e.id===from.id)continue;const d=Math.hypot(e.body.position.x-from.body.position.x,e.body.position.y-from.body.position.y);
       // Only an explicitly learned conductive mark alters target ordering.
       const conductive=hasTech('conduct')&&e.conductUntilMs>timeMs;
@@ -880,7 +877,6 @@ try {
   }
 
   function isCritical(){return C.stats.criticalChance>0&&rand()<C.stats.criticalChance;}
-  function rearmDelay(ms){return ms*(hasTech('quickRearm')?C.augment.motion.quickRearm:1);}
 
   let releaseVolumeFilter=null,volumeEvents=[];
   function recordVolume(kind,e,data={}){if(volumeEvents.length>=160)volumeEvents.shift();volumeEvents.push({kind,tick,timeMs,id:e?.id,type:e?.type,...data});}
@@ -1197,7 +1193,7 @@ try {
       radius,targetPopulation:0,playableArea:0,mapTier,mapStart,mapSeed:(82741^Math.imul(mapStart,2654435761))>>>0,seed:(82741^Math.imul(index,2654435761))>>>0};
     randomSeed=stage.mapSeed;
     if(player){Body.setPosition(player,{x:C.world.width/2,y:C.world.height/2});setSpeed(player,0,0);}
-    shadow=null;mode='READY';dashMotion=null;dashFlight=null;endChain();bufferedIntent=null;chainEnergy=0;
+    shadow=null;mode='READY';dashMotion=null;dashFlight=null;endChain();bufferedIntent=null;
     evadeMotion=null;evadeCharges=C.evade.maxCharges;evadeRefillAtMs=0;
     buildArena(index);
     randomSeed=stage.seed; // Wave placement varies; geometry remains fixed inside a map segment.
@@ -1218,7 +1214,7 @@ try {
   function spawnBoss(){
     if(stage.phase!=='BOSS_PENDING')return;
     clearStageEnemies();
-    shadow=null;dashMotion=null;dashFlight=null;mode='READY';endChain();bufferedIntent=null;
+    shadow=null;dashMotion=null;dashFlight=null;missRecoveryActive=false;mode='READY';endChain();bufferedIntent=null;
     const theme=THEME_POOL[stage.themeId],spec=BOSS_POOL[theme.boss];
     if(!spec)throw Error('등록되지 않은 보스 '+theme.boss);
     const pos=findSpawn(Math.min(420,stage.radius*.72),C.boss.radius)||{x:C.world.width/2+stage.radius*.53,y:C.world.height/2};
@@ -1283,9 +1279,10 @@ try {
     engine.world.gravity.y=0;engine.world.gravity.x=0;
     volumeEvents=[];releaseVolumeFilter=filterMatterVolumes(M,engine,acceptVolumeContact);Events.on(engine,'beforeSolve',sweepVerticalMotion);
     randomSeed=82741;nextEnemyId=1;timeMs=0;tick=0;combo=0;lastComboHitAtMs=-1e6;hits=0;kills=0;
-    chainEnergy=0;energySpent=0;energyGained=0;energyRestored=0;chainTargetId=null;chainActive=false;pendingChainStart=null;chainStarts=0;chainEnds=0;criticalHits=0;lastHit=null;playerFacing=0;
+    chainTargetId=null;chainActive=false;chainStarts=0;chainEnds=0;criticalHits=0;lastHit=null;playerFacing=0;
     shadow=null;mode='READY';modeUntil=0;particles=[];particleCursor=0;lightningArcs=[];fireEmbers=[];fireTransfers=[];fireFxSerial=0;elementalEvents={ignite:0,spread:0,conduct:0,conductSpread:0,conductConsumed:0,conductDamage:0,arc:0,burnDamage:0};health=C.stats.maxHp;hitstopLeftMs=0;
-    dashCharge=0;dashMotion=null;dashFlight=null;dashHits.clear();damageTaken=0;healingDone=0;launchCostTotal=0;launchCount=0;
+    dashCharge=0;dashMotion=null;dashFlight=null;dashHits.clear();damageTaken=0;healingDone=0;launchCount=0;manualLaunchCount=0;echoLaunchCount=0;chainLaunchCount=0;attackAmmo.reset();
+    missRecoveryActive=false;missRecoveryPulseUntilMs=0;missRecoveryHintUntilMs=0;missRecoveryEvents=0;missRecoverySerial=-1;
     enemies=[];enemiesById=new Map();unitsById=new Map();unitsByBody=new Map();obstacles=[];boundaryWalls=[];arenaVertices=[];projectiles=[];projectileById=new Map();
     terrainDecor=[];terrainChannels=[];stageHistory=[];stageBasePlayableArea=0;generationStats={retries:0,connectivity:1,clearLane:0,obstacles:0};
     enemyShots=0;enemyAttacks=0;enemyPushes=0;pending.length=0;aimTargetId=null;previewTargetId=null;fxRings=[];
@@ -1296,7 +1293,7 @@ try {
     player=Bodies.circle(C.world.width*.5,C.world.height*.5,C.player.radius,{label:'player',restitution:C.physics.restitution,
       frictionAir:C.physics.frictionAir,friction:0,frictionStatic:0,collisionFilter:{category:2,mask:1|4|8}});
     Body.setMass(player,C.player.mass);Body.setInertia(player,Infinity);volume(player,C.player.height);World.add(engine.world,player);
-    playerUnit={unitId:0,id:0,faction:'garden',body:player,get config(){return {...C.stats,deferDeath:true,damageRounding:false};},pre:{x:0,y:0},preX:player.position.x,preY:player.position.y,
+    playerUnit={attackAmmo,unitId:0,id:0,faction:'garden',body:player,get config(){return {...C.stats,deferDeath:true,damageRounding:false};},pre:{x:0,y:0},preX:player.position.x,preY:player.position.y,
       get hp(){return health;},set hp(value){health=value;},get maxHp(){return C.stats.maxHp;},get alive(){return mode!=='DEAD';},onHit(){},die(){die();},
       adapter:{healed(target,amount){healingDone+=amount;sfx.play('heal');floatText(player.position.x,player.position.y,'+'+formatCombatNumber(amount),[.33,1,.68,1]);burst(player.position.x,player.position.y,120,6,[.24,1,.7,1]);},hurt(target,amount){damageTaken+=amount;if(amount>0){sfx.play('hurt');floatText(player.position.x,player.position.y,'-'+formatCombatNumber(amount),[1,.38,.43,1]);burst(player.position.x,player.position.y,90,8,[1,.36,.46,1]);}}}};
     setupStage(1);petRoster.reset();
@@ -1582,13 +1579,6 @@ try {
       x=nx;y=ny;
     }
   }}
-  /** Account only for a successfully spawned shadow. Manual input pays HP; echo relaunches are free. */
-  function payShadowCost(source){
-    const cost=source==='echo'?0:health*C.player.shadowCostRate;
-    health-=cost; launchCostTotal+=cost; launchCount++;
-    if(cost>0)floatText(player.position.x,player.position.y-16,`-${formatCombatNumber(cost)} HP · 발사`,[.98,.65,.43,1]);
-    return cost;
-  }
   // Behavior pool: patterns share telegraph -> lock -> execute -> recovery contracts.
   const BOSS_PATTERNS={
     FAN:{executionMs:520,fire(b,volley){
@@ -1782,23 +1772,27 @@ try {
       }
     }
     const gap=detected?Math.max(0,Math.hypot(sx-detected.body.position.x,sy-detected.body.position.y)-(enemyDef(detected).radius+6)):limit;
+    // Every new shadow shares one commit point: failed attempts and existing-shadow dashes spend nothing.
+    if(!attackAmmo.consume())return false;
+    if(source==='manual'){endChain();manualLaunchCount++;}else if(source==='chain'){chainLaunchCount++;}else{echoLaunchCount++;}
+    launchCount++;
     shadow={x:sx,y:sy,startX:sx,startY:sy,dirX:n.x,dirY:n.y,speed:C.shadow.initialSpeed,
-      travel:0,limit,age:0,targetId:detected?.id??null,followTarget:!!target,
+      source,travel:0,limit,age:0,targetId:detected?.id??null,followTarget:!!target,
       goalX:sx+n.x*limit,goalY:sy+n.y*limit,initialGap:gap,
       arrived:false,contactAtMs:-Infinity};
-    aimTargetId=detected?.id??null;mode='SHADOW';payShadowCost(source);sfx.play(source==='echo'?'echo':'launch');burst(sx,sy,65,6,[.45,.9,1,1]);return true;
+    aimTargetId=detected?.id??null;mode='SHADOW';sfx.play(source==='manual'?'launch':'echo');burst(sx,sy,65,6,[.45,.9,1,1]);return true;
   }
-  // Automatic aim still comes from manual input; only the recovery echo uses the free source.
+  // Aim mode and launch cause are independent; every cause uses the same charge policy.
   function launchAuto(){const e=selectedAim();if(e){return launch({x:e.body.position.x-player.position.x,y:e.body.position.y-player.position.y},e);}return launch({x:1,y:0},null);}
   // The shadow can always be launched at a point-blank target, but the body
   // needs actual separation from that shadow before initiating a charge dash.
   function shadowSeparation(){return shadow?Math.hypot(player.position.x-shadow.x,player.position.y-shadow.y):0;}
   function shadowDashAvailable(){return !!shadow&&shadowSeparation()+1e-6>=C.shadow.minDashDistance;}
-  function dash(automatic=false){if(automatic&&chainEnergy+1e-8<energyCost())return false;if((mode!=='SHADOW'&&mode!=='GOLDEN'&&mode!=='COYOTE')||!shadow)return false;
+  function dash(automatic=false){if((mode!=='SHADOW'&&mode!=='GOLDEN'&&mode!=='COYOTE')||!shadow)return false;
     if(!shadowDashAvailable())return false;
     const charge=chargeOf(),curve=charge*charge*(3-2*charge),delta=C.dash.minSpeed+(C.dash.maxSpeed-C.dash.minSpeed)*curve;
     const n=norm(shadow.x-player.position.x,shadow.y-player.position.y);dashCharge=charge;dashHits.clear();attackDashSerial++;evadeHitRechargeUsed=false;
-    if(!automatic){endChain();}else{const cost=energyCost();chainEnergy=Math.max(0,chainEnergy-cost);energySpent+=cost;}
+    if(!automatic)endChain(); // The existing shadow already paid for this attack; all dashes are free.
     const dashBonus=C.augment.momentum.enabled?Math.min(C.augment.momentum.maxMultiplier,1+Math.max(0,combo)*C.augment.momentum.perCombo):1;
     // One-time launch alignment: retain only forward momentum. Existing lateral or
     // backward velocity must not steer a directed dash away from the chosen shadow.
@@ -1823,7 +1817,7 @@ try {
     const moveSpeed=Math.max(180,Math.hypot(v.x,v.y));
     const estimatedMs=travelGap/moveSpeed*1000;
     dashFlight=target?{targetId:target.id,initialGap:travelGap,untilMs:timeMs+clamp(estimatedMs*2+C.dash.flightMarginMs,C.dash.flightMinMs,C.dash.flightMaxMs)}:null;
-    sfx.play(automatic?(shadow.targetId!==lastHit?.enemyId?'ricochet':'autoDash'):'dash');shadow=null;mode='DASH';dashStartedAtMs=timeMs;modeUntil=timeMs+rearmDelay(C.dash.rearmMinMs);hitstopLeftMs=0;trailClock=0;
+    sfx.play(automatic?(shadow.targetId!==lastHit?.enemyId?'ricochet':'autoDash'):'dash');shadow=null;mode='DASH';missRecoveryActive=false;dashStartedAtMs=timeMs;modeUntil=timeMs+C.dash.rearmMinMs;hitstopLeftMs=0;trailClock=0;
     const perfect=charge>=.985&&(timely||modeBeforeDash==='GOLDEN');
     dashPerfect=perfect;dashAutomatic=automatic;if(automatic){automaticDashes++;ringFx(player.position.x,player.position.y,54,[1,.86,.50,1],340);}
     if(perfect)bloomImpact(player.position.x,player.position.y,'perfect');
@@ -1837,7 +1831,7 @@ try {
   function evadeDirection(x,y){
     if(phase!=='PLAYING'||mode==='DEAD'||evadeCharges<1||Math.hypot(x,y)<1e-6)return false;
     const direction=norm(x,y);
-    // Roll interrupts the offensive dash. Already-paid shadow costs are not refunded.
+    // Roll interrupts the offensive dash. Already-spent manual charges are not refunded.
     if(mode==='SHADOW'||mode==='GOLDEN'||mode==='COYOTE'||mode==='DASH'||mode==='RECOVER'){
       shadow=null;dashMotion=null;dashFlight=null;mode='READY';modeUntil=0;dashHits.clear();
       endChain();dashAutomatic=false;
@@ -1912,7 +1906,8 @@ try {
     const intent=captureIntent(kind,x,y);
     if(mode==='READY'){launchIntent(intent);return;}
     if(mode==='DASH'||mode==='RECOVER'){
-      endChain();bufferedIntent=intent;bufferedUntilMs=timeMs+C.dash.inputBufferMs;
+      // A reservation cancels the free chain only if a manual launch actually succeeds.
+      bufferedIntent=intent;bufferedUntilMs=timeMs+C.dash.inputBufferMs;
       // The converging ring and the button display the accepted buffered command; do not obscure gameplay.
     }
   }
@@ -1921,10 +1916,16 @@ try {
     bufferedIntent=null;bufferedUntilMs=0;
     return valid?launchIntent(intent):false;
   }
-  function beginReady(){mode='READY';modeUntil=0;dashMotion=null;dashFlight=null;readyFlashUntilMs=timeMs+200;
+  function noteMissRecovery(){
+    if(missRecoverySerial===attackDashSerial)return;
+    missRecoverySerial=attackDashSerial;missRecoveryEvents++;
+    missRecoveryPulseUntilMs=timeMs+C.visual.missRecovery.pulseMs;
+    if(!missHintShown){missHintShown=true;missRecoveryHintUntilMs=timeMs+C.visual.missRecovery.hintMs;}
+  }
+  function beginReady(){missRecoveryActive=false;mode='READY';modeUntil=0;dashMotion=null;dashFlight=null;readyFlashUntilMs=timeMs+200;
     tryBufferedLaunch();
   }
-  function beginRecover(){mode='RECOVER';dashMotion=null;dashFlight=null;recoverStartedAtMs=timeMs;modeUntil=timeMs+C.chain.recoverMinMs;}
+  function beginRecover(){missRecoveryActive=false;mode='RECOVER';dashMotion=null;dashFlight=null;recoverStartedAtMs=timeMs;modeUntil=timeMs+C.chain.recoverMinMs;}
   function dashFlightProgress(){
     if(!dashFlight)return 0;
     const target=enemies.find(e=>e.alive&&e.id===dashFlight.targetId);
@@ -1934,9 +1935,9 @@ try {
   }
   function rearmProgress(){if(mode==='DASH'){
       const age=Math.max(0,timeMs-dashStartedAtMs),velocity=speedOf(player),speed=Math.hypot(velocity.x,velocity.y);
-      const minProgress=clamp(age/rearmDelay(C.dash.rearmMinMs),0,1);
+      const minProgress=clamp(age/C.dash.rearmMinMs,0,1);
       const momentumProgress=clamp(C.dash.rearmSpeed/Math.max(C.dash.rearmSpeed,speed),0,1);
-      return clamp(Math.max(age/rearmDelay(Math.max(C.dash.rearmMinMs,C.dash.rearmMaxMs)),minProgress*momentumProgress),0,1);
+      return clamp(Math.max(age/Math.max(C.dash.rearmMinMs,C.dash.rearmMaxMs),minProgress*momentumProgress),0,1);
     }
     if(mode==='RECOVER'){
       const age=Math.max(0,timeMs-recoverStartedAtMs);
@@ -2007,28 +2008,10 @@ try {
           tags:['dash',...(critical?['critical']:[]),...(conducted?['conduct']:[])]};
         playImpact(impactSpeed);if(critical)sfx.play('perfect');receiveHit(e,{raw:inflicted,resolved:true,deferDeath:true,kind:'dash'},playerUnit,timeMs);hits++;combo++;onComboHit(combo);rechargeEvadeOnDashHit();
         if(!dashAutomatic&&dashPerfect)manualPerfectHits++;
-        // A successful manual hit at >= 50% SHADOW timing starts an automatic
-        // chain. Auto hits can continue it without requiring another manual tap.
-        // Energy is a launch COST, not an activation threshold: it is credited
-        // from the current physics step AFTER Matter's collision callback.
-        // Defer affordability until recovery schedules the next automatic dash.
+        // Timing still qualifies the first manual hit. Follow-ups consume only when their new shadow actually spawns.
         const canChain=hasTech('autoChain')&&(dashAutomatic?chainActive:dashCharge+1e-8>=C.chain.minTriggerCharge);
-        const killed=e.hp<=0;
-        const targetId=canChain?followTargetAfterHit(e,killed):null;
-        chainTargetId=targetId;
-        // Automatic follow-ups may spend the remaining energy. Only the FIRST
-        // manual qualifying hit must have 100% of the *upgraded* capacity.
-        // A full-gauge start is deferred until step displacement is credited.
-        if(dashAutomatic){
-          autoChainReady=chainActive&&targetId!=null;
-          if(!autoChainReady)endChain();
-          else autoChainWins++;
-        }else{
-          pendingChainStart=targetId;
-          autoChainReady=false;
-        }
-        autoChainRolls++;
-        restoreChargeOnHit(player.position.x,player.position.y);
+        const killed=e.hp<=0,targetId=canChain?followTargetAfterHit(e,killed):null;
+        prepareChainFollowup(targetId,dashAutomatic);autoChainRolls++;
 
         // Only cumulative kills grant levels. Hits no longer grant currency.
         beginRecover();hitstopLeftMs=Math.max(hitstopLeftMs,C.timing.hitstopMs);
@@ -2051,7 +2034,7 @@ try {
         if(killed){defeatEnemy(e);
           burst(cp.x,cp.y,240,32,[1,.48,.32,1]);toast(`KNOCKOUT ×${combo}`,'#fbd18b',800);
           if(chainTargetId!=null){attackOrigin=chainTargetId;}else{attackOrigin=null;autoChainReady=false;}
-        }else{attackOrigin=chainTargetId??e.id;toast(combo>1?`✦ ×${combo}`:'✦','#ffdba0',430);}
+        }else{attackOrigin=attackAmmo.charges>0?(chainTargetId??e.id):null;toast(combo>1?`✦ ×${combo}`:'✦','#ffdba0',430);}
         dashAutomatic=false;
       }else if(touch)toast(`피격 -${formatCombatNumber(received)}`,'#ff9e95',420);
     }}
@@ -2159,6 +2142,7 @@ try {
   }
   function step(){tick++;const baseMs=1000/C.sim.tps;timeMs=tick*baseMs;
     if(bufferedIntent&&timeMs>bufferedUntilMs){bufferedIntent=null;bufferedUntilMs=0;}
+    attackAmmo.update(baseMs); // Real tick time: recharge continues during shadow flight, dash, recovery and hitstop.
     processInputs();if(mode==='DEAD')return;
     updateStage();updateEvade(baseMs/1000);
     if(shadow&&shadow.arrived){
@@ -2166,7 +2150,7 @@ try {
       if(mode==='GOLDEN'&&elapsed>=C.timing.shadowHitstopMs){mode='COYOTE';}
       if(mode==='COYOTE'&&elapsed>=C.timing.shadowHitstopMs+C.timing.coyoteMs){expireShadow();}
     }
-    if(autoDashPlanned&&shadow&&shadow.arrived&&mode==='GOLDEN'&&chainActive&&autoChainReady&&chainEnergy>=energyCost()&&
+    if(autoDashPlanned&&shadow&&shadow.arrived&&mode==='GOLDEN'&&chainActive&&autoChainReady&&
        timeMs-shadow.contactAtMs>=C.chain.autoDashGoldDelayMs){
       autoChainReady=false;autoDashPlanned=false;dash(true);
     }
@@ -2182,7 +2166,6 @@ try {
     petRoster.update(dt);updateEnemies(dt);stepArcShots(dt);
     if(mode==='READY'||mode==='RECOVER'||mode==='DASH')aimPreview();
     const pv=speedOf(player);playerUnit.pre=pv;playerUnit.preX=player.position.x;playerUnit.preY=player.position.y;player.plugin.preX=pv.x;player.plugin.preY=pv.y;player.plugin.prePosX=player.position.x;player.plugin.prePosY=player.position.y;
-    const chargeRate=chainActive?autoChargeRate():1;
     player.restitution=C.physics.restitution;player.frictionAir=C.physics.frictionAir;
     if(mode==='DASH'&&dashMotion){
       // Matter.js force is in mass * pixel / ms^2. 1e6 converts pixel/s^2;
@@ -2193,14 +2176,6 @@ try {
     engine.timing.timeScale=scale;Engine.update(engine,baseMs);
     if(mode==='DEAD')return;
     sweepDashContact();
-    // Actual player-body displacement only. Works for manual dash, automatic
-    // dash and physical rebound; the shadow travels independently and grants 0.
-    if(hasTech('autoChain')){
-      const distance=Math.hypot(player.position.x-player.plugin.prePosX,player.position.y-player.plugin.prePosY);
-      const gained=Math.min(distance,C.physics.maxSpeed*dt*1.5)*energyChargePerPixel()*chargeRate;
-      const before=chainEnergy;chainEnergy=Math.min(energyCapacity(),chainEnergy+gained);energyGained+=chainEnergy-before;
-    }
-    resolveChainStart();
     updateBurning(dt*1000);updateShadow(dt);updateProjectiles();
     // One death boundary for every explicit attack. Resolve same-tick collision
     // damage/lifesteal together, then stop before rearming or another healing tick.
@@ -2210,12 +2185,12 @@ try {
       const stepRad=C.player.facingTurnRateRadPerSec*dt;playerFacing+=clamp(err,-stepRad,stepRad);}
     if(s>C.physics.maxSpeed)setSpeed(player,v.x*C.physics.maxSpeed/s,v.y*C.physics.maxSpeed/s);
     // The old fixed 950ms lockout was the primary source of perceived unresponsive taps.
-    if(mode==='DASH'&&timeMs>=modeUntil){
+    if(mode==='DASH'){
       const velocity=speedOf(player),speed=Math.hypot(velocity.x,velocity.y);
       const target=dashFlight&&enemies.find(e=>e.alive&&e.id===dashFlight.targetId);
       const targetAlive=!!target&&timeMs<dashFlight.untilMs;
       // Keep the hit window while physically closing on the selected opponent.
-      // No enemy / clearly missed / stalled dash -> use the original quick rearm.
+      // No enemy / clearly missed / stalled dash -> preserve the basic 150–400ms rearm rule.
       let closing=0;
       if(targetAlive){
         const n=norm(target.body.position.x-player.position.x,target.body.position.y-player.position.y);
@@ -2223,9 +2198,10 @@ try {
         closing=(velocity.x-ev.x)*n.x+(velocity.y-ev.y)*n.y;
       }
       const approaching=targetAlive&&closing>C.dash.missClosingSpeed;
-      const normalRearm=speed<=C.dash.rearmSpeed||timeMs-dashStartedAtMs>=rearmDelay(C.dash.rearmMaxMs);
-      if(!approaching&&normalRearm){
-        if(dashFlight&&targetAlive)toast('DASH MISSED','#a6cad3',300);
+      missRecoveryActive=!approaching;
+      if(missRecoveryActive)noteMissRecovery();
+      const normalRearm=speed<=C.dash.rearmSpeed||timeMs-dashStartedAtMs>=C.dash.rearmMaxMs;
+      if(timeMs>=modeUntil&&!approaching&&normalRearm){
         attackOrigin=null;combo=0;endChain();beginReady();
       }
     }
@@ -2233,17 +2209,13 @@ try {
       const wanted=autoChainReady&&chainTargetId!=null?chainTargetId:attackOrigin;
       const e=wanted==='any'?chooseEnemy():enemies.find(unit=>unit.id===wanted&&unit.alive);
       const enoughGap=!e||Math.hypot(e.body.position.x-player.position.x,e.body.position.y-player.position.y)>=C.chain.targetMinGap;
-      if(bufferedIntent||!C.chain.enabled||wanted==null||!e||enoughGap||timeMs-recoverStartedAtMs>=C.chain.maxWaitMs){
-        const manualBuffered=!!bufferedIntent;
-        // Reserve the automatic attempt now, but test energy only when the
-        // golden shadow actually triggers dash(true). Rebound travel can keep
-        // charging during the shadow flight; an early check would falsely
-        // require a manual tap even if the cost is affordable on arrival.
+      if((bufferedIntent&&attackAmmo.charges>0)||!C.chain.enabled||wanted==null||!e||enoughGap||timeMs-recoverStartedAtMs>=C.chain.maxWaitMs){
+        // A successfully created chain shadow owns its charge; its later automatic dash needs no second payment.
         const shouldAuto=chainActive&&autoChainReady&&chainTargetId!=null;
         const target=e;
         attackOrigin=null;chainTargetId=null;beginReady();
-        if(mode==='READY'&&!manualBuffered&&C.chain.enabled&&target&&enoughGap){
-          if(launch({x:target.body.position.x-player.position.x,y:target.body.position.y-player.position.y},target,'echo')){
+        if(mode==='READY'&&C.chain.enabled&&target&&enoughGap){
+          if(launch({x:target.body.position.x-player.position.x,y:target.body.position.y-player.position.y},target,shouldAuto?'chain':'echo')){
             autoDashPlanned=shouldAuto;
             if(autoDashPlanned)ringFx(player.position.x,player.position.y,60,[1,.84,.42,1],370);
           }else{endChain();}
@@ -2577,6 +2549,24 @@ try {
     }
   }
 
+  function ammoOrbitStates(p,nowMs){
+    const v=C.visual.ammoOrbit,{charges,maxCharges,progress}=attackAmmo.snapshot(),states=[];
+    for(let i=0;i<maxCharges;i++){
+      const ready=i<charges,q=ready?1:i===charges?progress:0;if(q<=0)continue;
+      const eased=1-Math.pow(1-clamp(q,0,1),3),angle=v.phaseRad+nowMs*.001*v.angularSpeedRadPerSec+i*Math.PI*2/maxCharges;
+      states.push({slot:i,ready,progress:q,x:p.x+Math.cos(angle)*v.radius*eased,y:p.y+Math.sin(angle)*v.radius*eased,
+        radius:ready?v.shardRadius:v.minShardRadius+(v.shardRadius-v.minShardRadius)*eased});
+    }
+    return states;
+  }
+  function drawAttackAmmo(p){
+    // Presentation reads charge state only. Orbit shards have no body, contact attack or firing mechanism.
+    for(const orb of ammoOrbitStates(p,timeMs)){
+      renderer.ellipse(orb.x,orb.y,orb.radius*1.8,orb.radius*1.8,[.26,.62,.73,.16],12);
+      renderer.ellipse(orb.x,orb.y,orb.radius,orb.radius,[colors.shadow[0],colors.shadow[1],colors.shadow[2],orb.ready?1:.55+.45*orb.progress],12);
+      renderer.ellipse(orb.x,orb.y,orb.radius*.38,orb.radius*.38,[1,1,1,orb.ready?1:.5+.5*orb.progress],8);
+    }
+  }
   function render(now){const elapsed=clamp(now-lastFrame,0,60);lastFrame=now;
     // Camera is presentation only. It never modifies Matter.js positions.
     const alpha=1-Math.pow(.5,Math.min(60,elapsed)/1000/C.camera.halfLife);
@@ -2627,33 +2617,7 @@ try {
           1.5+strength*2.6,[.38,1,.79,(.20+.62*strength)*(i===0?1:.60)]);
       }
     }
-    // Energy ring: charge ratio in physical-world space; readiness ring is
-    // separate and smaller. This is a gameplay-readable gauge, not HP.
-    if(hasTech('autoChain')){
-      const capacity=energyCapacity(),fraction=clamp(chainEnergy/capacity,0,1),ready=energyFull();
-      const segments=46,r=43;
-      for(let i=0;i<segments;i++){
-        const angle=-Math.PI/2+i*Math.PI*2/segments,next=angle+.74*Math.PI*2/segments;
-        const full=i/segments<fraction;
-        renderer.line(p.x+Math.cos(angle)*r,p.y+Math.sin(angle)*r,p.x+Math.cos(next)*r,p.y+Math.sin(next)*r,
-          ready?3.4:2.8,full?(ready?[1,.83,.48,.93]:[.36,1,.78,.82]):[.27,.51,.48,.23]);
-      }
-      const marks=Math.floor(capacity);
-      for(let i=0;i<marks;i++){
-        const angle=-Math.PI/2+(i+1)/capacity*Math.PI*2;
-        renderer.ellipse(p.x+Math.cos(angle)*r,p.y+Math.sin(angle)*r,2.4,2.4,[1,.85,.52,.72],8);
-      }
-    }
-    // Gold seed signals a reserved automatic follow-up, not a chance roll.
-    const autoSeeds=(autoChainReady||autoDashPlanned||dashAutomatic)?1:0;
-    for(let i=0;i<autoSeeds;i++){
-      const a=now*.004+i*Math.PI*2/Math.max(1,autoSeeds),r=34+Math.sin(now*.006+i)*3;
-      renderer.ellipse(p.x+Math.cos(a)*r,p.y+Math.sin(a)*r,9,9,[1,.78,.33,.18],12);
-      renderer.ellipse(p.x+Math.cos(a)*r,p.y+Math.sin(a)*r,4.5,4.5,[1,.9,.55,.95],12);
-    }
-    // Active augments are physical orbit motes, not words floating over combat.
-    if(C.augment.momentum.enabled){const a=now*.001*2;renderer.ellipse(p.x+Math.cos(a)*28,p.y+Math.sin(a)*28,3.2,3.2,[1,.84,.42,.76],10);}
-    if(C.augment.spore.enabled){const a=now*.001*1.4+Math.PI;renderer.ellipse(p.x+Math.cos(a)*31,p.y+Math.sin(a)*31,3.2,3.2,[.70,1,.55,.72],10);}
+    // Proc VFX carries augment feedback; the attack charge display is the small shadow orbit.
     renderer.ellipse(p.x+3,p.y+8,21,12,[0,0,0,.37],18);
     renderer.ellipse(p.x,p.y,C.visual.actors.playerSilhouetteRadius,C.visual.actors.playerSilhouetteRadius,
       [.016,.075,.071,C.visual.actors.playerSilhouetteOpacity],24);
@@ -2676,6 +2640,9 @@ try {
         }
       }
     }
+    drawAttackAmmo(p);
+    if(timeMs<missRecoveryPulseUntilMs){const a=(missRecoveryPulseUntilMs-timeMs)/C.visual.missRecovery.pulseMs;
+      drawArc(p.x,p.y,22,-Math.PI*.18,Math.PI*.36,9,2,[1,.77,.47,a*.75]);}
     // One compact 42px charge strip: actual ready charges + next-charge progress, always centered.
     const refill=evadeRefillProgress(),gap=2,width=(42-gap*(C.evade.maxCharges-1))/C.evade.maxCharges;
     for(let i=0;i<C.evade.maxCharges;i++){
@@ -2685,7 +2652,7 @@ try {
       if(full||part>0){const fill=width*(full?1:part);renderer.rect(x+fill/2,y,fill,4,[.44,.90,1,full?.94:.67]);}
     }
     // Converging readiness ring: no arrow, crosshair or target marker. Radius closes only as launch becomes ready.
-    if((mode==='DASH'&&!dashFlight)||mode==='RECOVER'){
+    if((mode==='DASH'&&(!dashFlight||missRecoveryActive))||mode==='RECOVER'){
       const q=rearmProgress(),r=29-5*q,segments=22;
       const ringColor=bufferedIntent?[.62,1,.80,.95]:[.98,.76,.43,.48+.45*q];
       for(let i=0;i<segments;i++){
@@ -2729,20 +2696,21 @@ try {
     }else directionEl.style.display='none';
     frames++;if(now-frameFpsStart>=500){frameFps=Math.round(frames*1000/(now-frameFpsStart));frameFpsStart=now;frames=0;}
     const pct=shadow?chargeOf():0;
-    $('playerhp').textContent=health<10?health.toFixed(1):Math.ceil(health);$('healthfill').style.width=(health/C.stats.maxHp*100)+'%';$('healthlabel').textContent=`HP ${health.toFixed(1)} / ${C.stats.maxHp} · 수동 발사 -${(C.player.shadowCostRate*100).toFixed(0)}%`;$('combo').textContent=combo>0?'×'+combo:'—';$('hits').textContent=hits;$('speed').textContent=Math.round(Math.hypot(vel.x,vel.y));$('kills').textContent=kills;
-    $('fps').textContent=frameFps+' FPS';$('state').textContent=mode==='DASH'&&dashFlight?'IN FLIGHT':mode==='DASH'||mode==='RECOVER'?`REARM ${Math.round(rearmProgress()*100)}%`:mode;$('auto').className=mode.toLowerCase();
+    $('playerhp').textContent=health<10?health.toFixed(1):Math.ceil(health);$('healthfill').style.width=(health/C.stats.maxHp*100)+'%';$('healthlabel').textContent=`HP ${health.toFixed(1)} / ${C.stats.maxHp}`;$('combo').textContent=combo>0?'×'+combo:'—';$('hits').textContent=hits;$('speed').textContent=Math.round(Math.hypot(vel.x,vel.y));$('kills').textContent=kills;
+    $('fps').textContent=frameFps+' FPS';$('state').textContent=mode==='DASH'&&dashFlight&&!missRecoveryActive?'IN FLIGHT':mode==='DASH'||mode==='RECOVER'?`REARM ${Math.round(rearmProgress()*100)}%`:mode;$('auto').className=mode.toLowerCase();$('auto').classList.toggle('miss-recovery',missRecoveryActive);$('auto').dataset.ammoEmpty=String(mode==='READY'&&attackAmmo.charges===0);
+    $('missHint').classList.toggle('show',phase==='PLAYING'&&timeMs<missRecoveryHintUntilMs);
     const closeShadow=!!shadow&&!shadowDashAvailable();
     const preview=mode==='READY'?selectedAim():null;
     const nearAim=!!preview&&Math.max(0,Math.hypot(preview.body.position.x-player.position.x,preview.body.position.y-player.position.y)-enemyDef(preview).radius-6)<C.shadow.minDashDistance;
     $('auto').dataset.near=String(closeShadow||nearAim);
-    $('auto').firstChild.textContent=closeShadow?'대기':(mode==='SHADOW'||mode==='GOLDEN'||mode==='COYOTE')?'DASH':mode==='READY'?'TAP':bufferedIntent?'예약됨':'WAIT';$('auto').lastChild.textContent=closeShadow?'↔':(mode==='GOLDEN'||mode==='COYOTE')?'✦':mode==='SHADOW'?'○':mode==='READY'?'↗':mode==='DEAD'?'':bufferedIntent?'✓':''; $('auto').setAttribute('aria-label',mode==='DASH'&&dashFlight?'돌진 비행 중, 충돌을 기다리는 중입니다. 다음 발사를 예약할 수 있습니다.':mode==='DASH'||mode==='RECOVER'?'발사 준비 중, 미리 탭하면 예약됩니다':mode==='READY'?'잔상 발사, 현재 체력의 10퍼센트 소모':closeShadow?'잔상과 거리가 부족해 돌진 대기 중, 적은 잔상 접촉으로 밀려납니다':'돌진은 추가 체력 소모 없음');
+    $('auto').firstChild.textContent=closeShadow?'대기':(mode==='SHADOW'||mode==='GOLDEN'||mode==='COYOTE')?'DASH':missRecoveryActive?'회복':mode==='READY'?(attackAmmo.charges?'TAP':'장전'):bufferedIntent?'예약됨':'WAIT';$('auto').lastChild.textContent=closeShadow?'↔':(mode==='GOLDEN'||mode==='COYOTE')?'✦':mode==='SHADOW'?'○':mode==='READY'?'↗':mode==='DEAD'?'':bufferedIntent?'✓':''; $('auto').setAttribute('aria-label',mode==='DASH'&&dashFlight&&!missRecoveryActive?'돌진 비행 중, 충돌을 기다리는 중입니다. 다음 발사를 예약할 수 있습니다.':missRecoveryActive?'빗나간 돌진의 자세 회복 중, 다음 발사는 예약할 수 있고 구르기는 가능합니다':mode==='DASH'||mode==='RECOVER'?'발사 준비 중, 미리 탭하면 예약됩니다':mode==='READY'?`공격 잔상 ${attackAmmo.charges}/${C.shadow.ammo.maxCharges}발, ${C.shadow.ammo.rechargeMs}밀리초마다 1발 장전`:closeShadow?'잔상과 거리가 부족해 돌진 대기 중, 적은 잔상 접촉으로 밀려납니다':'현재 잔상으로 돌진, 추가 탄 소모 없음');
     $('chargetext').textContent=shadow?`${Math.round(pct*100)}%`:'';
     $('charge').className=mode==='GOLDEN'?'golden':mode==='COYOTE'?'coyote':mode==='SHADOW'&&pct>=C.timing.bulletStart?'golden':'';$('chargefill').style.width=((shadow?pct:mode==='DASH'&&dashFlight?dashFlightProgress():0)*100)+'%';$('toast').textContent=timeMs<toastUntil?toastText:'';$('toast').style.color=toastColor;$('toast').classList.toggle('visible',timeMs<toastUntil);
     // Damage numbers use one event-owned DOM node, projected from the world each frame.
     const screenPoint={};for(const f of textFloats){renderer.worldToScreenInto(f.x,f.y-30-f.age*.065,screenPoint);
       f.el.style.transform=`translate3d(${screenPoint.x}px,${screenPoint.y}px,0) translate(-50%,-50%)`;f.el.style.opacity=String(Math.max(0,1-f.age/700));}
-    canvas.dataset.chainActive=String(chainActive);canvas.dataset.chainStarts=String(chainStarts);canvas.dataset.autoRechargePct=String(Math.round(autoChargeRate()*100));canvas.dataset.energyFull=String(energyFull());
-    canvas.dataset.energy=String(chainEnergy.toFixed(3));canvas.dataset.energyCapacity=String(energyCapacity().toFixed(2));canvas.dataset.level=String(progressionLevel(tech.kills));canvas.dataset.totalKills=String(tech.kills);canvas.dataset.techPoints=String(availableTech());canvas.dataset.autoChainReady=String(autoChainReady);canvas.dataset.chainWins=String(autoChainWins);canvas.dataset.chainRolls=String(autoChainRolls);canvas.dataset.autoDashes=String(automaticDashes);canvas.dataset.aimTargetId=String((mode==='READY'||mode==='RECOVER'||mode==='DASH')?(previewTargetId??''):'');canvas.dataset.augments=[C.chain.enabled,C.augment.spore.enabled,C.augment.momentum.enabled,C.chain.followKill].map(v=>v?'1':'0').join('');canvas.dataset.hp=String(health);canvas.dataset.remainingGap=String(Math.round(remainingShadowGap()));canvas.dataset.shadowSeparation=String(Math.round(shadowSeparation()));canvas.dataset.shadowDashReady=String(shadowDashAvailable());canvas.dataset.targetId=String(shadow?.targetId??'');canvas.dataset.damageTaken=String(Math.round(damageTaken));canvas.dataset.launchCost=String(launchCostTotal);canvas.dataset.launchCount=String(launchCount);canvas.dataset.healingDone=String(Math.round(healingDone));canvas.dataset.charge=String(Math.round(pct*100));canvas.dataset.dashAccel=String(dashMotion?.acceleration??0);canvas.dataset.state=mode;canvas.dataset.rearm=String(Math.round(rearmProgress()*100));canvas.dataset.buffered=String(!!bufferedIntent);canvas.dataset.stage=String(stage.index);canvas.dataset.stagePhase=stage.phase;canvas.dataset.stageKills=String(stage.waveKills);
+    canvas.dataset.chainActive=String(chainActive);canvas.dataset.chainStarts=String(chainStarts);
+    canvas.dataset.level=String(progressionLevel(tech.kills));canvas.dataset.totalKills=String(tech.kills);canvas.dataset.techPoints=String(availableTech());canvas.dataset.autoChainReady=String(autoChainReady);canvas.dataset.chainWins=String(autoChainWins);canvas.dataset.chainRolls=String(autoChainRolls);canvas.dataset.autoDashes=String(automaticDashes);canvas.dataset.aimTargetId=String((mode==='READY'||mode==='RECOVER'||mode==='DASH')?(previewTargetId??''):'');canvas.dataset.augments=[C.chain.enabled,C.augment.spore.enabled,C.augment.momentum.enabled,C.chain.followKill].map(v=>v?'1':'0').join('');canvas.dataset.hp=String(health);canvas.dataset.remainingGap=String(Math.round(remainingShadowGap()));canvas.dataset.shadowSeparation=String(Math.round(shadowSeparation()));canvas.dataset.shadowDashReady=String(shadowDashAvailable());canvas.dataset.targetId=String(shadow?.targetId??'');canvas.dataset.damageTaken=String(Math.round(damageTaken));canvas.dataset.ammo=String(attackAmmo.charges);canvas.dataset.ammoCapacity=String(C.shadow.ammo.maxCharges);canvas.dataset.ammoRefill=String(attackAmmo.progress);canvas.dataset.launchCount=String(launchCount);canvas.dataset.healingDone=String(Math.round(healingDone));canvas.dataset.charge=String(Math.round(pct*100));canvas.dataset.dashAccel=String(dashMotion?.acceleration??0);canvas.dataset.state=mode;canvas.dataset.rearm=String(Math.round(rearmProgress()*100));canvas.dataset.buffered=String(!!bufferedIntent);canvas.dataset.stage=String(stage.index);canvas.dataset.stagePhase=stage.phase;canvas.dataset.stageKills=String(stage.waveKills);
     canvas.dataset.evadeCharges=String(evadeCharges);canvas.dataset.evadeActions=String(evadeActions);canvas.dataset.bossPattern=stage.boss?.pattern??'';
     canvas.dataset.tick=String(tick);canvas.dataset.hits=String(hits);canvas.dataset.kills=String(kills);
   }
@@ -2755,7 +2723,7 @@ try {
   $('audioMute').onclick=()=>{sfx.setMuted(!sfx.muted);refreshAudioUi();};$('audioSettingsMute').onchange=e=>{sfx.setMuted(e.target.checked);refreshAudioUi();};
   for(const id of ['audioVolume','audioSettingsVolume'])$(id).oninput=e=>{sfx.setVolume(Number(e.target.value)/100);refreshAudioUi();};refreshAudioUi();
   document.addEventListener('click',event=>{const button=event.target.closest('button');if(button&&!button.closest('#game')&&button.id!=='auto')void playUiSound();});
-  const settings=[['player.shadowCostRate','수동 잔상 발사 비용 (현재 HP 비율)',0,.25,.01],['shadow.initialSpeed','잔상 초기 속도',20,420,10],['shadow.acceleration','잔상 가속도',400,5300,100],['shadow.range','잔상 사거리',250,980,10],['shadow.minDashDistance','잔상↔플레이어 최소 돌진 거리',10,80,2],['shadow.contactPushSpeed','잔상 넉백 초기 속도(px/s)',0,800,20],['shadow.contactPushControlMs','잔상 넉백 추적 억제(ms)',0,1000,25],['dash.minSpeed','최소 돌진 Δv',80,500,10],['dash.maxSpeed','최대 돌진 Δv',500,1250,10],['dash.acceleration','돌진 추가 가속도 (px/s²)',150,2600,50],['damage.referenceSpeed','공격력 100% 기준 충돌 속도',500,2600,50],['dash.rearmMinMs','재발사 최소 대기(ms)',70,350,5],['dash.rearmMaxMs','재발사 최대 대기(ms)',200,750,10],['dash.rearmSpeed','조기 재발사 속도',250,1050,25],['dash.flightMaxMs','돌진 최대 비행(ms)',800,3500,50],['dash.inputBufferMs','입력 예약 시간(ms)',80,800,10],['physics.restitution','충돌 반발 계수',0.1,1,0.05],['physics.maxSpeed','물리 최대 속도',900,3000,100],['physics.frictionAir','공기 저항',0.001,0.035,0.001],['enemy.chaseRadius','적 공통 감지 상한',200,1100,25],['enemy.knockbackMultiplier','적 피격 반동 배율',0,2,.05],['enemy.projectileDamageMultiplier','원거리 포자탄 피해 배율',0,2,.05],['enemy.types.scout.speed','추적형 속도',50,250,10],['enemy.types.brute.sunbeam.dps','해바라기 광선 초당 피해',5,50,1],['enemy.types.spitter.projectileSpeed','포자탄 속도',180,850,20],['timing.bulletStart','불릿타임 시작 차지',.60,.95,.01],['timing.bulletScale','불릿타임 배속',.15,.9,.05],['timing.coyoteMs','코요테 타임(ms)',50,240,5],['timing.shadowHitstopMs','접촉 히트스탑(ms)',10,130,5],['timing.hitstopMs','공격 히트스탑(ms)',10,130,5],['chain.minTriggerCharge','자동 연격 시작 최소 잔상 타이밍',.10,1,.05],['energy.baseChargePerDiameter','몸체 직경당 기본 에너지 충전 (내부 단위)',.01,.30,.01],['energy.baseCapacityCharges','기본 최대 에너지 (내부 단위)',1,5,.25],['energy.baseAutoCostCharges','자동 돌진당 에너지 소비 (내부 단위)',.4,2,.05],['energy.ricochetRangeRate','도탄 탐색 반경 / 잔상 사거리',.2,1,.05],['element.fire.durationMs','점화 지속시간(ms)',500,6000,100],['element.fire.damageRate','화염 기본피해 비율',.05,.8,.05],['element.lightning.markDurationMs','전도 지속시간(ms)',500,5000,100],['fx.intensity','목표 VFX 강도',.2,2,.1],['fx.reticleScale','목표 조준선 크기',.65,1.6,.05],['fx.pulseSpeed','에너지 펄스 속도',.2,2,.1]];
+  const settings=[['shadow.initialSpeed','잔상 초기 속도',20,420,10],['shadow.acceleration','잔상 가속도',400,5300,100],['shadow.range','잔상 사거리',250,980,10],['shadow.minDashDistance','잔상↔플레이어 최소 돌진 거리',10,80,2],['shadow.contactPushSpeed','잔상 넉백 초기 속도(px/s)',0,800,20],['shadow.contactPushControlMs','잔상 넉백 추적 억제(ms)',0,1000,25],['dash.minSpeed','최소 돌진 Δv',80,500,10],['dash.maxSpeed','최대 돌진 Δv',500,1250,10],['dash.acceleration','돌진 추가 가속도 (px/s²)',150,2600,50],['damage.referenceSpeed','공격력 100% 기준 충돌 속도',500,2600,50],['dash.rearmMinMs','재발사 최소 대기(ms)',70,350,5],['dash.rearmMaxMs','재발사 최대 대기(ms)',200,750,10],['dash.rearmSpeed','조기 재발사 속도',250,1050,25],['dash.flightMaxMs','돌진 최대 비행(ms)',800,3500,50],['dash.inputBufferMs','입력 예약 시간(ms)',80,800,10],['physics.restitution','충돌 반발 계수',0.1,1,0.05],['physics.maxSpeed','물리 최대 속도',900,3000,100],['physics.frictionAir','공기 저항',0.001,0.035,0.001],['enemy.chaseRadius','적 공통 감지 상한',200,1100,25],['enemy.knockbackMultiplier','적 피격 반동 배율',0,2,.05],['enemy.projectileDamageMultiplier','원거리 포자탄 피해 배율',0,2,.05],['enemy.types.scout.speed','추적형 속도',50,250,10],['enemy.types.brute.sunbeam.dps','해바라기 광선 초당 피해',5,50,1],['enemy.types.spitter.projectileSpeed','포자탄 속도',180,850,20],['timing.bulletStart','불릿타임 시작 차지',.60,.95,.01],['timing.bulletScale','불릿타임 배속',.15,.9,.05],['timing.coyoteMs','코요테 타임(ms)',50,240,5],['timing.shadowHitstopMs','접촉 히트스탑(ms)',10,130,5],['timing.hitstopMs','공격 히트스탑(ms)',10,130,5],['chain.minTriggerCharge','자동 연격 시작 최소 잔상 타이밍',.10,1,.05],['chain.ricochetRangeRate','도탄 탐색 반경 / 잔상 사거리',.2,1,.05],['element.fire.durationMs','점화 지속시간(ms)',500,6000,100],['element.fire.damageRate','화염 기본피해 비율',.05,.8,.05],['element.lightning.markDurationMs','전도 지속시간(ms)',500,5000,100],['fx.intensity','목표 VFX 강도',.2,2,.1],['fx.reticleScale','목표 조준선 크기',.65,1.6,.05],['fx.pulseSpeed','잔상 펄스 속도',.2,2,.1]];
   for(const [key,label,min,max,stepValue] of settings){const div=document.createElement('div');div.className='setting-row';const labelEl=document.createElement('label');labelEl.textContent=label;const inp=document.createElement('input');inp.type='range';inp.min=min;inp.max=max;inp.step=stepValue;inp.value=key.split('.').reduce((obj,part)=>obj[part],C);inp.id='config_'+key.replaceAll('.','_');const out=document.createElement('output');out.textContent=inp.value;inp.addEventListener('input',()=>{const parts=key.split('.');let target=C;for(let i=0;i<parts.length-1;i++)target=target[parts[i]];target[parts.at(-1)]=Number(inp.value);out.textContent=inp.value;});div.append(labelEl,inp,out);$('settingRows').append(div);}
   // Only the eight stats that affect this game remain; movement and automation belong to their own owners.
   const coreboundStatSettings=[
@@ -2777,12 +2745,10 @@ try {
     button.disabled=true;button.tabIndex=-1;$('augments').append(button);}
   // Explicit lanes only describe visual column order; rank is calculated
   // from the actual prerequisite graph so equal depth shares the same y.
-  const TECH_LANES=Object.freeze({echo:2.5,autoChain:2.5,ricochet:1,charge1:2,charge2:2,
-    capacity1:3,capacity2:3,costEff:4,collisionRestore:5,restore2:5,relay:1,autoRecharge1:6,autoRecharge2:6,
-    momentum:7,quickRearm:7,rebound:7,propulsion:7,
-    spore:8,shockPush:8,sporeSplit:8,finisher:8,conduct:9,relayArc:9,ignite:10,spreadFlame:10,
-    evadeCapacity1:11,evadeCapacity2:11,evadeHitRecharge:11,evadeRecharge1:12,evadeRecharge2:12,evadeWindow:12,
-    evadeDistance1:13,evadeDistance2:13});
+  const TECH_LANES=Object.freeze({shadowCapacity1:0,shadowCapacity2:0,shadowRecharge1:1,shadowRecharge2:1,
+    echo:2,autoChain:2,ricochet:2,relay:2,momentum:3,rebound:3,propulsion:3,
+    spore:4,shockPush:4,sporeSplit:4,finisher:4,conduct:5,relayArc:5,ignite:6,spreadFlame:6,
+    evadeCapacity1:7,evadeCapacity2:7,evadeHitRecharge:7,evadeRecharge1:8,evadeRecharge2:8,evadeWindow:8,evadeDistance1:9,evadeDistance2:9});
   const techElements=new Map(),techGraphPositions=new Map(),techLinkElements=[];
   const graphNodeById=new Map(TECH_NODES.map(n=>[n.id,n]));
   const rankCache=new Map();
@@ -2793,7 +2759,7 @@ try {
   const graphPosition=node=>({x:GRAPH.startX+TECH_LANES[node.id]*GRAPH.stepX,
     y:GRAPH.topY+(techRank(node.id)-1+(['evadeHitRecharge','evadeWindow'].includes(node.id)?1:0))*GRAPH.stepY});
   const graphLink=(sourceId,node)=>{
-    const target=techGraphPositions.get(node.id),source=sourceId==='__root__'?{x:468,y:19,w:240,h:68}:techGraphPositions.get(sourceId);
+    const target=techGraphPositions.get(node.id),source=sourceId==='__root__'?{x:376,y:19,w:240,h:68}:techGraphPositions.get(sourceId);
     if(!source||!target)return;
     const fromX=source.x+(source.w??GRAPH.nodeW)/2,fromY=source.y+(source.h??GRAPH.nodeH),toX=target.x+GRAPH.nodeW/2,toY=target.y;
     const mid=fromY+(toY-fromY)*.47;
@@ -2929,7 +2895,7 @@ try {
   // authoritative config; neither overlay is permitted to mutate gameplay.
   const wikiSections=Array.from(document.querySelectorAll('#wikiPanel .wiki-section'));
   const wikiNav=$('wikiNav'),wikiTocItems=$('wikiTocItems');
-  const wikiBranchName={chain:'연쇄·에너지',motion:'운동·반동',evade:'이동·회피',impact:'충격·파급',lightning:'번개',fire:'화염',synergy:'조합'};
+  const wikiBranchName={shadow:'잔상 탄·장전',chain:'연쇄',motion:'운동·반동',evade:'이동·회피',impact:'충격·파급',lightning:'번개',fire:'화염',synergy:'조합'};
   const wikiName=(id)=>TECH_NODES.find(n=>n.id===id)?.name||id;
   function makeWikiCell(textContent,tag='td'){
     const cell=document.createElement(tag);cell.textContent=String(textContent);return cell;
@@ -3057,7 +3023,7 @@ try {
   window.addEventListener('resize',resize);
   document.addEventListener('visibilitychange',()=>{if(document.hidden){pending.length=0;bufferedIntent=null;bufferedUntilMs=0;}else{lastFrame=performance.now();}});
   loop.start();$('load').classList.add('hidden');canvas.focus({preventScroll:true});
-  window.__bloomImpulse={VERSION,BUILD_ID,config:C,getAudio:()=>sfx.snapshot(),audioMeter:()=>sfx.meter(),getCompanions:()=>companions.snapshot(),getState:()=>({unitStates:[...unitsById.values()].map(u=>({unitId:u.unitId,inventoryId:u.inventoryId,speciesId:u.speciesId,faction:u.faction,state:u.state,hp:u.hp,grade:u.grade,isSummon:!!u.isSummon,summonerId:u.summonerId,bossPatterns:u.bossPattern?.log,signature:u.config.signature,radius:u.config.radius,bodyRadius:u.body.circleRadius,height:u.spatial.height,scale:u.presentation.scale??1,outline:u.presentation.outline??null,attackCount:u.attackCount,melee:u.melee?{phase:u.melee.phase,swings:u.melee.swings,hits:u.melee.hits}:null,sunbeam:u.sunbeam?{phase:u.sunbeam.phase,focusMs:u.sunbeam.focusMs,stage:u.sunbeam.stage,pulses:u.sunbeam.pulses,targetId:u.sunbeam.target?.unitId}:null,heal:u.heal?{phase:u.heal.phase,casts:u.heal.casts,healed:u.heal.healed,cost:u.heal.cost,targetId:u.heal.target?.unitId}:null,regenerated:u.regeneration?.healed??0})),volumeEvents:[...volumeEvents],arcShots:projectiles.filter(s=>s.arc).map(s=>({x:s.body.position.x,y:s.body.position.y,z:s.body.plugin.volume.feetZ,aim:{...s.arc.aim},ageMs:s.arc.ageMs,height:s.arc.height,ownerId:s.ownerId})),companions:petRoster.snapshot(),phase,mode,health,maxHp:C.stats.maxHp,aimPreviewId:previewTargetId,augment:{spore:C.augment.spore.enabled,momentum:C.augment.momentum.enabled,relay:C.chain.followKill,chain:C.chain.enabled},tech:{points:availableTech(),level:progressionLevel(tech.kills),totalKills:tech.kills,unlocked:[...tech.unlocked],statLevels:{...tech.statLevels}},autoChainReady,autoDashPlanned,chainActive,chainStarts,chainEnds,chainTriggerCharge:C.chain.minTriggerCharge,energy:{current:chainEnergy,capacity:energyCapacity(),fraction:chainEnergy/energyCapacity(),full:energyFull(),autoRechargeRate:autoChargeRate(),cost:energyCost(),spent:energySpent,gained:energyGained,restored:energyRestored},chainTargetId,autoChainWins,autoChainRolls,automaticDashes,manualPerfectHits,dashAutomatic,dashPerfect,launchCostTotal,launchCount,evade:{charges:evadeCharges,max:C.evade.maxCharges,refillAtMs:evadeRefillAtMs,progress:evadeRefillProgress(),rechargeMs:C.evade.rechargeMs,impulseSpeed:C.evade.impulseSpeed,durationMs:C.evade.durationMs,invulnerableMs:C.evade.invulnerableMs,projectileInvulnerable:timeMs-evadeStartedAtMs<C.evade.invulnerableMs,active:!!evadeMotion,startedAtMs:evadeStartedAtMs,count:evadeActions,hitRechargeEvents:evadeHitRechargeEvents,hitRechargeProgress:evadeHitRechargeProgress,lastHitRecharge:evadeLastHitRecharge?{...evadeLastHitRecharge}:null},stage:{index:stage.index,phase:stage.phase,waveKills:stage.waveKills,killTarget:stage.killTarget,bossHp:stage.boss?.hp??null,bossState:stage.boss?.state??null,bossPattern:stage.boss?.pattern??null,patternLog:[...stage.patternLog],obstacleCount:obstacles.length,broken:bossObstaclesBroken,arenaSides:arenaVertices.length,theme:stage.themeId,themeName:THEME_POOL[stage.themeId]?.name,layout:stage.layoutId,layoutName:stage.layoutName,radius:stage.radius,playableArea:Math.round(stage.playableArea),targetPopulation:stage.targetPopulation,mapTier:stage.mapTier,mapStart:stage.mapStart,mapSeed:stage.mapSeed,bossStage:isBossStage(stage.index),referenceArea:stageBasePlayableArea,bossName:stage.bossName||null,bossVariant:stage.bossVariant||null,bossSummons:stage.boss?liveSummons(stage.boss.id).length:0,seed:stage.seed,generation:{...generationStats}},stageHistory:[...stageHistory],bossPool:Object.keys(BOSS_POOL),themePool:Object.keys(THEME_POOL),mapOperators:Object.keys(MAP_OPERATORS),dashMotion:dashMotion?{...dashMotion}:null,shadow:shadow?{progress:chargeOf(),charge:chargeOf(),dashReady:shadowDashAvailable(),separation:shadowSeparation(),remainingGap:remainingShadowGap(),initialGap:shadow.initialGap,travel:shadow.travel,limit:shadow.limit,targetId:shadow.targetId,arrived:shadow.arrived,speed:shadow.speed}:null,hitstopLeftMs,dashCharge,dashFlight:dashFlight?{...dashFlight,remainingMs:Math.round(dashFlight.untilMs-timeMs)}:null,rearmProgress:rearmProgress(),buffered:!!bufferedIntent,damageTaken,healingDone,position:{...player.position},speed:speedOf(player),hits,kills,combo,comboFxActive:comboFx.classList.contains('active'),enemyMasses:Object.fromEntries(Object.entries(C.enemy.types).map(([type,def])=>[type,def.mass])),tick,timeMs,attackDashSerial,enemies:enemies.filter(e=>e.alive).length,enemyShots,enemyAttacks,enemyPushes,projectiles:projectiles.length,enemyStates:enemies.filter(e=>e.alive).map(e=>({id:e.id,bodyId:e.body.id,type:e.type,state:e.state,z:e.body.plugin.volume.feetZ,height:e.body.plugin.volume.height,ability:e.leap?{phase:e.leap.phase,count:e.leap.count,landings:e.leap.landings,aim:e.leap.aim}:e.selfDestruct?{phase:e.selfDestruct.phase,leftMs:e.selfDestruct.leftMs}:e.spike?{phase:e.spike.phase,pulses:e.spike.pulses,counters:e.spike.counters}:e.arcFire?{phase:e.arcFire.phase,volleys:e.arcFire.volleys,fired:e.arcFire.fired}:null,hp:e.hp,burning:!!e.burn,conducting:e.conductUntilMs>timeMs,radius:enemyDef(e).radius,x:e.body.position.x,y:e.body.position.y,preX:e.preX,preY:e.preY,shadowKnockbackLeftMs:Math.max(0,(e.shadowKnockbackUntilMs||0)-timeMs),attackCount:e.attackCount,playerGap:Math.hypot(e.body.position.x-player.position.x,e.body.position.y-player.position.y)})),rendererState:renderer.state,elemental:{...elementalEvents,fireEmbers:fireEmbers.length,fireTransfers:fireTransfers.length,activeBurning:enemies.filter(e=>e.alive&&e.burn).length,activeConducting:enemies.filter(e=>e.alive&&e.conductUntilMs>timeMs).length},stats:{...C.stats},criticalHits,lastHit:lastHit?{...lastHit,tags:[...lastHit.tags]}:null,fx:{stage:shadow?fxStage(chargeOf()):'none',target:shadow?(getTargetAnchor(fxAnchor)?{x:fxAnchor.x,y:fxAnchor.y,isEnemy:fxAnchor.isEnemy}:null):null,enabled:C.fx.targetCompression}}),auto:()=>{if(phase==='PLAYING')pending.push({kind:'auto'});},point:(x,y)=>{if(phase==='PLAYING')pending.push({kind:'point',x,y});},startRun,enterLobby,reset,dispose:()=>{releaseVolumeFilter?.();sfx.dispose();running=false;loop.stop();input.dispose();document.removeEventListener('focusin',onGameplayFocus);renderer.dispose();window.removeEventListener('resize',resize);}};
+  window.__bloomImpulse={VERSION,BUILD_ID,config:C,getAudio:()=>sfx.snapshot(),audioMeter:()=>sfx.meter(),getCompanions:()=>companions.snapshot(),getState:()=>({unitStates:[...unitsById.values()].map(u=>({unitId:u.unitId,inventoryId:u.inventoryId,speciesId:u.speciesId,faction:u.faction,state:u.state,hp:u.hp,grade:u.grade,isSummon:!!u.isSummon,summonerId:u.summonerId,bossPatterns:u.bossPattern?.log,signature:u.config.signature,radius:u.config.radius,bodyRadius:u.body.circleRadius,height:u.spatial.height,scale:u.presentation.scale??1,outline:u.presentation.outline??null,attackCount:u.attackCount,melee:u.melee?{phase:u.melee.phase,swings:u.melee.swings,hits:u.melee.hits}:null,sunbeam:u.sunbeam?{phase:u.sunbeam.phase,focusMs:u.sunbeam.focusMs,stage:u.sunbeam.stage,pulses:u.sunbeam.pulses,targetId:u.sunbeam.target?.unitId}:null,heal:u.heal?{phase:u.heal.phase,casts:u.heal.casts,healed:u.heal.healed,cost:u.heal.cost,targetId:u.heal.target?.unitId}:null,regenerated:u.regeneration?.healed??0})),volumeEvents:[...volumeEvents],arcShots:projectiles.filter(s=>s.arc).map(s=>({x:s.body.position.x,y:s.body.position.y,z:s.body.plugin.volume.feetZ,aim:{...s.arc.aim},ageMs:s.arc.ageMs,height:s.arc.height,ownerId:s.ownerId})),companions:petRoster.snapshot(),phase,mode,health,maxHp:C.stats.maxHp,aimPreviewId:previewTargetId,augment:{spore:C.augment.spore.enabled,momentum:C.augment.momentum.enabled,relay:C.chain.followKill,chain:C.chain.enabled},tech:{points:availableTech(),level:progressionLevel(tech.kills),totalKills:tech.kills,unlocked:[...tech.unlocked],statLevels:{...tech.statLevels}},autoChainReady,autoDashPlanned,chainActive,chainStarts,chainEnds,chainTriggerCharge:C.chain.minTriggerCharge,chainTargetId,autoChainWins,autoChainRolls,automaticDashes,manualPerfectHits,dashAutomatic,dashPerfect,launchCount,manualLaunchCount,echoLaunchCount,chainLaunchCount,attackAmmo:attackAmmo.snapshot(),missRecovery:{active:missRecoveryActive,events:missRecoveryEvents,firstHintShown:missHintShown},evade:{charges:evadeCharges,max:C.evade.maxCharges,refillAtMs:evadeRefillAtMs,progress:evadeRefillProgress(),rechargeMs:C.evade.rechargeMs,impulseSpeed:C.evade.impulseSpeed,durationMs:C.evade.durationMs,invulnerableMs:C.evade.invulnerableMs,projectileInvulnerable:timeMs-evadeStartedAtMs<C.evade.invulnerableMs,active:!!evadeMotion,startedAtMs:evadeStartedAtMs,count:evadeActions,hitRechargeEvents:evadeHitRechargeEvents,hitRechargeProgress:evadeHitRechargeProgress,lastHitRecharge:evadeLastHitRecharge?{...evadeLastHitRecharge}:null},stage:{index:stage.index,phase:stage.phase,waveKills:stage.waveKills,killTarget:stage.killTarget,bossHp:stage.boss?.hp??null,bossState:stage.boss?.state??null,bossPattern:stage.boss?.pattern??null,patternLog:[...stage.patternLog],obstacleCount:obstacles.length,broken:bossObstaclesBroken,arenaSides:arenaVertices.length,theme:stage.themeId,themeName:THEME_POOL[stage.themeId]?.name,layout:stage.layoutId,layoutName:stage.layoutName,radius:stage.radius,playableArea:Math.round(stage.playableArea),targetPopulation:stage.targetPopulation,mapTier:stage.mapTier,mapStart:stage.mapStart,mapSeed:stage.mapSeed,bossStage:isBossStage(stage.index),referenceArea:stageBasePlayableArea,bossName:stage.bossName||null,bossVariant:stage.bossVariant||null,bossSummons:stage.boss?liveSummons(stage.boss.id).length:0,seed:stage.seed,generation:{...generationStats}},stageHistory:[...stageHistory],bossPool:Object.keys(BOSS_POOL),themePool:Object.keys(THEME_POOL),mapOperators:Object.keys(MAP_OPERATORS),dashMotion:dashMotion?{...dashMotion}:null,shadow:shadow?{source:shadow.source,progress:chargeOf(),charge:chargeOf(),dashReady:shadowDashAvailable(),separation:shadowSeparation(),remainingGap:remainingShadowGap(),initialGap:shadow.initialGap,travel:shadow.travel,limit:shadow.limit,targetId:shadow.targetId,arrived:shadow.arrived,speed:shadow.speed}:null,hitstopLeftMs,dashCharge,dashFlight:dashFlight?{...dashFlight,remainingMs:Math.round(dashFlight.untilMs-timeMs)}:null,rearmProgress:rearmProgress(),buffered:!!bufferedIntent,damageTaken,healingDone,position:{...player.position},speed:speedOf(player),hits,kills,combo,comboFxActive:comboFx.classList.contains('active'),enemyMasses:Object.fromEntries(Object.entries(C.enemy.types).map(([type,def])=>[type,def.mass])),tick,timeMs,attackDashSerial,enemies:enemies.filter(e=>e.alive).length,enemyShots,enemyAttacks,enemyPushes,projectiles:projectiles.length,enemyStates:enemies.filter(e=>e.alive).map(e=>({id:e.id,bodyId:e.body.id,type:e.type,state:e.state,z:e.body.plugin.volume.feetZ,height:e.body.plugin.volume.height,ability:e.leap?{phase:e.leap.phase,count:e.leap.count,landings:e.leap.landings,aim:e.leap.aim}:e.selfDestruct?{phase:e.selfDestruct.phase,leftMs:e.selfDestruct.leftMs}:e.spike?{phase:e.spike.phase,pulses:e.spike.pulses,counters:e.spike.counters}:e.arcFire?{phase:e.arcFire.phase,volleys:e.arcFire.volleys,fired:e.arcFire.fired}:null,hp:e.hp,burning:!!e.burn,conducting:e.conductUntilMs>timeMs,radius:enemyDef(e).radius,x:e.body.position.x,y:e.body.position.y,preX:e.preX,preY:e.preY,shadowKnockbackLeftMs:Math.max(0,(e.shadowKnockbackUntilMs||0)-timeMs),attackCount:e.attackCount,playerGap:Math.hypot(e.body.position.x-player.position.x,e.body.position.y-player.position.y)})),rendererState:renderer.state,elemental:{...elementalEvents,fireEmbers:fireEmbers.length,fireTransfers:fireTransfers.length,activeBurning:enemies.filter(e=>e.alive&&e.burn).length,activeConducting:enemies.filter(e=>e.alive&&e.conductUntilMs>timeMs).length},stats:{...C.stats},criticalHits,lastHit:lastHit?{...lastHit,tags:[...lastHit.tags]}:null,fx:{stage:shadow?fxStage(chargeOf()):'none',target:shadow?(getTargetAnchor(fxAnchor)?{x:fxAnchor.x,y:fxAnchor.y,isEnemy:fxAnchor.isEnemy}:null):null,enabled:C.fx.targetCompression}}),auto:()=>{if(phase==='PLAYING')pending.push({kind:'auto'});},point:(x,y)=>{if(phase==='PLAYING')pending.push({kind:'point',x,y});},startRun,enterLobby,reset,dispose:()=>{releaseVolumeFilter?.();sfx.dispose();running=false;loop.stop();input.dispose();document.removeEventListener('focusin',onGameplayFocus);renderer.dispose();window.removeEventListener('resize',resize);}};
 } catch(e) { ERROR(e); }
 
 </script>

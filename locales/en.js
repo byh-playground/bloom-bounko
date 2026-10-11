@@ -258,7 +258,7 @@ export default {
   "dom.techTitle.html.1": "Evolution tech tree",
   "dom.techPanel.html.1": "Collect growth to level up; each level grants one tech or stat investment.",
   "dom.treeCenter.html.1": "◎ Start point",
-  "dom.techScroll.html.1": "↔ Scroll sideways to explore branches. Tap to unlock a tech; follow its links to the next.",
+  "dom.techScroll.html.1": "↔ Scroll sideways to explore branches. Tap a card to inspect requirements and prerequisite paths; tap a requirement chip to view its tech. Use the separate Buy button to unlock.",
   "dom.techScroll.html.3": "✦ Base stats <small>Invest in any desired stat each level</small>",
   "dom.techRefund.html.1": "Free reset",
   "dom.settings.html.1": "Controls · Physics experiments",

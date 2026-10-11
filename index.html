@@ -609,7 +609,7 @@ next stage -&gt; centered stage number; 4/7/10... expands map/theme segment</cod
           <div id="techGraphNodes"></div>
         </div>
       </div>
-      <p class="tree-pan-hint" data-i18n-html="dom.techScroll.html.1">↔ 좌우로 이동해 분기를 탐색해. 기술을 누르면 해금하고, 선을 따라 다음 기술을 찾아갈 수 있어.</p>
+      <p class="tree-pan-hint" data-i18n-html="dom.techScroll.html.1">↔ 좌우로 이동해 분기를 탐색해. 카드를 누르면 조건과 선행 경로를 확인하고, 조건 칩을 누르면 선행 기술로 이동해. 해금은 별도 구매 버튼으로 진행해.</p>
       <section class="tech-lower"><h3 class="synergy-heading" data-i18n-html="dom.techScroll.html.3">✦ 기본 능력치 <small>레벨마다 원하는 능력치에 투자</small></h3><div id="techStats" class="tech-combos"></div></section>
     </div>
     <footer class="tech-footer"><span><span data-i18n="dom.techPanel.text.3">카드: 조건 확인 · 조건 칩: 선행 기술로 이동 · 구매 버튼: 포인트 사용</span></span><button id="techRefund" data-i18n-html="dom.techRefund.html.1">무료 초기화</button></footer>
@@ -631,7 +631,7 @@ import {t as tr,language,setLanguage,onLanguageChanged,translateDocument,localiz
 
 
 const KIT = 'https://cdn.jsdelivr.net/gh/byh-playground/bloom-gamekit@d1e2c385033ad04a7a004cfbe9558948ef07a6d1/';
-const VERSION = '0.15.0', BUILD_ID = '20261011T103038Z-tech-combinations';
+const VERSION = '0.14.3', BUILD_ID = '20261011T103038Z-tech-combinations';
 const $ = id => document.getElementById(id);
 document.querySelectorAll('[data-game-version]').forEach(el=>el.textContent='v'+VERSION);
 const loadtext = $('loadtext');translateDocument();document.title=tr('app.title');$('languageSelect').value=language();$('languageSelect').disabled=true;

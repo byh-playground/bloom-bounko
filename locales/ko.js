@@ -258,7 +258,7 @@ export default {
   "dom.techTitle.html.1": "진화 테크트리",
   "dom.techPanel.html.1": "누적 처치로 레벨을 올리고, 레벨마다 기술 또는 스탯 1개를 강화한다.",
   "dom.treeCenter.html.1": "◎ 시작점",
-  "dom.techScroll.html.1": "↔ 좌우로 이동해 분기를 탐색해. 기술을 누르면 해금하고, 선을 따라 다음 기술을 찾아갈 수 있어.",
+  "dom.techScroll.html.1": "↔ 좌우로 이동해 분기를 탐색해. 카드를 누르면 조건과 선행 경로를 확인하고, 조건 칩을 누르면 선행 기술로 이동해. 해금은 별도 구매 버튼으로 진행해.",
   "dom.techScroll.html.3": "✦ 기본 능력치 <small>레벨마다 원하는 능력치에 투자</small>",
   "dom.techRefund.html.1": "무료 초기화",
   "dom.settings.html.1": "조작 · 물리 실험",

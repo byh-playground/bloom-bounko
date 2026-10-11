@@ -1,0 +1,100 @@
+{
+  "browser": "155.0.4283.45",
+  "viewport": {
+    "width": 390,
+    "height": 844
+  },
+  "baselineMain": "8b7c67231dc3247f21321f358c004550d34fa88c",
+  "maxCombo": 9,
+  "skills": [
+    "laserBloom",
+    "chainDrive",
+    "elasticBlast"
+  ],
+  "completed": [
+    "laserBloom",
+    "chainDrive",
+    "elasticBlast"
+  ],
+  "damage": [
+    {
+      "id": "laserBloom",
+      "damage": 494.99999999999994
+    },
+    {
+      "id": "chainDrive",
+      "damage": 345.00000000000006
+    },
+    {
+      "id": "elasticBlast",
+      "damage": 840
+    }
+  ],
+  "endedTick": 1680,
+  "chapterMetrics": [
+    {
+      "chapter": 0,
+      "atMs": 4000.0000000000005,
+      "ultimate": null,
+      "damage": 0,
+      "pets": 0
+    },
+    {
+      "chapter": 1,
+      "atMs": 10000,
+      "ultimate": null,
+      "damage": 0,
+      "pets": 0
+    },
+    {
+      "chapter": 2,
+      "atMs": 12800,
+      "ultimate": "laserBloom",
+      "damage": 494.99999999999994,
+      "pets": 0
+    },
+    {
+      "chapter": 3,
+      "atMs": 15400.000000000002,
+      "ultimate": "chainDrive",
+      "damage": 840,
+      "pets": 0
+    },
+    {
+      "chapter": 4,
+      "atMs": 18000,
+      "ultimate": "elasticBlast",
+      "damage": 1680,
+      "pets": 0
+    },
+    {
+      "chapter": 5,
+      "atMs": 24000,
+      "ultimate": null,
+      "damage": 1680,
+      "pets": 14
+    },
+    {
+      "chapter": 6,
+      "atMs": 28000.000000000004,
+      "ultimate": null,
+      "damage": 1680,
+      "pets": 0
+    }
+  ],
+  "publicEntry": true,
+  "childUrl": "?intro=1",
+  "recursiveFrames": 0,
+  "normalUrlLobby": true,
+  "closeNoReentry": true,
+  "playNoReentry": true,
+  "replay": true,
+  "soundGesture": true,
+  "storageUnchanged": true,
+  "childStorageWrites": 0,
+  "englishEntry": true,
+  "jsErrors": [],
+  "requestFailures": [],
+  "verificationDurationMs": 30533,
+  "sequenceDurationMs": 27937
+}

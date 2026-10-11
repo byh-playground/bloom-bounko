@@ -1,4 +1,8 @@
 export default {
+  "intro.chainDrive": "Dash. Again. Again.",
+  "intro.chainDriveSub": "Three strikes. One flow.",
+  "intro.elasticBlast": "Gather. Explode.",
+  "intro.elasticBlastSub": "Shake the arena with an elastic blast.",
   "tech.buy": "Buy · {{cost,gameNumber}}",
   "tech.buyNamed": "Buy {{name}} · {{cost,gameNumber}} points",
   "tech.conditions": "Conditions {{completed,gameNumber}}/{{total,gameNumber}}",
@@ -23,7 +27,7 @@ export default {
   "intro.final": "BOUNKO",
   "intro.breakthroughSub": "Your body is the weapon.",
   "intro.comboSub": "One collision leads to the next.",
-  "intro.laserSub": "Unleash your ultimate.",
+  "intro.laserSub": "Pierce through with a laser.",
   "intro.petsSub": "Bring your companions.",
   "intro.finalSub": "Your next collision starts here.",
   "preview.open": "Preview",

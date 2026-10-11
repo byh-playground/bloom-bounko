@@ -4,31 +4,31 @@ export const ultimateConfig={
   trigger:{comboHits:5,ammo:1,rechargeHits:15},
   presentation:{trailIntervalMs:24,trailLifetimeMs:300,maxTrails:24,maxEffects:36},
   skills:{
-    laserBloom:{symbol:'✦',color:[.35,.86,1],cost:5,requires:['autoChain','shadowRecharge2'],lane:1,range:520,
+    laserBloom:{symbol:'✦',color:[.35,.86,1],cost:5,requires:['autoChain','shadowRecharge2'],lane:1,range:520,targetLossPolicy:'finishCommitted',
       sequence:[
         {id:'move',durationMs:160,move:'side',distance:78,sound:'ultimateMove'},
-        {id:'condense',durationMs:280,move:'hold',charge:true,sound:'ultimateCharge'},
-        {id:'release',durationMs:260,move:'hold',attack:{kind:'beams',atMs:[0,90,180],targets:6,width:7,power:.55},sound:'ultimateBeam',shake:'hit'},
-        {id:'recoil',durationMs:130,move:'recoil',distance:24},
+        {id:'condense',durationMs:600,move:'hold',charge:true,chargeStyle:'beam',compression:.28,aim:'nearest',sound:'laserCharge',soundScope:'phase'},
+        {id:'release',durationMs:800,move:'recoil',distance:16,recoil:{amplitude:1.1,frequencyHz:22},commit:true,attack:{kind:'beam',atMs:Array.from({length:10},(_,i)=>i*80),length:620,width:30,openMs:65,fadeMs:110,damageBudget:1.65,hitText:{fractionDigits:1,sizePx:17,lifetimeMs:430,risePxPerMs:.26}},sound:'laserSustain',soundScope:'phase',shake:'hit',shakeIntervalMs:80},
+        {id:'recoil',durationMs:130,move:'recoil',distance:6,sound:'laserFade',soundScope:'phase'},
         {id:'afterglow',durationMs:170,move:'return',fade:true,sound:'ultimateReturn'}
       ]},
-    storm:{symbol:'✻',color:[.62,1,.52],cost:3,requires:['autoChain','spore'],lane:4,rowOffset:2,range:430,
+    storm:{symbol:'✻',color:[.62,1,.52],cost:3,requires:['autoChain','spore'],lane:4,rowOffset:2,range:430,trailLifetimeMs:450,
       sequence:[
-        {id:'condense',durationMs:180,move:'hold',charge:true,sound:'ultimateCharge'},
-        {id:'release',durationMs:560,move:'orbit',distance:38,attack:{kind:'spores',atMs:[0,70,140,210,280,350,420,490],count:3,power:.24,speed:410,lifeMs:750},sound:'ultimateSpore'},
-        {id:'afterglow',durationMs:180,move:'return',fade:true,sound:'ultimateReturn'}
+        {id:'condense',durationMs:280,move:'hold',charge:true,chargeStyle:'swirl',compression:.18,sound:'ultimateCharge'},
+        {id:'release',durationMs:880,timeScale:.9,move:'orbit',distance:48,visual:'vortex',trailWidth:15,attack:{kind:'spores',atMs:[0,110,220,330,440,550,660,770],count:3,power:.24,speed:410,lifeMs:750},sound:'ultimateSpore',soundScope:'phase'},
+        {id:'afterglow',durationMs:260,move:'return',visual:'vortex',fade:true,sound:'ultimateReturn'}
       ]},
-    chainDrive:{symbol:'⇢',color:[1,.78,.38],cost:3,requires:['autoChain','propulsion'],lane:2,rowOffset:1,range:480,
+    chainDrive:{symbol:'⇢',color:[1,.78,.38],cost:3,requires:['autoChain','propulsion'],lane:2,rowOffset:1,range:480,trailLifetimeMs:450,
       sequence:[
-        {id:'condense',durationMs:110,move:'hold',charge:true,sound:'ultimateCharge'},
-        ...Array.from({length:3},()=>({id:'release',durationMs:150,move:'target',contact:{kind:'dash',power:1.15},sound:'ultimateMove'})),
-        {id:'afterglow',durationMs:160,move:'hold',fade:true,sound:'ultimateReturn'}
+        {id:'condense',durationMs:220,move:'hold',charge:true,chargeStyle:'compression',compression:.34,sound:'ultimateCharge'},
+        ...Array.from({length:3},()=>[{id:'release',durationMs:90,move:'target',trailWidth:18,contact:{kind:'dash',power:1.15},hitstopMs:45,impactShake:'hit',impactSound:'ultimateStrike',impactSize:1.9,sound:'ultimateMove'},{id:'impact',durationMs:75,timeScale:.8,move:'hold'}]).flat(),
+        {id:'afterglow',durationMs:260,move:'hold',fade:true,sound:'ultimateReturn'}
       ]},
     elasticBlast:{symbol:'◈',color:[.80,.66,1],cost:2,requires:['propulsion','shockPush'],lane:3,range:310,
       sequence:[
-        {id:'condense',durationMs:260,move:'hold',charge:true,sound:'ultimateCharge'},
-        {id:'release',durationMs:300,move:'hold',contact:{kind:'wave',radius:260,power:1.4,push:450},sound:'ultimateWave',shake:'hit'},
-        {id:'afterglow',durationMs:160,move:'recoil',distance:18,fade:true,sound:'ultimateReturn'}
+        {id:'condense',durationMs:400,timeScale:.9,move:'hold',charge:true,chargeStyle:'compression',compression:.54,sound:'ultimateCharge'},
+        {id:'release',durationMs:420,timeScale:.85,move:'hold',expansion:{amplitude:.34,durationMs:120},contact:{kind:'wave',radius:260,power:1.4,push:450},hitstopMs:65,impactSize:1.4,impactShake:'hit',sound:'ultimateWave',shake:'hit'},
+        {id:'afterglow',durationMs:320,move:'recoil',distance:18,fade:true,sound:'ultimateReturn'}
       ]}
   }
 };
@@ -52,30 +52,37 @@ export class UltimateLoadout {
 export class UltimateRunner {
   constructor(loadout,adapter){this.loadout=loadout;this.adapter=adapter;this.state=null;this.effects=[];this.starts=0;this.normalHits=0;this.damage=0;this.lastEnd=null;}
   get active(){return this.state!==null;}
+  get timeScale(){return this.state?.phase.timeScale??1;}
   tryStart(combo,ammo){if(this.active||!this.adapter.valid())return false;const next=this.loadout.next();if(!next)return false;
     const skill=this.loadout.config.skills[next.id],cost=this.loadout.requirements(next.id),targets=this.adapter.targets(skill.range);if(combo<cost.comboHits||ammo<cost.ammo||!targets.length)return false;
     // No state/VFX begins until the game atomically accepts both costs.
     if(!this.adapter.consume(cost))return false;
     const p=position(this.adapter.position()),nearest=targets[0].body.position,dx=nearest.x-p.x,dy=nearest.y-p.y,d=Math.hypot(dx,dy)||1;
-    this.loadout.use(next.id,next.index);this.starts++;this.state={id:next.id,slot:next.index,skill,origin:p,direction:{x:dx/d,y:dy/d},index:0,elapsedMs:0,totalMs:0,pulse:0,hitIds:new Set(),trails:[],trailClockMs:0,pending:[]};
+    this.loadout.use(next.id,next.index);this.starts++;this.state={id:next.id,slot:next.index,skill,origin:p,direction:{x:dx/d,y:dy/d},index:0,elapsedMs:0,totalMs:0,pulse:0,committed:false,voice:null,beam:null,hitIds:new Set(),trails:[],trailClockMs:0,pending:[]};
     this.adapter.begin(skill);this.enterStage();return true;
   }
-  enterStage(){const s=this.state;if(!s)return;const phase=s.skill.sequence[s.index];s.phase=phase;s.elapsedMs=0;s.pulse=0;s.from=position(this.adapter.position());s.target=null;
+  enterStage(){const s=this.state;if(!s)return;s.voice?.stop();s.voice=null;s.beam=null;const phase=s.skill.sequence[s.index];s.phase=phase;s.committed||=!!phase.commit;s.nextShakeMs=phase.shakeIntervalMs??Infinity;s.impactShown=false;s.trailWidth=phase.trailWidth??s.trailWidth??11;s.elapsedMs=0;s.pulse=0;s.from=position(this.adapter.position());s.target=null;
+    if(phase.aim==='nearest'){const target=this.adapter.targets(s.skill.range)[0];if(target){const dx=target.body.position.x-s.from.x,dy=target.body.position.y-s.from.y,length=Math.hypot(dx,dy)||1;s.direction={x:dx/length,y:dy/length};}}
     const {x,y}=s.from,d=s.direction,q=phase.distance||0;
     const goals={side:()=>({x:x-d.y*q,y:y+d.x*q}),recoil:()=>({x:x-d.x*q,y:y-d.y*q}),return:()=>s.origin,
       target:()=>{const target=this.adapter.targets(s.skill.range).find(unit=>!s.hitIds.has(unit.unitId));s.target=target?.unitId??null;return target?.body.position||s.from;}};
-    s.goal=this.adapter.safePoint(goals[phase.move]?.()||s.from,s.from);if(phase.sound)this.adapter.sound(phase.sound);if(phase.shake)this.adapter.shake(phase.shake,d);
+    s.goal=this.adapter.safePoint(goals[phase.move]?.()||s.from,s.from);if(phase.sound){const voice=this.adapter.sound(phase.sound);if(phase.soundScope==='phase')s.voice=voice;}if(phase.shake)this.adapter.shake(phase.shake,d);
   }
   update(dtMs){for(let i=this.effects.length-1;i>=0;i--){const fx=this.effects[i];fx.leftMs-=dtMs;if(fx.leftMs<=0)this.effects.splice(i,1);}
-    const s=this.state;if(!s)return;if(!this.adapter.valid()||!this.adapter.targets(s.skill.range).length){this.cancel('targetLost');return;}
+    const s=this.state;if(!s)return;if(!this.adapter.valid()){this.cancel('invalid');return;}
+    const finishesCommitted=s.committed&&s.skill.targetLossPolicy==='finishCommitted';
+    if(!finishesCommitted&&!this.adapter.targets(s.skill.range).length){this.cancel('targetLost');return;}
     s.elapsedMs=Math.min(s.phase.durationMs,s.elapsedMs+dtMs);s.totalMs+=dtMs;const q=this.progress(),ease=q*q*(3-2*q);
     if(s.phase.move==='target'&&s.target!=null){const unit=this.adapter.target(s.target);if(unit?.alive)s.goal=this.adapter.safePoint(unit.body.position,s.from);}
     let goal={x:s.from.x+(s.goal.x-s.from.x)*ease,y:s.from.y+(s.goal.y-s.from.y)*ease};
     if(s.phase.move==='orbit'){const a=q*Math.PI*2,fade=Math.sin(Math.PI*q);goal={x:s.origin.x+Math.cos(a)*(s.phase.distance||0)*fade,y:s.origin.y+Math.sin(a)*(s.phase.distance||0)*fade};goal=this.adapter.safePoint(goal,this.adapter.position());}
+    if(s.phase.recoil){const recoil=s.phase.recoil.amplitude*Math.sin(s.elapsedMs*.001*s.phase.recoil.frequencyHz*Math.PI*2)*Math.sin(q*Math.PI);goal.x-=s.direction.x*recoil;goal.y-=s.direction.y*recoil;}
     this.adapter.move(goal,dtMs);
+    if(s.phase.shake)while(s.elapsedMs>=s.nextShakeMs){this.adapter.shake(s.phase.shake,s.direction);s.nextShakeMs+=s.phase.shakeIntervalMs;}
     const attack=s.phase.attack;if(attack)while(s.pulse<attack.atMs.length&&attack.atMs[s.pulse]<=s.elapsedMs){s.pending.push({attack,pulse:s.pulse});s.pulse++;}
   }
   afterPhysics(dtMs){const s=this.state;if(!s)return;
+    this.adapter.pose?.(s);
     for(const emission of s.pending){if(!this.active)break;this.adapter.attack(emission.attack,s,emission.pulse);}s.pending.length=0;
     if(this.active&&s.phase.contact)this.adapter.contact(s.phase.contact,s,this.progress());
     if(!this.active)return;
@@ -83,25 +90,75 @@ export class UltimateRunner {
     if(s.elapsedMs>=s.phase.durationMs){s.index++;if(s.index>=s.skill.sequence.length)this.cancel('complete');else this.enterStage();}
   }
   effect(effect){const config=this.loadout.config.presentation;if(this.effects.length>=config.maxEffects)this.effects.shift();this.effects.push({...effect,leftMs:effect.lifeMs});}
+  impact(){const s=this.state;if(!s||s.impactShown)return;s.impactShown=true;const phase=s.phase;
+    if(phase.hitstopMs)this.adapter.hitstop(phase.hitstopMs);if(phase.impactShake)this.adapter.shake(phase.impactShake,s.direction);if(phase.impactSound)this.adapter.sound(phase.impactSound);}
   progress(){return this.state?bounded(this.state.elapsedMs/this.state.phase.durationMs,0,1):0;}
-  cancel(reason='cancel'){if(!this.state)return;const id=this.state.id;this.state=null;this.lastEnd={id,reason};this.adapter.end(reason);}
+  cancel(reason='cancel'){if(!this.state)return;const id=this.state.id;this.state.voice?.stop();this.state=null;this.lastEnd={id,reason};this.adapter.end(reason);}
   reset(){this.cancel('reset');this.effects.length=0;this.loadout.reset();this.starts=0;this.normalHits=0;this.damage=0;this.lastEnd=null;}
-  snapshot(){const s=this.state;return {active:this.active,id:s?.id??null,phase:s?.phase.id??null,progress:this.progress(),starts:this.starts,normalHits:this.normalHits,damage:this.damage,lastEnd:this.lastEnd,...this.loadout.snapshot()};}
+  snapshot(){const s=this.state;return {active:this.active,id:s?.id??null,phase:s?.phase.id??null,progress:this.progress(),timeScale:this.timeScale,committed:s?.committed??false,pulses:s?.pulse??0,beam:s?.beam?{...s.beam}:null,starts:this.starts,normalHits:this.normalHits,damage:this.damage,lastEnd:this.lastEnd,...this.loadout.snapshot()};}
 }
 function ring(r,x,y,radius,width,color,segments=28,rotation=0){for(let i=0;i<segments;i++){const a=rotation+i*Math.PI*2/segments,b=rotation+(i+.82)*Math.PI*2/segments;r.line(x+Math.cos(a)*radius,y+Math.sin(a)*radius,x+Math.cos(b)*radius,y+Math.sin(b)*radius,width,color);}}
+
+export function beamWidth(attack,elapsedMs,durationMs){const opening=bounded(elapsedMs/attack.openMs,0,1),fade=bounded((durationMs-elapsedMs)/attack.fadeMs,0,1);return attack.width*(1-Math.pow(1-opening,3))*fade;}
+export function beamIntersects(beam,body){
+  const a=beam.from,b=beam.to,p=body.position,m=body.plugin.volume?.motion||body.positionPrev||p;
+  const distance=(point,start,end)=>{const x=end.x-start.x,y=end.y-start.y,length=x*x+y*y,t=length?bounded(((point.x-start.x)*x+(point.y-start.y)*y)/length,0,1):0;return (point.x-start.x-x*t)**2+(point.y-start.y-y*t)**2;};
+  const cross=(a,b,p)=>(b.x-a.x)*(p.y-a.y)-(b.y-a.y)*(p.x-a.x),radius=beam.width/2+body.circleRadius;
+  if(Math.min(distance(p,a,b),distance(m,a,b),distance(a,m,p),distance(b,m,p))<=radius*radius)return true;
+  return cross(a,b,m)*cross(a,b,p)<0&&cross(m,p,a)*cross(m,p,b)<0;
+}
+function drawBeamCharge(r,p,s,color,q){
+  const pulse=(Math.sin(s.elapsedMs*.001*Math.PI*14)+1)*.5,core=9+q*15+pulse*3,outer=82-q*46;
+  r.ellipse(p.x,p.y,core*2.3,core*2.3,[...color,.08+q*.12],28);ring(r,p.x,p.y,outer,2.2,[...color,.35+q*.4],32,-s.totalMs*.007);ring(r,p.x,p.y,outer*.78,1.1,[.8,1,1,.55],28,s.totalMs*.012);
+  for(let i=0;i<18;i++){const a=i*Math.PI/9+s.totalMs*.004,far=outer+14+Math.sin(a*3+s.elapsedMs*.02)*9,near=core+4;
+    r.line(p.x+Math.cos(a)*far,p.y+Math.sin(a)*far,p.x+Math.cos(a)*near,p.y+Math.sin(a)*near,1.6+q*1.5,[...color,.35+q*.4]);}
+  r.ellipse(p.x,p.y,core*1.55,core*1.55,[...color,.27+q*.2],28);r.ellipse(p.x,p.y,core,core,[.8,.97,1,.75],24);r.ellipse(p.x,p.y,core*.55,core*.55,[1,1,1,.92],20);
+  const d=s.direction;r.line(p.x+d.x*core,p.y+d.y*core,p.x+d.x*(core+12+q*14),p.y+d.y*(core+12+q*14),2.2,[...color,.4+q*.45]);
+}
+function drawBeam(r,beam,color,timeMs){const {from:a,to:b,width:w}=beam;if(w<=0)return;
+  r.line(a.x,a.y,b.x,b.y,w*3,[...color,.10]);r.line(a.x,a.y,b.x,b.y,w*2.1,[...color,.19]);r.line(a.x,a.y,b.x,b.y,w*1.45,[...color,.5]);
+  // Full-width opaque core, with a smaller highlight inside it. The halo never widens the hit volume.
+  r.line(a.x,a.y,b.x,b.y,w,[.78,.96,1,.95]);r.line(a.x,a.y,b.x,b.y,w*.42,[1,1,1,.99]);
+  r.ellipse(a.x,a.y,w*.92,w*.92,[...color,.43],24);r.ellipse(a.x,a.y,w*.5,w*.5,[.92,1,1,.98],20);r.ellipse(b.x,b.y,w*.5,w*.5,[.78,.96,1,.95],20);
+  const dx=b.x-a.x,dy=b.y-a.y,length=Math.hypot(dx,dy)||1,x=dx/length,y=dy/length,phase=timeMs*.65%90;
+  for(let i=0;i<8;i++){const offset=Math.min(length,phase+i*90),end=Math.min(length,offset+32),side=(i%2?1:-1)*w*.27;r.line(a.x+x*offset-y*side,a.y+y*offset+x*side,a.x+x*end-y*side,a.y+y*end+x*side,1.8,[1,1,1,.9]);}
+}
+
+
+function drawCompression(r,p,s,color,q){const compression=Math.sin(q*Math.PI/2),radius=64-38*compression;
+  ring(r,p.x,p.y,radius,3,[...color,.5+q*.35],28,s.totalMs*.004);ring(r,p.x,p.y,radius+12,1.6,[...color,.4],24,-s.totalMs*.007);
+  for(let i=0;i<8;i++){const a=i*Math.PI/4;r.line(p.x+Math.cos(a)*(radius+16),p.y+Math.sin(a)*(radius+16),p.x+Math.cos(a)*radius,p.y+Math.sin(a)*radius,3,[...color,.6]);}
+  r.ellipse(p.x,p.y,18+q*11,18+q*11,[...color,.10+q*.12],24);r.ellipse(p.x,p.y,7+q*5,7+q*5,[1,.96,1,q*.6],20);
+}
+function drawVortex(r,p,s,color,q){const rotation=s.totalMs*.009,alpha=s.phase.fade?1-s.elapsedMs/s.phase.durationMs:1;
+  for(let arm=0;arm<3;arm++)for(let i=0;i<20;i++){const t=i/20,u=(i+1)/20,angle=rotation+arm*Math.PI*2/3,a=angle+t*Math.PI*1.8,b=angle+u*Math.PI*1.8,reach=56+q*22,ra=18+t*reach,rb=18+u*reach,weight=(1-i/25)*alpha;
+    const ax=p.x+Math.cos(a)*ra,ay=p.y+Math.sin(a)*ra,bx=p.x+Math.cos(b)*rb,by=p.y+Math.sin(b)*rb;
+    r.line(ax,ay,bx,by,8,[...color,weight*.12]);r.line(ax,ay,bx,by,2.6,[...color,weight*.6]);}
+  ring(r,p.x,p.y,30+q*14,2.3,[.85,1,.72,alpha*.65],24,-rotation);
+}
+function drawWave(r,wave,color,alpha){const {origin:p,radius,progress:q}=wave,fade=(1-q*.55)*alpha;
+  r.ellipse(p.x,p.y,radius,radius,[...color,.045*alpha],40);ring(r,p.x,p.y,radius,24*(1-q)+7,[...color,.15*alpha],48);
+  ring(r,p.x,p.y,radius,7,[...color,fade*.92],48);ring(r,p.x,p.y,radius*.82,2.7,[.99,.91,1,fade*.68],40);
+  for(let i=0;i<12;i++){const a=i*Math.PI/6;r.line(p.x+Math.cos(a)*radius*.91,p.y+Math.sin(a)*radius*.91,p.x+Math.cos(a)*radius,p.y+Math.sin(a)*radius,3,[...color,fade*.7]);}
+}
+
 export function drawUltimate(r,runner,p){const s=runner.state;
   if(s){const color=s.skill.color,q=runner.progress(),fade=s.phase.fade?1-q:1;
-    for(let i=1;i<s.trails.length;i++){const a=s.trails[i-1],b=s.trails[i],alpha=Math.max(0,1-(s.totalMs-b.atMs)/runner.loadout.config.presentation.trailLifetimeMs)*.55*fade;r.line(a.x,a.y,b.x,b.y,11,[...color,alpha*.25]);r.line(a.x,a.y,b.x,b.y,3,[...color,alpha]);}
+    for(let i=1;i<s.trails.length;i++){const a=s.trails[i-1],b=s.trails[i],alpha=Math.max(0,1-(s.totalMs-b.atMs)/(s.skill.trailLifetimeMs??runner.loadout.config.presentation.trailLifetimeMs))*.55*fade;r.line(a.x,a.y,b.x,b.y,s.trailWidth*1.8,[...color,alpha*.12]);r.line(a.x,a.y,b.x,b.y,s.trailWidth,[...color,alpha*.38]);r.line(a.x,a.y,b.x,b.y,s.trailWidth*.38,[.94,1,.93,alpha]);}
     const charge=s.phase.charge?Math.sin(q*Math.PI/2):.35;
     r.ellipse(p.x,p.y,25+charge*17,25+charge*17,[...color,.12*fade],24);ring(r,p.x,p.y,23+charge*9,1.5,[...color,.7*fade],28,s.totalMs*.008);
-    if(s.phase.charge){for(let i=0;i<12;i++){const a=i*Math.PI/6+s.totalMs*.005,outer=64-q*34,inner=18;r.line(p.x+Math.cos(a)*outer,p.y+Math.sin(a)*outer,p.x+Math.cos(a)*inner,p.y+Math.sin(a)*inner,1+q,[...color,.2+q*.45]);}
+    if(s.phase.chargeStyle==='beam')drawBeamCharge(r,p,s,color,q);
+    else if(s.phase.chargeStyle==='compression')drawCompression(r,p,s,color,q);
+    else if(s.phase.chargeStyle==='swirl')drawVortex(r,p,s,color,q);
+    else if(s.phase.charge){for(let i=0;i<12;i++){const a=i*Math.PI/6+s.totalMs*.005,outer=64-q*34,inner=18;r.line(p.x+Math.cos(a)*outer,p.y+Math.sin(a)*outer,p.x+Math.cos(a)*inner,p.y+Math.sin(a)*inner,1+q,[...color,.2+q*.45]);}
       for(let i=0;i<4;i++){const a=i*Math.PI/2-s.totalMs*.004,rad=31-12*q;r.ellipse(p.x+Math.cos(a)*rad,p.y+Math.sin(a)*rad,2.5+q*1.5,2.5+q*1.5,[.92,1,1,.85],10);}
       r.ellipse(p.x,p.y,7+q*7,7+q*7,[.96,1,1,.25+q*.4],18);
     }
-    if(s.phase.contact?.kind==='wave'){const radius=s.phase.contact.radius*Math.sin(q*Math.PI/2);ring(r,p.x,p.y,radius,12*(1-q)+2,[...color,.15],40);ring(r,p.x,p.y,radius,3.7,[...color,.85*(1-q)],40);ring(r,p.x,p.y,radius*.78,1.5,[.97,.92,1,.4*(1-q)],32);}
+    if(s.beam)drawBeam(r,s.beam,color,s.elapsedMs);
+    if(s.phase.visual==='vortex')drawVortex(r,p,s,color,s.phase.fade?1-q:q);
+    if(s.wave)drawWave(r,s.wave,color,s.phase.fade?1-q:1);
   }
   for(const fx of runner.effects){const a=fx.leftMs/fx.lifeMs,c=fx.color;
-    if(fx.kind==='beam'){r.line(fx.x1,fx.y1,fx.x2,fx.y2,fx.width*3.5,[...c,a*.12]);r.line(fx.x1,fx.y1,fx.x2,fx.y2,fx.width*1.5,[...c,a*.75]);r.line(fx.x1,fx.y1,fx.x2,fx.y2,Math.max(1,fx.width*.35),[.95,1,1,a]);r.ellipse(fx.x2,fx.y2,10*a,10*a,[1,1,1,a*.75],16);ring(r,fx.x2,fx.y2,8+(1-a)*28,1.5,[...c,a*.8],18);}
-    if(fx.kind==='impact')ring(r,fx.x1,fx.y1,8+(1-a)*38,2,[...c,a],24);
+    if(fx.kind==='impact'){const strength=fx.strength??1,rad=8+(1-a)*38*strength;ring(r,fx.x1,fx.y1,rad,2.4*strength,[...c,a],24);if(strength>1){r.ellipse(fx.x1,fx.y1,rad*.85,rad*.85,[...c,a*.13],24);ring(r,fx.x1,fx.y1,rad*.65,1.5,[1,.96,.8,a*.6],20);}}
   }
 }

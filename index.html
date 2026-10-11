@@ -299,7 +299,7 @@ body.preview-scene:not(.intro-scene) #hud>[id]:not(#ultimateHud),body.preview-sc
 @media(max-width:650px){.preview-dialog{padding:10px}.preview-dialog header strong{font-size:14px}.preview-dialog button{padding:9px 11px}.preview-dialog footer{gap:6px}#previewStatus{margin-left:0}.ultimate-library-row{grid-template-columns:minmax(0,1fr) 62px}}
 #buildVersion{position:fixed;right:calc(8px + env(safe-area-inset-right,0px));bottom:calc(3px + env(safe-area-inset-bottom,0px));z-index:10;font-size:10px;line-height:12px;color:#9cb2b0;font-variant-numeric:tabular-nums;pointer-events:none}body.preview-scene #buildVersion{display:none}
 
-#techGraphNodes .tech-node[data-state=locked]{opacity:1}#techGraphNodes .tech-node[data-related=false]{opacity:.55}#techGraphNodes .tech-node[data-selected=true]{box-shadow:0 0 0 2px #f4e2a4,0 7px 18px #06121c66}#techGraphNodes .tech-node[data-combination=true][data-ready=true]{border-color:#9ae4b6!important}
+#techGraphNodes .tech-node[data-state=locked]{opacity:1}#techGraphNodes .tech-node[data-selected=true]{box-shadow:0 0 0 2px #f4e2a4,0 7px 18px #06121c66}#techGraphNodes .tech-node[data-combination=true][data-ready=true]{border-color:#9ae4b6!important}
 .tech-select{display:flex;flex-direction:column;gap:4px;width:100%;text-align:left;padding:0;border:0;background:none;color:inherit;cursor:pointer}.tech-select:focus-visible,.tech-buy:focus-visible,.tech-prereqs button:focus-visible{outline:2px solid #ffdfa0;outline-offset:2px}#techGraphNodes .tech-node .node-head b{line-height:1.15}
 #techGraphNodes .tech-prereqs{gap:3px;align-items:center;min-height:0}#techGraphNodes .tech-prereqs button{display:flex;align-items:center;gap:3px;max-width:100%;border:1px solid #59766c;border-radius:5px;padding:3px 4px;background:#132b2b;color:#c3d8cf;font-size:9px;line-height:1.1;cursor:pointer}#techGraphNodes .tech-prereqs button[data-ready=true]{border-color:#8fcfa3;color:#daf9e2;background:#214638}#techGraphNodes .tech-prereqs button span{border:0;padding:0;font-size:inherit;color:inherit}#techGraphNodes .tech-node>*{flex-shrink:0}.condition-name{overflow-wrap:anywhere}.condition-icon{white-space:nowrap;font-weight:850;font-size:12px}.recipe-plus{padding:0!important;border:0!important;font-size:12px!important;font-weight:900;color:#ecedd0}.tech-condition-progress{font-size:10px;color:#dbe5c7}#techGraphNodes .tech-node .node-price{margin-top:0;padding-right:0;font-size:9px;line-height:1.15;color:#bed1c2}
 .tech-actions{display:flex;gap:4px;margin-top:auto}.tech-buy{flex:1;min-height:30px;border:1px solid #d6c486;border-radius:7px;background:#36513c;color:#f7efcf;font-size:10px;font-weight:800;cursor:pointer}.tech-buy:disabled{opacity:.55;cursor:default}.tech-crossing{fill:none;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}.crossing-gap{stroke:#102729;stroke-width:6;stroke-dasharray:none}.tech-crossing[data-state=locked]{opacity:.65}.tech-crossing[data-state=locked] .crossing-arc{stroke-dasharray:2 5}.tech-crossing[data-focused=false]{opacity:.2}.tech-root-bus{fill:none;stroke:#769f8c;stroke-width:2;opacity:.4}.tech-link[data-state=locked]{stroke-dasharray:2 5}.tech-link[data-state=available]{stroke-dasharray:none}.tech-link[data-focused=false],.tech-junction[data-focused=false]{opacity:.2}.tech-link[data-focused=true]{stroke-width:3}.tech-junction circle{fill:#132c2a;stroke:#779d8c;stroke-width:1.5}.tech-junction text{font-size:13px;font-weight:900;fill:#d7e6d8}.tech-junction[data-ready=true] circle{stroke:#b2efbe;fill:#28543b}.tech-junction .junction-check{fill:#d2ffdc;font-size:12px}
@@ -315,6 +315,8 @@ body.preview-scene:not(.intro-scene) #hud>[id]:not(#ultimateHud),body.preview-sc
 #introPanel[data-chapter=final] #introCopy{font-size:clamp(58px,14vw,96px);letter-spacing:-4px}#introPanel[data-chapter=final] .intro-bottom{bottom:10%;background:none}
 body.intro-scene #hud>[id]:not(#comboFx),body.intro-scene #ultimateHud,body.intro-scene #buildVersion{display:none!important}
 @media(max-width:450px){.intro-top{padding-left:14px;padding-right:14px}.intro-top strong{font-size:10px;letter-spacing:1px}.intro-top nav{gap:4px}#introPanel .intro-top button{padding:7px 9px;font-size:11px}.intro-bottom{padding-left:18px;padding-right:18px}}
+@media(min-width:651px){#hud{display:grid;grid-template-rows:1fr auto auto;justify-items:center;row-gap:10px;padding-bottom:calc(18px + env(safe-area-inset-bottom,0px))}#hud>#bars,#hud>#ultimateHud{position:static;transform:none}#bars{grid-row:2}#ultimateHud{grid-row:3}body.preview-scene #hud{padding-bottom:10px}}
+@media(max-width:650px){#ultimateHud{left:calc(50% - 4px)}}
 </style>
 </head><body>
 <label class="language-control"><span data-i18n="ui.language">언어</span> <select id="languageSelect" data-i18n-aria-label="ui.language"><option value="ko">한국어</option><option value="en">English</option></select></label>
@@ -649,7 +651,7 @@ import {t as tr,language,setLanguage,onLanguageChanged,translateDocument,localiz
 
 
 const KIT = 'https://cdn.jsdelivr.net/gh/byh-playground/bloom-gamekit@d1e2c385033ad04a7a004cfbe9558948ef07a6d1/';
-const VERSION = '0.16.0', BUILD_ID = '20261011T130043Z-rally-boss-trio'
+const VERSION = '0.16.1', BUILD_ID = '20261011T-ui-ultimate-fix'
 const $ = id => document.getElementById(id);
 document.querySelectorAll('[data-game-version]').forEach(el=>el.textContent='v'+VERSION);
 const loadtext = $('loadtext');translateDocument();document.title=tr('app.title');$('languageSelect').value=language();$('languageSelect').disabled=true;
@@ -763,7 +765,7 @@ try {
     {id:'relayArc',branch:'lightning',get name(){return tr("runtime.56");},symbol:'↯',cost:1,requires:['conduct'],get desc(){return tr("runtime.57");}},
     {id:'ignite',branch:'fire',get name(){return tr("runtime.58");},symbol:'♨',cost:1,requires:[],get desc(){return tr("runtime.59");}},
     {id:'spreadFlame',branch:'fire',get name(){return tr("runtime.60");},symbol:'🔥',cost:1,requires:['ignite'],get desc(){return tr("runtime.61");}},
-    ...Object.entries(C.ultimates.skills).map(([id,skill])=>({id,branch:'ultimate',get name(){return tr('ultimate.'+id+'.name');},symbol:skill.symbol,cost:skill.cost,requires:skill.requires,lane:skill.lane,rowOffset:skill.rowOffset||0,get desc(){return tr('ultimate.'+id+'.desc');}})),
+    ...Object.entries(C.ultimates.skills).map(([id,skill])=>({id,branch:'ultimate',get name(){return tr('ultimate.'+id+'.name');},symbol:skill.symbol,cost:skill.cost,requires:skill.requires,lane:skill.lane,rowOffset:skill.rowOffset||0,get desc(){return ultimateDescription(id);}})),
     {id:'ultimateSlot2',branch:'ultimate',lane:0,rowOffset:1,get name(){return tr('ultimate.slot2');},symbol:'▰',cost:1,requires:['shadowCapacity1'],get desc(){return tr('ultimate.slot2desc');}},
     {id:'ultimateSlot3',branch:'ultimate',lane:0,rowOffset:1,get name(){return tr('ultimate.slot3');},symbol:'▣',cost:2,requires:['ultimateSlot2','shadowCapacity2'],get desc(){return tr('ultimate.slot3desc');}}
   ]);
@@ -2303,21 +2305,22 @@ try {
     }
   }
   function recordNormalAttackHit(){if(ultimateLoadout.recordHit(attackDashSerial))ultimateRunner.normalHits++;}
-  function updateUltimateHud(){const status=ultimateRunner.snapshot(),next=ultimateLoadout.next(),required=next?ultimateLoadout.requirements(next.id):C.ultimates.trigger;
+  function updateUltimateHud(){const status=ultimateRunner.snapshot(),next=ultimateLoadout.next(),required=ultimateLoadout.requirements(status.id??next?.id??status.slots.find(slot=>slot.id)?.id);
     $('ultimateHud').hidden=phase!=='PLAYING';$('ultimateCombo').textContent=tr('ultimate.combo',{count:Math.min(combo,required.comboHits),required:required.comboHits});
     const reason=status.active?tr('ultimate.casting',{name:tr('ultimate.'+status.id+'.name')}):!status.slots.some(slot=>slot.id)?tr('ultimate.equipHint'):!next?tr('ultimate.charging'):combo<required.comboHits?tr('ultimate.comboHint'):attackAmmo.charges<required.ammo?tr('ultimate.noAmmo'):tr('ultimate.ready');
     $('ultimateStatus').textContent=reason;
     for(const slot of status.slots){const button=ultimateHudSlots[slot.index],skill=C.ultimates.skills[slot.id];button.dataset.next=String(slot.next);button.dataset.casting=String(status.active&&slot.index===ultimateRunner.state.slot);button.dataset.locked=String(slot.locked);
-      const progress=slot.id?1-slot.remainingHits/slot.requiredHits:0;button.style.setProperty('--ready',String(progress*100)+'%');button.style.setProperty('--skill',skill?'rgb('+skill.color.map(v=>Math.round(v*255)).join(',')+')':'#55756b');button.querySelector('b').textContent=slot.locked?'▣':skill?.symbol||'·';button.querySelector('small').textContent=slot.remainingHits?String(slot.remainingHits):slot.id?'✓':'—';button.setAttribute('aria-label',slot.locked?tr('ultimate.slotLocked',{slot:slot.index+1}):tr('ultimate.slotStatus',{slot:slot.index+1,name:slot.id?tr('ultimate.'+slot.id+'.name'):tr('ultimate.empty'),remaining:slot.remainingHits}));
+      const progress=slot.id?1-slot.remainingHits/slot.requiredHits:0;button.style.setProperty('--ready',String(progress*100)+'%');button.style.setProperty('--skill',skill?'rgb('+skill.color.map(v=>Math.round(v*255)).join(',')+')':'#55756b');button.querySelector('b').textContent=slot.locked?'▣':skill?.symbol||'·';button.querySelector('small').textContent=slot.remainingHits?String(slot.remainingHits):slot.id?'✓':'—';button.setAttribute('aria-label',slot.locked?tr('ultimate.slotLocked',{slot:slot.index+1}):tr('ultimate.slotStatus',{slot:slot.index+1,name:slot.id?tr('ultimate.'+slot.id+'.name'):tr('ultimate.empty'),remaining:slot.remainingHits,comboHits:slot.id?ultimateLoadout.requirements(slot.id).comboHits:C.ultimates.trigger.comboHits}));
     }
   }
   const ultimateHudSlots=[];for(let i=0;i<C.ultimates.slots.max;i++){const el=document.createElement('div');el.className='ultimate-hud-slot';el.setAttribute('role','img');el.innerHTML='<b></b><small></small>';ultimateHudSlots.push(el);$('ultimateCombatSlots').append(el);}
+  function ultimateDescription(id){const skill=C.ultimates.skills[id],tracking=skill.sequence.find(phase=>phase.tracking)?.tracking;return tr("ultimate."+id+".desc",{turnRate:tracking?.angularSpeedDegPerSec})+" "+tr("ultimate.activation",{...C.ultimates.trigger,...skill.trigger});}
   function updateUltimatePreparation(){const selected=ultimateLoadout.snapshot();$('ultimateEquipSlots').replaceChildren();
     for(const slot of selected.slots){const box=document.createElement('div');box.className='ultimate-equip-slot';box.dataset.slot=slot.index;const button=document.createElement('button');button.type='button';button.disabled=slot.locked;button.className='ultimate-equipped';button.dataset.ultimateSlot=slot.index;
       button.textContent=slot.locked?tr('ultimate.slotLocked',{slot:slot.index+1}):slot.id?C.ultimates.skills[slot.id].symbol+' '+tr('ultimate.'+slot.id+'.name'):tr('ultimate.slotEmpty',{slot:slot.index+1});button.onclick=()=>{ultimateLoadout.unequip(slot.index);persistTech();updateUltimatePreparation();};box.append(button);
       for(const [delta,symbol]of [[-1,'←'],[1,'→']]){const move=document.createElement('button');move.type='button';move.className='ultimate-order';move.textContent=symbol;move.disabled=slot.locked||slot.index+delta<0||slot.index+delta>=selected.capacity;move.setAttribute('aria-label',tr('ultimate.move',{slot:slot.index+1,direction:tr(delta<0?'ultimate.left':'ultimate.right')}));move.onclick=()=>{ultimateLoadout.swap(slot.index,slot.index+delta);persistTech();updateUltimatePreparation();};box.append(move);}$('ultimateEquipSlots').append(box);}
     $('ultimateLibrary').replaceChildren();for(const [id,skill]of Object.entries(C.ultimates.skills)){const learned=hasTech(id),equipped=ultimateLoadout.slots.includes(id),button=document.createElement('button');button.type='button';button.dataset.ultimateId=id;button.className='ultimate-choice';button.disabled=!learned||equipped;button.dataset.equipped=String(equipped);button.style.setProperty('--skill','rgb('+skill.color.map(v=>Math.round(v*255)).join(',')+')');
-      const icon=document.createElement('b');icon.textContent=skill.symbol;const name=document.createElement('strong');name.textContent=tr('ultimate.'+id+'.name');const desc=document.createElement('span');desc.textContent=tr('ultimate.'+id+'.desc');const action=document.createElement('small');action.textContent=equipped?tr('ultimate.equipped'):learned?tr('ultimate.equip'):tr('ultimate.unlock',{cost:skill.cost});button.append(icon,name,desc,action);
+      const icon=document.createElement('b');icon.textContent=skill.symbol;const name=document.createElement('strong');name.textContent=tr('ultimate.'+id+'.name');const desc=document.createElement('span');desc.textContent=ultimateDescription(id);const action=document.createElement('small');action.textContent=equipped?tr('ultimate.equipped'):learned?tr('ultimate.equip'):tr('ultimate.unlock',{cost:skill.cost});button.append(icon,name,desc,action);
       button.onclick=()=>{const index=ultimateLoadout.slots.findIndex((value,i)=>i<ultimateLoadout.capacity&&!value);if(index<0){$('ultimateEquipNotice').textContent=tr('ultimate.full');return;}ultimateLoadout.equip(id,index);persistTech();updateUltimatePreparation();};const row=document.createElement('div');row.className='ultimate-library-row';row.append(button,makePreviewButton(id));$('ultimateLibrary').append(row);}
     $('ultimateEquipNotice').textContent=tr('ultimate.preparationHint');
   }
@@ -3133,9 +3136,9 @@ try {
     y:GRAPH.topY+(techRank(node.id)-1+(node.rowOffset||0)+(['evadeHitRecharge','evadeWindow'].includes(node.id)?1:0))*GRAPH.stepY});
   const svgElement=(tag,attributes={})=>{const el=document.createElementNS('http://www.w3.org/2000/svg',tag);for(const [key,value]of Object.entries(attributes))el.setAttribute(key,value);return el;};
   function requirementState(node){let completed=0;for(const id of node.requires)if(hasTech(id))completed++;return {completed,total:node.requires.length,ready:completed===node.requires.length};}
-  function selectTech(id,center=true){if(menuRouter&&!menuRouter.applying&&menuRouter.current.screen==="tech")return menuRouter.go({screen:"tech",item:id},{force:true});selectedTechId=id;updateTechSelection();if(center){const el=techElements.get(id).card;el.scrollIntoView({block:'center',inline:'center'});techElements.get(id).select.focus({preventScroll:true});}}
+  function selectTech(id,center=true){if(menuRouter&&!menuRouter.applying&&menuRouter.current.screen==="tech")return menuRouter.go({screen:"tech",item:id},{force:true});selectedTechId=id;updateTechSelection();if(center&&id){const el=techElements.get(id).card;el.scrollIntoView({block:'center',inline:'center'});techElements.get(id).select.focus({preventScroll:true});}}
   function updateTechSelection(){const related=new Set(),queue=selectedTechId?[selectedTechId]:[];while(queue.length){const id=queue.pop();if(related.has(id))continue;related.add(id);queue.push(...graphNodeById.get(id).requires);}
-    for(const [id,elem]of techElements){elem.card.dataset.selected=String(id===selectedTechId);elem.card.dataset.related=String(!selectedTechId||related.has(id));elem.select.setAttribute('aria-pressed',String(id===selectedTechId));}
+    for(const [id,elem]of techElements){elem.card.dataset.selected=String(id===selectedTechId);elem.select.setAttribute('aria-pressed',String(id===selectedTechId));}
     for(const link of techLinkElements){link.path.dataset.focused=String(!selectedTechId||related.has(link.targetId)&&(link.sourceId===null||link.sourceId==='__root__'||related.has(link.sourceId)));for(const crossing of link.crossings??[])crossing.dataset.focused=link.path.dataset.focused;}
     for(const join of techJunctions)join.group.dataset.focused=String(!selectedTechId||related.has(join.targetId));
   }
@@ -3179,14 +3182,14 @@ try {
     if(joinY!==undefined){addTechLink(null,node,'M '+toX+' '+(joinY+9)+' V '+target.y);const group=svgElement('g',{class:'tech-junction','data-target':node.id,role:'img'}),circle=svgElement('circle',{cx:toX,cy:joinY,r:9}),plus=svgElement('text',{x:toX,y:joinY+4,'text-anchor':'middle'}),check=svgElement('text',{x:toX+12,y:joinY-9,class:'junction-check'});plus.textContent='+';group.append(circle,plus,check);$('techLinks').append(group);techJunctions.push({group,check,targetId:node.id});}
   }
   for(const node of TECH_NODES){const card=document.createElement('article');card.className='tech-node';card.id='tech_'+node.id;card.dataset.combination=String(node.requires.length>1);
-    const select=document.createElement('button');select.type='button';select.className='tech-select';select.dataset.techSelect=node.id;select.onclick=()=>selectTech(node.id);
+    const select=document.createElement('button');select.type='button';select.className='tech-select';select.dataset.techSelect=node.id;select.onclick=()=>selectTech(selectedTechId===node.id?null:node.id);
     const head=document.createElement('div');head.className='node-head';const symbol=document.createElement('span');symbol.className='node-icon';symbol.textContent=node.symbol;const name=document.createElement('b');name.textContent=node.name;head.append(symbol,name);
     const desc=document.createElement('span');desc.className='node-desc';desc.textContent=node.desc;select.append(head,desc);card.append(select);
     const recipe=document.createElement('div');recipe.className='tech-prereqs';const chips=[];
     for(const [index,id]of node.requires.entries()){if(index){const plus=document.createElement('span');plus.className='recipe-plus';plus.textContent='+';plus.setAttribute('aria-hidden','true');recipe.append(plus);}const chip=document.createElement('button');chip.type='button';chip.dataset.prereq=id;const icon=document.createElement('span'),label=document.createElement('span');icon.className='condition-icon';label.className='condition-name';chip.append(icon,label);chip.onclick=()=>selectTech(id,true);recipe.append(chip);chips.push({chip,icon,label,id});}card.append(recipe);
     const progress=document.createElement('small');progress.className='tech-condition-progress';const price=document.createElement('span');price.className='node-price';card.append(progress,price);
     const actions=document.createElement('div');actions.className='tech-actions';const buy=document.createElement('button');buy.type='button';buy.className='tech-buy';buy.dataset.techBuy=node.id;buy.onclick=()=>learnTech(node.id);actions.append(buy);
-    if(C.ultimates.skills[node.id]){const preview=makePreviewButton(node.id);preview.classList.add('tech-preview-button');actions.append(preview);}card.append(actions);card.onclick=event=>{if(!event.target.closest('button'))selectTech(node.id);};
+    if(C.ultimates.skills[node.id]){const preview=makePreviewButton(node.id);preview.classList.add('tech-preview-button');actions.append(preview);}card.append(actions);card.onclick=event=>{if(!event.target.closest('button'))selectTech(selectedTechId===node.id?null:node.id);};
     const pos=graphPosition(node);card.style.left=pos.x+'px';card.style.top=pos.y+'px';card.dataset.branch=node.branch;$('techGraphNodes').append(card);techGraphPositions.set(node.id,{...pos,w:GRAPH.nodeW,h:GRAPH.nodeH});techElements.set(node.id,{card,select,name,desc,price,progress,buy,chips,preview:actions.querySelector("[data-preview-id]")});
   }
   const graphHeight=Math.max(...[...techGraphPositions.values()].map(p=>p.y+p.h))+24;$('techMap').style.height=graphHeight+'px';$('techLinks').style.height=graphHeight+'px';
@@ -3435,7 +3438,7 @@ try {
     startRun();clearStageEnemies();for(const o of obstacles)World.remove(engine.world,o.body);obstacles=[];
     randomSeed=previewScenario.seed;stage.killTarget=1000;stage.noticeUntilMs=0;previewOrigin={...player.position};
     for(const point of previewScenario.targets){const unit=spawnEnemy(previewOrigin.x+point.x,previewOrigin.y+point.y,'thornfruit',{controller:previewOpponent()});unit.config.armor=0;unit.config.hp=1000;unit.hp=1000;}
-    combo=C.ultimates.trigger.comboHits;lastFrame=0;previewEnded=false;previewPaused=false;previewHitCount=0;
+    combo=ultimateLoadout.requirements(previewSkill).comboHits;lastFrame=0;previewEnded=false;previewPaused=false;previewHitCount=0;
   }
 
   // Intro commands stage a disposable game instance; collisions and damage remain authoritative.
@@ -3458,7 +3461,7 @@ try {
     while(introEvent<introTimeline.length&&timeMs>=introTimeline[introEvent].atMs){const event=introTimeline[introEvent++];
       if(event.chapter!==undefined)stageIntro(event.chapter);
       if(event.action==='attack'){aimPreview();introDashPending=launchAuto();}
-      if(event.action==='ultimate'){combo=C.ultimates.trigger.comboHits;attackAmmo.reset();ultimateLoadout.reset();ultimateRunner.tryStart(combo,attackAmmo.charges);}
+      if(event.action==='ultimate'){attackAmmo.reset();ultimateLoadout.reset();combo=ultimateLoadout.requirements(ultimateLoadout.next()?.id).comboHits;ultimateRunner.tryStart(combo,attackAmmo.charges);}
     }
     if(introDashPending&&shadow&&(shadow.arrived||chargeOf()>=.9)){if(dash())introDashPending=false;}
   }

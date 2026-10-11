@@ -1,0 +1,111 @@
+{
+  "version": "0.16.1",
+  "browser": "155.0.4283.45",
+  "pass": true,
+  "method": "UI uses actual Edge input; ultimate tracking uses QA-only local-server fixtures with production fixed ticks/Unit/Matter/WebGL paths. Runtime timings are test execution duration.",
+  "uiSeconds": 3.534,
+  "ultimateSeconds": 4.576,
+  "hud": [
+    {
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "overlap": 0,
+      "cardDimmedBefore": 32,
+      "cardDimmedAfter": 0,
+      "selectionSwitchAndClear": true,
+      "purchaseStatesPreserved": true
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "overlap": 0,
+      "cardDimmedBefore": 32,
+      "cardDimmedAfter": 0,
+      "selectionSwitchAndClear": true,
+      "purchaseStatesPreserved": true
+    }
+  ],
+  "triggers": {
+    "storm": {
+      "combo": 3,
+      "recharge": 10,
+      "belowRejected": true,
+      "atAccepted": true,
+      "duplicateHitIgnored": true
+    },
+    "chainDrive": {
+      "combo": 4,
+      "recharge": 12,
+      "belowRejected": true,
+      "atAccepted": true,
+      "duplicateHitIgnored": true
+    },
+    "elasticBlast": {
+      "combo": 4,
+      "recharge": 12,
+      "belowRejected": true,
+      "atAccepted": true,
+      "duplicateHitIgnored": true
+    },
+    "laserBloom": {
+      "combo": 5,
+      "recharge": 15,
+      "belowRejected": true,
+      "atAccepted": true,
+      "duplicateHitIgnored": true
+    }
+  },
+  "tracking": {
+    "rateDegPerSec": 120,
+    "degreesPer60TpsTick": 2,
+    "targetDeathRetarget": true,
+    "noTargetHold": true,
+    "shortestAngleBoundary": true,
+    "noOvershoot": true,
+    "beamMatchesDamage": true,
+    "unchangedPulseCount": 10,
+    "widthPx": 30,
+    "durationMs": 800,
+    "damageBudget": 1.65
+  },
+  "previews": {
+    "storm": {
+      "started": 1,
+      "hud": "0 / 3히트",
+      "recharge": 10
+    },
+    "chainDrive": {
+      "started": 1,
+      "hud": "0 / 4히트",
+      "recharge": 12
+    },
+    "elasticBlast": {
+      "started": 1,
+      "hud": "0 / 4히트",
+      "recharge": 12
+    },
+    "laserBloom": {
+      "started": 1,
+      "hud": "0 / 5히트",
+      "recharge": 15
+    }
+  },
+  "wikiAndCards": true,
+  "errors": [],
+  "intro": {
+    "pass": true,
+    "seconds": 1.395,
+    "comboRequirements": {
+      "laserBloom": 5,
+      "chainDrive": 4,
+      "elasticBlast": 4
+    },
+    "allThreeCast": true,
+    "resetBeforeSelection": true,
+    "errors": 0
+  }
+}

@@ -136,7 +136,7 @@ export function stepArc(flight,dtMs) {
 }
 
 export const DeathReason=Object.freeze({hit:'hit',selfDestruct:'selfDestruct',expiry:'expiry',cleanup:'cleanup'});
-export const hostile=(a,b)=>!!a&&!!b&&a.alive&&b.alive&&a.faction!==b.faction;
+export const hostile=(a,b)=>!!a&&!!b&&a.alive&&b.alive&&a.faction!==b.faction&&b.targetable!==false;
 export function receiveHit(target,payload,source,now=0){
   if(!hostile(source,target)||target.invulnerable||now<(target.protectedUntilMs||0))return 0;
   const stats=payload.stats||{},armor=Math.max(0,(target.config?.armor||0)*(1-(stats.armorPenPercent||0))-(stats.armorPenFlat||0));
@@ -201,12 +201,18 @@ export const Lungeable=Base=>class Lungeable extends Base {
   cancel(){this.lunge.phase='CANCELLED';super.cancel();}
 };
 export const ProjectileFireable=Base=>class ProjectileFireable extends Base {
-  constructor(...args){super(...args);this.projectileFire={config:this.config.projectileFire,phase:'READY',leftMs:0};}
-  update(dt,ctx){if(!this.alive)return;const s=this.projectileFire,c=s.config;
+  constructor(...args){super(...args);this.projectileFire={config:this.config.projectileFire,phase:'READY',leftMs:0,nextMs:0,fired:0,shots:0,volleys:0};}
+  update(dt,ctx){if(!this.alive)return;const s=this.projectileFire,c=s.config,ms=dt*1000;
     if(!this.unlocked('projectileFire'))return super.update(dt,ctx);
-    if(s.phase==='READY'&&ctx.attack!==false&&Math.hypot(ctx.target.x-this.body.position.x,ctx.target.y-this.body.position.y)<c.range){const p=this.body.position,dx=ctx.target.x-p.x,dy=ctx.target.y-p.y,d=Math.hypot(dx,dy)||1;this.headingX=dx/d;this.headingY=dy/d;s.phase='PREPARE';s.leftMs=c.prepareMs;this.state='WINDUP';this.attackCount++;this.adapter.notice(this);}
-    if(s.phase==='PREPARE'){this.adapter.brake(this,dt);s.leftMs-=dt*1000;if(s.leftMs<=0){this.adapter.projectile(this,c);s.phase='RECOVER';s.leftMs=c.recoverMs;this.state='RECOVER';}return;}
-    if(s.phase==='RECOVER'){s.leftMs-=dt*1000;if(s.leftMs<=0){s.phase='READY';this.state='CHASE';}}
+    if(s.phase==='READY'&&ctx.attack!==false&&Math.hypot(ctx.target.x-this.body.position.x,ctx.target.y-this.body.position.y)<c.range){
+      const p=this.body.position,dx=ctx.target.x-p.x,dy=ctx.target.y-p.y,d=Math.hypot(dx,dy)||1;
+      this.headingX=dx/d;this.headingY=dy/d;s.phase='PREPARE';s.leftMs=c.prepareMs;this.state='WINDUP';this.attackCount++;this.adapter.notice(this);}
+    if(s.phase==='PREPARE'){this.adapter.brake(this,dt);s.leftMs-=ms;if(s.leftMs>0)return;
+      s.phase='BURST';s.nextMs=0;s.fired=0;s.volleys++;this.state='PROJECTILE_BURST';}
+    if(s.phase==='BURST'){this.adapter.brake(this,dt);s.nextMs-=ms;
+      while(s.fired<(c.count||1)&&s.nextMs<=0){s.shots++;this.adapter.projectile(this,c,s.shots);s.fired++;s.nextMs+=c.intervalMs||1;}
+      if(s.fired===(c.count||1)){s.phase='RECOVER';s.leftMs=c.recoverMs;this.state='RECOVER';}return;}
+    if(s.phase==='RECOVER'){s.leftMs-=ms;if(s.leftMs<=0){s.phase='READY';this.state='CHASE';}}
     super.update(dt,ctx);
   }
   cancel(){this.projectileFire.phase='CANCELLED';super.cancel();}
@@ -344,4 +350,75 @@ export const ArcFireable = Base => class ArcFireable extends Base {
     super.update(dt,context);
   }
   cancel(){this.arcFire.phase='CANCELLED';super.cancel();}
+};
+
+// Each capability owns its milliseconds/state; adapters own physics and presentation effects.
+export const Burrowable=Base=>class Burrowable extends Base {
+  constructor(...args){super(...args);this.burrow={config:this.config.burrow,phase:'EXPOSED',leftMs:this.config.burrow.exposedMs,flight:null,aim:null,trailMs:0,dives:0,emerges:0};}
+  update(dt,ctx){if(!this.alive)return;if(!this.unlocked('burrow'))return super.update(dt,ctx);
+    const s=this.burrow,c=s.config,ms=dt*1000;
+    if(s.phase==='EXPOSED'){s.leftMs-=ms;
+      if(s.leftMs<=0&&ctx.attack!==false&&!['WINDUP','PROJECTILE_BURST'].includes(this.state)){
+        s.aim=this.adapter.burrowAim(this,ctx.target,c.distance);s.phase='DIVE';s.leftMs=c.diveMs;this.state='BURROW_DIVE';this.attackCount++;this.adapter.notice(this,'burrow');}
+      else return super.update(dt,ctx);}
+    this.adapter.brake(this,dt);
+    if(s.phase==='DIVE'){s.leftMs-=ms;if(s.leftMs>0)return;
+      s.phase='MOVE';s.dives++;s.flight=groundArc({...this.body.position,z:0},{...s.aim,z:0},c.moveMs,0);this.adapter.participation(this,false);this.state='BURROW_MOVE';}
+    if(s.phase==='MOVE'){const pose=stepArc(s.flight,ms),old=s.flight.previous;this.adapter.moveBy(this,pose.x-old.x,pose.y-old.y);s.flight.previous=pose;
+      s.trailMs-=ms;if(s.trailMs<=0){this.adapter.capabilityFx(this,'burrow-trail',c);s.trailMs+=c.trailMs;}
+      if(s.flight.finished){s.phase='EMERGE_PREPARE';s.leftMs=c.emergeMs;this.state='BURROW_EMERGE_PREPARE';}return;}
+    if(s.phase==='EMERGE_PREPARE'){s.leftMs-=ms;if(s.leftMs>0)return;
+      this.adapter.participation(this,true);s.emerges++;s.phase='EXPOSED';s.leftMs=c.exposedMs;s.flight=null;this.state='RECOVER';
+      this.adapter.erupt(this,c);return;}
+  }
+  cancel(){this.burrow.phase='CANCELLED';this.burrow.flight=null;this.adapter.participation(this,true);super.cancel();}
+};
+export const Summonable=Base=>class Summonable extends Base {
+  constructor(...args){super(...args);this.summon={config:this.config.summon,phase:'ACTIVE',slots:Array(this.config.summon.capacity).fill(null),leftMs:0,deployed:0};}
+  update(dt,ctx){if(!this.alive)return;const s=this.summon,c=s.config;
+    if(this.unlocked('summon')){s.leftMs-=dt*1000;
+      for(let i=0;i<s.slots.length;i++)if(s.slots[i]&&!s.slots[i].alive)s.slots[i]=null;
+      if(ctx.attack!==false&&s.leftMs<=0){const slot=s.slots.indexOf(null);
+        if(slot>=0){const child=this.adapter.summon(this,c,slot);if(child){s.slots[slot]=child;s.deployed++;}s.leftMs=c.deployMs;}
+        else s.leftMs=c.respawnMs;}}
+    super.update(dt,ctx);
+  }
+  cancel(){this.summon.phase='CANCELLED';for(const child of this.summon.slots)if(child?.alive)child.die(DeathReason.cleanup);this.summon.slots.fill(null);super.cancel();}
+};
+export const Returnable=Base=>class Returnable extends Base {
+  constructor(...args){super(...args);this.returnFlight={config:this.config.returnFlight,phase:'ACTIVE',leftMs:0,returns:0,launches:0,healed:0};}
+  update(dt,ctx){if(!this.alive)return;const owner=this.summoner,s=this.returnFlight,c=s.config;
+    if(!owner)return super.update(dt,ctx);
+    if(!owner.alive){this.die(DeathReason.cleanup);return;}
+    const p=this.body.position,home=owner.body.position,d=Math.hypot(home.x-p.x,home.y-p.y);
+    if(s.phase==='ACTIVE'&&((owner.unlocked('dock')&&(this.hp<=this.maxHp*c.retreatHpRate||ctx.attack===false&&this.hp<this.maxHp))||d>c.leash)){
+      s.phase='RETURN';this.state='FLIGHT_RETURN';s.returns++;this.adapter.notice(this,'return');}
+    if(s.phase==='RETURN'){this.state='FLIGHT_RETURN';
+      const speed=this.config.speed;
+      this.adapter.chase(this,dt,{navigation:{x:(home.x-p.x)/Math.max(1,d)*speed,y:(home.y-p.y)/Math.max(1,d)*speed}});
+      if(d<=owner.config.radius+this.config.radius+c.dockMargin){if(owner.unlocked('dock')){s.phase='DOCKED';s.leftMs=c.dockMs;this.adapter.dock(this,true);}
+        else{s.phase='ACTIVE';this.adapter.deploy(this);}}return;}
+    if(s.phase==='DOCKED'){this.state='DOCKED';this.adapter.moveBy(this,home.x-p.x,home.y-p.y);s.leftMs-=dt*1000;
+      s.healed+=receiveHeal(this,this.maxHp*c.healRate*dt);
+      if(s.leftMs<=0&&this.hp>=this.maxHp){this.adapter.dock(this,false);this.adapter.deploy(this);s.phase='ACTIVE';s.launches++;
+        if(this.projectileFire)this.projectileFire.phase='READY';this.state='CHASE';}return;}
+    super.update(dt,ctx);
+  }
+  cancel(){this.returnFlight.phase='CANCELLED';super.cancel();}
+};
+export const Hookable=Base=>class Hookable extends Base {
+  constructor(...args){super(...args);this.hook={config:this.config.hook,phase:'READY',leftMs:0,aim:null,shots:[],casts:0,hits:0,returned:0};}
+  update(dt,ctx){if(!this.alive)return;if(!this.unlocked('hook'))return super.update(dt,ctx);const s=this.hook,c=s.config,ms=dt*1000;
+    if(s.phase==='READY'&&ctx.attack!==false&&Math.hypot(ctx.target.x-this.body.position.x,ctx.target.y-this.body.position.y)<=c.range){
+      s.phase='PREPARE';s.leftMs=c.prepareMs;this.state='HOOK_PREPARE';this.attackCount++;this.adapter.notice(this);}
+    if(s.phase==='PREPARE'){this.adapter.brake(this,dt);s.aim={...ctx.target,z:0};const p=this.body.position,d=Math.hypot(s.aim.x-p.x,s.aim.y-p.y)||1;
+      this.headingX=(s.aim.x-p.x)/d;this.headingY=(s.aim.y-p.y)/d;s.leftMs-=ms;
+      if(s.leftMs<=0){s.shots=this.adapter.hooks(this,s.aim,c);s.casts++;s.phase='FLIGHT';this.state='HOOK_FLIGHT';}return;}
+    if(s.phase==='FLIGHT'){this.adapter.brake(this,dt);this.state=s.shots.some(shot=>shot.returning)?'HOOK_RETURN':'HOOK_FLIGHT';
+      if(s.shots.every(shot=>shot.finished)){s.returned+=s.shots.length;s.shots=[];s.phase='RECOVER';s.leftMs=c.recoverMs;this.state='RECOVER';}return;}
+    if(s.phase==='RECOVER'){this.adapter.brake(this,dt);s.leftMs-=ms;if(s.leftMs<=0){s.phase='COOLDOWN';s.leftMs=c.cooldownMs;}return;}
+    if(s.phase==='COOLDOWN'){s.leftMs-=ms;if(s.leftMs<=0)s.phase='READY';}
+    super.update(dt,ctx);
+  }
+  cancel(){for(const shot of this.hook.shots)this.adapter.removeShot(shot);this.hook.shots=[];this.hook.phase='CANCELLED';super.cancel();}
 };

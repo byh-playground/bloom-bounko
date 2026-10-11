@@ -302,7 +302,7 @@ body.preview-scene:not(.intro-scene) #hud>[id]:not(#ultimateHud),body.preview-sc
 #techGraphNodes .tech-node[data-state=locked]{opacity:1}#techGraphNodes .tech-node[data-related=false]{opacity:.55}#techGraphNodes .tech-node[data-selected=true]{box-shadow:0 0 0 2px #f4e2a4,0 7px 18px #06121c66}#techGraphNodes .tech-node[data-combination=true][data-ready=true]{border-color:#9ae4b6!important}
 .tech-select{display:flex;flex-direction:column;gap:4px;width:100%;text-align:left;padding:0;border:0;background:none;color:inherit;cursor:pointer}.tech-select:focus-visible,.tech-buy:focus-visible,.tech-prereqs button:focus-visible{outline:2px solid #ffdfa0;outline-offset:2px}#techGraphNodes .tech-node .node-head b{line-height:1.15}
 #techGraphNodes .tech-prereqs{gap:3px;align-items:center;min-height:0}#techGraphNodes .tech-prereqs button{display:flex;align-items:center;gap:3px;max-width:100%;border:1px solid #59766c;border-radius:5px;padding:3px 4px;background:#132b2b;color:#c3d8cf;font-size:9px;line-height:1.1;cursor:pointer}#techGraphNodes .tech-prereqs button[data-ready=true]{border-color:#8fcfa3;color:#daf9e2;background:#214638}#techGraphNodes .tech-prereqs button span{border:0;padding:0;font-size:inherit;color:inherit}#techGraphNodes .tech-node>*{flex-shrink:0}.condition-name{overflow-wrap:anywhere}.condition-icon{white-space:nowrap;font-weight:850;font-size:12px}.recipe-plus{padding:0!important;border:0!important;font-size:12px!important;font-weight:900;color:#ecedd0}.tech-condition-progress{font-size:10px;color:#dbe5c7}#techGraphNodes .tech-node .node-price{margin-top:0;padding-right:0;font-size:9px;line-height:1.15;color:#bed1c2}
-.tech-actions{display:flex;gap:4px;margin-top:auto}.tech-buy{flex:1;min-height:30px;border:1px solid #d6c486;border-radius:7px;background:#36513c;color:#f7efcf;font-size:10px;font-weight:800;cursor:pointer}.tech-buy:disabled{opacity:.55;cursor:default}.tech-link[data-state=locked]{stroke-dasharray:2 5}.tech-link[data-state=available]{stroke-dasharray:none}.tech-link[data-focused=false],.tech-junction[data-focused=false]{opacity:.2}.tech-link[data-focused=true]{stroke-width:3}.tech-junction circle{fill:#132c2a;stroke:#779d8c;stroke-width:1.5}.tech-junction text{font-size:13px;font-weight:900;fill:#d7e6d8}.tech-junction[data-ready=true] circle{stroke:#b2efbe;fill:#28543b}.tech-junction .junction-check{fill:#d2ffdc;font-size:12px}
+.tech-actions{display:flex;gap:4px;margin-top:auto}.tech-buy{flex:1;min-height:30px;border:1px solid #d6c486;border-radius:7px;background:#36513c;color:#f7efcf;font-size:10px;font-weight:800;cursor:pointer}.tech-buy:disabled{opacity:.55;cursor:default}.tech-crossing{fill:none;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}.crossing-gap{stroke:#102729;stroke-width:6;stroke-dasharray:none}.tech-crossing[data-state=locked]{opacity:.65}.tech-crossing[data-state=locked] .crossing-arc{stroke-dasharray:2 5}.tech-crossing[data-focused=false]{opacity:.2}.tech-root-bus{fill:none;stroke:#769f8c;stroke-width:2;opacity:.4}.tech-link[data-state=locked]{stroke-dasharray:2 5}.tech-link[data-state=available]{stroke-dasharray:none}.tech-link[data-focused=false],.tech-junction[data-focused=false]{opacity:.2}.tech-link[data-focused=true]{stroke-width:3}.tech-junction circle{fill:#132c2a;stroke:#779d8c;stroke-width:1.5}.tech-junction text{font-size:13px;font-weight:900;fill:#d7e6d8}.tech-junction[data-ready=true] circle{stroke:#b2efbe;fill:#28543b}.tech-junction .junction-check{fill:#d2ffdc;font-size:12px}
 #introOpen{width:100%;margin-top:10px;min-height:44px;border:1px solid #65dacc66;border-radius:12px;background:#102a32;color:#c7fff5;font-weight:700;cursor:pointer}
 #introPanel{position:fixed;inset:0;z-index:145;background:#081b22;color:#e9fff9;overflow:hidden}#introPanel[hidden]{display:none}
 #introViewport,#introViewport iframe{width:100%;height:100%;border:0;display:block}#introViewport{position:absolute;inset:0}
@@ -649,7 +649,7 @@ import {t as tr,language,setLanguage,onLanguageChanged,translateDocument,localiz
 
 
 const KIT = 'https://cdn.jsdelivr.net/gh/byh-playground/bloom-gamekit@d1e2c385033ad04a7a004cfbe9558948ef07a6d1/';
-const VERSION = '0.14.5', BUILD_ID = '20261011T110455Z-intro-variety';
+const VERSION = '0.14.6', BUILD_ID = '20261011T111545Z-tech-routing'
 const $ = id => document.getElementById(id);
 document.querySelectorAll('[data-game-version]').forEach(el=>el.textContent='v'+VERSION);
 const loadtext = $('loadtext');translateDocument();document.title=tr('app.title');$('languageSelect').value=language();$('languageSelect').disabled=true;
@@ -3053,15 +3053,47 @@ try {
   function selectTech(id,center=true){selectedTechId=id;updateTechSelection();if(center){const el=techElements.get(id).card;el.scrollIntoView({block:'center',inline:'center'});techElements.get(id).select.focus({preventScroll:true});}}
   function updateTechSelection(){const related=new Set(),queue=selectedTechId?[selectedTechId]:[];while(queue.length){const id=queue.pop();if(related.has(id))continue;related.add(id);queue.push(...graphNodeById.get(id).requires);}
     for(const [id,elem]of techElements){elem.card.dataset.selected=String(id===selectedTechId);elem.card.dataset.related=String(!selectedTechId||related.has(id));elem.select.setAttribute('aria-pressed',String(id===selectedTechId));}
-    for(const link of techLinkElements)link.path.dataset.focused=String(!selectedTechId||related.has(link.targetId)&&(link.sourceId===null||link.sourceId==='__root__'||related.has(link.sourceId)));
+    for(const link of techLinkElements){link.path.dataset.focused=String(!selectedTechId||related.has(link.targetId)&&(link.sourceId===null||link.sourceId==='__root__'||related.has(link.sourceId)));for(const crossing of link.crossings??[])crossing.dataset.focused=link.path.dataset.focused;}
     for(const join of techJunctions)join.group.dataset.focused=String(!selectedTechId||related.has(join.targetId));
   }
   function addTechLink(sourceId,node,d){const path=svgElement('path',{d,class:'tech-link '+node.branch,'data-state':'locked','data-source':sourceId??'junction','data-target':node.id});$('techLinks').append(path);techLinkElements.push({path,sourceId,targetId:node.id});}
-  function graphLinks(node){const target=techGraphPositions.get(node.id),toX=target.x+GRAPH.nodeW/2,toY=target.y,combination=node.requires.length>1,joinY=toY-20;
-    for(const [index,sourceId]of (node.requires.length?node.requires:['__root__']).entries()){const source=sourceId==='__root__'?{x:376,y:19,w:240,h:68}:techGraphPositions.get(sourceId),fromX=source.x+source.w/2,fromY=source.y+source.h;
-      if(combination){const portX=toX-9+index*18/(node.requires.length-1),mid=Math.max(fromY+4,joinY-12-(node.requires.length-1-index)*6);addTechLink(sourceId,node,'M '+fromX+' '+fromY+' V '+mid+' H '+portX+' V '+joinY+' H '+toX);}
-      else{const mid=fromY+(toY-fromY)*.47;addTechLink(sourceId,node,'M '+fromX+' '+fromY+' V '+mid+' H '+toX+' V '+toY);}}
-    if(combination){addTechLink(null,node,'M '+toX+' '+(joinY+9)+' V '+toY);const group=svgElement('g',{class:'tech-junction','data-target':node.id,role:'img'}),circle=svgElement('circle',{cx:toX,cy:joinY,r:9}),plus=svgElement('text',{x:toX,y:joinY+4,'text-anchor':'middle'}),check=svgElement('text',{x:toX+13,y:joinY+4,class:'junction-check'});plus.textContent='+';group.append(circle,plus,check);$('techLinks').append(group);techJunctions.push({group,check,targetId:node.id});}
+  const graphRoutes=[],graphJoins=new Map(),joinRows=new Map(),sourceRoutes=new Map(),gutterRoutes=new Map();
+  function prepareGraphRoutes(){
+    for(const node of TECH_NODES){
+      const target=techGraphPositions.get(node.id),toX=target.x+GRAPH.nodeW/2,combination=node.requires.length>1;
+      if(combination){const row=joinRows.get(target.y)||[];row.push(node);joinRows.set(target.y,row);}
+      const parents=[...node.requires].sort((a,b)=>techGraphPositions.get(a).x-techGraphPositions.get(b).x||techGraphPositions.get(b).y-techGraphPositions.get(a).y);
+      for(const [index,sourceId]of parents.entries()){
+        const source=techGraphPositions.get(sourceId),fromX=source.x+source.w/2,fromY=source.y+source.h;
+        const direct=!combination&&fromX===toX&&target.y-fromY<=GRAPH.stepY-GRAPH.nodeH;
+        const side=combination?(index===0?-1:1):-1;
+        const gutter=direct?null:side<0?Math.min(source.x-8,target.x-8):(fromX>toX?Math.max(source.x-8,target.x+target.w+8):Math.max(source.x+source.w+8,target.x+target.w+8));
+        const route={node,sourceId,source,target,fromX,fromY,toX,side,gutter,direct};graphRoutes.push(route);
+        if(!direct){const exits=sourceRoutes.get(sourceId)||[];exits.push(route);sourceRoutes.set(sourceId,exits);const lanes=gutterRoutes.get(gutter)||[];lanes.push(route);gutterRoutes.set(gutter,lanes);}
+      }
+    }
+    for(const row of joinRows.values())for(const [index,node]of row.sort((a,b)=>techGraphPositions.get(a.id).x-techGraphPositions.get(b.id).x).entries())graphJoins.set(node.id,techGraphPositions.get(node.id).y-18-(row.length-1-index)*12);
+    // Order gutter lanes by their destination side and arrival height, then leave each source in lane order.
+    for(const lanes of gutterRoutes.values())for(const [index,route]of lanes.sort((a,b)=>(a.toX<a.gutter?0:1)-(b.toX<b.gutter?0:1)||(graphJoins.get(b.node.id)??b.target.y-18)-(graphJoins.get(a.node.id)??a.target.y-18)||a.toX-b.toX).entries())route.corridorX=route.gutter+(index-(lanes.length-1)/2)*4;
+    for(const exits of sourceRoutes.values())for(const [index,route]of exits.sort((a,b)=>{const aLeft=a.gutter<a.fromX,bLeft=b.gutter<b.fromX;return Number(bLeft)-Number(aLeft)||(aLeft?a.corridorX-b.corridorX:b.corridorX-a.corridorX);}).entries()){const left=route.gutter<route.fromX;route.exitX=route.source.x+route.source.w*(left?.25:.75)+(left?1:-1)*index*8;route.exitY=route.fromY+8+index*6;}
+  }
+  function separateGraphCrossings(){
+    const lines=techLinkElements.map(link=>{let x=0,y=0;const segments=[];for(const match of link.path.getAttribute('d').matchAll(/([MHV])\s*([\d.]+)(?:\s+([\d.]+))?/g)){const command=match[1],a=Number(match[2]),b=Number(match[3]);if(command==='M'){x=a;y=b;continue;}const nx=command==='H'?a:x,ny=command==='V'?a:y;segments.push({x1:Math.min(x,nx),x2:Math.max(x,nx),y1:Math.min(y,ny),y2:Math.max(y,ny),horizontal:y===ny});x=nx;y=ny;}return {link,segments};});
+    for(const horizontal of lines)for(const h of horizontal.segments.filter(s=>s.horizontal))for(const vertical of lines){if(horizontal===vertical)continue;for(const v of vertical.segments.filter(s=>!s.horizontal)){if(v.x1<=h.x1+6||v.x1>=h.x2-6||h.y1<=v.y1+1||h.y1>=v.y2-1)continue;
+      const x=v.x1,y=h.y1,arc='M '+(x-6)+' '+y+' Q '+x+' '+(y+10)+' '+(x+6)+' '+y,group=svgElement('g',{class:'tech-crossing','data-x':x,'data-y':y,'aria-hidden':'true'}),gap=svgElement('path',{d:'M '+(x-6)+' '+y+' H '+(x+6),class:'crossing-gap'}),under=svgElement('path',{d:arc,class:'crossing-gap'}),stroke=svgElement('path',{d:arc,class:'crossing-arc'});group.append(gap,under,stroke);$('techLinks').append(group);(horizontal.link.crossings??=[]).push(group);
+    }}
+  }
+  function graphLinks(node){
+    const target=techGraphPositions.get(node.id),toX=target.x+GRAPH.nodeW/2,joinY=graphJoins.get(node.id);
+    if(!node.requires.length)addTechLink('__root__',node,'M '+toX+' 164 V '+target.y);
+    for(const route of graphRoutes.filter(route=>route.node===node)){
+      if(route.direct){addTechLink(route.sourceId,node,'M '+route.fromX+' '+route.fromY+' V '+target.y);continue;}
+      const arrivalY=joinY??target.y-18,portX=joinY===undefined?toX:toX+route.side*9;
+      let d='M '+route.exitX+' '+route.fromY+' V '+route.exitY+' H '+route.corridorX+' V '+arrivalY+' H '+portX;
+      if(joinY===undefined)d+=' V '+target.y;
+      addTechLink(route.sourceId,node,d);
+    }
+    if(joinY!==undefined){addTechLink(null,node,'M '+toX+' '+(joinY+9)+' V '+target.y);const group=svgElement('g',{class:'tech-junction','data-target':node.id,role:'img'}),circle=svgElement('circle',{cx:toX,cy:joinY,r:9}),plus=svgElement('text',{x:toX,y:joinY+4,'text-anchor':'middle'}),check=svgElement('text',{x:toX+12,y:joinY-9,class:'junction-check'});plus.textContent='+';group.append(circle,plus,check);$('techLinks').append(group);techJunctions.push({group,check,targetId:node.id});}
   }
   for(const node of TECH_NODES){const card=document.createElement('article');card.className='tech-node';card.id='tech_'+node.id;card.dataset.combination=String(node.requires.length>1);
     const select=document.createElement('button');select.type='button';select.className='tech-select';select.dataset.techSelect=node.id;select.onclick=()=>selectTech(node.id);
@@ -3072,10 +3104,11 @@ try {
     const progress=document.createElement('small');progress.className='tech-condition-progress';const price=document.createElement('span');price.className='node-price';card.append(progress,price);
     const actions=document.createElement('div');actions.className='tech-actions';const buy=document.createElement('button');buy.type='button';buy.className='tech-buy';buy.dataset.techBuy=node.id;buy.onclick=()=>learnTech(node.id);actions.append(buy);
     if(C.ultimates.skills[node.id]){const preview=makePreviewButton(node.id);preview.classList.add('tech-preview-button');actions.append(preview);}card.append(actions);card.onclick=event=>{if(!event.target.closest('button'))selectTech(node.id);};
-    const pos=graphPosition(node);card.style.left=pos.x+'px';card.style.top=pos.y+'px';card.dataset.branch=node.branch;$('techGraphNodes').append(card);techGraphPositions.set(node.id,{...pos,w:GRAPH.nodeW,h:GRAPH.nodeH});techElements.set(node.id,{card,select,name,desc,price,progress,buy,chips});
+    const pos=graphPosition(node);card.style.left=pos.x+'px';card.style.top=pos.y+'px';card.dataset.branch=node.branch;$('techGraphNodes').append(card);techGraphPositions.set(node.id,{...pos,w:GRAPH.nodeW,h:GRAPH.nodeH});techElements.set(node.id,{card,select,name,desc,price,progress,buy,chips,preview:actions.querySelector("[data-preview-id]")});
   }
   const graphHeight=Math.max(...[...techGraphPositions.values()].map(p=>p.y+p.h))+24;$('techMap').style.height=graphHeight+'px';$('techLinks').style.height=graphHeight+'px';
-  for(const node of TECH_NODES)graphLinks(node);
+  const rootXs=TECH_NODES.filter(node=>!node.requires.length).map(node=>techGraphPositions.get(node.id).x+GRAPH.nodeW/2);$('techLinks').append(svgElement('path',{d:'M 496 87 V 164 M '+Math.min(...rootXs)+' 164 H '+Math.max(...rootXs),class:'tech-root-bus'}));
+  prepareGraphRoutes();for(const node of TECH_NODES)graphLinks(node);separateGraphCrossings();
   function centerTechRoot(){const view=$('techViewport');const pos=techGraphPositions.get('echo');
     view.scrollLeft=Math.max(0,pos.x+GRAPH.nodeW/2-view.clientWidth/2);}
   $('treeCenter').addEventListener('click',centerTechRoot);
@@ -3132,14 +3165,14 @@ try {
     b.addEventListener('click',()=>learnStat(key));$('techStats').append(b);statElements.set(key,b);}
   function updateTechUi(){const points=availableTech();$('techWallet').textContent=String(points);$('techPoints').textContent=String(points);
     let purchasable=false;
-    for(const node of TECH_NODES){const learned=hasTech(node.id),conditions=requirementState(node),pathReady=conditions.ready,affordable=points>=node.cost,elem=techElements.get(node.id);elem.name.textContent=node.name;elem.desc.textContent=node.desc;
+    for(const node of TECH_NODES){const learned=hasTech(node.id),conditions=requirementState(node),pathReady=conditions.ready,affordable=points>=node.cost,elem=techElements.get(node.id);elem.name.textContent=node.name;elem.desc.textContent=node.desc;if(elem.preview)elem.preview.textContent=tr("preview.open");
       const state=learned?'unlocked':pathReady&&affordable?'available':'locked';elem.card.dataset.state=state;elem.card.dataset.ready=String(pathReady);elem.buy.disabled=learned||!pathReady||!affordable;elem.buy.textContent=learned?tr('runtime.214'):tr('tech.buy',{cost:node.cost});
       elem.progress.textContent=conditions.total?tr('tech.conditions',{completed:conditions.completed,total:conditions.total}):tr('tech.noConditions');elem.select.setAttribute('aria-label',node.name+' \u00b7 '+node.desc+' \u00b7 '+elem.progress.textContent);elem.buy.setAttribute('aria-label',tr('tech.buyNamed',{name:node.name,cost:node.cost}));
       elem.price.textContent=learned?tr('runtime.214'):!pathReady?tr('tech.missing'):affordable?tr('tech.ready'):tr('runtime.217',{v0:node.cost,v1:node.cost-points});
       for(const {chip,icon,label,id}of elem.chips){const ready=hasTech(id),parent=graphNodeById.get(id);chip.dataset.ready=String(ready);icon.textContent=(ready?'✓ ':'')+parent.symbol;label.textContent=parent.name;chip.setAttribute('aria-label',tr('tech.inspectCondition',{name:parent.name,state:tr(ready?'tech.met':'tech.notMet')}));}
       if(state==='available')purchasable=true;
     }
-    for(const link of techLinkElements){const target=graphNodeById.get(link.targetId),ready=link.sourceId===null?requirementState(target).ready:link.sourceId==='__root__'||hasTech(link.sourceId);link.path.dataset.state=hasTech(link.targetId)?'unlocked':ready?'available':'locked';}
+    for(const link of techLinkElements){const target=graphNodeById.get(link.targetId),ready=link.sourceId===null?requirementState(target).ready:link.sourceId==='__root__'||hasTech(link.sourceId);link.path.dataset.state=hasTech(link.targetId)?'unlocked':ready?'available':'locked';for(const crossing of link.crossings??[]){crossing.dataset.state=link.path.dataset.state;crossing.style.stroke=getComputedStyle(link.path).stroke;}}
     for(const join of techJunctions){const node=graphNodeById.get(join.targetId),conditions=requirementState(node);join.group.dataset.ready=String(conditions.ready);join.check.textContent=conditions.ready?'✓':'';join.group.setAttribute('aria-label',node.name+' \u00b7 '+tr('tech.conditions',{completed:conditions.completed,total:conditions.total}));}
     updateTechSelection();
     for(const [key,name,amount,,,maxLevel=Infinity] of STAT_UPGRADES){const b=statElements.get(key);if(!b)continue;b.querySelector('b').textContent=name;b.querySelector('.node-desc').textContent=tr('ui.statGain',{amount});const pathReady=statPathReady(key,tech.statLevels);

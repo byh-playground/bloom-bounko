@@ -1,5 +1,7 @@
 import {hostile,healTargetValid} from './abilities.js';
 
+export function companionIdlePoint(anchor,slot,radius){const a=(slot+1)*2.399;return {x:anchor.x+Math.cos(a)*radius,y:anchor.y+Math.sin(a)*radius};}
+
 // Controllers return intent only. Unit/capabilities are the sole combat-state writers.
 const gap=(a,b)=>Math.hypot(a.x-b.x,a.y-b.y);
 function navigation(unit,target,attack){
@@ -24,7 +26,7 @@ export class EnemyController {
 export class PetController {
   constructor({slot=0,range=460,leash=600,followRadius=48}={}){Object.assign(this,{slot,range,leash,followRadius});}
   intent(unit,world){const anchor=world.anchor(),p=unit.body.position;
-    const a=(this.slot+1)*2.399,idlePoint={x:anchor.x+Math.cos(a)*this.followRadius,y:anchor.y+Math.sin(a)*this.followRadius};
+    const idlePoint=companionIdlePoint(anchor,this.slot,this.followRadius);
     const support=supportIntent(unit,world,idlePoint);if(support)return support;
     const target=gap(p,anchor)<=this.leash?world.targets().filter(t=>hostile(unit,t)&&gap(t.body.position,anchor)<=this.range)
       .sort((a,b)=>gap(a.body.position,p)-gap(b.body.position,p))[0]:null;

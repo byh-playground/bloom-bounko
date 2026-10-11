@@ -1,0 +1,59 @@
+{
+  "version": "0.16.2",
+  "browser": "155.0.4283.45",
+  "pass": true,
+  "mobile": {
+    "seconds": 5.563,
+    "beforeMap": {
+      "width": 1940,
+      "height": 1426,
+      "outerScrollHeight": 2318
+    },
+    "cardsPerPage": 4,
+    "statPages": 3,
+    "outerOverflowPx": 0,
+    "detailOverflow844Px": 0,
+    "detailOverflow667Px": 73,
+    "touchMinHeightPx": 44,
+    "languages": [
+      "ko",
+      "en"
+    ],
+    "checks": [
+      "A+B 0/2 to 1/2 to 2/2; parent navigation and purchase",
+      "selection clear and focus preserved; selection uses no points",
+      "stat parent requirement and repeated investment; URL reload",
+      "actual ultimate preview and return focus",
+      "desktop original graph/cards restored on resize"
+    ]
+  },
+  "damage": {
+    "seconds": 2.251,
+    "method": "Actual Edge Unit/Matter/WebGL scenes; QA-only local-server fixture for in-game hit and bounded preview ticks. Actual preview iframe uses shared rendering path.",
+    "dpr": 2,
+    "beforeGameOffsetXPx": 665.687567528258,
+    "beforePreviewOffsetXPx": 424.4687459309896,
+    "gameMaxErrorPx": 0.000006493101750493224,
+    "previewMaxErrorPx": 0.000026633623633642856,
+    "gameViewport": {
+      "width": 1366,
+      "height": 768,
+      "dpr": 2,
+      "canvasWidth": 2732,
+      "cssWidth": 1366,
+      "zoom": 0.8170212765957446
+    },
+    "previewViewport": {
+      "width": 890,
+      "height": 461,
+      "dpr": 2,
+      "canvasWidth": 1780,
+      "cssWidth": 890,
+      "zoom": 0.7683333333333333
+    },
+    "feetZ": 40,
+    "feetZApplied": true,
+    "separateNumberCount": 15
+  },
+  "errors": []
+}

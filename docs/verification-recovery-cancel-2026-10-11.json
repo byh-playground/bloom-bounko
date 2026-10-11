@@ -1,0 +1,271 @@
+{
+  "baseCommit": "033b638b7b63c23a8bac3f8838ac94e8b429a696",
+  "sourceSha256": "2ca3c590033a9d7a0c329fa1ec12f5bb036bfa8ddb63bc1f91bb253908d95a37",
+  "scope": "Focused actual Edge comparison: test HTML prepares a real launch/dash against an empty arena, with shadow position/speed configured; native KeyD then uses production ActionState/fixed loop/roll/DOM renderer. Forced exits are separately labelled full-runtime fixtures. No natural combat or balance coverage is claimed.",
+  "errors": [],
+  "browser": "155.0.4283.45",
+  "baseline": {
+    "before": {
+      "mode": "DASH",
+      "phase": "PLAYING",
+      "missActive": true,
+      "button": "회복",
+      "aria": "빗나간 돌진의 자세 회복 중, 다음 발사는 예약할 수 있고 구르기는 가능합니다",
+      "classes": "dash miss-recovery",
+      "modeUntil": 150,
+      "evadeActions": 0,
+      "buffered": false,
+      "ammo": {
+        "charges": 1,
+        "maxCharges": 2,
+        "rechargeMs": 1000,
+        "progress": 0.016666666666666666,
+        "spent": 1
+      },
+      "timeMs": 16.666666666666668
+    },
+    "after": {
+      "mode": "READY",
+      "phase": "PLAYING",
+      "missActive": true,
+      "button": "회복",
+      "aria": "빗나간 돌진의 자세 회복 중, 다음 발사는 예약할 수 있고 구르기는 가능합니다",
+      "classes": "ready miss-recovery",
+      "modeUntil": 0,
+      "evadeActions": 1,
+      "buffered": false,
+      "ammo": {
+        "charges": 1,
+        "maxCharges": 2,
+        "rechargeMs": 1000,
+        "progress": 0.05,
+        "spent": 1
+      },
+      "timeMs": 50
+    }
+  },
+  "fixed": {
+    "before": {
+      "mode": "DASH",
+      "phase": "PLAYING",
+      "missActive": true,
+      "button": "회복",
+      "aria": "빗나간 돌진의 자세 회복 중, 다음 발사는 예약할 수 있고 구르기는 가능합니다",
+      "classes": "dash miss-recovery",
+      "modeUntil": 150,
+      "evadeActions": 0,
+      "buffered": false,
+      "ammo": {
+        "charges": 1,
+        "maxCharges": 2,
+        "rechargeMs": 1000,
+        "progress": 0.016666666666666666,
+        "spent": 1
+      },
+      "timeMs": 16.666666666666668
+    },
+    "after": {
+      "mode": "READY",
+      "phase": "PLAYING",
+      "missActive": false,
+      "button": "TAP",
+      "aria": "공격 잔상 1/2발, 1000밀리초마다 1발 장전",
+      "classes": "ready",
+      "modeUntil": 0,
+      "evadeActions": 1,
+      "buffered": false,
+      "ammo": {
+        "charges": 1,
+        "maxCharges": 2,
+        "rechargeMs": 1000,
+        "progress": 0.05,
+        "spent": 1
+      },
+      "timeMs": 50
+    }
+  },
+  "forcedExitFixtures": {
+    "finishStage": {
+      "mode": "READY",
+      "phase": "PLAYING",
+      "missActive": false,
+      "button": "TAP",
+      "aria": "공격 잔상 2/2발, 1000밀리초마다 1발 장전",
+      "classes": "ready",
+      "modeUntil": 0,
+      "evadeActions": 0,
+      "buffered": false,
+      "ammo": {
+        "charges": 2,
+        "maxCharges": 2,
+        "rechargeMs": 1000,
+        "progress": 0,
+        "spent": 0
+      },
+      "timeMs": 0
+    },
+    "setupStage": {
+      "mode": "READY",
+      "phase": "PLAYING",
+      "missActive": false,
+      "button": "TAP",
+      "aria": "공격 잔상 2/2발, 1000밀리초마다 1발 장전",
+      "classes": "ready",
+      "modeUntil": 0,
+      "evadeActions": 0,
+      "buffered": false,
+      "ammo": {
+        "charges": 2,
+        "maxCharges": 2,
+        "rechargeMs": 1000,
+        "progress": 0,
+        "spent": 0
+      },
+      "timeMs": 0
+    },
+    "spawnBoss": {
+      "mode": "READY",
+      "phase": "PLAYING",
+      "missActive": false,
+      "button": "TAP",
+      "aria": "공격 잔상 2/2발, 1000밀리초마다 1발 장전",
+      "classes": "ready",
+      "modeUntil": 0,
+      "evadeActions": 0,
+      "buffered": false,
+      "ammo": {
+        "charges": 2,
+        "maxCharges": 2,
+        "rechargeMs": 1000,
+        "progress": 0,
+        "spent": 0
+      },
+      "timeMs": 0
+    },
+    "reset": {
+      "mode": "READY",
+      "phase": "PLAYING",
+      "missActive": false,
+      "button": "TAP",
+      "aria": "공격 잔상 2/2발, 1000밀리초마다 1발 장전",
+      "classes": "ready",
+      "modeUntil": 0,
+      "evadeActions": 0,
+      "buffered": false,
+      "ammo": {
+        "charges": 2,
+        "maxCharges": 2,
+        "rechargeMs": 1000,
+        "progress": 0,
+        "spent": 0
+      },
+      "timeMs": 0
+    },
+    "expireShadow": {
+      "mode": "READY",
+      "phase": "PLAYING",
+      "missActive": false,
+      "button": "TAP",
+      "aria": "공격 잔상 2/2발, 1000밀리초마다 1발 장전",
+      "classes": "ready",
+      "modeUntil": 0,
+      "evadeActions": 0,
+      "buffered": false,
+      "ammo": {
+        "charges": 2,
+        "maxCharges": 2,
+        "rechargeMs": 1000,
+        "progress": 0,
+        "spent": 0
+      },
+      "timeMs": 0
+    },
+    "beginReady": {
+      "mode": "READY",
+      "phase": "PLAYING",
+      "missActive": false,
+      "button": "TAP",
+      "aria": "공격 잔상 2/2발, 1000밀리초마다 1발 장전",
+      "classes": "ready",
+      "modeUntil": 0,
+      "evadeActions": 0,
+      "buffered": false,
+      "ammo": {
+        "charges": 2,
+        "maxCharges": 2,
+        "rechargeMs": 1000,
+        "progress": 0,
+        "spent": 0
+      },
+      "timeMs": 0
+    },
+    "beginRecover": {
+      "mode": "RECOVER",
+      "phase": "PLAYING",
+      "missActive": false,
+      "button": "WAIT",
+      "aria": "발사 준비 중, 미리 탭하면 예약됩니다",
+      "classes": "recover",
+      "modeUntil": 100,
+      "evadeActions": 0,
+      "buffered": false,
+      "ammo": {
+        "charges": 2,
+        "maxCharges": 2,
+        "rechargeMs": 1000,
+        "progress": 0,
+        "spent": 0
+      },
+      "timeMs": 0
+    },
+    "die": {
+      "mode": "DEAD",
+      "phase": "ENDED",
+      "missActive": false,
+      "button": "WAIT",
+      "aria": "현재 잔상으로 돌진, 추가 탄 소모 없음",
+      "classes": "dead",
+      "modeUntil": 999,
+      "evadeActions": 0,
+      "buffered": false,
+      "ammo": {
+        "charges": 2,
+        "maxCharges": 2,
+        "rechargeMs": 1000,
+        "progress": 0,
+        "spent": 0
+      },
+      "timeMs": 0
+    },
+    "cancelBuffer": {
+      "mode": "READY",
+      "phase": "PLAYING",
+      "missActive": false,
+      "button": "TAP",
+      "aria": "공격 잔상 2/2발, 1000밀리초마다 1발 장전",
+      "classes": "ready",
+      "modeUntil": 0,
+      "evadeActions": 1,
+      "buffered": false,
+      "ammo": {
+        "charges": 2,
+        "maxCharges": 2,
+        "rechargeMs": 1000,
+        "progress": 0,
+        "spent": 0
+      },
+      "timeMs": 0
+    }
+  },
+  "wordingAudit": {
+    "legacyEnergyContractAbsent": true,
+    "unifiedCreationRule": true,
+    "rearmMinMs": 150,
+    "rearmMaxMs": 400,
+    "recoverMinMs": 100,
+    "inputBufferMs": 450,
+    "configMatchesBaseline": true
+  },
+  "result": "PASS",
+  "elapsedMs": 2573
+}

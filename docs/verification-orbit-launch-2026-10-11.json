@@ -1,0 +1,2097 @@
+{
+  "scope": "One natural Edge Start/WASD/click/attack flow plus labelled production-runtime fixture for exact alignment/render handoff, sources, cancellation and sequential 1500ms recharge. Real Matter.js, pinned GameKit CameraViewport/Renderer2D/WebAudio. No library mocks.",
+  "errors": [],
+  "responses": [
+    {
+      "url": "https://cdn.jsdelivr.net/gh/byh-playground/bloom-gamekit@d1e2c385033ad04a7a004cfbe9558948ef07a6d1/camera.js",
+      "status": 200
+    }
+  ],
+  "sha256": {
+    "index.html": "57c9373682d89a1af17c1cdb3ca63a470256816ad1b1893a538f8c78b57c1b9c",
+    "abilities.js": "8c6f91139e71de7be2baa96a185cd68eebc1ad57b34ece719faac14fbde33b7e",
+    "pets.js": "05dbc4262d389843afd65f721ee20df02083a61f9bfebc8fd3222d3d769b9843",
+    "controllers.js": "b49df0ffb0e02990a7fe992202392a7e7c7c89ce9a1a857514146f2cfe1986d1",
+    "enemies.js": "bba2ec615f685e8a4b31e21c40c1479232db00de38d82483f3c39a802a796b42",
+    "audio.js": "8543ce14bcd61c07373cd7c7c560b9c696ecf5afb80918d3c5929ef407a84a22"
+  },
+  "browser": "155.0.4283.45",
+  "start": {
+    "version": "0.12.8",
+    "timeMs": 100,
+    "mode": "READY",
+    "phase": "PLAYING",
+    "health": 200,
+    "ammo": {
+      "charges": 2,
+      "maxCharges": 2,
+      "rechargeMs": 1500,
+      "progress": 0,
+      "spent": 0,
+      "readySlots": [
+        0,
+        1
+      ],
+      "refillingSlot": null
+    },
+    "launchCount": 0,
+    "manual": 0,
+    "evade": {
+      "charges": 2,
+      "max": 2,
+      "refillAtMs": 0,
+      "progress": 0,
+      "rechargeMs": 500,
+      "impulseSpeed": 1020,
+      "durationMs": 580,
+      "invulnerableMs": 100,
+      "projectileInvulnerable": false,
+      "active": false,
+      "startedAtMs": -1000000000,
+      "count": 0,
+      "hitRechargeEvents": 0,
+      "hitRechargeProgress": 0,
+      "lastHitRecharge": null
+    },
+    "shadow": null,
+    "alignment": null,
+    "orbit": [
+      {
+        "slot": 0,
+        "ready": true,
+        "aligning": false,
+        "progress": 1,
+        "angle": -1.4757963267948966,
+        "x": 753.2251437335749,
+        "y": 716.1533096463216,
+        "radius": 3.8
+      },
+      {
+        "slot": 1,
+        "ready": true,
+        "aligning": false,
+        "progress": 1,
+        "angle": 1.6657963267948965,
+        "x": 746.7748562664251,
+        "y": 783.8466903536784,
+        "radius": 3.8
+      }
+    ],
+    "position": {
+      "x": 750,
+      "y": 750
+    },
+    "speed": {
+      "x": 0,
+      "y": 0
+    },
+    "recoil": null,
+    "camera": {
+      "base": {
+        "x": 750,
+        "y": 750,
+        "zoom": 0.9042553191489362,
+        "rotation": 0
+      },
+      "render": {
+        "x": 750,
+        "y": 750,
+        "zoom": 0.9042553191489362,
+        "rotation": 0
+      },
+      "shake": null,
+      "offset": {
+        "x": 0,
+        "y": 0
+      }
+    },
+    "button": "TAP"
+  },
+  "dependencies": {
+    "matter": "0.20.0",
+    "renderer": "ready",
+    "gpu": "ANGLE (NVIDIA, NVIDIA GeForce GTX 1660 Ti (0x00002191) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+    "kit": "d1e2c385033ad04a7a004cfbe9558948ef07a6d1"
+  },
+  "controls": {
+    "version": "0.12.8",
+    "timeMs": 150,
+    "mode": "READY",
+    "phase": "PLAYING",
+    "health": 200,
+    "ammo": {
+      "charges": 2,
+      "maxCharges": 2,
+      "rechargeMs": 1500,
+      "progress": 0,
+      "spent": 0,
+      "readySlots": [
+        0,
+        1
+      ],
+      "refillingSlot": null
+    },
+    "launchCount": 0,
+    "manual": 0,
+    "evade": {
+      "charges": 0,
+      "max": 2,
+      "refillAtMs": 633.3333333333334,
+      "progress": 0.033333333333333215,
+      "rechargeMs": 500,
+      "impulseSpeed": 1020,
+      "durationMs": 580,
+      "invulnerableMs": 100,
+      "projectileInvulnerable": true,
+      "active": true,
+      "startedAtMs": 150,
+      "count": 2,
+      "hitRechargeEvents": 0,
+      "hitRechargeProgress": 0,
+      "lastHitRecharge": null
+    },
+    "shadow": null,
+    "alignment": null,
+    "orbit": [
+      {
+        "slot": 0,
+        "ready": true,
+        "aligning": false,
+        "progress": 1,
+        "angle": -1.4282963267948965,
+        "x": 783.1132853020994,
+        "y": 723.8289883435807,
+        "radius": 3.8
+      },
+      {
+        "slot": 1,
+        "ready": true,
+        "aligning": false,
+        "progress": 1,
+        "angle": 1.7132963267948966,
+        "x": 773.4560466151823,
+        "y": 791.1397433604716,
+        "radius": 3.8
+      }
+    ],
+    "position": {
+      "x": 778.2846659586409,
+      "y": 757.4843658520261
+    },
+    "speed": {
+      "x": 789.1271517289738,
+      "y": 449.06195112156865
+    },
+    "recoil": null,
+    "camera": {
+      "base": {
+        "x": 752.9335487955939,
+        "y": 750.5269731737133,
+        "zoom": 0.9042553191489362,
+        "rotation": 0
+      },
+      "render": {
+        "x": 752.9335487955939,
+        "y": 750.5269731737133,
+        "zoom": 0.9042553191489362,
+        "rotation": 0
+      },
+      "shake": null,
+      "offset": {
+        "x": 0,
+        "y": 0
+      }
+    },
+    "button": "TAP"
+  },
+  "nativeAlign": {
+    "version": "0.12.8",
+    "timeMs": 166.66666666666669,
+    "mode": "ALIGN",
+    "phase": "PLAYING",
+    "health": 200,
+    "ammo": {
+      "charges": 2,
+      "maxCharges": 2,
+      "rechargeMs": 1500,
+      "progress": 0,
+      "spent": 0,
+      "readySlots": [
+        0,
+        1
+      ],
+      "refillingSlot": null
+    },
+    "launchCount": 0,
+    "manual": 0,
+    "evade": {
+      "charges": 0,
+      "max": 2,
+      "refillAtMs": 633.3333333333334,
+      "progress": 0.06666666666666665,
+      "rechargeMs": 500,
+      "impulseSpeed": 1020,
+      "durationMs": 580,
+      "invulnerableMs": 100,
+      "projectileInvulnerable": true,
+      "active": true,
+      "startedAtMs": 150,
+      "count": 2,
+      "hitRechargeEvents": 0,
+      "hitRechargeProgress": 0,
+      "lastHitRecharge": null
+    },
+    "shadow": null,
+    "alignment": {
+      "slot": 1,
+      "angle": 1.72912966012823,
+      "dirX": 0.14985814764394498,
+      "dirY": 0.9887075076000617,
+      "targetId": 1,
+      "followTarget": true,
+      "source": "manual",
+      "elapsedMs": 0,
+      "startedAtMs": 166.66666666666669,
+      "durationMs": 80
+    },
+    "orbit": [
+      {
+        "slot": 0,
+        "ready": true,
+        "aligning": false,
+        "progress": 1,
+        "angle": -1.4124629934615631,
+        "x": 795.3420882152718,
+        "y": 730.565716194606,
+        "radius": 3.8
+      },
+      {
+        "slot": 1,
+        "ready": true,
+        "aligning": true,
+        "progress": 1,
+        "angle": 1.72912966012823,
+        "x": 784.6203509192028,
+        "y": 797.7151342810948,
+        "radius": 3.8
+      }
+    ],
+    "position": {
+      "x": 789.9812195672373,
+      "y": 764.1404252378504
+    },
+    "speed": {
+      "x": 701.7932165157868,
+      "y": 399.3635631494567
+    },
+    "recoil": null,
+    "camera": {
+      "base": {
+        "x": 759.7431179491135,
+        "y": 752.8886531550328,
+        "zoom": 0.9042553191489362,
+        "rotation": 0
+      },
+      "render": {
+        "x": 759.7431179491135,
+        "y": 752.8886531550328,
+        "zoom": 0.9042553191489362,
+        "rotation": 0
+      },
+      "shake": null,
+      "offset": {
+        "x": 0,
+        "y": 0
+      }
+    },
+    "button": "정렬"
+  },
+  "nativeLaunch": {
+    "version": "0.12.8",
+    "timeMs": 250.00000000000003,
+    "mode": "SHADOW",
+    "phase": "PLAYING",
+    "health": 200,
+    "ammo": {
+      "charges": 1,
+      "maxCharges": 2,
+      "rechargeMs": 1500,
+      "progress": 0,
+      "spent": 1,
+      "readySlots": [
+        0
+      ],
+      "refillingSlot": 1
+    },
+    "launchCount": 1,
+    "manual": 1,
+    "evade": {
+      "charges": 0,
+      "max": 2,
+      "refillAtMs": 633.3333333333334,
+      "progress": 0.23333333333333328,
+      "rechargeMs": 500,
+      "impulseSpeed": 1020,
+      "durationMs": 580,
+      "invulnerableMs": 100,
+      "projectileInvulnerable": false,
+      "active": true,
+      "startedAtMs": 150,
+      "count": 2,
+      "hitRechargeEvents": 0,
+      "hitRechargeProgress": 0,
+      "lastHitRecharge": null
+    },
+    "shadow": {
+      "source": "manual",
+      "slot": 1,
+      "dirX": -0.049311819536879235,
+      "dirY": 0.9987834322083854,
+      "x": 829.7058143046524,
+      "y": 821.6588926699462,
+      "startX": 829.7058143046524,
+      "startY": 821.6588926699462,
+      "visualRadius": 3.8,
+      "launchedAtMs": 250.00000000000003,
+      "progress": 0,
+      "charge": 0,
+      "dashReady": true,
+      "separation": 34.00000000000004,
+      "remainingGap": 181.7469800410058,
+      "initialGap": 181.7469800410058,
+      "travel": 0,
+      "limit": 649.1308189769655,
+      "targetId": 1,
+      "arrived": false,
+      "speed": 150
+    },
+    "alignment": null,
+    "orbit": [
+      {
+        "slot": 0,
+        "ready": true,
+        "aligning": false,
+        "progress": 1,
+        "angle": -1.3332963267948965,
+        "x": 839.3817165696795,
+        "y": 754.6546633322985,
+        "radius": 3.8
+      }
+    ],
+    "position": {
+      "x": 831.3824161689064,
+      "y": 787.7002559748611
+    },
+    "speed": {
+      "x": 385.4454024162487,
+      "y": 173.13415302961175
+    },
+    "recoil": {
+      "x": 0.049311819536879235,
+      "y": -0.9987834322083854,
+      "remaining": 45,
+      "startedAtMs": 250.00000000000003,
+      "baseline": 0
+    },
+    "camera": {
+      "base": {
+        "x": 787.0520324145592,
+        "y": 765.4321201567441,
+        "zoom": 0.9042553191489362,
+        "rotation": 0
+      },
+      "render": {
+        "x": 787.0520324145592,
+        "y": 765.4321201567441,
+        "zoom": 0.9042553191489362,
+        "rotation": 0
+      },
+      "shake": {
+        "kind": "launch",
+        "x": 0.049311819536879235,
+        "y": -0.9987834322083854,
+        "amplitude": 1.8,
+        "durationMs": 85,
+        "cycles": 1.5,
+        "startedAtMs": 250.00000000000003
+      },
+      "offset": {
+        "x": 0,
+        "y": 0
+      }
+    },
+    "button": "DASH"
+  },
+  "nativeRecharge": {
+    "version": "0.12.8",
+    "timeMs": 1750.0000000000002,
+    "mode": "SHADOW",
+    "phase": "PLAYING",
+    "health": 200,
+    "ammo": {
+      "charges": 2,
+      "maxCharges": 2,
+      "rechargeMs": 1500,
+      "progress": 0,
+      "spent": 1,
+      "readySlots": [
+        0,
+        1
+      ],
+      "refillingSlot": null
+    },
+    "launchCount": 1,
+    "manual": 1,
+    "evade": {
+      "charges": 2,
+      "max": 2,
+      "refillAtMs": 0,
+      "progress": 0,
+      "rechargeMs": 500,
+      "impulseSpeed": 1020,
+      "durationMs": 580,
+      "invulnerableMs": 100,
+      "projectileInvulnerable": false,
+      "active": false,
+      "startedAtMs": 150,
+      "count": 2,
+      "hitRechargeEvents": 0,
+      "hitRechargeProgress": 0,
+      "lastHitRecharge": null
+    },
+    "shadow": {
+      "source": "manual",
+      "slot": 1,
+      "dirX": 0.35130823757459173,
+      "dirY": 0.9362598582723891,
+      "x": 764.5326793509508,
+      "y": 804.0652995758414,
+      "startX": 829.7058143046524,
+      "startY": 821.6588926699462,
+      "visualRadius": 7,
+      "launchedAtMs": 250.00000000000003,
+      "progress": 1,
+      "charge": 1,
+      "dashReady": true,
+      "separation": 111.6081477394723,
+      "remainingGap": 0,
+      "initialGap": 181.7469800410058,
+      "travel": 593.2855555555552,
+      "limit": 649.1308189769655,
+      "targetId": 1,
+      "arrived": false,
+      "speed": 1718.3333333333303
+    },
+    "alignment": null,
+    "orbit": [
+      {
+        "slot": 0,
+        "ready": true,
+        "aligning": false,
+        "progress": 1,
+        "angle": 0.09170367320510353,
+        "x": 908.7625999694658,
+        "y": 790.6190432693996,
+        "radius": 3.8
+      },
+      {
+        "slot": 1,
+        "ready": true,
+        "aligning": false,
+        "progress": 1,
+        "angle": 3.2332963267948966,
+        "x": 841.0483248152325,
+        "y": 784.391929946455,
+        "radius": 3.8
+      }
+    ],
+    "position": {
+      "x": 874.9054623923491,
+      "y": 787.5054866079273
+    },
+    "speed": {
+      "x": 14.688515346065856,
+      "y": -25.811820060305024
+    },
+    "recoil": null,
+    "camera": {
+      "base": {
+        "x": 874.3899877120369,
+        "y": 788.4110531344606,
+        "zoom": 0.9042553191489362,
+        "rotation": 0
+      },
+      "render": {
+        "x": 874.3899877120369,
+        "y": 788.4110531344606,
+        "zoom": 0.9042553191489362,
+        "rotation": 0
+      },
+      "shake": {
+        "kind": "launch",
+        "x": 0.049311819536879235,
+        "y": -0.9987834322083854,
+        "amplitude": 1.8,
+        "durationMs": 85,
+        "cycles": 1.5,
+        "startedAtMs": 250.00000000000003
+      },
+      "offset": {
+        "x": 0,
+        "y": 0
+      }
+    },
+    "button": "DASH"
+  },
+  "frames": [
+    {
+      "name": "ready",
+      "state": {
+        "version": "0.12.8",
+        "timeMs": 0,
+        "mode": "READY",
+        "phase": "PLAYING",
+        "health": 200,
+        "ammo": {
+          "charges": 2,
+          "maxCharges": 2,
+          "rechargeMs": 1500,
+          "progress": 0,
+          "spent": 0,
+          "readySlots": [
+            0,
+            1
+          ],
+          "refillingSlot": null
+        },
+        "launchCount": 0,
+        "manual": 0,
+        "evade": {
+          "charges": 2,
+          "max": 2,
+          "refillAtMs": 0,
+          "progress": 0,
+          "rechargeMs": 500,
+          "impulseSpeed": 1020,
+          "durationMs": 580,
+          "invulnerableMs": 100,
+          "projectileInvulnerable": false,
+          "active": false,
+          "startedAtMs": -1000000000,
+          "count": 0,
+          "hitRechargeEvents": 0,
+          "hitRechargeProgress": 0,
+          "lastHitRecharge": null
+        },
+        "shadow": null,
+        "alignment": null,
+        "orbit": [
+          {
+            "slot": 0,
+            "ready": true,
+            "aligning": false,
+            "progress": 1,
+            "angle": -1.5707963267948966,
+            "x": 750,
+            "y": 716,
+            "radius": 3.8
+          },
+          {
+            "slot": 1,
+            "ready": true,
+            "aligning": false,
+            "progress": 1,
+            "angle": 1.5707963267948966,
+            "x": 750,
+            "y": 784,
+            "radius": 3.8
+          }
+        ],
+        "position": {
+          "x": 750,
+          "y": 750
+        },
+        "speed": {
+          "x": 0,
+          "y": 0
+        },
+        "recoil": null,
+        "camera": {
+          "base": {
+            "x": 750,
+            "y": 750,
+            "zoom": 0.851063829787234,
+            "rotation": 0
+          },
+          "render": {
+            "x": 750,
+            "y": 750,
+            "zoom": 0.851063829787234,
+            "rotation": 0
+          },
+          "shake": null,
+          "offset": {
+            "x": 0,
+            "y": 0
+          }
+        },
+        "button": "TAP"
+      }
+    },
+    {
+      "name": "align",
+      "state": {
+        "version": "0.12.8",
+        "timeMs": 33.333333333333336,
+        "mode": "ALIGN",
+        "phase": "PLAYING",
+        "health": 200,
+        "ammo": {
+          "charges": 2,
+          "maxCharges": 2,
+          "rechargeMs": 1500,
+          "progress": 0,
+          "spent": 0,
+          "readySlots": [
+            0,
+            1
+          ],
+          "refillingSlot": null
+        },
+        "launchCount": 0,
+        "manual": 0,
+        "evade": {
+          "charges": 2,
+          "max": 2,
+          "refillAtMs": 0,
+          "progress": 0,
+          "rechargeMs": 500,
+          "impulseSpeed": 1020,
+          "durationMs": 580,
+          "invulnerableMs": 100,
+          "projectileInvulnerable": false,
+          "active": false,
+          "startedAtMs": -1000000000,
+          "count": 0,
+          "hitRechargeEvents": 0,
+          "hitRechargeProgress": 0,
+          "lastHitRecharge": null
+        },
+        "shadow": null,
+        "alignment": {
+          "slot": 0,
+          "angle": -0.9162978572970228,
+          "dirX": 1,
+          "dirY": 0,
+          "targetId": 1,
+          "followTarget": true,
+          "source": "manual",
+          "elapsedMs": 33.333333333333336,
+          "startedAtMs": 0,
+          "durationMs": 80
+        },
+        "orbit": [
+          {
+            "slot": 0,
+            "ready": true,
+            "aligning": true,
+            "progress": 1,
+            "angle": -0.9162978572970228,
+            "x": 770.6978885862965,
+            "y": 723.025986430098,
+            "radius": 3.8
+          },
+          {
+            "slot": 1,
+            "ready": true,
+            "aligning": false,
+            "progress": 1,
+            "angle": 1.6024629934615633,
+            "x": 748.9235132672127,
+            "y": 783.9829542022782,
+            "radius": 3.8
+          }
+        ],
+        "position": {
+          "x": 750,
+          "y": 750
+        },
+        "speed": {
+          "x": 0,
+          "y": 0
+        },
+        "recoil": null,
+        "camera": {
+          "base": {
+            "x": 750,
+            "y": 750,
+            "zoom": 0.851063829787234,
+            "rotation": 0
+          },
+          "render": {
+            "x": 750,
+            "y": 750,
+            "zoom": 0.851063829787234,
+            "rotation": 0
+          },
+          "shake": null,
+          "offset": {
+            "x": 0,
+            "y": 0
+          }
+        },
+        "button": "정렬"
+      }
+    },
+    {
+      "name": "launch",
+      "state": {
+        "version": "0.12.8",
+        "timeMs": 83.33333333333334,
+        "mode": "SHADOW",
+        "phase": "PLAYING",
+        "health": 200,
+        "ammo": {
+          "charges": 1,
+          "maxCharges": 2,
+          "rechargeMs": 1500,
+          "progress": 0,
+          "spent": 1,
+          "readySlots": [
+            1
+          ],
+          "refillingSlot": 0
+        },
+        "launchCount": 1,
+        "manual": 1,
+        "evade": {
+          "charges": 2,
+          "max": 2,
+          "refillAtMs": 0,
+          "progress": 0,
+          "rechargeMs": 500,
+          "impulseSpeed": 1020,
+          "durationMs": 580,
+          "invulnerableMs": 100,
+          "projectileInvulnerable": false,
+          "active": false,
+          "startedAtMs": -1000000000,
+          "count": 0,
+          "hitRechargeEvents": 0,
+          "hitRechargeProgress": 0,
+          "lastHitRecharge": null
+        },
+        "shadow": {
+          "source": "manual",
+          "slot": 0,
+          "dirX": 1,
+          "dirY": 0,
+          "x": 784,
+          "y": 750,
+          "startX": 784,
+          "startY": 750,
+          "visualRadius": 3.8,
+          "launchedAtMs": 83.33333333333334,
+          "progress": 0,
+          "charge": 0,
+          "dashReady": true,
+          "separation": 34,
+          "remainingGap": 260,
+          "initialGap": 260,
+          "travel": 0,
+          "limit": 680,
+          "targetId": 1,
+          "arrived": false,
+          "speed": 150
+        },
+        "alignment": null,
+        "orbit": [
+          {
+            "slot": 1,
+            "ready": true,
+            "aligning": false,
+            "progress": 1,
+            "angle": 1.6499629934615632,
+            "x": 747.3111440602285,
+            "y": 783.8935104958922,
+            "radius": 3.8
+          }
+        ],
+        "position": {
+          "x": 750,
+          "y": 750
+        },
+        "speed": {
+          "x": -45,
+          "y": 0
+        },
+        "recoil": {
+          "x": -1,
+          "y": 0,
+          "remaining": 45,
+          "startedAtMs": 83.33333333333334,
+          "baseline": 0
+        },
+        "camera": {
+          "base": {
+            "x": 750,
+            "y": 750,
+            "zoom": 0.851063829787234,
+            "rotation": 0
+          },
+          "render": {
+            "x": 750,
+            "y": 750,
+            "zoom": 0.851063829787234,
+            "rotation": 0
+          },
+          "shake": {
+            "kind": "launch",
+            "x": -1,
+            "y": 0,
+            "amplitude": 1.8,
+            "durationMs": 85,
+            "cycles": 1.5,
+            "startedAtMs": 83.33333333333334
+          },
+          "offset": {
+            "x": 0,
+            "y": 0
+          }
+        },
+        "button": "DASH"
+      }
+    },
+    {
+      "name": "flight",
+      "state": {
+        "version": "0.12.8",
+        "timeMs": 116.66666666666667,
+        "mode": "SHADOW",
+        "phase": "PLAYING",
+        "health": 200,
+        "ammo": {
+          "charges": 1,
+          "maxCharges": 2,
+          "rechargeMs": 1500,
+          "progress": 0.022222222222222223,
+          "spent": 1,
+          "readySlots": [
+            1
+          ],
+          "refillingSlot": 0
+        },
+        "launchCount": 1,
+        "manual": 1,
+        "evade": {
+          "charges": 2,
+          "max": 2,
+          "refillAtMs": 0,
+          "progress": 0,
+          "rechargeMs": 500,
+          "impulseSpeed": 1020,
+          "durationMs": 580,
+          "invulnerableMs": 100,
+          "projectileInvulnerable": false,
+          "active": false,
+          "startedAtMs": -1000000000,
+          "count": 0,
+          "hitRechargeEvents": 0,
+          "hitRechargeProgress": 0,
+          "lastHitRecharge": null
+        },
+        "shadow": {
+          "source": "manual",
+          "slot": 0,
+          "dirX": 1,
+          "dirY": 0,
+          "x": 791.0833333333334,
+          "y": 750,
+          "startX": 784,
+          "startY": 750,
+          "visualRadius": 5.133333333333333,
+          "launchedAtMs": 83.33333333333334,
+          "progress": 0.02724358974358987,
+          "charge": 0.02724358974358987,
+          "dashReady": true,
+          "separation": 42.03840859672505,
+          "remainingGap": 252.91666666666663,
+          "initialGap": 260,
+          "travel": 7.083333333333332,
+          "limit": 680,
+          "targetId": 1,
+          "arrived": false,
+          "speed": 233.33333333333331
+        },
+        "alignment": null,
+        "orbit": [
+          {
+            "slot": 0,
+            "ready": false,
+            "aligning": false,
+            "progress": 0.022222222222222223,
+            "angle": -1.4599629934615632,
+            "x": 749.2901029133305,
+            "y": 747.7969314727958,
+            "radius": 1.089068861454047
+          },
+          {
+            "slot": 1,
+            "ready": true,
+            "aligning": false,
+            "progress": 1,
+            "angle": 1.68162966012823,
+            "x": 745.2843017179555,
+            "y": 783.791385211494,
+            "radius": 3.8
+          }
+        ],
+        "position": {
+          "x": 749.0449247366083,
+          "y": 750
+        },
+        "speed": {
+          "x": -24.23439043227063,
+          "y": 0
+        },
+        "recoil": {
+          "x": -1,
+          "y": 0,
+          "remaining": 24.696523624231194,
+          "startedAtMs": 83.33333333333334,
+          "baseline": 0
+        },
+        "camera": {
+          "base": {
+            "x": 749.9551862565735,
+            "y": 750,
+            "zoom": 0.851063829787234,
+            "rotation": 0
+          },
+          "render": {
+            "x": 749.5438132202295,
+            "y": 750,
+            "zoom": 0.851063829787234,
+            "rotation": 0
+          },
+          "shake": {
+            "kind": "launch",
+            "x": -1,
+            "y": 0,
+            "amplitude": 1.8,
+            "durationMs": 85,
+            "cycles": 1.5,
+            "startedAtMs": 83.33333333333334
+          },
+          "offset": {
+            "x": 0.3501047117821026,
+            "y": 0
+          }
+        },
+        "button": "DASH"
+      }
+    }
+  ],
+  "renderContract": {
+    "before": {
+      "position": {
+        "x": 750,
+        "y": 750
+      },
+      "velocity": {
+        "x": -45,
+        "y": 0
+      },
+      "spent": 1,
+      "recoil": {
+        "x": -1,
+        "y": 0,
+        "remaining": 45,
+        "startedAtMs": 83.33333333333334,
+        "baseline": 0
+      },
+      "shake": {
+        "kind": "launch",
+        "x": -1,
+        "y": 0,
+        "amplitude": 1.8,
+        "durationMs": 85,
+        "cycles": 1.5,
+        "startedAtMs": 83.33333333333334
+      },
+      "particles": 4,
+      "audio": {
+        "state": "running",
+        "volume": 0.7,
+        "muted": false,
+        "voices": 2,
+        "categoryVolumes": {
+          "enemy": 0.65,
+          "impact": 1,
+          "motion": 0.8,
+          "danger": 0.9,
+          "reward": 0.85,
+          "magic": 0.55,
+          "ui": 0.5
+        },
+        "lastError": null,
+        "played": 4,
+        "dropped": 2,
+        "blocked": 0,
+        "maxObserved": 3,
+        "bySound": {
+          "stageStart": 1,
+          "ui": 1,
+          "enemyNotice": 1,
+          "launch": 1
+        }
+      }
+    },
+    "after": {
+      "position": {
+        "x": 750,
+        "y": 750
+      },
+      "velocity": {
+        "x": -45,
+        "y": 0
+      },
+      "spent": 1,
+      "recoil": {
+        "x": -1,
+        "y": 0,
+        "remaining": 45,
+        "startedAtMs": 83.33333333333334,
+        "baseline": 0
+      },
+      "shake": {
+        "kind": "launch",
+        "x": -1,
+        "y": 0,
+        "amplitude": 1.8,
+        "durationMs": 85,
+        "cycles": 1.5,
+        "startedAtMs": 83.33333333333334
+      },
+      "particles": 4,
+      "audio": {
+        "state": "running",
+        "volume": 0.7,
+        "muted": false,
+        "voices": 2,
+        "categoryVolumes": {
+          "enemy": 0.65,
+          "impact": 1,
+          "motion": 0.8,
+          "danger": 0.9,
+          "reward": 0.85,
+          "magic": 0.55,
+          "ui": 0.5
+        },
+        "lastError": null,
+        "played": 4,
+        "dropped": 2,
+        "blocked": 0,
+        "maxObserved": 3,
+        "bySound": {
+          "stageStart": 1,
+          "ui": 1,
+          "enemyNotice": 1,
+          "launch": 1
+        }
+      }
+    },
+    "point": {
+      "x": 450,
+      "y": 400
+    },
+    "inverse": {
+      "x": 750,
+      "y": 750
+    },
+    "sdkInverse": {
+      "x": 750,
+      "y": 750
+    },
+    "offset": {
+      "x": 0,
+      "y": 0
+    },
+    "hudTransform": "none"
+  },
+  "renderContractShaken": {
+    "before": {
+      "position": {
+        "x": 749.0449247366083,
+        "y": 750
+      },
+      "velocity": {
+        "x": -24.23439043227063,
+        "y": 0
+      },
+      "spent": 1,
+      "recoil": {
+        "x": -1,
+        "y": 0,
+        "remaining": 24.696523624231194,
+        "startedAtMs": 83.33333333333334,
+        "baseline": 0
+      },
+      "shake": {
+        "kind": "launch",
+        "x": -1,
+        "y": 0,
+        "amplitude": 1.8,
+        "durationMs": 85,
+        "cycles": 1.5,
+        "startedAtMs": 83.33333333333334
+      },
+      "particles": 6,
+      "audio": {
+        "state": "running",
+        "volume": 0.7,
+        "muted": false,
+        "voices": 1,
+        "categoryVolumes": {
+          "enemy": 0.65,
+          "impact": 1,
+          "motion": 0.8,
+          "danger": 0.9,
+          "reward": 0.85,
+          "magic": 0.55,
+          "ui": 0.5
+        },
+        "lastError": null,
+        "played": 4,
+        "dropped": 2,
+        "blocked": 0,
+        "maxObserved": 3,
+        "bySound": {
+          "stageStart": 1,
+          "ui": 1,
+          "enemyNotice": 1,
+          "launch": 1
+        }
+      }
+    },
+    "after": {
+      "position": {
+        "x": 749.0449247366083,
+        "y": 750
+      },
+      "velocity": {
+        "x": -24.23439043227063,
+        "y": 0
+      },
+      "spent": 1,
+      "recoil": {
+        "x": -1,
+        "y": 0,
+        "remaining": 24.696523624231194,
+        "startedAtMs": 83.33333333333334,
+        "baseline": 0
+      },
+      "shake": {
+        "kind": "launch",
+        "x": -1,
+        "y": 0,
+        "amplitude": 1.8,
+        "durationMs": 85,
+        "cycles": 1.5,
+        "startedAtMs": 83.33333333333334
+      },
+      "particles": 6,
+      "audio": {
+        "state": "running",
+        "volume": 0.7,
+        "muted": false,
+        "voices": 1,
+        "categoryVolumes": {
+          "enemy": 0.65,
+          "impact": 1,
+          "motion": 0.8,
+          "danger": 0.9,
+          "reward": 0.85,
+          "magic": 0.55,
+          "ui": 0.5
+        },
+        "lastError": null,
+        "played": 4,
+        "dropped": 2,
+        "blocked": 0,
+        "maxObserved": 3,
+        "bySound": {
+          "stageStart": 1,
+          "ui": 1,
+          "enemyNotice": 1,
+          "launch": 1
+        }
+      }
+    },
+    "point": {
+      "x": 449.9870248271928,
+      "y": 400
+    },
+    "inverse": {
+      "x": 749.0449247366083,
+      "y": 750
+    },
+    "sdkInverse": {
+      "x": 749.0449247366083,
+      "y": 750
+    },
+    "offset": {
+      "x": 0.3501047117821026,
+      "y": 0
+    },
+    "hudTransform": "none"
+  },
+  "recoilSettled": {
+    "unitStates": [
+      {
+        "unitId": 1,
+        "inventoryId": null,
+        "speciesId": "rogue",
+        "faction": "wild",
+        "state": "CHASE",
+        "hp": 105,
+        "grade": 5,
+        "isSummon": false,
+        "signature": "leap",
+        "radius": 20,
+        "bodyRadius": 20,
+        "height": 30,
+        "scale": 1,
+        "outline": null,
+        "attackCount": 0,
+        "melee": null,
+        "sunbeam": null,
+        "heal": null,
+        "regenerated": 0
+      },
+      {
+        "unitId": 2,
+        "inventoryId": null,
+        "speciesId": "pillbug",
+        "faction": "wild",
+        "state": "CHASE",
+        "hp": 150,
+        "grade": 5,
+        "isSummon": false,
+        "signature": "selfDestruct",
+        "radius": 23,
+        "bodyRadius": 23,
+        "height": 38,
+        "scale": 1,
+        "outline": null,
+        "attackCount": 0,
+        "melee": null,
+        "sunbeam": null,
+        "heal": null,
+        "regenerated": 0
+      },
+      {
+        "unitId": 3,
+        "inventoryId": null,
+        "speciesId": "thornfruit",
+        "faction": "wild",
+        "state": "CHASE",
+        "hp": 185,
+        "grade": 5,
+        "isSummon": false,
+        "signature": "spike",
+        "radius": 24,
+        "bodyRadius": 24,
+        "height": 38,
+        "scale": 1,
+        "outline": null,
+        "attackCount": 0,
+        "melee": null,
+        "sunbeam": null,
+        "heal": null,
+        "regenerated": 0
+      },
+      {
+        "unitId": 4,
+        "inventoryId": null,
+        "speciesId": "rocket",
+        "faction": "wild",
+        "state": "ARC_PREPARE",
+        "hp": 95,
+        "grade": 5,
+        "isSummon": false,
+        "signature": "arcFire",
+        "radius": 26,
+        "bodyRadius": 26,
+        "height": 42,
+        "scale": 1,
+        "outline": null,
+        "attackCount": 1,
+        "melee": null,
+        "sunbeam": null,
+        "heal": null,
+        "regenerated": 0
+      }
+    ],
+    "volumeEvents": [
+      {
+        "kind": "prepare",
+        "tick": 1,
+        "timeMs": 16.666666666666668,
+        "id": 4,
+        "type": "rocket"
+      }
+    ],
+    "arcShots": [],
+    "companions": {
+      "inventoryCount": 0,
+      "slots": [
+        null
+      ],
+      "hits": 0,
+      "kills": 0,
+      "damage": 0,
+      "taken": 0,
+      "deaths": 0,
+      "revivals": 0,
+      "abilities": 0,
+      "supportHealing": 0,
+      "lastHit": null,
+      "actors": []
+    },
+    "phase": "PLAYING",
+    "mode": "SHADOW",
+    "health": 200,
+    "maxHp": 200,
+    "aimPreviewId": 1,
+    "augment": {
+      "spore": false,
+      "momentum": false,
+      "relay": false,
+      "chain": false
+    },
+    "tech": {
+      "points": 0,
+      "level": 1,
+      "totalKills": 0,
+      "unlocked": [],
+      "statLevels": {
+        "attackPower": 0,
+        "criticalChance": 0,
+        "criticalDamage": 0,
+        "armorPenFlat": 0,
+        "armorPenPercent": 0,
+        "maxHp": 0,
+        "armor": 0,
+        "lifeSteal": 0,
+        "healthRegen": 0,
+        "petSlots": 0
+      }
+    },
+    "autoChainReady": false,
+    "autoDashPlanned": false,
+    "chainActive": false,
+    "chainStarts": 0,
+    "chainEnds": 0,
+    "chainTriggerCharge": 0.5,
+    "chainTargetId": null,
+    "autoChainWins": 0,
+    "autoChainRolls": 0,
+    "automaticDashes": 0,
+    "manualPerfectHits": 0,
+    "dashAutomatic": false,
+    "dashPerfect": false,
+    "launchCount": 1,
+    "manualLaunchCount": 1,
+    "echoLaunchCount": 0,
+    "chainLaunchCount": 0,
+    "attackAmmo": {
+      "charges": 1,
+      "maxCharges": 2,
+      "rechargeMs": 1500,
+      "progress": 0.08888888888888889,
+      "spent": 1,
+      "readySlots": [
+        1
+      ],
+      "refillingSlot": 0
+    },
+    "missRecovery": {
+      "active": false,
+      "events": 0,
+      "firstHintShown": false
+    },
+    "evade": {
+      "charges": 2,
+      "max": 2,
+      "refillAtMs": 0,
+      "progress": 0,
+      "rechargeMs": 500,
+      "impulseSpeed": 1020,
+      "durationMs": 580,
+      "invulnerableMs": 100,
+      "projectileInvulnerable": false,
+      "active": false,
+      "startedAtMs": -1000000000,
+      "count": 0,
+      "hitRechargeEvents": 0,
+      "hitRechargeProgress": 0,
+      "lastHitRecharge": null
+    },
+    "stage": {
+      "index": 1,
+      "phase": "CLEAR",
+      "waveKills": 0,
+      "killTarget": 7,
+      "bossHp": null,
+      "bossState": null,
+      "bossPattern": null,
+      "patternLog": [],
+      "obstacleCount": 6,
+      "broken": 0,
+      "arenaSides": 8,
+      "theme": "garden",
+      "themeName": "화원",
+      "layout": "grove",
+      "layoutName": "빽빽한 화단",
+      "radius": 550,
+      "playableArea": 749631,
+      "targetPopulation": 4,
+      "mapTier": 0,
+      "mapStart": 1,
+      "mapSeed": 2654354052,
+      "bossStage": false,
+      "referenceArea": 749630.913784598,
+      "bossName": null,
+      "bossVariant": null,
+      "bossSummons": 0,
+      "seed": 2654354052,
+      "generation": {
+        "retries": 0,
+        "connectivity": 0.9375,
+        "clearLane": 444,
+        "obstacles": 6
+      }
+    },
+    "stageHistory": [
+      {
+        "index": 1,
+        "theme": "garden",
+        "layout": "grove",
+        "radius": 550,
+        "playableArea": 749630.913784598,
+        "population": 4,
+        "mapTier": 0,
+        "mapStart": 1,
+        "mapSeed": 2654354052,
+        "bossStage": false,
+        "seed": 2654354052
+      }
+    ],
+    "bossPool": [
+      "petalPredator",
+      "elasticCap"
+    ],
+    "themePool": [
+      "garden",
+      "cave"
+    ],
+    "mapOperators": [
+      "scatter",
+      "clusters",
+      "ring",
+      "rooms",
+      "ridges"
+    ],
+    "dashMotion": null,
+    "camera": {
+      "base": {
+        "x": 749.4127421811719,
+        "y": 750,
+        "zoom": 0.851063829787234,
+        "rotation": 0
+      },
+      "render": {
+        "x": 749.4127421811719,
+        "y": 750,
+        "zoom": 0.851063829787234,
+        "rotation": 0
+      },
+      "shake": {
+        "kind": "launch",
+        "x": -1,
+        "y": 0,
+        "amplitude": 1.8,
+        "durationMs": 85,
+        "cycles": 1.5,
+        "startedAtMs": 83.33333333333334
+      },
+      "offset": {
+        "x": 0,
+        "y": 0
+      }
+    },
+    "launchRecoil": null,
+    "alignment": null,
+    "orbit": [
+      {
+        "slot": 0,
+        "ready": false,
+        "aligning": false,
+        "progress": 0.08888888888888889,
+        "angle": -1.3649629934615632,
+        "x": 749.8876101908494,
+        "y": 741.8902599729192,
+        "radius": 1.6066293552812074
+      },
+      {
+        "slot": 1,
+        "ready": true,
+        "aligning": false,
+        "progress": 1,
+        "angle": 1.7766296601282299,
+        "x": 741.2453538255818,
+        "y": 783.2822941797752,
+        "radius": 3.8
+      }
+    ],
+    "shadow": {
+      "source": "manual",
+      "slot": 0,
+      "dirX": 1,
+      "dirY": 0,
+      "x": 829,
+      "y": 750,
+      "startX": 784,
+      "startY": 750,
+      "visualRadius": 7,
+      "launchedAtMs": 83.33333333333334,
+      "progress": 0.17307692307692313,
+      "charge": 0.17307692307692313,
+      "dashReady": true,
+      "separation": 80.80562508286164,
+      "remainingGap": 215,
+      "initialGap": 260,
+      "travel": 45,
+      "limit": 680,
+      "targetId": 1,
+      "arrived": false,
+      "speed": 483.3333333333334
+    },
+    "hitstopLeftMs": 0,
+    "dashCharge": 0,
+    "dashFlight": null,
+    "rearmProgress": 0,
+    "buffered": false,
+    "damageTaken": 0,
+    "healingDone": 0,
+    "position": {
+      "x": 748.1943749171384,
+      "y": 750
+    },
+    "speed": {
+      "x": 0,
+      "y": 0
+    },
+    "hits": 0,
+    "kills": 0,
+    "combo": 0,
+    "comboFxActive": false,
+    "enemyMasses": {
+      "rogue": 4.6,
+      "pillbug": 8.2,
+      "thornfruit": 8.2,
+      "rocket": 4.2,
+      "scout": 4.6,
+      "brute": 8.2,
+      "spitter": 4.2,
+      "sprout": 3.4,
+      "puff": 4.6,
+      "petalPredator": 36,
+      "elasticCap": 48.6,
+      "boss": 36,
+      "lancer": 8.2,
+      "dandelion": 3,
+      "swordsman": 7,
+      "pikeman": 4.6,
+      "medic": 4.2
+    },
+    "tick": 13,
+    "timeMs": 216.66666666666669,
+    "attackDashSerial": 0,
+    "enemies": 4,
+    "enemyShots": 0,
+    "enemyAttacks": 0,
+    "enemyPushes": 0,
+    "projectiles": 0,
+    "enemyStates": [
+      {
+        "id": 1,
+        "bodyId": 56,
+        "type": "rogue",
+        "state": "CHASE",
+        "z": 0,
+        "height": 30,
+        "ability": {
+          "phase": "READY",
+          "count": 0,
+          "landings": 0
+        },
+        "hp": 105,
+        "burning": false,
+        "conducting": false,
+        "radius": 20,
+        "x": 1070,
+        "y": 750,
+        "preX": 1070,
+        "preY": 750,
+        "shadowKnockbackLeftMs": 999999783.3333334,
+        "attackCount": 0,
+        "playerGap": 321.80562508286164
+      },
+      {
+        "id": 2,
+        "bodyId": 57,
+        "type": "pillbug",
+        "state": "CHASE",
+        "z": 0,
+        "height": 38,
+        "ability": {
+          "phase": "READY",
+          "leftMs": 0
+        },
+        "hp": 150,
+        "burning": false,
+        "conducting": false,
+        "radius": 23,
+        "x": 427.71636211793196,
+        "y": 618.2335284456848,
+        "preX": 426.8922311981568,
+        "preY": 618.146160453033,
+        "shadowKnockbackLeftMs": 999999783.3333334,
+        "attackCount": 0,
+        "playerGap": 346.50910480621206
+      },
+      {
+        "id": 3,
+        "bodyId": 58,
+        "type": "thornfruit",
+        "state": "CHASE",
+        "z": 0,
+        "height": 38,
+        "ability": {
+          "phase": "READY",
+          "pulses": 0,
+          "counters": 0
+        },
+        "hp": 185,
+        "burning": false,
+        "conducting": false,
+        "radius": 24,
+        "x": 409.7215480201526,
+        "y": 559.0737721389025,
+        "preX": 409.51604631495417,
+        "preY": 559.3362347951526,
+        "shadowKnockbackLeftMs": 999999783.3333334,
+        "attackCount": 0,
+        "playerGap": 388.60864508256196
+      },
+      {
+        "id": 4,
+        "bodyId": 59,
+        "type": "rocket",
+        "state": "ARC_PREPARE",
+        "z": 0,
+        "height": 42,
+        "ability": {
+          "phase": "PREPARE",
+          "volleys": 0,
+          "fired": 0
+        },
+        "hp": 95,
+        "burning": false,
+        "conducting": false,
+        "radius": 26,
+        "x": 571.3036762164244,
+        "y": 662.2447272071785,
+        "preX": 568.4270445033056,
+        "preY": 660.6387366785417,
+        "shadowKnockbackLeftMs": 999999783.3333334,
+        "attackCount": 1,
+        "playerGap": 197.4621664769464
+      }
+    ],
+    "rendererState": "ready",
+    "elemental": {
+      "ignite": 0,
+      "spread": 0,
+      "conduct": 0,
+      "conductSpread": 0,
+      "conductConsumed": 0,
+      "conductDamage": 0,
+      "arc": 0,
+      "burnDamage": 0,
+      "fireEmbers": 0,
+      "fireTransfers": 0,
+      "activeBurning": 0,
+      "activeConducting": 0
+    },
+    "stats": {
+      "petSlots": 1,
+      "attackPower": 100,
+      "criticalChance": 0,
+      "criticalDamage": 2,
+      "armorPenFlat": 0,
+      "armorPenPercent": 0,
+      "maxHp": 200,
+      "armor": 0,
+      "healthRegen": 0,
+      "lifeSteal": 0
+    },
+    "criticalHits": 0,
+    "lastHit": null,
+    "fx": {
+      "stage": "approach",
+      "target": {
+        "x": 1070,
+        "y": 750,
+        "isEnemy": true
+      },
+      "enabled": true
+    },
+    "particleCount": 5,
+    "audio": {
+      "state": "running",
+      "volume": 0.7,
+      "muted": false,
+      "voices": 1,
+      "categoryVolumes": {
+        "enemy": 0.65,
+        "impact": 1,
+        "motion": 0.8,
+        "danger": 0.9,
+        "reward": 0.85,
+        "magic": 0.55,
+        "ui": 0.5
+      },
+      "lastError": null,
+      "played": 4,
+      "dropped": 2,
+      "blocked": 0,
+      "maxObserved": 3,
+      "bySound": {
+        "stageStart": 1,
+        "ui": 1,
+        "enemyNotice": 1,
+        "launch": 1
+      }
+    }
+  },
+  "boundaries": {
+    "cancel": {
+      "angle": -1.2435470920459597,
+      "resumed": {
+        "slot": 0,
+        "ready": true,
+        "aligning": false,
+        "progress": 1,
+        "angle": -1.2435470920459597,
+        "x": 760.9289418203075,
+        "y": 717.8043755971664,
+        "radius": 3.8
+      },
+      "ammo": {
+        "charges": 2,
+        "maxCharges": 2,
+        "rechargeMs": 1500,
+        "progress": 0,
+        "spent": 0,
+        "readySlots": [
+          0,
+          1
+        ],
+        "refillingSlot": null
+      }
+    },
+    "die": {
+      "mode": "DEAD",
+      "phase": "ENDED",
+      "spent": 0,
+      "pending": false
+    },
+    "finishStage": {
+      "mode": "READY",
+      "phase": "PLAYING",
+      "spent": 0,
+      "pending": false
+    },
+    "setupStage": {
+      "mode": "READY",
+      "phase": "PLAYING",
+      "spent": 0,
+      "pending": false
+    },
+    "spawnBoss": {
+      "mode": "READY",
+      "phase": "PLAYING",
+      "spent": 0,
+      "pending": false
+    },
+    "reset": {
+      "mode": "READY",
+      "phase": "PLAYING",
+      "spent": 0,
+      "pending": false
+    },
+    "lobby": {
+      "mode": "READY",
+      "phase": "LOBBY",
+      "spent": 0,
+      "pending": false
+    },
+    "targetLost": {
+      "mode": "READY",
+      "phase": "PLAYING",
+      "spent": 0,
+      "pending": false
+    },
+    "invalidGeometry": true,
+    "wall": {
+      "initialX": 1250.7027820235903,
+      "x": 1218.6690067192903,
+      "speed": {
+        "x": -33.07012537123683,
+        "y": 0
+      },
+      "spent": 1
+    },
+    "wrap": {
+      "first": -3.12413936106985,
+      "after": -3.131411566286493
+    },
+    "near": {
+      "origin": {
+        "x": 781.3015,
+        "y": 750
+      },
+      "targetId": 1,
+      "arrived": true,
+      "ammo": {
+        "charges": 1,
+        "maxCharges": 2,
+        "rechargeMs": 1500,
+        "progress": 0,
+        "spent": 1,
+        "readySlots": [
+          1
+        ],
+        "refillingSlot": 0
+      }
+    },
+    "sources": [
+      {
+        "source": "manual",
+        "slot": 0,
+        "spent": 1,
+        "timeMs": 83.33333333333334,
+        "progress": 0
+      },
+      {
+        "source": "echo",
+        "slot": 1,
+        "spent": 2,
+        "timeMs": 166.66666666666669,
+        "progress": 0.05555555555555556
+      }
+    ],
+    "beforeRecharge": {
+      "timeMs": 1566.6666666666667,
+      "ammo": {
+        "charges": 0,
+        "maxCharges": 2,
+        "rechargeMs": 1500,
+        "progress": 0.9888888888888896,
+        "spent": 2,
+        "readySlots": [],
+        "refillingSlot": 0
+      }
+    },
+    "firstRecharge": {
+      "timeMs": 1583.3333333333335,
+      "sinceFirst": 1500.0000000000002,
+      "ammo": {
+        "charges": 1,
+        "maxCharges": 2,
+        "rechargeMs": 1500,
+        "progress": 7.579122514774402e-16,
+        "spent": 2,
+        "readySlots": [
+          0
+        ],
+        "refillingSlot": 1
+      }
+    },
+    "secondRecharge": {
+      "timeMs": 3083.3333333333335,
+      "sinceFirst": 3000,
+      "ammo": {
+        "charges": 2,
+        "maxCharges": 2,
+        "rechargeMs": 1500,
+        "progress": 0,
+        "spent": 2,
+        "readySlots": [
+          0,
+          1
+        ],
+        "refillingSlot": null
+      }
+    },
+    "shakeMix": {
+      "hit": {
+        "kind": "hit",
+        "x": 1,
+        "y": 0,
+        "amplitude": 4,
+        "durationMs": 150,
+        "cycles": 2,
+        "startedAtMs": 83.33333333333334
+      },
+      "after": {
+        "kind": "hit",
+        "x": 1,
+        "y": 0,
+        "amplitude": 4,
+        "durationMs": 150,
+        "cycles": 2,
+        "startedAtMs": 83.33333333333334
+      }
+    },
+    "auto": {
+      "mode": "DASH",
+      "timeMs": 400,
+      "chainLaunchCount": 1,
+      "automaticDashes": 1,
+      "ammo": {
+        "charges": 0,
+        "maxCharges": 2,
+        "rechargeMs": 1500,
+        "progress": 0.2111111111111111,
+        "spent": 2,
+        "readySlots": [],
+        "refillingSlot": 0
+      },
+      "chainCreatedAt": 266.6666666666667
+    },
+    "buffer": {
+      "mode": "DASH",
+      "launchCount": 1,
+      "ammo": {
+        "charges": 1,
+        "maxCharges": 2,
+        "rechargeMs": 1500,
+        "progress": 0.011111111111111112,
+        "spent": 1,
+        "readySlots": [
+          1
+        ],
+        "refillingSlot": 0
+      }
+    },
+    "upgrades": {
+      "progress": 0.25,
+      "before": [
+        {
+          "slot": 0,
+          "ready": false,
+          "aligning": false,
+          "progress": 0.25,
+          "angle": -1.49162966012823,
+          "x": 751.5544948401804,
+          "y": 730.4053142445623,
+          "radius": 2.5765625
+        },
+        {
+          "slot": 1,
+          "ready": true,
+          "aligning": false,
+          "progress": 1,
+          "angle": 1.6499629934615632,
+          "x": 747.3111440602285,
+          "y": 783.8935104958922,
+          "radius": 3.8
+        }
+      ],
+      "after": [
+        {
+          "slot": 0,
+          "ready": false,
+          "aligning": false,
+          "progress": 0.25,
+          "angle": -1.49162966012823,
+          "x": 751.5544948401804,
+          "y": 730.4053142445623,
+          "radius": 2.5765625
+        },
+        {
+          "slot": 1,
+          "ready": true,
+          "aligning": false,
+          "progress": 1,
+          "angle": 1.6499629934615632,
+          "x": 747.3111440602285,
+          "y": 783.8935104958922,
+          "radius": 3.8
+        },
+        {
+          "slot": 2,
+          "ready": true,
+          "aligning": false,
+          "progress": 1,
+          "angle": 3.2207593202564597,
+          "x": 716.1064895041078,
+          "y": 747.3111440602286,
+          "radius": 3.8
+        },
+        {
+          "slot": 3,
+          "ready": true,
+          "aligning": false,
+          "progress": 1,
+          "angle": 6.362351973846253,
+          "x": 783.8935104958922,
+          "y": 752.6888559397714,
+          "radius": 3.8
+        }
+      ],
+      "ammo": {
+        "charges": 3,
+        "maxCharges": 4,
+        "rechargeMs": 900,
+        "progress": 0.25,
+        "spent": 1,
+        "readySlots": [
+          1,
+          2,
+          3
+        ],
+        "refillingSlot": 0
+      }
+    }
+  },
+  "result": "PASS",
+  "elapsedMs": 4361,
+  "baseCommit": "7c02031fec5bff836a138ad5798e0e3749ab3921",
+  "version": "0.12.8",
+  "buildId": "20261011T030000Z-orbit-shadow-launch",
+  "limitations": [
+    "Natural native flow covers Start, WASD, click, Space alignment/launch and actual recharge only.",
+    "Continuous sampled frames and automatic collision/follow-up, cancellation, wrap, near/wall, upgrade, mixer boundaries use explicitly prepared production-runtime fixtures (state/positions/full simulation); they are not natural long combat.",
+    "Desktop Edge/NVIDIA WebGL1 only. Mobile hardware, full species/grade matrix, long balance and performance not repeated."
+  ],
+  "preliminaryAttempt": {
+    "result": "FAILED_FIXTURE_PREPARATION",
+    "elapsedMs": 4736,
+    "reason": "Target-loss setup changed HP without retiring the live entity; corrected to the real defeat/death path. No product patch was needed for that failed setup."
+  }
+}

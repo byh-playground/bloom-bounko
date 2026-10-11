@@ -23,23 +23,28 @@ export function mixin(first, ...rest) {
 // HAS-A charge state. The caller advances milliseconds independently of attack/movement modes.
 export class ChargePool {
   constructor(config){this.config={maxCharges:config.maxCharges,rechargeMs:config.rechargeMs};this.reset();}
-  reset(){this.charges=this.config.maxCharges;this.refillMs=0;this.spent=0;}
-  get progress(){return this.charges<this.config.maxCharges?this.refillMs/this.config.rechargeMs:0;}
+  reset(){this.readySlots=Array.from({length:this.config.maxCharges},(_,slot)=>slot);this.refillSlots=[];this.refillMs=0;this.spent=0;}
+  get charges(){return this.readySlots.length;}
+  get progress(){return this.refillSlots.length?this.refillMs/this.config.rechargeMs:0;}
   configure({maxCharges,rechargeMs}){
     const progress=this.progress,oldMax=this.config.maxCharges;
     this.config={maxCharges,rechargeMs};
-    this.charges=Math.max(0,Math.min(maxCharges,this.charges+maxCharges-oldMax));
-    this.refillMs=this.charges<maxCharges?progress*rechargeMs:0;
+    this.readySlots=this.readySlots.filter(slot=>slot<maxCharges);
+    this.refillSlots=this.refillSlots.filter(slot=>slot<maxCharges);
+    for(let slot=oldMax;slot<maxCharges;slot++)this.readySlots.push(slot);
+    this.refillMs=this.refillSlots.length?progress*rechargeMs:0;
   }
-  consume(){if(this.charges<1)return false;this.charges--;this.spent++;return true;}
-  update(dtMs){if(this.charges>=this.config.maxCharges)return;
+  consume(slot=this.readySlots[0]){const index=this.readySlots.indexOf(slot);if(index<0)return false;
+    this.readySlots.splice(index,1);this.refillSlots.push(slot);this.spent++;return true;}
+  update(dtMs){if(!this.refillSlots.length)return;
     this.refillMs+=dtMs;
-    while(this.charges<this.config.maxCharges&&this.refillMs+1e-8>=this.config.rechargeMs){
-      this.refillMs=Math.max(0,this.refillMs-this.config.rechargeMs);this.charges++;
+    while(this.refillSlots.length&&this.refillMs+1e-8>=this.config.rechargeMs){
+      this.refillMs=Math.max(0,this.refillMs-this.config.rechargeMs);this.readySlots.push(this.refillSlots.shift());
     }
-    if(this.charges===this.config.maxCharges)this.refillMs=0;
+    if(!this.refillSlots.length)this.refillMs=0;
   }
-  snapshot(){return {charges:this.charges,maxCharges:this.config.maxCharges,rechargeMs:this.config.rechargeMs,progress:this.progress,spent:this.spent};}
+  snapshot(){return {charges:this.charges,maxCharges:this.config.maxCharges,rechargeMs:this.config.rechargeMs,progress:this.progress,spent:this.spent,
+    readySlots:[...this.readySlots],refillingSlot:this.refillSlots[0]??null};}
 }
 
 export function volume(body, height, feetZ = 0) {

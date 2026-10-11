@@ -137,16 +137,39 @@ export function stepArc(flight,dtMs) {
 
 export const DeathReason=Object.freeze({hit:'hit',selfDestruct:'selfDestruct',expiry:'expiry',cleanup:'cleanup'});
 export const hostile=(a,b)=>!!a&&!!b&&a.alive&&b.alive&&a.faction!==b.faction&&b.targetable!==false;
+// HAS-A bounded status state. Milliseconds advance once in the world tick, including frozen actors.
+export const elementConfig={
+  frost:{slowMs:2000,slowRate:.20,freezeMs:1200,refreezeMs:2000,shatterRate:.50},
+  acid:{durationMs:3000,armorReduction:.20,poolMs:2000,intervalMs:500,powerRate:.10,radius:48,spreadRadius:82,maxPools:16}
+};
+export class UnitStatus {
+  constructor(){this.slowMs=0;this.slowRate=0;this.frozenMs=0;this.refreezeMs=0;this.acidMs=0;this.armorReduction=0;}
+  update(ms){this.slowMs=Math.max(0,this.slowMs-ms);this.frozenMs=Math.max(0,this.frozenMs-ms);this.refreezeMs=Math.max(0,this.refreezeMs-ms);this.acidMs=Math.max(0,this.acidMs-ms);}
+  get movementRate(){return this.frozenMs>0?0:this.slowMs>0?1-this.slowRate:1;}
+  cold(target,source,{freeze=false,...c}=elementConfig.frost){if(!hostile(source,target)||target.invulnerable)return false;
+    this.slowMs=c.slowMs;this.slowRate=c.slowRate;
+    if(freeze&&this.refreezeMs<=0){this.frozenMs=c.freezeMs;this.refreezeMs=c.freezeMs+c.refreezeMs;target.adapter?.freeze?.(target);}
+    return true;}
+  acid(target,source,c=elementConfig.acid){if(!hostile(source,target)||target.invulnerable)return false;this.acidMs=c.durationMs;this.armorReduction=c.armorReduction;return true;}
+  shatter(c=elementConfig.frost){if(this.frozenMs<=0)return false;this.frozenMs=0;this.refreezeMs=c.refreezeMs;return true;}
+}
+export function effectiveArmor(target,stats={}){const status=target.status;
+  return Math.max(0,(target.config?.armor||0)*(status?.acidMs>0?1-status.armorReduction:1)*(1-(stats.armorPenPercent||0))-(stats.armorPenFlat||0));}
+export function damageAfterArmor(raw,target,stats={},floating=false){const value=Math.max(0,raw)*100/(100+effectiveArmor(target,stats));return floating?value:Math.round(value);}
+export function applyElementHit(target,source,effect){if(!effect||!target.alive)return;
+  if(effect.frost)target.status?.cold(target,source,{...elementConfig.frost,...effect.frost});
+  if(effect.acid)target.status?.acid(target,source,{...elementConfig.acid,...effect.acid});
+}
 export function receiveHit(target,payload,source,now=0){
   if(!hostile(source,target)||target.invulnerable||now<(target.protectedUntilMs||0))return 0;
-  const stats=payload.stats||{},armor=Math.max(0,(target.config?.armor||0)*(1-(stats.armorPenPercent||0))-(stats.armorPenFlat||0));
-  const calculated=payload.resolved?payload.raw:payload.raw*100/(100+armor);
+  const stats=payload.stats||{};
+  const calculated=payload.resolved?payload.raw:damageAfterArmor(payload.raw,target,stats,true);
   const rounded=payload.floating||target.config?.damageRounding===false?calculated:Math.round(calculated);
   const amount=target.config?.deferDeath?Math.max(0,rounded):Math.min(target.hp,Math.max(0,rounded));
   if(amount<=0)return 0;const effective=Math.min(Math.max(0,target.hp),amount);target.hp-=amount;target.protectedUntilMs=now+(target.config?.hitProtectionMs||0);
   const attacker=source.attacker||source,rate=Math.max(0,Math.min(1,attacker.config?.lifeSteal||0));
   const restored=receiveHeal(attacker,effective*rate);if(restored>0)attacker.adapter?.healed?.(attacker,restored);
-  target.adapter?.hurt?.(target,amount,source);if(target.hp<=0){if(!target.config?.deferDeath&&!payload.deferDeath)target.die(DeathReason.hit,source);}else target.onHit?.({damage:amount,kind:payload.kind,sourceUnitId:source.unitId});return amount;
+  target.adapter?.hurt?.(target,amount,source);if(payload.kind!=='status')applyElementHit(target,source,payload.elementHit||source.config?.elementHit);if(target.hp<=0){if(!target.config?.deferDeath&&!payload.deferDeath)target.die(DeathReason.hit,source);}else target.onHit?.({damage:amount,kind:payload.kind,sourceUnitId:source.unitId});return amount;
 }
 export function receiveHeal(target,amount){if(!target.alive||amount<=0)return 0;const healed=Math.max(0,Math.min(target.maxHp-target.hp,amount));target.hp+=healed;return healed;}
 export const combatConfig={referenceSpeed:1600};
@@ -158,10 +181,10 @@ export class Unit {
   constructor({id,unitId=id,type,speciesId=type,body,config,adapter,controller=null,presentation=null,deathPolicy=()=>{},faction='wild',grade=5,inventoryId=null}) {
     Object.assign(this,{id:unitId,unitId,type,speciesId,body,config,adapter,controller,presentation,deathPolicy,faction,grade,inventoryId,hp:config.hp,maxHp:config.hp,alive:true,pre:{x:0,y:0},
       preX:body.position.x,preY:body.position.y,lastTouchMs:-Infinity,burn:null,conductUntilMs:0,state:'CHASE',attackCount:0,headingX:0,headingY:0,strafeSign:unitId%2?1:-1,protectedUntilMs:0});
-    this.spatial=volume(body,config.height);this.collisionAttack={phase:'READY',leftMs:0,hitIds:new Set()};
+    this.status=new UnitStatus();this.spatial=volume(body,config.height);this.collisionAttack={phase:'READY',leftMs:0,hitIds:new Set()};
   }
   unlocked(name){return this.grade>=(this.config.unlocks?.[name]??0);}
-  step(dt,world){if(!this.alive)return;const intent=this.controller?this.controller.intent(this,world):world;this.intent=intent;this.update(dt,intent);}
+  step(dt,world){if(!this.alive||this.status.frozenMs>0)return;const intent=this.controller?this.controller.intent(this,world):world;this.intent=intent;this.update(dt,intent);}
   update(dt,context){if(!this.alive)return;
     const c=this.config.basicAttack,s=this.collisionAttack,signature=this.config.signature&&this.unlocked(this.config.signature);
     if(c&&(!signature||this.config.basicWithSignature)){
@@ -174,7 +197,7 @@ export class Unit {
     }
     this.adapter.chase(this,dt,context);
   }
-  contact(target,now){if(!hostile(this,target)||now-this.lastTouchMs<(this.config.contactCooldownMs||450))return 0;
+  contact(target,now){if(this.status.frozenMs>0||!hostile(this,target)||now-this.lastTouchMs<(this.config.contactCooldownMs||450))return 0;
     const charge=this.state==='LUNGE'||this.state==='BOSS_CHARGE',active=this.config.contactAttackStates?.includes(this.state)&&this.unlocked(this.config.signature);
     if(!charge&&!active)return 0;if(charge&&this.collisionAttack.hitIds.has(target.unitId))return 0;
     let raw=this.config.damage;
@@ -306,7 +329,7 @@ export const Leapable = Base => class Leapable extends Base {
       if(!this.adapter.pathClear(this.body.position,l.aim,this.config.radius)){l.phase='COOLDOWN';l.leftMs=c.cooldownMs;return;}
       l.flight=groundArc({...this.body.position,z:this.spatial.feetZ},l.aim,c.durationMs,c.height);
       l.phase='FLIGHT';l.count++;this.state='LEAP';this.adapter.notice(this,'launch');}
-    if(l.phase==='FLIGHT') {const f=l.flight,pose=stepArc(f,ms),old=f.previous;
+    if(l.phase==='FLIGHT') {const f=l.flight,pose=stepArc(f,ms*this.status.movementRate),old=f.previous;
       this.adapter.moveBy(this,pose.x-old.x,pose.y-old.y);this.spatial.feetZ=pose.z;f.previous=pose;
       if(f.finished){this.spatial.feetZ=0;l.flight=null;l.phase='COOLDOWN';l.leftMs=c.cooldownMs;l.landings++;this.state='RECOVER';this.adapter.land(this);}
       return;}
@@ -364,7 +387,7 @@ export const Burrowable=Base=>class Burrowable extends Base {
     this.adapter.brake(this,dt);
     if(s.phase==='DIVE'){s.leftMs-=ms;if(s.leftMs>0)return;
       s.phase='MOVE';s.dives++;s.flight=groundArc({...this.body.position,z:0},{...s.aim,z:0},c.moveMs,0);this.adapter.participation(this,false);this.state='BURROW_MOVE';}
-    if(s.phase==='MOVE'){const pose=stepArc(s.flight,ms),old=s.flight.previous;this.adapter.moveBy(this,pose.x-old.x,pose.y-old.y);s.flight.previous=pose;
+    if(s.phase==='MOVE'){const pose=stepArc(s.flight,ms*this.status.movementRate),old=s.flight.previous;this.adapter.moveBy(this,pose.x-old.x,pose.y-old.y);s.flight.previous=pose;
       s.trailMs-=ms;if(s.trailMs<=0){this.adapter.capabilityFx(this,'burrow-trail',c);s.trailMs+=c.trailMs;}
       if(s.flight.finished){s.phase='EMERGE_PREPARE';s.leftMs=c.emergeMs;this.state='BURROW_EMERGE_PREPARE';}return;}
     if(s.phase==='EMERGE_PREPARE'){s.leftMs-=ms;if(s.leftMs>0)return;
@@ -421,4 +444,30 @@ export const Hookable=Base=>class Hookable extends Base {
     super.update(dt,ctx);
   }
   cancel(){for(const shot of this.hook.shots)this.adapter.removeShot(shot);this.hook.shots=[];this.hook.phase='CANCELLED';super.cancel();}
+};
+
+// CAN-BE ground attacker. Locked geometry and secondary tells belong to the same ability for pets and enemies.
+export const GroundAttackable=Base=>class GroundAttackable extends Base {
+  constructor(...args){super(...args);this.groundAttack={config:this.config.groundAttack,phase:'READY',leftMs:0,aim:null,pending:[],casts:0};}
+  update(dt,ctx){if(!this.unlocked('groundAttack'))return super.update(dt,ctx);const s=this.groundAttack,c=s.config,ms=dt*1000;
+    for(const item of s.pending)item.leftMs-=ms;
+    for(const item of s.pending.filter(v=>v.leftMs<=0))this.adapter.groundAttack(this,{...c,damage:c.damage*c.secondaryDamageRate},item.aim);
+    s.pending=s.pending.filter(v=>v.leftMs>0);
+    if(s.phase==='READY'&&ctx.attack!==false&&Math.hypot(ctx.target.x-this.body.position.x,ctx.target.y-this.body.position.y)<=c.range){s.aim={...ctx.target};const p=this.body.position,d=Math.hypot(s.aim.x-p.x,s.aim.y-p.y)||1;this.headingX=(s.aim.x-p.x)/d;this.headingY=(s.aim.y-p.y)/d;s.phase='PREPARE';s.leftMs=c.prepareMs;this.state='GROUND_PREPARE';this.attackCount++;this.adapter.notice(this);}
+    if(s.phase==='PREPARE'){this.adapter.brake(this,dt);s.leftMs-=ms;if(s.leftMs<=0){this.adapter.groundAttack(this,c,s.aim);s.casts++;
+      if(c.secondaryCount&&this.unlocked('secondary'))for(let i=0;i<c.secondaryCount;i++){const a=i*Math.PI*2/c.secondaryCount+s.casts*.7;const aim={x:s.aim.x+Math.cos(a)*c.secondaryOffset,y:s.aim.y+Math.sin(a)*c.secondaryOffset};s.pending.push({aim,leftMs:c.secondaryDelayMs});}
+      s.phase='RECOVER';s.leftMs=c.recoverMs;this.state='RECOVER';}return;}
+    if(s.phase==='RECOVER'){s.leftMs-=ms;if(s.leftMs<=0)s.phase='READY';}super.update(dt,ctx);
+  }
+  cancel(){this.groundAttack.pending=[];this.groundAttack.phase='CANCELLED';super.cancel();}
+};
+export const ConeBreathable=Base=>class ConeBreathable extends Base {
+  constructor(...args){super(...args);this.coneBreath={config:this.config.coneBreath,phase:'READY',leftMs:0,pulseMs:0,casts:0};}
+  update(dt,ctx){if(!this.unlocked('coneBreath'))return super.update(dt,ctx);const s=this.coneBreath,c=s.config,ms=dt*1000;
+    if(s.phase==='READY'&&ctx.attack!==false&&Math.hypot(ctx.target.x-this.body.position.x,ctx.target.y-this.body.position.y)<=c.range){const p=this.body.position,d=Math.hypot(ctx.target.x-p.x,ctx.target.y-p.y)||1;this.headingX=(ctx.target.x-p.x)/d;this.headingY=(ctx.target.y-p.y)/d;s.phase='PREPARE';s.leftMs=c.prepareMs;this.state='CONE_PREPARE';this.attackCount++;this.adapter.notice(this);}
+    if(s.phase==='PREPARE'){this.adapter.brake(this,dt);s.leftMs-=ms;if(s.leftMs<=0){s.phase='FIRE';s.leftMs=c.fireMs;s.pulseMs=c.intervalMs;s.casts++;this.state='CONE_FIRE';}return;}
+    if(s.phase==='FIRE'){this.adapter.brake(this,dt);const active=Math.min(ms,s.leftMs);s.leftMs-=active;s.pulseMs-=active;while(s.pulseMs<=1e-7){this.adapter.coneBreath(this,c);s.pulseMs+=c.intervalMs;}if(s.leftMs<=0){s.phase='RECOVER';s.leftMs=c.recoverMs;this.state='RECOVER';}return;}
+    if(s.phase==='RECOVER'){s.leftMs-=ms;if(s.leftMs<=0)s.phase='READY';}super.update(dt,ctx);
+  }
+  cancel(){this.coneBreath.phase='CANCELLED';super.cancel();}
 };

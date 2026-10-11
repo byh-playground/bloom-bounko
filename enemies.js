@@ -1,3 +1,4 @@
+import {t as tr,localizedList} from './i18n.js';
 import {Unit,mixin,Leapable,SelfDestructible,SpikeCounterable,ArcFireable,Lungeable,ProjectileFireable,BossPatternable,Sunbeamable,Meleeable,Healable,Regenerative} from './abilities.js';
 
 // Unit identity/spec/appearance (IS-A); each selected behavior owns its namespace (CAN-BE).
@@ -66,7 +67,9 @@ function facing(r,x,y,unit){const swing=unit?.melee?.config.motion==='swing'?(un
   const p=(px,py)=>[x+(px-x)*ca-(py-y)*sa,y+(px-x)*sa+(py-y)*ca];
   return {ellipse:(px,py,rx,ry,c,n)=>r.ellipse(...p(px,py),rx,ry,c,n),line:(ax,ay,bx,by,w,c)=>r.line(...p(ax,ay),...p(bx,by),w,c),triangle:(ax,ay,bx,by,cx,cy,c)=>r.triangle(...p(ax,ay),...p(bx,by),...p(cx,cy),c)};
 }
-function seedBody(r,x,y,q,team){circle(r,x,y+q*.12,q*.78,[.07,.10,.13,1],12);circle(r,x,y+q*.08,q*.68,team,12);circle(r,x-q*.18,y-q*.04,q*.25,team.map((v,i)=>i<3?Math.min(1,v*1.25):v),10);}
+function seedBody(r,x,y,q,team,light=team.map((v,i)=>i<3?Math.min(1,v*1.25):v)){circle(r,x,y+q*.12,q*.78,[.07,.10,.13,1],12);circle(r,x,y+q*.08,q*.68,team,12);circle(r,x-q*.18,y-q*.04,q*.25,light,10);}
+// Rally's friendly body/light palette is canonical for these shared species.
+const rallyBody=[.18,.43,.93,1],rallyLight=[.48,.68,1,1];
 Object.assign(enemyVisuals,{
   brute(r,{x,y,radius:q,time=0,attack=false}){const pulse=.5+.5*Math.sin(time*.009);
     circle(r,x,y+q*.1,q*.56,[.29,.45,.18,1]);r.line(x-q*.4,y+q*.18,x-q*.6,y-q*.18,q*.1,green);r.line(x+q*.4,y+q*.18,x+q*.6,y-q*.18,q*.1,green);
@@ -76,14 +79,17 @@ Object.assign(enemyVisuals,{
   lancer(renderer,{x,y,radius:q,unit,attack=false}){const r=facing(renderer,x,y,unit),team=[.61,.67,.27,1],charge=attack?q*.34:0;seedBody(r,x,y,q,team);
     circle(r,x,y+q*.14,q*.8,[.20,.16,.12,1],13);polygon(r,[[x-q*.66,y-q*.06],[x,y-q*.58],[x+q*.66,y-q*.06],[x+q*.52,y+q*.48],[x-q*.52,y+q*.48]],[.26,.30,.13,1]);circle(r,x,y-q*.5,q*.34,[.31,.22,.12,1],10);
     for(const sign of [-1,1]){r.line(x+sign*q*.18,y-q*.66,x+sign*q*.58,y-(q*1.55+charge),q*.227,accent);triangle(r,x+sign*q*.6,y-(q*1.62+charge),q*.2,accent,-Math.PI/2);}circle(r,x,y-q*.88,q*.22,team,9);},
-  dandelion(renderer,{x,y,radius:q,time=0,unit}){const r=facing(renderer,x,y,unit),team=[.66,.74,.46,1];seedBody(r,x,y,q,team);circle(r,x,y+q*.16,q*.4,team,10);
-    for(let k=0;k<9;k++){const a=k*Math.PI*2/9+time*.0005;r.line(x,y-q*.3,x+Math.cos(a)*q*.72,y-q*.3+Math.sin(a)*q*.72,Math.max(1,q*.13),[.94,.95,.82,.9]);}circle(r,x,y-q*.3,q*.13,accent,8);},
+  dandelion(r,{x,y,radius:q,time=0,silhouetteOnly=false}){const team=rallyBody;seedBody(r,x,y,q,team,rallyLight);circle(r,x,y+q*.16,q*.4,team,10);
+    if(silhouetteOnly)return;
+    for(let k=0;k<9;k++){const a=k*Math.PI*2/9+time*.0005;r.line(x,y-q*.3,x+Math.cos(a)*q*.72,y-q*.3+Math.sin(a)*q*.72,Math.max(1,1.3*q/16.848),[.94,.95,.82,.9]);}circle(r,x,y-q*.3,q*.13,[.92,.94,.72,1],8);},
   swordsman(renderer,{x,y,radius:q,unit,attack=false}){const r=facing(renderer,x,y,unit),slash=attack?q*.32:0;seedBody(r,x,y,q,[.46,.74,.32,1]);
     petals(r,x-q*.48,y+q*.05,q*.26,3,[.38,.68,.28,1],-.3,.58);polygon(r,[[x+q*.28,y+q*.12],[x+q*.70,y-q*.18],[x+q*1.34,y-(q*.82+slash)],[x+q*.92,y-(q*.95+slash)],[x+q*.40,y-q*.22]],[.48,.80,.32,1]);r.line(x+q*.44,y-q*.18,x+q*1.14,y-(q*.72+slash),Math.max(1,q*.107),[.24,.52,.20,1]);},
   pikeman(renderer,{x,y,radius:q,unit,attack=false}){const r=facing(renderer,x,y,unit),thrust=attack?q*.38:0;seedBody(r,x,y,q,[.54,.67,.31,1]);
     r.line(x+q*.08,y+q*.12,x+q*.08,y-(q*2.18+thrust),Math.max(2,q*.213),[.30,.55,.22,1]);polygon(r,[[x-q*.02,y-q*.86],[x-q*.35,y-q*.58],[x-q*.08,y-q*.42]],accent);polygon(r,[[x+q*.18,y-q*1.28],[x+q*.48,y-q*1.02],[x+q*.18,y-q*.9]],accent);triangle(r,x+q*.08,y-(q*2.34+thrust),q*.25,[.78,.88,.55,1],-Math.PI/2);},
-  medic(renderer,{x,y,radius:q,unit}){const r=facing(renderer,x,y,unit),team=[.40,.8,.69,1];seedBody(r,x,y,q,team);petals(r,x,y+q*.04,q*.55,6,[.42,.76,.48,1],Math.PI/6,.7);
-    circle(r,x,y-q*.34,q*.38,team,11);circle(r,x+q*.56,y-q*.3,q*.25,[.52,.96,.82,.62],10);circle(r,x+q*.49,y-q*.39,q*.08,[.90,1,.96,.85],8);r.line(x+q*.28,y-q*.12,x+q*.48,y-q*.26,Math.max(1.4,q*.21),[.28,.62,.44,1]);}
+  medic(r,{x,y,radius:q,silhouetteOnly=false}){const team=rallyBody;seedBody(r,x,y,q,team,rallyLight);petals(r,x,y+q*.04,q*.55,6,[.42,.76,.48,1],Math.PI/6,.7);
+    circle(r,x,y-q*.34,q*.38,team,11);circle(r,x+q*.56,y-q*.3,q*.25,[.52,.96,.82,silhouetteOnly?1:.62],10);
+    if(silhouetteOnly)return;
+    circle(r,x+q*.49,y-q*.39,q*.08,[.90,1,.96,.85],8);r.line(x+q*.28,y-q*.12,x+q*.48,y-q*.26,Math.max(1.4,2.1*q/16.848),[.28,.62,.44,1]);}
 });
 const bossVisuals={
     petal(renderer,b,now){
@@ -121,14 +127,14 @@ for(const [id,appearance] of [['petalPredator','petal'],['elasticCap','mushroom'
 
 export const bossConfig={radius:48,mass:36,hp:540,armor:12,speed:155,contactDamage:36,contactPush:450,detect:2000,bulletSpeed:450,bulletDamage:23,bulletPush:300,bulletRadius:10,bulletLifeMs:2050,windupMs:640,lockMs:160,recoverMs:850,recoilMs:1000,chargeSpeed:880,chargeDurationMs:760,chargeRecoilSpeed:330,summonPeriodMs:5100,summonAppearMs:390,summonLifeMs:7800,summonCap:4};
 export const bossSpecies=Object.freeze({
-    petalPredator:{id:'petalPredator',name:'꽃잎 포식자',appearance:'petal',summonType:'sprout',
+    petalPredator:{id:'petalPredator',get name(){return tr("species.89");},appearance:'petal',summonType:'sprout',
       base:{hpRate:1,massRate:1,speedRate:1,bulletSpeedRate:1,chargeSpeedRate:1},
       fan:{count:9,spread:.125},radial:{count:18},summon:{count:3,lifetimeRate:1},
-      variants:[{id:'wide',name:'광폭 꽃잎',fanSpread:1.3,bulletSpeedRate:1},{id:'rapid',name:'재빠른 개화',windupRate:.85,chargeSpeedRate:1.12},{id:'spiral',name:'회전 개화',radialRotation:.33,fanSpread:.85}]},
-    elasticCap:{id:'elasticCap',name:'탄성 버섯왕',appearance:'mushroom',summonType:'puff',
+      variants:[{id:'wide',get name(){return tr("species.88");},fanSpread:1.3,bulletSpeedRate:1},{id:'rapid',get name(){return tr("species.87");},windupRate:.85,chargeSpeedRate:1.12},{id:'spiral',get name(){return tr("species.86");},radialRotation:.33,fanSpread:.85}]},
+    elasticCap:{id:'elasticCap',get name(){return tr("species.85");},appearance:'mushroom',summonType:'puff',
       base:{hpRate:1.06,massRate:1.35,speedRate:.82,bulletSpeedRate:.86,chargeSpeedRate:.96},
       fan:{count:7,spread:.18},radial:{count:14},summon:{count:3,lifetimeRate:1.15},
-      variants:[{id:'bouncy',name:'고탄성 갓',recoilSpeedRate:1.25,chargeSpeedRate:1.07},{id:'cloud',name:'포자 폭풍',radialCountRate:1.3,bulletSpeedRate:.9},{id:'dense',name:'균사 집결',summonCountRate:1.3,windupRate:1.06}]}
+      variants:[{id:'bouncy',get name(){return tr("species.84");},recoilSpeedRate:1.25,chargeSpeedRate:1.07},{id:'cloud',get name(){return tr("species.83");},radialCountRate:1.3,bulletSpeedRate:.9},{id:'dense',get name(){return tr("species.82");},summonCountRate:1.3,windupRate:1.06}]}
   });
 const legacyConfig={scout:{radius:20,mass:4.6,hp:105,armor:0,speed:128,detect:700,damage:25,push:250,windupMs:180,lungeSpeed:310,lungeMs:280,recoverMs:740,range:84},
 brute:{radius:29,mass:8.2,hp:185,armor:24,speed:64,detect:640,damage:34,push:460,windupMs:530,lungeSpeed:360,lungeMs:420,recoverMs:1480,range:132},
@@ -172,12 +178,14 @@ const Sunflower=mixin(Unit,Sunbeamable),Melee=mixin(Unit,Meleeable),Medic=mixin(
 const Lunger=mixin(Unit,Lungeable),Spitter=mixin(Unit,ProjectileFireable),Boss=mixin(Unit,BossPatternable);
 export const enemyClasses={rogue:Rogue,pillbug:Pillbug,thornfruit:Thornfruit,rocket:Rocket,scout:Lunger,brute:Sunflower,sprout:Lunger,puff:Lunger,spitter:Spitter,petalPredator:Boss,elasticCap:Boss,lancer:Lunger,dandelion:Melee,swordsman:Melee,pikeman:Melee,medic:Medic};
 const metadata={
-  lancer:['왕사슴 돌격대','#9bab46','짧은 돌진·강한 명중 넉백'],dandelion:['민들레 주자','#a8bd75','빠른 짧은 근접'],swordsman:['칼잎 전사','#75bd52','칼잎 휘두르기'],pikeman:['가시창풀','#8aaa4e','단일 찌르기·약한 넉백'],medic:['이슬치유사','#65ccaf','자기 HP로 아군 치유·초당 5% 재생'],
-  rogue:['도약 사마귀','#717b3d','도약'],pillbug:['폭탄 공벌레','#bd8742','자폭'],thornfruit:['가시 열매','#789f40','가시 발사·반격'],rocket:['로켓 봉오리','#8a9e40','고정 지점 포물선 4연사'],
-  scout:['정찰 꽃','#ec7056','빠른 돌진'],brute:['햇살 해바라기','#e8a145','표적 햇살광선'],spitter:['포자 꽃','#a078ef','지상 포자탄'],
-  sprout:['꽃잎 새싹','#85cc4a','짧은 돌진'],puff:['포자 방울','#a88cee','탄성 돌진'],petalPredator:['꽃잎 포식자','#f47b9b','부채·돌진·원형 탄막·새싹 소환'],elasticCap:['탄성 버섯왕','#a68aee','돌진·부채·원형 탄막·포자 소환']};
-export const species=Object.fromEntries(Object.entries(metadata).map(([id,[name,color,description]],i)=>[id,{id,name,color,description,boss:!!bossSpecies[id],
-  egg:{color,mark:i%3,spots:2+i%4},config:enemyConfig[id],Class:enemyClasses[id],presentation:{draw:enemyVisuals[id],color,egg:{motif:id}} }]));
+  lancer:localizedList([()=>tr("species.80"),'#9bab46',()=>tr("species.81")]),dandelion:localizedList([()=>tr("species.78"),'#2e6eed',()=>tr("species.79")]),swordsman:localizedList([()=>tr("species.76"),'#75bd52',()=>tr("species.77")]),pikeman:localizedList([()=>tr("species.74"),'#8aaa4e',()=>tr("species.75")]),medic:localizedList([()=>tr("species.72"),'#2e6eed',()=>tr("species.73")]),
+  rogue:localizedList([()=>tr("species.70"),'#717b3d',()=>tr("species.71")]),pillbug:localizedList([()=>tr("species.68"),'#bd8742',()=>tr("species.69")]),thornfruit:localizedList([()=>tr("species.66"),'#789f40',()=>tr("species.67")]),rocket:localizedList([()=>tr("species.64"),'#8a9e40',()=>tr("species.65")]),
+  scout:localizedList([()=>tr("species.62"),'#ec7056',()=>tr("species.63")]),brute:localizedList([()=>tr("species.60"),'#e8a145',()=>tr("species.61")]),spitter:localizedList([()=>tr("species.58"),'#a078ef',()=>tr("species.59")]),
+  sprout:localizedList([()=>tr("species.56"),'#85cc4a',()=>tr("species.57")]),puff:localizedList([()=>tr("species.54"),'#a88cee',()=>tr("species.55")]),petalPredator:localizedList([()=>tr("species.52"),'#f47b9b',()=>tr("species.53")]),elasticCap:localizedList([()=>tr("species.50"),'#a68aee',()=>tr("species.51")])};
+export const species=Object.fromEntries(Object.entries(metadata).map(([id,labels],i)=>{const color=labels[1];return [id,{id,get name(){return labels[0];},color,get description(){return labels[2];},boss:!!bossSpecies[id],
+  egg:{color,mark:i%3,spots:2+i%4},config:enemyConfig[id],Class:enemyClasses[id],presentation:{draw:enemyVisuals[id],color,egg:{motif:id}} }];}));
+// Fine rays/highlights are detail. These species explicitly describe their body mask.
+for(const id of ['dandelion','medic'])species[id].presentation.outlineGeometry='body';
 export function speciesConfig(id,grade=5,{powerRate=1,sizeRate=1,bodyScale=1,growthRate=1}={}){
   const base=species[id].config,c=structuredClone(base),power=Math.pow(powerRate,grade),size=Math.pow(sizeRate,grade);
   c.hp*=power;c.damage*=power;c.attackPower=65*power;c.radius*=bodyScale;c.height*=bodyScale;c.armorPenPercent=0;c.armorPenFlat=0;
@@ -211,17 +219,20 @@ export function drawSpecies(r,pres,view){
   const methods={ellipse:{color:4,points:[0,1]},rect:{color:4,points:[0,1]},
     triangle:{color:6,points:[0,1,2,3,4,5]},line:{color:5,points:[0,1,2,3]}};
   const tint=rgb(pres.color),original=rgb(species[view.unit.speciesId].color),commands=pres.outline?[]:null;
+  let capture=commands;
   const paint=Object.fromEntries(Object.entries(methods).map(([name,shape])=>[name,(...args)=>{
     const color=args[shape.color];args[shape.color]=color.map((v,i)=>i<3?Math.min(1,v*tint[i]/Math.max(.05,original[i])):v);
-    if(commands)commands.push({name,shape,args});else r[name](...args);
+    if(capture)capture.push({name,shape,args});else r[name](...args);
   }]));
   pres.draw(paint,view);
   if(!commands)return;
+  let silhouette=commands;
+  if(pres.outline&&pres.outlineGeometry==='body'){capture=[];pres.draw(paint,{...view,silhouetteOnly:true});silhouette=capture;}
   if(pres.outline){const passes=[pres.outline],contrast=pres.outline.contrast,edgeColor=rgb(pres.outline.color);
     if(contrast&&Math.hypot(...tint.map((v,i)=>v-edgeColor[i]))<contrast.maxColorDistance)passes.push(contrast);
     for(const pass of passes){const color=[...rgb(pass.color),1];
       for(let i=0;i<8;i++){const angle=i*Math.PI/4,dx=Math.cos(angle)*pass.width,dy=Math.sin(angle)*pass.width;
-        for(const {name,shape,args} of commands){if(args[shape.color][3]<.8)continue;
+        for(const {name,shape,args} of silhouette){if(args[shape.color][3]<.8)continue;
           const edge=[...args];edge[shape.color]=color;
           for(const index of shape.points)edge[index]+=index%2?dy:dx;r[name](...edge);
         }
@@ -254,17 +265,17 @@ export function eggSvg(pres){let svg='<svg viewBox="0 0 40 48" width="32" height
 }
 
 const gradeNotes={
-  rogue:['충돌 돌진','도약','도약 거리·높이 성장','도약 거리·높이 성장','도약 거리·높이 성장','완성 도약 · 착지 피해 없음'],
-  pillbug:['충돌 돌진','준비 후 자폭','자폭 범위·위력 성장','자폭 범위·위력 성장','자폭 범위·위력 성장','완성 자폭 · 3초 부활'],
-  thornfruit:['충돌 돌진','4방향 가시','8방향 가시 · 활성 피격 1회 반격','같은 가시·반격 성장','같은 가시·반격 성장','완성 가시·반격'],
-  rocket:['충돌 돌진','고정 조준 곡사 1발','곡사 2발','곡사 3발','곡사 4발','완성 곡사 4발 · 간격 150ms'],
-  spitter:['충돌 돌진','거리 유지·옆걸음·직선탄','직선탄 크기·사거리 성장','직선탄 크기·사거리 성장','직선탄 크기·사거리 성장','완성 직선탄'],
+  rogue:localizedList([()=>tr("species.44"),()=>tr("species.45"),()=>tr("species.46"),()=>tr("species.47"),()=>tr("species.48"),()=>tr("species.49")]),
+  pillbug:localizedList([()=>tr("species.38"),()=>tr("species.39"),()=>tr("species.40"),()=>tr("species.41"),()=>tr("species.42"),()=>tr("species.43")]),
+  thornfruit:localizedList([()=>tr("species.32"),()=>tr("species.33"),()=>tr("species.34"),()=>tr("species.35"),()=>tr("species.36"),()=>tr("species.37")]),
+  rocket:localizedList([()=>tr("species.26"),()=>tr("species.27"),()=>tr("species.28"),()=>tr("species.29"),()=>tr("species.30"),()=>tr("species.31")]),
+  spitter:localizedList([()=>tr("species.20"),()=>tr("species.21"),()=>tr("species.22"),()=>tr("species.23"),()=>tr("species.24"),()=>tr("species.25")]),
 };
-for(const id of ['scout','sprout','puff'])gradeNotes[id]=['충돌 돌진','종 고유 준비 돌진·회복','같은 돌진·충격 성장','같은 돌진·충격 성장','같은 돌진·충격 성장','완성 종 고유 돌진'];
-for(const id of ['petalPredator','elasticCap'])gradeNotes[id]=['충돌 돌진','돌진','돌진·부채 탄막','돌진·부채·원형 탄막','돌진·부채·원형·같은 종 소환','기존 전체 패턴 · 탄막 2연사'];
-gradeNotes.brute=['충돌 돌진','표적 햇살광선','동일 표적 1.5초 · ×1.5','동일 표적 3초 · ×2.25','광선 위력·사거리 성장','완성 햇살광선 · 표적 이탈 시 초기화'];
-for(const id of ['lancer','dandelion','swordsman','pikeman'])gradeNotes[id]=Array.from({length:6},(_,g)=>species[id].description+(g?' · 위력·사거리 성장':''));
-gradeNotes.medic=Array.from({length:6},(_,g)=>'공격 없음 · 아군 치유 (자기 HP 1→3) · 자기 HP 5%/초'+(g?' · 치유량·범위 성장':''));
+for(const id of ['scout','sprout','puff'])gradeNotes[id]=localizedList([()=>tr("species.14"),()=>tr("species.15"),()=>tr("species.16"),()=>tr("species.17"),()=>tr("species.18"),()=>tr("species.19")]);
+for(const id of ['petalPredator','elasticCap'])gradeNotes[id]=localizedList([()=>tr("species.8"),()=>tr("species.9"),()=>tr("species.10"),()=>tr("species.11"),()=>tr("species.12"),()=>tr("species.13")]);
+gradeNotes.brute=localizedList([()=>tr("species.2"),()=>tr("species.3"),()=>tr("species.4"),()=>tr("species.5"),()=>tr("species.6"),()=>tr("species.7")]);
+for(const id of ['lancer','dandelion','swordsman','pikeman'])gradeNotes[id]=localizedList(Array.from({length:6},(_,g)=>()=>species[id].description+(g?tr('species.1'):'')));
+gradeNotes.medic=localizedList(Array.from({length:6},(_,g)=>()=>tr('species.phrase.27',{v0:g?tr('species.0'):''})));
 for(const [id,notes] of Object.entries(gradeNotes))species[id].gradeNotes=notes;
 
 // The first four retain PR8's debut; replacements can award every normal species.

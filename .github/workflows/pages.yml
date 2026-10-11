@@ -35,6 +35,9 @@ jobs:
           cp drops.js _site/drops.js
           cp enemies.js _site/enemies.js
           cp controllers.js _site/controllers.js
+          cp i18n.js _site/i18n.js
+          mkdir -p _site/locales
+          cp locales/ko.js locales/en.js _site/locales/
           touch _site/.nojekyll
           python3 - <<'PY'
           import datetime, hashlib, json, os, pathlib, re
@@ -53,6 +56,11 @@ jobs:
               'controllers_sha256': hashlib.sha256(pathlib.Path('_site/controllers.js').read_bytes()).hexdigest(),
               'enemies_sha256': hashlib.sha256(pathlib.Path('_site/enemies.js').read_bytes()).hexdigest(),
               'audio_sha256': hashlib.sha256(pathlib.Path('_site/audio.js').read_bytes()).hexdigest(),
+              'i18n_sha256': hashlib.sha256(pathlib.Path('_site/i18n.js').read_bytes()).hexdigest(),
+              'locale_ko_sha256': hashlib.sha256(pathlib.Path('_site/locales/ko.js').read_bytes()).hexdigest(),
+              'locale_en_sha256': hashlib.sha256(pathlib.Path('_site/locales/en.js').read_bytes()).hexdigest(),
+              'i18next_version': '26.4.3',
+              'i18next_esm_sha256': '4fb2e0c4dfd13dda4f6cb292ae0f9c5260a13b28bab05ee723915351bdaf00a1',
               'audio_sdk_commit': re.search(r"commit:'([^']+)'", pathlib.Path('_site/audio.js').read_text(encoding='utf-8')).group(1),
               'audio_sdk_sha256': re.search(r"sha256:'([^']+)'", pathlib.Path('_site/audio.js').read_text(encoding='utf-8')).group(1),
           }

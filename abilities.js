@@ -20,6 +20,28 @@ export function mixin(first, ...rest) {
   return Class;
 }
 
+// HAS-A charge state. The caller advances milliseconds independently of attack/movement modes.
+export class ChargePool {
+  constructor(config){this.config={maxCharges:config.maxCharges,rechargeMs:config.rechargeMs};this.reset();}
+  reset(){this.charges=this.config.maxCharges;this.refillMs=0;this.spent=0;}
+  get progress(){return this.charges<this.config.maxCharges?this.refillMs/this.config.rechargeMs:0;}
+  configure({maxCharges,rechargeMs}){
+    const progress=this.progress,oldMax=this.config.maxCharges;
+    this.config={maxCharges,rechargeMs};
+    this.charges=Math.max(0,Math.min(maxCharges,this.charges+maxCharges-oldMax));
+    this.refillMs=this.charges<maxCharges?progress*rechargeMs:0;
+  }
+  consume(){if(this.charges<1)return false;this.charges--;this.spent++;return true;}
+  update(dtMs){if(this.charges>=this.config.maxCharges)return;
+    this.refillMs+=dtMs;
+    while(this.charges<this.config.maxCharges&&this.refillMs+1e-8>=this.config.rechargeMs){
+      this.refillMs=Math.max(0,this.refillMs-this.config.rechargeMs);this.charges++;
+    }
+    if(this.charges===this.config.maxCharges)this.refillMs=0;
+  }
+  snapshot(){return {charges:this.charges,maxCharges:this.config.maxCharges,rechargeMs:this.config.rechargeMs,progress:this.progress,spent:this.spent};}
+}
+
 export function volume(body, height, feetZ = 0) {
   if (!(height > 0) || !Number.isFinite(feetZ)) throw new TypeError('invalid vertical volume');
   const state = {feetZ, previousFeetZ:feetZ, height, motion:{x:body.position.x,y:body.position.y}};

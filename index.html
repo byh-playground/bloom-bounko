@@ -3461,7 +3461,7 @@ try {
     while(introEvent<introTimeline.length&&timeMs>=introTimeline[introEvent].atMs){const event=introTimeline[introEvent++];
       if(event.chapter!==undefined)stageIntro(event.chapter);
       if(event.action==='attack'){aimPreview();introDashPending=launchAuto();}
-      if(event.action==='ultimate'){combo=ultimateLoadout.requirements(ultimateLoadout.next()?.id).comboHits;attackAmmo.reset();ultimateLoadout.reset();ultimateRunner.tryStart(combo,attackAmmo.charges);}
+      if(event.action==='ultimate'){attackAmmo.reset();ultimateLoadout.reset();combo=ultimateLoadout.requirements(ultimateLoadout.next()?.id).comboHits;ultimateRunner.tryStart(combo,attackAmmo.charges);}
     }
     if(introDashPending&&shadow&&(shadow.arrived||chargeOf()>=.9)){if(dash())introDashPending=false;}
   }

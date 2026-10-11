@@ -95,5 +95,17 @@
     }
   },
   "wikiAndCards": true,
-  "errors": []
+  "errors": [],
+  "intro": {
+    "pass": true,
+    "seconds": 1.395,
+    "comboRequirements": {
+      "laserBloom": 5,
+      "chainDrive": 4,
+      "elasticBlast": 4
+    },
+    "allThreeCast": true,
+    "resetBeforeSelection": true,
+    "errors": 0
+  }
 }

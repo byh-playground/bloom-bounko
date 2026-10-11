@@ -66,5 +66,21 @@
     "pullX": 185.5757338894225
   },
   "bossEggRate": 0.1,
-  "petReviveMs": 3000
+  "petReviveMs": 3000,
+  "projectileDodge": {
+    "beforeRuptureInsideDamage": 25,
+    "insideMs": 16.666666666666668,
+    "insideDamage": 0,
+    "insideKnockback": 0,
+    "boundaryMs": 100,
+    "boundaryDamage": 25,
+    "outsideMs": 150,
+    "outsideDamage": 25,
+    "nearbyTargetDamage": 25,
+    "arcInsideDamage": 0,
+    "arcOutsideDamage": 25,
+    "ordinaryInsideDamage": 0,
+    "genericAreaInsideDamage": 25,
+    "errors": 0
+  }
 }

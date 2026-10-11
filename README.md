@@ -28,6 +28,8 @@ npx --yes http-server . -p 8000 -c-1
 
 실제 PC Edge155의 대표 시나리오 PASS4.270초·JS 오류0. 고정 tick을 가속 진행해 실제 Unit·Matter 충돌·WebGL 렌더를 검증했습니다: 5종 보스 풀·기존 단계 전환·성장 드롭, 3종 본체 타격, 잠복·분출·파열, 출격·부상 귀환·도킹·회복·재출격·수명·주인 사망 정리, 집게 높이·적중 끌기·위치 고정·회피 빗나감·회수, 일반 펫 공격·희귀 쌍집게·3초 부활, ko/en 도감·390px 도움말·기존 소개 URL. [짧은 검증 기록](docs/verification-boss-trio-2026-10-11.json). 화면: [데스웜](docs/boss-deathworm.png) / [모함](docs/boss-hivecarrier.png) / [집게](docs/boss-clawhunter.png), 펫: [데스웜](docs/pet-deathworm.png) / [모함](docs/pet-hivecarrier.png) / [집게](docs/pet-clawhunter.png).
 
+투사체 유래 파열·곡사 폭발도 일반탄·집게와 같은 구르기 회피창을 적용합니다. 실제 Edge 대표 확인에서 구르기16.7ms의 피해·밀어내기는0, 회피 종료100ms와150ms의 파열 피해는25였습니다. 주변 유닛과 일반 범위 공격의 피해25는 유지됐고 JS 오류는0입니다.
+
 ## 플레이와 조작
 
 | 입력 | 동작 |

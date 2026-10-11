@@ -977,8 +977,9 @@ try {
   function removeUnit(e){for(const child of liveSummons(e.unitId))child.die(DeathReason.cleanup);if(unitsById.get(e.unitId)===e)unitsById.delete(e.unitId);unitsByBody.delete(e.body.id);enemiesById.delete(e.body.id);World.remove(engine.world,e.body);if(e.deathReason===DeathReason.cleanup)for(const shot of [...projectiles])if(shot.sourceUnitId===e.unitId)removeProjectile(shot);}
   function damageUnit(target,payload,source){const damage=receiveHit(target,payload,source,timeMs);
     if(damage>0)source.combatEvents?.hit?.(target,payload,damage);return damage;}
-  function capabilityArea(source,c){const p=source.body.position,blast={position:p,positionPrev:p,plugin:{volume:{feetZ:0,previousFeetZ:0,height:c.height,motion:p}},circleRadius:c.radius};
-    for(const target of combatWorld.targets()){if(!hostile(source,target))continue;const b=target.body;
+  function projectileDodged(target){return target===playerUnit&&timeMs-evadeStartedAtMs<C.evade.invulnerableMs;}
+  function capabilityArea(source,c,{projectile=false}={}){const p=source.body.position,blast={position:p,positionPrev:p,plugin:{volume:{feetZ:0,previousFeetZ:0,height:c.height,motion:p}},circleRadius:c.radius};
+    for(const target of combatWorld.targets()){if(!hostile(source,target)||projectile&&projectileDodged(target))continue;const b=target.body;
       if(contactWindow(blast,b,false,1,1)&&Math.hypot(b.position.x-p.x,b.position.y-p.y)<=c.radius+b.circleRadius){
         damageUnit(target,{raw:c.damage,stats:source.config,kind:'area'},source);if(target.alive){const n=norm(b.position.x-p.x,b.position.y-p.y);applyImpulse(b,{x:n.x*c.push*b.mass,y:n.y*c.push*b.mass});}}}
   }
@@ -1054,7 +1055,7 @@ try {
     const source={...shot.source,attacker:shot.source,alive:true,faction:shot.faction,unitId:shot.sourceUnitId};
     if(!hostile(source,target))return false;
     if(shot.retrieval){
-      const dodged=target===playerUnit&&timeMs-evadeStartedAtMs<C.evade.invulnerableMs;
+      const dodged=projectileDodged(target);
       const damage=dodged?0:damageUnit(target,shot.payload,source);
       if(damage>0&&target.alive){const p=source.body.position,t=target.body.position,n=norm(p.x-t.x,p.y-t.y);
         applyImpulse(target.body,{x:n.x*shot.retrieval.pullSpeed*target.body.mass,y:n.y*shot.retrieval.pullSpeed*target.body.mass});
@@ -1062,7 +1063,7 @@ try {
       recordVolume('hook-hit',shot.source,{targetId:target.unitId,damage,z:shot.body.plugin.volume.feetZ});
       retractShot(shot);return true;
     }
-    if(shot.impactRadius){removeProjectile(shot);capabilityArea({...source,body:shot.body},{radius:shot.impactRadius,height:shot.impactHeight,damage:shot.damage,push:shot.push});
+    if(shot.impactRadius){removeProjectile(shot);capabilityArea({...source,body:shot.body},{radius:shot.impactRadius,height:shot.impactHeight,damage:shot.damage,push:shot.push},{projectile:true});
       ringFx(shot.body.position.x,shot.body.position.y,shot.impactRadius,[1,.64,.32,.8],360);sfx.play('spore');}
     else if(target===playerUnit)hitProjectile(shot);
     else{const damage=damageUnit(target,shot.payload,source);if(shot.payload.kind==='ultimate')ultimateRunner.damage+=damage;removeProjectile(shot);}
@@ -1089,7 +1090,7 @@ try {
       continue;
     }
     if(shot.arc.finished){recordVolume('arc-impact',shot.source,{x:pose.x,y:pose.y,z:pose.z});removeProjectile(shot);
-      capabilityArea({...shot.source,attacker:shot.source,body:shot.body,alive:true},{radius:shot.impactRadius,height:shot.impactHeight,damage:shot.damage,push:shot.push});ringFx(pose.x,pose.y,shot.impactRadius,[1,.64,.32,1],360);sfx.play('spore');}
+      capabilityArea({...shot.source,attacker:shot.source,body:shot.body,alive:true},{radius:shot.impactRadius,height:shot.impactHeight,damage:shot.damage,push:shot.push},{projectile:true});ringFx(pose.x,pose.y,shot.impactRadius,[1,.64,.32,1],360);sfx.play('spore');}
   }}
   function drawArcShot(shot){const p=shot.body.position,z=shot.body.plugin.volume.feetZ,a=shot.arc.aim;
     if(shot.retrieval){const owner=shot.source,p0=owner.body.position,n=norm(owner.headingX,owner.headingY),s={x:p0.x-n.y*owner.config.radius*1.15*shot.arm+n.x*owner.config.radius*.36,y:p0.y+n.x*owner.config.radius*1.15*shot.arm+n.y*owner.config.radius*.36,z:10};
@@ -1148,7 +1149,7 @@ try {
     const pos=shot.body.position,dir=norm(shot.dirX,shot.dirY);
     const dmg=shot.damage*C.enemy.projectileDamageMultiplier;
     removeProjectile(shot);
-    if(timeMs-evadeStartedAtMs<C.evade.invulnerableMs){burst(pos.x,pos.y,90,6,[.54,.86,1,1]);return;}
+    if(projectileDodged(playerUnit)){burst(pos.x,pos.y,90,6,[.54,.86,1,1]);return;}
     hurtPlayer(dmg,player.position.x,player.position.y,{...shot.source,attacker:shot.source,alive:true});
     const delta=shot.push*C.enemy.knockbackMultiplier;
     applyImpulse(player,{x:dir.x*delta*player.mass,y:dir.y*delta*player.mass});enemyPushes++;

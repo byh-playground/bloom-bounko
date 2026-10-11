@@ -297,7 +297,7 @@ body.lobby-active #stageHud,body.lobby-active #stageBanner{display:none}
 <label class="language-control"><span data-i18n="ui.language">언어</span> <select id="languageSelect" data-i18n-aria-label="ui.language"><option value="ko">한국어</option><option value="en">English</option></select></label>
 <canvas id="game" tabindex="0" aria-label="BOUNKO(바운코) 물리 전투 게임" data-i18n-aria-label="dom.game.aria-label.1"></canvas>
 <div id="hud">
-  <div id="top"><div><div id="brand">BOUNKO<small>PHYSICS ACTION LAB · v0.13.0</small></div><div class="stats"><div><span class="stat-label"><span data-i18n="dom.top.text.1">HP</span></span><span class="stat-num" id="playerhp">200</span></div><div><span class="stat-label"><span data-i18n="dom.top.text.2">COMBO</span></span><span class="stat-num gold" id="combo">0</span></div><div><span class="stat-label"><span data-i18n="dom.top.text.3">HITS</span></span><span class="stat-num" id="hits">0</span></div><div><span class="stat-label"><span data-i18n="dom.top.text.4">SPEED</span></span><span class="stat-num" id="speed">0</span></div></div></div><div id="score"><span class="stat-label"><span data-i18n="dom.score.text.1">KNOCKOUT</span></span><span class="stat-num gold" id="kills">0</span><div class="pills"><span class="pill" id="fps">-- FPS</span><span class="pill" id="state"><span data-i18n="dom.state.text.1">READY</span></span></div></div></div>
+  <div id="top"><div><div id="brand">BOUNKO<small>PHYSICS ACTION LAB · v0.13.1</small></div><div class="stats"><div><span class="stat-label"><span data-i18n="dom.top.text.1">HP</span></span><span class="stat-num" id="playerhp">200</span></div><div><span class="stat-label"><span data-i18n="dom.top.text.2">COMBO</span></span><span class="stat-num gold" id="combo">0</span></div><div><span class="stat-label"><span data-i18n="dom.top.text.3">HITS</span></span><span class="stat-num" id="hits">0</span></div><div><span class="stat-label"><span data-i18n="dom.top.text.4">SPEED</span></span><span class="stat-num" id="speed">0</span></div></div></div><div id="score"><span class="stat-label"><span data-i18n="dom.score.text.1">KNOCKOUT</span></span><span class="stat-num gold" id="kills">0</span><div class="pills"><span class="pill" id="fps">-- FPS</span><span class="pill" id="state"><span data-i18n="dom.state.text.1">READY</span></span></div></div></div>
   <div id="options"><button id="tune" aria-label="설정" data-i18n-html="dom.tune.html.1" data-i18n-aria-label="dom.tune.aria-label.1">설정</button><button id="restart" aria-label="대기 화면으로" data-i18n-html="dom.restart.html.1" data-i18n-aria-label="dom.restart.aria-label.1">대기</button></div><div id="augments" role="group" aria-label="해금된 특성" data-i18n-aria-label="dom.augments.aria-label.1"></div>
   <div id="targetcue" aria-hidden="true"></div>
   <div id="missHint" role="status" aria-live="polite"><span data-i18n="dom.missHint.text.1">돌진이 빗나가면 잠시 자세를 회복해요.</span></div>
@@ -610,12 +610,12 @@ next stage -&gt; centered stage number; 4/7/10... expands map/theme segment</cod
 <div id="petPanel" class="pet-panel" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="petTitle"><div class="pet-card"><div class="pet-head"><h2 id="petTitle" data-i18n-html="dom.petTitle.html.1">◉ 동행 카드</h2><button id="petClose" type="button" data-i18n-html="dom.petClose.html.1">닫기 ✕</button></div><p class="pet-note" data-i18n-html="dom.petPanel.html.1">보유 카드 탭 → 첫 빈칸에 장착 · 동행 슬롯 탭 → 해제<small>기본 1칸, 슬롯 강화로 최대 5칸. 가득 차면 먼저 슬롯을 비워주세요.</small></p><div id="petSlots" class="pet-slots" aria-label="동행 카드 슬롯" data-i18n-aria-label="dom.petSlots.aria-label.1"></div><div id="petResult" class="pet-result" aria-live="polite"></div><h3 data-i18n-html="dom.petPanel.html.2">보유 카드</h3><div id="petInventory" class="pet-inventory"></div><div class="pet-fusion"><label><span data-i18n="dom.petPanel.text.1">합성 </span><select id="petFusionSpecies"></select></label><select id="petFusionGrade" aria-label="합성 등급" data-i18n-aria-label="dom.petFusionGrade.aria-label.1"></select><button id="petFuse" type="button" data-i18n-html="dom.petFuse.html.1">5마리 합성</button><button id="petFuseAll" type="button" data-i18n-html="dom.petFuseAll.html.1">선택 등급 연속 합성</button><span id="petFusionOdds"></span></div><p class="pet-note" data-i18n-html="dom.petPanel.html.3">잠금한 펫만 합성에서 보호됩니다. 장착 펫도 재료에 포함되며 예비 펫을 먼저 씁니다. 성공: 5마리 → 상위 1마리. 실패: 1~4마리 소모, 최소 1마리 유지. 알은 재료가 아닙니다.</p><p class="pet-note" data-i18n-html="dom.petPanel.html.4">일반·소환 적중 처치 5%, 보스 10%로 같은 종의 알을 얻습니다. 장착 알은 적중 처치마다 +1, 30처치에 같은 칸에서 부화합니다.</p></div></div>
 <script src="https://cdn.jsdelivr.net/npm/matter-js@0.20.0/build/matter.min.js"></script>
 <script type="module">
-import {ultimateConfig,UltimateLoadout,UltimateRunner,drawUltimate} from './ultimates.js';
+import {ultimateConfig,UltimateLoadout,UltimateRunner,drawUltimate,beamWidth,beamIntersects} from './ultimates.js';
 import {t as tr,language,setLanguage,onLanguageChanged,translateDocument,localizedList,message,messageText,number,percent} from './i18n.js';
 
 
 const KIT = 'https://cdn.jsdelivr.net/gh/byh-playground/bloom-gamekit@d1e2c385033ad04a7a004cfbe9558948ef07a6d1/';
-const VERSION = '0.13.0', BUILD_ID = '20261011T070149Z-ultimate-sequences';
+const VERSION = '0.13.1', BUILD_ID = '20261011T085143Z-ultimate-impact';
 const $ = id => document.getElementById(id);
 const loadtext = $('loadtext');translateDocument();document.title=tr('app.title');$('languageSelect').value=language();$('languageSelect').disabled=true;
 const ERROR = error => { console.error(error); loadtext.textContent = tr("runtime.phrase.26",{v0:String(error.message||error).replace(/[<>]/g,'')}); };
@@ -766,7 +766,7 @@ try {
     position:()=>player.position,targets:ultimateTargets,target:id=>unitsById.get(id),safePoint:ultimateSafePoint,
     consume:consumeUltimateCosts,begin:beginUltimate,end:endUltimate,
     move:(goal,dtMs)=>{const p=player.position;setSpeed(player,(goal.x-p.x)*1000/dtMs,(goal.y-p.y)*1000/dtMs);},
-    attack:ultimateAttack,contact:ultimateContact,sound:id=>sfx.play(id),shake:shakeCamera
+    attack:ultimateAttack,contact:ultimateContact,pose:updateUltimateGeometry,hitstop:ms=>{hitstopLeftMs=Math.max(hitstopLeftMs,ms);},sound:id=>sfx.start(id),shake:shakeCamera
   });
   const companions=new CompanionCollection(petConfig,tech.companions,tech.statLevels.petSlots);delete tech.companions;
   const lootDrops=new RewardDrops(C.drops,tech.pendingDrops,id=>!!species[id]);delete tech.pendingDrops;
@@ -965,7 +965,7 @@ try {
     beam(e,target,c,multiplier){const damage=damageUnit(target,{raw:c.dps*c.intervalMs/1000*multiplier,stats:e.config,kind:'beam',floating:true},e);
       e.combatEvents?.ability?.();recordVolume('sunbeam',e,{targetId:target.unitId,damage,focusMs:e.sunbeam.focusMs,beamStage:e.sunbeam.stage});},
     heal(e,target,amount,cost){e.heal.link={target,untilMs:timeMs+320};target.adapter?.healed?.(target,amount);e.combatEvents?.ability?.();recordVolume('heal',e,{targetId:target.unitId,healed:amount,cost});sfx.play('heal');},
-    hurt(e,amount){floatText(e.body.position.x,e.body.position.y,'-'+formatCombatNumber(amount),[.62,.94,1,1]);e.combatEvents?.hurt?.(amount);},
+    hurt(e,amount,source){floatText(e.body.position.x,e.body.position.y,'-'+formatCombatNumber(amount,source.presentation?.hitText?.fractionDigits),[.62,.94,1,1],source.presentation?.hitText);e.combatEvents?.hurt?.(amount);},
     impact(e,target,amount){enemyPushes++;const n=norm(target.body.position.x-e.body.position.x,target.body.position.y-e.body.position.y);
       applyImpulse(target.body,{x:n.x*e.config.push*target.body.mass,y:n.y*e.config.push*target.body.mass});
       ringFx(e.body.position.x,e.body.position.y,35,[.66,.94,1,.8],300);playImpact(Math.hypot(e.pre.x,e.pre.y),e.presentation.impactSound);},
@@ -2165,16 +2165,25 @@ try {
   function ultimateSafePoint(goal,from){return clearCapabilityPath(from,goal,C.player.radius)?{x:goal.x,y:goal.y}:{x:from.x,y:from.y};}
   function consumeUltimateCosts(cost){if(combo<cost.comboHits||attackAmmo.charges<cost.ammo)return false;const slots=attackAmmo.readySlots.slice(0,cost.ammo);for(const slot of slots)attackAmmo.consume(slot);combo=0;return true;}
   function beginUltimate(){endChain();shadow=null;pendingLaunch=null;launchRecoil=null;dashMotion=null;dashFlight=null;evadeMotion=null;attackOrigin=null;bufferedIntent=null;bufferedUntilMs=0;hitstopLeftMs=0;pending.length=0;input.releaseAll('ultimate');actions.consume();setAttackMode('ULTIMATE');}
-  function endUltimate(reason){setSpeed(player,0,0);pending.length=0;bufferedIntent=null;input.releaseAll('ultimate-end');actions.consume();endChain();combo=0;if(mode==='ULTIMATE')beginReady();if(reason!=='complete')for(const shot of [...projectiles])if(shot.payload.kind==='ultimate')removeProjectile(shot);}
-  function ultimateHit(target,power,state,push=0){if(!target.alive||!ultimateRunner.active||!contactWindow(player,target.body,false,1,1))return 0;const damage=damageUnit(target,{raw:C.stats.attackPower*power,stats:C.stats,kind:'ultimate'},playerUnit);ultimateRunner.damage+=damage;
-    if(damage>0){ultimateRunner.effect({kind:'impact',x1:target.body.position.x,y1:target.body.position.y,color:state.skill.color,lifeMs:220});if(target.alive&&push){const n=norm(target.body.position.x-player.position.x,target.body.position.y-player.position.y);applyImpulse(target.body,{x:n.x*push*target.body.mass,y:n.y*push*target.body.mass});}}return damage;}
+  function endUltimate(reason){hitstopLeftMs=0;setSpeed(player,0,0);pending.length=0;bufferedIntent=null;input.releaseAll('ultimate-end');actions.consume();endChain();combo=0;if(mode==='ULTIMATE')beginReady();if(reason!=='complete')for(const shot of [...projectiles])if(shot.payload.kind==='ultimate')removeProjectile(shot);}
+  function ultimateHit(target,power,state,push=0,floating=false,hitText=null){if(!target.alive||!ultimateRunner.active||!contactWindow(player,target.body,false,1,1))return 0;const source=hitText?{...playerUnit,attacker:playerUnit,presentation:{hitText}}:playerUnit;const damage=damageUnit(target,{raw:C.stats.attackPower*power,stats:C.stats,kind:'ultimate',floating},source);ultimateRunner.damage+=damage;
+    if(damage>0){ultimateRunner.impact();ultimateRunner.effect({kind:'impact',strength:state.phase.impactSize??1,x1:target.body.position.x,y1:target.body.position.y,color:state.skill.color,lifeMs:220});if(target.alive&&push){const n=norm(target.body.position.x-player.position.x,target.body.position.y-player.position.y);applyImpulse(target.body,{x:n.x*push*target.body.mass,y:n.y*push*target.body.mass});}}return damage;}
+  function updateUltimateGeometry(state){const contact=state.phase.contact;if(contact?.kind==='wave')state.wave={origin:{...player.position},radius:contact.radius*Math.sin(ultimateRunner.progress()*Math.PI/2),progress:ultimateRunner.progress()};
+    const attack=state.phase.attack;if(attack?.kind!=='beam')return;
+    const p=player.position,d=state.direction,from={x:p.x+d.x*C.player.radius,y:p.y+d.y*C.player.radius},width=beamWidth(attack,state.elapsedMs,state.phase.durationMs);
+    let length=attack.length;const tip=n=>({x:from.x+d.x*n,y:from.y+d.y*n});
+    if(!clearCapabilityPath(from,tip(length),width/2)){let min=0,max=length;for(let i=0;i<10;i++){const middle=(min+max)/2;if(clearCapabilityPath(from,tip(middle),width/2))min=middle;else max=middle;}length=min;}
+    state.beam={from,to:tip(length),width,length};
+  }
   function ultimateAttack(attack,state,pulse){const p=player.position;
-    if(attack.kind==='beams'){for(const target of ultimateTargets(state.skill.range).slice(0,attack.targets)){if(!ultimateRunner.active)break;const end={...target.body.position};
-      ultimateRunner.effect({kind:'beam',x1:p.x,y1:p.y,x2:end.x,y2:end.y,width:attack.width,color:state.skill.color,lifeMs:210});ultimateHit(target,attack.power,state);}
-      burst(p.x,p.y,95,8,[...state.skill.color,1]);}
+    if(attack.kind==='beam'){
+      const beam=state.beam;if(!beam||beam.width<=0)return;
+      for(const target of enemies){if(!ultimateRunner.active)break;if(target.alive&&beamIntersects(beam,target.body))ultimateHit(target,attack.damageBudget/attack.atMs.length,state,0,true,attack.hitText);}
+      if(pulse===0)burst(beam.from.x,beam.from.y,150,14,[...state.skill.color,1]);
+    }
     if(attack.kind==='spores'){for(let i=0;i<attack.count;i++){const angle=(pulse*attack.count+i)*Math.PI*2/(attack.atMs.length*attack.count);addShot(playerUnit,{radius:4,height:8,speed:attack.speed,angle,damage:C.stats.attackPower*attack.power,push:0,lifeMs:attack.lifeMs,kind:'ultimate',color:state.skill.color});}}
   }
-  function ultimateContact(attack,state,progress){const p=player.position,radius=attack.radius?attack.radius*Math.sin(progress*Math.PI/2):0;
+  function ultimateContact(attack,state,progress){const p=player.position,radius=attack.radius?(state.wave?.radius??attack.radius*Math.sin(progress*Math.PI/2)):0;
     for(const e of enemies){if(!e.alive||state.hitIds.has(e.unitId)||!ultimateRunner.active)continue;
       const contact=attack.kind==='dash'?contactWindow(player,e.body):Math.hypot(e.body.position.x-p.x,e.body.position.y-p.y)<=radius+e.body.circleRadius;
       if(!contact||!contactWindow(player,e.body,false,1,1)||!clearCapabilityPath(p,e.body.position,4))continue;
@@ -2228,19 +2237,19 @@ try {
   }
   // Numeric presentation only: never round damage, health, burn DPS or healing in
   // the authoritative simulation. One compact format for direct/area/DoT output.
-  function formatCombatNumber(value){
+  function formatCombatNumber(value,fractionDigits){
     if(!Number.isFinite(value))throw new RangeError(tr("runtime.99"));
     const n=Math.abs(value);
     if(n===0)return '0';
     if(n<.005)return '<0.01';
-    const decimals=n>=10?0:n>=1?1:2;
+    const decimals=fractionDigits??(n>=10?0:n>=1?1:2);
     return number(n,{maximumFractionDigits:decimals});
   }
   const textFloats=[];
-  function floatText(x,y,text,color){if(textFloats.length>=24){textFloats.shift().el.remove();}
+  function floatText(x,y,text,color,presentation={}){if(textFloats.length>=24){textFloats.shift().el.remove();}
     const el=document.createElement('div');el.textContent=messageText(text);el.style.cssText='position:absolute;pointer-events:none;will-change:transform,opacity;font-size:22px;font-weight:950;text-shadow:0 2px 4px #000,0 0 8px #000;white-space:nowrap';
-    el.style.color=`rgb(${color.slice(0,3).map(v=>Math.round(v*255)).join(',')})`;$('hud').append(el);
-    textFloats.push({x,y,text,color,age:0,el});}
+    el.style.fontSize=(presentation.sizePx??22)+'px';el.style.color=`rgb(${color.slice(0,3).map(v=>Math.round(v*255)).join(',')})`;$('hud').append(el);
+    textFloats.push({x,y,text,color,age:0,el,lifetimeMs:presentation.lifetimeMs??700,risePxPerMs:presentation.risePxPerMs??.065});}
 
   function updateDrops(dtMs){
     const collected=lootDrops.update(dtMs,player,stage.phase==='CLEAR'?Infinity:magnetRadius());
@@ -2352,14 +2361,14 @@ try {
     }
     if(hitstopLeftMs>0){hitstopLeftMs=Math.max(0,hitstopLeftMs-baseMs);return;}
     if(C.stats.healthRegen>0&&health<C.stats.maxHp){health=Math.min(C.stats.maxHp,health+C.stats.healthRegen*baseMs/1000);}
-    const scale=(mode==='SHADOW'&&chargeOf()>=C.timing.bulletStart)?C.timing.bulletScale:1;
+    const scale=ultimateRunner.active?ultimateRunner.timeScale:(mode==='SHADOW'&&chargeOf()>=C.timing.bulletStart)?C.timing.bulletScale:1;
     const dt=baseMs/1000*scale;
     snapshotVolumes(World.allBodies(engine.world));
     // Preserve start positions before AI motion for relative XY/Z swept contact.
     for(const e of unitsById.values()){if(!e.alive)continue;
       e.preX=e.body.position.x;e.preY=e.body.position.y;
       e.body.restitution=C.physics.restitution;}
-    ultimateRunner.update(baseMs);petRoster.update(dt);updateEnemies(dt);stepArcShots(dt);
+    ultimateRunner.update(baseMs*scale);petRoster.update(dt);updateEnemies(dt);stepArcShots(dt);
     if(mode==='READY'||mode==='RECOVER'||mode==='DASH')aimPreview();
     // Damage uses pre-engine velocities after every AI/attack impulse, including the first charge tick.
     for(const e of unitsById.values())if(e.alive)e.pre=speedOf(e.body);
@@ -2380,7 +2389,7 @@ try {
     // One death boundary for every explicit attack. Resolve same-tick collision
     // damage/lifesteal together, then stop before rearming or another healing tick.
     playerUnit.die();if(mode==='DEAD')return;
-    ultimateRunner.afterPhysics(baseMs);
+    ultimateRunner.afterPhysics(baseMs*scale);
     if(combo>0)ultimateRunner.tryStart(combo,attackAmmo.charges);
     updateDrops(baseMs);
     const created=updateLaunchAlignment(baseMs);if(!created)updateShadow(dt);
@@ -2445,7 +2454,7 @@ try {
       p.x+=p.vx*dt;p.y+=p.vy*dt;p.vx*=.982;p.vy*=.982;
       if(p.life<=0){particles[i]=particles[particles.length-1];particles.pop();}}
     for(let i=textFloats.length-1;i>=0;i--){textFloats[i].age+=baseMs;
-      if(textFloats[i].age>700){textFloats[i].el.remove();textFloats.splice(i,1);}}
+      if(textFloats[i].age>textFloats[i].lifetimeMs){textFloats[i].el.remove();textFloats.splice(i,1);}}
   }
   // Presentation priority, not a simulation rule:
   // decor (quiet) < solid obstacles (readable) < actors/targeting < boss warnings.
@@ -2820,7 +2829,8 @@ try {
       renderer.ellipse(p.x,p.y,r*.34,r*.34,[1,.93,1,1],9);
     }
     const p=player.position;const vel=speedOf(player);const rot=playerFacing;
-    const ultimateCompression=ultimateRunner.state?.phase.charge?Math.sin(ultimateRunner.progress()*Math.PI/2)*(ultimateRunner.state.id==='elasticBlast'?.46:.12):0;
+    const ultimatePhase=ultimateRunner.state?.phase;
+    const ultimateCompression=ultimatePhase?.charge?Math.sin(ultimateRunner.progress()*Math.PI/2)*(ultimatePhase.compression??.12):ultimatePhase?.expansion?-ultimatePhase.expansion.amplitude*Math.sin(Math.PI*clamp(ultimateRunner.state.elapsedMs/ultimatePhase.expansion.durationMs,0,1)):0;
     const recoil=launchRecoil,squash=recoil?Math.sin(Math.PI*clamp((timeMs-recoil.startedAtMs)/C.shadow.recoil.durationMs,0,1))*C.visual.launch.squashRate:0;
     const rx=recoil?.x??1,ry=recoil?.y??0,squashX=(1-squash*rx*rx+squash*.7*ry*ry)*(1-ultimateCompression),squashY=(1-squash*ry*ry+squash*.7*rx*rx)*(1-ultimateCompression);
     if(shadow){const end={x:shadow.x,y:shadow.y};if(shadow.arrived){const golden=mode==='GOLDEN';renderer.ellipse(shadow.x,shadow.y,golden?32:26,golden?32:26,golden?[1,.78,.36,.24]:[.36,.62,1,.20],20);renderer.ellipse(shadow.x,shadow.y,19,19,golden?[1,.84,.47,.65]:[.36,.68,1,.46],20);}
@@ -2942,8 +2952,8 @@ try {
     $('chargetext').textContent=shadow?`${Math.round(pct*100)}%`:'';
     $('charge').className=mode==='GOLDEN'?'golden':mode==='COYOTE'?'coyote':mode==='SHADOW'&&pct>=C.timing.bulletStart?'golden':'';$('chargefill').style.width=((shadow?pct:mode==='DASH'&&dashFlight?dashFlightProgress():0)*100)+'%';$('toast').textContent=timeMs<toastUntil?messageText(toastText):'';$('toast').style.color=toastColor;$('toast').classList.toggle('visible',timeMs<toastUntil);
     // Damage numbers use one event-owned DOM node, projected from the world each frame.
-    const screenPoint={};for(const f of textFloats){renderer.worldToScreenInto(f.x,f.y-30-f.age*.065,screenPoint);
-      f.el.style.transform=`translate3d(${screenPoint.x}px,${screenPoint.y}px,0) translate(-50%,-50%)`;f.el.style.opacity=String(Math.max(0,1-f.age/700));}
+    const screenPoint={};for(const f of textFloats){renderer.worldToScreenInto(f.x,f.y-30-f.age*f.risePxPerMs,screenPoint);
+      f.el.style.transform=`translate3d(${screenPoint.x}px,${screenPoint.y}px,0) translate(-50%,-50%)`;f.el.style.opacity=String(Math.max(0,1-f.age/f.lifetimeMs));}
     canvas.dataset.chainActive=String(chainActive);canvas.dataset.chainStarts=String(chainStarts);
     canvas.dataset.level=String(progressionLevel(tech.kills));canvas.dataset.totalKills=String(tech.defeats);canvas.dataset.collectedGrowth=String(tech.kills);canvas.dataset.techPoints=String(availableTech());canvas.dataset.autoChainReady=String(autoChainReady);canvas.dataset.chainWins=String(autoChainWins);canvas.dataset.chainRolls=String(autoChainRolls);canvas.dataset.autoDashes=String(automaticDashes);canvas.dataset.aimTargetId=String((mode==='READY'||mode==='RECOVER'||mode==='DASH')?(previewTargetId??''):'');canvas.dataset.augments=[C.chain.enabled,C.augment.spore.enabled,C.augment.momentum.enabled,C.chain.followKill].map(v=>v?'1':'0').join('');canvas.dataset.hp=String(health);canvas.dataset.remainingGap=String(Math.round(remainingShadowGap()));canvas.dataset.shadowSeparation=String(Math.round(shadowSeparation()));canvas.dataset.shadowDashReady=String(shadowDashAvailable());canvas.dataset.targetId=String(shadow?.targetId??'');canvas.dataset.damageTaken=String(Math.round(damageTaken));canvas.dataset.ammo=String(attackAmmo.charges);canvas.dataset.ammoCapacity=String(C.shadow.ammo.maxCharges);canvas.dataset.ammoRefill=String(attackAmmo.progress);canvas.dataset.launchCount=String(launchCount);canvas.dataset.healingDone=String(Math.round(healingDone));canvas.dataset.charge=String(Math.round(pct*100));canvas.dataset.dashAccel=String(dashMotion?.acceleration??0);canvas.dataset.state=mode;canvas.dataset.rearm=String(Math.round(rearmProgress()*100));canvas.dataset.buffered=String(!!bufferedIntent);canvas.dataset.stage=String(stage.index);canvas.dataset.stagePhase=stage.phase;canvas.dataset.stageKills=String(stage.waveKills);
     canvas.dataset.evadeCharges=String(evadeCharges);canvas.dataset.evadeActions=String(evadeActions);canvas.dataset.bossPattern=stage.boss?.pattern??'';

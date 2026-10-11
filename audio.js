@@ -57,9 +57,12 @@ Object.assign(audioConfig.sounds,{
  chainStart:{category:'motion',layers:[tone(330,660,130,.09,'triangle')]},
  ultimateMove:{category:'motion',priority:4,gapMs:70,layers:[noise(100,.13,2700),tone(260,1050,130,.12,'triangle')]},
  ultimateCharge:{category:'magic',priority:5,gapMs:0,layers:[tone(180,1120,300,.13,'triangle'),tone(360,1800,300,.07,'sine',40)]},
- ultimateBeam:{category:'magic',priority:6,gapMs:0,layers:[noise(160,.16,4200),tone(1560,380,240,.14,'sawtooth'),tone(880,220,260,.09)]},
- ultimateSpore:{category:'magic',priority:5,layers:[noise(240,.13,2100),tone(520,300,260,.1,'triangle')]},
- ultimateWave:{category:'impact',priority:6,gapMs:0,layers:[tone(140,30,330,.28),noise(220,.18,950)]},
+ laserCharge:{category:'magic',priority:7,gapMs:0,layers:[tone(120,780,600,.16,'triangle'),tone(280,1350,320,.11,'sine',260),noise(550,.035,1700)]},
+ laserSustain:{category:'magic',priority:8,gapMs:0,layers:[noise(790,.14,4800),tone(1150,980,300,.16,'sawtooth'),tone(1120,970,310,.16,'sawtooth',230),tone(1080,930,340,.16,'sawtooth',450),tone(175,110,800,.13,'triangle')]},
+ laserFade:{category:'magic',priority:8,gapMs:0,layers:[tone(970,180,120,.095,'sawtooth'),noise(110,.075,2200)]},
+ ultimateSpore:{category:'magic',priority:6,gapMs:0,layers:[noise(860,.11,2100),tone(620,360,320,.11,'triangle'),tone(740,420,320,.11,'triangle',280),tone(660,280,300,.1,'triangle',570)]},
+ ultimateStrike:{category:'impact',priority:7,gapMs:0,layers:[tone(190,40,160,.22),noise(90,.15,2600)]},
+ ultimateWave:{category:'impact',priority:7,gapMs:0,layers:[tone(180,28,480,.29),noise(280,.2,1400),tone(95,40,360,.12,'triangle',110)]},
  ultimateReturn:{category:'motion',priority:4,layers:[tone(840,260,150,.09),noise(70,.07,2600)]}
 });
 audioConfig.sounds.fusionMixed={category:'reward',layers:[...audioConfig.sounds.fusionSuccess.layers,...audioConfig.sounds.fusionFail.layers.map(layer=>({...layer,delay:(layer.delay||0)+330}))]};

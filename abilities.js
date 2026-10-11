@@ -184,7 +184,8 @@ export class Unit {
     this.status=new UnitStatus();this.spatial=volume(body,config.height);this.collisionAttack={phase:'READY',leftMs:0,hitIds:new Set()};
   }
   unlocked(name){return this.grade>=(this.config.unlocks?.[name]??0);}
-  step(dt,world){if(!this.alive||this.status.frozenMs>0)return;const intent=this.controller?this.controller.intent(this,world):world;this.intent=intent;this.update(dt,intent);}
+  get canAct(){return this.alive&&this.status.frozenMs<=0;}
+  step(dt,world){if(!this.canAct)return;const intent=this.controller?this.controller.intent(this,world):world;this.intent=intent;this.update(dt,intent);}
   update(dt,context){if(!this.alive)return;
     const c=this.config.basicAttack,s=this.collisionAttack,signature=this.config.signature&&this.unlocked(this.config.signature);
     if(c&&(!signature||this.config.basicWithSignature)){
@@ -197,7 +198,7 @@ export class Unit {
     }
     this.adapter.chase(this,dt,context);
   }
-  contact(target,now){if(this.status.frozenMs>0||!hostile(this,target)||now-this.lastTouchMs<(this.config.contactCooldownMs||450))return 0;
+  contact(target,now){if(!this.canAct||!hostile(this,target)||now-this.lastTouchMs<(this.config.contactCooldownMs||450))return 0;
     const charge=this.state==='LUNGE'||this.state==='BOSS_CHARGE',active=this.config.contactAttackStates?.includes(this.state)&&this.unlocked(this.config.signature);
     if(!charge&&!active)return 0;if(charge&&this.collisionAttack.hitIds.has(target.unitId))return 0;
     let raw=this.config.damage;
@@ -349,7 +350,7 @@ export const SelfDestructible = Base => class SelfDestructible extends Base {
 };
 export const SpikeCounterable = Base => class SpikeCounterable extends Base {
   constructor(...args){super(...args);this.spike={config:this.config.spike,phase:'READY',leftMs:0,countered:false,pulses:0,counters:0};}
-  onHit(hit){const s=this.spike;if(this.alive&&hit.damage>0&&hit.kind!=='status'&&s.phase==='ACTIVE'&&this.unlocked('spikeCounter')&&!s.countered){s.countered=true;s.counters++;this.adapter.spikes(this,s.config,'counter');}super.onHit(hit);}
+  onHit(hit){const s=this.spike;if(this.canAct&&hit.damage>0&&hit.kind!=='status'&&s.phase==='ACTIVE'&&this.unlocked('spikeCounter')&&!s.countered){s.countered=true;s.counters++;this.adapter.spikes(this,s.config,'counter');}super.onHit(hit);}
   update(dt,context){if(!this.alive)return;if(!this.unlocked('spike'))return super.update(dt,context);const s=this.spike,c=s.config,p=this.body.position;
     if(s.phase==='READY'&&context.attack!==false&&Math.hypot(context.target.x-p.x,context.target.y-p.y)<c.range){s.phase='PREPARE';s.leftMs=c.prepareMs;s.countered=false;this.state='SPIKE_PREPARE';this.attackCount++;this.adapter.notice(this);}
     if(s.phase==='PREPARE'||s.phase==='ACTIVE'){this.adapter.brake(this,dt);s.leftMs-=dt*1000;

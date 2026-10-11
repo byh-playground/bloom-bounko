@@ -132,5 +132,27 @@
       }
     ]
   },
-  "errors": []
+  "errors": [],
+  "reviewFixes": [
+    {
+      "name": "ALIGN freeze -> READY -> thaw -> attack without roll",
+      "pass": true,
+      "before": "ALIGN",
+      "frozen": "READY",
+      "after": "SHADOW",
+      "thawTicks": 73,
+      "launches": 1,
+      "rolls": 0,
+      "cancelPreservesAmmo": true
+    },
+    {
+      "name": "ACTIVE thornfruit frozen by shadow: dash damage accepted, freeze kept, counter blocked; thaw restores counter",
+      "pass": true,
+      "counterWhileFrozen": 0,
+      "shotsWhileFrozen": 0,
+      "counterAfterThaw": 1,
+      "shotsAfterThaw": 8,
+      "damageIncludingThawedControl": 51
+    }
+  ]
 }

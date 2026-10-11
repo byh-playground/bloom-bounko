@@ -1041,7 +1041,7 @@ try {
   }
   const unitAdapter={
     pathClear:clearCapabilityPath,
-    freeze(e){setSpeed(e.body,0,0);if(e===playerUnit){dashMotion=null;evadeMotion=null;cancelPendingLaunch();pending.length=0;bufferedIntent=null;}ringFx(e.body.position.x,e.body.position.y,e.config.radius+9,[.62,.91,1,.9],350);recordVolume('freeze',e);},
+    freeze(e){setSpeed(e.body,0,0);if(e===playerUnit){dashMotion=null;evadeMotion=null;if(mode==='ALIGN'){setReadyState();endChain();}else cancelPendingLaunch();pending.length=0;bufferedIntent=null;bufferedUntilMs=0;}ringFx(e.body.position.x,e.body.position.y,e.config.radius+9,[.62,.91,1,.9],350);recordVolume('freeze',e);},
     groundAttack(e,c,aim){e.combatEvents?.ability?.();const p=e.body.position,fx=e.groundAttack.effects=(e.groundAttack.effects||[]).filter(v=>v.untilMs>timeMs);
       const spike=(x,y,size)=>{if(fx.length>=32)fx.shift();fx.push({x,y,size,untilMs:timeMs+420});};
       if(c.kind==='line'){const n={x:e.headingX,y:e.headingY},len=c.range;

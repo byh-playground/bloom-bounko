@@ -2,7 +2,7 @@ export default {
   "preview.open": "Preview",
   "preview.title": "{{name}} · Preview",
   "preview.close": "Close",
-  "preview.note": "Replay the same battle with an ultimate ready. Your game and saved progress are preserved.",
+  "preview.note": "The same battle automatically plays and loops. Your game and saved progress are preserved.",
   "preview.pause": "Pause",
   "preview.play": "Play",
   "preview.replay": "Replay",

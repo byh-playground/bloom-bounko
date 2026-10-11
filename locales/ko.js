@@ -2,7 +2,7 @@ export default {
   "preview.open": "프리뷰",
   "preview.title": "{{name}} · 프리뷰",
   "preview.close": "닫기",
-  "preview.note": "궁극기가 준비된 같은 전투 장면을 재생합니다. 본게임과 성장 기록에는 반영되지 않습니다.",
+  "preview.note": "궁극기가 준비된 같은 전투 장면을 자동 재생·반복합니다. 본게임과 성장 기록에는 반영되지 않습니다.",
   "preview.pause": "정지",
   "preview.play": "재생",
   "preview.replay": "다시 보기",

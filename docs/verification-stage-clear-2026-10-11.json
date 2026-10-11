@@ -1,0 +1,2844 @@
+{
+  "base": "137dc0108c7f009ab221ae0adedf3b403f8fe0ea",
+  "version": "0.12.10",
+  "scope": "Two representative actual Edge/Matter/GameKit runtime cases: ordinary last damage/death and real boss damage/death through the existing stage timer; prepared ground payloads, empty arena, saved growth100/actual defeats200/magnet investment1 and fixed simulation-step boundary observation. One additional actual realtime ordinary clear verifies presentation over the real 1.5s loop. No request/library/render/audio mocks. No full natural battle, species matrix, mobile or load benchmark.",
+  "preparationObservation": "Initial boundary run passed3152ms. Revised saved actual defeats from100 to200 so prepared historical ground-growth payloads and reload do not cause the existing legacy defeat>=growth normalization to clamp the fixture counter. Added realtime presentation observation; production code unchanged.",
+  "checks": [
+    "outside normal88px prepared rewards remain unpaid: ordinary",
+    "actual last damage/death starts exactly1500ms clear, duplicate death ignored: ordinary",
+    "clear never grants instantly: ordinary",
+    "whole-map range enters existing accelerating PULL without grant: ordinary",
+    "existing far drop velocity naturally accelerates: ordinary",
+    "actual arriving near+death payloads grant once, far remains unpaid: ordinary",
+    "pre-rolled exact egg species ownership retained: ordinary",
+    "at1483ms still CLEAR with unpaid far growth5/egg1: ordinary",
+    "at1500ms advances regardless of pending and releases pool: ordinary",
+    "discarded far payload is neither granted nor saved: ordinary",
+    "next-stage common range88 and no duplicate ownership: ordinary",
+    "refresh cannot resurrect discarded old-stage rewards",
+    "after clear/reload, new outside-radius reward remains IDLE at normal +10% range",
+    "same common pickup starts only on normal radius entry",
+    "non-clear death/new-run saved reward restoration remains unchanged",
+    "outside normal88px prepared rewards remain unpaid: boss",
+    "actual last damage/death starts exactly1500ms clear, duplicate death ignored: boss",
+    "clear never grants instantly: boss",
+    "whole-map range enters existing accelerating PULL without grant: boss",
+    "existing far drop velocity naturally accelerates: boss",
+    "actual arriving near+death payloads grant once, far remains unpaid: boss",
+    "pre-rolled exact egg species ownership retained: boss",
+    "at1483ms still CLEAR with unpaid far growth5/egg1: boss",
+    "at1500ms advances regardless of pending and releases pool: boss",
+    "discarded far payload is neither granted nor saved: boss",
+    "next-stage common range88 and no duplicate ownership: boss",
+    "actual realtime loop shows clear-window accelerating drops",
+    "actual realtime presentation shows claimed rewards and unpaid far drop",
+    "actual realtime timer discards remainder and advances without bonus",
+    "no actual runtime or request error"
+  ],
+  "errors": [],
+  "requestFailures": [],
+  "screens": [
+    "clear-ordinary-pulling.png",
+    "clear-ordinary-collected.png",
+    "clear-boss-pulling.png",
+    "clear-live-pulling.png",
+    "clear-live-collected.png"
+  ],
+  "sha256": {
+    "index.html": "c5b13da23036128a871f3be72fa354430c9a1a4e59b785268cd32dae9405c761",
+    "drops.js": "474912991bc66b2e0bef8bc65624a1437c494c8d9589f2ebc6d788559bbdc682",
+    "abilities.js": "8c6f91139e71de7be2baa96a185cd68eebc1ad57b34ece719faac14fbde33b7e",
+    "pets.js": "b7f664d045cdde4427c4be1f5e1bff686a80749aff788d5a9511e8cf301049ea",
+    "controllers.js": "b39463ea0140202545beae75d2e66e72ef4aaa16fd8965c30a13085af24930d7",
+    "enemies.js": "bba2ec615f685e8a4b31e21c40c1479232db00de38d82483f3c39a802a796b42",
+    "audio.js": "453468b142ac7642f697333b20c4e2f9d4e9013a173484e43a34df59432c3dae"
+  },
+  "browser": "155.0.4283.45",
+  "ordinary": {
+    "prepared": {
+      "nearId": 1,
+      "farId": 2,
+      "before": {
+        "tick": 21,
+        "timeMs": 350,
+        "phase": "PLAYING",
+        "mode": "READY",
+        "stage": {
+          "index": 2,
+          "phase": "WAVE",
+          "transitionUntilMs": 0,
+          "transitionMs": 1500
+        },
+        "growth": 100,
+        "defeats": 200,
+        "magnetRadius": 88,
+        "magnetRange": 2.75,
+        "drops": {
+          "pending": 2,
+          "created": 2,
+          "merged": 0,
+          "claimed": 0,
+          "checks": 2,
+          "maxActive": 2,
+          "items": [
+            {
+              "id": 1,
+              "state": "IDLE",
+              "x": 922,
+              "y": 750,
+              "z": 0,
+              "vx": 0,
+              "vy": 0,
+              "growth": 3,
+              "eggSpeciesId": "spitter",
+              "eggCount": 1
+            },
+            {
+              "id": 2,
+              "state": "IDLE",
+              "x": 1232,
+              "y": 750,
+              "z": 0,
+              "vx": 0,
+              "vy": 0,
+              "growth": 5,
+              "eggSpeciesId": "scout",
+              "eggCount": 1
+            }
+          ]
+        },
+        "free": 126,
+        "inventory": [],
+        "saved": {
+          "kills": 100,
+          "defeats": 200,
+          "unlocked": [],
+          "statLevels": {
+            "attackPower": 0,
+            "criticalChance": 0,
+            "criticalDamage": 0,
+            "armorPenFlat": 0,
+            "armorPenPercent": 0,
+            "maxHp": 0,
+            "armor": 0,
+            "lifeSteal": 0,
+            "healthRegen": 0,
+            "petSlots": 0,
+            "magnetRange": 1
+          },
+          "companions": {
+            "inventory": [],
+            "slots": [
+              null
+            ],
+            "nextId": 1,
+            "discovered": []
+          },
+          "pendingDrops": {
+            "pending": [
+              {
+                "growth": 3,
+                "eggSpeciesId": "spitter",
+                "eggCount": 1
+              },
+              {
+                "growth": 5,
+                "eggSpeciesId": "scout",
+                "eggCount": 1
+              }
+            ]
+          }
+        },
+        "player": {
+          "x": 750,
+          "y": 750
+        },
+        "floating": []
+      }
+    },
+    "death": {
+      "at": {
+        "x": 850,
+        "y": 750
+      },
+      "speciesId": "scout",
+      "roll": 0.7143076679203659,
+      "damage": 105,
+      "duplicate": 0,
+      "alive": false,
+      "state": {
+        "tick": 21,
+        "timeMs": 350,
+        "phase": "PLAYING",
+        "mode": "READY",
+        "stage": {
+          "index": 2,
+          "phase": "CLEAR",
+          "transitionUntilMs": 1850,
+          "transitionMs": 1500
+        },
+        "growth": 100,
+        "defeats": 201,
+        "magnetRadius": 88,
+        "magnetRange": 2.75,
+        "drops": {
+          "pending": 3,
+          "created": 3,
+          "merged": 0,
+          "claimed": 0,
+          "checks": 2,
+          "maxActive": 3,
+          "items": [
+            {
+              "id": 1,
+              "state": "IDLE",
+              "x": 922,
+              "y": 750,
+              "z": 0,
+              "vx": 0,
+              "vy": 0,
+              "growth": 3,
+              "eggSpeciesId": "spitter",
+              "eggCount": 1
+            },
+            {
+              "id": 2,
+              "state": "IDLE",
+              "x": 1232,
+              "y": 750,
+              "z": 0,
+              "vx": 0,
+              "vy": 0,
+              "growth": 5,
+              "eggSpeciesId": "scout",
+              "eggCount": 1
+            },
+            {
+              "id": 3,
+              "state": "POP",
+              "x": 850,
+              "y": 750,
+              "z": 0,
+              "vx": 0,
+              "vy": 0,
+              "growth": 1,
+              "eggSpeciesId": null,
+              "eggCount": 0
+            }
+          ]
+        },
+        "free": 125,
+        "inventory": [],
+        "saved": {
+          "kills": 100,
+          "defeats": 201,
+          "unlocked": [],
+          "statLevels": {
+            "attackPower": 0,
+            "criticalChance": 0,
+            "criticalDamage": 0,
+            "armorPenFlat": 0,
+            "armorPenPercent": 0,
+            "maxHp": 0,
+            "armor": 0,
+            "lifeSteal": 0,
+            "healthRegen": 0,
+            "petSlots": 0,
+            "magnetRange": 1
+          },
+          "companions": {
+            "inventory": [],
+            "slots": [
+              null
+            ],
+            "nextId": 1,
+            "discovered": []
+          },
+          "pendingDrops": {
+            "pending": [
+              {
+                "growth": 3,
+                "eggSpeciesId": "spitter",
+                "eggCount": 1
+              },
+              {
+                "growth": 5,
+                "eggSpeciesId": "scout",
+                "eggCount": 1
+              },
+              {
+                "growth": 1,
+                "eggSpeciesId": null,
+                "eggCount": 0
+              }
+            ]
+          }
+        },
+        "player": {
+          "x": 750,
+          "y": 750
+        },
+        "floating": [
+          "-105"
+        ]
+      }
+    },
+    "entry": {
+      "state": {
+        "tick": 22,
+        "timeMs": 366.6666666666667,
+        "phase": "PLAYING",
+        "mode": "READY",
+        "stage": {
+          "index": 2,
+          "phase": "CLEAR",
+          "transitionUntilMs": 1850,
+          "transitionMs": 1500
+        },
+        "growth": 100,
+        "defeats": 201,
+        "magnetRadius": 88,
+        "magnetRange": 2.75,
+        "drops": {
+          "pending": 3,
+          "created": 3,
+          "merged": 0,
+          "claimed": 0,
+          "checks": 2,
+          "maxActive": 3,
+          "items": [
+            {
+              "id": 1,
+              "state": "PULL",
+              "x": 921.9,
+              "y": 750,
+              "z": 0,
+              "vx": -6,
+              "vy": 0,
+              "growth": 3,
+              "eggSpeciesId": "spitter",
+              "eggCount": 1
+            },
+            {
+              "id": 2,
+              "state": "PULL",
+              "x": 1231.9,
+              "y": 750,
+              "z": 0,
+              "vx": -6,
+              "vy": 0,
+              "growth": 5,
+              "eggSpeciesId": "scout",
+              "eggCount": 1
+            },
+            {
+              "id": 3,
+              "state": "POP",
+              "x": 850.3532049958733,
+              "y": 749.245221439537,
+              "z": 4.652777777777778,
+              "vx": 0,
+              "vy": 0,
+              "growth": 1,
+              "eggSpeciesId": null,
+              "eggCount": 0
+            }
+          ]
+        },
+        "free": 125,
+        "inventory": [],
+        "saved": {
+          "kills": 100,
+          "defeats": 201,
+          "unlocked": [],
+          "statLevels": {
+            "attackPower": 0,
+            "criticalChance": 0,
+            "criticalDamage": 0,
+            "armorPenFlat": 0,
+            "armorPenPercent": 0,
+            "maxHp": 0,
+            "armor": 0,
+            "lifeSteal": 0,
+            "healthRegen": 0,
+            "petSlots": 0,
+            "magnetRange": 1
+          },
+          "companions": {
+            "inventory": [],
+            "slots": [
+              null
+            ],
+            "nextId": 1,
+            "discovered": []
+          },
+          "pendingDrops": {
+            "pending": [
+              {
+                "growth": 3,
+                "eggSpeciesId": "spitter",
+                "eggCount": 1
+              },
+              {
+                "growth": 5,
+                "eggSpeciesId": "scout",
+                "eggCount": 1
+              },
+              {
+                "growth": 1,
+                "eggSpeciesId": null,
+                "eggCount": 0
+              }
+            ]
+          }
+        },
+        "player": {
+          "x": 750,
+          "y": 750
+        },
+        "floating": [
+          "-105"
+        ]
+      },
+      "grants": []
+    },
+    "approaching": {
+      "state": {
+        "tick": 33,
+        "timeMs": 550,
+        "phase": "PLAYING",
+        "mode": "READY",
+        "stage": {
+          "index": 2,
+          "phase": "CLEAR",
+          "transitionUntilMs": 1850,
+          "transitionMs": 1500
+        },
+        "growth": 100,
+        "defeats": 201,
+        "magnetRadius": 88,
+        "magnetRange": 2.75,
+        "drops": {
+          "pending": 3,
+          "created": 3,
+          "merged": 0,
+          "claimed": 0,
+          "checks": 2,
+          "maxActive": 3,
+          "items": [
+            {
+              "id": 1,
+              "state": "PULL",
+              "x": 914.1999999999999,
+              "y": 750,
+              "z": 0,
+              "vx": -72,
+              "vy": 0,
+              "growth": 3,
+              "eggSpeciesId": "spitter",
+              "eggCount": 1
+            },
+            {
+              "id": 2,
+              "state": "PULL",
+              "x": 1224.2,
+              "y": 750,
+              "z": 0,
+              "vx": -72,
+              "vy": 0,
+              "growth": 5,
+              "eggSpeciesId": "scout",
+              "eggCount": 1
+            },
+            {
+              "id": 3,
+              "state": "POP",
+              "x": 854.2384599504792,
+              "y": 740.9426572744438,
+              "z": 10.000000000000004,
+              "vx": 0,
+              "vy": 0,
+              "growth": 1,
+              "eggSpeciesId": null,
+              "eggCount": 0
+            }
+          ]
+        },
+        "free": 125,
+        "inventory": [],
+        "saved": {
+          "kills": 100,
+          "defeats": 201,
+          "unlocked": [],
+          "statLevels": {
+            "attackPower": 0,
+            "criticalChance": 0,
+            "criticalDamage": 0,
+            "armorPenFlat": 0,
+            "armorPenPercent": 0,
+            "maxHp": 0,
+            "armor": 0,
+            "lifeSteal": 0,
+            "healthRegen": 0,
+            "petSlots": 0,
+            "magnetRange": 1
+          },
+          "companions": {
+            "inventory": [],
+            "slots": [
+              null
+            ],
+            "nextId": 1,
+            "discovered": []
+          },
+          "pendingDrops": {
+            "pending": [
+              {
+                "growth": 3,
+                "eggSpeciesId": "spitter",
+                "eggCount": 1
+              },
+              {
+                "growth": 5,
+                "eggSpeciesId": "scout",
+                "eggCount": 1
+              },
+              {
+                "growth": 1,
+                "eggSpeciesId": null,
+                "eggCount": 0
+              }
+            ]
+          }
+        },
+        "player": {
+          "x": 750,
+          "y": 750
+        },
+        "floating": [
+          "-105"
+        ]
+      },
+      "grants": []
+    },
+    "collected": {
+      "state": {
+        "tick": 91,
+        "timeMs": 1516.6666666666667,
+        "phase": "PLAYING",
+        "mode": "READY",
+        "stage": {
+          "index": 2,
+          "phase": "CLEAR",
+          "transitionUntilMs": 1850,
+          "transitionMs": 1500
+        },
+        "growth": 104,
+        "defeats": 201,
+        "magnetRadius": 88,
+        "magnetRange": 2.75,
+        "drops": {
+          "pending": 1,
+          "created": 3,
+          "merged": 0,
+          "claimed": 2,
+          "checks": 1,
+          "maxActive": 3,
+          "items": [
+            {
+              "id": 2,
+              "state": "PULL",
+              "x": 983.5,
+              "y": 750,
+              "z": 0,
+              "vx": -420,
+              "vy": 0,
+              "growth": 5,
+              "eggSpeciesId": "scout",
+              "eggCount": 1
+            }
+          ]
+        },
+        "free": 127,
+        "inventory": [
+          {
+            "id": 1,
+            "speciesId": "spitter",
+            "kind": "egg"
+          }
+        ],
+        "saved": {
+          "kills": 104,
+          "defeats": 201,
+          "unlocked": [],
+          "statLevels": {
+            "attackPower": 0,
+            "criticalChance": 0,
+            "criticalDamage": 0,
+            "armorPenFlat": 0,
+            "armorPenPercent": 0,
+            "maxHp": 0,
+            "armor": 0,
+            "lifeSteal": 0,
+            "healthRegen": 0,
+            "petSlots": 0,
+            "magnetRange": 1
+          },
+          "companions": {
+            "inventory": [
+              {
+                "id": 1,
+                "speciesId": "spitter",
+                "kind": "egg",
+                "grade": 0,
+                "hatchProgress": 0,
+                "locked": false
+              }
+            ],
+            "slots": [
+              null
+            ],
+            "nextId": 2,
+            "discovered": []
+          },
+          "pendingDrops": {
+            "pending": [
+              {
+                "growth": 5,
+                "eggSpeciesId": "scout",
+                "eggCount": 1
+              }
+            ]
+          }
+        },
+        "player": {
+          "x": 750,
+          "y": 750
+        },
+        "floating": [
+          "+3 성장",
+          "알 +1",
+          "+1 성장"
+        ]
+      },
+      "grants": [
+        {
+          "atMs": 1266.6666666666667,
+          "growth": 3,
+          "eggs": 1,
+          "remaining": 2
+        },
+        {
+          "atMs": 1283.3333333333335,
+          "growth": 1,
+          "eggs": 0,
+          "remaining": 1
+        }
+      ]
+    },
+    "beforeDeadline": {
+      "state": {
+        "tick": 110,
+        "timeMs": 1833.3333333333335,
+        "phase": "PLAYING",
+        "mode": "READY",
+        "stage": {
+          "index": 2,
+          "phase": "CLEAR",
+          "transitionUntilMs": 1850,
+          "transitionMs": 1500
+        },
+        "growth": 104,
+        "defeats": 201,
+        "magnetRadius": 88,
+        "magnetRange": 2.75,
+        "drops": {
+          "pending": 1,
+          "created": 3,
+          "merged": 0,
+          "claimed": 2,
+          "checks": 1,
+          "maxActive": 3,
+          "items": [
+            {
+              "id": 2,
+              "state": "PULL",
+              "x": 831.5,
+              "y": 750,
+              "z": 0,
+              "vx": -534,
+              "vy": 0,
+              "growth": 5,
+              "eggSpeciesId": "scout",
+              "eggCount": 1
+            }
+          ]
+        },
+        "free": 127,
+        "inventory": [
+          {
+            "id": 1,
+            "speciesId": "spitter",
+            "kind": "egg"
+          }
+        ],
+        "saved": {
+          "kills": 104,
+          "defeats": 201,
+          "unlocked": [],
+          "statLevels": {
+            "attackPower": 0,
+            "criticalChance": 0,
+            "criticalDamage": 0,
+            "armorPenFlat": 0,
+            "armorPenPercent": 0,
+            "maxHp": 0,
+            "armor": 0,
+            "lifeSteal": 0,
+            "healthRegen": 0,
+            "petSlots": 0,
+            "magnetRange": 1
+          },
+          "companions": {
+            "inventory": [
+              {
+                "id": 1,
+                "speciesId": "spitter",
+                "kind": "egg",
+                "grade": 0,
+                "hatchProgress": 0,
+                "locked": false
+              }
+            ],
+            "slots": [
+              null
+            ],
+            "nextId": 2,
+            "discovered": []
+          },
+          "pendingDrops": {
+            "pending": [
+              {
+                "growth": 5,
+                "eggSpeciesId": "scout",
+                "eggCount": 1
+              }
+            ]
+          }
+        },
+        "player": {
+          "x": 750,
+          "y": 750
+        },
+        "floating": [
+          "+3 성장",
+          "알 +1",
+          "+1 성장"
+        ]
+      },
+      "grants": []
+    },
+    "deadline": {
+      "state": {
+        "tick": 111,
+        "timeMs": 1850.0000000000002,
+        "phase": "PLAYING",
+        "mode": "READY",
+        "stage": {
+          "index": 3,
+          "phase": "WAVE",
+          "transitionUntilMs": 0,
+          "transitionMs": 1500
+        },
+        "growth": 104,
+        "defeats": 201,
+        "magnetRadius": 88,
+        "magnetRange": 2.75,
+        "drops": {
+          "pending": 0,
+          "created": 3,
+          "merged": 0,
+          "claimed": 2,
+          "checks": 0,
+          "maxActive": 3,
+          "items": []
+        },
+        "free": 128,
+        "inventory": [
+          {
+            "id": 1,
+            "speciesId": "spitter",
+            "kind": "egg"
+          }
+        ],
+        "saved": {
+          "kills": 104,
+          "defeats": 201,
+          "unlocked": [],
+          "statLevels": {
+            "attackPower": 0,
+            "criticalChance": 0,
+            "criticalDamage": 0,
+            "armorPenFlat": 0,
+            "armorPenPercent": 0,
+            "maxHp": 0,
+            "armor": 0,
+            "lifeSteal": 0,
+            "healthRegen": 0,
+            "petSlots": 0,
+            "magnetRange": 1
+          },
+          "companions": {
+            "inventory": [
+              {
+                "id": 1,
+                "speciesId": "spitter",
+                "kind": "egg",
+                "grade": 0,
+                "hatchProgress": 0,
+                "locked": false
+              }
+            ],
+            "slots": [
+              null
+            ],
+            "nextId": 2,
+            "discovered": []
+          },
+          "pendingDrops": {
+            "pending": []
+          }
+        },
+        "player": {
+          "x": 750,
+          "y": 750
+        },
+        "floating": [
+          "+3 성장",
+          "알 +1",
+          "+1 성장"
+        ]
+      },
+      "grants": []
+    },
+    "repeat": {
+      "state": {
+        "tick": 114,
+        "timeMs": 1900.0000000000002,
+        "phase": "PLAYING",
+        "mode": "READY",
+        "stage": {
+          "index": 3,
+          "phase": "WAVE",
+          "transitionUntilMs": 0,
+          "transitionMs": 1500
+        },
+        "growth": 104,
+        "defeats": 201,
+        "magnetRadius": 88,
+        "magnetRange": 2.75,
+        "drops": {
+          "pending": 0,
+          "created": 3,
+          "merged": 0,
+          "claimed": 2,
+          "checks": 0,
+          "maxActive": 3,
+          "items": []
+        },
+        "free": 128,
+        "inventory": [
+          {
+            "id": 1,
+            "speciesId": "spitter",
+            "kind": "egg"
+          }
+        ],
+        "saved": {
+          "kills": 104,
+          "defeats": 201,
+          "unlocked": [],
+          "statLevels": {
+            "attackPower": 0,
+            "criticalChance": 0,
+            "criticalDamage": 0,
+            "armorPenFlat": 0,
+            "armorPenPercent": 0,
+            "maxHp": 0,
+            "armor": 0,
+            "lifeSteal": 0,
+            "healthRegen": 0,
+            "petSlots": 0,
+            "magnetRange": 1
+          },
+          "companions": {
+            "inventory": [
+              {
+                "id": 1,
+                "speciesId": "spitter",
+                "kind": "egg",
+                "grade": 0,
+                "hatchProgress": 0,
+                "locked": false
+              }
+            ],
+            "slots": [
+              null
+            ],
+            "nextId": 2,
+            "discovered": []
+          },
+          "pendingDrops": {
+            "pending": []
+          }
+        },
+        "player": {
+          "x": 750,
+          "y": 750
+        },
+        "floating": [
+          "+3 성장",
+          "알 +1",
+          "+1 성장"
+        ]
+      },
+      "grants": []
+    },
+    "reload": {
+      "tick": 0,
+      "timeMs": 0,
+      "phase": "LOBBY",
+      "mode": "READY",
+      "stage": {
+        "index": 1,
+        "phase": "WAVE",
+        "transitionUntilMs": 0,
+        "transitionMs": 1500
+      },
+      "growth": 104,
+      "defeats": 201,
+      "magnetRadius": 88,
+      "magnetRange": 2.75,
+      "drops": {
+        "pending": 0,
+        "created": 0,
+        "merged": 0,
+        "claimed": 0,
+        "checks": 0,
+        "maxActive": 0,
+        "items": []
+      },
+      "free": 128,
+      "inventory": [
+        {
+          "id": 1,
+          "speciesId": "spitter",
+          "kind": "egg"
+        }
+      ],
+      "saved": {
+        "kills": 104,
+        "defeats": 201,
+        "unlocked": [],
+        "statLevels": {
+          "attackPower": 0,
+          "criticalChance": 0,
+          "criticalDamage": 0,
+          "armorPenFlat": 0,
+          "armorPenPercent": 0,
+          "maxHp": 0,
+          "armor": 0,
+          "lifeSteal": 0,
+          "healthRegen": 0,
+          "petSlots": 0,
+          "magnetRange": 1
+        },
+        "companions": {
+          "inventory": [
+            {
+              "id": 1,
+              "speciesId": "spitter",
+              "kind": "egg",
+              "grade": 0,
+              "hatchProgress": 0,
+              "locked": false
+            }
+          ],
+          "slots": [
+            null
+          ],
+          "nextId": 2,
+          "discovered": []
+        },
+        "pendingDrops": {
+          "pending": []
+        }
+      },
+      "player": {
+        "x": 750,
+        "y": 750
+      },
+      "floating": []
+    },
+    "normal": {
+      "tick": 38,
+      "timeMs": 633.3333333333334,
+      "phase": "PLAYING",
+      "mode": "READY",
+      "stage": {
+        "index": 1,
+        "phase": "WAVE",
+        "transitionUntilMs": 0,
+        "transitionMs": 1500
+      },
+      "growth": 104,
+      "defeats": 201,
+      "magnetRadius": 88,
+      "magnetRange": 2.75,
+      "drops": {
+        "pending": 1,
+        "created": 1,
+        "merged": 0,
+        "claimed": 0,
+        "checks": 1,
+        "maxActive": 1,
+        "items": [
+          {
+            "id": 1,
+            "state": "IDLE",
+            "x": 882,
+            "y": 750,
+            "z": 0,
+            "vx": 0,
+            "vy": 0,
+            "growth": 7,
+            "eggSpeciesId": null,
+            "eggCount": 0
+          }
+        ]
+      },
+      "free": 127,
+      "inventory": [
+        {
+          "id": 1,
+          "speciesId": "spitter",
+          "kind": "egg"
+        }
+      ],
+      "saved": {
+        "kills": 104,
+        "defeats": 201,
+        "unlocked": [],
+        "statLevels": {
+          "attackPower": 0,
+          "criticalChance": 0,
+          "criticalDamage": 0,
+          "armorPenFlat": 0,
+          "armorPenPercent": 0,
+          "maxHp": 0,
+          "armor": 0,
+          "lifeSteal": 0,
+          "healthRegen": 0,
+          "petSlots": 0,
+          "magnetRange": 1
+        },
+        "companions": {
+          "inventory": [
+            {
+              "id": 1,
+              "speciesId": "spitter",
+              "kind": "egg",
+              "grade": 0,
+              "hatchProgress": 0,
+              "locked": false
+            }
+          ],
+          "slots": [
+            null
+          ],
+          "nextId": 2,
+          "discovered": []
+        },
+        "pendingDrops": {
+          "pending": [
+            {
+              "growth": 7,
+              "eggSpeciesId": null,
+              "eggCount": 0
+            }
+          ]
+        }
+      },
+      "player": {
+        "x": 750,
+        "y": 750
+      },
+      "floating": []
+    },
+    "normalEntry": {
+      "tick": 39,
+      "timeMs": 650,
+      "phase": "PLAYING",
+      "mode": "READY",
+      "stage": {
+        "index": 1,
+        "phase": "WAVE",
+        "transitionUntilMs": 0,
+        "transitionMs": 1500
+      },
+      "growth": 104,
+      "defeats": 201,
+      "magnetRadius": 88,
+      "magnetRange": 2.75,
+      "drops": {
+        "pending": 1,
+        "created": 1,
+        "merged": 0,
+        "claimed": 0,
+        "checks": 1,
+        "maxActive": 1,
+        "items": [
+          {
+            "id": 1,
+            "state": "PULL",
+            "x": 881.9,
+            "y": 750,
+            "z": 0,
+            "vx": -6,
+            "vy": 0,
+            "growth": 7,
+            "eggSpeciesId": null,
+            "eggCount": 0
+          }
+        ]
+      },
+      "free": 127,
+      "inventory": [
+        {
+          "id": 1,
+          "speciesId": "spitter",
+          "kind": "egg"
+        }
+      ],
+      "saved": {
+        "kills": 104,
+        "defeats": 201,
+        "unlocked": [],
+        "statLevels": {
+          "attackPower": 0,
+          "criticalChance": 0,
+          "criticalDamage": 0,
+          "armorPenFlat": 0,
+          "armorPenPercent": 0,
+          "maxHp": 0,
+          "armor": 0,
+          "lifeSteal": 0,
+          "healthRegen": 0,
+          "petSlots": 0,
+          "magnetRange": 1
+        },
+        "companions": {
+          "inventory": [
+            {
+              "id": 1,
+              "speciesId": "spitter",
+              "kind": "egg",
+              "grade": 0,
+              "hatchProgress": 0,
+              "locked": false
+            }
+          ],
+          "slots": [
+            null
+          ],
+          "nextId": 2,
+          "discovered": []
+        },
+        "pendingDrops": {
+          "pending": [
+            {
+              "growth": 7,
+              "eggSpeciesId": null,
+              "eggCount": 0
+            }
+          ]
+        }
+      },
+      "player": {
+        "x": 795,
+        "y": 750
+      },
+      "floating": []
+    },
+    "deathRestart": {
+      "ended": {
+        "tick": 39,
+        "timeMs": 650,
+        "phase": "ENDED",
+        "mode": "DEAD",
+        "stage": {
+          "index": 1,
+          "phase": "WAVE",
+          "transitionUntilMs": 0,
+          "transitionMs": 1500
+        },
+        "growth": 104,
+        "defeats": 201,
+        "magnetRadius": 88,
+        "magnetRange": 2.75,
+        "drops": {
+          "pending": 1,
+          "created": 1,
+          "merged": 0,
+          "claimed": 0,
+          "checks": 1,
+          "maxActive": 1,
+          "items": [
+            {
+              "id": 1,
+              "state": "PULL",
+              "x": 881.9,
+              "y": 750,
+              "z": 0,
+              "vx": -6,
+              "vy": 0,
+              "growth": 7,
+              "eggSpeciesId": null,
+              "eggCount": 0
+            }
+          ]
+        },
+        "free": 127,
+        "inventory": [
+          {
+            "id": 1,
+            "speciesId": "spitter",
+            "kind": "egg"
+          }
+        ],
+        "saved": {
+          "kills": 104,
+          "defeats": 201,
+          "unlocked": [],
+          "statLevels": {
+            "attackPower": 0,
+            "criticalChance": 0,
+            "criticalDamage": 0,
+            "armorPenFlat": 0,
+            "armorPenPercent": 0,
+            "maxHp": 0,
+            "armor": 0,
+            "lifeSteal": 0,
+            "healthRegen": 0,
+            "petSlots": 0,
+            "magnetRange": 1
+          },
+          "companions": {
+            "inventory": [
+              {
+                "id": 1,
+                "speciesId": "spitter",
+                "kind": "egg",
+                "grade": 0,
+                "hatchProgress": 0,
+                "locked": false
+              }
+            ],
+            "slots": [
+              null
+            ],
+            "nextId": 2,
+            "discovered": []
+          },
+          "pendingDrops": {
+            "pending": [
+              {
+                "growth": 7,
+                "eggSpeciesId": null,
+                "eggCount": 0
+              }
+            ]
+          }
+        },
+        "player": {
+          "x": 795,
+          "y": 750
+        },
+        "floating": []
+      },
+      "restarted": {
+        "tick": 0,
+        "timeMs": 0,
+        "phase": "PLAYING",
+        "mode": "READY",
+        "stage": {
+          "index": 1,
+          "phase": "WAVE",
+          "transitionUntilMs": 0,
+          "transitionMs": 1500
+        },
+        "growth": 104,
+        "defeats": 201,
+        "magnetRadius": 88,
+        "magnetRange": 2.75,
+        "drops": {
+          "pending": 1,
+          "created": 1,
+          "merged": 0,
+          "claimed": 0,
+          "checks": 1,
+          "maxActive": 1,
+          "items": [
+            {
+              "id": 1,
+              "state": "IDLE",
+              "x": 846,
+              "y": 750,
+              "z": 0,
+              "vx": 0,
+              "vy": 0,
+              "growth": 7,
+              "eggSpeciesId": null,
+              "eggCount": 0
+            }
+          ]
+        },
+        "free": 127,
+        "inventory": [
+          {
+            "id": 1,
+            "speciesId": "spitter",
+            "kind": "egg"
+          }
+        ],
+        "saved": {
+          "kills": 104,
+          "defeats": 201,
+          "unlocked": [],
+          "statLevels": {
+            "attackPower": 0,
+            "criticalChance": 0,
+            "criticalDamage": 0,
+            "armorPenFlat": 0,
+            "armorPenPercent": 0,
+            "maxHp": 0,
+            "armor": 0,
+            "lifeSteal": 0,
+            "healthRegen": 0,
+            "petSlots": 0,
+            "magnetRange": 1
+          },
+          "companions": {
+            "inventory": [
+              {
+                "id": 1,
+                "speciesId": "spitter",
+                "kind": "egg",
+                "grade": 0,
+                "hatchProgress": 0,
+                "locked": false
+              }
+            ],
+            "slots": [
+              null
+            ],
+            "nextId": 2,
+            "discovered": []
+          },
+          "pendingDrops": {
+            "pending": [
+              {
+                "growth": 7,
+                "eggSpeciesId": null,
+                "eggCount": 0
+              }
+            ]
+          }
+        },
+        "player": {
+          "x": 750,
+          "y": 750
+        },
+        "floating": []
+      }
+    }
+  },
+  "environment": {
+    "matter": "0.20.0",
+    "renderer": "ANGLE (NVIDIA, NVIDIA GeForce GTX 1660 Ti (0x00002191) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+    "audio": {
+      "state": "running",
+      "volume": 0.7,
+      "muted": false,
+      "voices": 4,
+      "categoryVolumes": {
+        "enemy": 0.65,
+        "impact": 1,
+        "motion": 0.8,
+        "danger": 0.9,
+        "reward": 0.85,
+        "magic": 0.55,
+        "ui": 0.5
+      },
+      "lastError": null,
+      "played": 4,
+      "dropped": 2,
+      "blocked": 0,
+      "maxObserved": 4,
+      "bySound": {
+        "stageStart": 1,
+        "ui": 1,
+        "enemyNotice": 1,
+        "death": 1
+      }
+    },
+    "version": "0.12.10",
+    "buildId": "20261011T041601Z-stage-clear-drop-window"
+  },
+  "boss": {
+    "prepared": {
+      "nearId": 1,
+      "farId": 2,
+      "before": {
+        "tick": 19,
+        "timeMs": 316.6666666666667,
+        "phase": "PLAYING",
+        "mode": "READY",
+        "stage": {
+          "index": 3,
+          "phase": "WAVE",
+          "transitionUntilMs": 0,
+          "transitionMs": 1500
+        },
+        "growth": 100,
+        "defeats": 200,
+        "magnetRadius": 88,
+        "magnetRange": 2.75,
+        "drops": {
+          "pending": 2,
+          "created": 2,
+          "merged": 0,
+          "claimed": 0,
+          "checks": 2,
+          "maxActive": 2,
+          "items": [
+            {
+              "id": 1,
+              "state": "IDLE",
+              "x": 922,
+              "y": 750,
+              "z": 0,
+              "vx": 0,
+              "vy": 0,
+              "growth": 3,
+              "eggSpeciesId": "spitter",
+              "eggCount": 1
+            },
+            {
+              "id": 2,
+              "state": "IDLE",
+              "x": 1232,
+              "y": 750,
+              "z": 0,
+              "vx": 0,
+              "vy": 0,
+              "growth": 5,
+              "eggSpeciesId": "scout",
+              "eggCount": 1
+            }
+          ]
+        },
+        "free": 126,
+        "inventory": [],
+        "saved": {
+          "kills": 100,
+          "defeats": 200,
+          "unlocked": [],
+          "statLevels": {
+            "attackPower": 0,
+            "criticalChance": 0,
+            "criticalDamage": 0,
+            "armorPenFlat": 0,
+            "armorPenPercent": 0,
+            "maxHp": 0,
+            "armor": 0,
+            "lifeSteal": 0,
+            "healthRegen": 0,
+            "petSlots": 0,
+            "magnetRange": 1
+          },
+          "companions": {
+            "inventory": [],
+            "slots": [
+              null
+            ],
+            "nextId": 1,
+            "discovered": []
+          },
+          "pendingDrops": {
+            "pending": [
+              {
+                "growth": 3,
+                "eggSpeciesId": "spitter",
+                "eggCount": 1
+              },
+              {
+                "growth": 5,
+                "eggSpeciesId": "scout",
+                "eggCount": 1
+              }
+            ]
+          }
+        },
+        "player": {
+          "x": 750,
+          "y": 750
+        },
+        "floating": []
+      }
+    },
+    "death": {
+      "at": {
+        "x": 850,
+        "y": 750
+      },
+      "speciesId": "petalPredator",
+      "roll": 0.0003213591407984495,
+      "damage": 745.1999999999999,
+      "duplicate": 0,
+      "alive": false,
+      "state": {
+        "tick": 19,
+        "timeMs": 316.6666666666667,
+        "phase": "PLAYING",
+        "mode": "READY",
+        "stage": {
+          "index": 3,
+          "phase": "CLEAR",
+          "transitionUntilMs": 1816.6666666666667,
+          "transitionMs": 1500
+        },
+        "growth": 100,
+        "defeats": 201,
+        "magnetRadius": 88,
+        "magnetRange": 2.75,
+        "drops": {
+          "pending": 3,
+          "created": 3,
+          "merged": 0,
+          "claimed": 0,
+          "checks": 2,
+          "maxActive": 3,
+          "items": [
+            {
+              "id": 1,
+              "state": "IDLE",
+              "x": 922,
+              "y": 750,
+              "z": 0,
+              "vx": 0,
+              "vy": 0,
+              "growth": 3,
+              "eggSpeciesId": "spitter",
+              "eggCount": 1
+            },
+            {
+              "id": 2,
+              "state": "IDLE",
+              "x": 1232,
+              "y": 750,
+              "z": 0,
+              "vx": 0,
+              "vy": 0,
+              "growth": 5,
+              "eggSpeciesId": "scout",
+              "eggCount": 1
+            },
+            {
+              "id": 3,
+              "state": "POP",
+              "x": 850,
+              "y": 750,
+              "z": 0,
+              "vx": 0,
+              "vy": 0,
+              "growth": 1,
+              "eggSpeciesId": "petalPredator",
+              "eggCount": 1
+            }
+          ]
+        },
+        "free": 125,
+        "inventory": [],
+        "saved": {
+          "kills": 100,
+          "defeats": 201,
+          "unlocked": [],
+          "statLevels": {
+            "attackPower": 0,
+            "criticalChance": 0,
+            "criticalDamage": 0,
+            "armorPenFlat": 0,
+            "armorPenPercent": 0,
+            "maxHp": 0,
+            "armor": 0,
+            "lifeSteal": 0,
+            "healthRegen": 0,
+            "petSlots": 0,
+            "magnetRange": 1
+          },
+          "companions": {
+            "inventory": [],
+            "slots": [
+              null
+            ],
+            "nextId": 1,
+            "discovered": []
+          },
+          "pendingDrops": {
+            "pending": [
+              {
+                "growth": 3,
+                "eggSpeciesId": "spitter",
+                "eggCount": 1
+              },
+              {
+                "growth": 5,
+                "eggSpeciesId": "scout",
+                "eggCount": 1
+              },
+              {
+                "growth": 1,
+                "eggSpeciesId": "petalPredator",
+                "eggCount": 1
+              }
+            ]
+          }
+        },
+        "player": {
+          "x": 750,
+          "y": 750
+        },
+        "floating": [
+          "-745"
+        ]
+      }
+    },
+    "entry": {
+      "state": {
+        "tick": 20,
+        "timeMs": 333.33333333333337,
+        "phase": "PLAYING",
+        "mode": "READY",
+        "stage": {
+          "index": 3,
+          "phase": "CLEAR",
+          "transitionUntilMs": 1816.6666666666667,
+          "transitionMs": 1500
+        },
+        "growth": 100,
+        "defeats": 201,
+        "magnetRadius": 88,
+        "magnetRange": 2.75,
+        "drops": {
+          "pending": 3,
+          "created": 3,
+          "merged": 0,
+          "claimed": 0,
+          "checks": 2,
+          "maxActive": 3,
+          "items": [
+            {
+              "id": 1,
+              "state": "PULL",
+              "x": 921.9,
+              "y": 750,
+              "z": 0,
+              "vx": -6,
+              "vy": 0,
+              "growth": 3,
+              "eggSpeciesId": "spitter",
+              "eggCount": 1
+            },
+            {
+              "id": 2,
+              "state": "PULL",
+              "x": 1231.9,
+              "y": 750,
+              "z": 0,
+              "vx": -6,
+              "vy": 0,
+              "growth": 5,
+              "eggSpeciesId": "scout",
+              "eggCount": 1
+            },
+            {
+              "id": 3,
+              "state": "POP",
+              "x": 850.2494032203707,
+              "y": 750.7951367669233,
+              "z": 4.652777777777778,
+              "vx": 0,
+              "vy": 0,
+              "growth": 1,
+              "eggSpeciesId": "petalPredator",
+              "eggCount": 1
+            }
+          ]
+        },
+        "free": 125,
+        "inventory": [],
+        "saved": {
+          "kills": 100,
+          "defeats": 201,
+          "unlocked": [],
+          "statLevels": {
+            "attackPower": 0,
+            "criticalChance": 0,
+            "criticalDamage": 0,
+            "armorPenFlat": 0,
+            "armorPenPercent": 0,
+            "maxHp": 0,
+            "armor": 0,
+            "lifeSteal": 0,
+            "healthRegen": 0,
+            "petSlots": 0,
+            "magnetRange": 1
+          },
+          "companions": {
+            "inventory": [],
+            "slots": [
+              null
+            ],
+            "nextId": 1,
+            "discovered": []
+          },
+          "pendingDrops": {
+            "pending": [
+              {
+                "growth": 3,
+                "eggSpeciesId": "spitter",
+                "eggCount": 1
+              },
+              {
+                "growth": 5,
+                "eggSpeciesId": "scout",
+                "eggCount": 1
+              },
+              {
+                "growth": 1,
+                "eggSpeciesId": "petalPredator",
+                "eggCount": 1
+              }
+            ]
+          }
+        },
+        "player": {
+          "x": 750,
+          "y": 750
+        },
+        "floating": [
+          "-745"
+        ]
+      },
+      "grants": []
+    },
+    "approaching": {
+      "state": {
+        "tick": 31,
+        "timeMs": 516.6666666666667,
+        "phase": "PLAYING",
+        "mode": "READY",
+        "stage": {
+          "index": 3,
+          "phase": "CLEAR",
+          "transitionUntilMs": 1816.6666666666667,
+          "transitionMs": 1500
+        },
+        "growth": 100,
+        "defeats": 201,
+        "magnetRadius": 88,
+        "magnetRange": 2.75,
+        "drops": {
+          "pending": 3,
+          "created": 3,
+          "merged": 0,
+          "claimed": 0,
+          "checks": 2,
+          "maxActive": 3,
+          "items": [
+            {
+              "id": 1,
+              "state": "PULL",
+              "x": 914.1999999999999,
+              "y": 750,
+              "z": 0,
+              "vx": -72,
+              "vy": 0,
+              "growth": 3,
+              "eggSpeciesId": "spitter",
+              "eggCount": 1
+            },
+            {
+              "id": 2,
+              "state": "PULL",
+              "x": 1224.2,
+              "y": 750,
+              "z": 0,
+              "vx": -72,
+              "vy": 0,
+              "growth": 5,
+              "eggSpeciesId": "scout",
+              "eggCount": 1
+            },
+            {
+              "id": 3,
+              "state": "POP",
+              "x": 852.9928386444487,
+              "y": 759.5416412030789,
+              "z": 10.000000000000004,
+              "vx": 0,
+              "vy": 0,
+              "growth": 1,
+              "eggSpeciesId": "petalPredator",
+              "eggCount": 1
+            }
+          ]
+        },
+        "free": 125,
+        "inventory": [],
+        "saved": {
+          "kills": 100,
+          "defeats": 201,
+          "unlocked": [],
+          "statLevels": {
+            "attackPower": 0,
+            "criticalChance": 0,
+            "criticalDamage": 0,
+            "armorPenFlat": 0,
+            "armorPenPercent": 0,
+            "maxHp": 0,
+            "armor": 0,
+            "lifeSteal": 0,
+            "healthRegen": 0,
+            "petSlots": 0,
+            "magnetRange": 1
+          },
+          "companions": {
+            "inventory": [],
+            "slots": [
+              null
+            ],
+            "nextId": 1,
+            "discovered": []
+          },
+          "pendingDrops": {
+            "pending": [
+              {
+                "growth": 3,
+                "eggSpeciesId": "spitter",
+                "eggCount": 1
+              },
+              {
+                "growth": 5,
+                "eggSpeciesId": "scout",
+                "eggCount": 1
+              },
+              {
+                "growth": 1,
+                "eggSpeciesId": "petalPredator",
+                "eggCount": 1
+              }
+            ]
+          }
+        },
+        "player": {
+          "x": 750,
+          "y": 750
+        },
+        "floating": [
+          "-745"
+        ]
+      },
+      "grants": []
+    },
+    "collected": {
+      "state": {
+        "tick": 89,
+        "timeMs": 1483.3333333333335,
+        "phase": "PLAYING",
+        "mode": "READY",
+        "stage": {
+          "index": 3,
+          "phase": "CLEAR",
+          "transitionUntilMs": 1816.6666666666667,
+          "transitionMs": 1500
+        },
+        "growth": 104,
+        "defeats": 201,
+        "magnetRadius": 88,
+        "magnetRange": 2.75,
+        "drops": {
+          "pending": 1,
+          "created": 3,
+          "merged": 0,
+          "claimed": 2,
+          "checks": 1,
+          "maxActive": 3,
+          "items": [
+            {
+              "id": 2,
+              "state": "PULL",
+              "x": 983.5,
+              "y": 750,
+              "z": 0,
+              "vx": -420,
+              "vy": 0,
+              "growth": 5,
+              "eggSpeciesId": "scout",
+              "eggCount": 1
+            }
+          ]
+        },
+        "free": 127,
+        "inventory": [
+          {
+            "id": 1,
+            "speciesId": "spitter",
+            "kind": "egg"
+          },
+          {
+            "id": 2,
+            "speciesId": "petalPredator",
+            "kind": "egg"
+          }
+        ],
+        "saved": {
+          "kills": 104,
+          "defeats": 201,
+          "unlocked": [],
+          "statLevels": {
+            "attackPower": 0,
+            "criticalChance": 0,
+            "criticalDamage": 0,
+            "armorPenFlat": 0,
+            "armorPenPercent": 0,
+            "maxHp": 0,
+            "armor": 0,
+            "lifeSteal": 0,
+            "healthRegen": 0,
+            "petSlots": 0,
+            "magnetRange": 1
+          },
+          "companions": {
+            "inventory": [
+              {
+                "id": 1,
+                "speciesId": "spitter",
+                "kind": "egg",
+                "grade": 0,
+                "hatchProgress": 0,
+                "locked": false
+              },
+              {
+                "id": 2,
+                "speciesId": "petalPredator",
+                "kind": "egg",
+                "grade": 0,
+                "hatchProgress": 0,
+                "locked": false
+              }
+            ],
+            "slots": [
+              null
+            ],
+            "nextId": 3,
+            "discovered": []
+          },
+          "pendingDrops": {
+            "pending": [
+              {
+                "growth": 5,
+                "eggSpeciesId": "scout",
+                "eggCount": 1
+              }
+            ]
+          }
+        },
+        "player": {
+          "x": 750,
+          "y": 750
+        },
+        "floating": [
+          "+3 성장",
+          "알 +1",
+          "+1 성장",
+          "알 +1"
+        ]
+      },
+      "grants": [
+        {
+          "atMs": 1233.3333333333335,
+          "growth": 3,
+          "eggs": 1,
+          "remaining": 2
+        },
+        {
+          "atMs": 1250,
+          "growth": 1,
+          "eggs": 1,
+          "remaining": 1
+        }
+      ]
+    },
+    "beforeDeadline": {
+      "state": {
+        "tick": 108,
+        "timeMs": 1800.0000000000002,
+        "phase": "PLAYING",
+        "mode": "READY",
+        "stage": {
+          "index": 3,
+          "phase": "CLEAR",
+          "transitionUntilMs": 1816.6666666666667,
+          "transitionMs": 1500
+        },
+        "growth": 104,
+        "defeats": 201,
+        "magnetRadius": 88,
+        "magnetRange": 2.75,
+        "drops": {
+          "pending": 1,
+          "created": 3,
+          "merged": 0,
+          "claimed": 2,
+          "checks": 1,
+          "maxActive": 3,
+          "items": [
+            {
+              "id": 2,
+              "state": "PULL",
+              "x": 831.5,
+              "y": 750,
+              "z": 0,
+              "vx": -534,
+              "vy": 0,
+              "growth": 5,
+              "eggSpeciesId": "scout",
+              "eggCount": 1
+            }
+          ]
+        },
+        "free": 127,
+        "inventory": [
+          {
+            "id": 1,
+            "speciesId": "spitter",
+            "kind": "egg"
+          },
+          {
+            "id": 2,
+            "speciesId": "petalPredator",
+            "kind": "egg"
+          }
+        ],
+        "saved": {
+          "kills": 104,
+          "defeats": 201,
+          "unlocked": [],
+          "statLevels": {
+            "attackPower": 0,
+            "criticalChance": 0,
+            "criticalDamage": 0,
+            "armorPenFlat": 0,
+            "armorPenPercent": 0,
+            "maxHp": 0,
+            "armor": 0,
+            "lifeSteal": 0,
+            "healthRegen": 0,
+            "petSlots": 0,
+            "magnetRange": 1
+          },
+          "companions": {
+            "inventory": [
+              {
+                "id": 1,
+                "speciesId": "spitter",
+                "kind": "egg",
+                "grade": 0,
+                "hatchProgress": 0,
+                "locked": false
+              },
+              {
+                "id": 2,
+                "speciesId": "petalPredator",
+                "kind": "egg",
+                "grade": 0,
+                "hatchProgress": 0,
+                "locked": false
+              }
+            ],
+            "slots": [
+              null
+            ],
+            "nextId": 3,
+            "discovered": []
+          },
+          "pendingDrops": {
+            "pending": [
+              {
+                "growth": 5,
+                "eggSpeciesId": "scout",
+                "eggCount": 1
+              }
+            ]
+          }
+        },
+        "player": {
+          "x": 750,
+          "y": 750
+        },
+        "floating": [
+          "+3 성장",
+          "알 +1",
+          "+1 성장",
+          "알 +1"
+        ]
+      },
+      "grants": []
+    },
+    "deadline": {
+      "state": {
+        "tick": 109,
+        "timeMs": 1816.6666666666667,
+        "phase": "PLAYING",
+        "mode": "READY",
+        "stage": {
+          "index": 4,
+          "phase": "WAVE",
+          "transitionUntilMs": 0,
+          "transitionMs": 1500
+        },
+        "growth": 104,
+        "defeats": 201,
+        "magnetRadius": 88,
+        "magnetRange": 2.75,
+        "drops": {
+          "pending": 0,
+          "created": 3,
+          "merged": 0,
+          "claimed": 2,
+          "checks": 0,
+          "maxActive": 3,
+          "items": []
+        },
+        "free": 128,
+        "inventory": [
+          {
+            "id": 1,
+            "speciesId": "spitter",
+            "kind": "egg"
+          },
+          {
+            "id": 2,
+            "speciesId": "petalPredator",
+            "kind": "egg"
+          }
+        ],
+        "saved": {
+          "kills": 104,
+          "defeats": 201,
+          "unlocked": [],
+          "statLevels": {
+            "attackPower": 0,
+            "criticalChance": 0,
+            "criticalDamage": 0,
+            "armorPenFlat": 0,
+            "armorPenPercent": 0,
+            "maxHp": 0,
+            "armor": 0,
+            "lifeSteal": 0,
+            "healthRegen": 0,
+            "petSlots": 0,
+            "magnetRange": 1
+          },
+          "companions": {
+            "inventory": [
+              {
+                "id": 1,
+                "speciesId": "spitter",
+                "kind": "egg",
+                "grade": 0,
+                "hatchProgress": 0,
+                "locked": false
+              },
+              {
+                "id": 2,
+                "speciesId": "petalPredator",
+                "kind": "egg",
+                "grade": 0,
+                "hatchProgress": 0,
+                "locked": false
+              }
+            ],
+            "slots": [
+              null
+            ],
+            "nextId": 3,
+            "discovered": []
+          },
+          "pendingDrops": {
+            "pending": []
+          }
+        },
+        "player": {
+          "x": 871,
+          "y": 871
+        },
+        "floating": [
+          "+3 성장",
+          "알 +1",
+          "+1 성장",
+          "알 +1"
+        ]
+      },
+      "grants": []
+    },
+    "repeat": {
+      "state": {
+        "tick": 112,
+        "timeMs": 1866.6666666666667,
+        "phase": "PLAYING",
+        "mode": "READY",
+        "stage": {
+          "index": 4,
+          "phase": "WAVE",
+          "transitionUntilMs": 0,
+          "transitionMs": 1500
+        },
+        "growth": 104,
+        "defeats": 201,
+        "magnetRadius": 88,
+        "magnetRange": 2.75,
+        "drops": {
+          "pending": 0,
+          "created": 3,
+          "merged": 0,
+          "claimed": 2,
+          "checks": 0,
+          "maxActive": 3,
+          "items": []
+        },
+        "free": 128,
+        "inventory": [
+          {
+            "id": 1,
+            "speciesId": "spitter",
+            "kind": "egg"
+          },
+          {
+            "id": 2,
+            "speciesId": "petalPredator",
+            "kind": "egg"
+          }
+        ],
+        "saved": {
+          "kills": 104,
+          "defeats": 201,
+          "unlocked": [],
+          "statLevels": {
+            "attackPower": 0,
+            "criticalChance": 0,
+            "criticalDamage": 0,
+            "armorPenFlat": 0,
+            "armorPenPercent": 0,
+            "maxHp": 0,
+            "armor": 0,
+            "lifeSteal": 0,
+            "healthRegen": 0,
+            "petSlots": 0,
+            "magnetRange": 1
+          },
+          "companions": {
+            "inventory": [
+              {
+                "id": 1,
+                "speciesId": "spitter",
+                "kind": "egg",
+                "grade": 0,
+                "hatchProgress": 0,
+                "locked": false
+              },
+              {
+                "id": 2,
+                "speciesId": "petalPredator",
+                "kind": "egg",
+                "grade": 0,
+                "hatchProgress": 0,
+                "locked": false
+              }
+            ],
+            "slots": [
+              null
+            ],
+            "nextId": 3,
+            "discovered": []
+          },
+          "pendingDrops": {
+            "pending": []
+          }
+        },
+        "player": {
+          "x": 871,
+          "y": 871
+        },
+        "floating": [
+          "+3 성장",
+          "알 +1",
+          "+1 성장",
+          "알 +1"
+        ]
+      },
+      "grants": []
+    }
+  },
+  "realtime": {
+    "prepared": {
+      "nearId": 1,
+      "farId": 2,
+      "before": {
+        "tick": 19,
+        "timeMs": 316.6666666666667,
+        "phase": "PLAYING",
+        "mode": "READY",
+        "stage": {
+          "index": 2,
+          "phase": "WAVE",
+          "transitionUntilMs": 0,
+          "transitionMs": 1500
+        },
+        "growth": 100,
+        "defeats": 200,
+        "magnetRadius": 88,
+        "magnetRange": 2.75,
+        "drops": {
+          "pending": 2,
+          "created": 2,
+          "merged": 0,
+          "claimed": 0,
+          "checks": 2,
+          "maxActive": 2,
+          "items": [
+            {
+              "id": 1,
+              "state": "IDLE",
+              "x": 922,
+              "y": 750,
+              "z": 0,
+              "vx": 0,
+              "vy": 0,
+              "growth": 3,
+              "eggSpeciesId": "spitter",
+              "eggCount": 1
+            },
+            {
+              "id": 2,
+              "state": "IDLE",
+              "x": 1232,
+              "y": 750,
+              "z": 0,
+              "vx": 0,
+              "vy": 0,
+              "growth": 5,
+              "eggSpeciesId": "scout",
+              "eggCount": 1
+            }
+          ]
+        },
+        "free": 126,
+        "inventory": [],
+        "saved": {
+          "kills": 100,
+          "defeats": 200,
+          "unlocked": [],
+          "statLevels": {
+            "attackPower": 0,
+            "criticalChance": 0,
+            "criticalDamage": 0,
+            "armorPenFlat": 0,
+            "armorPenPercent": 0,
+            "maxHp": 0,
+            "armor": 0,
+            "lifeSteal": 0,
+            "healthRegen": 0,
+            "petSlots": 0,
+            "magnetRange": 1
+          },
+          "companions": {
+            "inventory": [],
+            "slots": [
+              null
+            ],
+            "nextId": 1,
+            "discovered": []
+          },
+          "pendingDrops": {
+            "pending": [
+              {
+                "growth": 3,
+                "eggSpeciesId": "spitter",
+                "eggCount": 1
+              },
+              {
+                "growth": 5,
+                "eggSpeciesId": "scout",
+                "eggCount": 1
+              }
+            ]
+          }
+        },
+        "player": {
+          "x": 750,
+          "y": 750
+        },
+        "floating": []
+      }
+    },
+    "death": {
+      "at": {
+        "x": 850,
+        "y": 750
+      },
+      "speciesId": "scout",
+      "roll": 0.7143076679203659,
+      "damage": 105,
+      "duplicate": 0,
+      "alive": false,
+      "state": {
+        "tick": 19,
+        "timeMs": 316.6666666666667,
+        "phase": "PLAYING",
+        "mode": "READY",
+        "stage": {
+          "index": 2,
+          "phase": "CLEAR",
+          "transitionUntilMs": 1816.6666666666667,
+          "transitionMs": 1500
+        },
+        "growth": 100,
+        "defeats": 201,
+        "magnetRadius": 88,
+        "magnetRange": 2.75,
+        "drops": {
+          "pending": 3,
+          "created": 3,
+          "merged": 0,
+          "claimed": 0,
+          "checks": 2,
+          "maxActive": 3,
+          "items": [
+            {
+              "id": 1,
+              "state": "IDLE",
+              "x": 922,
+              "y": 750,
+              "z": 0,
+              "vx": 0,
+              "vy": 0,
+              "growth": 3,
+              "eggSpeciesId": "spitter",
+              "eggCount": 1
+            },
+            {
+              "id": 2,
+              "state": "IDLE",
+              "x": 1232,
+              "y": 750,
+              "z": 0,
+              "vx": 0,
+              "vy": 0,
+              "growth": 5,
+              "eggSpeciesId": "scout",
+              "eggCount": 1
+            },
+            {
+              "id": 3,
+              "state": "POP",
+              "x": 850,
+              "y": 750,
+              "z": 0,
+              "vx": 0,
+              "vy": 0,
+              "growth": 1,
+              "eggSpeciesId": null,
+              "eggCount": 0
+            }
+          ]
+        },
+        "free": 125,
+        "inventory": [],
+        "saved": {
+          "kills": 100,
+          "defeats": 201,
+          "unlocked": [],
+          "statLevels": {
+            "attackPower": 0,
+            "criticalChance": 0,
+            "criticalDamage": 0,
+            "armorPenFlat": 0,
+            "armorPenPercent": 0,
+            "maxHp": 0,
+            "armor": 0,
+            "lifeSteal": 0,
+            "healthRegen": 0,
+            "petSlots": 0,
+            "magnetRange": 1
+          },
+          "companions": {
+            "inventory": [],
+            "slots": [
+              null
+            ],
+            "nextId": 1,
+            "discovered": []
+          },
+          "pendingDrops": {
+            "pending": [
+              {
+                "growth": 3,
+                "eggSpeciesId": "spitter",
+                "eggCount": 1
+              },
+              {
+                "growth": 5,
+                "eggSpeciesId": "scout",
+                "eggCount": 1
+              },
+              {
+                "growth": 1,
+                "eggSpeciesId": null,
+                "eggCount": 0
+              }
+            ]
+          }
+        },
+        "player": {
+          "x": 750,
+          "y": 750
+        },
+        "floating": [
+          "-105"
+        ]
+      }
+    },
+    "pulling": {
+      "tick": 43,
+      "timeMs": 716.6666666666667,
+      "phase": "PLAYING",
+      "mode": "READY",
+      "stage": {
+        "index": 2,
+        "phase": "CLEAR",
+        "transitionUntilMs": 1816.6666666666667,
+        "transitionMs": 1500
+      },
+      "growth": 100,
+      "defeats": 201,
+      "magnetRadius": 88,
+      "magnetRange": 2.75,
+      "drops": {
+        "pending": 3,
+        "created": 3,
+        "merged": 0,
+        "claimed": 0,
+        "checks": 3,
+        "maxActive": 3,
+        "items": [
+          {
+            "id": 1,
+            "state": "PULL",
+            "x": 892,
+            "y": 750,
+            "z": 0,
+            "vx": -144,
+            "vy": 0,
+            "growth": 3,
+            "eggSpeciesId": "spitter",
+            "eggCount": 1
+          },
+          {
+            "id": 2,
+            "state": "PULL",
+            "x": 1202,
+            "y": 750,
+            "z": 0,
+            "vx": -144,
+            "vy": 0,
+            "growth": 5,
+            "eggSpeciesId": "scout",
+            "eggCount": 1
+          },
+          {
+            "id": 3,
+            "state": "PULL",
+            "x": 850.6100294088908,
+            "y": 739.5941434585986,
+            "z": 0,
+            "vx": -53.713470380209415,
+            "vy": 5.555456751192205,
+            "growth": 1,
+            "eggSpeciesId": null,
+            "eggCount": 0
+          }
+        ]
+      },
+      "free": 125,
+      "inventory": [],
+      "saved": {
+        "kills": 100,
+        "defeats": 201,
+        "unlocked": [],
+        "statLevels": {
+          "attackPower": 0,
+          "criticalChance": 0,
+          "criticalDamage": 0,
+          "armorPenFlat": 0,
+          "armorPenPercent": 0,
+          "maxHp": 0,
+          "armor": 0,
+          "lifeSteal": 0,
+          "healthRegen": 0,
+          "petSlots": 0,
+          "magnetRange": 1
+        },
+        "companions": {
+          "inventory": [],
+          "slots": [
+            null
+          ],
+          "nextId": 1,
+          "discovered": []
+        },
+        "pendingDrops": {
+          "pending": [
+            {
+              "growth": 3,
+              "eggSpeciesId": "spitter",
+              "eggCount": 1
+            },
+            {
+              "growth": 5,
+              "eggSpeciesId": "scout",
+              "eggCount": 1
+            },
+            {
+              "growth": 1,
+              "eggSpeciesId": null,
+              "eggCount": 0
+            }
+          ]
+        }
+      },
+      "player": {
+        "x": 750,
+        "y": 750
+      },
+      "floating": [
+        "-105"
+      ]
+    },
+    "collected": {
+      "tick": 85,
+      "timeMs": 1416.6666666666667,
+      "phase": "PLAYING",
+      "mode": "READY",
+      "stage": {
+        "index": 2,
+        "phase": "CLEAR",
+        "transitionUntilMs": 1816.6666666666667,
+        "transitionMs": 1500
+      },
+      "growth": 104,
+      "defeats": 201,
+      "magnetRadius": 88,
+      "magnetRange": 2.75,
+      "drops": {
+        "pending": 1,
+        "created": 3,
+        "merged": 0,
+        "claimed": 2,
+        "checks": 1,
+        "maxActive": 3,
+        "items": [
+          {
+            "id": 2,
+            "state": "PULL",
+            "x": 1010.9,
+            "y": 750,
+            "z": 0,
+            "vx": -396,
+            "vy": 0,
+            "growth": 5,
+            "eggSpeciesId": "scout",
+            "eggCount": 1
+          }
+        ]
+      },
+      "free": 127,
+      "inventory": [
+        {
+          "id": 1,
+          "speciesId": "spitter",
+          "kind": "egg"
+        }
+      ],
+      "saved": {
+        "kills": 104,
+        "defeats": 201,
+        "unlocked": [],
+        "statLevels": {
+          "attackPower": 0,
+          "criticalChance": 0,
+          "criticalDamage": 0,
+          "armorPenFlat": 0,
+          "armorPenPercent": 0,
+          "maxHp": 0,
+          "armor": 0,
+          "lifeSteal": 0,
+          "healthRegen": 0,
+          "petSlots": 0,
+          "magnetRange": 1
+        },
+        "companions": {
+          "inventory": [
+            {
+              "id": 1,
+              "speciesId": "spitter",
+              "kind": "egg",
+              "grade": 0,
+              "hatchProgress": 0,
+              "locked": false
+            }
+          ],
+          "slots": [
+            null
+          ],
+          "nextId": 2,
+          "discovered": []
+        },
+        "pendingDrops": {
+          "pending": [
+            {
+              "growth": 5,
+              "eggSpeciesId": "scout",
+              "eggCount": 1
+            }
+          ]
+        }
+      },
+      "player": {
+        "x": 750,
+        "y": 750
+      },
+      "floating": [
+        "+3 성장",
+        "알 +1",
+        "+1 성장"
+      ]
+    },
+    "next": {
+      "tick": 109,
+      "timeMs": 1816.6666666666667,
+      "phase": "PLAYING",
+      "mode": "READY",
+      "stage": {
+        "index": 3,
+        "phase": "WAVE",
+        "transitionUntilMs": 0,
+        "transitionMs": 1500
+      },
+      "growth": 104,
+      "defeats": 201,
+      "magnetRadius": 88,
+      "magnetRange": 2.75,
+      "drops": {
+        "pending": 0,
+        "created": 3,
+        "merged": 0,
+        "claimed": 2,
+        "checks": 0,
+        "maxActive": 3,
+        "items": []
+      },
+      "free": 128,
+      "inventory": [
+        {
+          "id": 1,
+          "speciesId": "spitter",
+          "kind": "egg"
+        }
+      ],
+      "saved": {
+        "kills": 104,
+        "defeats": 201,
+        "unlocked": [],
+        "statLevels": {
+          "attackPower": 0,
+          "criticalChance": 0,
+          "criticalDamage": 0,
+          "armorPenFlat": 0,
+          "armorPenPercent": 0,
+          "maxHp": 0,
+          "armor": 0,
+          "lifeSteal": 0,
+          "healthRegen": 0,
+          "petSlots": 0,
+          "magnetRange": 1
+        },
+        "companions": {
+          "inventory": [
+            {
+              "id": 1,
+              "speciesId": "spitter",
+              "kind": "egg",
+              "grade": 0,
+              "hatchProgress": 0,
+              "locked": false
+            }
+          ],
+          "slots": [
+            null
+          ],
+          "nextId": 2,
+          "discovered": []
+        },
+        "pendingDrops": {
+          "pending": []
+        }
+      },
+      "player": {
+        "x": 750,
+        "y": 750
+      },
+      "floating": [
+        "+3 성장",
+        "알 +1",
+        "+1 성장"
+      ]
+    }
+  },
+  "result": "PASS",
+  "elapsedMs": 5099,
+  "screensViewed": [
+    "clear-ordinary-pulling.png",
+    "clear-ordinary-collected.png",
+    "clear-boss-pulling.png",
+    "clear-live-pulling.png",
+    "clear-live-collected.png"
+  ],
+  "limitations": [
+    "Ground payloads/empty arena/historical growth100+defeats200/magnet1/RNG seed are labelled fixtures, with actual common damage/death and real Matter/GameKit/AudioPlayer. Boundary cases use fixed simulation steps, plus one real-time1.5s presentation flow.",
+    "Full natural battle, mobile/touch, species/grade matrix, maximum load and all map seeds were not repeated.",
+    "Existing compact pickup labels can overlap for consecutive arrivals; presentation logic is unchanged."
+  ]
+}

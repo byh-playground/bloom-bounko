@@ -292,7 +292,7 @@ body.lobby-active #stageHud,body.lobby-active #stageBanner{display:none}
 </head><body>
 <canvas id="game" tabindex="0" aria-label="BOUNKO(바운코) 물리 전투 게임"></canvas>
 <div id="hud">
-  <div id="top"><div><div id="brand">BOUNKO<small>PHYSICS ACTION LAB · v0.12.9</small></div><div class="stats"><div><span class="stat-label">HP</span><span class="stat-num" id="playerhp">200</span></div><div><span class="stat-label">COMBO</span><span class="stat-num gold" id="combo">0</span></div><div><span class="stat-label">HITS</span><span class="stat-num" id="hits">0</span></div><div><span class="stat-label">SPEED</span><span class="stat-num" id="speed">0</span></div></div></div><div id="score"><span class="stat-label">KNOCKOUT</span><span class="stat-num gold" id="kills">0</span><div class="pills"><span class="pill" id="fps">-- FPS</span><span class="pill" id="state">READY</span></div></div></div>
+  <div id="top"><div><div id="brand">BOUNKO<small>PHYSICS ACTION LAB · v0.12.10</small></div><div class="stats"><div><span class="stat-label">HP</span><span class="stat-num" id="playerhp">200</span></div><div><span class="stat-label">COMBO</span><span class="stat-num gold" id="combo">0</span></div><div><span class="stat-label">HITS</span><span class="stat-num" id="hits">0</span></div><div><span class="stat-label">SPEED</span><span class="stat-num" id="speed">0</span></div></div></div><div id="score"><span class="stat-label">KNOCKOUT</span><span class="stat-num gold" id="kills">0</span><div class="pills"><span class="pill" id="fps">-- FPS</span><span class="pill" id="state">READY</span></div></div></div>
   <div id="options"><button id="tune" aria-label="설정">설정</button><button id="restart" aria-label="대기 화면으로">대기</button></div><div id="augments" role="group" aria-label="해금된 특성"></div>
   <div id="targetcue" aria-hidden="true"></div>
   <div id="missHint" role="status" aria-live="polite">돌진이 빗나가면 잠시 자세를 회복해요.</div>
@@ -362,9 +362,9 @@ body.lobby-active #stageHud,body.lobby-active #stageBanner{display:none}
 <div class="wiki-info"><b>먼저 알아야 할 체력 규칙</b><br>① <b>수동 잔상 발사</b>는 기본 2발의 공격 탄을 쓰고 1,500ms마다 1발씩 순차 장전한다. HP는 쓰지 않는다. <b>메아리와 자동 연격의 새 잔상</b>도 같은 탄 1개를 쓴다. 이미 만든 잔상으로 돌진은 무료다.<br>② <b>평상 몸 접촉 피해는 0</b>이다. 준비를 마친 돌진·근접·광선·탄환 등 명시적 공격에 맞으면 피해를 입는다.<br>③ <b>흡혈은 기본 0%</b>이며 투자 후 실제 HP 피해 × 흡혈률만 회복한다. 시작 최대 HP는 200, 단계 전환으로는 회복하지 않는다.<br>④ 공격 버튼은 <b>잔상 발사 → 돌진</b>, 전장 탭과 WASD는 <b>회피 구르기</b>다.</div>
 <div class="wiki-tags"><span>모바일 우선</span><span>탑다운</span><span>Matter.js 물리</span><span>Bloom GameKit</span><span>랜덤 다각형 스테이지</span><span>보스 탄막</span><span>영구 테크트리</span></div>
 <div class="wiki-info">이 위키는 현재 단일 HTML 프로토타입의 <b>실제 기본 설정과 동작</b>을 설명한다. 테크트리·수치 표는 HTML 안의 런타임 Definition에서 생성한다. 이는 정식 출시 계획이 아니라 현재 실행 중인 프로토타입의 구현 기준이다.</div>
-<p><b>지면 보상·자석</b>: 피해로 확정된 적 처치의 기존 성장과 알을 사망 위치의 작은 드롭으로 남긴다. 성장 1개는 기존 처치 1회의 레벨 진척이며 새 돈이나 자원이 아니다. 일반/소환 5%·보스10% 알은 사망 때 한 번 추첨하고 회수 때 다시 추첨하지 않는다. 처치 사실·스테이지 목표와 장착 알의 30처치 부화는 사망 때 기록하며, 성장 레벨과 새 알 소유권은 회수 때만 지급한다. 기본 자석 반경은 <b>현재 플레이어 지름 ×2.5</b>(기본80px)이며, <b>자석 범위</b> 투자당 기본 대비 +10%(80→88→96px)다. 범위 안에서 가속해 플레이어 방향으로 끌려오고 몸의 XYZ 접촉에 도착해야 한 번 회수된다. 드롭은 펫·공전 탄과 달리 지면에 있으며 몸체를 밀거나 피해를 주지 않는다. 근접 동종 보상은 수량을 합치고 최대128개 표현 객체를 재사용한다. 끌림은 적 목록을 검색하지 않으며 회수 숫자·알 강조·소리는 짧은 간격으로 묶는다.</p><p><b>미회수 보존</b>: 단계·보스 전환 때 드롭을 지우지 않고, 새 전장의 플레이어 근처 안전한 지면에 다시 놓는다. 사망·대기·재시작·새로고침도 같은 저장 키의 미회수 목록을 유지하며 다음 판에 다시 놓는다. 보관 중에는 성장이나 인벤토리에 지급되지 않는다. 회수 목록 제거와 성장/알 소유권을 한 번의 저장 스냅샷에 담는다.</p><p><b>장착 알 추종</b>: 바깥 장착 알은 공통 동행 대기 위치를 따라 시간 기반 임계 감쇠 스프링으로 느슨하게 추종한다. 이동 방향 뒤로 목표가 기울고 급회전에는 기존 속도를 이어 곡선으로 따라붙으며 정지하면 작은 높이로 부유한다. 안쪽 탄의 정밀 공전·지면 드롭과 구분된다. 단계/재시작과 큰 순간이동에서는 위치·추종 속도를 정리하며 부화 진척·슬롯·전투 펫 AI는 유지한다.</p>
+<p><b>지면 보상·자석</b>: 피해로 확정된 적 처치의 기존 성장과 알을 사망 위치의 작은 드롭으로 남긴다. 성장 1개는 기존 처치 1회의 레벨 진척이며 새 돈이나 자원이 아니다. 일반/소환 5%·보스10% 알은 사망 때 한 번 추첨하고 회수 때 다시 추첨하지 않는다. 처치 사실·스테이지 목표와 장착 알의 30처치 부화는 사망 때 기록하며, 성장 레벨과 새 알 소유권은 회수 때만 지급한다. 기본 자석 반경은 <b>현재 플레이어 지름 ×2.5</b>(기본80px)이며, <b>자석 범위</b> 투자당 기본 대비 +10%(80→88→96px)다. 범위 안에서 가속해 플레이어 방향으로 끌려오고 몸의 XYZ 접촉에 도착해야 한 번 회수된다. 드롭은 펫·공전 탄과 달리 지면에 있으며 몸체를 밀거나 피해를 주지 않는다. 근접 동종 보상은 수량을 합치고 최대128개 표현 객체를 재사용한다. 끌림은 적 목록을 검색하지 않으며 회수 숫자·알 강조·소리는 짧은 간격으로 묶는다.</p><p><b>클리어 회수</b>: 일반·보스 클리어 후 1,500ms 동안 자석의 유효 범위를 맵 전체로 넓힌다. 기존 가속·XYZ 도착 접촉으로 실제 회수한 성장과 알만 지급한다. 시간 종료 시 회수 여부와 무관하게 남은 드롭을 삭제하고 저장의 미회수 목록도 비운 뒤 다음 단계로 넘어간다. 자동 지급이나 단계 간 보존은 없다. 클리어 이외의 사망·대기·재시작·새로고침은 기존 미회수 저장과 새 판의 지면 복구를 유지한다. 회수 목록 제거와 성장/알 소유권은 같은 저장 스냅샷에 담는다.</p><p><b>장착 알 추종</b>: 바깥 장착 알은 공통 동행 대기 위치를 따라 시간 기반 임계 감쇠 스프링으로 느슨하게 추종한다. 이동 방향 뒤로 목표가 기울고 급회전에는 기존 속도를 이어 곡선으로 따라붙으며 정지하면 작은 높이로 부유한다. 안쪽 탄의 정밀 공전·지면 드롭과 구분된다. 단계/재시작과 큰 순간이동에서는 위치·추종 속도를 정리하며 부화 진척·슬롯·전투 펫 AI는 유지한다.</p>
 <p><b>설계 불변 조건</b>: 첫 공격은 플레이어 입력으로 시작하며, 차지율은 초기 충격량과 비행 가속만 결정한다. 기본 직접 피해는 실제 충돌 접근 속도로 결정한다. 잔상 조준, 공격용 물리 돌진, 이동용 회피 구르기는 별도 행동이다. 표현 파티클은 HP나 시뮬레이션을 수정하지 않는다.</p></section><section class="wiki-section" id="wiki-flow" data-wiki-title="2. 전체 게임 흐름과 화면"><h2>2. 전체 게임 흐름과 화면</h2>
-<div class="wiki-table-wrap"><table><thead><tr><th>상태</th><th>진입</th><th>동작·전환</th></tr></thead><tbody><tr><td>대기 화면 (LOBBY)</td><td>최초 로드 또는 대기 복귀</td><td>게임 시작 / 업그레이드 / 도움말 / 상세 위키. 대기 중 시뮬레이션 틱 정지</td></tr><tr><td>전투 (PLAYING)</td><td>게임 시작</td><td>첫 스테이지 생성 → 일반 적 무한 보충 → 스테이지 목표 처치 달성</td></tr><tr><td>보스 대기 (BOSS_PENDING)</td><td>3·6·9…단계의 일반 처치 목표 달성</td><td>750ms 보스 예고 뒤 남은 일반 적·탄막을 제거하고 보스 생성</td></tr><tr><td>보스전 (BOSS)</td><td>보스 생성</td><td>보스 이외 일반 적 제거. 탄막·돌진·소환 패턴, 테마별 보스 외형과 체력 표시</td></tr><tr><td>스테이지 클리어 (CLEAR)</td><td>일반 단계 목표 달성 또는 보스 체력 0</td><td>남은 적·탄막 정리 → 1,650ms 전환 → 현재 HP 유지·다음 단계 중앙 번호·미회수 보상 지면 보존. 맵 확장은 4·7…단계</td></tr><tr><td>전투 종료 (ENDED)</td><td>플레이어 HP 0</td><td>결과: 처치·누적 처치·레벨·명중·피격·회복 → 대기 복귀</td></tr></tbody></table></div>
+<div class="wiki-table-wrap"><table><thead><tr><th>상태</th><th>진입</th><th>동작·전환</th></tr></thead><tbody><tr><td>대기 화면 (LOBBY)</td><td>최초 로드 또는 대기 복귀</td><td>게임 시작 / 업그레이드 / 도움말 / 상세 위키. 대기 중 시뮬레이션 틱 정지</td></tr><tr><td>전투 (PLAYING)</td><td>게임 시작</td><td>첫 스테이지 생성 → 일반 적 무한 보충 → 스테이지 목표 처치 달성</td></tr><tr><td>보스 대기 (BOSS_PENDING)</td><td>3·6·9…단계의 일반 처치 목표 달성</td><td>750ms 보스 예고 뒤 남은 일반 적·탄막을 제거하고 보스 생성</td></tr><tr><td>보스전 (BOSS)</td><td>보스 생성</td><td>보스 이외 일반 적 제거. 탄막·돌진·소환 패턴, 테마별 보스 외형과 체력 표시</td></tr><tr><td>스테이지 클리어 (CLEAR)</td><td>일반 단계 목표 달성 또는 보스 체력 0</td><td>남은 적·탄막 정리 → 1,500ms 맵 전체 자석 회수 → 미회수 드롭·저장 목록 삭제 → 현재 HP 유지·다음 단계 중앙 번호. 실제 도착분만 지급하며 맵 확장은 4·7…단계</td></tr><tr><td>전투 종료 (ENDED)</td><td>플레이어 HP 0</td><td>결과: 처치·누적 처치·레벨·명중·피격·회복 → 대기 복귀</td></tr></tbody></table></div>
 <p>각 스테이지의 처치 목표는 <code>initialKills + (stageIndex - 1) × killsPerStage</code>. 스테이지 처치 수와 영구 누적 처치 수는 독립이다. 일반 적 사망·화염 지속 피해로 인한 처치도 영구 처치 수를 증가시킨다. 보스 처치도 1킬로 누적된다.</p></section><section class="wiki-section" id="wiki-controls" data-wiki-title="3. 조작·입력 계약"><h2>3. 조작·입력 계약</h2>
 <div class="wiki-table-wrap"><table><thead><tr><th>입력</th><th>동작</th><th>주의점</th></tr></thead><tbody><tr><td>화면 우하단 공격 버튼 / Space / Enter</td><td>READY: 탄 방향 정렬 시작; ALIGN: 돌진 예약; SHADOW·GOLDEN·COYOTE: 공격 돌진</td><td>해당 버튼은 같은 명령을 해당 고정 틱에 제출</td></tr><tr><td>전장 빈 곳 탭·클릭</td><td>해당 월드 방향으로 이동용 구르기 대시</td><td>기존 전장 탭 수동 잔상 발사는 제거됨</td></tr><tr><td>W / A / S / D</td><td>위 / 왼쪽 / 아래 / 오른쪽 방향 구르기. 함께 누른 방향은 대각선으로 합산</td><td>새로 누를 때 1회; 대각선 속도 동일. 길게 눌러도 자동 반복하지 않으며 메뉴·입력란에서는 동작하지 않음</td></tr><tr><td>공격 중 전장 탭 / WASD</td><td>잔상·돌진·자동 연격 취소 → 구르기 시도</td><td>구르기 충전이 없으면 취소하지 않음</td></tr><tr><td>구르기 충전</td><td>2회, 500ms마다 1회 순차 충전</td><td>대시 시작 100ms 적 탄환만 피해 면역, 적의 명시적 돌진·근접 공격 피해는 적용</td></tr><tr><td>메뉴</td><td>대기 화면에서 업그레이드·도움말·위키 선택</td><td>전투 중 설정을 열면 시뮬레이션 일시정지</td></tr></tbody></table></div>
 <p><b>입력 흐름</b>: Bloom GameKit의 <code>createDOMInput</code>이 PointerEvent/키를 수집하고, <code>pending</code> 명령 큐를 고정 틱 <code>processInputs()</code>에서 소비한다. 렌더 루프에서 게임 규칙을 실행하지 않는다. 터치 탭 판정은 <code>tapMs=330</code>, <code>dragSlop=18</code> CSS 픽셀이다. 화면→월드 변환은 게임 렌더 카메라가 소유한다.</p></section><section class="wiki-section" id="wiki-state" data-wiki-title="4. 공격 상태 기계"><h2>4. 공격 상태 기계</h2>
@@ -605,7 +605,7 @@ next stage -> centered stage number; 4/7/10... expands map/theme segment</code><
 <script type="module">
 
 const KIT = 'https://cdn.jsdelivr.net/gh/byh-playground/bloom-gamekit@d1e2c385033ad04a7a004cfbe9558948ef07a6d1/';
-const VERSION = '0.12.9', BUILD_ID = '20261011T040000Z-magnetic-reward-drops';
+const VERSION = '0.12.10', BUILD_ID = '20261011T041601Z-stage-clear-drop-window';
 const $ = id => document.getElementById(id);
 const loadtext = $('loadtext');
 const ERROR = error => { console.error(error); loadtext.innerHTML = '<strong style="color:#fdb8a9">실행 라이브러리를 불러오지 못했습니다.</strong><br>인터넷 연결 상태를 확인하고 다시 여세요.<br>'+String(error.message||error).replace(/[<>]/g,''); };
@@ -628,7 +628,7 @@ try {
     physics:{restitution:.86,frictionAir:.008,maxSpeed:1900},
     evade:{maxCharges:2,rechargeMs:500,durationMs:580,invulnerableMs:100,impulseSpeed:1020,decayPerSec:6.5,particleRateMs:22,
       capacityTierRate:.50,rechargeReductionTierRate:.20,distanceTierRate:.10,projectileWindowBonusRate:.50,hitRechargeRate:.20},
-    stage:{initialKills:7,killsPerStage:4,bossEvery:3,mapEvery:3,transitionMs:1650,bossWarningMs:750,entryNoticeMs:1100,bossNoticeMs:1250,noticePriority:{stage:1,boss:3},worldRadius:550,radiusGrowth:.22,maxRadius:1600,initialPopulation:4,populationPerStage:1,maxEnemies:82,enemySpawnMinGap:98,spawnSafeRadius:285,obstaclePer100k:.93,maxObstacles:72,connectivityStep:82,connectivityMin:.92},
+    stage:{initialKills:7,killsPerStage:4,bossEvery:3,mapEvery:3,transitionMs:1500,bossWarningMs:750,entryNoticeMs:1100,bossNoticeMs:1250,noticePriority:{stage:1,boss:3},worldRadius:550,radiusGrowth:.22,maxRadius:1600,initialPopulation:4,populationPerStage:1,maxEnemies:82,enemySpawnMinGap:98,spawnSafeRadius:285,obstaclePer100k:.93,maxObstacles:72,connectivityStep:82,connectivityMin:.92},
     boss:bossConfig,
     shadow:{ammo:{maxCharges:2,rechargeMs:1500,capacityTierRate:.50,rechargeReductionTierRate:.20},
       orbit:{radius:34,angularSpeedRadPerSec:.95,phaseRad:-Math.PI/2,alignMs:80},
@@ -1214,10 +1214,6 @@ try {
     shadow=null;setReadyState();endChain();bufferedIntent=null;
     evadeMotion=null;evadeCharges=C.evade.maxCharges;evadeRefillAtMs=0;
     buildArena(index);
-    lootDrops.enterStage(player.position,2*player.circleRadius,(candidate,i)=>{
-      if(boundaryPoint(candidate.x,candidate.y,12)&&!obstacles.some(o=>Math.hypot(candidate.x-o.body.position.x,candidate.y-o.body.position.y)<o.r+12))return candidate;
-      return {x:player.position.x+Math.cos(i*2.4)*48,y:player.position.y+Math.sin(i*2.4)*48};
-    });persistTech();
     randomSeed=stage.seed; // Wave placement varies; geometry remains fixed inside a map segment.
     for(let i=0;i<stage.targetPopulation;i++){
       const pt=findSpawn(C.stage.spawnSafeRadius,28);
@@ -1293,7 +1289,7 @@ try {
   }
   function updateStage(){
     if(stage.phase==='BOSS_PENDING'&&timeMs>=stage.transitionUntilMs)spawnBoss();
-    else if(stage.phase==='CLEAR'&&timeMs>=stage.transitionUntilMs){setupStage(stage.index+1);}
+    else if(stage.phase==='CLEAR'&&timeMs>=stage.transitionUntilMs){lootDrops.clear();persistTech();setupStage(stage.index+1);}
   }
   function reset(){
     if(engine){releaseVolumeFilter?.();World.clear(engine.world,false);}
@@ -1320,6 +1316,10 @@ try {
       get hp(){return health;},set hp(value){health=value;},get maxHp(){return C.stats.maxHp;},get alive(){return mode!=='DEAD';},onHit(){},die(){die();},
       adapter:{healed(target,amount){healingDone+=amount;sfx.play('heal');floatText(player.position.x,player.position.y,'+'+formatCombatNumber(amount),[.33,1,.68,1]);burst(player.position.x,player.position.y,120,6,[.24,1,.7,1]);},hurt(target,amount){damageTaken+=amount;if(amount>0){sfx.play('hurt');floatText(player.position.x,player.position.y,'-'+formatCombatNumber(amount),[1,.38,.43,1]);burst(player.position.x,player.position.y,90,8,[1,.36,.46,1]);}}}};
     setupStage(1);petRoster.reset();
+    lootDrops.enterRun(player.position,2*player.circleRadius,(candidate,i)=>{
+      if(boundaryPoint(candidate.x,candidate.y,12)&&!obstacles.some(o=>Math.hypot(candidate.x-o.body.position.x,candidate.y-o.body.position.y)<o.r+12))return candidate;
+      return {x:player.position.x+Math.cos(i*2.4)*48,y:player.position.y+Math.sin(i*2.4)*48};
+    });persistTech();
     cameraView.setCamera({x:player.position.x,y:player.position.y});cameraView.setShake(0,0);cameraShake=null;
     Events.on(engine,'collisionStart',handleCollision);Events.on(engine,'collisionActive',handleCollision);
     for(const f of textFloats)f.el?.remove();textFloats.length=0;
@@ -2180,7 +2180,7 @@ try {
     textFloats.push({x,y,text,color,age:0,el});}
 
   function updateDrops(dtMs){
-    const collected=lootDrops.update(dtMs,player,magnetRadius());
+    const collected=lootDrops.update(dtMs,player,stage.phase==='CLEAR'?Infinity:magnetRadius());
     if(collected.length){let growth=0,eggs=0;const bySpecies=new Map();
       for(const reward of collected){growth+=reward.growth;eggs+=reward.eggCount;if(reward.eggCount)bySpecies.set(reward.eggSpeciesId,(bySpecies.get(reward.eggSpeciesId)||0)+reward.eggCount);}
       // Remove pending payloads and grant ownership as one saved snapshot. Callbacks cannot save a partial batch.

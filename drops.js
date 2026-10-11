@@ -17,6 +17,7 @@ export class RewardDrops {
   }
   snapshot(){return {pending:this.active.map(d=>({growth:d.growth,eggSpeciesId:d.eggSpeciesId,eggCount:d.eggCount}))};}
   release(index){const d=this.active[index];this.active[index]=this.active.at(-1);this.active.pop();d.state='FREE';d.arc=null;this.free.push(d);}
+  clear(){while(this.active.length)this.release(this.active.length-1);}
   spawn(reward,at,angle=0){
     const growth=count(reward.growth),eggCount=reward.eggSpeciesId?count(reward.eggCount):0;
     if(!growth&&!eggCount)return null;
@@ -36,8 +37,8 @@ export class RewardDrops {
     d.arc=groundArc({...at,z:at.z||0},end,c.pop.durationMs,c.pop.height);
     this.active.push(d);this.stats.created++;this.stats.maxActive=Math.max(this.stats.maxActive,this.active.length);return d;
   }
-  // Stage/run changes re-present the same unclaimed payloads near the spawn, without granting them.
-  enterStage(anchor,diameter,place){
+  // A new run re-presents saved unclaimed payloads near the spawn, without granting them.
+  enterRun(anchor,diameter,place){
     for(let i=0;i<this.active.length;i++){const d=this.active[i],angle=i*2.399963229728653,distance=diameter*this.config.recoveryDiameterRate+Math.floor(i/12)*10;
       const p=place({x:anchor.x+Math.cos(angle)*distance,y:anchor.y+Math.sin(angle)*distance},i);
       d.body.position.x=p.x;d.body.position.y=p.y;d.body.plugin.volume.feetZ=0;d.state='IDLE';d.arc=null;d.vx=0;d.vy=0;d.ageMs=this.config.pop.durationMs;

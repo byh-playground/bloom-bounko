@@ -157,8 +157,8 @@ for(const spec of Object.values(bossSpecies))enemyConfig[spec.id]={...bossConfig
 enemyConfig.boss={...bossConfig,height:96,damage:bossConfig.contactDamage,push:bossConfig.contactPush};
 // BOUNKO rates preserve the source's relative identities; no RTS economy/mana.
 Object.assign(enemyConfig,{
-  lancer:{radius:23,height:46,mass:8.2,hp:150,armor:12,speed:95,detect:700,damage:35,push:900,signature:'lunge',unlocks:{lunge:0},
-    lunge:{range:120,prepareMs:250,speed:390,durationMs:280,recoverMs:740}},
+  lancer:{radius:23,height:46,mass:8.2,hp:150,armor:12,speed:95,detect:700,damage:35,attackPower:100,push:900,signature:'lunge',unlocks:{lunge:0},
+    lunge:{range:320,prepareMs:350,speed:1000,durationMs:700,recoverMs:900}},
   dandelion:{radius:14,height:28,mass:3,hp:65,armor:0,speed:150,detect:700,damage:14,push:0,signature:'melee',unlocks:{melee:0},
     melee:{range:34,width:2,halfAngle:.85,prepareMs:150,strikeMs:80,recoverMs:270,damage:14,push:0,motion:'jab'}},
   swordsman:{radius:22,height:44,mass:7,hp:145,armor:12,speed:80,detect:700,damage:26,push:0,signature:'melee',unlocks:{melee:0},
@@ -188,7 +188,7 @@ export const species=Object.fromEntries(Object.entries(metadata).map(([id,labels
 for(const id of ['dandelion','medic'])species[id].presentation.outlineGeometry='body';
 export function speciesConfig(id,grade=5,{powerRate=1,sizeRate=1,bodyScale=1,growthRate=1}={}){
   const base=species[id].config,c=structuredClone(base),power=Math.pow(powerRate,grade),size=Math.pow(sizeRate,grade);
-  c.hp*=power;c.damage*=power;c.attackPower=65*power;c.radius*=bodyScale;c.height*=bodyScale;c.armorPenPercent=0;c.armorPenFlat=0;
+  c.hp*=power;c.damage*=power;c.attackPower=(base.attackPower??65)*power;c.radius*=bodyScale;c.height*=bodyScale;c.armorPenPercent=0;c.armorPenFlat=0;
   if(c.leap){c.leap.range*=Math.pow(growthRate,grade);c.leap.height*=Math.pow(growthRate,grade);}
   if(c.selfDestruct){c.selfDestruct.damage*=power;c.selfDestruct.radius*=size;}
   if(c.spike)c.spike.damage*=power;

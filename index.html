@@ -486,8 +486,8 @@ availableUpgrades = (level - 1) - sum(learnedTechCosts) - sum(statInvestments)</
   3. 잔상 GOLDEN/COYOTE 수명 전이, 자동 연격 계획 검사
   4. 히트스탑 중이면 물리 실행을 건너뜀
   5. 체력 재생 및 SHADOW 접근 불릿타임 scale 산정
-  6. 적의 이전 위치·속도를 저장하고 적 AI 실행
-  7. 능력의 x/y + z 궤적, 곡사탄 업데이트 후 돌진 Force 적용 · Matter.Engine.update
+  6. 위치·높이 sweep 시작점을 저장하고 동행·적 AI 실행
+  7. 능력의 x/y + z 궤적·곡사탄 업데이트 후 AI/공격 impulse가 반영된 충돌 속도 저장 · 돌진 Force 적용 · Matter.Engine.update
   8. beforeSolve의 수직 sweep → Detector 후보의 XY/Z 동시 겹침 필터 → Pairs/solver → collisionStart/Active 피해
   9. 같은 XY/Z 접촉 구간으로 고속 돌진·잔상 누락 보완(swept contact)
  10. 화염 지속 피해·잔상 가속과 접촉·투사체를 갱신하고 같은 틱 피해/흡혈 뒤 플레이어 사망 확정
@@ -610,7 +610,7 @@ import {t as tr,language,setLanguage,onLanguageChanged,translateDocument,localiz
 
 
 const KIT = 'https://cdn.jsdelivr.net/gh/byh-playground/bloom-gamekit@d1e2c385033ad04a7a004cfbe9558948ef07a6d1/';
-const VERSION = '0.12.11', BUILD_ID = '20261011T043931Z-ko-en-i18n';
+const VERSION = '0.12.12', BUILD_ID = '20261011T061310Z-lancer-first-contact';
 const $ = id => document.getElementById(id);
 const loadtext = $('loadtext');translateDocument();document.title=tr('app.title');$('languageSelect').value=language();$('languageSelect').disabled=true;
 const ERROR = error => { console.error(error); loadtext.textContent = tr("runtime.phrase.26",{v0:String(error.message||error).replace(/[<>]/g,'')}); };
@@ -2297,12 +2297,14 @@ try {
     const scale=(mode==='SHADOW'&&chargeOf()>=C.timing.bulletStart)?C.timing.bulletScale:1;
     const dt=baseMs/1000*scale;
     snapshotVolumes(World.allBodies(engine.world));
-    // Snapshot each enemy before the engine moves them, for relative swept collision.
+    // Preserve start positions before AI motion for relative XY/Z swept contact.
     for(const e of unitsById.values()){if(!e.alive)continue;
       e.preX=e.body.position.x;e.preY=e.body.position.y;
-      e.pre=speedOf(e.body);e.body.restitution=C.physics.restitution;}
+      e.body.restitution=C.physics.restitution;}
     petRoster.update(dt);updateEnemies(dt);stepArcShots(dt);
     if(mode==='READY'||mode==='RECOVER'||mode==='DASH')aimPreview();
+    // Damage uses pre-engine velocities after every AI/attack impulse, including the first charge tick.
+    for(const e of unitsById.values())if(e.alive)e.pre=speedOf(e.body);
     const pv=speedOf(player);playerUnit.pre=pv;playerUnit.preX=player.position.x;playerUnit.preY=player.position.y;player.plugin.preX=pv.x;player.plugin.preY=pv.y;player.plugin.prePosX=player.position.x;player.plugin.prePosY=player.position.y;
     player.restitution=C.physics.restitution;player.frictionAir=C.physics.frictionAir;
     if(mode==='DASH'&&dashMotion){

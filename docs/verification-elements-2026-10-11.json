@@ -154,5 +154,26 @@
       "shotsAfterThaw": 8,
       "damageIncludingThawedControl": 51
     }
-  ]
+  ],
+  "previewLaunchFix": {
+    "browser": "155.0.4283.45",
+    "freezeTouch": {
+      "hits": 1,
+      "dashCharge": 1,
+      "frozenAfterDash": true,
+      "shatters": 0
+    },
+    "iceShatter": {
+      "hits": 1,
+      "shatters": 1,
+      "frozen": false
+    },
+    "acidPool": {
+      "hits": 1,
+      "pools": 1,
+      "source": 0,
+      "faction": "garden"
+    },
+    "errors": []
+  }
 }

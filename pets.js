@@ -6,7 +6,7 @@ import {companionIdlePoint} from './controllers.js';
 export const petConfig = {
   slots:{base:1,maxLevel:4,perLevel:1},
   eggs:{rewardCount:1,hatchKills:30,normalDropRate:.05,bossDropRate:.10},
-  fusion:{required:5,odds:[.64,.32,.16,.08,.04],failureLoss:[1,2,3,4]},
+  fusion:{required:5,odds:[.64,.32,.16,.08,.04],failureLoss:[1,2,3,4],autoReserve:1},
   grades:[
     {get name(){return tr('rarity.common');},color:'#d8d4bd'}, {get name(){return tr('rarity.uncommon');},color:'#83ce76'},
     {get name(){return tr('rarity.rare');},color:'#78b9ff'}, {get name(){return tr('rarity.epic');},color:'#bd8cff'},
@@ -34,6 +34,7 @@ export class CompanionCollection {
     this.config=config;this.onChange=onChange;this.slotLevel=integer(slotLevel,0,config.slots.maxLevel);
     this.inventory=[];this.byId=new Map();this.slots=Array(companionCapacity(config,this.slotLevel)).fill(null);
     this.nextId=1;this.revision=0;this.lastFusion=null;this.discovered=new Set();
+    this.automation={hatch:false,fusion:false,preferredSpecies:null};this.processing=false;this.random=Math.random;
     if(raw&&typeof raw==='object'){
       for(const id of Array.isArray(raw.discovered)?raw.discovered:[])if(config.species[id])this.discovered.add(id);
       for(const source of Array.isArray(raw.inventory)?raw.inventory:[]){
@@ -50,10 +51,35 @@ export class CompanionCollection {
         const id=raw.slots?.[i];if(this.byId.has(id)&&!used.has(id)){this.slots[i]=id;used.add(id);}
       }
       if(Number.isSafeInteger(raw.nextId))this.nextId=Math.max(this.nextId,raw.nextId);
+      this.automation={hatch:raw.automation?.hatch===true,fusion:raw.automation?.fusion===true,
+        preferredSpecies:this.discovered.has(raw.automation?.preferredSpecies)?raw.automation.preferredSpecies:null};
     }
   }
-  changed(event){this.revision++;this.onChange(event);return event;}
-  snapshot(){return {inventory:this.inventory.map(item=>({...item})),slots:[...this.slots],nextId:this.nextId,discovered:[...this.discovered]};}
+  changed(event){if(this.processing)return event;this.processing=true;
+    try{event.automatic=event.kind==='hatchProgress'&&!event.hatched.length?[]:this.runAutomation();}finally{this.processing=false;}
+    this.revision++;this.onChange(event);return event;}
+  snapshot(){return {inventory:this.inventory.map(item=>({...item})),slots:[...this.slots],nextId:this.nextId,discovered:[...this.discovered],automation:{...this.automation}};}
+  setAutomation(key,value){if(key==='preferredSpecies'){if(value!==null&&!this.discovered.has(value))return false;}
+    else if(!['hatch','fusion'].includes(key)||typeof value!=='boolean')return false;
+    if(this.automation[key]===value)return false;this.automation[key]=value;this.changed({kind:'automation'});return true;}
+  resumeAutomation(){if(this.automation.hatch||this.automation.fusion)this.changed({kind:'automation'});}
+  runAutomation(){
+    if(this.automation.hatch){const equipped=new Set(this.slots);for(let slot=0;slot<this.slots.length;slot++){
+      if(this.slots[slot]!=null)continue;let oldest=null,preferred=null;
+      for(const item of this.inventory){if(item.kind!=='egg'||equipped.has(item.id))continue;
+        if(!oldest||item.id<oldest.id)oldest=item;
+        if(item.speciesId===this.automation.preferredSpecies&&(!preferred||item.id<preferred.id))preferred=item;}
+      const next=preferred||oldest;if(!next)break;this.slots[slot]=next.id;equipped.add(next.id);
+    }}
+    const results=[];
+    // Each grade is visited once, bottom-up. Every attempt consumes inventory;
+    // new higher-grade results can cascade, never retry the same grade indefinitely.
+    if(this.automation.fusion)for(const speciesId of new Set(this.inventory.filter(item=>item.kind==='pet').map(item=>item.speciesId)))
+      for(let grade=0;grade<this.config.fusion.odds.length;grade++){
+        const result=this.fuse(speciesId,grade,true,this.random,true);if(result.ok)results.push(result);
+      }
+    return results;
+  }
   // Call on roster changes, never scan the inventory in the combat frame loop.
   companions(){return this.slots.map(id=>this.byId.get(id)||null);}
   setSlotLevel(level){
@@ -91,22 +117,22 @@ export class CompanionCollection {
   recordKill(){
     const advanced=[],hatched=[],firstDiscoveries=[];
     // Every equipped egg receives +1; reserve eggs never advance. At most five lookups.
-    for(const id of this.slots){const item=this.byId.get(id);if(!item||item.kind!=='egg')continue;
+    for(const [slot,id] of this.slots.entries()){const item=this.byId.get(id);if(!item||item.kind!=='egg')continue;
       item.hatchProgress++;advanced.push(id);
-      if(item.hatchProgress>=this.config.eggs.hatchKills){item.kind='pet';item.grade=0;hatched.push(id);if(!this.discovered.has(item.speciesId)){this.discovered.add(item.speciesId);firstDiscoveries.push(item.speciesId);}}
+      if(item.hatchProgress>=this.config.eggs.hatchKills){item.kind='pet';item.grade=0;hatched.push(id);if(this.automation.hatch)this.slots[slot]=null;if(!this.discovered.has(item.speciesId)){this.discovered.add(item.speciesId);firstDiscoveries.push(item.speciesId);}}
     }
     if(advanced.length)this.changed({kind:'hatchProgress',advanced,hatched,firstDiscoveries});
     return hatched;
   }
   eligible(speciesId,grade){return this.inventory.filter(item=>item.kind==='pet'&&item.speciesId===speciesId&&item.grade===grade&&!item.locked);}
-  fuse(speciesId,grade,all=false,random=Math.random){
+  fuse(speciesId,grade,all=false,random=Math.random,automatic=false){
     const rule=this.config.fusion,result={ok:false,speciesId,grade,resultGrade:grade+1,attempts:0,successes:0,failures:0,consumed:[],produced:[]};
     if(!this.config.species[speciesId]||!Number.isInteger(grade)||grade<0||grade>=rule.odds.length||typeof all!=='boolean')return result;
     const equipped=new Set(this.slots.filter(id=>id!=null));
     // Budmori: unlocked reserve first, then unlocked equipped materials by ID.
     // Equipment itself is not an automatic lock. Explicit locks are user choices.
-    const materials=this.eligible(speciesId,grade).sort((a,b)=>Number(equipped.has(a.id))-Number(equipped.has(b.id))||a.id-b.id);
-    let cursor=0;while(materials.length-cursor>=rule.required){
+    const materials=this.eligible(speciesId,grade).filter(item=>!automatic||!equipped.has(item.id)).sort((a,b)=>Number(equipped.has(a.id))-Number(equipped.has(b.id))||a.id-b.id);
+    let cursor=0;while(materials.length-cursor>=rule.required+(automatic?rule.autoReserve:0)){
       const success=random()<rule.odds[grade];
       const loss=success?rule.required:rule.failureLoss[Math.min(rule.failureLoss.length-1,Math.floor(random()*rule.failureLoss.length))];
       for(let n=0;n<loss;n++)result.consumed.push(materials[cursor++].id);

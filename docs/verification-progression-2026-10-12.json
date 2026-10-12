@@ -1,0 +1,62 @@
+{
+  "browser": "155.0.4283.45",
+  "checks": [
+    {
+      "width": 390,
+      "height": 568,
+      "contained": true
+    },
+    {
+      "width": 1280,
+      "height": 844,
+      "contained": true
+    }
+  ],
+  "collection": {
+    "preferred": true,
+    "multipleSlots": true,
+    "waitResume": true,
+    "combatProtected": true,
+    "lockedProtected": true,
+    "reserve": true,
+    "failureLoss": true,
+    "atomic": true,
+    "allSpecies": true,
+    "hatchThenFusion": true,
+    "reload": true
+  },
+  "stages": {
+    "selected": 1,
+    "stages": {
+      "1": {
+        "clears": 1,
+        "theme": "garden"
+      },
+      "2": {
+        "clears": 3,
+        "theme": "garden"
+      },
+      "3": {
+        "clears": 4,
+        "theme": "garden"
+      },
+      "4": {
+        "clears": 5,
+        "theme": "cave"
+      },
+      "5": {
+        "clears": 0,
+        "theme": "cave"
+      }
+    }
+  },
+  "start": {
+    "index": 4,
+    "radius": 671,
+    "population": 10,
+    "statsAndSlotsUnchanged": true
+  },
+  "previewSaveIsolated": true,
+  "errors": [],
+  "durationMs": 3952
+}

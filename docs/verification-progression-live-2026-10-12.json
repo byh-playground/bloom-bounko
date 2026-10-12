@@ -1,0 +1,26 @@
+{
+  "base": "60e13fc",
+  "equal": true,
+  "input": "18 Space; W/A/S/D every third block; 60 RAF per block",
+  "ticks": [
+    59,
+    119,
+    179,
+    239,
+    299,
+    359,
+    419,
+    479,
+    539,
+    599,
+    659,
+    719,
+    779,
+    839,
+    899,
+    959,
+    1019,
+    1079
+  ],
+  "cameraExcluded": "wall clock presentation only"
+}

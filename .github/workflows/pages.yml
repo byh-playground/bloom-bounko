@@ -37,7 +37,7 @@ jobs:
           cp controllers.js _site/controllers.js
           cp ultimates.js _site/ultimates.js
           cp preview.js _site/preview.js
-          cp mobile-tech.js _site/mobile-tech.js
+          cp tech-view.js _site/tech-view.js
           cp player-presentation.js _site/player-presentation.js
           cp i18n.js _site/i18n.js
           mkdir -p _site/locales
@@ -59,7 +59,7 @@ jobs:
               'drops_sha256': hashlib.sha256(pathlib.Path('_site/drops.js').read_bytes()).hexdigest(),
               'abilities_sha256': hashlib.sha256(pathlib.Path('_site/abilities.js').read_bytes()).hexdigest(),
               'player_presentation_sha256': hashlib.sha256(pathlib.Path('_site/player-presentation.js').read_bytes()).hexdigest(),
-              'mobile_tech_sha256': hashlib.sha256(pathlib.Path('_site/mobile-tech.js').read_bytes()).hexdigest(),
+              'tech_view_sha256': hashlib.sha256(pathlib.Path('_site/tech-view.js').read_bytes()).hexdigest(),
               'preview_sha256': hashlib.sha256(pathlib.Path('_site/preview.js').read_bytes()).hexdigest(),
               'ultimates_sha256': hashlib.sha256(pathlib.Path('_site/ultimates.js').read_bytes()).hexdigest(),
               'controllers_sha256': hashlib.sha256(pathlib.Path('_site/controllers.js').read_bytes()).hexdigest(),

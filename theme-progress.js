@@ -11,7 +11,8 @@ export class ThemeProgress {
   }
   required(id){const order=this.definitions.findIndex(theme=>theme.id===id);return order===0?0:order<0?Infinity:order+2;}
   count(id){return this.themes[id]?.bossDefeats||0;}
-  unlocked(id){return Object.hasOwn(this.themes,id)&&this.count(id)>=this.required(id);}
+  predecessor(id){return this.definitions[this.definitions.findIndex(theme=>theme.id===id)-1]??null;}
+  unlocked(id){return Object.hasOwn(this.themes,id)&&(this.required(id)===0||this.count(this.predecessor(id)?.id)>=this.required(id));}
   select(id){if(!this.unlocked(id)||this.selected===id)return false;this.selected=id;return true;}
   get startStage(){return this.definitions.find(theme=>theme.id===this.selected).unlockStage;}
   enter(id){if(Object.hasOwn(this.themes,id))this.themes[id].visited=true;}

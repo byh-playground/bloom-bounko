@@ -1066,8 +1066,8 @@ export default {
   "themeStart.unknown": "Undiscovered theme",
   "themeStart.explore": "Discover through play",
   "themeStart.firstStage": "Start at stage {{count}}",
-  "themeStart.locked": "Boss defeats {{count}} / {{required}} · locked",
+  "themeStart.locked": "{{theme}} boss defeats {{count}} / {{required}} · locked",
   "themeStart.selected": "Last choice · tap to start",
   "themeStart.ready": "Unlocked · tap to start",
-  "themeStart.help": "Start opens the theme list. Garden is always available. Additional themes unlock after defeating their bosses 3, 4 and 5 times respectively. Repeated segments count toward the active theme. Normal enemies, summons, entering, dying and previews do not count. A theme starts at its debut stage using your current growth and equipment. Old individual stage clears are not converted into boss defeats."
+  "themeStart.help": "Start opens the theme list. Garden is always available. Each additional theme requires 3, 4 or 5 boss defeats in the immediately preceding theme: Garden → Mycelium Cave (3), Mycelium Cave → Frost Garden (4), Frost Garden → Acid Marsh (5). A defeat is recorded only for the active theme; saved counts are never transferred or added to another theme. Normal enemies, summons, dying and previews do not count. A theme starts at its first stage with your current growth and equipment."
 };

@@ -1046,5 +1046,7 @@ export default {
   "ultimate.fireSeed.desc": "응축한 씨앗을 실제 곡사 투사체로 발사합니다. 착탄 반경{{radius,gameNumber}}에 공격력{{powerPercent,gameNumber}}% 피해를 주고 기존{{burnSeconds,gameNumber}}초 점화를 적용합니다.",
   "ultimate.acidFountain.name": "산성 분수",
   "ultimate.acidFountain.desc": "지점을 예고한 뒤 반경{{radius,gameNumber}} 산성 분수를{{fieldSeconds,gameNumber}}초 남깁니다.{{intervalSeconds,gameNumber}}초마다 공격력{{powerPercent,gameNumber}}% 피해와 기존 방어력{{armorPercent,gameNumber}}% 감소를 갱신합니다.",
-  "skill.wikiTitle": "장착 스킬"
+  "skill.wikiTitle": "장착 스킬",
+  "elite.evasion.hint": "양옆 꺾쇠가 밝은 적은 돌진을 피할 수 있어요. 표식이 꺼질 때 노리거나 얼려 보세요.",
+  "elite.evasion.help": "회피 엘리트는 양옆 작은 꺾쇠로 구분합니다. 몸이 낮아지고 밝아진 뒤 회피창이 열리며, 가까이 자신에게 실제 충돌할 돌진을 감지하면 덜 막힌 옆으로 한 번 임펄스 회피합니다. 창마다 최대 1회이고 무적·순간이동은 없습니다. 빗나가는 돌진에는 반응하지 않으며 빙결·공격 준비·도약·시전 중에는 회피로 행동을 끊지 않습니다."
 };

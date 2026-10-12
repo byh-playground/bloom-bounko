@@ -1046,5 +1046,7 @@ export default {
   "ultimate.fireSeed.desc": "Launch one real arcing seed. Its landing deals {{powerPercent,gameNumber}}% attack power within radius {{radius,gameNumber}} and applies the existing {{burnSeconds,gameNumber}}s ignition.",
   "ultimate.acidFountain.name": "Acid Fountain",
   "ultimate.acidFountain.desc": "Telegraph a point and leave a radius {{radius,gameNumber}} acid fountain for {{fieldSeconds,gameNumber}}s. Every {{intervalSeconds,gameNumber}}s it deals {{powerPercent,gameNumber}}% attack power and refreshes the existing {{armorPercent,gameNumber}}% armor reduction.",
-  "skill.wikiTitle": "Equippable skills"
+  "skill.wikiTitle": "Equippable skills",
+  "elite.evasion.hint": "Bright side chevrons mean this elite can dodge a dash. Strike when they dim, or freeze it.",
+  "elite.evasion.help": "Evasive elites have small side chevrons. A crouch and glow precede their window. When a nearby real dash is predicted to hit, they impulse sideways toward the clearer path, once per window. They gain no invulnerability or teleport. Misses do not trigger a dodge; frozen, preparing, leaping or casting units keep their existing actions."
 };

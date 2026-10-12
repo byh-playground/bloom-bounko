@@ -675,7 +675,7 @@ import {t as tr,language,setLanguage,onLanguageChanged,translateDocument,localiz
 
 const KIT = 'https://cdn.jsdelivr.net/gh/byh-playground/bloom-gamekit@d1e2c385033ad04a7a004cfbe9558948ef07a6d1/';
 const EXECUTION_KIT = 'https://cdn.jsdelivr.net/gh/byh-playground/bloom-gamekit@159746f50e819fdc9e8e3b9df102b542f7335f6d/';
-const VERSION = '0.19.0', BUILD_ID = '20261012T-runtime-cost'
+const VERSION = '0.20.0', BUILD_ID = '20261012T-skill-choreography'
 const $ = id => document.getElementById(id);
 document.querySelectorAll('[data-game-version]').forEach(el=>el.textContent='v'+VERSION);
 const loadtext = $('loadtext');translateDocument();document.title=tr('app.title');$('languageSelect').value=language();$('languageSelect').disabled=true;
@@ -2378,8 +2378,9 @@ try {
   const comboFx=$('comboFx'),comboFxCount=$('comboFxCount'),comboFxEcho=$('comboFxEcho'),comboScreen={};
     function ultimateTargets(range){const p=player.position;return enemies.filter(e=>e.alive&&hostile(playerUnit,e)&&Math.hypot(e.body.position.x-p.x,e.body.position.y-p.y)<=range&&contactWindow(player,e.body,false,1,1)&&clearCapabilityPath(p,e.body.position,6)).sort((a,b)=>Math.hypot(a.body.position.x-p.x,a.body.position.y-p.y)-Math.hypot(b.body.position.x-p.x,b.body.position.y-p.y));}
   function ultimateSafePoint(goal,from){return clearCapabilityPath(from,goal,C.player.radius)?{x:goal.x,y:goal.y}:{x:from.x,y:from.y};}
-  function consumeUltimateCosts(cost){if(combo<cost.comboHits||attackAmmo.charges<cost.ammo)return false;const slots=attackAmmo.readySlots.slice(0,cost.ammo);for(const slot of slots)attackAmmo.consume(slot);combo=0;return true;}
-  function beginUltimate(){endChain();shadow=null;pendingLaunch=null;launchRecoil=null;dashMotion=null;dashFlight=null;evadeMotion=null;attackOrigin=null;bufferedIntent=null;bufferedUntilMs=0;hitstopLeftMs=0;pending.length=0;input.releaseAll('ultimate');actions.consume();setAttackMode('ULTIMATE');}
+  // Reserve ammo now; hold the qualifying combo through the cast, then consume it once in endUltimate.
+  function consumeUltimateCosts(cost){if(combo<cost.comboHits||attackAmmo.charges<cost.ammo)return false;const slots=attackAmmo.readySlots.slice(0,cost.ammo);for(const slot of slots)attackAmmo.consume(slot);return true;}
+  function beginUltimate(){comboFxCount.textContent=comboFxEcho.textContent='×'+combo;endChain();shadow=null;pendingLaunch=null;launchRecoil=null;dashMotion=null;dashFlight=null;evadeMotion=null;attackOrigin=null;bufferedIntent=null;bufferedUntilMs=0;hitstopLeftMs=0;pending.length=0;input.releaseAll('ultimate');actions.consume();setAttackMode('ULTIMATE');}
   function endUltimate(reason){hitstopLeftMs=0;setSpeed(player,0,0);pending.length=0;bufferedIntent=null;input.releaseAll('ultimate-end');actions.consume();endChain();combo=0;if(mode==='ULTIMATE')beginReady();if(reason!=='complete')for(const shot of [...projectiles])if(shot.payload.kind==='ultimate')removeProjectile(shot);}
   function ultimateHit(target,power,state,push=0,floating=false,hitText=null){if(!target.alive||!ultimateRunner.active||!contactWindow(player,target.body,false,1,1))return 0;const source=hitText?{...playerUnit,attacker:playerUnit,presentation:{hitText}}:playerUnit;const damage=damageUnit(target,{raw:C.stats.attackPower*power,stats:C.stats,kind:'ultimate',floating},source);ultimateRunner.damage+=damage;
     if(damage>0){ultimateRunner.impact();ultimateRunner.effect({kind:'impact',strength:state.phase.impactSize??1,x1:target.body.position.x,y1:target.body.position.y,color:state.skill.color,lifeMs:220});if(target.alive&&push){const n=norm(target.body.position.x-player.position.x,target.body.position.y-player.position.y);applyImpulse(target.body,{x:n.x*push*target.body.mass,y:n.y*push*target.body.mass});}}return damage;}
@@ -3193,7 +3194,7 @@ try {
     if(C.debug.show)renderer.ellipse(p.x,p.y,C.enemy.chaseRadius,C.enemy.chaseRadius,[.3,.7,.6,.10],72);
     renderer.endFrame();
     // Position the hit counter in screen space using the same camera as the player.
-    const comboVisible=phase==='PLAYING'&&combo>0&&timeMs-lastComboHitAtMs<1100;
+    const comboVisible=phase==='PLAYING'&&combo>0&&(ultimateRunner.active||timeMs-lastComboHitAtMs<1100);
     comboFx.classList.toggle('active',comboVisible);
     if(comboVisible){renderer.worldToScreenInto(p.x+27,p.y-44,comboScreen);
       comboFx.style.transform=`translate3d(${comboScreen.x}px,${comboScreen.y}px,0) translate(-10%,-100%)`;
@@ -3711,7 +3712,7 @@ try {
         if(previewSkill)for(const event of events)if(event.action==='skill')ultimateRunner.tryStart(combo,attackAmmo.charges);
         step(events);
       },render(){render(tick*1000/C.sim.tps);},pause(){sfx.stopAll();},dispose(){sfx.stopAll();input.releaseAll();}};
-    },onEnd(){if(introScene){introMetrics.push({chapter:introChapter,atMs:timeMs,hits,kills,combo,ultimate:introScenes[introChapter].ultimate??null,ultimateDamage:ultimateRunner.damage,pets:petRoster.snapshot()});ultimateRunner.cancel('introEnd');}sfx.stopAll();}});
+    },onEnd(){if(introScene){introMetrics.push({chapter:introChapter,atMs:timeMs,hits,kills,combo,ultimate:introScenes[introChapter].ultimate??null,ultimateDamage:ultimateRunner.damage,pets:petRoster.snapshot()});}ultimateRunner.cancel(introScene?'introEnd':'previewEnd');sfx.stopAll();}});
     scenarioRunner.play();if(previewSkill)void sfx.unlock();
   }
   window.addEventListener('pagehide',()=>window.__bloomImpulse.dispose(),{once:true});

@@ -1,0 +1,116 @@
+{
+  "skills": {
+    "iceGarden": {
+      "damage": 105,
+      "hp": [
+        965,
+        965,
+        965
+      ],
+      "burnDamage": 0,
+      "starts": 1,
+      "comboRequirement": 3,
+      "rechargeHits": 12,
+      "noSkillHitRecharge": true,
+      "storageWrites": 0,
+      "fieldAndStatusExpired": true
+    },
+    "lightningChain": {
+      "damage": 205,
+      "hp": [
+        930,
+        955,
+        955,
+        955
+      ],
+      "burnDamage": 0,
+      "starts": 1,
+      "comboRequirement": 3,
+      "rechargeHits": 10,
+      "noSkillHitRecharge": true,
+      "storageWrites": 0,
+      "fieldAndStatusExpired": true
+    },
+    "fireSeed": {
+      "damage": 270,
+      "hp": [
+        882.9999999999993,
+        882.9999999999993,
+        882.9999999999993
+      ],
+      "burnDamage": 81.0000000000002,
+      "starts": 1,
+      "comboRequirement": 4,
+      "rechargeHits": 12,
+      "noSkillHitRecharge": true,
+      "storageWrites": 0,
+      "fieldAndStatusExpired": true
+    },
+    "acidFountain": {
+      "damage": 240,
+      "hp": [
+        920,
+        920,
+        920
+      ],
+      "burnDamage": 0,
+      "starts": 1,
+      "comboRequirement": 4,
+      "rechargeHits": 12,
+      "noSkillHitRecharge": true,
+      "storageWrites": 0,
+      "fieldAndStatusExpired": true
+    }
+  },
+  "targetLoss": {
+    "iceGarden": {
+      "beforeCommit": "targetLost",
+      "afterCommit": "complete"
+    },
+    "lightningChain": {
+      "beforeCommit": "targetLost",
+      "afterCommit": "complete"
+    },
+    "fireSeed": {
+      "beforeCommit": "targetLost",
+      "afterCommit": "complete"
+    },
+    "acidFountain": {
+      "beforeCommit": "targetLost",
+      "afterCommit": "complete"
+    }
+  },
+  "parity": {
+    "laserBloom": {
+      "ticks": 240,
+      "combatIdentical": true
+    },
+    "chainDrive": {
+      "ticks": 240,
+      "combatIdentical": true
+    },
+    "iceShatter": {
+      "ticks": 270,
+      "combatIdentical": true
+    }
+  },
+  "errors": [],
+  "requests": [],
+  "refreezeLimitPreserved": true,
+  "browser": "155.0.4283.45",
+  "ui": {
+    "mobile": {
+      "width": 390,
+      "height": 844
+    },
+    "desktop": {
+      "width": 1280,
+      "height": 800
+    },
+    "newNodes": 4,
+    "skillCatalog": 8,
+    "koEn": true,
+    "previewClose": true,
+    "skillTerminology": true
+  }
+}

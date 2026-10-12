@@ -1,6 +1,10 @@
 // BOUNKO owns scenarios and popup lifetime; the embedded game owns all combat.
 const ring=Array.from({length:6},(_,i)=>({x:Math.cos(i*Math.PI/3)*180,y:Math.sin(i*Math.PI/3)*180}));
 export const previewScenarios=Object.freeze({
+  iceGarden:{seed:82741,endTick:420,tech:['coldTouch','freezeTouch','iceShatter','iceGarden'],targets:[{x:150,y:0},{x:220,y:70},{x:230,y:-75}],camera:{x:145,y:0,width:620,height:560}},
+  lightningChain:{seed:82741,endTick:240,tech:['conduct','relayArc','lightningChain'],targets:[{x:120,y:0},{x:220,y:45},{x:310,y:-30},{x:385,y:40}],camera:{x:210,y:0,width:680,height:560}},
+  fireSeed:{seed:82741,endTick:360,tech:['ignite','spreadFlame','fireSeed'],targets:[{x:240,y:0},{x:290,y:65},{x:285,y:-70}],camera:{x:170,y:0,width:620,height:560}},
+  acidFountain:{seed:82741,endTick:480,tech:['acidTouch','acidPool','acidSpread','acidFountain'],targets:[{x:160,y:0,armor:40},{x:215,y:50,armor:40},{x:215,y:-65,armor:40}],camera:{x:160,y:0,width:620,height:560}},
  ...Object.fromEntries(['coldTouch','freezeTouch','iceShatter','acidTouch','acidPool','acidSpread'].map((id,i)=>[id,{seed:82741,endTick:270,elemental:true,dashDelayMs:0,tech:i<3?['coldTouch','freezeTouch','iceShatter'].slice(0,i+1):['acidTouch','acidPool','acidSpread'].slice(0,i-2),theme:i<3?'frostGarden':'acidMarsh',targets:[{x:0,y:-260,armor:40}],camera:{x:0,y:-140,width:680,height:600}}])),
   laserBloom:{seed:82741,endTick:240,targets:[{x:150,y:0},{x:300,y:-78},{x:450,y:-156},{x:290,y:130}],camera:{x:190,y:-70,width:900,height:600}},
   storm:{seed:82741,endTick:240,targets:ring,camera:{x:0,y:0,width:680,height:600}},

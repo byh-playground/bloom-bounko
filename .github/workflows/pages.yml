@@ -30,6 +30,7 @@ jobs:
           mkdir -p _site
           cp index.html _site/index.html
           cp pets.js _site/pets.js
+          cp stage-progress.js _site/stage-progress.js
           cp audio.js _site/audio.js
           cp abilities.js _site/abilities.js
           cp drops.js _site/drops.js
@@ -55,6 +56,7 @@ jobs:
               'build_id': re.search(r"BUILD_ID = '([^']+)'", html).group(1),
               'execution_sdk_commit': re.search(r"EXECUTION_KIT = 'https://cdn.jsdelivr.net/gh/byh-playground/bloom-gamekit@([^/]+)/'", html).group(1),
               'index_sha256': hashlib.sha256(data).hexdigest(),
+              'stage_progress_sha256': hashlib.sha256(pathlib.Path('_site/stage-progress.js').read_bytes()).hexdigest(),
               'pets_sha256': hashlib.sha256(pathlib.Path('_site/pets.js').read_bytes()).hexdigest(),
               'drops_sha256': hashlib.sha256(pathlib.Path('_site/drops.js').read_bytes()).hexdigest(),
               'abilities_sha256': hashlib.sha256(pathlib.Path('_site/abilities.js').read_bytes()).hexdigest(),

@@ -472,3 +472,49 @@ export const ConeBreathable=Base=>class ConeBreathable extends Base {
   }
   cancel(){this.coneBreath.phase='CANCELLED';super.cancel();}
 };
+
+// CAN-BE: a unit owns one periodic opportunity, independent from its attacks.
+export const eliteEvasionConfig={
+  selectionRate:.25,periodMs:3200,windowMs:860,warningMs:200,fadeMs:180,
+  prediction:{maxDistance:300,minSpeed:200,horizonMs:320,minLeadMs:55},
+  motion:{impulseSpeed:560,holdMs:180,maxSideDistance:80,clearancePadding:4,minClearance:46,observeMs:260},
+  presentation:{idleOpacity:.28,activeOpacity:.95,warningSquash:.12,warningGlow:.18,shakePx:1.2,shakeHz:9,trailMs:220,trailStepMs:40,trailOpacity:.22,markerPadding:10,hintRange:350,hintMs:1700}
+};
+export function evasionPhaseOffset(seed,id,periodMs){let h=Math.imul((seed^Math.imul(id,0x9e3779b1))>>>0,0x85ebca6b);h^=h>>>16;return (h>>>0)%periodMs;}
+export function forecastDashCollision(unit,dash,c){
+  if(!dash?.active)return null;const current=unit.adapter.evasionVelocity?.(unit)??unit.pre;const p=unit.body.position,r={x:p.x-dash.position.x,y:p.y-dash.position.y},v={x:dash.velocity.x-current.x,y:dash.velocity.y-current.y};
+  const distance=Math.hypot(r.x,r.y),speed=Math.hypot(v.x,v.y),radius=unit.body.circleRadius+dash.radius;
+  if(distance>c.maxDistance||speed<c.minSpeed||distance<=radius)return null;
+  const along=r.x*v.x+r.y*v.y,a=speed*speed,disc=along*along-a*(distance*distance-radius*radius);
+  if(along<=0||disc<0)return null;const seconds=(along-Math.sqrt(disc))/a;
+  if(seconds<c.minLeadMs/1000||seconds>c.horizonMs/1000)return null;
+  return {serial:dash.serial,timeMs:seconds*1000,distance,speed,side:{x:-v.y/speed,y:v.x/speed}};
+}
+export const Evasive=Base=>class Evasive extends Base{
+  constructor(...args){super(...args);const c=this.config.evasion;
+    this.evasion={config:c,offsetMs:evasionPhaseOffset(c.seed,this.unitId,c.periodMs),cycle:-1,phase:'REST',usedCycle:-1,lastThreatSerial:-1,clockMs:0,
+      motion:null,attempt:null,stats:{predicted:0,attempts:0,successes:0,failures:0,aborted:0,blockedSides:0},presentation:{markerOpacity:c.presentation.idleOpacity,squash:1,glow:0,shakeX:0}};
+  }
+  advanceEvasion(now){const s=this.evasion,c=s.config;s.clockMs=now;const phaseTime=(now+s.offsetMs)%c.periodMs;s.cycle=Math.floor((now+s.offsetMs)/c.periodMs);
+    s.phase=phaseTime<c.windowMs?(s.usedCycle===s.cycle?'SPENT':'OPEN'):phaseTime>=c.periodMs-c.warningMs?'WARNING':'REST';
+    const eligible=this.alive&&this.canAct&&this.state==='CHASE'&&this.spatial.feetZ<=0;
+    s.blocked=!eligible;const warn=eligible&&s.phase==='WARNING'?(phaseTime-(c.periodMs-c.warningMs))/c.warningMs:0,active=eligible&&s.phase==='OPEN';
+    const fade=eligible&&s.usedCycle!==s.cycle&&s.phase==='REST'&&phaseTime<c.windowMs+c.fadeMs?1-(phaseTime-c.windowMs)/c.fadeMs:0;
+    s.presentation={markerOpacity:s.phase==='SPENT'?0:c.presentation.idleOpacity+(c.presentation.activeOpacity-c.presentation.idleOpacity)*(active?1:Math.max(warn,fade)),
+      squash:1-warn*c.presentation.warningSquash,glow:warn*c.presentation.warningGlow,shakeX:active?Math.sin(now*.001*c.presentation.shakeHz*Math.PI*2)*c.presentation.shakePx:0};
+    if(s.motion){const m=s.motion;if(now-m.lastTrailMs>=c.presentation.trailStepMs&&now<m.untilMs){m.trail.push({x:this.body.position.x,y:this.body.position.y,z:this.spatial.feetZ,atMs:now});if(m.trail.length>2)m.trail.shift();m.lastTrailMs=now;}
+      if(now>=m.untilMs+c.presentation.trailMs)s.motion=null;}
+  }
+  step(dt,world){super.step(dt,world);const s=this.evasion,now=this.adapter.time();this.advanceEvasion(now);const dash=this.adapter.evasionDash(this);
+    if(s.attempt&&(now>=s.attempt.untilMs||!dash?.active||dash.serial!==s.attempt.serial)){const success=!s.attempt.hit;s.stats[success?'successes':'failures']++;this.adapter.evasionEvent(this,success?'success':'failure',s.attempt);s.attempt=null;}
+    const threat=forecastDashCollision(this,dash,s.config.prediction);if(!threat)return;
+    if(s.lastThreatSerial!==threat.serial){s.lastThreatSerial=threat.serial;s.stats.predicted++;this.adapter.evasionEvent(this,'predicted',threat);}
+    if(s.blocked||s.phase!=='OPEN'||s.attempt)return;
+    const side=this.adapter.evasionSide(this,threat);if(!side){s.stats.blockedSides++;return;}
+    s.usedCycle=s.cycle;s.stats.attempts++;s.attempt={serial:threat.serial,hit:false,untilMs:now+threat.timeMs+s.config.motion.observeMs};
+    s.motion={direction:side,untilMs:now+s.config.motion.holdMs,atMs:now,lastTrailMs:now,trail:[{x:this.body.position.x,y:this.body.position.y,z:this.spatial.feetZ,atMs:now}]};
+    this.adapter.evasionImpulse(this,side);this.adapter.evasionEvent(this,'attempt',threat);this.advanceEvasion(now);
+  }
+  evasionContact(serial){if(this.evasion.attempt?.serial===serial)this.evasion.attempt.hit=true;}
+  cancel(){const s=this.evasion;if(s?.attempt){s.stats.aborted++;this.adapter.evasionEvent(this,'aborted',s.attempt);s.attempt=null;}if(s)s.motion=null;super.cancel();}
+};

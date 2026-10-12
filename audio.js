@@ -78,3 +78,5 @@ Object.assign(audioConfig.sounds,{
  acidCharge:{category:'magic',priority:6,gapMs:0,layers:[tone(180,420,280,.10,'sine'),noise(260,.07,600)]},
  acidRelease:{category:'magic',priority:7,gapMs:0,layers:[noise(220,.15,1100),tone(330,100,220,.09,'triangle')]}
 });
+
+audioConfig.sounds.eliteEvade={category:'motion',priority:3,gapMs:80,layers:[noise(95,.075,2800),tone(650,310,90,.055,'triangle')]};

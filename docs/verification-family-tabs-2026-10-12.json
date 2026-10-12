@@ -1,0 +1,281 @@
+{
+  "startedAt": "2026-10-12T00:20:30.126Z",
+  "finishedAt": "2026-10-12T00:20:33.924Z",
+  "browser": "155.0.4283.45",
+  "checks": [
+    "Direct frost hash, all three nodes and both arrows",
+    "Real purchase consumes one point and updates parent/child states",
+    "Preview close restores selected tree/detail",
+    "AND prerequisites 0/2 → 1/2 → 2/2, cross-family chips and combo investment",
+    "Stats reuse original purchase button and prerequisite path",
+    "English, short height, direct hash reload/back and no navigation save mutation",
+    "PC graph/card restoration and mobile resize roundtrip"
+  ],
+  "errors": [],
+  "viewports": [
+    {
+      "label": "frost-ko-390x844",
+      "viewport": {
+        "w": 390,
+        "h": 844
+      },
+      "families": [
+        "chain",
+        "evade",
+        "shadow",
+        "motion",
+        "impact",
+        "lightning",
+        "fire",
+        "frost",
+        "acid",
+        "ultimate",
+        "stats"
+      ],
+      "rows": 2,
+      "minTouch": {
+        "width": 56.65625,
+        "height": 44
+      },
+      "allFamiliesVisible": true,
+      "treeBottom": 499.921875,
+      "detailTop": 505.921875,
+      "actionBottom": 775,
+      "body": {
+        "height": 844,
+        "width": 390
+      }
+    },
+    {
+      "label": "combination-ko",
+      "viewport": {
+        "w": 390,
+        "h": 844
+      },
+      "families": [
+        "chain",
+        "evade",
+        "shadow",
+        "motion",
+        "impact",
+        "lightning",
+        "fire",
+        "frost",
+        "acid",
+        "ultimate",
+        "stats"
+      ],
+      "rows": 2,
+      "minTouch": {
+        "width": 56.65625,
+        "height": 44
+      },
+      "allFamiliesVisible": true,
+      "treeBottom": 499.921875,
+      "detailTop": 505.921875,
+      "actionBottom": 775,
+      "body": {
+        "height": 844,
+        "width": 390
+      }
+    },
+    {
+      "label": "evade-eight-nodes",
+      "viewport": {
+        "w": 390,
+        "h": 844
+      },
+      "families": [
+        "chain",
+        "evade",
+        "shadow",
+        "motion",
+        "impact",
+        "lightning",
+        "fire",
+        "frost",
+        "acid",
+        "ultimate",
+        "stats"
+      ],
+      "rows": 2,
+      "minTouch": {
+        "width": 56.65625,
+        "height": 44
+      },
+      "allFamiliesVisible": true,
+      "treeBottom": 499.921875,
+      "detailTop": 505.921875,
+      "actionBottom": 775,
+      "body": {
+        "height": 844,
+        "width": 390
+      }
+    },
+    {
+      "label": "selected-last-node",
+      "viewport": {
+        "w": 390,
+        "h": 844
+      },
+      "families": [
+        "chain",
+        "evade",
+        "shadow",
+        "motion",
+        "impact",
+        "lightning",
+        "fire",
+        "frost",
+        "acid",
+        "ultimate",
+        "stats"
+      ],
+      "rows": 2,
+      "minTouch": {
+        "width": 56.65625,
+        "height": 44
+      },
+      "allFamiliesVisible": true,
+      "treeBottom": 499.921875,
+      "detailTop": 505.921875,
+      "actionBottom": 775,
+      "body": {
+        "height": 844,
+        "width": 390
+      }
+    },
+    {
+      "label": "frost-short-390x568",
+      "viewport": {
+        "w": 390,
+        "h": 568
+      },
+      "families": [
+        "chain",
+        "evade",
+        "shadow",
+        "motion",
+        "impact",
+        "lightning",
+        "fire",
+        "frost",
+        "acid",
+        "ultimate",
+        "stats"
+      ],
+      "rows": 2,
+      "minTouch": {
+        "width": 56.65625,
+        "height": 44
+      },
+      "allFamiliesVisible": true,
+      "treeBottom": 330,
+      "detailTop": 336,
+      "actionBottom": 499,
+      "body": {
+        "height": 568,
+        "width": 390
+      }
+    },
+    {
+      "label": "frost-short-en",
+      "viewport": {
+        "w": 390,
+        "h": 568
+      },
+      "families": [
+        "chain",
+        "evade",
+        "shadow",
+        "motion",
+        "impact",
+        "lightning",
+        "fire",
+        "frost",
+        "acid",
+        "ultimate",
+        "stats"
+      ],
+      "rows": 2,
+      "minTouch": {
+        "width": 56.65625,
+        "height": 44
+      },
+      "allFamiliesVisible": true,
+      "treeBottom": 330,
+      "detailTop": 336,
+      "actionBottom": 499,
+      "body": {
+        "height": 568,
+        "width": 390
+      }
+    },
+    {
+      "label": "combination-short-en",
+      "viewport": {
+        "w": 390,
+        "h": 568
+      },
+      "families": [
+        "chain",
+        "evade",
+        "shadow",
+        "motion",
+        "impact",
+        "lightning",
+        "fire",
+        "frost",
+        "acid",
+        "ultimate",
+        "stats"
+      ],
+      "rows": 2,
+      "minTouch": {
+        "width": 56.65625,
+        "height": 44
+      },
+      "allFamiliesVisible": true,
+      "treeBottom": 330,
+      "detailTop": 336,
+      "actionBottom": 499,
+      "body": {
+        "height": 568,
+        "width": 390
+      }
+    },
+    {
+      "label": "mobile-after-desktop",
+      "viewport": {
+        "w": 390,
+        "h": 844
+      },
+      "families": [
+        "chain",
+        "evade",
+        "shadow",
+        "motion",
+        "impact",
+        "lightning",
+        "fire",
+        "frost",
+        "acid",
+        "ultimate",
+        "stats"
+      ],
+      "rows": 2,
+      "minTouch": {
+        "width": 56.65625,
+        "height": 44
+      },
+      "allFamiliesVisible": true,
+      "treeBottom": 499.921875,
+      "detailTop": 505.921875,
+      "actionBottom": 775,
+      "body": {
+        "height": 844,
+        "width": 390
+      }
+    }
+  ]
+}

@@ -1,9 +1,10 @@
 import {t as tr} from './i18n.js';
 
-// A bounded mobile view of the game's existing records, cards and purchase events.
-export function createMobileTechView({root,records,groupName,onSelect,isOpen,getPoints}){
-  const media=matchMedia('(max-width:650px)'),groups=[...new Set(records.map(r=>r.group))],byId=new Map(records.map(r=>[r.id,r]));
+// A shared responsive view of the game's existing records, cards and purchase events.
+export function createTechView({root,records,groupName,onSelect,isOpen,getPoints}){
+  const groups=[...new Set(records.map(r=>r.group))],byId=new Map(records.map(r=>[r.id,r]));
   let group=groups[0],selected=null,shown=null,frame=0;
+  const positions=new Map();
   root.innerHTML='<nav id="techMobileFamilies" class="tech-mobile-families"></nav><div class="tech-mobile-toolbar"><p class="tech-mobile-hint"></p><output id="techMobilePoints"></output></div><div id="techMobileTree" class="tech-mobile-tree"><div class="tech-mini-forest"></div><svg class="tech-mini-links" aria-hidden="true"></svg></div><section id="techMobileDetail" class="tech-mobile-detail"><div class="tech-mobile-detail-content"></div><div id="techMobileActions" class="tech-mobile-actions"></div></section>';
   const family=root.querySelector('#techMobileFamilies'),icons={chain:'↻',evade:'⇢',shadow:'▰',motion:'➤',impact:'✳',lightning:'ϟ',fire:'♨',frost:'❄',acid:'◉',ultimate:'✦',stats:'+'},tree=root.querySelector('#techMobileTree'),forest=tree.querySelector('.tech-mini-forest'),links=tree.querySelector('svg'),detail=root.querySelector('#techMobileDetail'),content=detail.querySelector('.tech-mobile-detail-content'),actions=detail.querySelector('.tech-mobile-actions');
   const entries=()=>records.filter(r=>r.group===group);
@@ -30,13 +31,13 @@ export function createMobileTechView({root,records,groupName,onSelect,isOpen,get
       else{if(parts.length===1||!linear)section.style.gridColumn='1 / -1';for(const level of levels){const row=document.createElement('div');row.className='tech-mini-row';const peers=part.filter(r=>depth.get(r.id)===level);row.style.gridTemplateColumns='repeat('+peers.length+',minmax(0,1fr))';for(const record of peers)row.append(node(record));section.append(row);}}
       forest.append(section);}
   }
-  function drawLinks(){cancelAnimationFrame(frame);frame=requestAnimationFrame(()=>{if(!media.matches||!isOpen())return;links.replaceChildren();links.style.left=forest.offsetLeft+'px';links.style.top=forest.offsetTop+'px';links.setAttribute('width',forest.offsetWidth);links.setAttribute('height',forest.offsetHeight);const bounds=forest.getBoundingClientRect();
+  function drawLinks(reveal=true){cancelAnimationFrame(frame);frame=requestAnimationFrame(()=>{if(!isOpen())return;links.replaceChildren();links.style.left=forest.offsetLeft+'px';links.style.top=forest.offsetTop+'px';links.setAttribute('width',forest.offsetWidth);links.setAttribute('height',forest.offsetHeight);const bounds=forest.getBoundingClientRect();
     for(const record of entries()){const target=forest.querySelector('[data-node-id="'+record.id+'"]');for(const parent of parents(record)){if(byId.get(parent.id).group!==group)continue;const source=forest.querySelector('[data-node-id="'+parent.id+'"]');if(!source||!target)continue;const a=source.getBoundingClientRect(),b=target.getBoundingClientRect(),horizontal=target.closest('.tech-mini-path').dataset.flow==='horizontal';
       const x1=(horizontal?a.right:a.x+a.width/2)-bounds.x,y1=(horizontal?a.y+a.height/2:a.bottom)-bounds.y,x2=(horizontal?b.x:b.x+b.width/2)-bounds.x,y2=(horizontal?b.y+b.height/2:b.y)-bounds.y;
       const path=document.createElementNS('http://www.w3.org/2000/svg','path');path.dataset.source=parent.id;path.dataset.target=record.id;path.dataset.ready=String(parent.ready());path.setAttribute('d',horizontal?'M '+x1+' '+y1+' H '+x2:'M '+x1+' '+y1+' V '+((y1+y2)/2)+' H '+x2+' V '+y2);links.append(path);
       const arrow=document.createElementNS('http://www.w3.org/2000/svg','path');arrow.dataset.ready=String(parent.ready());arrow.setAttribute('d',horizontal?'M '+(x2-5)+' '+(y2-4)+' L '+x2+' '+y2+' L '+(x2-5)+' '+(y2+4):'M '+(x2-4)+' '+(y2-5)+' L '+x2+' '+y2+' L '+(x2+4)+' '+(y2-5));links.append(arrow);
     }}
-    const selectedNode=forest.querySelector('[data-node-id="'+selected+'"]');if(selectedNode){const a=selectedNode.getBoundingClientRect(),b=tree.getBoundingClientRect();if(a.top<b.top)tree.scrollTop+=a.top-b.top-8;else if(a.bottom>b.bottom)tree.scrollTop+=a.bottom-b.bottom+8;}
+    const selectedNode=forest.querySelector('[data-node-id="'+selected+'"]');if(reveal&&selectedNode){const a=selectedNode.getBoundingClientRect(),b=tree.getBoundingClientRect();if(a.top<b.top)tree.scrollTop+=a.top-b.top-8;else if(a.bottom>b.bottom)tree.scrollTop+=a.bottom-b.bottom+8;}
   });}
   function showDetail(chosen){if(shown?.record!==chosen){restore();content.replaceChildren();actions.replaceChildren();const anchor=document.createComment('mobile detail');chosen.card.before(anchor);shown={record:chosen,anchor};
       if(chosen.group==='stats'){actions.append(chosen.card);}else{content.append(chosen.card);const originalActions=chosen.card.querySelector('.tech-actions'),actionAnchor=document.createComment('mobile actions');originalActions.before(actionAnchor);actions.append(originalActions);Object.assign(shown,{actions:originalActions,actionsAnchor:actionAnchor});}content.scrollTop=0;}
@@ -46,11 +47,15 @@ export function createMobileTechView({root,records,groupName,onSelect,isOpen,get
     }else if(parents(chosen).length>1){const heading=document.createElement('p');heading.className='tech-mobile-recipe-title';heading.textContent=tr('tech.mobile.requires',{names:parents(chosen).map(p=>byId.get(p.id).label()).join(' + ')});chosen.card.querySelector('.tech-prereqs').before(heading);}
     detail.setAttribute('aria-label',chosen.label());
   }
-  function render(id=selected){if(!media.matches){restore();return;}if(!isOpen())return;const oldGroup=group,chosen=byId.get(id)??entries()[0];selected=chosen.id;group=chosen.group;
+  function render(id=selected){if(!isOpen())return;const oldGroup=group,chosen=byId.get(id)??byId.get(selected)??entries()[0],changed=selected!==chosen.id;
+    const focused=document.activeElement,focusKey=['data-family','data-mobile-select','data-mobile-prereq'].find(key=>focused?.hasAttribute(key)),focusValue=focusKey?focused.getAttribute(focusKey):null;
+    if(selected)positions.set(selected,{tree:tree.scrollTop,detail:content.scrollTop});
+    const saved=positions.get(chosen.id);selected=chosen.id;group=chosen.group;
     family.setAttribute('aria-label',tr('tech.mobile.family'));root.querySelector('.tech-mobile-hint').textContent=tr('tech.mobile.pathHint');root.querySelector('#techMobilePoints').textContent=tr('tech.mobile.points',{count:getPoints()});
     family.replaceChildren(...groups.map(value=>{const button=document.createElement('button');button.type='button';button.className='tech-family-tab';button.dataset.family=value;button.setAttribute('aria-pressed',String(value===group));button.setAttribute('aria-label',groupName(value));button.title=groupName(value);const icon=document.createElement('span'),name=document.createElement('span');icon.textContent=icons[value];icon.setAttribute('aria-hidden','true');name.textContent=tr('tech.mobile.short.'+value);button.append(icon,name);button.onclick=()=>{onSelect(records.find(r=>r.group===value).id,false);family.querySelector('[data-family="'+value+'"]')?.focus({preventScroll:true});};return button;}));
-    const oldScroll=oldGroup===group?tree.scrollTop:0;drawTree(entries());tree.scrollTop=oldScroll;showDetail(chosen);drawLinks();
+    const oldScroll=oldGroup===group?tree.scrollTop:0;drawTree(entries());tree.scrollTop=saved?.tree??oldScroll;showDetail(chosen);if(saved)content.scrollTop=saved.detail;drawLinks(changed&&!saved);
+    if(focusKey&&!focused.isConnected)root.querySelector('['+focusKey+'="'+focusValue+'"]')?.focus({preventScroll:true});
   }
-  const changed=()=>render(),resize=()=>{if(media.matches)drawLinks();};media.addEventListener('change',changed);window.addEventListener('resize',resize);
-  return{render,get active(){return media.matches;},focusSelection(){tree.querySelector('[aria-pressed=true]')?.focus({preventScroll:true});},dispose(){cancelAnimationFrame(frame);media.removeEventListener('change',changed);window.removeEventListener('resize',resize);restore();}};
+  const resize=()=>drawLinks();window.addEventListener('resize',resize);
+  return{render,focusSelection(){tree.querySelector('[aria-pressed=true]')?.focus({preventScroll:true});},dispose(){cancelAnimationFrame(frame);window.removeEventListener('resize',resize);restore();}};
 }

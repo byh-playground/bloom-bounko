@@ -1,0 +1,128 @@
+{
+  "baseline": "35e260f18eaa33cd33c0acd72f5cc9530a3d072f",
+  "version": "0.20.1",
+  "build": "20261012T-unified-tech",
+  "browser": "Edge 155, real DOM/WebGL",
+  "interaction": {
+    "elapsedMs": 7919.971299999999,
+    "results": [
+      {
+        "width": 390,
+        "groups": 11,
+        "directReloadHistory": true,
+        "andConditions": true,
+        "techPurchase": [
+          "echo",
+          "autoChain"
+        ],
+        "statPurchase": true,
+        "previewFocusScroll": true,
+        "historySelectionScroll": true,
+        "resize": true,
+        "noLegacyGraph": true,
+        "errors": []
+      },
+      {
+        "width": 1280,
+        "groups": 11,
+        "directReloadHistory": true,
+        "andConditions": true,
+        "techPurchase": [
+          "echo",
+          "autoChain"
+        ],
+        "statPurchase": true,
+        "previewFocusScroll": true,
+        "historySelectionScroll": true,
+        "resize": true,
+        "noLegacyGraph": true,
+        "errors": []
+      }
+    ]
+  },
+  "layouts": [
+    {
+      "width": 390,
+      "height": 568,
+      "language": "en",
+      "selection": "iceGarden",
+      "tabs": 11,
+      "minTabHeight": 44,
+      "noOverflow": true,
+      "noOverlap": true,
+      "errors": []
+    },
+    {
+      "width": 768,
+      "height": 844,
+      "language": "en",
+      "selection": "iceGarden",
+      "tabs": 11,
+      "minTabHeight": 44,
+      "noOverflow": true,
+      "noOverlap": true,
+      "errors": []
+    },
+    {
+      "width": 851,
+      "height": 650,
+      "language": "en",
+      "selection": "iceGarden",
+      "tabs": 11,
+      "minTabHeight": 44,
+      "noOverflow": true,
+      "noOverlap": true,
+      "errors": []
+    },
+    {
+      "width": 1920,
+      "height": 1080,
+      "language": "en",
+      "selection": "iceGarden",
+      "tabs": 11,
+      "minTabHeight": 44,
+      "noOverflow": true,
+      "noOverlap": true,
+      "errors": []
+    }
+  ],
+  "consumer": {
+    "passed": true,
+    "elapsedMs": 11526,
+    "budgetMs": 180000,
+    "viewports": [
+      390,
+      1280
+    ],
+    "navigation": true,
+    "preview": true,
+    "intro": true,
+    "storageUnchanged": true,
+    "combatSettings": true
+  },
+  "sourceComparison": {
+    "combatSimulationAndRendering": "byte-identical",
+    "purchaseHandlers": "byte-identical",
+    "modulesUnchanged": [
+      "abilities",
+      "controllers",
+      "ultimates",
+      "enemies",
+      "pets",
+      "player-presentation",
+      "audio"
+    ]
+  },
+  "removed": [
+    "global graph coordinate/rank layout",
+    "global SVG route/crossing/junction rendering",
+    "root centering handler",
+    "PC graph DOM/styles",
+    "breakpoint-specific renderer switching"
+  ],
+  "shared": "tech-view.js, existing card and purchase/preview event ownership",
+  "limitations": [
+    "Android physical device and Safari not tested",
+    "No FPS performance claim for UI layout change"
+  ]
+}

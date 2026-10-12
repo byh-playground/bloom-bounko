@@ -2,7 +2,13 @@
 
 블룸 세계관의 탑다운 2D 물리 액션 공 튕기기 게임입니다. 잔상을 보내 조준·충전하고, 타이밍에 맞춰 몸체를 돌진시켜 적과 충돌합니다. 전장을 탭해 구르며 피하고, 처치 후 지면 드롭을 자석으로 회수한 성장으로 기술과 기본 능력치를 강화합니다.
 
-게임·스타일·도움말·상세 위키는 `index.html`, 드롭 상태와 회수 이동은 `drops.js`, 소유·편성은 `pets.js`, 공통 Unit·능력은 `abilities.js`, 종·외형은 `enemies.js`, 목표·이동 의도는 `controllers.js`, 스킬 정의·장착·실행은 `ultimates.js`, 효과음 정의는 `audio.js`에 들어 있습니다. 현재 후보 **0.19.0**은 한국어·영어 UI/도움말/위키 전환과 저장 언어 우선 적용을 지원합니다. `i18n.js`는 공개 i18next 코어를 연결하고 `locales/ko.js`·`locales/en.js`는 표시 문구를 소유합니다. 장착 알은 110px 이상 뒤처지면 플레이어를 따라잡고 85px 안에서 원래 포메이션으로 복귀합니다. 클리어 후 회수 규칙은 그대로이며, 클리어 후 1.5초 동안 전체 지면 보상을 자석으로 끌어오고, 실제 도착분만 지급한 뒤 미회수분을 삭제합니다. 기존 처치 성장과 알은 가까이 가서 회수합니다. 자석 범위는 현재 플레이어 지름의2.5배이며 기본 대비+10%씩 투자합니다. 바깥 장착 알은 부드러운 가속·감쇠로 느슨하게 따라오고 정지하면 가볍게 떠 있습니다. 기존 공격·회피·전투 펫·알 확률·부화 조건은 유지합니다.
+게임·스타일·도움말·상세 위키는 `index.html`, 드롭 상태와 회수 이동은 `drops.js`, 소유·편성은 `pets.js`, 공통 Unit·능력은 `abilities.js`, 종·외형은 `enemies.js`, 목표·이동 의도는 `controllers.js`, 스킬 정의·장착·실행은 `ultimates.js`, 효과음 정의는 `audio.js`에 들어 있습니다. 현재 버전 **0.20.0**은 한국어·영어 UI/도움말/위키 전환과 저장 언어 우선 적용을 지원합니다. `i18n.js`는 공개 i18next 코어를 연결하고 `locales/ko.js`·`locales/en.js`는 표시 문구를 소유합니다. 장착 알은 110px 이상 뒤처지면 플레이어를 따라잡고 85px 안에서 원래 포메이션으로 복귀합니다. 클리어 후 회수 규칙은 그대로이며, 클리어 후 1.5초 동안 전체 지면 보상을 자석으로 끌어오고, 실제 도착분만 지급한 뒤 미회수분을 삭제합니다. 기존 처치 성장과 알은 가까이 가서 회수합니다. 자석 범위는 현재 플레이어 지름의2.5배이며 기본 대비+10%씩 투자합니다. 바깥 장착 알은 부드러운 가속·감쇠로 느슨하게 따라오고 정지하면 가볍게 떠 있습니다. 기존 공격·회피·전투 펫·알 확률·부화 조건은 유지합니다.
+
+## 전체 시전형 스킬 동선 (0.20.0)
+
+시전형 스킬 8개 모두 플레이어 본체가 적절한 위치로 이동한 뒤 준비·시전·복귀합니다. 스킬별 접근 방향·거리·시간·이징은 `ultimates.js`의 기존 sequence로 구분합니다. 벽·장애물·사거리를 지키며, 콤보는 시전 중 표시를 유지한 뒤 종료 때 소모합니다. 본게임·프리뷰·소개는 같은 실행을 공유하고, 적중형 패시브는 기존 타격 효과를 유지합니다.
+
+각 스킬의 동선, 생명주기, 성능 전용 변경과 연출 추가의 분리 측정, 실제 브라우저 검증 및 한계는 [시전 동선 검증 기록](docs/skill-choreography-2026-10-12.md)에 있습니다.
 
 ## 회피 엘리트 (0.19.0)
 
@@ -30,9 +36,17 @@ PR33의 최초 자동 발사 예약 수정까지 최신 main `e563e09`를 통합
 
 GameKit의 `navigation.js`가 해시/옵션·브라우저 이력·상태 구독을, `scenario.js`가 고정 tick 명령 타임라인·재생·pause·종료를 담당합니다. 기존 `index.html`의 hash 파싱·URL 생성·popstate/hashchange 중복 처리와 소개 이벤트 cursor를 제거했습니다. 메뉴 UI/선택/스크롤/포커스·게임 입력·구매·실제 전투/Renderer는 Bounko가 소유하며, 프리뷰/소개는 기존 격리 iframe을 유지합니다. 재시작/반복은 새 iframe 게임 인스턴스로 복원하고 닫기는 오디오·입력·RAF·WebGL 자원을 정리합니다.
 
-실행 모듈 dist는 `159746f50e819fdc9e8e3b9df102b542f7335f6d`에 고정했습니다. navigation SHA-256 `92c387dcfa8af47beb3544f4a16121bbfc8fa9831052b33ce07076dd733c81d3`, scenario SHA-256 `93fd504ad62a2d23691f9afeb897abb10b3f871a4aa0a5cfadec762cf4bd24b8`이며 공개 파일을 manifest 및 로컬 검증 번들과 대조했습니다. 기존 rendering/input/audio 버전은 유지합니다. 배포 build.json의 execution_sdk_commit으로 사용 버전을 추적합니다.
+실행 모듈 dist는 `159746f50e819fdc9e8e3b9df102b542f7335f6d`에 고정했습니다. navigation SHA-256 `92c387dcfa8af47beb3544f4a16121bbfc8fa9831052b33ce07076dd733c81d3`, scenario SHA-256 `93fd504ad62a2d23691f9afeb897abb10b3f871a4aa0a5cfadec762cf4bd24b8`이며 공개 파일을 manifest 및 로컬 검증 번들과 대조했습니다. rendering/input/simloop/camera의 기존 핀은 유지하며, 동일 바이트인 audio는 위 dist로 통일했습니다. 배포 build.json의 execution_sdk_commit으로 사용 버전을 추적합니다.
 
 GameKit 저장소의 `npm run test:consumer`가 공개 Bounko의 모바일/PC 메뉴·프리뷰·소개·저장 불변·전투 설정 복귀를 검사합니다. `BOUNKO_URL`로 로컬 검증 서버를 지정할 수 있습니다. 실제 결과와 성능 표본/미검증 범위는 통합 PR에 기록합니다. 녹화 인코더는 추가하지 않았습니다.
+
+## 모듈 대조와 목표 선택 비용 정리
+
+최신 GameKit dist와 실제 파일/소스를 대조했습니다. Bounko의 Renderer2D 본체는 변경이 없고 최신 rendering 번들의 증가분은 사용하지 않는 Mesh API입니다. simloop 변경의 대부분도 미사용 LocalInputPreview이며 현재 고정 실행 경로를 바꿀 필요가 없어 두 핀을 유지합니다. input/camera/audio는 바이트가 같고, audio만 실행 모듈과 같은 dist SHA로 맞춰 별도 배포 revision 하나를 줄였습니다. 일반 Unit에 전용 보간 엔진이나 confirmed 표현 journal을 붙이지 않습니다. 현재 로컬 게임에는 그 비용을 상쇄할 재실행/확정 중복 문제의 근거가 없습니다.
+
+controllers.js의 몹·펫·소환물 최근접 목표 선택을 하나의 단일 순회로 통일하고, 치유 대상의 결손 비율/거리 우선순위도 정렬 없이 선택합니다. 탐지 반경의 엄격/포함 경계와 같은 점수의 기존 순서를 보존합니다. world.targets의 snapshot은 공격 도중 spawn/death 의미를 유지하기 위해 그대로 둡니다. Unit IS-A 본체, controller/presentation HAS-A, 공격/회피 CAN-BE mixin 구조와 게임 알고리즘 소유권은 유지합니다.
+
+동작/저장/표현을 바꾸지 않는 내부 정리이므로 버전 0.19.0을 유지합니다. [검증·비용·유지 근거](docs/verification-runtime-cost-2026-10-12.json)를 참조하세요.
 
 ## 실행
 

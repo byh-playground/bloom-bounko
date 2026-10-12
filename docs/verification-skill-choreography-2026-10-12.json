@@ -1,0 +1,2198 @@
+{
+  "baseline": "09d7a08",
+  "version": "0.20.0",
+  "build": "20261012T-skill-choreography",
+  "scope": "8 cast skills; on-hit passives remain attached to normal hits",
+  "definitions": {
+    "iceGarden": [
+      {
+        "id": "move",
+        "durationMs": 240,
+        "move": "approach",
+        "easing": "smoother",
+        "timeScale": 1
+      },
+      {
+        "id": "condense",
+        "durationMs": 300,
+        "move": "hold",
+        "easing": "smooth",
+        "timeScale": 1
+      },
+      {
+        "id": "release",
+        "durationMs": 180,
+        "move": "hold",
+        "easing": "smooth",
+        "timeScale": 1
+      },
+      {
+        "id": "afterglow",
+        "durationMs": 260,
+        "move": "return",
+        "easing": "smoother",
+        "timeScale": 1
+      }
+    ],
+    "lightningChain": [
+      {
+        "id": "move",
+        "durationMs": 200,
+        "move": "side",
+        "easing": "outCubic",
+        "timeScale": 1
+      },
+      {
+        "id": "condense",
+        "durationMs": 220,
+        "move": "hold",
+        "easing": "smooth",
+        "timeScale": 1
+      },
+      {
+        "id": "release",
+        "durationMs": 280,
+        "move": "hold",
+        "easing": "smooth",
+        "timeScale": 1
+      },
+      {
+        "id": "afterglow",
+        "durationMs": 240,
+        "move": "return",
+        "easing": "outCubic",
+        "timeScale": 1
+      }
+    ],
+    "fireSeed": [
+      {
+        "id": "move",
+        "durationMs": 260,
+        "move": "recoil",
+        "easing": "smoother",
+        "timeScale": 1
+      },
+      {
+        "id": "condense",
+        "durationMs": 300,
+        "move": "hold",
+        "easing": "smooth",
+        "timeScale": 1
+      },
+      {
+        "id": "release",
+        "durationMs": 600,
+        "move": "hold",
+        "easing": "smooth",
+        "timeScale": 1
+      },
+      {
+        "id": "afterglow",
+        "durationMs": 300,
+        "move": "return",
+        "easing": "smoother",
+        "timeScale": 1
+      }
+    ],
+    "acidFountain": [
+      {
+        "id": "move",
+        "durationMs": 240,
+        "move": "side",
+        "easing": "smooth",
+        "timeScale": 1
+      },
+      {
+        "id": "condense",
+        "durationMs": 280,
+        "move": "hold",
+        "easing": "smooth",
+        "timeScale": 1
+      },
+      {
+        "id": "release",
+        "durationMs": 220,
+        "move": "hold",
+        "easing": "smooth",
+        "timeScale": 1
+      },
+      {
+        "id": "afterglow",
+        "durationMs": 280,
+        "move": "return",
+        "easing": "smooth",
+        "timeScale": 1
+      }
+    ],
+    "laserBloom": [
+      {
+        "id": "move",
+        "durationMs": 220,
+        "move": "side",
+        "easing": "smooth",
+        "timeScale": 1
+      },
+      {
+        "id": "condense",
+        "durationMs": 600,
+        "move": "hold",
+        "easing": "smooth",
+        "timeScale": 1
+      },
+      {
+        "id": "release",
+        "durationMs": 800,
+        "move": "recoil",
+        "easing": "smooth",
+        "timeScale": 1
+      },
+      {
+        "id": "recoil",
+        "durationMs": 130,
+        "move": "recoil",
+        "easing": "smooth",
+        "timeScale": 1
+      },
+      {
+        "id": "afterglow",
+        "durationMs": 240,
+        "move": "return",
+        "easing": "smooth",
+        "timeScale": 1
+      }
+    ],
+    "storm": [
+      {
+        "id": "move",
+        "durationMs": 240,
+        "move": "side",
+        "easing": "smooth",
+        "timeScale": 1
+      },
+      {
+        "id": "condense",
+        "durationMs": 280,
+        "move": "hold",
+        "easing": "smooth",
+        "timeScale": 1
+      },
+      {
+        "id": "release",
+        "durationMs": 880,
+        "move": "orbit",
+        "easing": "smooth",
+        "timeScale": 0.9
+      },
+      {
+        "id": "afterglow",
+        "durationMs": 260,
+        "move": "return",
+        "easing": "smooth",
+        "timeScale": 1
+      }
+    ],
+    "chainDrive": [
+      {
+        "id": "move",
+        "durationMs": 220,
+        "move": "recoil",
+        "easing": "outCubic",
+        "timeScale": 1
+      },
+      {
+        "id": "condense",
+        "durationMs": 220,
+        "move": "hold",
+        "easing": "smooth",
+        "timeScale": 1
+      },
+      {
+        "id": "release",
+        "durationMs": 90,
+        "move": "target",
+        "easing": "smooth",
+        "timeScale": 1
+      },
+      {
+        "id": "impact",
+        "durationMs": 75,
+        "move": "hold",
+        "easing": "smooth",
+        "timeScale": 0.8
+      },
+      {
+        "id": "release",
+        "durationMs": 90,
+        "move": "target",
+        "easing": "smooth",
+        "timeScale": 1
+      },
+      {
+        "id": "impact",
+        "durationMs": 75,
+        "move": "hold",
+        "easing": "smooth",
+        "timeScale": 0.8
+      },
+      {
+        "id": "release",
+        "durationMs": 90,
+        "move": "target",
+        "easing": "smooth",
+        "timeScale": 1
+      },
+      {
+        "id": "impact",
+        "durationMs": 75,
+        "move": "hold",
+        "easing": "smooth",
+        "timeScale": 0.8
+      },
+      {
+        "id": "afterglow",
+        "durationMs": 420,
+        "move": "return",
+        "easing": "smooth",
+        "timeScale": 1
+      }
+    ],
+    "elasticBlast": [
+      {
+        "id": "move",
+        "durationMs": 260,
+        "move": "approach",
+        "easing": "smoother",
+        "timeScale": 1
+      },
+      {
+        "id": "condense",
+        "durationMs": 400,
+        "move": "hold",
+        "easing": "smooth",
+        "timeScale": 0.9
+      },
+      {
+        "id": "release",
+        "durationMs": 420,
+        "move": "hold",
+        "easing": "smooth",
+        "timeScale": 0.85
+      },
+      {
+        "id": "afterglow",
+        "durationMs": 320,
+        "move": "return",
+        "easing": "smoother",
+        "timeScale": 1
+      }
+    ]
+  },
+  "skills": {
+    "browser": "155.0.4283.45",
+    "results": [
+      {
+        "id": "iceGarden",
+        "phases": [
+          {
+            "key": "move:approach",
+            "start": 1,
+            "position": {
+              "x": 750.1203927217094,
+              "y": 750
+            },
+            "origin": {
+              "x": 750,
+              "y": 750
+            },
+            "combo": 3
+          },
+          {
+            "key": "condense:hold",
+            "start": 15,
+            "position": {
+              "x": 790,
+              "y": 750
+            },
+            "origin": {
+              "x": 750,
+              "y": 750
+            },
+            "combo": 3
+          },
+          {
+            "key": "release:hold",
+            "start": 33,
+            "position": {
+              "x": 790,
+              "y": 750
+            },
+            "origin": {
+              "x": 750,
+              "y": 750
+            },
+            "combo": 3
+          },
+          {
+            "key": "afterglow:return",
+            "start": 44,
+            "position": {
+              "x": 790,
+              "y": 750
+            },
+            "origin": {
+              "x": 750,
+              "y": 750
+            },
+            "combo": 3
+          }
+        ],
+        "end": {
+          "x": 750,
+          "y": 750
+        },
+        "returnGap": 0,
+        "damage": 105,
+        "deterministic": true,
+        "storageWrites": 0,
+        "rafAfterDispose": 0
+      },
+      {
+        "id": "lightningChain",
+        "phases": [
+          {
+            "key": "move:side",
+            "start": 1,
+            "position": {
+              "x": 750,
+              "y": 736.6747685185185
+            },
+            "origin": {
+              "x": 750,
+              "y": 750
+            },
+            "combo": 3
+          },
+          {
+            "key": "condense:hold",
+            "start": 13,
+            "position": {
+              "x": 750,
+              "y": 692
+            },
+            "origin": {
+              "x": 750,
+              "y": 750
+            },
+            "combo": 3
+          },
+          {
+            "key": "release:hold",
+            "start": 27,
+            "position": {
+              "x": 750,
+              "y": 692
+            },
+            "origin": {
+              "x": 750,
+              "y": 750
+            },
+            "combo": 3
+          },
+          {
+            "key": "afterglow:return",
+            "start": 44,
+            "position": {
+              "x": 750,
+              "y": 692
+            },
+            "origin": {
+              "x": 750,
+              "y": 750
+            },
+            "combo": 3
+          }
+        ],
+        "end": {
+          "x": 750,
+          "y": 750
+        },
+        "returnGap": 0,
+        "damage": 205,
+        "deterministic": true,
+        "storageWrites": 0,
+        "rafAfterDispose": 0
+      },
+      {
+        "id": "fireSeed",
+        "phases": [
+          {
+            "key": "move:recoil",
+            "start": 1,
+            "position": {
+              "x": 749.8472139386906,
+              "y": 750
+            },
+            "origin": {
+              "x": 750,
+              "y": 750
+            },
+            "combo": 4
+          },
+          {
+            "key": "condense:hold",
+            "start": 16,
+            "position": {
+              "x": 686,
+              "y": 750
+            },
+            "origin": {
+              "x": 750,
+              "y": 750
+            },
+            "combo": 4
+          },
+          {
+            "key": "release:hold",
+            "start": 34,
+            "position": {
+              "x": 686,
+              "y": 750
+            },
+            "origin": {
+              "x": 750,
+              "y": 750
+            },
+            "combo": 4
+          },
+          {
+            "key": "afterglow:return",
+            "start": 70,
+            "position": {
+              "x": 686,
+              "y": 750
+            },
+            "origin": {
+              "x": 750,
+              "y": 750
+            },
+            "combo": 4
+          }
+        ],
+        "end": {
+          "x": 750,
+          "y": 750
+        },
+        "returnGap": 0,
+        "damage": 270,
+        "deterministic": true,
+        "storageWrites": 0,
+        "rafAfterDispose": 0
+      },
+      {
+        "id": "acidFountain",
+        "phases": [
+          {
+            "key": "move:side",
+            "start": 1,
+            "position": {
+              "x": 750,
+              "y": 750.8830589849108
+            },
+            "origin": {
+              "x": 750,
+              "y": 750
+            },
+            "combo": 4
+          },
+          {
+            "key": "condense:hold",
+            "start": 15,
+            "position": {
+              "x": 750,
+              "y": 814
+            },
+            "origin": {
+              "x": 750,
+              "y": 750
+            },
+            "combo": 4
+          },
+          {
+            "key": "release:hold",
+            "start": 32,
+            "position": {
+              "x": 750,
+              "y": 814
+            },
+            "origin": {
+              "x": 750,
+              "y": 750
+            },
+            "combo": 4
+          },
+          {
+            "key": "afterglow:return",
+            "start": 46,
+            "position": {
+              "x": 750,
+              "y": 814
+            },
+            "origin": {
+              "x": 750,
+              "y": 750
+            },
+            "combo": 4
+          }
+        ],
+        "end": {
+          "x": 750,
+          "y": 750
+        },
+        "returnGap": 0,
+        "damage": 21,
+        "deterministic": true,
+        "storageWrites": 0,
+        "rafAfterDispose": 0
+      },
+      {
+        "id": "laserBloom",
+        "phases": [
+          {
+            "key": "move:side",
+            "start": 1,
+            "position": {
+              "x": 750,
+              "y": 751.2751481759747
+            },
+            "origin": {
+              "x": 750,
+              "y": 750
+            },
+            "combo": 5
+          },
+          {
+            "key": "condense:hold",
+            "start": 14,
+            "position": {
+              "x": 750,
+              "y": 828
+            },
+            "origin": {
+              "x": 750,
+              "y": 750
+            },
+            "combo": 5
+          },
+          {
+            "key": "release:recoil",
+            "start": 50,
+            "position": {
+              "x": 750,
+              "y": 828
+            },
+            "origin": {
+              "x": 750,
+              "y": 750
+            },
+            "combo": 5
+          },
+          {
+            "key": "recoil:recoil",
+            "start": 99,
+            "position": {
+              "x": 735.8045311802465,
+              "y": 835.3816437862719
+            },
+            "origin": {
+              "x": 750,
+              "y": 750
+            },
+            "combo": 5
+          },
+          {
+            "key": "afterglow:return",
+            "start": 107,
+            "position": {
+              "x": 730.4812303728389,
+              "y": 838.1497602061238
+            },
+            "origin": {
+              "x": 750,
+              "y": 750
+            },
+            "combo": 5
+          }
+        ],
+        "end": {
+          "x": 750,
+          "y": 750
+        },
+        "returnGap": 0,
+        "damage": 494.99999999999994,
+        "deterministic": true,
+        "storageWrites": 0,
+        "rafAfterDispose": 0
+      },
+      {
+        "id": "storm",
+        "phases": [
+          {
+            "key": "move:side",
+            "start": 1,
+            "position": {
+              "x": 750,
+              "y": 750.8830589849108
+            },
+            "origin": {
+              "x": 750,
+              "y": 750
+            },
+            "combo": 3
+          },
+          {
+            "key": "condense:hold",
+            "start": 15,
+            "position": {
+              "x": 750,
+              "y": 814
+            },
+            "origin": {
+              "x": 750,
+              "y": 750
+            },
+            "combo": 3
+          },
+          {
+            "key": "release:orbit",
+            "start": 32,
+            "position": {
+              "x": 750,
+              "y": 814
+            },
+            "origin": {
+              "x": 750,
+              "y": 750
+            },
+            "combo": 3
+          },
+          {
+            "key": "afterglow:return",
+            "start": 91,
+            "position": {
+              "x": 750,
+              "y": 814
+            },
+            "origin": {
+              "x": 750,
+              "y": 750
+            },
+            "combo": 3
+          }
+        ],
+        "end": {
+          "x": 750,
+          "y": 750
+        },
+        "returnGap": 0,
+        "damage": 192,
+        "deterministic": true,
+        "storageWrites": 0,
+        "rafAfterDispose": 0
+      },
+      {
+        "id": "chainDrive",
+        "phases": [
+          {
+            "key": "move:recoil",
+            "start": 1,
+            "position": {
+              "x": 737.3706068954003,
+              "y": 750
+            },
+            "origin": {
+              "x": 750,
+              "y": 750
+            },
+            "combo": 4
+          },
+          {
+            "key": "condense:hold",
+            "start": 14,
+            "position": {
+              "x": 690,
+              "y": 750
+            },
+            "origin": {
+              "x": 750,
+              "y": 750
+            },
+            "combo": 4
+          },
+          {
+            "key": "release:target",
+            "start": 28,
+            "position": {
+              "x": 690,
+              "y": 750
+            },
+            "origin": {
+              "x": 750,
+              "y": 750
+            },
+            "combo": 4
+          },
+          {
+            "key": "impact:hold",
+            "start": 37,
+            "position": {
+              "x": 536.7451782967773,
+              "y": 750
+            },
+            "origin": {
+              "x": 750,
+              "y": 750
+            },
+            "combo": 4
+          },
+          {
+            "key": "release:target",
+            "start": 43,
+            "position": {
+              "x": 536.7451782967773,
+              "y": 750
+            },
+            "origin": {
+              "x": 750,
+              "y": 750
+            },
+            "combo": 4
+          },
+          {
+            "key": "impact:hold",
+            "start": 52,
+            "position": {
+              "x": 678.2793817601631,
+              "y": 575.8360455586378
+            },
+            "origin": {
+              "x": 750,
+              "y": 750
+            },
+            "combo": 4
+          },
+          {
+            "key": "release:target",
+            "start": 58,
+            "position": {
+              "x": 678.2793817601631,
+              "y": 575.8360455586378
+            },
+            "origin": {
+              "x": 750,
+              "y": 750
+            },
+            "combo": 4
+          },
+          {
+            "key": "impact:hold",
+            "start": 67,
+            "position": {
+              "x": 869.2636137607603,
+              "y": 594.115427318801
+            },
+            "origin": {
+              "x": 750,
+              "y": 750
+            },
+            "combo": 4
+          },
+          {
+            "key": "afterglow:return",
+            "start": 73,
+            "position": {
+              "x": 869.2636137607603,
+              "y": 594.115427318801
+            },
+            "origin": {
+              "x": 750,
+              "y": 750
+            },
+            "combo": 4
+          }
+        ],
+        "end": {
+          "x": 750,
+          "y": 750
+        },
+        "returnGap": 0,
+        "damage": 345,
+        "deterministic": true,
+        "storageWrites": 0,
+        "rafAfterDispose": 0
+      },
+      {
+        "id": "elasticBlast",
+        "phases": [
+          {
+            "key": "move:approach",
+            "start": 1,
+            "position": {
+              "x": 750.1671097545571,
+              "y": 750
+            },
+            "origin": {
+              "x": 750,
+              "y": 750
+            },
+            "combo": 4
+          },
+          {
+            "key": "condense:hold",
+            "start": 16,
+            "position": {
+              "x": 820,
+              "y": 750
+            },
+            "origin": {
+              "x": 750,
+              "y": 750
+            },
+            "combo": 4
+          },
+          {
+            "key": "release:hold",
+            "start": 43,
+            "position": {
+              "x": 820,
+              "y": 750
+            },
+            "origin": {
+              "x": 750,
+              "y": 750
+            },
+            "combo": 4
+          },
+          {
+            "key": "afterglow:return",
+            "start": 77,
+            "position": {
+              "x": 820,
+              "y": 750
+            },
+            "origin": {
+              "x": 750,
+              "y": 750
+            },
+            "combo": 4
+          }
+        ],
+        "end": {
+          "x": 750,
+          "y": 750
+        },
+        "returnGap": 0,
+        "damage": 840,
+        "deterministic": true,
+        "storageWrites": 0,
+        "rafAfterDispose": 0
+      }
+    ]
+  },
+  "equivalence": {
+    "base": "v0.20.0 repeated with identical seed and inputs",
+    "browser": "Edge",
+    "scenes": [
+      {
+        "query": "?preview=laserBloom",
+        "equal": true,
+        "summary": {
+          "id": "laserBloom",
+          "seed": 82741,
+          "tick": 240,
+          "paused": false,
+          "ended": true,
+          "hits": 30,
+          "damage": 494.99999999999994
+        },
+        "baseline": {
+          "cpuFrameMs": 677.9000000357628,
+          "initMs": 1068.4932999999999
+        },
+        "candidate": {
+          "cpuFrameMs": 615.1000000238419,
+          "initMs": 752.2462
+        },
+        "remainingRAF": 0
+      },
+      {
+        "query": "?preview=iceShatter",
+        "equal": true,
+        "summary": {
+          "id": "iceShatter",
+          "seed": 82741,
+          "tick": 270,
+          "paused": false,
+          "ended": true,
+          "hits": 2,
+          "damage": 0
+        },
+        "baseline": {
+          "cpuFrameMs": 262.30000001192093,
+          "initMs": 725.6141000000002
+        },
+        "candidate": {
+          "cpuFrameMs": 266.30000001192093,
+          "initMs": 688.9935999999998
+        },
+        "remainingRAF": 0
+      },
+      {
+        "query": "?preview=acidSpread",
+        "equal": true,
+        "summary": {
+          "id": "acidSpread",
+          "seed": 82741,
+          "tick": 270,
+          "paused": false,
+          "ended": true,
+          "hits": 5,
+          "damage": 0
+        },
+        "baseline": {
+          "cpuFrameMs": 326.30000001192093,
+          "initMs": 665.6275000000005
+        },
+        "candidate": {
+          "cpuFrameMs": 290.30000001192093,
+          "initMs": 601.0694999999996
+        },
+        "remainingRAF": 0
+      },
+      {
+        "query": "?preview=iceGarden",
+        "equal": true,
+        "summary": {
+          "id": "iceGarden",
+          "seed": 82741,
+          "tick": 420,
+          "paused": false,
+          "ended": true,
+          "hits": 3,
+          "damage": 105
+        },
+        "baseline": {
+          "cpuFrameMs": 764.8999999761581,
+          "initMs": 609.9841999999999
+        },
+        "candidate": {
+          "cpuFrameMs": 728.1000000238419,
+          "initMs": 573.0439000000006
+        },
+        "remainingRAF": 0
+      },
+      {
+        "query": "?preview=lightningChain",
+        "equal": true,
+        "summary": {
+          "id": "lightningChain",
+          "seed": 82741,
+          "tick": 240,
+          "paused": false,
+          "ended": true,
+          "hits": 4,
+          "damage": 205
+        },
+        "baseline": {
+          "cpuFrameMs": 446.19999998807907,
+          "initMs": 570.1586000000007
+        },
+        "candidate": {
+          "cpuFrameMs": 464.10000002384186,
+          "initMs": 584.2347000000009
+        },
+        "remainingRAF": 0
+      },
+      {
+        "query": "?preview=fireSeed",
+        "equal": true,
+        "summary": {
+          "id": "fireSeed",
+          "seed": 82741,
+          "tick": 360,
+          "paused": false,
+          "ended": true,
+          "hits": 45,
+          "damage": 270
+        },
+        "baseline": {
+          "cpuFrameMs": 660.3999999761581,
+          "initMs": 586.3677000000007
+        },
+        "candidate": {
+          "cpuFrameMs": 654.3000000119209,
+          "initMs": 582.2522000000008
+        },
+        "remainingRAF": 0
+      },
+      {
+        "query": "?preview=acidFountain",
+        "equal": true,
+        "summary": {
+          "id": "acidFountain",
+          "seed": 82741,
+          "tick": 480,
+          "paused": false,
+          "ended": true,
+          "hits": 24,
+          "damage": 189
+        },
+        "baseline": {
+          "cpuFrameMs": 803,
+          "initMs": 587.6832999999988
+        },
+        "candidate": {
+          "cpuFrameMs": 804.2999999523163,
+          "initMs": 579.9228000000003
+        },
+        "remainingRAF": 0
+      },
+      {
+        "query": "?intro=1",
+        "equal": true,
+        "summary": {
+          "timeMs": 28000.000000000004,
+          "tick": 1680,
+          "chapter": 6,
+          "ended": true,
+          "metrics": [
+            {
+              "chapter": 0,
+              "atMs": 4000.0000000000005,
+              "hits": 5,
+              "kills": 0,
+              "combo": 5,
+              "ultimate": null,
+              "ultimateDamage": 0,
+              "pets": {
+                "inventoryCount": 2,
+                "slots": [
+                  null,
+                  null
+                ],
+                "hits": 0,
+                "kills": 0,
+                "damage": 0,
+                "taken": 0,
+                "deaths": 0,
+                "revivals": 0,
+                "abilities": 0,
+                "supportHealing": 0,
+                "lastHit": null,
+                "actors": []
+              }
+            },
+            {
+              "chapter": 1,
+              "atMs": 10000,
+              "hits": 14,
+              "kills": 9,
+              "combo": 9,
+              "ultimate": null,
+              "ultimateDamage": 0,
+              "pets": {
+                "inventoryCount": 2,
+                "slots": [
+                  null,
+                  null
+                ],
+                "hits": 0,
+                "kills": 0,
+                "damage": 0,
+                "taken": 0,
+                "deaths": 0,
+                "revivals": 0,
+                "abilities": 0,
+                "supportHealing": 0,
+                "lastHit": null,
+                "actors": []
+              }
+            },
+            {
+              "chapter": 2,
+              "atMs": 12800,
+              "hits": 14,
+              "kills": 9,
+              "combo": 0,
+              "ultimate": "laserBloom",
+              "ultimateDamage": 494.99999999999994,
+              "pets": {
+                "inventoryCount": 2,
+                "slots": [
+                  null,
+                  null
+                ],
+                "hits": 0,
+                "kills": 0,
+                "damage": 0,
+                "taken": 0,
+                "deaths": 0,
+                "revivals": 0,
+                "abilities": 0,
+                "supportHealing": 0,
+                "lastHit": null,
+                "actors": []
+              }
+            },
+            {
+              "chapter": 3,
+              "atMs": 15400.000000000002,
+              "hits": 14,
+              "kills": 9,
+              "combo": 0,
+              "ultimate": "chainDrive",
+              "ultimateDamage": 840,
+              "pets": {
+                "inventoryCount": 2,
+                "slots": [
+                  null,
+                  null
+                ],
+                "hits": 0,
+                "kills": 0,
+                "damage": 0,
+                "taken": 0,
+                "deaths": 0,
+                "revivals": 0,
+                "abilities": 0,
+                "supportHealing": 0,
+                "lastHit": null,
+                "actors": []
+              }
+            },
+            {
+              "chapter": 4,
+              "atMs": 18000,
+              "hits": 14,
+              "kills": 9,
+              "combo": 0,
+              "ultimate": "elasticBlast",
+              "ultimateDamage": 1680,
+              "pets": {
+                "inventoryCount": 2,
+                "slots": [
+                  null,
+                  null
+                ],
+                "hits": 0,
+                "kills": 0,
+                "damage": 0,
+                "taken": 0,
+                "deaths": 0,
+                "revivals": 0,
+                "abilities": 0,
+                "supportHealing": 0,
+                "lastHit": null,
+                "actors": []
+              }
+            },
+            {
+              "chapter": 5,
+              "atMs": 24000,
+              "hits": 18,
+              "kills": 9,
+              "combo": 1,
+              "ultimate": null,
+              "ultimateDamage": 1680,
+              "pets": {
+                "inventoryCount": 2,
+                "slots": [
+                  1,
+                  2
+                ],
+                "hits": 14,
+                "kills": 0,
+                "damage": 876.8577777777778,
+                "taken": 0,
+                "deaths": 0,
+                "revivals": 0,
+                "abilities": 11,
+                "supportHealing": 0,
+                "lastHit": {
+                  "inventoryId": 2,
+                  "unitId": 37,
+                  "speciesId": "brute",
+                  "enemyId": 38,
+                  "damage": 40.91333333333334,
+                  "raw": 40.91333333333334,
+                  "atMs": 23833.333333333336
+                },
+                "actors": [
+                  {
+                    "id": 1,
+                    "inventoryId": 1,
+                    "unitId": 36,
+                    "kind": "pet",
+                    "speciesId": "lancer",
+                    "grade": 2,
+                    "state": "RECOVER",
+                    "hp": 486.00000000000006,
+                    "maxHp": 486.00000000000006,
+                    "x": 772.1410669531393,
+                    "y": 517.8552994176282,
+                    "z": 0,
+                    "velocity": null,
+                    "abilities": {
+                      "lunge": {
+                        "phase": "RECOVER"
+                      }
+                    },
+                    "reviveInMs": 0
+                  },
+                  {
+                    "id": 2,
+                    "inventoryId": 2,
+                    "unitId": 37,
+                    "kind": "pet",
+                    "speciesId": "brute",
+                    "grade": 2,
+                    "state": "SUNBEAM_FIRE",
+                    "hp": 599.4000000000001,
+                    "maxHp": 599.4000000000001,
+                    "x": 737.1068234533124,
+                    "y": 732.4209858595843,
+                    "z": 0,
+                    "velocity": null,
+                    "abilities": {},
+                    "reviveInMs": 0
+                  }
+                ]
+              }
+            },
+            {
+              "chapter": 6,
+              "atMs": 28000.000000000004,
+              "hits": 18,
+              "kills": 9,
+              "combo": 0,
+              "ultimate": null,
+              "ultimateDamage": 1680,
+              "pets": {
+                "inventoryCount": 2,
+                "slots": [
+                  null,
+                  null
+                ],
+                "hits": 0,
+                "kills": 0,
+                "damage": 0,
+                "taken": 0,
+                "deaths": 0,
+                "revivals": 0,
+                "abilities": 0,
+                "supportHealing": 0,
+                "lastHit": null,
+                "actors": []
+              }
+            }
+          ],
+          "hits": 18,
+          "kills": 9,
+          "combo": 0,
+          "ultimate": null,
+          "ultimateDamage": 1680,
+          "pets": {
+            "inventoryCount": 2,
+            "slots": [
+              null,
+              null
+            ],
+            "hits": 0,
+            "kills": 0,
+            "damage": 0,
+            "taken": 0,
+            "deaths": 0,
+            "revivals": 0,
+            "abilities": 0,
+            "supportHealing": 0,
+            "lastHit": null,
+            "actors": []
+          },
+          "seed": 28105
+        },
+        "baseline": {
+          "cpuFrameMs": 2643.399999976158,
+          "initMs": 545.9408999999978
+        },
+        "candidate": {
+          "cpuFrameMs": 2663.300000011921,
+          "initMs": 545.5563000000002
+        },
+        "remainingRAF": 0
+      }
+    ],
+    "errors": [],
+    "gpu": "not measured; CPU frame submission only",
+    "elapsedMs": 23830.9372
+  },
+  "faults": [
+    {
+      "id": "iceGarden",
+      "test": "loseTargets",
+      "passed": true,
+      "safe": true,
+      "reason": "targetLost",
+      "damage": 0,
+      "rafAfterDispose": 0,
+      "returnGap": 0
+    },
+    {
+      "id": "iceGarden",
+      "test": "die",
+      "passed": true,
+      "safe": true,
+      "reason": "death",
+      "damage": 0,
+      "rafAfterDispose": 0,
+      "returnGap": 40
+    },
+    {
+      "id": "iceGarden",
+      "test": "stage",
+      "passed": true,
+      "safe": true,
+      "reason": "stage",
+      "damage": 0,
+      "rafAfterDispose": 0,
+      "returnGap": 334.67692438941054
+    },
+    {
+      "id": "iceGarden",
+      "test": "dispose",
+      "passed": true,
+      "safe": true,
+      "reason": "dispose",
+      "damage": 0,
+      "rafAfterDispose": 0,
+      "returnGap": 40
+    },
+    {
+      "id": "iceGarden",
+      "test": "obstacle",
+      "passed": true,
+      "safe": true,
+      "reason": "complete",
+      "damage": 105,
+      "rafAfterDispose": 0,
+      "returnGap": 0
+    },
+    {
+      "id": "iceGarden",
+      "test": "boundary",
+      "passed": true,
+      "safe": true,
+      "reason": "complete",
+      "damage": 70,
+      "rafAfterDispose": 0,
+      "returnGap": 28.641145996021045
+    },
+    {
+      "id": "lightningChain",
+      "test": "loseTargets",
+      "passed": true,
+      "safe": true,
+      "reason": "targetLost",
+      "damage": 0,
+      "rafAfterDispose": 0,
+      "returnGap": 0
+    },
+    {
+      "id": "lightningChain",
+      "test": "die",
+      "passed": true,
+      "safe": true,
+      "reason": "death",
+      "damage": 0,
+      "rafAfterDispose": 0,
+      "returnGap": 58
+    },
+    {
+      "id": "lightningChain",
+      "test": "stage",
+      "passed": true,
+      "safe": true,
+      "reason": "stage",
+      "damage": 0,
+      "rafAfterDispose": 0,
+      "returnGap": 334.67692438941054
+    },
+    {
+      "id": "lightningChain",
+      "test": "dispose",
+      "passed": true,
+      "safe": true,
+      "reason": "dispose",
+      "damage": 0,
+      "rafAfterDispose": 0,
+      "returnGap": 58
+    },
+    {
+      "id": "lightningChain",
+      "test": "obstacle",
+      "passed": true,
+      "safe": true,
+      "reason": "complete",
+      "damage": 205,
+      "rafAfterDispose": 0,
+      "returnGap": 0
+    },
+    {
+      "id": "lightningChain",
+      "test": "boundary",
+      "passed": true,
+      "safe": true,
+      "reason": "complete",
+      "damage": 160,
+      "rafAfterDispose": 0,
+      "returnGap": 28.641145996021045
+    },
+    {
+      "id": "fireSeed",
+      "test": "loseTargets",
+      "passed": true,
+      "safe": true,
+      "reason": "targetLost",
+      "damage": 0,
+      "rafAfterDispose": 0,
+      "returnGap": 0
+    },
+    {
+      "id": "fireSeed",
+      "test": "die",
+      "passed": true,
+      "safe": true,
+      "reason": "death",
+      "damage": 0,
+      "rafAfterDispose": 0,
+      "returnGap": 64
+    },
+    {
+      "id": "fireSeed",
+      "test": "stage",
+      "passed": true,
+      "safe": true,
+      "reason": "stage",
+      "damage": 0,
+      "rafAfterDispose": 0,
+      "returnGap": 334.67692438941054
+    },
+    {
+      "id": "fireSeed",
+      "test": "dispose",
+      "passed": true,
+      "safe": true,
+      "reason": "dispose",
+      "damage": 0,
+      "rafAfterDispose": 0,
+      "returnGap": 64
+    },
+    {
+      "id": "fireSeed",
+      "test": "obstacle",
+      "passed": true,
+      "safe": true,
+      "reason": "complete",
+      "damage": 270,
+      "rafAfterDispose": 0,
+      "returnGap": 0
+    },
+    {
+      "id": "fireSeed",
+      "test": "boundary",
+      "passed": true,
+      "safe": true,
+      "reason": "complete",
+      "damage": 180,
+      "rafAfterDispose": 0,
+      "returnGap": 28.641145996021045
+    },
+    {
+      "id": "acidFountain",
+      "test": "loseTargets",
+      "passed": true,
+      "safe": true,
+      "reason": "targetLost",
+      "damage": 0,
+      "rafAfterDispose": 0,
+      "returnGap": 0
+    },
+    {
+      "id": "acidFountain",
+      "test": "die",
+      "passed": true,
+      "safe": true,
+      "reason": "death",
+      "damage": 0,
+      "rafAfterDispose": 0,
+      "returnGap": 64
+    },
+    {
+      "id": "acidFountain",
+      "test": "stage",
+      "passed": true,
+      "safe": true,
+      "reason": "stage",
+      "damage": 0,
+      "rafAfterDispose": 0,
+      "returnGap": 334.67692438941054
+    },
+    {
+      "id": "acidFountain",
+      "test": "dispose",
+      "passed": true,
+      "safe": true,
+      "reason": "dispose",
+      "damage": 0,
+      "rafAfterDispose": 0,
+      "returnGap": 64
+    },
+    {
+      "id": "acidFountain",
+      "test": "obstacle",
+      "passed": true,
+      "safe": true,
+      "reason": "complete",
+      "damage": 141,
+      "rafAfterDispose": 0,
+      "returnGap": 0
+    },
+    {
+      "id": "acidFountain",
+      "test": "boundary",
+      "passed": true,
+      "safe": true,
+      "reason": "complete",
+      "damage": 94,
+      "rafAfterDispose": 0,
+      "returnGap": 28.641145996020796
+    },
+    {
+      "id": "laserBloom",
+      "test": "loseTargets",
+      "passed": true,
+      "safe": true,
+      "reason": "targetLost",
+      "damage": 0,
+      "rafAfterDispose": 0,
+      "returnGap": 0
+    },
+    {
+      "id": "laserBloom",
+      "test": "die",
+      "passed": true,
+      "safe": true,
+      "reason": "death",
+      "damage": 0,
+      "rafAfterDispose": 0,
+      "returnGap": 78
+    },
+    {
+      "id": "laserBloom",
+      "test": "stage",
+      "passed": true,
+      "safe": true,
+      "reason": "stage",
+      "damage": 0,
+      "rafAfterDispose": 0,
+      "returnGap": 334.67692438941054
+    },
+    {
+      "id": "laserBloom",
+      "test": "dispose",
+      "passed": true,
+      "safe": true,
+      "reason": "dispose",
+      "damage": 0,
+      "rafAfterDispose": 0,
+      "returnGap": 78
+    },
+    {
+      "id": "laserBloom",
+      "test": "obstacle",
+      "passed": true,
+      "safe": true,
+      "reason": "complete",
+      "damage": 164.99999999999997,
+      "rafAfterDispose": 0,
+      "returnGap": 0
+    },
+    {
+      "id": "laserBloom",
+      "test": "boundary",
+      "passed": true,
+      "safe": true,
+      "reason": "complete",
+      "damage": 164.99999999999997,
+      "rafAfterDispose": 0,
+      "returnGap": 28.64114599602126
+    },
+    {
+      "id": "storm",
+      "test": "loseTargets",
+      "passed": true,
+      "safe": true,
+      "reason": "targetLost",
+      "damage": 0,
+      "rafAfterDispose": 0,
+      "returnGap": 0
+    },
+    {
+      "id": "storm",
+      "test": "die",
+      "passed": true,
+      "safe": true,
+      "reason": "death",
+      "damage": 0,
+      "rafAfterDispose": 0,
+      "returnGap": 64
+    },
+    {
+      "id": "storm",
+      "test": "stage",
+      "passed": true,
+      "safe": true,
+      "reason": "stage",
+      "damage": 0,
+      "rafAfterDispose": 0,
+      "returnGap": 334.67692438941054
+    },
+    {
+      "id": "storm",
+      "test": "dispose",
+      "passed": true,
+      "safe": true,
+      "reason": "dispose",
+      "damage": 0,
+      "rafAfterDispose": 0,
+      "returnGap": 64
+    },
+    {
+      "id": "storm",
+      "test": "obstacle",
+      "passed": true,
+      "safe": true,
+      "reason": "complete",
+      "damage": 168,
+      "rafAfterDispose": 0,
+      "returnGap": 0
+    },
+    {
+      "id": "storm",
+      "test": "boundary",
+      "passed": true,
+      "safe": true,
+      "reason": "complete",
+      "damage": 48,
+      "rafAfterDispose": 0,
+      "returnGap": 28.641145996020796
+    },
+    {
+      "id": "chainDrive",
+      "test": "loseTargets",
+      "passed": true,
+      "safe": true,
+      "reason": "targetLost",
+      "damage": 0,
+      "rafAfterDispose": 0,
+      "returnGap": 0
+    },
+    {
+      "id": "chainDrive",
+      "test": "die",
+      "passed": true,
+      "safe": true,
+      "reason": "death",
+      "damage": 0,
+      "rafAfterDispose": 0,
+      "returnGap": 60
+    },
+    {
+      "id": "chainDrive",
+      "test": "stage",
+      "passed": true,
+      "safe": true,
+      "reason": "stage",
+      "damage": 0,
+      "rafAfterDispose": 0,
+      "returnGap": 334.67692438941054
+    },
+    {
+      "id": "chainDrive",
+      "test": "dispose",
+      "passed": true,
+      "safe": true,
+      "reason": "dispose",
+      "damage": 0,
+      "rafAfterDispose": 0,
+      "returnGap": 60
+    },
+    {
+      "id": "chainDrive",
+      "test": "obstacle",
+      "passed": true,
+      "safe": true,
+      "reason": "complete",
+      "damage": 345,
+      "rafAfterDispose": 0,
+      "returnGap": 0
+    },
+    {
+      "id": "chainDrive",
+      "test": "boundary",
+      "passed": true,
+      "safe": true,
+      "reason": "complete",
+      "damage": 345,
+      "rafAfterDispose": 0,
+      "returnGap": 28.641145996021045
+    },
+    {
+      "id": "elasticBlast",
+      "test": "loseTargets",
+      "passed": true,
+      "safe": true,
+      "reason": "targetLost",
+      "damage": 0,
+      "rafAfterDispose": 0,
+      "returnGap": 0
+    },
+    {
+      "id": "elasticBlast",
+      "test": "die",
+      "passed": true,
+      "safe": true,
+      "reason": "death",
+      "damage": 0,
+      "rafAfterDispose": 0,
+      "returnGap": 70
+    },
+    {
+      "id": "elasticBlast",
+      "test": "stage",
+      "passed": true,
+      "safe": true,
+      "reason": "stage",
+      "damage": 0,
+      "rafAfterDispose": 0,
+      "returnGap": 334.67692438941054
+    },
+    {
+      "id": "elasticBlast",
+      "test": "dispose",
+      "passed": true,
+      "safe": true,
+      "reason": "dispose",
+      "damage": 0,
+      "rafAfterDispose": 0,
+      "returnGap": 70
+    },
+    {
+      "id": "elasticBlast",
+      "test": "obstacle",
+      "passed": true,
+      "safe": true,
+      "reason": "complete",
+      "damage": 700,
+      "rafAfterDispose": 0,
+      "returnGap": 0
+    },
+    {
+      "id": "elasticBlast",
+      "test": "boundary",
+      "passed": true,
+      "safe": true,
+      "reason": "complete",
+      "damage": 140,
+      "rafAfterDispose": 0,
+      "returnGap": 28.64114599602101
+    },
+    {
+      "id": "iceGarden",
+      "test": "rangeEdge",
+      "passed": true,
+      "safe": true,
+      "reason": "complete",
+      "damage": 32,
+      "rafAfterDispose": 0,
+      "returnGap": 0
+    },
+    {
+      "id": "iceGarden",
+      "test": "pointBlank",
+      "passed": true,
+      "safe": true,
+      "reason": "complete",
+      "damage": 32,
+      "rafAfterDispose": 0,
+      "returnGap": 0
+    },
+    {
+      "id": "lightningChain",
+      "test": "rangeEdge",
+      "passed": true,
+      "safe": true,
+      "reason": "complete",
+      "damage": 65,
+      "rafAfterDispose": 0,
+      "returnGap": 0
+    },
+    {
+      "id": "lightningChain",
+      "test": "pointBlank",
+      "passed": true,
+      "safe": true,
+      "reason": "complete",
+      "damage": 65,
+      "rafAfterDispose": 0,
+      "returnGap": 0
+    },
+    {
+      "id": "fireSeed",
+      "test": "rangeEdge",
+      "passed": true,
+      "safe": true,
+      "reason": "complete",
+      "damage": 83,
+      "rafAfterDispose": 0,
+      "returnGap": 0
+    },
+    {
+      "id": "fireSeed",
+      "test": "pointBlank",
+      "passed": true,
+      "safe": true,
+      "reason": "complete",
+      "damage": 83,
+      "rafAfterDispose": 0,
+      "returnGap": 0
+    },
+    {
+      "id": "acidFountain",
+      "test": "rangeEdge",
+      "passed": true,
+      "safe": true,
+      "reason": "complete",
+      "damage": 54,
+      "rafAfterDispose": 0,
+      "returnGap": 0
+    },
+    {
+      "id": "acidFountain",
+      "test": "pointBlank",
+      "passed": true,
+      "safe": true,
+      "reason": "complete",
+      "damage": 54,
+      "rafAfterDispose": 0,
+      "returnGap": 0
+    },
+    {
+      "id": "laserBloom",
+      "test": "rangeEdge",
+      "passed": true,
+      "safe": true,
+      "reason": "complete",
+      "damage": 152.77777777777774,
+      "rafAfterDispose": 0,
+      "returnGap": 0
+    },
+    {
+      "id": "laserBloom",
+      "test": "pointBlank",
+      "passed": true,
+      "safe": true,
+      "reason": "complete",
+      "damage": 152.77777777777774,
+      "rafAfterDispose": 0,
+      "returnGap": 0
+    },
+    {
+      "id": "storm",
+      "test": "rangeEdge",
+      "passed": true,
+      "safe": true,
+      "reason": "complete",
+      "damage": 0,
+      "rafAfterDispose": 0,
+      "returnGap": 0
+    },
+    {
+      "id": "storm",
+      "test": "pointBlank",
+      "passed": true,
+      "safe": true,
+      "reason": "complete",
+      "damage": 44,
+      "rafAfterDispose": 0,
+      "returnGap": 0
+    },
+    {
+      "id": "chainDrive",
+      "test": "rangeEdge",
+      "passed": true,
+      "safe": true,
+      "reason": "complete",
+      "damage": 106,
+      "rafAfterDispose": 0,
+      "returnGap": 0
+    },
+    {
+      "id": "chainDrive",
+      "test": "pointBlank",
+      "passed": true,
+      "safe": true,
+      "reason": "complete",
+      "damage": 106,
+      "rafAfterDispose": 0,
+      "returnGap": 0
+    },
+    {
+      "id": "elasticBlast",
+      "test": "rangeEdge",
+      "passed": true,
+      "safe": true,
+      "reason": "complete",
+      "damage": 130,
+      "rafAfterDispose": 0,
+      "returnGap": 0
+    },
+    {
+      "id": "elasticBlast",
+      "test": "pointBlank",
+      "passed": true,
+      "safe": true,
+      "reason": "complete",
+      "damage": 130,
+      "rafAfterDispose": 0,
+      "returnGap": 0
+    },
+    {
+      "id": "iceGarden",
+      "test": "targetLostAfterCommit",
+      "passed": true,
+      "safe": true,
+      "reason": "complete",
+      "damage": 105,
+      "rafAfterDispose": 0,
+      "returnGap": 0
+    },
+    {
+      "id": "lightningChain",
+      "test": "targetLostAfterCommit",
+      "passed": true,
+      "safe": true,
+      "reason": "complete",
+      "damage": 70,
+      "rafAfterDispose": 0,
+      "returnGap": 0
+    },
+    {
+      "id": "fireSeed",
+      "test": "targetLostAfterCommit",
+      "passed": true,
+      "safe": true,
+      "reason": "complete",
+      "damage": 0,
+      "rafAfterDispose": 0,
+      "returnGap": 0
+    },
+    {
+      "id": "acidFountain",
+      "test": "targetLostAfterCommit",
+      "passed": true,
+      "safe": true,
+      "reason": "complete",
+      "damage": 0,
+      "rafAfterDispose": 0,
+      "returnGap": 0
+    },
+    {
+      "id": "laserBloom",
+      "test": "targetLostAfterCommit",
+      "passed": true,
+      "safe": true,
+      "reason": "complete",
+      "damage": 49.499999999999986,
+      "rafAfterDispose": 0,
+      "returnGap": 0
+    },
+    {
+      "id": "storm",
+      "test": "targetLostAfterCommit",
+      "passed": true,
+      "safe": true,
+      "reason": "complete",
+      "damage": 0,
+      "rafAfterDispose": 0,
+      "returnGap": 0
+    },
+    {
+      "id": "chainDrive",
+      "test": "targetLostAfterCommit",
+      "passed": true,
+      "safe": true,
+      "reason": "complete",
+      "damage": 0,
+      "rafAfterDispose": 0,
+      "returnGap": 0
+    },
+    {
+      "id": "elasticBlast",
+      "test": "targetLostAfterCommit",
+      "passed": true,
+      "safe": true,
+      "reason": "complete",
+      "damage": 0,
+      "rafAfterDispose": 0,
+      "returnGap": 0
+    }
+  ],
+  "performance": {
+    "browser": "155.0.4283.45",
+    "viewport": "390x844",
+    "scenario": "intro 1680 fixed ticks; 1 warm-up + 3 measured, alternating order",
+    "gpuTime": "not measured",
+    "results": [
+      {
+        "trial": 0,
+        "folder": "choreography-baseline",
+        "sim": 361.30000126361847,
+        "render": 3224.9999982118607,
+        "steps": 1680,
+        "renders": 1681,
+        "start": 400.60000002384186,
+        "init": 497.10000002384186,
+        "total": 3603.899999976158,
+        "renderer": "ANGLE (NVIDIA, NVIDIA GeForce GTX 1660 Ti (0x00002191) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "raf": 0
+      },
+      {
+        "trial": 0,
+        "folder": "bounko",
+        "sim": 380.5000002384186,
+        "render": 3233.199999630451,
+        "steps": 1680,
+        "renders": 1681,
+        "start": 230,
+        "init": 273.19999998807907,
+        "total": 3632.399999976158,
+        "renderer": "ANGLE (NVIDIA, NVIDIA GeForce GTX 1660 Ti (0x00002191) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "raf": 0
+      },
+      {
+        "trial": 1,
+        "folder": "bounko",
+        "sim": 224.9000011086464,
+        "render": 2303.1999982595444,
+        "steps": 1680,
+        "renders": 1681,
+        "start": 184,
+        "init": 175.10000002384186,
+        "total": 2537.899999976158,
+        "renderer": "ANGLE (NVIDIA, NVIDIA GeForce GTX 1660 Ti (0x00002191) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "raf": 0
+      },
+      {
+        "trial": 1,
+        "folder": "choreography-baseline",
+        "sim": 223.69999915361404,
+        "render": 2262.300000488758,
+        "steps": 1680,
+        "renders": 1681,
+        "start": 207.30000001192093,
+        "init": 169.89999997615814,
+        "total": 2495.7000000476837,
+        "renderer": "ANGLE (NVIDIA, NVIDIA GeForce GTX 1660 Ti (0x00002191) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "raf": 0
+      },
+      {
+        "trial": 2,
+        "folder": "choreography-baseline",
+        "sim": 262.3000009059906,
+        "render": 2447.699999332428,
+        "steps": 1680,
+        "renders": 1681,
+        "start": 228.10000002384186,
+        "init": 166.5999999642372,
+        "total": 2722.7000000476837,
+        "renderer": "ANGLE (NVIDIA, NVIDIA GeForce GTX 1660 Ti (0x00002191) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "raf": 0
+      },
+      {
+        "trial": 2,
+        "folder": "bounko",
+        "sim": 216.29999923706055,
+        "render": 2249.200001001358,
+        "steps": 1680,
+        "renders": 1681,
+        "start": 187.5,
+        "init": 167.5,
+        "total": 2474.800000011921,
+        "renderer": "ANGLE (NVIDIA, NVIDIA GeForce GTX 1660 Ti (0x00002191) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "raf": 0
+      },
+      {
+        "trial": 3,
+        "folder": "bounko",
+        "sim": 233.59999960660934,
+        "render": 2456.7000005841255,
+        "steps": 1680,
+        "renders": 1681,
+        "start": 203.9000000357628,
+        "init": 170.89999997615814,
+        "total": 2700.899999976158,
+        "renderer": "ANGLE (NVIDIA, NVIDIA GeForce GTX 1660 Ti (0x00002191) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "raf": 0
+      },
+      {
+        "trial": 3,
+        "folder": "choreography-baseline",
+        "sim": 236.80000072717667,
+        "render": 2469.7999990582466,
+        "steps": 1680,
+        "renders": 1681,
+        "start": 229.10000002384186,
+        "init": 185.39999997615814,
+        "total": 2719.599999964237,
+        "renderer": "ANGLE (NVIDIA, NVIDIA GeForce GTX 1660 Ti (0x00002191) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "raf": 0
+      }
+    ]
+  },
+  "consumer": {
+    "passed": true,
+    "elapsedMs": 9065,
+    "viewports": [
+      390,
+      1280
+    ],
+    "routes": true,
+    "previewPauseResumeReplayClose": true,
+    "introReplayClose": true,
+    "storageUnchanged": true,
+    "combatSettings": true
+  },
+  "limitations": [
+    "GPU timing not measured; render is CPU submission time",
+    "Edge desktop hardware tested; Android physical device and Safari not tested",
+    "Intentional physical cast movement/timing changes combat positions; old-new combat equality claimed only for preceding runtime-only commit",
+    "Death, disposal and stage transition cancel in place; no teleport through collision geometry",
+    "Boundary fixture begins 35px inside polygon and can touch thick physical wall; physics settles to reachable point, not forced exact origin",
+    "Focused fault fixtures inject setup hooks into local HTML response only; shipped runtime has no fault hooks"
+  ],
+  "liveInput": {
+    "passed": true,
+    "input": "18 Space attacks; W/A/S/D every third block; 60 RAF per block",
+    "storageWriteKeysEqual": true,
+    "comparison": "90ea00b vs v0.20.0; camera wall time excluded; 1080 fixed ticks"
+  }
+}

@@ -53,6 +53,7 @@ jobs:
               'built_at_utc': datetime.datetime.now(datetime.timezone.utc).isoformat(),
               'version': re.search(r"VERSION = '([^']+)'", html).group(1),
               'build_id': re.search(r"BUILD_ID = '([^']+)'", html).group(1),
+              'execution_sdk_commit': re.search(r"EXECUTION_KIT = 'https://cdn.jsdelivr.net/gh/byh-playground/bloom-gamekit@([^/]+)/'", html).group(1),
               'index_sha256': hashlib.sha256(data).hexdigest(),
               'pets_sha256': hashlib.sha256(pathlib.Path('_site/pets.js').read_bytes()).hexdigest(),
               'drops_sha256': hashlib.sha256(pathlib.Path('_site/drops.js').read_bytes()).hexdigest(),

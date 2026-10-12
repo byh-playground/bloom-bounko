@@ -26,6 +26,14 @@ PR33의 최초 자동 발사 예약 수정까지 최신 main `e563e09`를 통합
 
 실제 Edge/Matter/WebGL 대표 검증 PASS, JS 오류 0. 650px에서 잔상 접촉 후 150ms 늦게 입력한 돌진은 850ms에 파쇄되어 1.2초 빙결에 350ms 여유가 있었습니다. 2단계 빙결 유지·3단계 파쇄·퍼펙트 아닌 돌진·정지 접촉·재빙결 경계·산성 방어/진영/만료·네 몹과 네 펫·한영 390px 카드·PC 그래프를 확인했습니다. [짧은 기록](docs/verification-elements-2026-10-11.json), [서리](docs/frost-theme.png), [산성](docs/acid-theme.png), [모바일 영어](docs/acid-tech-mobile-en.png).
 
+## 공통 화면 이동·시나리오 실행
+
+GameKit의 `navigation.js`가 해시/옵션·브라우저 이력·상태 구독을, `scenario.js`가 고정 tick 명령 타임라인·재생·pause·종료를 담당합니다. 기존 `index.html`의 hash 파싱·URL 생성·popstate/hashchange 중복 처리와 소개 이벤트 cursor를 제거했습니다. 메뉴 UI/선택/스크롤/포커스·게임 입력·구매·실제 전투/Renderer는 Bounko가 소유하며, 프리뷰/소개는 기존 격리 iframe을 유지합니다. 재시작/반복은 새 iframe 게임 인스턴스로 복원하고 닫기는 오디오·입력·RAF·WebGL 자원을 정리합니다.
+
+실행 모듈 dist는 `159746f50e819fdc9e8e3b9df102b542f7335f6d`에 고정했습니다. navigation SHA-256 `92c387dcfa8af47beb3544f4a16121bbfc8fa9831052b33ce07076dd733c81d3`, scenario SHA-256 `93fd504ad62a2d23691f9afeb897abb10b3f871a4aa0a5cfadec762cf4bd24b8`이며 공개 파일을 manifest 및 로컬 검증 번들과 대조했습니다. 기존 rendering/input/audio 버전은 유지합니다. 배포 build.json의 execution_sdk_commit으로 사용 버전을 추적합니다.
+
+GameKit 저장소의 `npm run test:consumer`가 공개 Bounko의 모바일/PC 메뉴·프리뷰·소개·저장 불변·전투 설정 복귀를 검사합니다. `BOUNKO_URL`로 로컬 검증 서버를 지정할 수 있습니다. 실제 결과와 성능 표본/미검증 범위는 통합 PR에 기록합니다. 녹화 인코더는 추가하지 않았습니다.
+
 ## 실행
 
 저장소를 내려받아 정적 HTTP 서버로 제공합니다. Node.js가 설치된 환경에서는 다음 명령으로 실행할 수 있습니다.
@@ -473,3 +481,5 @@ PR 검토 후 발견 위키를 열 때 저장된 발견종 표를 갱신하도�
 공통 틱은 위치·높이 sweep 시작점을 AI 이동 전에 보존하고, AI/공격 impulse 뒤 물리 엔진 실행 전에 충돌용 속도를 저장합니다. 정지 상태에서 시작한 첫 틱 접촉에도 새 돌진 속도를 사용합니다.
 
 실제 Edge 155.0.4283.45·Matter 0.20.0·고정 GameKit의 구성한 전장 검증은 PASS 1.771초, 실행 오류 0입니다. 같은 신규 수치에서 이전 속도 저장 순서는 첫 접촉 피해 0/물리 밀림 8.36px, 수정 후 피해 62.5/특수 impulse 900px/s를 확인했습니다. 정지·무방어 대상의 90px/320px 시작 피해는 58.11/37.53, 펫 Common/Uncommon의 공격력은 100/180과 raw 62.5/112.5(방어 8 대상 실제 58/104)였습니다. 일반 Common 꽃의 공격력 65와 피해식, 플레이어 고속 sweep 명중, 높이 분리의 피해·밀림 0도 통과했습니다. 60TPS 무충돌 이동은 왕사슴 700ms에 433.45px, Common 꽃은 520ms를 포함하는 32틱에 238.07px였습니다. 구성한 상태·고정 틱 관측이며 자연 전투·장기 밸런스·최대 개체 성능은 이번 범위에서 확인하지 않았습니다.
+
+공통 실행 구조 통합의 실제 검증: [고정 tick 동등성·브라우저 흐름·CPU 측정 기록](docs/verification-gamekit-execution-2026-10-12.json).

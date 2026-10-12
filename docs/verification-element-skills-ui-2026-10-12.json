@@ -1,0 +1,42 @@
+{
+  "purchasedFourFor12Points": true,
+  "slotCapacityUnchanged": true,
+  "fullSlotDidNotOverwrite": true,
+  "swapViaUnequip": true,
+  "sharedWikiEightSkills": true,
+  "wikiPreviewClose": true,
+  "configDerivedText": true,
+  "koEn": true,
+  "viewport": {
+    "width": 390,
+    "height": 568
+  },
+  "audio": {
+    "state": "running",
+    "volume": 0.7,
+    "muted": false,
+    "voices": 3,
+    "categoryVolumes": {
+      "enemy": 0.65,
+      "impact": 1,
+      "motion": 0.8,
+      "danger": 0.9,
+      "reward": 0.85,
+      "magic": 0.55,
+      "ui": 0.5
+    },
+    "lastError": null,
+    "played": 5,
+    "dropped": 3,
+    "blocked": 1,
+    "maxObserved": 3,
+    "bySound": {
+      "seedCharge": 2,
+      "stageStart": 1,
+      "seedLaunch": 1,
+      "seedImpact": 1
+    }
+  },
+  "errors": [],
+  "audioEndedVoices": 0
+}

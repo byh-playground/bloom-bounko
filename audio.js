@@ -66,3 +66,15 @@ Object.assign(audioConfig.sounds,{
  ultimateReturn:{category:'motion',priority:4,layers:[tone(840,260,150,.09),noise(70,.07,2600)]}
 });
 audioConfig.sounds.fusionMixed={category:'reward',layers:[...audioConfig.sounds.fusionSuccess.layers,...audioConfig.sounds.fusionFail.layers.map(layer=>({...layer,delay:(layer.delay||0)+330}))]};
+
+Object.assign(audioConfig.sounds,{
+ frostCharge:{category:'magic',priority:6,gapMs:0,layers:[tone(390,1320,300,.12,'sine'),noise(260,.035,5000)]},
+ frostRelease:{category:'impact',priority:7,gapMs:0,layers:[noise(130,.15,6200),tone(1250,260,200,.12,'triangle')]},
+ chainCharge:{category:'magic',priority:6,gapMs:0,layers:[tone(220,1450,220,.11,'triangle'),noise(200,.04,4200)]},
+ chainPulse:{category:'magic',priority:7,gapMs:0,layers:[noise(65,.14,5800),tone(1200,260,75,.08,'sawtooth')]},
+ seedCharge:{category:'magic',priority:6,gapMs:0,layers:[tone(120,470,300,.12,'triangle'),noise(280,.055,800)]},
+ seedLaunch:{category:'motion',priority:6,gapMs:0,layers:[noise(180,.14,2200),tone(450,190,170,.10,'triangle')]},
+ seedImpact:{category:'impact',priority:7,gapMs:0,layers:[tone(160,38,220,.22),noise(170,.18,1500)]},
+ acidCharge:{category:'magic',priority:6,gapMs:0,layers:[tone(180,420,280,.10,'sine'),noise(260,.07,600)]},
+ acidRelease:{category:'magic',priority:7,gapMs:0,layers:[noise(220,.15,1100),tone(330,100,220,.09,'triangle')]}
+});

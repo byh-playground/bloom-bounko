@@ -4,6 +4,23 @@ export const ultimateConfig={
   trigger:{comboHits:4,ammo:1,rechargeHits:12},
   presentation:{trailIntervalMs:24,trailLifetimeMs:300,maxTrails:24,maxEffects:36},
   skills:{
+    iceGarden:{branch:'frost',lane:10,symbol:'❈',color:[.58,.90,1],cost:3,requires:['iceShatter'],range:380,targetLossPolicy:'finishCommitted',trigger:{comboHits:3,rechargeHits:12},
+      sequence:[{id:'condense',durationMs:300,move:'hold',charge:true,chargeStyle:'frost',compression:.18,sound:'frostCharge',soundScope:'phase'},
+        {id:'release',durationMs:180,move:'hold',commit:true,attack:{kind:'iceGarden',atMs:[0],radius:180,power:.35,freezeMs:2400,fieldMs:4000,intervalMs:250,slowRate:.20,maxFields:4},sound:'frostRelease'},
+        {id:'afterglow',durationMs:120,move:'hold',fade:true}]},
+    lightningChain:{branch:'lightning',lane:5,symbol:'↯',color:[.62,.79,1],cost:3,requires:['relayArc'],range:380,targetLossPolicy:'finishCommitted',trigger:{comboHits:3,rechargeHits:10},
+      sequence:[{id:'condense',durationMs:220,move:'hold',charge:true,chargeStyle:'lightning',compression:.12,sound:'chainCharge',soundScope:'phase'},
+        {id:'release',durationMs:280,move:'hold',commit:true,attack:{kind:'lightningChain',atMs:[0,80,160,240],maxTargets:4,jumpRange:140,firstPower:.70,power:.45}},
+        {id:'afterglow',durationMs:120,move:'hold',fade:true}]},
+    fireSeed:{branch:'fire',lane:6,symbol:'✹',color:[1,.48,.18],cost:3,requires:['spreadFlame'],range:450,targetLossPolicy:'finishCommitted',trigger:{comboHits:4,rechargeHits:12},
+      sequence:[{id:'condense',durationMs:300,move:'hold',charge:true,chargeStyle:'fire',compression:.20,sound:'seedCharge',soundScope:'phase'},
+        {id:'release',durationMs:600,move:'hold',commit:true,attack:{kind:'fireSeed',atMs:[0],radius:130,power:.90,speed:900,shotRadius:8,shotHeight:16,startZ:14,arcHeight:32,minTravelMs:120,lifeMs:1200,ignite:true,sound:'seedImpact',visual:'fire',skillId:'fireSeed'},sound:'seedLaunch'},
+        {id:'afterglow',durationMs:150,move:'hold',fade:true}]},
+    acidFountain:{branch:'acid',lane:11,symbol:'♧',color:[.73,.94,.27],cost:3,requires:['acidSpread'],range:380,targetLossPolicy:'finishCommitted',trigger:{comboHits:4,rechargeHits:12},
+      sequence:[{id:'condense',durationMs:280,move:'hold',charge:true,chargeStyle:'acid',compression:.16,sound:'acidCharge',soundScope:'phase'},
+        {id:'release',durationMs:220,move:'hold',commit:true,attack:{kind:'acidFountain',atMs:[0],radius:120,poolMs:4000,intervalMs:500,powerRate:.10,skillId:'acidFountain'},sound:'acidRelease'},
+        {id:'afterglow',durationMs:120,move:'hold',fade:true}]},
+
     laserBloom:{trigger:{comboHits:5,rechargeHits:15},symbol:'✦',color:[.35,.86,1],cost:5,requires:['autoChain','shadowRecharge2'],lane:1,range:520,targetLossPolicy:'finishCommitted',
       sequence:[
         {id:'move',durationMs:160,move:'side',distance:78,sound:'ultimateMove'},
@@ -64,7 +81,7 @@ export class UltimateRunner {
     // No state/VFX begins until the game atomically accepts both costs.
     if(!this.adapter.consume(cost))return false;
     const p=position(this.adapter.position()),nearest=targets[0].body.position,dx=nearest.x-p.x,dy=nearest.y-p.y,d=Math.hypot(dx,dy)||1;
-    this.loadout.use(next.id,next.index);this.starts++;this.state={id:next.id,slot:next.index,skill,origin:p,direction:{x:dx/d,y:dy/d},index:0,elapsedMs:0,totalMs:0,pulse:0,committed:false,voice:null,beam:null,hitIds:new Set(),trails:[],trailClockMs:0,pending:[]};
+    this.loadout.use(next.id,next.index);this.starts++;this.state={id:next.id,slot:next.index,skill,origin:p,aim:{x:nearest.x,y:nearest.y},direction:{x:dx/d,y:dy/d},index:0,elapsedMs:0,totalMs:0,pulse:0,committed:false,voice:null,beam:null,hitIds:new Set(),trails:[],trailClockMs:0,pending:[]};
     this.adapter.begin(skill);this.enterStage();return true;
   }
   enterStage(){const s=this.state;if(!s)return;s.voice?.stop();s.voice=null;s.beam=null;const phase=s.skill.sequence[s.index];s.phase=phase;s.committed||=!!phase.commit;s.nextShakeMs=phase.shakeIntervalMs??Infinity;s.impactShown=false;s.trailWidth=phase.trailWidth??s.trailWidth??11;s.elapsedMs=0;s.pulse=0;s.from=position(this.adapter.position());s.target=null;
@@ -150,12 +167,19 @@ function drawWave(r,wave,color,alpha){const {origin:p,radius,progress:q}=wave,fa
   for(let i=0;i<12;i++){const a=i*Math.PI/6;r.line(p.x+Math.cos(a)*radius*.91,p.y+Math.sin(a)*radius*.91,p.x+Math.cos(a)*radius,p.y+Math.sin(a)*radius,3,[...color,fade*.7]);}
 }
 
+function drawElementCharge(r,p,s,color,q){const point=s.aim,attack=s.skill.sequence.find(stage=>stage.attack)?.attack;
+  drawCompression(r,p,s,color,q);if(s.phase.chargeStyle==='lightning'){for(let i=0;i<6;i++){const a=i*Math.PI/3+s.totalMs*.004,rad=25+q*8;r.line(p.x+Math.cos(a)*rad,p.y+Math.sin(a)*rad,p.x+Math.cos(a+.35)*(rad+14),p.y+Math.sin(a+.35)*(rad+14),2,[...color,.7]);}return;}
+  if(point&&attack?.radius){ring(r,point.x,point.y,attack.radius,1.5,[...color,.22+q*.45],32);const radius=15+q*13;r.ellipse(point.x,point.y,radius,radius,[...color,.12+q*.15],20);
+    for(let i=0;i<6;i++){const a=i*Math.PI/3;r.line(point.x+Math.cos(a)*radius,point.y+Math.sin(a)*radius,point.x+Math.cos(a)*(radius+9),point.y+Math.sin(a)*(radius+9),2,[...color,.55+q*.4]);}}
+}
+
 export function drawUltimate(r,runner,p){const s=runner.state;
   if(s){const color=s.skill.color,q=runner.progress(),fade=s.phase.fade?1-q:1;
     for(let i=1;i<s.trails.length;i++){const a=s.trails[i-1],b=s.trails[i],alpha=Math.max(0,1-(s.totalMs-b.atMs)/(s.skill.trailLifetimeMs??runner.loadout.config.presentation.trailLifetimeMs))*.55*fade;r.line(a.x,a.y,b.x,b.y,s.trailWidth*1.8,[...color,alpha*.12]);r.line(a.x,a.y,b.x,b.y,s.trailWidth,[...color,alpha*.38]);r.line(a.x,a.y,b.x,b.y,s.trailWidth*.38,[.94,1,.93,alpha]);}
     const charge=s.phase.charge?Math.sin(q*Math.PI/2):.35;
     r.ellipse(p.x,p.y,25+charge*17,25+charge*17,[...color,.12*fade],24);ring(r,p.x,p.y,23+charge*9,1.5,[...color,.7*fade],28,s.totalMs*.008);
-    if(s.phase.chargeStyle==='beam')drawBeamCharge(r,p,s,color,q);
+    if(['frost','lightning','fire','acid'].includes(s.phase.chargeStyle))drawElementCharge(r,p,s,color,q);
+    else if(s.phase.chargeStyle==='beam')drawBeamCharge(r,p,s,color,q);
     else if(s.phase.chargeStyle==='compression')drawCompression(r,p,s,color,q);
     else if(s.phase.chargeStyle==='swirl')drawVortex(r,p,s,color,q);
     else if(s.phase.charge){for(let i=0;i<12;i++){const a=i*Math.PI/6+s.totalMs*.005,outer=64-q*34,inner=18;r.line(p.x+Math.cos(a)*outer,p.y+Math.sin(a)*outer,p.x+Math.cos(a)*inner,p.y+Math.sin(a)*inner,1+q,[...color,.2+q*.45]);}

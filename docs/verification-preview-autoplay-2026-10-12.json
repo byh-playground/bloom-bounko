@@ -1,0 +1,51 @@
+{
+  "withoutGesture": true,
+  "results": {
+    "iceGarden": {
+      "id": "iceGarden",
+      "seed": 82741,
+      "tick": 67,
+      "paused": false,
+      "ended": false,
+      "hits": 3,
+      "damage": 105
+    },
+    "lightningChain": {
+      "id": "lightningChain",
+      "seed": 82741,
+      "tick": 72,
+      "paused": false,
+      "ended": false,
+      "hits": 4,
+      "damage": 205
+    },
+    "fireSeed": {
+      "id": "fireSeed",
+      "seed": 82741,
+      "tick": 72,
+      "paused": false,
+      "ended": false,
+      "hits": 9,
+      "damage": 270
+    },
+    "acidFountain": {
+      "id": "acidFountain",
+      "seed": 82741,
+      "tick": 71,
+      "paused": false,
+      "ended": false,
+      "hits": 3,
+      "damage": 21
+    },
+    "laserBloom": {
+      "id": "laserBloom",
+      "seed": 82741,
+      "tick": 73,
+      "paused": false,
+      "ended": false,
+      "hits": 18,
+      "damage": 296.99999999999994
+    }
+  },
+  "errors": []
+}

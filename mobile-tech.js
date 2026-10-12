@@ -1,38 +1,57 @@
 import {t as tr} from './i18n.js';
 
-// View owns only family/page presentation; original cards own state and actions.
-export function createMobileTechView({root,records,groupName,onSelect,isOpen}){
+// A bounded mobile view of the game's existing records, cards and purchase events.
+export function createMobileTechView({root,records,groupName,onSelect,isOpen,getPoints}){
   const media=matchMedia('(max-width:650px)'),groups=[...new Set(records.map(r=>r.group))],byId=new Map(records.map(r=>[r.id,r]));
-  const pageSize=4;let group=groups[0],page=0,selected=null,shown=null;
-  root.innerHTML='<label class="tech-mobile-family"><span></span><select id="techMobileFamily"></select></label><div id="techMobileCards" class="tech-mobile-cards"></div><nav class="tech-mobile-pages"><button type="button" id="techMobilePrev">‹</button><output id="techMobilePage"></output><button type="button" id="techMobileNext">›</button></nav><div id="techMobileDetail" class="tech-mobile-detail"></div>';
-  const family=root.querySelector('select'),cards=root.querySelector('#techMobileCards'),detail=root.querySelector('#techMobileDetail'),prev=root.querySelector('#techMobilePrev'),next=root.querySelector('#techMobileNext'),counter=root.querySelector('output');
-  const restore=()=>{if(shown){shown.home.append(shown.card);shown=null;}};
+  let group=groups[0],selected=null,shown=null,frame=0;
+  root.innerHTML='<div class="tech-mobile-top"><label class="tech-mobile-family"><span></span><select id="techMobileFamily"></select></label><output id="techMobilePoints"></output></div><p class="tech-mobile-hint"></p><div id="techMobileTree" class="tech-mobile-tree"><div class="tech-mini-forest"></div><svg class="tech-mini-links" aria-hidden="true"></svg></div><section id="techMobileDetail" class="tech-mobile-detail"><div class="tech-mobile-detail-content"></div><div id="techMobileActions" class="tech-mobile-actions"></div></section>';
+  const family=root.querySelector('select'),tree=root.querySelector('#techMobileTree'),forest=tree.querySelector('.tech-mini-forest'),links=tree.querySelector('svg'),detail=root.querySelector('#techMobileDetail'),content=detail.querySelector('.tech-mobile-detail-content'),actions=detail.querySelector('.tech-mobile-actions');
   const entries=()=>records.filter(r=>r.group===group);
-  family.onchange=()=>{group=family.value;page=0;onSelect(entries()[0].id,false);};
-  const changePage=delta=>{page+=delta;onSelect(entries()[page*pageSize].id,false);};
-  prev.onclick=()=>changePage(-1);next.onclick=()=>changePage(1);
-  function render(id=selected){
-    selected=id;if(!media.matches){restore();return;}if(!isOpen())return;
-    const chosen=byId.get(id);if(chosen){group=chosen.group;page=Math.floor(entries().indexOf(chosen)/pageSize);}
-    const list=entries(),pages=Math.ceil(list.length/pageSize);page=Math.min(page,pages-1);
-    root.querySelector('.tech-mobile-family span').textContent=tr('tech.mobile.family');
-    family.replaceChildren(...groups.map(value=>{const option=document.createElement('option');option.value=value;option.textContent=groupName(value);return option;}));family.value=group;
-    prev.setAttribute('aria-label',tr('tech.mobile.previous'));next.setAttribute('aria-label',tr('tech.mobile.next'));prev.disabled=page===0;next.disabled=page===pages-1;
-    counter.textContent=tr('tech.mobile.page',{page:page+1,total:pages});cards.replaceChildren();
-    for(const record of list.slice(page*pageSize,(page+1)*pageSize)){
-      const button=document.createElement('button');button.type='button';button.className='tech-mobile-choice';button.dataset.mobileSelect=record.id;button.dataset.state=record.card.dataset.state;button.setAttribute('aria-pressed',String(record.id===id));
-      const name=document.createElement('b'),state=document.createElement('small');name.textContent=record.symbol+' '+record.label();state.textContent=record.card.querySelector('.node-price').textContent;button.append(name,state);button.onclick=()=>{onSelect(record.id===selected?null:record.id,false);cards.querySelector('[data-mobile-select="'+record.id+'"]')?.focus({preventScroll:true});};cards.append(button);
-    }
-    if(shown!==chosen){restore();detail.replaceChildren();if(chosen){detail.append(chosen.card);shown=chosen;detail.scrollTop=0;}}
-    if(!chosen){detail.textContent=tr('tech.mobile.choose');return;}
-    detail.querySelector('.tech-mobile-stat-conditions')?.remove();
-    if(chosen.parents){
-      const conditions=document.createElement('div');conditions.className='tech-mobile-stat-conditions tech-prereqs';
-      for(const parent of chosen.parents){const button=document.createElement('button');button.type='button';button.dataset.statPrereq=parent.id;button.dataset.ready=String(parent.ready());button.textContent=(parent.ready()?'✓ ':'')+tr('tech.mobile.statCondition',{name:byId.get(parent.id).label(),level:parent.level});button.onclick=()=>onSelect(parent.id,false);conditions.append(button);}
-      if(!chosen.parents.length)conditions.textContent=tr('tech.noConditions');
-      detail.prepend(conditions);
-    }
+  const parents=record=>record.parents??[];
+  const state=record=>record.card.dataset.state;
+  const stateText=record=>tr('tech.mobile.'+state(record));
+  function restore(){if(!shown)return;shown.record.card.querySelector('.tech-mobile-recipe-title')?.remove();shown.actionsAnchor?.replaceWith(shown.actions);shown.anchor.replaceWith(shown.record.card);shown=null;}
+  family.onchange=()=>{group=family.value;onSelect(entries()[0].id,false);};
+  function pick(id){onSelect(id,false);tree.querySelector('[data-mobile-select="'+id+'"]')?.focus({preventScroll:true});}
+  // Local connected paths come from prerequisites. Cross-family requirements stay chips.
+  function components(list){const ids=new Set(list.map(r=>r.id)),seen=new Set(),result=[];
+    for(const record of list){if(seen.has(record.id))continue;const component=[],queue=[record.id];while(queue.length){const id=queue.shift();if(seen.has(id))continue;seen.add(id);const item=byId.get(id);component.push(item);
+      queue.push(...parents(item).filter(p=>ids.has(p.id)).map(p=>p.id),...list.filter(r=>parents(r).some(p=>p.id===id)).map(r=>r.id));}result.push(list.filter(r=>component.includes(r)));}return result;}
+  function node(record){const box=document.createElement('article');box.className='tech-mini-node';box.dataset.nodeId=record.id;box.dataset.state=state(record);box.dataset.selected=String(record.id===selected);
+    const button=document.createElement('button');button.type='button';button.className='tech-mini-select';button.dataset.mobileSelect=record.id;button.setAttribute('aria-pressed',String(record.id===selected));
+    const title=document.createElement('b'),status=document.createElement('small');title.textContent=record.symbol+' '+record.label();status.className='tech-mini-state';status.textContent=(record.id===selected?'● ':'')+stateText(record);button.append(title,status);
+    const all=parents(record);if(all.length>1){const progress=document.createElement('small');progress.className='tech-mini-progress';progress.textContent=tr('tech.mobile.allProgress',{completed:all.filter(p=>p.ready()).length,total:all.length});button.append(progress);}
+    button.setAttribute('aria-label',record.label()+' · '+stateText(record)+(record.id===selected?' · '+tr('tech.mobile.selected'):'')+(all.length?' · '+tr('tech.mobile.requires',{names:all.map(p=>byId.get(p.id).label()).join(' + ')}):''));button.onclick=()=>pick(record.id);box.append(button);
+    const outside=all.filter(p=>byId.get(p.id).group!==group);if(outside.length){const chips=document.createElement('div');chips.className='tech-mini-external';for(const parent of outside){const chip=document.createElement('button');chip.type='button';chip.dataset.mobilePrereq=parent.id;chip.dataset.ready=String(parent.ready());chip.textContent=(parent.ready()?'✓ ':'○ ')+'↗ '+groupName(byId.get(parent.id).group);chip.title=byId.get(parent.id).label();chip.setAttribute('aria-label',tr('tech.inspectCondition',{name:byId.get(parent.id).label(),state:tr(parent.ready()?'tech.met':'tech.notMet')}));chip.onclick=()=>pick(parent.id);chips.append(chip);}box.append(chips);}return box;}
+  function drawTree(list){forest.replaceChildren();const parts=components(list);
+    for(const part of parts){const ids=new Set(part.map(r=>r.id)),depth=new Map();function rank(record){if(depth.has(record.id))return depth.get(record.id);const local=parents(record).filter(p=>ids.has(p.id)),value=local.length?1+Math.max(...local.map(p=>rank(byId.get(p.id)))):0;depth.set(record.id,value);return value;}
+      for(const record of part)rank(record);const levels=[...new Set(depth.values())].sort((a,b)=>a-b),linear=levels.length===part.length;
+      const section=document.createElement('div');section.className='tech-mini-path';const horizontal=parts.length===1&&linear&&part.length<=3;section.dataset.flow=horizontal?'horizontal':'vertical';
+      if(horizontal){section.style.gridTemplateColumns='repeat('+part.length+',minmax(0,1fr))';section.style.gridColumn='1 / -1';for(const level of levels)section.append(node(part.find(r=>depth.get(r.id)===level)));}
+      else{if(parts.length===1||!linear)section.style.gridColumn='1 / -1';for(const level of levels){const row=document.createElement('div');row.className='tech-mini-row';const peers=part.filter(r=>depth.get(r.id)===level);row.style.gridTemplateColumns='repeat('+peers.length+',minmax(0,1fr))';for(const record of peers)row.append(node(record));section.append(row);}}
+      forest.append(section);}
   }
-  const changed=()=>render();media.addEventListener('change',changed);
-  return {render,get active(){return media.matches;},focusSelection(){cards.querySelector('[aria-pressed=true]')?.focus({preventScroll:true});},dispose(){media.removeEventListener('change',changed);restore();}};
+  function drawLinks(){cancelAnimationFrame(frame);frame=requestAnimationFrame(()=>{if(!media.matches||!isOpen())return;links.replaceChildren();links.style.left=forest.offsetLeft+'px';links.style.top=forest.offsetTop+'px';links.setAttribute('width',forest.offsetWidth);links.setAttribute('height',forest.offsetHeight);const bounds=forest.getBoundingClientRect();
+    for(const record of entries()){const target=forest.querySelector('[data-node-id="'+record.id+'"]');for(const parent of parents(record)){if(byId.get(parent.id).group!==group)continue;const source=forest.querySelector('[data-node-id="'+parent.id+'"]');if(!source||!target)continue;const a=source.getBoundingClientRect(),b=target.getBoundingClientRect(),horizontal=target.closest('.tech-mini-path').dataset.flow==='horizontal';
+      const x1=(horizontal?a.right:a.x+a.width/2)-bounds.x,y1=(horizontal?a.y+a.height/2:a.bottom)-bounds.y,x2=(horizontal?b.x:b.x+b.width/2)-bounds.x,y2=(horizontal?b.y+b.height/2:b.y)-bounds.y;
+      const path=document.createElementNS('http://www.w3.org/2000/svg','path');path.dataset.source=parent.id;path.dataset.target=record.id;path.dataset.ready=String(parent.ready());path.setAttribute('d',horizontal?'M '+x1+' '+y1+' H '+x2:'M '+x1+' '+y1+' V '+((y1+y2)/2)+' H '+x2+' V '+y2);links.append(path);
+      const arrow=document.createElementNS('http://www.w3.org/2000/svg','path');arrow.dataset.ready=String(parent.ready());arrow.setAttribute('d',horizontal?'M '+(x2-5)+' '+(y2-4)+' L '+x2+' '+y2+' L '+(x2-5)+' '+(y2+4):'M '+(x2-4)+' '+(y2-5)+' L '+x2+' '+y2+' L '+(x2+4)+' '+(y2-5));links.append(arrow);
+    }}
+    const selectedNode=forest.querySelector('[data-node-id="'+selected+'"]');if(selectedNode){const a=selectedNode.getBoundingClientRect(),b=tree.getBoundingClientRect();if(a.top<b.top)tree.scrollTop+=a.top-b.top-8;else if(a.bottom>b.bottom)tree.scrollTop+=a.bottom-b.bottom+8;}
+  });}
+  function showDetail(chosen){if(shown?.record!==chosen){restore();content.replaceChildren();actions.replaceChildren();const anchor=document.createComment('mobile detail');chosen.card.before(anchor);shown={record:chosen,anchor};
+      if(chosen.group==='stats'){actions.append(chosen.card);}else{content.append(chosen.card);const originalActions=chosen.card.querySelector('.tech-actions'),actionAnchor=document.createComment('mobile actions');originalActions.before(actionAnchor);actions.append(originalActions);Object.assign(shown,{actions:originalActions,actionsAnchor:actionAnchor});}content.scrollTop=0;}
+    content.querySelector('.tech-mobile-recipe-title')?.remove();
+    if(chosen.group==='stats'){content.replaceChildren();const h=document.createElement('h3'),effect=document.createElement('p'),price=document.createElement('p'),conditions=document.createElement('div');h.textContent=chosen.label();effect.textContent=chosen.card.querySelector('.node-desc').textContent;price.textContent=chosen.card.querySelector('.node-price').textContent;conditions.className='tech-prereqs tech-mobile-stat-conditions';
+      for(const parent of parents(chosen)){const chip=document.createElement('button');chip.type='button';chip.dataset.statPrereq=parent.id;chip.dataset.ready=String(parent.ready());chip.textContent=(parent.ready()?'✓ ':'○ ')+tr('tech.mobile.statCondition',{name:byId.get(parent.id).label(),level:parent.level});chip.onclick=()=>pick(parent.id);conditions.append(chip);}content.append(h,effect,conditions,price);
+    }else if(parents(chosen).length>1){const heading=document.createElement('p');heading.className='tech-mobile-recipe-title';heading.textContent=tr('tech.mobile.requires',{names:parents(chosen).map(p=>byId.get(p.id).label()).join(' + ')});chosen.card.querySelector('.tech-prereqs').before(heading);}
+    detail.setAttribute('aria-label',chosen.label());
+  }
+  function render(id=selected){if(!media.matches){restore();return;}if(!isOpen())return;const oldGroup=group,chosen=byId.get(id)??entries()[0];selected=chosen.id;group=chosen.group;
+    root.querySelector('.tech-mobile-family span').textContent=tr('tech.mobile.family');root.querySelector('.tech-mobile-hint').textContent=tr('tech.mobile.pathHint');root.querySelector('#techMobilePoints').textContent=tr('tech.mobile.points',{count:getPoints()});
+    family.replaceChildren(...groups.map(value=>{const option=document.createElement('option');option.value=value;option.textContent=groupName(value);return option;}));family.value=group;
+    const oldScroll=oldGroup===group?tree.scrollTop:0;drawTree(entries());tree.scrollTop=oldScroll;showDetail(chosen);drawLinks();
+  }
+  const changed=()=>render(),resize=()=>{if(media.matches)drawLinks();};media.addEventListener('change',changed);window.addEventListener('resize',resize);
+  return{render,get active(){return media.matches;},focusSelection(){tree.querySelector('[aria-pressed=true]')?.focus({preventScroll:true});},dispose(){cancelAnimationFrame(frame);media.removeEventListener('change',changed);window.removeEventListener('resize',resize);restore();}};
 }

@@ -1,0 +1,643 @@
+{
+  "startedAt": "2026-10-12T00:07:53.109Z",
+  "browser": "155.0.4283.45",
+  "viewports": [
+    {
+      "label": "frost-ko-390x844",
+      "viewport": {
+        "w": 390,
+        "h": 844
+      },
+      "tree": {
+        "x": 15,
+        "y": 175,
+        "w": 360,
+        "h": 324.921875,
+        "scrollHeight": 323,
+        "clientHeight": 323
+      },
+      "detail": {
+        "x": 15,
+        "y": 505.921875,
+        "w": 360,
+        "h": 270.078125,
+        "scrollHeight": 268,
+        "clientHeight": 268
+      },
+      "actions": {
+        "x": 16,
+        "y": 716,
+        "w": 358,
+        "h": 59,
+        "scrollHeight": 58,
+        "clientHeight": 58
+      },
+      "panel": {
+        "x": 4,
+        "y": 4,
+        "w": 382,
+        "h": 836,
+        "scrollHeight": 834,
+        "clientHeight": 834
+      },
+      "body": {
+        "height": 844,
+        "width": 390
+      },
+      "nodes": [
+        {
+          "id": "coldTouch",
+          "font": "12px",
+          "w": 101,
+          "h": 68
+        },
+        {
+          "id": "freezeTouch",
+          "font": "12px",
+          "w": 101,
+          "h": 68
+        },
+        {
+          "id": "iceShatter",
+          "font": "12px",
+          "w": 101,
+          "h": 68
+        }
+      ],
+      "links": 2
+    },
+    {
+      "label": "combination-ko",
+      "viewport": {
+        "w": 390,
+        "h": 844
+      },
+      "tree": {
+        "x": 15,
+        "y": 175,
+        "w": 360,
+        "h": 324.921875,
+        "scrollHeight": 518,
+        "clientHeight": 323
+      },
+      "detail": {
+        "x": 15,
+        "y": 505.921875,
+        "w": 360,
+        "h": 270.078125,
+        "scrollHeight": 268,
+        "clientHeight": 268
+      },
+      "actions": {
+        "x": 16,
+        "y": 716,
+        "w": 358,
+        "h": 59,
+        "scrollHeight": 58,
+        "clientHeight": 58
+      },
+      "panel": {
+        "x": 4,
+        "y": 4,
+        "w": 382,
+        "h": 836,
+        "scrollHeight": 834,
+        "clientHeight": 834
+      },
+      "body": {
+        "height": 844,
+        "width": 390
+      },
+      "nodes": [
+        {
+          "id": "laserBloom",
+          "font": "12px",
+          "w": 160,
+          "h": 68
+        },
+        {
+          "id": "storm",
+          "font": "12px",
+          "w": 160,
+          "h": 68
+        },
+        {
+          "id": "chainDrive",
+          "font": "12px",
+          "w": 160,
+          "h": 68
+        },
+        {
+          "id": "elasticBlast",
+          "font": "12px",
+          "w": 160,
+          "h": 68
+        },
+        {
+          "id": "ultimateSlot2",
+          "font": "12px",
+          "w": 160,
+          "h": 68
+        },
+        {
+          "id": "ultimateSlot3",
+          "font": "12px",
+          "w": 160,
+          "h": 68
+        }
+      ],
+      "links": 1
+    },
+    {
+      "label": "evade-eight-nodes",
+      "viewport": {
+        "w": 390,
+        "h": 844
+      },
+      "tree": {
+        "x": 15,
+        "y": 175,
+        "w": 360,
+        "h": 324.921875,
+        "scrollHeight": 550,
+        "clientHeight": 323
+      },
+      "detail": {
+        "x": 15,
+        "y": 505.921875,
+        "w": 360,
+        "h": 270.078125,
+        "scrollHeight": 268,
+        "clientHeight": 268
+      },
+      "actions": {
+        "x": 16,
+        "y": 716,
+        "w": 358,
+        "h": 59,
+        "scrollHeight": 58,
+        "clientHeight": 58
+      },
+      "panel": {
+        "x": 4,
+        "y": 4,
+        "w": 382,
+        "h": 836,
+        "scrollHeight": 834,
+        "clientHeight": 834
+      },
+      "body": {
+        "height": 844,
+        "width": 390
+      },
+      "nodes": [
+        {
+          "id": "evadeCapacity1",
+          "font": "12px",
+          "w": 168,
+          "h": 68
+        },
+        {
+          "id": "evadeCapacity2",
+          "font": "12px",
+          "w": 160,
+          "h": 68
+        },
+        {
+          "id": "evadeHitRecharge",
+          "font": "12px",
+          "w": 160,
+          "h": 68
+        },
+        {
+          "id": "evadeRecharge1",
+          "font": "12px",
+          "w": 168,
+          "h": 68
+        },
+        {
+          "id": "evadeRecharge2",
+          "font": "12px",
+          "w": 160,
+          "h": 68
+        },
+        {
+          "id": "evadeWindow",
+          "font": "12px",
+          "w": 160,
+          "h": 68
+        },
+        {
+          "id": "evadeDistance1",
+          "font": "12px",
+          "w": 160,
+          "h": 68
+        },
+        {
+          "id": "evadeDistance2",
+          "font": "12px",
+          "w": 160,
+          "h": 68
+        }
+      ],
+      "links": 5
+    },
+    {
+      "label": "selected-last-node",
+      "viewport": {
+        "w": 390,
+        "h": 844
+      },
+      "tree": {
+        "x": 15,
+        "y": 175,
+        "w": 360,
+        "h": 324.921875,
+        "scrollHeight": 550,
+        "clientHeight": 323
+      },
+      "detail": {
+        "x": 15,
+        "y": 505.921875,
+        "w": 360,
+        "h": 270.078125,
+        "scrollHeight": 268,
+        "clientHeight": 268
+      },
+      "actions": {
+        "x": 16,
+        "y": 716,
+        "w": 358,
+        "h": 59,
+        "scrollHeight": 58,
+        "clientHeight": 58
+      },
+      "panel": {
+        "x": 4,
+        "y": 4,
+        "w": 382,
+        "h": 836,
+        "scrollHeight": 834,
+        "clientHeight": 834
+      },
+      "body": {
+        "height": 844,
+        "width": 390
+      },
+      "nodes": [
+        {
+          "id": "evadeCapacity1",
+          "font": "12px",
+          "w": 168,
+          "h": 68
+        },
+        {
+          "id": "evadeCapacity2",
+          "font": "12px",
+          "w": 160,
+          "h": 68
+        },
+        {
+          "id": "evadeHitRecharge",
+          "font": "12px",
+          "w": 160,
+          "h": 68
+        },
+        {
+          "id": "evadeRecharge1",
+          "font": "12px",
+          "w": 168,
+          "h": 68
+        },
+        {
+          "id": "evadeRecharge2",
+          "font": "12px",
+          "w": 160,
+          "h": 68
+        },
+        {
+          "id": "evadeWindow",
+          "font": "12px",
+          "w": 160,
+          "h": 68
+        },
+        {
+          "id": "evadeDistance1",
+          "font": "12px",
+          "w": 160,
+          "h": 68
+        },
+        {
+          "id": "evadeDistance2",
+          "font": "12px",
+          "w": 160,
+          "h": 68
+        }
+      ],
+      "links": 5
+    },
+    {
+      "label": "frost-short-390x568",
+      "viewport": {
+        "w": 390,
+        "h": 568
+      },
+      "tree": {
+        "x": 15,
+        "y": 175,
+        "w": 360,
+        "h": 133,
+        "scrollHeight": 131,
+        "clientHeight": 131
+      },
+      "detail": {
+        "x": 15,
+        "y": 314,
+        "w": 360,
+        "h": 186,
+        "scrollHeight": 184,
+        "clientHeight": 184
+      },
+      "actions": {
+        "x": 16,
+        "y": 440,
+        "w": 358,
+        "h": 59,
+        "scrollHeight": 58,
+        "clientHeight": 58
+      },
+      "panel": {
+        "x": 4,
+        "y": 4,
+        "w": 382,
+        "h": 560,
+        "scrollHeight": 558,
+        "clientHeight": 558
+      },
+      "body": {
+        "height": 568,
+        "width": 390
+      },
+      "nodes": [
+        {
+          "id": "coldTouch",
+          "font": "12px",
+          "w": 101,
+          "h": 68
+        },
+        {
+          "id": "freezeTouch",
+          "font": "12px",
+          "w": 101,
+          "h": 68
+        },
+        {
+          "id": "iceShatter",
+          "font": "12px",
+          "w": 101,
+          "h": 68
+        }
+      ],
+      "links": 2
+    },
+    {
+      "label": "frost-short-en",
+      "viewport": {
+        "w": 390,
+        "h": 568
+      },
+      "tree": {
+        "x": 15,
+        "y": 175,
+        "w": 360,
+        "h": 133,
+        "scrollHeight": 131,
+        "clientHeight": 131
+      },
+      "detail": {
+        "x": 15,
+        "y": 314,
+        "w": 360,
+        "h": 186,
+        "scrollHeight": 184,
+        "clientHeight": 184
+      },
+      "actions": {
+        "x": 16,
+        "y": 440,
+        "w": 358,
+        "h": 59,
+        "scrollHeight": 58,
+        "clientHeight": 58
+      },
+      "panel": {
+        "x": 4,
+        "y": 4,
+        "w": 382,
+        "h": 560,
+        "scrollHeight": 558,
+        "clientHeight": 558
+      },
+      "body": {
+        "height": 568,
+        "width": 390
+      },
+      "nodes": [
+        {
+          "id": "coldTouch",
+          "font": "12px",
+          "w": 101,
+          "h": 68
+        },
+        {
+          "id": "freezeTouch",
+          "font": "12px",
+          "w": 101,
+          "h": 68
+        },
+        {
+          "id": "iceShatter",
+          "font": "12px",
+          "w": 101,
+          "h": 68
+        }
+      ],
+      "links": 2
+    },
+    {
+      "label": "combination-short-en",
+      "viewport": {
+        "w": 390,
+        "h": 568
+      },
+      "tree": {
+        "x": 15,
+        "y": 175,
+        "w": 360,
+        "h": 133,
+        "scrollHeight": 518,
+        "clientHeight": 131
+      },
+      "detail": {
+        "x": 15,
+        "y": 314,
+        "w": 360,
+        "h": 186,
+        "scrollHeight": 184,
+        "clientHeight": 184
+      },
+      "actions": {
+        "x": 16,
+        "y": 440,
+        "w": 358,
+        "h": 59,
+        "scrollHeight": 58,
+        "clientHeight": 58
+      },
+      "panel": {
+        "x": 4,
+        "y": 4,
+        "w": 382,
+        "h": 560,
+        "scrollHeight": 558,
+        "clientHeight": 558
+      },
+      "body": {
+        "height": 568,
+        "width": 390
+      },
+      "nodes": [
+        {
+          "id": "laserBloom",
+          "font": "12px",
+          "w": 160,
+          "h": 68
+        },
+        {
+          "id": "storm",
+          "font": "12px",
+          "w": 160,
+          "h": 68
+        },
+        {
+          "id": "chainDrive",
+          "font": "12px",
+          "w": 160,
+          "h": 68
+        },
+        {
+          "id": "elasticBlast",
+          "font": "12px",
+          "w": 160,
+          "h": 68
+        },
+        {
+          "id": "ultimateSlot2",
+          "font": "12px",
+          "w": 160,
+          "h": 68
+        },
+        {
+          "id": "ultimateSlot3",
+          "font": "12px",
+          "w": 160,
+          "h": 68
+        }
+      ],
+      "links": 1
+    },
+    {
+      "label": "mobile-after-desktop",
+      "viewport": {
+        "w": 390,
+        "h": 844
+      },
+      "tree": {
+        "x": 15,
+        "y": 175,
+        "w": 360,
+        "h": 324.921875,
+        "scrollHeight": 518,
+        "clientHeight": 323
+      },
+      "detail": {
+        "x": 15,
+        "y": 505.921875,
+        "w": 360,
+        "h": 270.078125,
+        "scrollHeight": 268,
+        "clientHeight": 268
+      },
+      "actions": {
+        "x": 16,
+        "y": 716,
+        "w": 358,
+        "h": 59,
+        "scrollHeight": 58,
+        "clientHeight": 58
+      },
+      "panel": {
+        "x": 4,
+        "y": 4,
+        "w": 382,
+        "h": 836,
+        "scrollHeight": 834,
+        "clientHeight": 834
+      },
+      "body": {
+        "height": 844,
+        "width": 390
+      },
+      "nodes": [
+        {
+          "id": "laserBloom",
+          "font": "12px",
+          "w": 160,
+          "h": 68
+        },
+        {
+          "id": "storm",
+          "font": "12px",
+          "w": 160,
+          "h": 68
+        },
+        {
+          "id": "chainDrive",
+          "font": "12px",
+          "w": 160,
+          "h": 68
+        },
+        {
+          "id": "elasticBlast",
+          "font": "12px",
+          "w": 160,
+          "h": 68
+        },
+        {
+          "id": "ultimateSlot2",
+          "font": "12px",
+          "w": 160,
+          "h": 68
+        },
+        {
+          "id": "ultimateSlot3",
+          "font": "12px",
+          "w": 160,
+          "h": 68
+        }
+      ],
+      "links": 1
+    }
+  ],
+  "checks": [
+    "Direct frost hash, all three nodes and both arrows",
+    "Real purchase consumes one point and updates parent/child states",
+    "Preview close restores selected tree/detail",
+    "AND prerequisites 0/2 → 1/2 → 2/2, cross-family chips and combo investment",
+    "Stats reuse original purchase button and prerequisite path",
+    "English, short height, direct hash reload/back and no navigation save mutation",
+    "PC graph/card restoration and mobile resize roundtrip"
+  ],
+  "errors": [],
+  "finishedAt": "2026-10-12T00:07:56.772Z"
+}

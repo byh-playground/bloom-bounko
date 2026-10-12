@@ -4,14 +4,13 @@ import {t as tr} from './i18n.js';
 export function createMobileTechView({root,records,groupName,onSelect,isOpen,getPoints}){
   const media=matchMedia('(max-width:650px)'),groups=[...new Set(records.map(r=>r.group))],byId=new Map(records.map(r=>[r.id,r]));
   let group=groups[0],selected=null,shown=null,frame=0;
-  root.innerHTML='<div class="tech-mobile-top"><label class="tech-mobile-family"><span></span><select id="techMobileFamily"></select></label><output id="techMobilePoints"></output></div><p class="tech-mobile-hint"></p><div id="techMobileTree" class="tech-mobile-tree"><div class="tech-mini-forest"></div><svg class="tech-mini-links" aria-hidden="true"></svg></div><section id="techMobileDetail" class="tech-mobile-detail"><div class="tech-mobile-detail-content"></div><div id="techMobileActions" class="tech-mobile-actions"></div></section>';
-  const family=root.querySelector('select'),tree=root.querySelector('#techMobileTree'),forest=tree.querySelector('.tech-mini-forest'),links=tree.querySelector('svg'),detail=root.querySelector('#techMobileDetail'),content=detail.querySelector('.tech-mobile-detail-content'),actions=detail.querySelector('.tech-mobile-actions');
+  root.innerHTML='<nav id="techMobileFamilies" class="tech-mobile-families"></nav><div class="tech-mobile-toolbar"><p class="tech-mobile-hint"></p><output id="techMobilePoints"></output></div><div id="techMobileTree" class="tech-mobile-tree"><div class="tech-mini-forest"></div><svg class="tech-mini-links" aria-hidden="true"></svg></div><section id="techMobileDetail" class="tech-mobile-detail"><div class="tech-mobile-detail-content"></div><div id="techMobileActions" class="tech-mobile-actions"></div></section>';
+  const family=root.querySelector('#techMobileFamilies'),icons={chain:'↻',evade:'⇢',shadow:'▰',motion:'➤',impact:'✳',lightning:'ϟ',fire:'♨',frost:'❄',acid:'◉',ultimate:'✦',stats:'+'},tree=root.querySelector('#techMobileTree'),forest=tree.querySelector('.tech-mini-forest'),links=tree.querySelector('svg'),detail=root.querySelector('#techMobileDetail'),content=detail.querySelector('.tech-mobile-detail-content'),actions=detail.querySelector('.tech-mobile-actions');
   const entries=()=>records.filter(r=>r.group===group);
   const parents=record=>record.parents??[];
   const state=record=>record.card.dataset.state;
   const stateText=record=>tr('tech.mobile.'+state(record));
   function restore(){if(!shown)return;shown.record.card.querySelector('.tech-mobile-recipe-title')?.remove();shown.actionsAnchor?.replaceWith(shown.actions);shown.anchor.replaceWith(shown.record.card);shown=null;}
-  family.onchange=()=>{group=family.value;onSelect(entries()[0].id,false);};
   function pick(id){onSelect(id,false);tree.querySelector('[data-mobile-select="'+id+'"]')?.focus({preventScroll:true});}
   // Local connected paths come from prerequisites. Cross-family requirements stay chips.
   function components(list){const ids=new Set(list.map(r=>r.id)),seen=new Set(),result=[];
@@ -48,8 +47,8 @@ export function createMobileTechView({root,records,groupName,onSelect,isOpen,get
     detail.setAttribute('aria-label',chosen.label());
   }
   function render(id=selected){if(!media.matches){restore();return;}if(!isOpen())return;const oldGroup=group,chosen=byId.get(id)??entries()[0];selected=chosen.id;group=chosen.group;
-    root.querySelector('.tech-mobile-family span').textContent=tr('tech.mobile.family');root.querySelector('.tech-mobile-hint').textContent=tr('tech.mobile.pathHint');root.querySelector('#techMobilePoints').textContent=tr('tech.mobile.points',{count:getPoints()});
-    family.replaceChildren(...groups.map(value=>{const option=document.createElement('option');option.value=value;option.textContent=groupName(value);return option;}));family.value=group;
+    family.setAttribute('aria-label',tr('tech.mobile.family'));root.querySelector('.tech-mobile-hint').textContent=tr('tech.mobile.pathHint');root.querySelector('#techMobilePoints').textContent=tr('tech.mobile.points',{count:getPoints()});
+    family.replaceChildren(...groups.map(value=>{const button=document.createElement('button');button.type='button';button.className='tech-family-tab';button.dataset.family=value;button.setAttribute('aria-pressed',String(value===group));button.setAttribute('aria-label',groupName(value));button.title=groupName(value);const icon=document.createElement('span'),name=document.createElement('span');icon.textContent=icons[value];icon.setAttribute('aria-hidden','true');name.textContent=tr('tech.mobile.short.'+value);button.append(icon,name);button.onclick=()=>{onSelect(records.find(r=>r.group===value).id,false);family.querySelector('[data-family="'+value+'"]')?.focus({preventScroll:true});};return button;}));
     const oldScroll=oldGroup===group?tree.scrollTop:0;drawTree(entries());tree.scrollTop=oldScroll;showDetail(chosen);drawLinks();
   }
   const changed=()=>render(),resize=()=>{if(media.matches)drawLinks();};media.addEventListener('change',changed);window.addEventListener('resize',resize);

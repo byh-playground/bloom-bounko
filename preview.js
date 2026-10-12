@@ -26,8 +26,9 @@ export function createPreviewHost({translate,pause,resume}){
   function shut(){if(!active())return;destroyFrame();modal.hidden=true;modal.setAttribute('aria-hidden','true');for(const [el,value]of inert)el.inert=value;inert=[];for(const [el,x,y]of scroll){el.scrollLeft=x;el.scrollTop=y;}focus?.focus({preventScroll:true});resume();}
   toggle.onclick=()=>{const child=api()?.preview;if(child){const scene=child.snapshot();if(scene.ended)mount();else child.setPaused(!scene.paused);}};
   replay.onclick=mount;close.onclick=shut;modal.onclick=event=>{if(event.target===modal)shut();};
-  document.addEventListener('keydown',event=>{if(!active())return;if(event.key==='Escape'){event.preventDefault();event.stopImmediatePropagation();shut();}else if(event.key==='Tab'){const buttons=[...modal.querySelectorAll('button:not(:disabled),input')],first=buttons[0],last=buttons.at(-1);if(event.shiftKey&&document.activeElement===first){event.preventDefault();last.focus();}else if(!event.shiftKey&&document.activeElement===last){event.preventDefault();first.focus();}}},true);
-  return {open,close:shut,get active(){return active();}};
+  const onKey=event=>{if(!active())return;if(event.key==='Escape'){event.preventDefault();event.stopImmediatePropagation();shut();}else if(event.key==='Tab'){const buttons=[...modal.querySelectorAll('button:not(:disabled),input')],first=buttons[0],last=buttons.at(-1);if(event.shiftKey&&document.activeElement===first){event.preventDefault();last.focus();}else if(!event.shiftKey&&document.activeElement===last){event.preventDefault();first.focus();}}};
+  document.addEventListener('keydown',onKey,true);
+  return {open,close:shut,dispose(){shut();document.removeEventListener('keydown',onKey,true);},get active(){return active();}};
 }
 
 // Milliseconds describe cuts, real commands and presentation; no alternate combat renderer.
@@ -64,8 +65,15 @@ export function createIntroHost({translate,pause,resume,play,onClose}){
   }
   function shut({start=false,notify=true}={}){if(!active())return;destroy();modal.hidden=true;modal.setAttribute('aria-hidden','true');for(const [el,value]of inert)el.inert=value;inert=[];resume();if(notify)onClose?.();if(start)play();else focus?.focus({preventScroll:true});}
   function open(){if(active())return;focus=document.activeElement;pause();inert=[...document.body.children].filter(el=>el!==modal&&el.tagName!=='SCRIPT').map(el=>[el,el.inert]);for(const [el]of inert)el.inert=true;modal.hidden=false;modal.setAttribute('aria-hidden','false');mount();$('introClose').focus({preventScroll:true});}
-  sound.onclick=async()=>{const child=api()?.intro;if(!child)return;const enabled=!soundEnabled;if(await child.setSound(enabled)){if(!active())return;soundEnabled=enabled;sound.textContent=translate(enabled?'intro.soundOff':'intro.soundOn');sound.setAttribute('aria-pressed',String(enabled));}};
+  sound.onclick=async()=>{const child=api()?.intro;if(!child)return;const enabled=!soundEnabled;if(await child.setSound(enabled)){if(!active()||api()?.intro!==child)return;soundEnabled=enabled;sound.textContent=translate(enabled?'intro.soundOff':'intro.soundOn');sound.setAttribute('aria-pressed',String(enabled));}};
   $('introReplay').onclick=mount;$('introClose').onclick=()=>shut();$('introSkip').onclick=()=>shut();$('introPlay').onclick=()=>shut({start:true});
-  document.addEventListener('keydown',event=>{if(!active())return;if(event.key==='Escape'){event.preventDefault();event.stopImmediatePropagation();shut();}else if(event.key==='Tab'){const buttons=[...modal.querySelectorAll('button:not(:disabled)')],first=buttons[0],last=buttons.at(-1);if(event.shiftKey&&document.activeElement===first){event.preventDefault();last.focus();}else if(!event.shiftKey&&document.activeElement===last){event.preventDefault();first.focus();}}},true);
-  return {open,close:shut,get active(){return active();}};
+  const onKey=event=>{if(!active())return;if(event.key==='Escape'){event.preventDefault();event.stopImmediatePropagation();shut();}else if(event.key==='Tab'){const buttons=[...modal.querySelectorAll('button:not(:disabled)')],first=buttons[0],last=buttons.at(-1);if(event.shiftKey&&document.activeElement===first){event.preventDefault();last.focus();}else if(!event.shiftKey&&document.activeElement===last){event.preventDefault();first.focus();}}};
+  document.addEventListener('keydown',onKey,true);
+  return {open,close:shut,dispose(){shut();document.removeEventListener('keydown',onKey,true);},get active(){return active();}};
+}
+
+// Game-owned world/camera/commands; GameKit owns only timeline and run lifetime.
+export function scenarioDefinition(skill,tickRate=60){
+  if(skill){const scene=previewScenarios[skill];return {seed:scene.seed,tickRate,endTick:scene.endTick,scene,initialState:{skill},timeline:scene.elemental?[]:[{tick:1,action:'skill'}]};}
+  return {seed:introScenes[0].seed,tickRate,endTick:Math.ceil(28000*tickRate/1000),scene:introScenes,initialState:{},timeline:introTimeline};
 }

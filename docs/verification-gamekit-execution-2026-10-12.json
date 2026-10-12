@@ -1,0 +1,612 @@
+{
+  "date": "2026-10-12",
+  "baseline": "585ce6f485770a9fe8b21578e32fd63b05268161",
+  "version": "0.19.0",
+  "build": "20261012T-gamekit-execution",
+  "gamekit": {
+    "commit": "159746f50e819fdc9e8e3b9df102b542f7335f6d",
+    "modules": [
+      {
+        "name": "navigation.js",
+        "bytes": 3218,
+        "sha256": "92c387dcfa8af47beb3544f4a16121bbfc8fa9831052b33ce07076dd733c81d3"
+      },
+      {
+        "name": "scenario.js",
+        "bytes": 16283,
+        "sha256": "93fd504ad62a2d23691f9afeb897abb10b3f871a4aa0a5cfadec762cf4bd24b8"
+      }
+    ]
+  },
+  "simulation": {
+    "base": "585ce6f",
+    "browser": "Edge",
+    "scenes": [
+      {
+        "query": "?preview=laserBloom",
+        "equal": true,
+        "summary": {
+          "id": "laserBloom",
+          "seed": 82741,
+          "tick": 240,
+          "paused": false,
+          "ended": true,
+          "hits": 30,
+          "damage": 494.99999999999994
+        },
+        "baseline": {
+          "cpuFrameMs": 534.8000000119209,
+          "initMs": 916.182
+        },
+        "candidate": {
+          "cpuFrameMs": 516.5,
+          "initMs": 776.2177000000001
+        },
+        "remainingRAF": 0
+      },
+      {
+        "query": "?preview=iceShatter",
+        "equal": true,
+        "summary": {
+          "id": "iceShatter",
+          "seed": 82741,
+          "tick": 270,
+          "paused": false,
+          "ended": true,
+          "hits": 2,
+          "damage": 0
+        },
+        "baseline": {
+          "cpuFrameMs": 228.9000000357628,
+          "initMs": 576.4913000000001
+        },
+        "candidate": {
+          "cpuFrameMs": 231.69999998807907,
+          "initMs": 584.2453999999998
+        },
+        "remainingRAF": 0
+      },
+      {
+        "query": "?preview=acidSpread",
+        "equal": true,
+        "summary": {
+          "id": "acidSpread",
+          "seed": 82741,
+          "tick": 270,
+          "paused": false,
+          "ended": true,
+          "hits": 5,
+          "damage": 0
+        },
+        "baseline": {
+          "cpuFrameMs": 293.39999997615814,
+          "initMs": 565.6540999999997
+        },
+        "candidate": {
+          "cpuFrameMs": 281.9000000357628,
+          "initMs": 580.2674999999999
+        },
+        "remainingRAF": 0
+      },
+      {
+        "query": "?preview=iceGarden",
+        "equal": true,
+        "summary": {
+          "id": "iceGarden",
+          "seed": 82741,
+          "tick": 420,
+          "paused": false,
+          "ended": true,
+          "hits": 3,
+          "damage": 105
+        },
+        "baseline": {
+          "cpuFrameMs": 723,
+          "initMs": 563.9247000000005
+        },
+        "candidate": {
+          "cpuFrameMs": 717.1999999880791,
+          "initMs": 572.0192999999999
+        },
+        "remainingRAF": 0
+      },
+      {
+        "query": "?preview=lightningChain",
+        "equal": true,
+        "summary": {
+          "id": "lightningChain",
+          "seed": 82741,
+          "tick": 240,
+          "paused": false,
+          "ended": true,
+          "hits": 4,
+          "damage": 205
+        },
+        "baseline": {
+          "cpuFrameMs": 441.4000000357628,
+          "initMs": 598.7250999999997
+        },
+        "candidate": {
+          "cpuFrameMs": 445.10000002384186,
+          "initMs": 584.9500000000007
+        },
+        "remainingRAF": 0
+      },
+      {
+        "query": "?preview=fireSeed",
+        "equal": true,
+        "summary": {
+          "id": "fireSeed",
+          "seed": 82741,
+          "tick": 360,
+          "paused": false,
+          "ended": true,
+          "hits": 45,
+          "damage": 270
+        },
+        "baseline": {
+          "cpuFrameMs": 660.5,
+          "initMs": 579.9475000000002
+        },
+        "candidate": {
+          "cpuFrameMs": 690.9000000357628,
+          "initMs": 573.8052000000007
+        },
+        "remainingRAF": 0
+      },
+      {
+        "query": "?preview=acidFountain",
+        "equal": true,
+        "summary": {
+          "id": "acidFountain",
+          "seed": 82741,
+          "tick": 480,
+          "paused": false,
+          "ended": true,
+          "hits": 24,
+          "damage": 189
+        },
+        "baseline": {
+          "cpuFrameMs": 803.1000000238419,
+          "initMs": 599.2983000000004
+        },
+        "candidate": {
+          "cpuFrameMs": 789.3000000119209,
+          "initMs": 558.9158000000007
+        },
+        "remainingRAF": 0
+      },
+      {
+        "query": "?intro=1",
+        "equal": true,
+        "summary": {
+          "timeMs": 28000.000000000004,
+          "tick": 1680,
+          "chapter": 6,
+          "ended": true,
+          "metrics": [
+            {
+              "chapter": 0,
+              "atMs": 4000.0000000000005,
+              "hits": 5,
+              "kills": 0,
+              "combo": 5,
+              "ultimate": null,
+              "ultimateDamage": 0,
+              "pets": {
+                "inventoryCount": 2,
+                "slots": [
+                  null,
+                  null
+                ],
+                "hits": 0,
+                "kills": 0,
+                "damage": 0,
+                "taken": 0,
+                "deaths": 0,
+                "revivals": 0,
+                "abilities": 0,
+                "supportHealing": 0,
+                "lastHit": null,
+                "actors": []
+              }
+            },
+            {
+              "chapter": 1,
+              "atMs": 10000,
+              "hits": 14,
+              "kills": 9,
+              "combo": 9,
+              "ultimate": null,
+              "ultimateDamage": 0,
+              "pets": {
+                "inventoryCount": 2,
+                "slots": [
+                  null,
+                  null
+                ],
+                "hits": 0,
+                "kills": 0,
+                "damage": 0,
+                "taken": 0,
+                "deaths": 0,
+                "revivals": 0,
+                "abilities": 0,
+                "supportHealing": 0,
+                "lastHit": null,
+                "actors": []
+              }
+            },
+            {
+              "chapter": 2,
+              "atMs": 12800,
+              "hits": 14,
+              "kills": 9,
+              "combo": 0,
+              "ultimate": "laserBloom",
+              "ultimateDamage": 494.99999999999994,
+              "pets": {
+                "inventoryCount": 2,
+                "slots": [
+                  null,
+                  null
+                ],
+                "hits": 0,
+                "kills": 0,
+                "damage": 0,
+                "taken": 0,
+                "deaths": 0,
+                "revivals": 0,
+                "abilities": 0,
+                "supportHealing": 0,
+                "lastHit": null,
+                "actors": []
+              }
+            },
+            {
+              "chapter": 3,
+              "atMs": 15400.000000000002,
+              "hits": 14,
+              "kills": 9,
+              "combo": 0,
+              "ultimate": "chainDrive",
+              "ultimateDamage": 840,
+              "pets": {
+                "inventoryCount": 2,
+                "slots": [
+                  null,
+                  null
+                ],
+                "hits": 0,
+                "kills": 0,
+                "damage": 0,
+                "taken": 0,
+                "deaths": 0,
+                "revivals": 0,
+                "abilities": 0,
+                "supportHealing": 0,
+                "lastHit": null,
+                "actors": []
+              }
+            },
+            {
+              "chapter": 4,
+              "atMs": 18000,
+              "hits": 14,
+              "kills": 9,
+              "combo": 0,
+              "ultimate": "elasticBlast",
+              "ultimateDamage": 1680,
+              "pets": {
+                "inventoryCount": 2,
+                "slots": [
+                  null,
+                  null
+                ],
+                "hits": 0,
+                "kills": 0,
+                "damage": 0,
+                "taken": 0,
+                "deaths": 0,
+                "revivals": 0,
+                "abilities": 0,
+                "supportHealing": 0,
+                "lastHit": null,
+                "actors": []
+              }
+            },
+            {
+              "chapter": 5,
+              "atMs": 24000,
+              "hits": 18,
+              "kills": 9,
+              "combo": 1,
+              "ultimate": null,
+              "ultimateDamage": 1680,
+              "pets": {
+                "inventoryCount": 2,
+                "slots": [
+                  1,
+                  2
+                ],
+                "hits": 14,
+                "kills": 0,
+                "damage": 876.8577777777778,
+                "taken": 0,
+                "deaths": 0,
+                "revivals": 0,
+                "abilities": 11,
+                "supportHealing": 0,
+                "lastHit": {
+                  "inventoryId": 2,
+                  "unitId": 37,
+                  "speciesId": "brute",
+                  "enemyId": 38,
+                  "damage": 40.91333333333334,
+                  "raw": 40.91333333333334,
+                  "atMs": 23833.333333333336
+                },
+                "actors": [
+                  {
+                    "id": 1,
+                    "inventoryId": 1,
+                    "unitId": 36,
+                    "kind": "pet",
+                    "speciesId": "lancer",
+                    "grade": 2,
+                    "state": "RECOVER",
+                    "hp": 486.00000000000006,
+                    "maxHp": 486.00000000000006,
+                    "x": 772.1410669531393,
+                    "y": 517.8552994176282,
+                    "z": 0,
+                    "velocity": null,
+                    "abilities": {
+                      "lunge": {
+                        "phase": "RECOVER"
+                      }
+                    },
+                    "reviveInMs": 0
+                  },
+                  {
+                    "id": 2,
+                    "inventoryId": 2,
+                    "unitId": 37,
+                    "kind": "pet",
+                    "speciesId": "brute",
+                    "grade": 2,
+                    "state": "SUNBEAM_FIRE",
+                    "hp": 599.4000000000001,
+                    "maxHp": 599.4000000000001,
+                    "x": 737.1068234533124,
+                    "y": 732.4209858595843,
+                    "z": 0,
+                    "velocity": null,
+                    "abilities": {},
+                    "reviveInMs": 0
+                  }
+                ]
+              }
+            },
+            {
+              "chapter": 6,
+              "atMs": 28000.000000000004,
+              "hits": 18,
+              "kills": 9,
+              "combo": 0,
+              "ultimate": null,
+              "ultimateDamage": 1680,
+              "pets": {
+                "inventoryCount": 2,
+                "slots": [
+                  null,
+                  null
+                ],
+                "hits": 0,
+                "kills": 0,
+                "damage": 0,
+                "taken": 0,
+                "deaths": 0,
+                "revivals": 0,
+                "abilities": 0,
+                "supportHealing": 0,
+                "lastHit": null,
+                "actors": []
+              }
+            }
+          ],
+          "hits": 18,
+          "kills": 9,
+          "combo": 0,
+          "ultimate": null,
+          "ultimateDamage": 1680,
+          "pets": {
+            "inventoryCount": 2,
+            "slots": [
+              null,
+              null
+            ],
+            "hits": 0,
+            "kills": 0,
+            "damage": 0,
+            "taken": 0,
+            "deaths": 0,
+            "revivals": 0,
+            "abilities": 0,
+            "supportHealing": 0,
+            "lastHit": null,
+            "actors": []
+          },
+          "seed": 28105
+        },
+        "baseline": {
+          "cpuFrameMs": 2612,
+          "initMs": 534.9827000000005
+        },
+        "candidate": {
+          "cpuFrameMs": 2618.100000023842,
+          "initMs": 548.589100000001
+        },
+        "remainingRAF": 0
+      }
+    ],
+    "errors": [],
+    "gpu": "not measured; CPU frame submission only",
+    "elapsedMs": 22772.044
+  },
+  "consumer": {
+    "widths": [
+      390,
+      1280
+    ],
+    "elapsedMs": 9420,
+    "passed": [
+      "direct hash",
+      "back/forward",
+      "reload",
+      "preview pause/resume/replay/close/focus",
+      "intro replay/close",
+      "storage and purchase state unchanged",
+      "combat settings pause/resume"
+    ],
+    "errors": 0
+  },
+  "performance": {
+    "browser": "155.0.4283.45",
+    "viewport": "390x844",
+    "scenario": "intro 1680 fixed ticks; 1 warm-up + 3 measured, alternating order",
+    "gpuTime": "not measured",
+    "results": [
+      {
+        "trial": 0,
+        "folder": "baseline",
+        "sim": 221.4000005722046,
+        "render": 2356.7999988794327,
+        "steps": 1680,
+        "renders": 1682,
+        "start": 163.39999997615814,
+        "init": 383.80000001192093,
+        "total": 2591.2000000476837,
+        "renderer": "ANGLE (NVIDIA, NVIDIA GeForce GTX 1660 Ti (0x00002191) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "raf": 1
+      },
+      {
+        "trial": 0,
+        "folder": "bounko",
+        "sim": 220.50000077486038,
+        "render": 2247.8999995589256,
+        "steps": 1680,
+        "renders": 1681,
+        "start": 190,
+        "init": 202.39999997615814,
+        "total": 2478,
+        "renderer": "ANGLE (NVIDIA, NVIDIA GeForce GTX 1660 Ti (0x00002191) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "raf": 0
+      },
+      {
+        "trial": 1,
+        "folder": "bounko",
+        "sim": 223.0000001192093,
+        "render": 2261.799999833107,
+        "steps": 1680,
+        "renders": 1681,
+        "start": 188.29999995231628,
+        "init": 164,
+        "total": 2494.5,
+        "renderer": "ANGLE (NVIDIA, NVIDIA GeForce GTX 1660 Ti (0x00002191) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "raf": 0
+      },
+      {
+        "trial": 1,
+        "folder": "baseline",
+        "sim": 213.90000069141388,
+        "render": 2270.699999511242,
+        "steps": 1680,
+        "renders": 1682,
+        "start": 188.5,
+        "init": 164.19999998807907,
+        "total": 2497.300000011921,
+        "renderer": "ANGLE (NVIDIA, NVIDIA GeForce GTX 1660 Ti (0x00002191) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "raf": 1
+      },
+      {
+        "trial": 2,
+        "folder": "baseline",
+        "sim": 231.29999923706055,
+        "render": 2371.1000009179115,
+        "steps": 1680,
+        "renders": 1682,
+        "start": 188.60000002384186,
+        "init": 169.5,
+        "total": 2616.600000023842,
+        "renderer": "ANGLE (NVIDIA, NVIDIA GeForce GTX 1660 Ti (0x00002191) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "raf": 1
+      },
+      {
+        "trial": 2,
+        "folder": "bounko",
+        "sim": 250.90000182390213,
+        "render": 2431.9999980926514,
+        "steps": 1680,
+        "renders": 1681,
+        "start": 187.9000000357628,
+        "init": 169.19999998807907,
+        "total": 2694.399999976158,
+        "renderer": "ANGLE (NVIDIA, NVIDIA GeForce GTX 1660 Ti (0x00002191) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "raf": 0
+      },
+      {
+        "trial": 3,
+        "folder": "bounko",
+        "sim": 229.49999910593033,
+        "render": 2306.3000009059906,
+        "steps": 1680,
+        "renders": 1681,
+        "start": 188.30000001192093,
+        "init": 173.0999999642372,
+        "total": 2546.699999988079,
+        "renderer": "ANGLE (NVIDIA, NVIDIA GeForce GTX 1660 Ti (0x00002191) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "raf": 0
+      },
+      {
+        "trial": 3,
+        "folder": "baseline",
+        "sim": 240.69999939203262,
+        "render": 2482.500001013279,
+        "steps": 1680,
+        "renders": 1682,
+        "start": 212.19999998807907,
+        "init": 169.5,
+        "total": 2736.5,
+        "renderer": "ANGLE (NVIDIA, NVIDIA GeForce GTX 1660 Ti (0x00002191) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "raf": 1
+      }
+    ]
+  },
+  "visual": {
+    "laserTick180": "exact PNG match",
+    "introTick180": {
+      "changedPixels": 178,
+      "totalPixels": 329160,
+      "maxChannelDelta": 2,
+      "meanChannelDelta": 0.0002187386073641998
+    },
+    "scope": "same actual Canvas at fixed tick, Edge ANGLE GTX1660Ti; slight pixel variation reported, no claim of bit-exact intro pixels"
+  },
+  "lifecycle": {
+    "temporary": "aborted signal, stale RAF callback, repeated dispose, manual restart PASS",
+    "permanent": "GameKit execution E2E created=4 disposed=4",
+    "actualPreviewRepeat": {
+      "runs": 3,
+      "equal": true,
+      "pendingRafAtEnd": 0,
+      "storageWrites": 0,
+      "iframeRemoved": true
+    }
+  },
+  "unverified": [
+    "GPU completion timing",
+    "physical Android/iOS",
+    "video export/codec (not implemented)"
+  ]
+}

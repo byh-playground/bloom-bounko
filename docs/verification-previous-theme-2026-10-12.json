@@ -1,0 +1,31 @@
+{
+  "browser": "155.0.4283.45",
+  "checks": [
+    {
+      "width": 390,
+      "predecessorNames": true,
+      "lockedCounts": true
+    },
+    {
+      "width": 1280,
+      "predecessorNames": true,
+      "lockedCounts": true
+    }
+  ],
+  "events": {
+    "values": {
+      "garden": 3,
+      "cave": 4,
+      "frostGarden": 5,
+      "acidMarsh": 91
+    },
+    "previousCurrentNext": true,
+    "duplicateExcluded": true,
+    "noTransfer": true
+  },
+  "savedCountersPreserved": true,
+  "statsEquipmentAutomationPreserved": true,
+  "reload": true,
+  "errors": [],
+  "durationMs": 2160
+}

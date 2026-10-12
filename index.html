@@ -582,7 +582,7 @@ import {t as tr,language,setLanguage,onLanguageChanged,translateDocument,localiz
 
 const KIT = 'https://cdn.jsdelivr.net/gh/byh-playground/bloom-gamekit@d1e2c385033ad04a7a004cfbe9558948ef07a6d1/';
 const EXECUTION_KIT = 'https://cdn.jsdelivr.net/gh/byh-playground/bloom-gamekit@159746f50e819fdc9e8e3b9df102b542f7335f6d/';
-const VERSION = '0.22.0', BUILD_ID = '20261012T-theme-start'
+const VERSION = '0.22.1', BUILD_ID = '20261012T-previous-theme-boss'
 const $ = id => document.getElementById(id);
 document.querySelectorAll('[data-game-version]').forEach(el=>el.textContent='v'+VERSION);
 const loadtext = $('loadtext');translateDocument();document.title=tr('app.title');$('languageSelect').value=language();$('languageSelect').disabled=true;
@@ -3255,11 +3255,12 @@ try {
   function renderThemeStart(){
     const list=$('themeStartList');list.replaceChildren();
     for(const definition of themeProgress.definitions){
-      const id=definition.id,known=themeProgress.themes[id].visited,button=document.createElement('button'),title=document.createElement('strong'),range=document.createElement('span'),detail=document.createElement('small');
+      const id=definition.id,known=themeProgress.themes[id].visited||themeProgress.unlocked(id),button=document.createElement('button'),title=document.createElement('strong'),range=document.createElement('span'),detail=document.createElement('small');
       button.type='button';button.dataset.startTheme=id;button.dataset.selected=String(id===themeProgress.selected);button.disabled=!themeProgress.unlocked(id);
       button.setAttribute('aria-pressed',String(id===themeProgress.selected));title.textContent=known?definition.name:tr('themeStart.unknown');
       range.textContent=known?tr('themeStart.firstStage',{count:definition.unlockStage}):tr('themeStart.explore');
-      detail.textContent=button.disabled?tr('themeStart.locked',{count:themeProgress.count(id),required:themeProgress.required(id)}):tr(id===themeProgress.selected?'themeStart.selected':'themeStart.ready');
+      const previous=themeProgress.predecessor(id);
+      detail.textContent=button.disabled?tr('themeStart.locked',{theme:previous?.name,count:themeProgress.count(previous?.id),required:themeProgress.required(id)}):tr(id===themeProgress.selected?'themeStart.selected':'themeStart.ready');
       button.append(title,range,detail);button.onclick=()=>{themeProgress.select(id);persistTech();startRun();};list.append(button);
     }
   }
@@ -3552,13 +3553,13 @@ try {
 
   function refreshLanguageUi(){
     const focused=document.activeElement,ultimateId=focused?.dataset.ultimateId,ultimateSlot=focused?.dataset.ultimateSlot,ultimateOrder=focused?.classList.contains('ultimate-order')?{slot:focused.closest('[data-slot]').dataset.slot,child:[...focused.parentElement.children].indexOf(focused)}:null,petId=focused?.closest('[data-pet-id]')?.dataset.petId,action=focused?.dataset.action,slot=focused?.closest('[data-slot-index]')?.dataset.slotIndex;
-    const scroll=[...document.querySelectorAll('#wikiScroll,#techMobileTree,.tech-mobile-detail-content,#guideStage,#petPanel .pet-scroll,#settings,.ultimate-dialog')].map(el=>[el,el.scrollLeft,el.scrollTop]);
+    const scroll=[...document.querySelectorAll('#wikiScroll,#techMobileTree,.tech-mobile-detail-content,#guideStage,#petPanel .pet-scroll,#settings,.ultimate-dialog,#themeStartList')].map(el=>[el,el.scrollLeft,el.scrollTop]);
     translateDocument();document.title=tr('app.title');$('languageSelect').value=language();
     for(const [key,label]of settings){const input=$('config_'+key.replaceAll('.','_'));input.previousElementSibling.textContent=label;input.setAttribute('aria-label',label);}
     for(const [key,label]of coreboundStatSettings){const input=$('stat_'+key);input.previousElementSibling.textContent=label;}
     const mute=$('audioSettingsMute'),volume=$('audioSettingsVolume');mute.parentElement.lastChild.textContent=' '+tr('ui.mute');volume.parentElement.firstChild.textContent=tr('ui.sfx')+' ';volume.setAttribute('aria-label',tr('ui.sfxVolume'));
     for(const [category,name]of Object.entries(audioCategoryNames)){const input=$('audioCategory_'+category);input.parentElement.firstChild.textContent=name+' ';input.setAttribute('aria-label',tr('runtime.phrase.19',{v0:name}));}
-    refreshAudioUi();updateTechUi();updatePetUi();updateUltimatePreparation();updateUltimateHud();refreshWikiTables();updateDiscoveredSpeciesWiki();
+    refreshAudioUi();updateTechUi();updatePetUi();updateUltimatePreparation();updateUltimateHud();refreshWikiTables();updateDiscoveredSpeciesWiki();if($('themeStartPanel').classList.contains('open'))renderThemeStart();
     wikiSections.forEach((section,i)=>{wikiNav.children[i].textContent=wikiTocItems.children[i].textContent=section.dataset.wikiTitle;});
     $('wikiMeta').textContent=tr('runtime.phrase.1',{v0:VERSION,v1:BUILD_ID});wikiSearch($('wikiSearch').value);
     $('guideNext').textContent=guideIndex===guideSlides.length-1?tr('runtime.274'):tr('runtime.275');

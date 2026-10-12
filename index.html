@@ -665,7 +665,7 @@ next stage -&gt; centered stage number; 4/7/10... expands map/theme segment</cod
 import {createPlayerPresentation,facePlayer,rollPlayer,impactPlayer,updatePlayerPresentation,samplePlayerPresentation,drawPlayerPresentation} from './player-presentation.js';
 import {createMobileTechView} from './mobile-tech.js';
 import {ultimateConfig,UltimateLoadout,UltimateRunner,drawUltimate,beamWidth,beamIntersects} from './ultimates.js';
-import {previewScenarios,previewId,previewOpponent,createPreviewHost,createIntroHost,introTimeline,introScenes,scenarioDefinition} from './preview.js';
+import {previewScenarios,previewId,previewOpponent,createPreviewHost,createIntroHost,introScenes,scenarioDefinition} from './preview.js';
 const previewSkill=previewId(location.search),previewScenario=previewScenarios[previewSkill];
 const introScene=new URLSearchParams(location.search).get('intro')==='1',isolatedScene=!!previewSkill||introScene;
 if(isolatedScene)document.body.classList.add('preview-scene');

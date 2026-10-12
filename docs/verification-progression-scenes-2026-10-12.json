@@ -1,0 +1,436 @@
+{
+  "base": "60e13fc",
+  "browser": "Edge",
+  "scenes": [
+    {
+      "query": "?preview=laserBloom",
+      "equal": true,
+      "summary": {
+        "id": "laserBloom",
+        "seed": 82741,
+        "tick": 240,
+        "paused": false,
+        "ended": true,
+        "hits": 30,
+        "damage": 494.99999999999994
+      },
+      "baseline": {
+        "cpuFrameMs": 521.9000000357628,
+        "initMs": 965.1212
+      },
+      "candidate": {
+        "cpuFrameMs": 488.10000002384186,
+        "initMs": 591.4882000000002
+      },
+      "remainingRAF": 0
+    },
+    {
+      "query": "?preview=iceShatter",
+      "equal": true,
+      "summary": {
+        "id": "iceShatter",
+        "seed": 82741,
+        "tick": 270,
+        "paused": false,
+        "ended": true,
+        "hits": 2,
+        "damage": 0
+      },
+      "baseline": {
+        "cpuFrameMs": 230.9000000357628,
+        "initMs": 561.6525999999999
+      },
+      "candidate": {
+        "cpuFrameMs": 232.10000002384186,
+        "initMs": 586.7910000000002
+      },
+      "remainingRAF": 0
+    },
+    {
+      "query": "?preview=acidSpread",
+      "equal": true,
+      "summary": {
+        "id": "acidSpread",
+        "seed": 82741,
+        "tick": 270,
+        "paused": false,
+        "ended": true,
+        "hits": 5,
+        "damage": 0
+      },
+      "baseline": {
+        "cpuFrameMs": 287.39999997615814,
+        "initMs": 570.1873000000005
+      },
+      "candidate": {
+        "cpuFrameMs": 287,
+        "initMs": 578.5828000000001
+      },
+      "remainingRAF": 0
+    },
+    {
+      "query": "?preview=iceGarden",
+      "equal": true,
+      "summary": {
+        "id": "iceGarden",
+        "seed": 82741,
+        "tick": 420,
+        "paused": false,
+        "ended": true,
+        "hits": 3,
+        "damage": 105
+      },
+      "baseline": {
+        "cpuFrameMs": 719.3000000119209,
+        "initMs": 573.7353999999996
+      },
+      "candidate": {
+        "cpuFrameMs": 735.8000000119209,
+        "initMs": 582.8522000000003
+      },
+      "remainingRAF": 0
+    },
+    {
+      "query": "?preview=lightningChain",
+      "equal": true,
+      "summary": {
+        "id": "lightningChain",
+        "seed": 82741,
+        "tick": 240,
+        "paused": false,
+        "ended": true,
+        "hits": 4,
+        "damage": 205
+      },
+      "baseline": {
+        "cpuFrameMs": 455.19999998807907,
+        "initMs": 656.5583000000006
+      },
+      "candidate": {
+        "cpuFrameMs": 433.9000000357628,
+        "initMs": 614.0416999999998
+      },
+      "remainingRAF": 0
+    },
+    {
+      "query": "?preview=fireSeed",
+      "equal": true,
+      "summary": {
+        "id": "fireSeed",
+        "seed": 82741,
+        "tick": 360,
+        "paused": false,
+        "ended": true,
+        "hits": 45,
+        "damage": 270
+      },
+      "baseline": {
+        "cpuFrameMs": 670.1999999880791,
+        "initMs": 574.7847000000002
+      },
+      "candidate": {
+        "cpuFrameMs": 653.5999999642372,
+        "initMs": 591.331900000001
+      },
+      "remainingRAF": 0
+    },
+    {
+      "query": "?preview=acidFountain",
+      "equal": true,
+      "summary": {
+        "id": "acidFountain",
+        "seed": 82741,
+        "tick": 480,
+        "paused": false,
+        "ended": true,
+        "hits": 24,
+        "damage": 189
+      },
+      "baseline": {
+        "cpuFrameMs": 778.5,
+        "initMs": 569.8202999999994
+      },
+      "candidate": {
+        "cpuFrameMs": 767.3000000119209,
+        "initMs": 567.3271999999997
+      },
+      "remainingRAF": 0
+    },
+    {
+      "query": "?intro=1",
+      "equal": true,
+      "summary": {
+        "timeMs": 28000.000000000004,
+        "tick": 1680,
+        "chapter": 6,
+        "ended": true,
+        "metrics": [
+          {
+            "chapter": 0,
+            "atMs": 4000.0000000000005,
+            "hits": 5,
+            "kills": 0,
+            "combo": 5,
+            "ultimate": null,
+            "ultimateDamage": 0,
+            "pets": {
+              "inventoryCount": 2,
+              "slots": [
+                null,
+                null
+              ],
+              "hits": 0,
+              "kills": 0,
+              "damage": 0,
+              "taken": 0,
+              "deaths": 0,
+              "revivals": 0,
+              "abilities": 0,
+              "supportHealing": 0,
+              "lastHit": null,
+              "actors": []
+            }
+          },
+          {
+            "chapter": 1,
+            "atMs": 10000,
+            "hits": 14,
+            "kills": 9,
+            "combo": 9,
+            "ultimate": null,
+            "ultimateDamage": 0,
+            "pets": {
+              "inventoryCount": 2,
+              "slots": [
+                null,
+                null
+              ],
+              "hits": 0,
+              "kills": 0,
+              "damage": 0,
+              "taken": 0,
+              "deaths": 0,
+              "revivals": 0,
+              "abilities": 0,
+              "supportHealing": 0,
+              "lastHit": null,
+              "actors": []
+            }
+          },
+          {
+            "chapter": 2,
+            "atMs": 12800,
+            "hits": 14,
+            "kills": 9,
+            "combo": 0,
+            "ultimate": "laserBloom",
+            "ultimateDamage": 494.99999999999994,
+            "pets": {
+              "inventoryCount": 2,
+              "slots": [
+                null,
+                null
+              ],
+              "hits": 0,
+              "kills": 0,
+              "damage": 0,
+              "taken": 0,
+              "deaths": 0,
+              "revivals": 0,
+              "abilities": 0,
+              "supportHealing": 0,
+              "lastHit": null,
+              "actors": []
+            }
+          },
+          {
+            "chapter": 3,
+            "atMs": 15400.000000000002,
+            "hits": 14,
+            "kills": 9,
+            "combo": 0,
+            "ultimate": "chainDrive",
+            "ultimateDamage": 840,
+            "pets": {
+              "inventoryCount": 2,
+              "slots": [
+                null,
+                null
+              ],
+              "hits": 0,
+              "kills": 0,
+              "damage": 0,
+              "taken": 0,
+              "deaths": 0,
+              "revivals": 0,
+              "abilities": 0,
+              "supportHealing": 0,
+              "lastHit": null,
+              "actors": []
+            }
+          },
+          {
+            "chapter": 4,
+            "atMs": 18000,
+            "hits": 14,
+            "kills": 9,
+            "combo": 0,
+            "ultimate": "elasticBlast",
+            "ultimateDamage": 1680,
+            "pets": {
+              "inventoryCount": 2,
+              "slots": [
+                null,
+                null
+              ],
+              "hits": 0,
+              "kills": 0,
+              "damage": 0,
+              "taken": 0,
+              "deaths": 0,
+              "revivals": 0,
+              "abilities": 0,
+              "supportHealing": 0,
+              "lastHit": null,
+              "actors": []
+            }
+          },
+          {
+            "chapter": 5,
+            "atMs": 24000,
+            "hits": 18,
+            "kills": 9,
+            "combo": 1,
+            "ultimate": null,
+            "ultimateDamage": 1680,
+            "pets": {
+              "inventoryCount": 2,
+              "slots": [
+                1,
+                2
+              ],
+              "hits": 14,
+              "kills": 0,
+              "damage": 876.8577777777778,
+              "taken": 0,
+              "deaths": 0,
+              "revivals": 0,
+              "abilities": 11,
+              "supportHealing": 0,
+              "lastHit": {
+                "inventoryId": 2,
+                "unitId": 37,
+                "speciesId": "brute",
+                "enemyId": 38,
+                "damage": 40.91333333333334,
+                "raw": 40.91333333333334,
+                "atMs": 23833.333333333336
+              },
+              "actors": [
+                {
+                  "id": 1,
+                  "inventoryId": 1,
+                  "unitId": 36,
+                  "kind": "pet",
+                  "speciesId": "lancer",
+                  "grade": 2,
+                  "state": "RECOVER",
+                  "hp": 486.00000000000006,
+                  "maxHp": 486.00000000000006,
+                  "x": 772.1410669531393,
+                  "y": 517.8552994176282,
+                  "z": 0,
+                  "velocity": null,
+                  "abilities": {
+                    "lunge": {
+                      "phase": "RECOVER"
+                    }
+                  },
+                  "reviveInMs": 0
+                },
+                {
+                  "id": 2,
+                  "inventoryId": 2,
+                  "unitId": 37,
+                  "kind": "pet",
+                  "speciesId": "brute",
+                  "grade": 2,
+                  "state": "SUNBEAM_FIRE",
+                  "hp": 599.4000000000001,
+                  "maxHp": 599.4000000000001,
+                  "x": 737.1068234533124,
+                  "y": 732.4209858595843,
+                  "z": 0,
+                  "velocity": null,
+                  "abilities": {},
+                  "reviveInMs": 0
+                }
+              ]
+            }
+          },
+          {
+            "chapter": 6,
+            "atMs": 28000.000000000004,
+            "hits": 18,
+            "kills": 9,
+            "combo": 0,
+            "ultimate": null,
+            "ultimateDamage": 1680,
+            "pets": {
+              "inventoryCount": 2,
+              "slots": [
+                null,
+                null
+              ],
+              "hits": 0,
+              "kills": 0,
+              "damage": 0,
+              "taken": 0,
+              "deaths": 0,
+              "revivals": 0,
+              "abilities": 0,
+              "supportHealing": 0,
+              "lastHit": null,
+              "actors": []
+            }
+          }
+        ],
+        "hits": 18,
+        "kills": 9,
+        "combo": 0,
+        "ultimate": null,
+        "ultimateDamage": 1680,
+        "pets": {
+          "inventoryCount": 2,
+          "slots": [
+            null,
+            null
+          ],
+          "hits": 0,
+          "kills": 0,
+          "damage": 0,
+          "taken": 0,
+          "deaths": 0,
+          "revivals": 0,
+          "abilities": 0,
+          "supportHealing": 0,
+          "lastHit": null,
+          "actors": []
+        },
+        "seed": 28105
+      },
+      "baseline": {
+        "cpuFrameMs": 2583.300000011921,
+        "initMs": 547.7458999999981
+      },
+      "candidate": {
+        "cpuFrameMs": 2589.900000035763,
+        "initMs": 551.1126000000004
+      },
+      "remainingRAF": 0
+    }
+  ],
+  "errors": [],
+  "gpu": "not measured; CPU frame submission only",
+  "elapsedMs": 22643.747600000002
+}

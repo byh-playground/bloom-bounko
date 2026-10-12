@@ -34,7 +34,7 @@ export class CompanionCollection {
     this.config=config;this.onChange=onChange;this.slotLevel=integer(slotLevel,0,config.slots.maxLevel);
     this.inventory=[];this.byId=new Map();this.slots=Array(companionCapacity(config,this.slotLevel)).fill(null);
     this.nextId=1;this.revision=0;this.lastFusion=null;this.discovered=new Set();
-    this.automation={hatch:false,preferredSpecies:null,fusion:false};this.processing=false;this.random=Math.random;
+    this.automation={hatch:false,fusion:false,preferredSpecies:null};this.processing=false;this.random=Math.random;
     if(raw&&typeof raw==='object'){
       for(const id of Array.isArray(raw.discovered)?raw.discovered:[])if(config.species[id])this.discovered.add(id);
       for(const source of Array.isArray(raw.inventory)?raw.inventory:[]){

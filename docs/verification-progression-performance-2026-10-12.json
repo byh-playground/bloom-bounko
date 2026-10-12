@@ -1,0 +1,112 @@
+{
+  "browser": "155.0.4283.45",
+  "viewport": "390x844",
+  "scenario": "intro 1680 fixed ticks; 1 warm-up + 3 measured, alternating order",
+  "gpuTime": "not measured",
+  "results": [
+    {
+      "trial": 0,
+      "folder": "progression-baseline",
+      "sim": 209.6000006198883,
+      "render": 2349.8999990820885,
+      "steps": 1680,
+      "renders": 1681,
+      "start": 140.89999997615814,
+      "init": 380.30000001192093,
+      "total": 2569.899999976158,
+      "renderer": "ANGLE (NVIDIA, NVIDIA GeForce GTX 1660 Ti (0x00002191) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+      "raf": 0
+    },
+    {
+      "trial": 0,
+      "folder": "bounko",
+      "sim": 208.8999992609024,
+      "render": 2251.000000655651,
+      "steps": 1680,
+      "renders": 1681,
+      "start": 187,
+      "init": 235.5,
+      "total": 2468.7000000476837,
+      "renderer": "ANGLE (NVIDIA, NVIDIA GeForce GTX 1660 Ti (0x00002191) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+      "raf": 0
+    },
+    {
+      "trial": 1,
+      "folder": "bounko",
+      "sim": 220.90000051259995,
+      "render": 2341.5999992489815,
+      "steps": 1680,
+      "renders": 1681,
+      "start": 180.30000001192093,
+      "init": 154.5,
+      "total": 2571.300000011921,
+      "renderer": "ANGLE (NVIDIA, NVIDIA GeForce GTX 1660 Ti (0x00002191) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+      "raf": 0
+    },
+    {
+      "trial": 1,
+      "folder": "progression-baseline",
+      "sim": 208.4000000357628,
+      "render": 2216.799999654293,
+      "steps": 1680,
+      "renders": 1681,
+      "start": 177.39999997615814,
+      "init": 164.19999998807907,
+      "total": 2434.199999988079,
+      "renderer": "ANGLE (NVIDIA, NVIDIA GeForce GTX 1660 Ti (0x00002191) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+      "raf": 0
+    },
+    {
+      "trial": 2,
+      "folder": "progression-baseline",
+      "sim": 209.29999923706055,
+      "render": 2254.800000846386,
+      "steps": 1680,
+      "renders": 1681,
+      "start": 191,
+      "init": 167.4000000357628,
+      "total": 2472.400000035763,
+      "renderer": "ANGLE (NVIDIA, NVIDIA GeForce GTX 1660 Ti (0x00002191) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+      "raf": 0
+    },
+    {
+      "trial": 2,
+      "folder": "bounko",
+      "sim": 209.7999987602234,
+      "render": 2290.2000017166138,
+      "steps": 1680,
+      "renders": 1681,
+      "start": 183.89999997615814,
+      "init": 162.80000001192093,
+      "total": 2508.600000023842,
+      "renderer": "ANGLE (NVIDIA, NVIDIA GeForce GTX 1660 Ti (0x00002191) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+      "raf": 0
+    },
+    {
+      "trial": 3,
+      "folder": "bounko",
+      "sim": 214.19999939203262,
+      "render": 2285.3000002503395,
+      "steps": 1680,
+      "renders": 1681,
+      "start": 210.4000000357628,
+      "init": 178.29999995231628,
+      "total": 2508.5,
+      "renderer": "ANGLE (NVIDIA, NVIDIA GeForce GTX 1660 Ti (0x00002191) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+      "raf": 0
+    },
+    {
+      "trial": 3,
+      "folder": "progression-baseline",
+      "sim": 213.60000026226044,
+      "render": 2238.100000023842,
+      "steps": 1680,
+      "renders": 1681,
+      "start": 185,
+      "init": 163.30000001192093,
+      "total": 2460.5,
+      "renderer": "ANGLE (NVIDIA, NVIDIA GeForce GTX 1660 Ti (0x00002191) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+      "raf": 0
+    }
+  ]
+}

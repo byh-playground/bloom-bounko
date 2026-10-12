@@ -1,0 +1,54 @@
+{
+  "browser": "155.0.4283.45",
+  "mapping": {
+    "garden": 1,
+    "cave": 4,
+    "frostGarden": 7,
+    "acidMarsh": 10
+  },
+  "checks": [
+    {
+      "width": 390,
+      "height": 568,
+      "contained": true
+    },
+    {
+      "width": 1280,
+      "height": 844,
+      "contained": true
+    }
+  ],
+  "counting": {
+    "counts": {
+      "selected": "garden",
+      "themes": {
+        "garden": {
+          "bossDefeats": 0,
+          "visited": true
+        },
+        "cave": {
+          "bossDefeats": 3,
+          "visited": true
+        },
+        "frostGarden": {
+          "bossDefeats": 4,
+          "visited": true
+        },
+        "acidMarsh": {
+          "bossDefeats": 6,
+          "visited": true
+        }
+      }
+    },
+    "repeatTheme": "acidMarsh",
+    "normalStageExcluded": true,
+    "waveExcluded": true,
+    "duplicateExcluded": true,
+    "deathExcluded": true
+  },
+  "previewIsolated": true,
+  "statsEquipmentAutomationPreserved": true,
+  "oldStageUnlockDiscarded": true,
+  "errors": [],
+  "durationMs": 3689
+}

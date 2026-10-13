@@ -1,0 +1,59 @@
+{
+  "views": [
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "attack": {
+        "state": "RECOVER",
+        "hits": 1,
+        "launch": 1
+      },
+      "layout": {
+        "scroll": 0,
+        "bottom": 782,
+        "height": 844,
+        "overflow": 0
+      },
+      "flow": "help autoplay → attack → movement → growth → replay → back → close/reopen → play → real input → dismiss/replay → intro/help → English"
+    },
+    {
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "attack": {
+        "state": "RECOVER",
+        "hits": 1,
+        "launch": 1
+      },
+      "layout": {
+        "scroll": 0,
+        "bottom": 728,
+        "height": 768,
+        "overflow": 0
+      },
+      "flow": "help autoplay → attack → movement → growth → replay → back → close/reopen → play → real input → dismiss/replay → intro/help → English"
+    }
+  ],
+  "errors": [],
+  "elapsedMs": 29784,
+  "result": "PASS",
+  "version": "0.22.2",
+  "build": "20261013T-first-play-guide",
+  "base": "4719e0d",
+  "engine": "Installed Microsoft Edge / Playwright; actual Matter.js and WebGL",
+  "bounds": "Whole run capped at 180 seconds",
+  "notVerified": [
+    "Physical mobile device",
+    "Safari",
+    "Full balance/playthrough"
+  ],
+  "notes": [
+    "Existing isolatedScene save guards reused.",
+    "Tutorial scheduler runs at 0.5x; combat tick/config unchanged.",
+    "Growth fixture uses a one-enemy clear target and low HP; boss cadence is explained in captions, not simulated.",
+    "Initial CSS visibility issue found by screenshots was fixed before final verification."
+  ]
+}

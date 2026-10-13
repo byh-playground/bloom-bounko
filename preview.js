@@ -1,6 +1,9 @@
 // BOUNKO owns scenarios and popup lifetime; the embedded game owns all combat.
 const ring=Array.from({length:6},(_,i)=>({x:Math.cos(i*Math.PI/3)*180,y:Math.sin(i*Math.PI/3)*180}));
 export const previewScenarios=Object.freeze({
+  controls:{seed:82741,endTick:330,tutorial:'attack',playbackRate:.5,tech:[],timeline:[{tick:45,action:'fire'}],targets:[{x:310,y:0}],camera:{x:150,y:0,width:590,height:450}},
+  movement:{seed:82741,endTick:270,tutorial:'movement',playbackRate:.5,tech:[],timeline:[{tick:65,action:'move',x:170,y:-90},{tick:160,action:'move',x:-100,y:70}],targets:[],camera:{x:30,y:0,width:590,height:450}},
+  growth:{seed:82741,endTick:270,tutorial:'growth',playbackRate:.5,tech:[],timeline:[{tick:45,action:'fire'}],targets:[{x:270,y:0,hp:1}],camera:{x:140,y:0,width:590,height:450}},
   iceGarden:{seed:82741,endTick:420,tech:['coldTouch','freezeTouch','iceShatter','iceGarden'],targets:[{x:150,y:0},{x:220,y:70},{x:230,y:-75}],camera:{x:145,y:0,width:620,height:560}},
   lightningChain:{seed:82741,endTick:240,tech:['conduct','relayArc','lightningChain'],targets:[{x:120,y:0},{x:220,y:45},{x:310,y:-30},{x:385,y:40}],camera:{x:210,y:0,width:680,height:560}},
   fireSeed:{seed:82741,endTick:360,tech:['ignite','spreadFlame','fireSeed'],targets:[{x:240,y:0},{x:290,y:65},{x:285,y:-70}],camera:{x:170,y:0,width:620,height:560}},
@@ -48,7 +51,7 @@ export const introTimeline=Object.freeze([
   {atMs:18000,chapter:5},{atMs:18400,action:'attack'},{atMs:20000,action:'attack'},{atMs:21800,action:'attack'},{atMs:23200,action:'attack'},
   {atMs:24000,chapter:6}
 ]);
-export function createIntroHost({translate,pause,resume,play,onClose}){
+export function createIntroHost({translate,pause,resume,play,help,onClose}){
   const $=id=>document.getElementById(id),modal=$('introPanel'),viewport=$('introViewport'),sound=$('introSound'),copy=$('introCopy'),sub=$('introSub');
   let frame=null,animation=0,focus=null,inert=[],mountedAt=0,soundEnabled=false,chapter=-1;
   const api=()=>frame?.contentWindow?.__bloomImpulse;
@@ -66,6 +69,7 @@ export function createIntroHost({translate,pause,resume,play,onClose}){
   function shut({start=false,notify=true}={}){if(!active())return;destroy();modal.hidden=true;modal.setAttribute('aria-hidden','true');for(const [el,value]of inert)el.inert=value;inert=[];resume();if(notify)onClose?.();if(start)play();else focus?.focus({preventScroll:true});}
   function open(){if(active())return;focus=document.activeElement;pause();inert=[...document.body.children].filter(el=>el!==modal&&el.tagName!=='SCRIPT').map(el=>[el,el.inert]);for(const [el]of inert)el.inert=true;modal.hidden=false;modal.setAttribute('aria-hidden','false');mount();$('introClose').focus({preventScroll:true});}
   sound.onclick=async()=>{const child=api()?.intro;if(!child)return;const enabled=!soundEnabled;if(await child.setSound(enabled)){if(!active()||api()?.intro!==child)return;soundEnabled=enabled;sound.textContent=translate(enabled?'intro.soundOff':'intro.soundOn');sound.setAttribute('aria-pressed',String(enabled));}};
+  $('introGuide').onclick=()=>{shut({notify:false});help();};
   $('introReplay').onclick=mount;$('introClose').onclick=()=>shut();$('introSkip').onclick=()=>shut();$('introPlay').onclick=()=>shut({start:true});
   const onKey=event=>{if(!active())return;if(event.key==='Escape'){event.preventDefault();event.stopImmediatePropagation();shut();}else if(event.key==='Tab'){const buttons=[...modal.querySelectorAll('button:not(:disabled)')],first=buttons[0],last=buttons.at(-1);if(event.shiftKey&&document.activeElement===first){event.preventDefault();last.focus();}else if(!event.shiftKey&&document.activeElement===last){event.preventDefault();first.focus();}}};
   document.addEventListener('keydown',onKey,true);
@@ -73,7 +77,29 @@ export function createIntroHost({translate,pause,resume,play,onClose}){
 }
 
 // Game-owned world/camera/commands; GameKit owns only timeline and run lifetime.
+// Lesson playback slows scheduling only; the game still advances its unchanged fixed combat tick.
 export function scenarioDefinition(skill,tickRate=60){
-  if(skill){const scene=previewScenarios[skill];return {seed:scene.seed,tickRate,endTick:scene.endTick,scene,initialState:{skill},timeline:scene.elemental?[]:[{tick:1,action:'skill'}]};}
+  if(skill){const scene=previewScenarios[skill];return {seed:scene.seed,tickRate:tickRate*(scene.playbackRate??1),endTick:scene.endTick,scene,initialState:{skill},timeline:scene.timeline??(scene.elemental?[]:[{tick:1,action:'skill'}])};}
   return {seed:introScenes[0].seed,tickRate,endTick:Math.ceil(28000*tickRate/1000),scene:introScenes,initialState:{},timeline:introTimeline};
+}
+
+// Inline help uses the same disposable preview game and its authoritative state.
+export function createGuideDemo({translate}){
+  const viewport=document.getElementById('guideDemo'),caption=document.getElementById('guideDemoStep');
+  let frame=null,animation=0,startedAt=0,last='',id='controls';
+  function close(){cancelAnimationFrame(animation);frame?.contentWindow?.__bloomImpulse?.dispose();frame?.remove();frame=null;}
+  function observe(){
+    if(!frame)return;
+    const api=frame.contentWindow?.__bloomImpulse,scene=api?.preview?.snapshot(),state=scene?.lesson;
+    let step='loading';
+    if(state){step=id==='movement'?(state.evades?'move':'tap'):id==='growth'?(state.stage>1?'next':state.kills?'collect':'defeat'):state.hits?'hit':state.mode==='DASH'||state.mode==='RECOVER'?'dash':state.shadow?'travel':'fire';}
+    const key=step==='fire'||step==='tap'||step==='move'?step+(matchMedia('(pointer:coarse)').matches?'Touch':'Keys'):step;
+    const text=translate('learn.demo.'+key);if(text!==last){caption.textContent=text;last=text;}
+    if(scene?.ended){open(id,true);return;}
+    if(!api&&performance.now()-startedAt>15000){caption.textContent=translate('preview.failed');return;}
+    animation=requestAnimationFrame(observe);
+  }
+  function open(next=id,replay=false){if(frame&&id===next&&!replay)return;close();id=next;startedAt=performance.now();last='';frame=document.createElement('iframe');frame.title=translate('learn.demo');frame.tabIndex=-1;frame.setAttribute('aria-hidden','true');frame.src=new URL('?preview='+id,location.href).href;viewport.prepend(frame);observe();}
+  document.getElementById('guideDemoReplay').onclick=()=>open(id,true);
+  return {open,close,refresh(){if(frame)open(id,true);}};
 }

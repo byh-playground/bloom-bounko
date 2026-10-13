@@ -1,0 +1,142 @@
+{
+  "version": "0.22.3",
+  "build": "20261013T-gamekit-7cf67c3",
+  "base": "9d0ff03893b0e030cd88094e01db7b70740ad058",
+  "integrity": {
+    "pin": "7cf67c33451848d1af4a7b003cbe1b81ffef8b53",
+    "source": "fbecfb6c06a5be98af9f6f556b322e7247df57ca",
+    "manifestSha256": "66b94ae83f5b657a7113a15086ccb49a6ec2dc06b6b6259b2144f5aba071264b",
+    "modules": [
+      {
+        "file": "rendering.js",
+        "sha256": "5fed746a9797fab4e7c8b99239d00026b913b66f1956c8d6955b7eb4cdf426ef",
+        "previousSha256": "17a72cbdb854640a21872fbefca41dd8f5b5d9dcab6a49cb0c2c83679007c07e",
+        "changed": true,
+        "bytes": 155082
+      },
+      {
+        "file": "input.js",
+        "sha256": "ae84399953c7e54c8d96408c97208f42b2246a8ac27ef5265053cb0beb306168",
+        "previousSha256": "ae84399953c7e54c8d96408c97208f42b2246a8ac27ef5265053cb0beb306168",
+        "changed": false,
+        "bytes": 17695
+      },
+      {
+        "file": "simloop.js",
+        "sha256": "a6491227f2bd3126ee18531321bf4e59c11dd687bc5d4d02ea12ae9d994dad70",
+        "previousSha256": "25687bd13f71990d6d6bf087c67a57d15dc5a05bd6fa7488b9803b44c418a369",
+        "changed": true,
+        "bytes": 47133
+      },
+      {
+        "file": "camera.js",
+        "sha256": "972268ad14de778f1dca437913cff576155754adf1195948897c0df3ff8f66de",
+        "previousSha256": "972268ad14de778f1dca437913cff576155754adf1195948897c0df3ff8f66de",
+        "changed": false,
+        "bytes": 6421
+      },
+      {
+        "file": "navigation.js",
+        "sha256": "92c387dcfa8af47beb3544f4a16121bbfc8fa9831052b33ce07076dd733c81d3",
+        "previousSha256": "92c387dcfa8af47beb3544f4a16121bbfc8fa9831052b33ce07076dd733c81d3",
+        "changed": false,
+        "bytes": 3218
+      },
+      {
+        "file": "scenario.js",
+        "sha256": "2e025f356f9f8e8605bf7f16dec20b0e1f02900bc799d6326359c94cad4ae627",
+        "previousSha256": "93fd504ad62a2d23691f9afeb897abb10b3f871a4aa0a5cfadec762cf4bd24b8",
+        "changed": true,
+        "bytes": 17394
+      },
+      {
+        "file": "audio.js",
+        "sha256": "7e3e16d34ce88124e6ba7699f16d23107a3e42ee93ea5a16691e856e5865c14a",
+        "previousSha256": "7e3e16d34ce88124e6ba7699f16d23107a3e42ee93ea5a16691e856e5865c14a",
+        "changed": false,
+        "bytes": 14098
+      }
+    ],
+    "assets": [
+      {
+        "file": "assets/fonts/noto-sans-kr-700-v1.json",
+        "version": "noto-sans-kr-700-v1",
+        "bytes": 514988,
+        "sha256": "d1f0d1b14015d3f417f9552d1f650c8585a71e4d67e13c667a1cca0aca3fc310"
+      }
+    ]
+  },
+  "apiReview": {
+    "mode": "solo",
+    "tickRate": 60,
+    "createLoop": "Existing localSession has no submitInput/inputPreview; automatic poll/advance/render path remains compatible. No flushInput consumer.",
+    "rendering": "Renderer2D diff consists of bundler-local renames (fragment/WHITE); default white remains [1,1,1,1]. Added mesh APIs are unused.",
+    "scenario": "Existing isolated createScenario API retained; bundled createLoop updated.",
+    "localInputPreview": "Not used; isActive/active is not wired into this game. Skill previews are isolated actual game scenarios, not network prediction."
+  },
+  "e2e": {
+    "views": [
+      {
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "attack": {
+          "state": "RECOVER",
+          "hits": 1,
+          "launch": 1
+        },
+        "layout": {
+          "scroll": 0,
+          "bottom": 782,
+          "height": 844,
+          "overflow": 0
+        },
+        "flow": "help autoplay → attack → movement → growth → replay → back → close/reopen → play → real input → dismiss/replay → intro actual chapter + audio → help → English → laser skill pause/replay/close"
+      },
+      {
+        "viewport": {
+          "width": 1366,
+          "height": 768
+        },
+        "attack": {
+          "state": "RECOVER",
+          "hits": 1,
+          "launch": 1
+        },
+        "layout": {
+          "scroll": 0,
+          "bottom": 728,
+          "height": 768,
+          "overflow": 0
+        },
+        "flow": "help autoplay → attack → movement → growth → replay → back → close/reopen → play → real input → dismiss/replay → intro actual chapter + audio → help → English → laser skill pause/replay/close"
+      }
+    ],
+    "errors": [],
+    "sdk": [
+      "https://cdn.jsdelivr.net/gh/byh-playground/bloom-gamekit@7cf67c33451848d1af4a7b003cbe1b81ffef8b53/rendering.js",
+      "https://cdn.jsdelivr.net/gh/byh-playground/bloom-gamekit@7cf67c33451848d1af4a7b003cbe1b81ffef8b53/input.js",
+      "https://cdn.jsdelivr.net/gh/byh-playground/bloom-gamekit@7cf67c33451848d1af4a7b003cbe1b81ffef8b53/simloop.js",
+      "https://cdn.jsdelivr.net/gh/byh-playground/bloom-gamekit@7cf67c33451848d1af4a7b003cbe1b81ffef8b53/camera.js",
+      "https://cdn.jsdelivr.net/gh/byh-playground/bloom-gamekit@7cf67c33451848d1af4a7b003cbe1b81ffef8b53/navigation.js",
+      "https://cdn.jsdelivr.net/gh/byh-playground/bloom-gamekit@7cf67c33451848d1af4a7b003cbe1b81ffef8b53/scenario.js",
+      "https://cdn.jsdelivr.net/gh/byh-playground/bloom-gamekit@7cf67c33451848d1af4a7b003cbe1b81ffef8b53/audio.js"
+    ],
+    "skill": {
+      "hits": 3,
+      "damage": 49.499999999999986,
+      "pauseTick": 55
+    },
+    "elapsedMs": 49887,
+    "result": "PASS"
+  },
+  "notVerified": [
+    "Physical phone / Safari",
+    "Long playthrough / balance / load benchmark"
+  ],
+  "notApplicable": [
+    "Multiplayer determinism: game has no networking session"
+  ],
+  "scope": "Only bloom-bounko; no shared SDK or other game modifications."
+}

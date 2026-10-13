@@ -1,0 +1,238 @@
+{
+  "version": "0.22.4",
+  "baseCommit": "91a5ddedf0ab0af74e31903069cfaa8732938e43",
+  "sdk": {
+    "pin": "2c063bd6ab7af7798229ebaa1c061a4dd04059bc",
+    "source": "cdb03088828a42b89f5683124bc47722ae2bb0a7",
+    "manifestSha256": "e7cf8b377e232a78b20a5161e45e6dbcc206a96d51cb141e3082ec6d662ef6f7",
+    "files": [
+      {
+        "file": "interpolation.js",
+        "sha256": "55a6d7907e5e7e29882311d9a61d0c05453132abc38526b8bfb2f637018130c7",
+        "actualBytes": 48753
+      },
+      {
+        "file": "rendering.js",
+        "sha256": "5fed746a9797fab4e7c8b99239d00026b913b66f1956c8d6955b7eb4cdf426ef",
+        "actualBytes": 155082
+      },
+      {
+        "file": "input.js",
+        "sha256": "ae84399953c7e54c8d96408c97208f42b2246a8ac27ef5265053cb0beb306168",
+        "actualBytes": 17695
+      },
+      {
+        "file": "simloop.js",
+        "sha256": "6d8c3462ac01b0af967b3c259eede2b85e2f2f3f6813217391e6c322a7d10007",
+        "actualBytes": 50789
+      },
+      {
+        "file": "camera.js",
+        "sha256": "972268ad14de778f1dca437913cff576155754adf1195948897c0df3ff8f66de",
+        "actualBytes": 6421
+      },
+      {
+        "file": "audio.js",
+        "sha256": "7e3e16d34ce88124e6ba7699f16d23107a3e42ee93ea5a16691e856e5865c14a",
+        "actualBytes": 14098
+      },
+      {
+        "file": "navigation.js",
+        "sha256": "92c387dcfa8af47beb3544f4a16121bbfc8fa9831052b33ce07076dd733c81d3",
+        "actualBytes": 3218
+      },
+      {
+        "file": "scenario.js",
+        "sha256": "bf13eb4a859e052487fe5b43c46ccb4d4b7523db4bb13032a8942283be4cc386",
+        "actualBytes": 18450
+      },
+      {
+        "file": "assets/fonts/noto-sans-kr-700-v1.json",
+        "version": "noto-sans-kr-700-v1",
+        "bytes": 514988,
+        "sha256": "d1f0d1b14015d3f417f9552d1f650c8585a71e4d67e13c667a1cca0aca3fc310",
+        "actualBytes": 514988
+      }
+    ]
+  },
+  "sources": [
+    "https://github.com/byh-playground/bloom-gamekit/blob/cdb03088828a42b89f5683124bc47722ae2bb0a7/modules/interpolation/README.md",
+    "https://github.com/byh-playground/bloom-gamekit/blob/cdb03088828a42b89f5683124bc47722ae2bb0a7/examples/interpolation/frame-demo.js",
+    "https://github.com/byh-playground/bloom-gamekit/pull/47"
+  ],
+  "implementation": {
+    "authorityTps": 60,
+    "displayDelayMs": 16.666666666666668,
+    "capture": "once after the existing fixed step",
+    "sample": "one PresentationRuntime.frame per render",
+    "clock": "monotonic logical clock limited to next authoritative tick; pause holds; tutorial playback rate 0.5",
+    "reset": "new revision for reset, stage and intro cuts",
+    "lifetimes": "frame.forEach; stable Matter body / inventory / drop IDs; no raw fallback",
+    "paths": "bounded projected projectile path and shadow ground path",
+    "targets": [
+      "player pose, XY and roll",
+      "enemy/pet XY, height and heading",
+      "egg/respawn marker",
+      "projectile, shadow and reward drop",
+      "health/status markers, beam/heal/hook links, orbit and combo anchor"
+    ],
+    "unchanged": [
+      "60 TPS",
+      "combat step and balance",
+      "input commands",
+      "hitstop and timeScale",
+      "save semantics",
+      "hash routing",
+      "isolated scenario engine"
+    ]
+  },
+  "verification": {
+    "result": "PASS",
+    "elapsedMs": 61018,
+    "capMs": 180000,
+    "browser": "Microsoft Edge, headless Chromium; real Matter + WebGL",
+    "views": [
+      {
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "attack": {
+          "state": "RECOVER",
+          "hits": 1,
+          "launch": 1
+        },
+        "layout": {
+          "scroll": 0,
+          "bottom": 782,
+          "height": 844,
+          "overflow": 0
+        },
+        "flow": "help autoplay → attack → movement → growth → replay → back → close/reopen → play → real input → dismiss/replay → intro actual chapter + audio → help → English → laser skill pause/replay/close"
+      },
+      {
+        "viewport": {
+          "width": 1366,
+          "height": 768
+        },
+        "attack": {
+          "state": "RECOVER",
+          "hits": 1,
+          "launch": 1
+        },
+        "layout": {
+          "scroll": 0,
+          "bottom": 728,
+          "height": 768,
+          "overflow": 0
+        },
+        "flow": "help autoplay → attack → movement → growth → replay → back → close/reopen → play → real input → dismiss/replay → intro actual chapter + audio → help → English → laser skill pause/replay/close"
+      }
+    ],
+    "errors": [],
+    "checks": [
+      "actual touch and keyboard fire/roll",
+      "help attack/movement/growth, replay/back/close/reopen",
+      "intro chapter cuts through laser/chainDrive/elasticBlast and two real pets",
+      "laser preview damage 49.5, pause display equality, replay and close",
+      "parent tick and localStorage unchanged by preview",
+      "8 runtime SDK imports use exact dist pin",
+      "all ellipse/rect/line/triangle coordinate submissions finite",
+      "display lag bounded to one tick"
+    ],
+    "displayLagMs": {
+      "min": 4.1666666666667425,
+      "max": 16.616666654745814
+    },
+    "petUnitIds": [
+      36,
+      37
+    ],
+    "skill": {
+      "hits": 3,
+      "damage": 49.499999999999986,
+      "pauseTick": 53
+    }
+  },
+  "cost": {
+    "errors": [],
+    "runs": [
+      {
+        "route": "base",
+        "high": 89.99990532544378,
+        "shots": 4,
+        "cost": {
+          "step": {
+            "mean": 0.15518518112323904,
+            "p50": 0.10000002384185791,
+            "p95": 0.30000007152557373,
+            "max": 2.200000047683716
+          },
+          "capture": {
+            "mean": 0,
+            "p50": 0,
+            "p95": 0,
+            "max": 0
+          },
+          "render": {
+            "mean": 2.332592597272661,
+            "p50": 2.1999999284744263,
+            "p95": 3.200000047683716,
+            "max": 6
+          },
+          "total": {
+            "mean": 2.4877777783959,
+            "p50": 2.299999952316284,
+            "p95": 3.6999999284744263,
+            "max": 8.200000047683716
+          }
+        }
+      },
+      {
+        "route": "new",
+        "high": 89.99990532544378,
+        "shots": 4,
+        "cost": {
+          "step": {
+            "mean": 0.14888888906549524,
+            "p50": 0.10000002384185791,
+            "p95": 0.30000007152557373,
+            "max": 2.100000023841858
+          },
+          "capture": {
+            "mean": 0.23481481251893221,
+            "p50": 0.20000004768371582,
+            "p95": 0.3999999761581421,
+            "max": 0.7000000476837158
+          },
+          "render": {
+            "mean": 2.3377777801619635,
+            "p50": 2.200000047683716,
+            "p95": 2.9000000953674316,
+            "max": 6.399999976158142
+          },
+          "total": {
+            "mean": 2.721481481746391,
+            "p50": 2.600000023841858,
+            "p95": 3.5,
+            "max": 8.899999976158142
+          }
+        }
+      }
+    ],
+    "result": "PASS",
+    "method": "same browser, sequential baseline/current; 300 real fixed ticks and WebGL renders, first 30 warmup excluded; compare authority at 10 checkpoints; includes sporemoth/clawhunter/rogue/brute/medic, real leap up to 90 and up to 4 projectiles",
+    "interpretation": "CPU submission sample, not GPU completion or device FPS; no zero-allocation claim; machine load varies"
+  },
+  "resolved": [
+    "one floating-point ULP at the next-tick clock boundary now preserves monotonic receipt time",
+    "GameKit optional STATE_KEY object/null transition fixed upstream in PR47; no Bounko workaround"
+  ],
+  "limits": [
+    "real phone GPU and Safari not tested",
+    "long-session/high-population memory and CPU not measured",
+    "within-tick birth/death or collision bends not reconstructed from endpoint samples",
+    "event-owned fixed particles/ground areas/contact texts retain existing fixed world anchors",
+    "30 TPS or lower authority is deferred"
+  ]
+}

@@ -531,7 +531,8 @@ next stage -&gt; centered stage number; 4/7/10... expands map/theme segment</cod
   <footer class="intro-bottom"><p id="introCopy"></p><p id="introSub" role="status" aria-live="polite"></p><button id="introPlay" type="button" data-i18n="intro.play">Play now</button><button id="introGuide" type="button" data-i18n="learn.controls"></button><button id="introReplay" type="button" data-i18n="preview.replay">Replay</button><div id="introProgress" aria-hidden="true"><span></span></div><small id="introTime">0 / 28</small></footer>
 </section>
 <script type="module">
-import {createPlayerPresentation,facePlayer,rollPlayer,impactPlayer,updatePlayerPresentation,samplePlayerPresentation,drawPlayerPresentation} from './player-presentation.js';
+import {createPlayerPresentation,facePlayer,rollPlayer,impactPlayer,updatePlayerPresentation,drawPlayerPresentation} from './player-presentation.js';
+import {createPresentationView} from './presentation-view.js';
 import {ThemeProgress} from './theme-progress.js';
 import {createTechView} from './tech-view.js';
 import {ultimateConfig,UltimateLoadout,UltimateRunner,drawUltimate,beamWidth,beamIntersects} from './ultimates.js';
@@ -544,17 +545,17 @@ if(previewScenario?.tutorial){document.body.classList.add('guide-scene');documen
 import {t as tr,language,setLanguage,onLanguageChanged,translateDocument,localizedList,message,messageText,number,percent} from './i18n.js';
 
 
-const KIT = 'https://cdn.jsdelivr.net/gh/byh-playground/bloom-gamekit@7cf67c33451848d1af4a7b003cbe1b81ffef8b53/';
-const KIT_MANIFEST_SHA256 = '66b94ae83f5b657a7113a15086ccb49a6ec2dc06b6b6259b2144f5aba071264b';
-const VERSION = '0.22.3', BUILD_ID = '20261013T-gamekit-7cf67c3'
+const KIT = 'https://cdn.jsdelivr.net/gh/byh-playground/bloom-gamekit@2c063bd6ab7af7798229ebaa1c061a4dd04059bc/';
+const KIT_MANIFEST_SHA256 = 'e7cf8b377e232a78b20a5161e45e6dbcc206a96d51cb141e3082ec6d662ef6f7';
+const VERSION = '0.22.4', BUILD_ID = '20261013T-presentation-2c063bd'
 const $ = id => document.getElementById(id);
 document.querySelectorAll('[data-game-version]').forEach(el=>el.textContent='v'+VERSION);
 const loadtext = $('loadtext');translateDocument();document.title=tr('app.title');$('languageSelect').value=language();$('languageSelect').disabled=true;
 const ERROR = error => { console.error(error); loadtext.textContent = tr("runtime.phrase.26",{v0:String(error.message||error).replace(/[<>]/g,'')}); };
 try {
   if (!window.Matter) throw new Error(tr("runtime.1"));
-  const [{Renderer2D}, {ActionState,createDOMInput}, {createLoop}, {petConfig,CompanionCollection,CompanionRoster,companionCapacity,companionPresentation,patternAngle}, {audioConfig,AudioPlayer}, {volume,snapshotVolumes,contactWindow,filterMatterVolumes,sweepVerticalContacts,groundArc,stepArc,DeathReason,hostile,receiveHit,receiveHeal,combatConfig,collisionDamage,ChargePool,UnitStatus,elementConfig,effectiveArmor,damageAfterArmor,mixin,Evasive,eliteEvasionConfig}, {enemyConfig,enemyClasses,enemyWave,enemyRefillWave,pickRefillSpecies,enemyVisuals,species,speciesConfig,bossSpecies,bossConfig,drawSpecies,drawSpeciesEgg,eggSvg}, {EnemyController,PetController,SummonController}, {CameraViewport,OrthographicProjection}, {RewardDrops,dropConfig}, {createNavigation}, {createScenario}] = await Promise.all([
-    import(KIT+'rendering.js'),import(KIT+'input.js'),import(KIT+'simloop.js'),import('./pets.js'),import('./audio.js'),import('./abilities.js'),import('./enemies.js'),import('./controllers.js'),import(KIT+'camera.js'),import('./drops.js'),import(KIT+'navigation.js'),import(KIT+'scenario.js')
+  const [{Renderer2D}, {ActionState,createDOMInput}, {createLoop}, {petConfig,CompanionCollection,CompanionRoster,companionCapacity,companionPresentation,patternAngle}, {audioConfig,AudioPlayer}, {volume,snapshotVolumes,contactWindow,filterMatterVolumes,sweepVerticalContacts,groundArc,stepArc,DeathReason,hostile,receiveHit,receiveHeal,combatConfig,collisionDamage,ChargePool,UnitStatus,elementConfig,effectiveArmor,damageAfterArmor,mixin,Evasive,eliteEvasionConfig}, {enemyConfig,enemyClasses,enemyWave,enemyRefillWave,pickRefillSpecies,enemyVisuals,species,speciesConfig,bossSpecies,bossConfig,drawSpecies,drawSpeciesEgg,eggSvg}, {EnemyController,PetController,SummonController}, {CameraViewport,OrthographicProjection}, {RewardDrops,dropConfig}, {createNavigation}, {createScenario}, {RenderObject,PresentationRuntime}] = await Promise.all([
+    import(KIT+'rendering.js'),import(KIT+'input.js'),import(KIT+'simloop.js'),import('./pets.js'),import('./audio.js'),import('./abilities.js'),import('./enemies.js'),import('./controllers.js'),import(KIT+'camera.js'),import('./drops.js'),import(KIT+'navigation.js'),import(KIT+'scenario.js'),import(KIT+'interpolation.js')
   ]);
   const M = window.Matter;
   const sfx=new AudioPlayer(isolatedScene?{...audioConfig,storageKey:null}:audioConfig);
@@ -618,7 +619,7 @@ try {
   let ammoOrbitPhases=[],pendingLaunch=null,launchRecoil=null;
   let missRecoveryActive=false,missRecoveryPulseUntilMs=0,missRecoveryHintUntilMs=0,missRecoveryEvents=0,missRecoverySerial=-1,missHintShown=false;
   let timeMs=0, tick=0, combo=0, hits=0,kills=0, toastUntil=0, toastText='', toastColor='#f1c77a', lastComboHitAtMs=-1e6;
-  let nextEnemyId=1, randomSeed=82741, aimTargetId=null, previewTargetId=null, attackOrigin=null, trailClock=0, dashStartedAtMs=0, recoverStartedAtMs=0, readyFlashUntilMs=0, bufferedIntent=null, bufferedUntilMs=0, frames=0, frameFps=0, frameFpsStart=performance.now(), presentationFrameAtMs=0, criticalHits=0, lastHit=null;
+  let nextEnemyId=1, randomSeed=82741, aimTargetId=null, previewTargetId=null, attackOrigin=null, trailClock=0, dashStartedAtMs=0, recoverStartedAtMs=0, readyFlashUntilMs=0, bufferedIntent=null, bufferedUntilMs=0, frames=0, frameFps=0, frameFpsStart=performance.now(),  criticalHits=0, lastHit=null;
   let pending=[], particles=[], particleCursor=0, fxRings=[], renderCamera=cameraView.camera, cameraZoom=1;
   let lightningArcs=[],fireEmbers=[],fireTransfers=[],fireFxSerial=0,elementalEvents={ignite:0,spread:0,conduct:0,conductSpread:0,conductConsumed:0,conductDamage:0,arc:0,burnDamage:0}, chainActive=false, chainStarts=0, chainEnds=0, autoChainReady=false, autoDashPlanned=false, dashAutomatic=false, dashPerfect=false, automaticDashes=0, manualPerfectHits=0, autoChainWins=0, autoChainRolls=0, chainTargetId=null;
   let evadeCharges=2,evadeRefillAtMs=0,evadeMotion=null,evadeStartedAtMs=-1e9,evadePreviousPosition=null,evadeActions=0;
@@ -1035,7 +1036,7 @@ try {
       resolveProjectileImpact(shot,{...shot.source,attacker:shot.source,alive:true});}
   }}
   function drawArcShot(shot){const p=shot.body.position,z=shot.body.plugin.volume.feetZ,a=shot.arc.aim;
-    if(shot.retrieval){const owner=shot.source,p0=owner.body.position,n=norm(owner.headingX,owner.headingY),s={x:p0.x-n.y*owner.config.radius*1.15*shot.arm+n.x*owner.config.radius*.36,y:p0.y+n.x*owner.config.radius*1.15*shot.arm+n.y*owner.config.radius*.36,z:10};
+    if(shot.retrieval){const owner=shot.source;if(!owner)return;const p0=owner.body.position,n=norm(owner.headingX,owner.headingY),s={x:p0.x-n.y*owner.config.radius*1.15*shot.arm+n.x*owner.config.radius*.36,y:p0.y+n.x*owner.config.radius*1.15*shot.arm+n.y*owner.config.radius*.36,z:10};
       renderer.ellipse(p.x,p.y,9,4,[0,0,0,.4],10);
       renderer.line(s.x,s.y-(s.z||0),p.x,p.y-z,1.6,[.98,.63,.31,.8]);
       if(shot.captured?.alive){const target=shot.captured.body;renderer.line(p.x,p.y-z,target.position.x,target.position.y-(target.plugin.volume?.feetZ||0),2,[1,.66,.30,.85]);}
@@ -1065,7 +1066,7 @@ try {
   function evasionPaint(cx,cy,pose,alpha=1){const color=c=>c.map((v,i)=>i===3?v*alpha:v+(1-v)*pose.glow),y=v=>cy+(v-cy)*pose.squash;
     return {ellipse:(x,py,rx,ry,c,n)=>renderer.ellipse(x, y(py),rx,ry*pose.squash,color(c),n),rect:(x,py,w,h,c)=>renderer.rect(x,y(py),w,h*pose.squash,color(c)),
       line:(x,py,xx,yy,w,c)=>renderer.line(x,y(py),xx,y(yy),w,color(c)),triangle:(x,py,xx,yy,xxx,yyy,c)=>renderer.triangle(x,y(py),xx,y(yy),xxx,y(yyy),color(c))};}
-  function drawEliteEvasion(unit,pres,r,now){const s=unit.evasion;if(!s)return;const c=s.config.presentation,p=unit.body.position;
+  function drawEliteEvasion(unit,pres,r,now){const timeMs=display.timeMs;const s=unit.evasion;if(!s)return;const c=s.config.presentation,p=unit.body.position;
     for(const [i,ghost]of (s.motion?.trail??[]).entries()){const fade=Math.max(0,1-(timeMs-ghost.atMs)/c.trailMs);if(fade)drawSpecies(evasionPaint(ghost.x,ghost.y-ghost.z,{squash:1,glow:0},c.trailOpacity*fade*(i?1:.65)),{...pres,outline:null},{x:ghost.x,y:ghost.y-ghost.z,radius:r,time:now,id:unit.unitId,unit,attack:false});}
     const q=r+c.markerPadding,alpha=s.presentation.markerOpacity,width=s.phase==='OPEN'&&!s.blocked?2.8:1.6;for(const sign of [-1,1]){const x=p.x+sign*q,y=p.y-unit.spatial.feetZ;
       renderer.line(x-sign*4,y-5,x,y,width,[.74,.94,.88,alpha]);renderer.line(x,y,x-sign*4,y+5,width,[.74,.94,.88,alpha]);}
@@ -1304,6 +1305,7 @@ try {
     obstacles=[];boundaryWalls=[];arenaVertices=[];terrainDecor=[];terrainChannels=[];
   }
   function setupStage(index){
+    presentation.reset();
     ultimateRunner.cancel('stage');
     if(engine)clearArena();
     const theme=themeForStage(index),radius=radiusAtStage(index),mapTier=mapTierAtStage(index),mapStart=mapStartAtStage(index);
@@ -1405,7 +1407,7 @@ try {
     volumeEvents=[];releaseVolumeFilter=filterMatterVolumes(M,engine,acceptVolumeContact);Events.on(engine,'beforeSolve',sweepVerticalMotion);
     pickupFeedback={growth:0,eggs:0,nextAtMs:0};
     randomSeed=82741;nextEnemyId=1;timeMs=0;tick=0;combo=0;lastComboHitAtMs=-1e6;hits=0;kills=0;
-    chainTargetId=null;chainActive=false;chainStarts=0;chainEnds=0;criticalHits=0;lastHit=null;presentationFrameAtMs=performance.now();
+    chainTargetId=null;chainActive=false;chainStarts=0;chainEnds=0;criticalHits=0;lastHit=null;
     shadow=null;setReadyState();particles=[];particleCursor=0;lightningArcs=[];fireEmbers=[];fireTransfers=[];fireFxSerial=0;elementalEvents={ignite:0,spread:0,conduct:0,conductSpread:0,conductConsumed:0,conductDamage:0,arc:0,burnDamage:0};health=C.stats.maxHp;hitstopLeftMs=0;
     dashCharge=0;dashMotion=null;dashFlight=null;dashHits.clear();damageTaken=0;healingDone=0;launchCount=0;manualLaunchCount=0;echoLaunchCount=0;chainLaunchCount=0;attackAmmo.reset();resetAmmoOrbit();launchRecoil=null;
     missRecoveryActive=false;missRecoveryPulseUntilMs=0;missRecoveryHintUntilMs=0;missRecoveryEvents=0;missRecoverySerial=-1;
@@ -1430,7 +1432,7 @@ try {
     cameraView.setCamera({x:player.position.x,y:player.position.y});cameraView.setShake(0,0);cameraShake=null;
     Events.on(engine,'collisionStart',handleCollision);Events.on(engine,'collisionActive',handleCollision);
     for(const f of textFloats)f.el?.remove();textFloats.length=0;
-    $('gameover').classList.remove('show');toastUntil=0;
+    $('gameover').classList.remove('show');toastUntil=0;capturePresentation();
   }
   function toast(txt,color='#f1c77a',duration=480){toastText=txt;toastColor=color;toastUntil=timeMs+duration;}
   function addParticle(x,y,vx,vy,life,r,color){const p={x,y,vx,vy,life,maxLife:life,r,color};if(particles.length<C.particles.capacity)particles.push(p);else{particles[particleCursor]=p;particleCursor=(particleCursor+1)%C.particles.capacity;}}
@@ -1680,7 +1682,7 @@ try {
     }
   }
   function drawElementalOverlay(e,now){
-    const p=e.body.position,r=enemyDef(e).radius,t=now*.001;
+    const timeMs=display.timeMs,p={x:e.body.position.x,y:e.body.position.y-e.spatial.feetZ},r=enemyDef(e).radius,t=now*.001;
     if(e.conductUntilMs>timeMs){
       const alpha=Math.min(1,(e.conductUntilMs-timeMs)/430);
       // The brackets are a target status marker, not another progress gauge.
@@ -2397,8 +2399,8 @@ try {
       f.growth=0;f.eggs=0;f.nextAtMs=timeMs+C.drops.feedbackGapMs;
     }
   }
-  function drawDrops(){
-    let pulling=false;for(const d of lootDrops.active){const p=d.body.position,z=d.body.plugin.volume.feetZ,r=C.drops.radius,egg=!!d.eggCount;
+  function drawDrops(){const timeMs=display.timeMs;
+    let pulling=false;for(const d of display.drops){const p=d.body.position,z=d.body.plugin.volume.feetZ,r=C.drops.radius,egg=!!d.eggCount;
       renderer.ellipse(p.x,p.y,r+3,3,[0,0,0,.46],12);
       if(d.state==='PULL'){pulling=true;const speed=Math.hypot(d.vx,d.vy),n=norm(d.vx,d.vy),length=Math.min(24,speed*.045);
         renderer.line(p.x-n.x*length,p.y-z-n.y*length,p.x,p.y-z,2,egg?[1,.90,.56,.58]:[1,.76,.3,.5]);}
@@ -2407,7 +2409,7 @@ try {
       else{renderer.ellipse(p.x,p.y-z,5,6,[1,.72,.22,1],12);renderer.ellipse(p.x-1,p.y-z-2,2.1,2.6,[1,.97,.70,1],9);}
       if(d.growth+d.eggCount>1)renderer.line(p.x-4,p.y-z+10,p.x+4,p.y-z+10,2,[1,.9,.55,.8]);
     }
-    if(pulling)drawArc(player.position.x,player.position.y,magnetRadius(),0,Math.PI*2,40,1,[1,.83,.42,.12]);
+    if(pulling)drawArc(display.player.body.position.x,display.player.body.position.y,magnetRadius(),0,Math.PI*2,40,1,[1,.83,.42,.12]);
   }
 
   function spawnReplacement(){
@@ -2750,8 +2752,9 @@ try {
     }
   }
   function drawTargetCompressionVfx(now){
-    if(!shadow||!C.fx.targetCompression||!getTargetAnchor(fxAnchor))return;
-    const q=chargeOf(),stage=fxStage(q),c=shadowDashAvailable()?fxColors[stage]:[1,.38,.30,1],
+    const shadow=display.shadow;if(!shadow||!C.fx.targetCompression)return;
+    const target=displayedUnit(shadow.targetId),fxAnchor=target?{x:target.body.position.x,y:target.body.position.y-target.spatial.feetZ,r:target.config.radius+6}:display.scene.anchor;
+    const timeMs=display.timeMs,q=display.scene.charge,stage=display.scene.fxStage,c=display.scene.dashAvailable?fxColors[stage]:[1,.38,.30,1],
       intensity=clamp(C.fx.intensity,0,2),size=C.fx.reticleScale,
       x=fxAnchor.x,y=fxAnchor.y,
       t=now*.001,pulse=Math.sin(t*(3+q*11)*C.fx.pulseSpeed),
@@ -2778,7 +2781,7 @@ try {
     }
     if(!arrived){
       // Draw only the *remaining* shadow→target-surface segment; length is the game rule.
-      const dx=x-shadow.x,dy=y-shadow.y,d=Math.hypot(dx,dy),gap=remainingShadowGap();
+      const dx=x-shadow.x,dy=y-shadow.y,d=Math.hypot(dx,dy),gap=display.scene.remainingGap;
       if(d>1e-4&&gap>0){
         const ux=dx/d,uy=dy/d,ex=x-ux*fxAnchor.r,ey=y-uy*fxAnchor.r,
           linkAlpha=clamp((.26+.46*q)*intensity,0,1);
@@ -2823,9 +2826,9 @@ try {
   // not the green 'ready' ring. It is NOT a charge meter and changes no hit rules.
   // Persistent, pre-launch auto-aim beam. Visible BEFORE tapping; unlike the shadow
   // compression link this uses the player's current body as its origin.
-  function drawPreAim(now){if(mode!=='READY'&&mode!=='RECOVER'&&mode!=='DASH')return;
-    const e=selectedAim();if(!e)return;
-    const p=player.position,b=e.body.position,dr=Math.hypot(b.x-p.x,b.y-p.y);
+  function drawPreAim(now){const mode=display.scene.mode;if(mode!=='READY'&&mode!=='RECOVER'&&mode!=='DASH')return;
+    const e=display.units.find(u=>u.unitId===display.scene.aimId);if(!e)return;
+    const p=display.player.body.position,b=e.body.position,dr=Math.hypot(b.x-p.x,b.y-p.y);
     if(dr<1||dr>C.aim.previewRange)return;
     const n=norm(b.x-p.x,b.y-p.y),t=now*.001*C.aim.pulseSpeed;
     const sx=p.x+n.x*(C.player.radius+8),sy=p.y+n.y*(C.player.radius+8);
@@ -2846,17 +2849,18 @@ try {
     drawTargetBrackets(b.x,b.y,radius,7,1.8,[rgb[0],rgb[1],rgb[2],alpha]);
   }
   function drawDashFlightGuide(){
+    const {mode,dashFlight}=display.scene;
     if(mode!=='DASH'||!dashFlight)return;
-    const target=enemies.find(e=>e.alive&&e.id===dashFlight.targetId);
+    const target=displayedUnit(dashFlight.targetId);
     if(!target)return;
-    const p=player.position,q=target.body.position,n=norm(q.x-p.x,q.y-p.y);
+    const p=display.player.body.position,q=target.body.position,n=norm(q.x-p.x,q.y-p.y);
     const gap=Math.max(0,Math.hypot(q.x-p.x,q.y-p.y)-C.player.radius-enemyDef(target).radius);
     const progress=1-clamp(gap/Math.max(1,dashFlight.initialGap),0,1);
     renderer.line(p.x,p.y,q.x-n.x*enemyDef(target).radius,q.y-n.y*enemyDef(target).radius,1.3,
       [1,.86,.52,.12+.20*progress]);
     renderer.ellipse(q.x,q.y,enemyDef(target).radius+11,enemyDef(target).radius+11,[1,.86,.52,.07+.12*progress],22);
   }
-  function drawUnit(unit,now){if(unit.returnFlight?.phase==='DOCKED')return;const p=unit.body.position,r=unit.config.radius,z=unit.targetable===false?0:unit.spatial.feetZ,pres=unit.presentation;
+  function drawUnit(unit,now){const timeMs=display.timeMs;if(unit.returnFlight?.phase==='DOCKED')return;const p=unit.body.position,r=unit.config.radius,z=unit.targetable===false?0:unit.spatial.feetZ,pres=unit.presentation;
     renderer.ellipse(p.x,p.y+6,r,r*.58,[0,0,0,.4],16);
     if(unit.bossPattern)drawBoss(unit,now);
     const ground=unit.groundAttack;for(const spike of ground?.effects||[]){const fade=clamp((spike.untilMs-timeMs)/420,0,1);if(fade>0){const q=spike.size;renderer.triangle(spike.x,spike.y-q*1.8,spike.x-q*.65,spike.y+q*.22,spike.x+q*.65,spike.y+q*.22,[.53,.84,.95,fade*.9]);renderer.triangle(spike.x,spike.y-q*1.8,spike.x,spike.y+q*.22,spike.x+q*.65,spike.y+q*.22,[.85,.98,1,fade*.95]);}}if(ground?.phase==='PREPARE'){const c=ground.config,aim=ground.aim;if(c.kind==='line'){const n={x:unit.headingX,y:unit.headingY};renderer.line(p.x,p.y,p.x+n.x*c.range,p.y+n.y*c.range,c.width,[.50,.81,1,.16]);renderer.line(p.x,p.y,p.x+n.x*c.range,p.y+n.y*c.range,2,[.65,.93,1,.8]);}else drawArc(aim.x,aim.y,c.radius,0,Math.PI*2,24,2,[.65,.93,1,.8]);}
@@ -2891,13 +2895,13 @@ try {
     drawElementalOverlay(unit,now);
   }
   function hexColor(hex){return [1,3,5].map(i=>parseInt(hex.slice(i,i+2),16)/255);}
-  function drawCompanions(now){for(const actor of petRoster.actors){const p=actor.unit?.body.position||actor;
-    if(actor.kind==='egg'){const progress=companions.byId.get(actor.inventoryId).hatchProgress/petConfig.eggs.hatchKills;
+  function drawCompanions(now){for(const actor of display.companions){const p=actor;
+    if(actor.kind==='egg'){const progress=actor.progress;
       renderer.ellipse(p.x,p.y,10,4,[0,0,0,.28],12);const y=p.y-(actor.floatZ??petConfig.presentation.eggFollow.hoverHeight);
-      drawSpeciesEgg(renderer,species[actor.speciesId].presentation,p.x,y,11,progress,timeMs+actor.inventoryId);drawArc(p.x,y,18,-Math.PI/2,Math.PI*2*progress,24,2,[1,.87,.58,.8]);}
-    else if(!actor.unit)drawArc(p.x,p.y,18,-Math.PI/2,Math.PI*2*(1-(actor.reviveAtMs-timeMs)/petConfig.combat.reviveMs),24,2,[.67,.86,1,.6]);
+      drawSpeciesEgg(renderer,species[actor.speciesId].presentation,p.x,y,11,progress,display.timeMs+actor.inventoryId);drawArc(p.x,y,18,-Math.PI/2,Math.PI*2*progress,24,2,[1,.87,.58,.8]);}
+    else if(!actor.unit)drawArc(p.x,p.y,18,-Math.PI/2,Math.PI*2*(1-(actor.reviveAtMs-display.timeMs)/petConfig.combat.reviveMs),24,2,[.67,.86,1,.6]);
   }}
-  function drawBoss(b,now){
+  function drawBoss(b,now){const timeMs=display.timeMs;
     const p=b.body.position,r=b.config.radius,wind=b.state==='BOSS_WINDUP',lock=b.state==='BOSS_LOCK';
     const age=clamp((timeMs-b.patternStartedAtMs)/Math.max(1,b.bossParams?.windupMs||C.boss.windupMs),0,1);
     renderer.ellipse(p.x+5,p.y+10,r+18,r*.8,[0,0,0,.40],24);
@@ -2931,7 +2935,7 @@ try {
     }
 
     if(b.state==='BOSS_CHARGE'){
-      const sp=speedOf(b.body),dir=norm(sp.x,sp.y);
+      const sp=b.velocity,dir=norm(sp.x,sp.y);
       for(let i=-1;i<=1;i++)renderer.line(p.x-dir.x*55-dir.y*i*11,p.y-dir.y*55+dir.x*i*11,
         p.x-dir.x*140-dir.y*i*11,p.y-dir.y*140+dir.x*i*11,4,[1,.70,.40,.40]);
     }
@@ -2953,9 +2957,9 @@ try {
     renderer.ellipse(x,y,radius,radius,[aligning?.72:colors.shadow[0],aligning?1:colors.shadow[1],aligning?1:colors.shadow[2],alpha],12);
     renderer.ellipse(x,y,radius*.38,radius*.38,[1,1,1,alpha],8);
   }
-  function shadowShardRadius(){const v=C.visual.ammoOrbit;return v.shardRadius+(v.flightRadius-v.shardRadius)*clamp(shadow.age*1000/v.flightGrowMs,0,1);}
+  function shadowShardRadius(shadowState=shadow){const v=C.visual.ammoOrbit;return v.shardRadius+(v.flightRadius-v.shardRadius)*clamp(shadowState.age*1000/v.flightGrowMs,0,1);}
   function drawAttackAmmo(p){
-    for(const orb of ammoOrbitStates(p,timeMs)){
+    for(const state of display.orbits){const orb={...state,x:p.x+Math.cos(state.angle)*state.distance,y:p.y+Math.sin(state.angle)*state.distance};
       drawShadowShard(orb.x,orb.y,orb.radius,orb.ready?1:.55+.45*orb.progress,orb.aligning);
       if(orb.aligning){const x=Math.cos(orb.angle),y=Math.sin(orb.angle);renderer.line(orb.x-x*8,orb.y-y*8,orb.x+x*5,orb.y+y*5,.8,[.55,1,1,.7]);}
     }
@@ -2969,12 +2973,29 @@ try {
     const v=speedOf(player),speed=Math.hypot(v.x,v.y),dash=mode==='DASH'&&dashMotion?{direction:speed>3?norm(v.x,v.y):{x:dashMotion.dirX,y:dashMotion.dirY},speed}:null;
     const phase=ultimateRunner.state?.phase,compression=phase?.charge?Math.sin(ultimateRunner.progress()*Math.PI/2)*(phase.compression??.12):phase?.expansion?-phase.expansion.amplitude*Math.sin(Math.PI*clamp(ultimateRunner.state.elapsedMs/phase.expansion.durationMs,0,1)):0;
     const recoil=launchRecoil?{direction:{x:launchRecoil.x,y:launchRecoil.y},amount:Math.sin(Math.PI*clamp((timeMs-launchRecoil.startedAtMs)/C.shadow.recoil.durationMs,0,1))*C.visual.launch.squashRate}:null;
-    updatePlayerPresentation(pres,{nowMs:timeMs,dtMs,direction,dash,recoil,compression});presentationFrameAtMs=performance.now();
+    updatePlayerPresentation(pres,{nowMs:timeMs,dtMs,direction,dash,recoil,compression});
   }
+  function capturePresentation(){
+    const aim=enemies.find(e=>e.alive&&e.id===previewTargetId),anchor={};getTargetAnchor(anchor);
+    const state=ultimateRunner.state;
+    // Immutable skill definitions are not part of the sampled world; only narrow
+    // active visual state and fixed historical trails cross the capture boundary.
+    const ultimate=state?{skillId:state.id,phaseIndex:state.skill.sequence.indexOf(state.phase),elapsedMs:state.elapsedMs,totalMs:state.totalMs,
+      direction:{...state.direction},aim:state.aim?{...state.aim}:null,trails:state.trails,trailWidth:state.trailWidth,beam:state.beam,wave:state.wave,progress:ultimateRunner.progress()}:null;
+    presentation.capture({timeMs,player:playerUnit,units:unitsById.values(),shots:projectiles,shadow,drops:lootDrops.active,
+      companions:petRoster.actors.map(a=>({...a,progress:companions.byId.get(a.inventoryId)?.hatchProgress/petConfig.eggs.hatchKills})),
+      orbits:ammoOrbitStates({x:0,y:0},timeMs).map(o=>({...o,distance:Math.hypot(o.x,o.y)})),
+      scene:{mode,aimId:aim?.unitId??null,anchor,charge:chargeOf(),fxStage:fxStage(chargeOf()),dashAvailable:shadowDashAvailable(),remainingGap:remainingShadowGap(),
+        dashFlight:dashFlight?{...dashFlight}:null,dashing:mode==='DASH'&&!!dashMotion,ultimate}},performance.now());
+  }
+  function advanceGame(events=[]){step(events);capturePresentation();}
+  function displayedUnit(id){return display.units.find(u=>u.id===id);}
   function render(now){const elapsed=clamp(now-lastFrame,0,60);lastFrame=now;
+    display=presentation.frame(performance.now(),{active:isolatedScene?scenarioRunner?.state==='playing':!gameplayInputBlocked(),rate:previewScenario?.playbackRate??1});
+    const visualPlayer=display.player,visualPosition=visualPlayer.body.position;
     // Camera is presentation only. It never modifies Matter.js positions.
-    if(introScene&&previewOrigin){const c=introScenes[introChapter].camera,anchor=c.follow?player.position:previewOrigin;cameraView.follow(anchor.x+c.x,anchor.y+c.y,Math.min(60,elapsed),90);}
-    else if(previewSkill&&previewOrigin)cameraView.setCamera({x:previewOrigin.x+previewScenario.camera.x,y:previewOrigin.y+previewScenario.camera.y});else cameraView.follow(player.position.x,player.position.y,Math.min(60,elapsed),C.camera.halfLife*1000);
+    if(introScene&&previewOrigin){const c=introScenes[introChapter].camera,anchor=c.follow?visualPosition:previewOrigin;cameraView.follow(anchor.x+c.x,anchor.y+c.y,Math.min(60,elapsed),90);}
+    else if(previewSkill&&previewOrigin)cameraView.setCamera({x:previewOrigin.x+previewScenario.camera.x,y:previewOrigin.y+previewScenario.camera.y});else cameraView.follow(visualPosition.x,visualPosition.y,Math.min(60,elapsed),C.camera.halfLife*1000);
     const cw=canvas.clientWidth,ch=canvas.clientHeight;
     cameraZoom=introScene?clamp(Math.min(cw/introScenes[introChapter].camera.width,ch/introScenes[introChapter].camera.height),.45,1.3):previewSkill?clamp(Math.min(cw/previewScenario.camera.width,ch/previewScenario.camera.height),.25,1.16):clamp(Math.min(cw/760,ch/940),.54,1.16);
     cameraView.setViewport({width:cw,height:ch});cameraView.setCamera({zoom:cameraZoom});
@@ -2983,34 +3004,35 @@ try {
     if(!renderer.beginFrame(ground))return;
     drawWorld();
     drawDrops();
-    drawPreAim(now);
-    drawTargetCompressionVfx(now);
+    drawPreAim(display.timeMs);
+    drawTargetCompressionVfx(display.timeMs);
     drawDashFlightGuide();
-    for(const unit of unitsById.values())if(unit.alive)drawUnit(unit,now);
-    drawCompanions(now);
+    for(const unit of display.units)drawUnit(unit,display.timeMs);
+    drawCompanions(display.timeMs);
     drawLightningArcs();
     drawFireEmbersAndTransfers();
     // Projectiles have their own tint and motion trail; the sim owns their collisions.
-    for(const shot of projectiles){if(shot.arc){drawArcShot(shot);continue;}const p=shot.body.position,r=shot.body.circleRadius,c=shot.color;
-      renderer.line(p.x-shot.dirX*18,p.y-shot.dirY*18,p.x,p.y,3,c?[...c,.65]:shot.boss?[1,.42,.26,.72]:[.7,.43,1,.49]);
+    for(const shot of display.shots){if(shot.arc){drawArcShot(shot);continue;}const p=shot.body.position,r=shot.body.circleRadius,c=shot.color;
+      for(let i=1;i<shot.path.length;i++){const a=shot.path[i-1],b=shot.path[i];renderer.line(a.x,a.y,b.x,b.y,3,c?[...c,.65]:shot.boss?[1,.42,.26,.72]:[.7,.43,1,.49]);}
       renderer.ellipse(p.x,p.y,r+5,r+5,c?[...c,.23]:shot.boss?[1,.35,.20,.30]:[.66,.41,1,.23],14);
       renderer.ellipse(p.x,p.y,r,r,c?[...c,1]:shot.faction===playerUnit.faction?[.62,1,.84,1]:shot.boss?[1,.59,.39,1]:[.83,.64,1,1],14);
       renderer.ellipse(p.x,p.y,r*.34,r*.34,[1,.93,1,1],9);
     }
-    const p=player.position,vel=speedOf(player);drawUnitStatus(playerUnit,p.x,p.y,C.player.radius);
-    if(shadow){const end={x:shadow.x,y:shadow.y};if(shadow.arrived){const golden=mode==='GOLDEN';renderer.ellipse(shadow.x,shadow.y,golden?32:26,golden?32:26,golden?[1,.78,.36,.24]:[.36,.62,1,.20],20);renderer.ellipse(shadow.x,shadow.y,19,19,golden?[1,.84,.47,.65]:[.36,.68,1,.46],20);}
+    const p=visualPosition,vel=visualPlayer.velocity;drawUnitStatus(visualPlayer,p.x,p.y,C.player.radius);
+
+    {const shadow=display.shadow;
+    if(shadow){const end={x:shadow.x,y:shadow.y};if(shadow.arrived){const golden=display.scene.mode==='GOLDEN';renderer.ellipse(shadow.x,shadow.y,golden?32:26,golden?32:26,golden?[1,.78,.36,.24]:[.36,.62,1,.20],20);renderer.ellipse(shadow.x,shadow.y,19,19,golden?[1,.84,.47,.65]:[.36,.68,1,.46],20);}
       renderer.line(p.x,p.y,end.x,end.y,C.fx.targetCompression?.65:1.1,C.fx.targetCompression?[.43,.92,.84,.14]:colors.guide);
-      const tail=clamp(shadow.travel/C.visual.launch.trailLength,0,1);
-      for(let i=3;i>=1;i--){const d=i*C.visual.launch.trailLength/3;renderer.ellipse(shadow.x-shadow.dirX*d,shadow.y-shadow.dirY*d,9-i*1.4,9-i*1.4,[.36,.85,1,(.18+(4-i)*.12)*tail],12);}
-      drawShadowShard(shadow.x,shadow.y,shadowShardRadius());
-    }
+      for(let i=0;i<shadow.path.length-1;i++){const point=shadow.path[i],q=(i+1)/shadow.path.length;renderer.ellipse(point.x,point.y,4+q*4,4+q*4,[.36,.85,1,q*.4],12);}
+      drawShadowShard(shadow.x,shadow.y,shadowShardRadius(shadow));
+    }}
     for(const pt of particles){if(pt.life<=0)continue;const a=pt.life/pt.maxLife;renderer.ellipse(pt.x,pt.y,pt.r*a,pt.r*a,[pt.color[0],pt.color[1],pt.color[2],Math.min(1,a)*pt.color[3]],9);}
     for(const fx of fxRings){const q=clamp(fx.age/fx.lifeMs,0,1);
       drawArc(fx.x,fx.y,11+fx.radius*(1-Math.pow(1-q,2)),0,Math.PI*2,28,2.7*(1-q)+.4,[fx.color[0],fx.color[1],fx.color[2],(1-q)*.8]);
     }
     // Rocket-style acceleration must be legible without a numeric speed label.
     // The streak length reflects actual physical velocity, not shadow charge.
-    if(mode==='DASH'&&dashMotion){
+    if(display.scene.dashing){
       const movingSpeed=Math.hypot(vel.x,vel.y),direction=norm(vel.x,vel.y);
       const strength=clamp(movingSpeed/C.physics.maxSpeed,0,1),length=18+strength*86;
       const sideX=-direction.y,sideY=direction.x;
@@ -3024,13 +3046,13 @@ try {
       }
     }
     // Proc VFX carries augment feedback; the attack charge display is the small shadow orbit.
-    const pose=samplePlayerPresentation(playerUnit.presentation,isolatedScene?1:(performance.now()-presentationFrameAtMs)/(1000/C.sim.tps));
+    const pose=visualPlayer.pose;
     drawPlayerPresentation(renderer,p,pose,{...colors,playerCore:health/C.stats.maxHp>.25?colors.playerCore:[1,.53,.56,1]},
       {silhouetteRadius:C.visual.actors.playerSilhouetteRadius,silhouetteOpacity:C.visual.actors.playerSilhouetteOpacity});
     // Near-contact aim cannot be seen between overlapping body silhouettes;
     // repeat its short red laser ON TOP of the actors (no extra sim query).
-    if(mode==='READY'&&previewTargetId!=null){
-      const candidate=enemies.find(e=>e.alive&&e.id===previewTargetId);
+    if(display.scene.mode==='READY'&&display.scene.aimId!=null){
+      const candidate=display.units.find(u=>u.unitId===display.scene.aimId);
       if(candidate){
         const bx=candidate.body.position.x,by=candidate.body.position.y;
         const dist=Math.hypot(bx-p.x,by-p.y);
@@ -3042,7 +3064,10 @@ try {
         }
       }
     }
-    drawUltimate(renderer,ultimateRunner,p);
+    const us=display.scene.ultimate;
+    const skill=us?C.ultimates.skills[us.skillId]:null;
+    drawUltimate(renderer,{state:us?{...us,skill,phase:skill.sequence[us.phaseIndex]}:null,progress:()=>us?.progress??0,
+      effects:ultimateRunner.effects,loadout:ultimateLoadout},p);
     drawAttackAmmo(p);
     if(timeMs<missRecoveryPulseUntilMs){const a=(missRecoveryPulseUntilMs-timeMs)/C.visual.missRecovery.pulseMs;
       drawArc(p.x,p.y,22,-Math.PI*.18,Math.PI*.36,9,2,[1,.77,.47,a*.75]);}
@@ -3086,7 +3111,7 @@ try {
     $('bossHealthTrack').style.display=stage.phase==='BOSS'?'block':'none';
     $('bossHealthFill').style.width=(stage.boss?.alive?clamp(stage.boss.hp/stage.boss.maxHp,0,1)*100:0)+'%';
     $('stageBanner').classList.toggle('show',timeMs<(stage.noticeUntilMs??0));
-    const directionEl=$('bossDirection'),boss=stage.boss;
+    const directionEl=$('bossDirection'),boss=stage.boss?displayedUnit(stage.boss.id):null;
     if(stage.phase==='BOSS'&&boss?.alive){
       renderer.worldToScreenInto(boss.body.position.x,boss.body.position.y,fxScreen);
       const edge=41,bw=canvas.clientWidth,bh=canvas.clientHeight;
@@ -3453,10 +3478,12 @@ try {
 
   // Capture only; actual command processing happens in fixed simulation tick.
   $('auto').addEventListener('pointerdown',e=>{e.preventDefault();pending.push({kind:'auto'});});
+  const presentation=createPresentationView({RenderObject,PresentationRuntime,stepMs:1000/C.sim.tps});
+  let display=null;
   let running=true;
   reset();companions.resumeAutomation();resize();updateTechUi();document.body.classList.add('lobby-active');
   const localSession={inputSize:1,profile:{tickRate:C.sim.tps,maxCatchupSteps:5},pace:1,resimulating:false,
-    get closed(){return !running;},poll(){},releaseInput(){input.releaseAll();pending.length=0;},advance(){if(gameplayInputBlocked())return{status:'held',tick};step();return{status:'advanced',tick};}};
+    get closed(){return !running;},poll(){},releaseInput(){input.releaseAll();pending.length=0;},advance(){if(gameplayInputBlocked())return{status:'held',tick};advanceGame();return{status:'advanced',tick};}};
   let lastFrame=performance.now();
   const loop=createLoop({session:localSession,canAdvance:()=>!gameplayInputBlocked(),render(){render(isolatedScene?tick*1000/C.sim.tps:performance.now());}});
   function preparePreview(scene,seed){
@@ -3469,6 +3496,7 @@ try {
 
   // Intro commands stage a disposable game instance; collisions and damage remain authoritative.
   function stageIntro(chapter){
+    presentation.reset();
     if(timeMs>0)introMetrics.push({chapter:introChapter,atMs:timeMs,hits,kills,combo,ultimate:introScenes[introChapter].ultimate??null,ultimateDamage:ultimateRunner.damage,pets:petRoster.snapshot()});
     introChapter=chapter;const scene=introScenes[chapter];randomSeed=scene.seed;
     ultimateRunner.cancel('introCut');ultimateRunner.effects.length=0;clearStageEnemies();petRoster.clear();lootDrops.clear();
@@ -3568,14 +3596,14 @@ try {
   onLanguageChanged(refreshLanguageUi);refreshLanguageUi();$('languageSelect').disabled=false;
 
   if(!isolatedScene)loop.start();$('load').classList.add('hidden');if(!isolatedScene)canvas.focus({preventScroll:true});
-  window.__bloomImpulse={VERSION,BUILD_ID,config:C,intro:introScene?{snapshot:()=>({timeMs,tick,chapter:introChapter,ended:scenarioRunner.state==='ended',metrics:introMetrics,hits,kills,combo,ultimate:introScenes[introChapter].ultimate??null,ultimateDamage:ultimateRunner.damage,pets:petRoster.snapshot(),seed:introScenes[introChapter].seed}),async setSound(enabled){if(!running)return false;sfx.setMuted(!enabled);if(!enabled){sfx.stopAll();return true;}const unlocked=await sfx.unlock();if(!running)return false;if(!unlocked)sfx.setMuted(true);return unlocked;}}:null,preview:previewSkill?{snapshot:()=>({id:previewSkill,seed:previewScenario.seed,tick,paused:scenarioRunner.state==='paused',ended:scenarioRunner.state==='ended',hits:previewHitCount,damage:ultimateRunner.damage,lesson:{mode,hits,kills,shadow:!!shadow,stage:stage.index,evades:evadeActions}}),setPaused(value){if(value)scenarioRunner.pause();else{scenarioRunner.play();void sfx.unlock();}}}:null,getUltimates:()=>ultimateRunner.snapshot(),getAudio:()=>sfx.snapshot(),audioMeter:()=>sfx.meter(),getCompanions:()=>companions.snapshot(),getThemeProgress:()=>themeProgress.snapshot(),getState:()=>({drops:{...lootDrops.debug(),magnetRadius:magnetRadius()},unitStates:[...unitsById.values()].map(u=>({status:{...u.status},groundAttack:u.groundAttack?{phase:u.groundAttack.phase,casts:u.groundAttack.casts,pending:u.groundAttack.pending}:null,coneBreath:u.coneBreath?{phase:u.coneBreath.phase,casts:u.coneBreath.casts}:null,unitId:u.unitId,inventoryId:u.inventoryId,speciesId:u.speciesId,faction:u.faction,state:u.state,hp:u.hp,grade:u.grade,isSummon:!!u.isSummon,summonerId:u.summonerId,bossPatterns:u.bossPattern?.log,burrow:u.burrow?{phase:u.burrow.phase,dives:u.burrow.dives,emerges:u.burrow.emerges,aim:u.burrow.aim}:null,summon:u.summon?{deployed:u.summon.deployed,capacity:u.summon.slots.length,living:u.summon.slots.filter(child=>child?.alive).length}:null,returnFlight:u.returnFlight?{phase:u.returnFlight.phase,returns:u.returnFlight.returns,launches:u.returnFlight.launches,healed:u.returnFlight.healed}:null,hook:u.hook?{phase:u.hook.phase,casts:u.hook.casts,hits:u.hook.hits,returned:u.hook.returned,aim:u.hook.aim}:null,projectileFire:u.projectileFire?{phase:u.projectileFire.phase,shots:u.projectileFire.shots,volleys:u.projectileFire.volleys}:null,signature:u.config.signature,radius:u.config.radius,bodyRadius:u.body.circleRadius,height:u.spatial.height,scale:u.presentation.scale??1,outline:u.presentation.outline??null,attackCount:u.attackCount,melee:u.melee?{phase:u.melee.phase,swings:u.melee.swings,hits:u.melee.hits}:null,sunbeam:u.sunbeam?{phase:u.sunbeam.phase,focusMs:u.sunbeam.focusMs,stage:u.sunbeam.stage,pulses:u.sunbeam.pulses,targetId:u.sunbeam.target?.unitId}:null,heal:u.heal?{phase:u.heal.phase,casts:u.heal.casts,healed:u.heal.healed,cost:u.heal.cost,targetId:u.heal.target?.unitId}:null,regenerated:u.regeneration?.healed??0})),volumeEvents:[...volumeEvents],arcShots:projectiles.filter(s=>s.arc).map(s=>({x:s.body.position.x,y:s.body.position.y,z:s.body.plugin.volume.feetZ,aim:{...s.arc.aim},ageMs:s.arc.ageMs,height:s.arc.height,ownerId:s.ownerId,returning:s.returning,kind:s.payload.kind})),companions:petRoster.snapshot(),playerPresentation:structuredClone(playerUnit.presentation),playerStatus:{...playerUnit.status},phase,mode,health,maxHp:C.stats.maxHp,aimPreviewId:previewTargetId,augment:{spore:C.augment.spore.enabled,momentum:C.augment.momentum.enabled,relay:C.chain.followKill,chain:C.chain.enabled},tech:{points:availableTech(),level:progressionLevel(tech.kills),totalKills:tech.defeats,collectedGrowth:tech.kills,unlocked:[...tech.unlocked],statLevels:{...tech.statLevels}},autoChainReady,autoDashPlanned,chainActive,chainStarts,chainEnds,chainTriggerCharge:C.chain.minTriggerCharge,chainTargetId,autoChainWins,autoChainRolls,automaticDashes,manualPerfectHits,dashAutomatic,dashPerfect,launchCount,manualLaunchCount,echoLaunchCount,chainLaunchCount,attackAmmo:attackAmmo.snapshot(),missRecovery:{active:missRecoveryActive,events:missRecoveryEvents,firstHintShown:missHintShown},evade:{charges:evadeCharges,max:C.evade.maxCharges,refillAtMs:evadeRefillAtMs,progress:evadeRefillProgress(),rechargeMs:C.evade.rechargeMs,impulseSpeed:C.evade.impulseSpeed,durationMs:C.evade.durationMs,invulnerableMs:C.evade.invulnerableMs,projectileInvulnerable:timeMs-evadeStartedAtMs<C.evade.invulnerableMs,active:!!evadeMotion,startedAtMs:evadeStartedAtMs,count:evadeActions,hitRechargeEvents:evadeHitRechargeEvents,hitRechargeProgress:evadeHitRechargeProgress,lastHitRecharge:evadeLastHitRecharge?{...evadeLastHitRecharge}:null},stage:{index:stage.index,phase:stage.phase,waveKills:stage.waveKills,killTarget:stage.killTarget,bossHp:stage.boss?.hp??null,bossState:stage.boss?.state??null,bossPattern:stage.boss?.pattern??null,patternLog:[...stage.patternLog],obstacleCount:obstacles.length,broken:bossObstaclesBroken,arenaSides:arenaVertices.length,theme:stage.themeId,themeName:THEME_POOL[stage.themeId]?.name,layout:stage.layoutId,layoutName:THEME_POOL[stage.themeId].layouts.find(l=>l.id===stage.layoutId)?.name,radius:stage.radius,playableArea:Math.round(stage.playableArea),targetPopulation:stage.targetPopulation,mapTier:stage.mapTier,mapStart:stage.mapStart,mapSeed:stage.mapSeed,bossStage:isBossStage(stage.index),bossSpeciesId:stage.bossSpeciesId??null,referenceArea:stageBasePlayableArea,bossName:stage.boss?BOSS_POOL[stage.bossSpeciesId]?.name:null,bossVariant:stage.bossVariant||null,bossSummons:stage.boss?liveSummons(stage.boss.id).length:0,seed:stage.seed,generation:{...generationStats}},stageHistory:[...stageHistory],bossPool:Object.keys(BOSS_POOL),themePool:Object.keys(THEME_POOL),mapOperators:Object.keys(MAP_OPERATORS),dashMotion:dashMotion?{...dashMotion}:null,camera:{base:{...cameraView.camera},render:{...renderer.camera},shake:cameraShake?{...cameraShake}:null,offset:cameraShakeOffset()},launchRecoil:launchRecoil?{...launchRecoil}:null,alignment:pendingLaunch?{...pendingLaunch,durationMs:C.shadow.orbit.alignMs}:null,orbit:ammoOrbitStates(player.position,timeMs),shadow:shadow?{source:shadow.source,slot:shadow.slot,dirX:shadow.dirX,dirY:shadow.dirY,x:shadow.x,y:shadow.y,startX:shadow.startX,startY:shadow.startY,visualRadius:shadowShardRadius(),launchedAtMs:shadow.launchedAtMs,progress:chargeOf(),charge:chargeOf(),dashReady:shadowDashAvailable(),separation:shadowSeparation(),remainingGap:remainingShadowGap(),initialGap:shadow.initialGap,travel:shadow.travel,limit:shadow.limit,targetId:shadow.targetId,arrived:shadow.arrived,speed:shadow.speed}:null,hitstopLeftMs,dashCharge,dashFlight:dashFlight?{...dashFlight,remainingMs:Math.round(dashFlight.untilMs-timeMs)}:null,rearmProgress:rearmProgress(),buffered:!!bufferedIntent,damageTaken,healingDone,position:{...player.position},speed:speedOf(player),hits,kills,combo,comboFxActive:comboFx.classList.contains('active'),enemyMasses:Object.fromEntries(Object.entries(C.enemy.types).map(([type,def])=>[type,def.mass])),tick,timeMs,attackDashSerial,enemies:enemies.filter(e=>e.alive).length,enemyShots,enemyAttacks,enemyPushes,projectiles:projectiles.length,evasion:{...evasionMetrics,units:[...unitsById.values()].filter(e=>e.evasion).map(e=>({id:e.unitId,speciesId:e.speciesId,isElite:e.isElite,cycle:e.evasion.cycle,phase:e.evasion.phase,blocked:e.evasion.blocked,offsetMs:e.evasion.offsetMs,usedCycle:e.evasion.usedCycle,presentation:{...e.evasion.presentation},stats:{...e.evasion.stats},motion:e.evasion.motion?{direction:e.evasion.motion.direction,untilMs:e.evasion.motion.untilMs,trail:e.evasion.motion.trail}:null}))},enemyStates:enemies.filter(e=>e.alive).map(e=>({id:e.id,bodyId:e.body.id,type:e.type,state:e.state,z:e.body.plugin.volume.feetZ,height:e.body.plugin.volume.height,ability:e.leap?{phase:e.leap.phase,count:e.leap.count,landings:e.leap.landings,aim:e.leap.aim}:e.selfDestruct?{phase:e.selfDestruct.phase,leftMs:e.selfDestruct.leftMs}:e.spike?{phase:e.spike.phase,pulses:e.spike.pulses,counters:e.spike.counters}:e.arcFire?{phase:e.arcFire.phase,volleys:e.arcFire.volleys,fired:e.arcFire.fired}:null,hp:e.hp,burning:!!e.burn,conducting:e.conductUntilMs>timeMs,radius:enemyDef(e).radius,x:e.body.position.x,y:e.body.position.y,preX:e.preX,preY:e.preY,shadowKnockbackLeftMs:Math.max(0,(e.shadowKnockbackUntilMs||0)-timeMs),attackCount:e.attackCount,playerGap:Math.hypot(e.body.position.x-player.position.x,e.body.position.y-player.position.y)})),rendererState:renderer.state,elemental:{frostFields:frostFields.map(field=>({x:field.x,y:field.y,radius:field.radius,leftMs:field.leftMs})),acidPools:acidPools.map(p=>({x:p.x,y:p.y,radius:p.radius,leftMs:p.leftMs,skillId:p.skillId,sourceUnitId:p.source.unitId,faction:p.source.faction})),...elementalEvents,fireEmbers:fireEmbers.length,fireTransfers:fireTransfers.length,activeBurning:enemies.filter(e=>e.alive&&e.burn).length,activeConducting:enemies.filter(e=>e.alive&&e.conductUntilMs>timeMs).length},stats:{...C.stats},criticalHits,lastHit:lastHit?{...lastHit,tags:[...lastHit.tags]}:null,fx:{stage:shadow?fxStage(chargeOf()):'none',target:shadow?(getTargetAnchor(fxAnchor)?{x:fxAnchor.x,y:fxAnchor.y,isEnemy:fxAnchor.isEnemy}:null):null,enabled:C.fx.targetCompression}}),auto:()=>{if(phase==='PLAYING')pending.push({kind:'auto'});},point:(x,y)=>{if(phase==='PLAYING')pending.push({kind:'point',x,y});},startRun,enterLobby,reset,dispose:()=>{if(!running)return;scenarioRunner?.dispose();previewHost?.dispose();guideDemo?.close();introHost?.dispose();menuRouter?.dispose();techView?.dispose();if(isolatedScene){ultimateRunner.cancel('dispose');petRoster.clear();clearStageEnemies();World.clear(engine.world,false);}releaseVolumeFilter?.();sfx.dispose();running=false;loop.stop();input.dispose();document.removeEventListener('focusin',onGameplayFocus);renderer.dispose();window.removeEventListener('resize',resize);}};
+  window.__bloomImpulse={VERSION,BUILD_ID,config:C,intro:introScene?{snapshot:()=>({timeMs,tick,chapter:introChapter,ended:scenarioRunner.state==='ended',metrics:introMetrics,hits,kills,combo,ultimate:introScenes[introChapter].ultimate??null,ultimateDamage:ultimateRunner.damage,pets:petRoster.snapshot(),seed:introScenes[introChapter].seed}),async setSound(enabled){if(!running)return false;sfx.setMuted(!enabled);if(!enabled){sfx.stopAll();return true;}const unlocked=await sfx.unlock();if(!running)return false;if(!unlocked)sfx.setMuted(true);return unlocked;}}:null,preview:previewSkill?{snapshot:()=>({id:previewSkill,seed:previewScenario.seed,tick,paused:scenarioRunner.state==='paused',ended:scenarioRunner.state==='ended',hits:previewHitCount,damage:ultimateRunner.damage,lesson:{mode,hits,kills,shadow:!!shadow,stage:stage.index,evades:evadeActions}}),setPaused(value){if(value)scenarioRunner.pause();else{scenarioRunner.play();void sfx.unlock();}}}:null,getUltimates:()=>ultimateRunner.snapshot(),getAudio:()=>sfx.snapshot(),audioMeter:()=>sfx.meter(),getCompanions:()=>companions.snapshot(),getThemeProgress:()=>themeProgress.snapshot(),getState:()=>({presentation:presentation.snapshot(),drops:{...lootDrops.debug(),magnetRadius:magnetRadius()},unitStates:[...unitsById.values()].map(u=>({status:{...u.status},groundAttack:u.groundAttack?{phase:u.groundAttack.phase,casts:u.groundAttack.casts,pending:u.groundAttack.pending}:null,coneBreath:u.coneBreath?{phase:u.coneBreath.phase,casts:u.coneBreath.casts}:null,unitId:u.unitId,inventoryId:u.inventoryId,speciesId:u.speciesId,faction:u.faction,state:u.state,hp:u.hp,grade:u.grade,isSummon:!!u.isSummon,summonerId:u.summonerId,bossPatterns:u.bossPattern?.log,burrow:u.burrow?{phase:u.burrow.phase,dives:u.burrow.dives,emerges:u.burrow.emerges,aim:u.burrow.aim}:null,summon:u.summon?{deployed:u.summon.deployed,capacity:u.summon.slots.length,living:u.summon.slots.filter(child=>child?.alive).length}:null,returnFlight:u.returnFlight?{phase:u.returnFlight.phase,returns:u.returnFlight.returns,launches:u.returnFlight.launches,healed:u.returnFlight.healed}:null,hook:u.hook?{phase:u.hook.phase,casts:u.hook.casts,hits:u.hook.hits,returned:u.hook.returned,aim:u.hook.aim}:null,projectileFire:u.projectileFire?{phase:u.projectileFire.phase,shots:u.projectileFire.shots,volleys:u.projectileFire.volleys}:null,signature:u.config.signature,radius:u.config.radius,bodyRadius:u.body.circleRadius,height:u.spatial.height,scale:u.presentation.scale??1,outline:u.presentation.outline??null,attackCount:u.attackCount,melee:u.melee?{phase:u.melee.phase,swings:u.melee.swings,hits:u.melee.hits}:null,sunbeam:u.sunbeam?{phase:u.sunbeam.phase,focusMs:u.sunbeam.focusMs,stage:u.sunbeam.stage,pulses:u.sunbeam.pulses,targetId:u.sunbeam.target?.unitId}:null,heal:u.heal?{phase:u.heal.phase,casts:u.heal.casts,healed:u.heal.healed,cost:u.heal.cost,targetId:u.heal.target?.unitId}:null,regenerated:u.regeneration?.healed??0})),volumeEvents:[...volumeEvents],arcShots:projectiles.filter(s=>s.arc).map(s=>({x:s.body.position.x,y:s.body.position.y,z:s.body.plugin.volume.feetZ,aim:{...s.arc.aim},ageMs:s.arc.ageMs,height:s.arc.height,ownerId:s.ownerId,returning:s.returning,kind:s.payload.kind})),companions:petRoster.snapshot(),playerPresentation:structuredClone(playerUnit.presentation),playerStatus:{...playerUnit.status},phase,mode,health,maxHp:C.stats.maxHp,aimPreviewId:previewTargetId,augment:{spore:C.augment.spore.enabled,momentum:C.augment.momentum.enabled,relay:C.chain.followKill,chain:C.chain.enabled},tech:{points:availableTech(),level:progressionLevel(tech.kills),totalKills:tech.defeats,collectedGrowth:tech.kills,unlocked:[...tech.unlocked],statLevels:{...tech.statLevels}},autoChainReady,autoDashPlanned,chainActive,chainStarts,chainEnds,chainTriggerCharge:C.chain.minTriggerCharge,chainTargetId,autoChainWins,autoChainRolls,automaticDashes,manualPerfectHits,dashAutomatic,dashPerfect,launchCount,manualLaunchCount,echoLaunchCount,chainLaunchCount,attackAmmo:attackAmmo.snapshot(),missRecovery:{active:missRecoveryActive,events:missRecoveryEvents,firstHintShown:missHintShown},evade:{charges:evadeCharges,max:C.evade.maxCharges,refillAtMs:evadeRefillAtMs,progress:evadeRefillProgress(),rechargeMs:C.evade.rechargeMs,impulseSpeed:C.evade.impulseSpeed,durationMs:C.evade.durationMs,invulnerableMs:C.evade.invulnerableMs,projectileInvulnerable:timeMs-evadeStartedAtMs<C.evade.invulnerableMs,active:!!evadeMotion,startedAtMs:evadeStartedAtMs,count:evadeActions,hitRechargeEvents:evadeHitRechargeEvents,hitRechargeProgress:evadeHitRechargeProgress,lastHitRecharge:evadeLastHitRecharge?{...evadeLastHitRecharge}:null},stage:{index:stage.index,phase:stage.phase,waveKills:stage.waveKills,killTarget:stage.killTarget,bossHp:stage.boss?.hp??null,bossState:stage.boss?.state??null,bossPattern:stage.boss?.pattern??null,patternLog:[...stage.patternLog],obstacleCount:obstacles.length,broken:bossObstaclesBroken,arenaSides:arenaVertices.length,theme:stage.themeId,themeName:THEME_POOL[stage.themeId]?.name,layout:stage.layoutId,layoutName:THEME_POOL[stage.themeId].layouts.find(l=>l.id===stage.layoutId)?.name,radius:stage.radius,playableArea:Math.round(stage.playableArea),targetPopulation:stage.targetPopulation,mapTier:stage.mapTier,mapStart:stage.mapStart,mapSeed:stage.mapSeed,bossStage:isBossStage(stage.index),bossSpeciesId:stage.bossSpeciesId??null,referenceArea:stageBasePlayableArea,bossName:stage.boss?BOSS_POOL[stage.bossSpeciesId]?.name:null,bossVariant:stage.bossVariant||null,bossSummons:stage.boss?liveSummons(stage.boss.id).length:0,seed:stage.seed,generation:{...generationStats}},stageHistory:[...stageHistory],bossPool:Object.keys(BOSS_POOL),themePool:Object.keys(THEME_POOL),mapOperators:Object.keys(MAP_OPERATORS),dashMotion:dashMotion?{...dashMotion}:null,camera:{base:{...cameraView.camera},render:{...renderer.camera},shake:cameraShake?{...cameraShake}:null,offset:cameraShakeOffset()},launchRecoil:launchRecoil?{...launchRecoil}:null,alignment:pendingLaunch?{...pendingLaunch,durationMs:C.shadow.orbit.alignMs}:null,orbit:ammoOrbitStates(player.position,timeMs),shadow:shadow?{source:shadow.source,slot:shadow.slot,dirX:shadow.dirX,dirY:shadow.dirY,x:shadow.x,y:shadow.y,startX:shadow.startX,startY:shadow.startY,visualRadius:shadowShardRadius(),launchedAtMs:shadow.launchedAtMs,progress:chargeOf(),charge:chargeOf(),dashReady:shadowDashAvailable(),separation:shadowSeparation(),remainingGap:remainingShadowGap(),initialGap:shadow.initialGap,travel:shadow.travel,limit:shadow.limit,targetId:shadow.targetId,arrived:shadow.arrived,speed:shadow.speed}:null,hitstopLeftMs,dashCharge,dashFlight:dashFlight?{...dashFlight,remainingMs:Math.round(dashFlight.untilMs-timeMs)}:null,rearmProgress:rearmProgress(),buffered:!!bufferedIntent,damageTaken,healingDone,position:{...player.position},speed:speedOf(player),hits,kills,combo,comboFxActive:comboFx.classList.contains('active'),enemyMasses:Object.fromEntries(Object.entries(C.enemy.types).map(([type,def])=>[type,def.mass])),tick,timeMs,attackDashSerial,enemies:enemies.filter(e=>e.alive).length,enemyShots,enemyAttacks,enemyPushes,projectiles:projectiles.length,evasion:{...evasionMetrics,units:[...unitsById.values()].filter(e=>e.evasion).map(e=>({id:e.unitId,speciesId:e.speciesId,isElite:e.isElite,cycle:e.evasion.cycle,phase:e.evasion.phase,blocked:e.evasion.blocked,offsetMs:e.evasion.offsetMs,usedCycle:e.evasion.usedCycle,presentation:{...e.evasion.presentation},stats:{...e.evasion.stats},motion:e.evasion.motion?{direction:e.evasion.motion.direction,untilMs:e.evasion.motion.untilMs,trail:e.evasion.motion.trail}:null}))},enemyStates:enemies.filter(e=>e.alive).map(e=>({id:e.id,bodyId:e.body.id,type:e.type,state:e.state,z:e.body.plugin.volume.feetZ,height:e.body.plugin.volume.height,ability:e.leap?{phase:e.leap.phase,count:e.leap.count,landings:e.leap.landings,aim:e.leap.aim}:e.selfDestruct?{phase:e.selfDestruct.phase,leftMs:e.selfDestruct.leftMs}:e.spike?{phase:e.spike.phase,pulses:e.spike.pulses,counters:e.spike.counters}:e.arcFire?{phase:e.arcFire.phase,volleys:e.arcFire.volleys,fired:e.arcFire.fired}:null,hp:e.hp,burning:!!e.burn,conducting:e.conductUntilMs>timeMs,radius:enemyDef(e).radius,x:e.body.position.x,y:e.body.position.y,preX:e.preX,preY:e.preY,shadowKnockbackLeftMs:Math.max(0,(e.shadowKnockbackUntilMs||0)-timeMs),attackCount:e.attackCount,playerGap:Math.hypot(e.body.position.x-player.position.x,e.body.position.y-player.position.y)})),rendererState:renderer.state,elemental:{frostFields:frostFields.map(field=>({x:field.x,y:field.y,radius:field.radius,leftMs:field.leftMs})),acidPools:acidPools.map(p=>({x:p.x,y:p.y,radius:p.radius,leftMs:p.leftMs,skillId:p.skillId,sourceUnitId:p.source.unitId,faction:p.source.faction})),...elementalEvents,fireEmbers:fireEmbers.length,fireTransfers:fireTransfers.length,activeBurning:enemies.filter(e=>e.alive&&e.burn).length,activeConducting:enemies.filter(e=>e.alive&&e.conductUntilMs>timeMs).length},stats:{...C.stats},criticalHits,lastHit:lastHit?{...lastHit,tags:[...lastHit.tags]}:null,fx:{stage:shadow?fxStage(chargeOf()):'none',target:shadow?(getTargetAnchor(fxAnchor)?{x:fxAnchor.x,y:fxAnchor.y,isEnemy:fxAnchor.isEnemy}:null):null,enabled:C.fx.targetCompression}}),auto:()=>{if(phase==='PLAYING')pending.push({kind:'auto'});},point:(x,y)=>{if(phase==='PLAYING')pending.push({kind:'point',x,y});},startRun,enterLobby,reset,dispose:()=>{if(!running)return;scenarioRunner?.dispose();previewHost?.dispose();guideDemo?.close();introHost?.dispose();menuRouter?.dispose();techView?.dispose();if(isolatedScene){ultimateRunner.cancel('dispose');petRoster.clear();clearStageEnemies();World.clear(engine.world,false);}releaseVolumeFilter?.();sfx.dispose();running=false;loop.stop();input.dispose();document.removeEventListener('focusin',onGameplayFocus);renderer.dispose();window.removeEventListener('resize',resize);}};
   if(!isolatedScene){menuRouter=createMenuRouter();menuRouter.init();}
   if(isolatedScene){
     scenarioRunner=createScenario({definition:scenarioDefinition(previewSkill,C.sim.tps),createRun({seed,scene}){
       if(introScene)prepareIntro();else preparePreview(scene,seed);
-      return {initialize({events}){if(introScene)advanceIntro(events);},step({events}){
+      return {initialize({events}){if(introScene)advanceIntro(events);presentation.reset();capturePresentation();},step({events}){
         if(previewSkill)for(const event of events)if(event.action==='skill')ultimateRunner.tryStart(combo,attackAmmo.charges);
-        step(events);
+        advanceGame(events);
       },render(){render(tick*1000/C.sim.tps);},pause(){sfx.stopAll();},dispose(){sfx.stopAll();input.releaseAll();}};
     },onEnd(){if(introScene){introMetrics.push({chapter:introChapter,atMs:timeMs,hits,kills,combo,ultimate:introScenes[introChapter].ultimate??null,ultimateDamage:ultimateRunner.damage,pets:petRoster.snapshot()});}ultimateRunner.cancel(introScene?'introEnd':'previewEnd');sfx.stopAll();}});
     if(previewScenario?.tutorial)sfx.setMuted(true);scenarioRunner.play();if(previewSkill&&!previewScenario.tutorial)void sfx.unlock();

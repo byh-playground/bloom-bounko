@@ -54,7 +54,8 @@ jobs:
               'built_at_utc': datetime.datetime.now(datetime.timezone.utc).isoformat(),
               'version': re.search(r"VERSION = '([^']+)'", html).group(1),
               'build_id': re.search(r"BUILD_ID = '([^']+)'", html).group(1),
-              'execution_sdk_commit': re.search(r"EXECUTION_KIT = 'https://cdn.jsdelivr.net/gh/byh-playground/bloom-gamekit@([^/]+)/'", html).group(1),
+              'gamekit_sdk_commit': re.search(r"KIT = 'https://cdn.jsdelivr.net/gh/byh-playground/bloom-gamekit@([^/]+)/'", html).group(1),
+              'gamekit_manifest_sha256': re.search(r"KIT_MANIFEST_SHA256 = '([^']+)'", html).group(1),
               'index_sha256': hashlib.sha256(data).hexdigest(),
               'theme_progress_sha256': hashlib.sha256(pathlib.Path('_site/theme-progress.js').read_bytes()).hexdigest(),
               'pets_sha256': hashlib.sha256(pathlib.Path('_site/pets.js').read_bytes()).hexdigest(),
@@ -75,6 +76,7 @@ jobs:
               'audio_sdk_commit': re.search(r"commit:'([^']+)'", pathlib.Path('_site/audio.js').read_text(encoding='utf-8')).group(1),
               'audio_sdk_sha256': re.search(r"sha256:'([^']+)'", pathlib.Path('_site/audio.js').read_text(encoding='utf-8')).group(1),
           }
+          assert metadata['gamekit_sdk_commit'] == metadata['audio_sdk_commit'], 'GameKit pins must match'
           pathlib.Path('_site/build.json').write_text(json.dumps(metadata, indent=2) + '\n', encoding='utf-8')
           PY
       - name: Upload Pages artifact

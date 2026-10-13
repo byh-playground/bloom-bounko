@@ -544,9 +544,9 @@ if(previewScenario?.tutorial){document.body.classList.add('guide-scene');documen
 import {t as tr,language,setLanguage,onLanguageChanged,translateDocument,localizedList,message,messageText,number,percent} from './i18n.js';
 
 
-const KIT = 'https://cdn.jsdelivr.net/gh/byh-playground/bloom-gamekit@d1e2c385033ad04a7a004cfbe9558948ef07a6d1/';
-const EXECUTION_KIT = 'https://cdn.jsdelivr.net/gh/byh-playground/bloom-gamekit@159746f50e819fdc9e8e3b9df102b542f7335f6d/';
-const VERSION = '0.22.2', BUILD_ID = '20261013T-first-play-guide'
+const KIT = 'https://cdn.jsdelivr.net/gh/byh-playground/bloom-gamekit@7cf67c33451848d1af4a7b003cbe1b81ffef8b53/';
+const KIT_MANIFEST_SHA256 = '66b94ae83f5b657a7113a15086ccb49a6ec2dc06b6b6259b2144f5aba071264b';
+const VERSION = '0.22.3', BUILD_ID = '20261013T-gamekit-7cf67c3'
 const $ = id => document.getElementById(id);
 document.querySelectorAll('[data-game-version]').forEach(el=>el.textContent='v'+VERSION);
 const loadtext = $('loadtext');translateDocument();document.title=tr('app.title');$('languageSelect').value=language();$('languageSelect').disabled=true;
@@ -554,7 +554,7 @@ const ERROR = error => { console.error(error); loadtext.textContent = tr("runtim
 try {
   if (!window.Matter) throw new Error(tr("runtime.1"));
   const [{Renderer2D}, {ActionState,createDOMInput}, {createLoop}, {petConfig,CompanionCollection,CompanionRoster,companionCapacity,companionPresentation,patternAngle}, {audioConfig,AudioPlayer}, {volume,snapshotVolumes,contactWindow,filterMatterVolumes,sweepVerticalContacts,groundArc,stepArc,DeathReason,hostile,receiveHit,receiveHeal,combatConfig,collisionDamage,ChargePool,UnitStatus,elementConfig,effectiveArmor,damageAfterArmor,mixin,Evasive,eliteEvasionConfig}, {enemyConfig,enemyClasses,enemyWave,enemyRefillWave,pickRefillSpecies,enemyVisuals,species,speciesConfig,bossSpecies,bossConfig,drawSpecies,drawSpeciesEgg,eggSvg}, {EnemyController,PetController,SummonController}, {CameraViewport,OrthographicProjection}, {RewardDrops,dropConfig}, {createNavigation}, {createScenario}] = await Promise.all([
-    import(KIT+'rendering.js'),import(KIT+'input.js'),import(KIT+'simloop.js'),import('./pets.js'),import('./audio.js'),import('./abilities.js'),import('./enemies.js'),import('./controllers.js'),import(KIT+'camera.js'),import('./drops.js'),import(EXECUTION_KIT+'navigation.js'),import(EXECUTION_KIT+'scenario.js')
+    import(KIT+'rendering.js'),import(KIT+'input.js'),import(KIT+'simloop.js'),import('./pets.js'),import('./audio.js'),import('./abilities.js'),import('./enemies.js'),import('./controllers.js'),import(KIT+'camera.js'),import('./drops.js'),import(KIT+'navigation.js'),import(KIT+'scenario.js')
   ]);
   const M = window.Matter;
   const sfx=new AudioPlayer(isolatedScene?{...audioConfig,storageKey:null}:audioConfig);

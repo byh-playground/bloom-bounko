@@ -1,0 +1,144 @@
+{
+  "version": "0.22.5",
+  "sdk": {
+    "pin": "e108fe481aa7314974c39974a169b549500bf12c",
+    "source": "2712703c83923f16bb70454ea60e2ac533489ef8",
+    "manifestSha256": "800e4ddd95a33c332dff5a0c60b06438ffea6fd3bb3bca331b52d56b73f0775e",
+    "files": [
+      {
+        "file": "interpolation.js",
+        "sha256": "bf6c8737ef48ca327814cf7326406025c2ece6c49a690ca7652cac2cc6af2562",
+        "actualBytes": 48773
+      },
+      {
+        "file": "rendering.js",
+        "sha256": "5fed746a9797fab4e7c8b99239d00026b913b66f1956c8d6955b7eb4cdf426ef",
+        "actualBytes": 155082
+      },
+      {
+        "file": "input.js",
+        "sha256": "ae84399953c7e54c8d96408c97208f42b2246a8ac27ef5265053cb0beb306168",
+        "actualBytes": 17695
+      },
+      {
+        "file": "simloop.js",
+        "sha256": "6d8c3462ac01b0af967b3c259eede2b85e2f2f3f6813217391e6c322a7d10007",
+        "actualBytes": 50789
+      },
+      {
+        "file": "camera.js",
+        "sha256": "972268ad14de778f1dca437913cff576155754adf1195948897c0df3ff8f66de",
+        "actualBytes": 6421
+      },
+      {
+        "file": "audio.js",
+        "sha256": "7e3e16d34ce88124e6ba7699f16d23107a3e42ee93ea5a16691e856e5865c14a",
+        "actualBytes": 14098
+      },
+      {
+        "file": "navigation.js",
+        "sha256": "92c387dcfa8af47beb3544f4a16121bbfc8fa9831052b33ce07076dd733c81d3",
+        "actualBytes": 3218
+      },
+      {
+        "file": "scenario.js",
+        "sha256": "bf13eb4a859e052487fe5b43c46ccb4d4b7523db4bb13032a8942283be4cc386",
+        "actualBytes": 18450
+      },
+      {
+        "file": "assets/fonts/noto-sans-kr-700-v1.json",
+        "version": "noto-sans-kr-700-v1",
+        "bytes": 514988,
+        "sha256": "d1f0d1b14015d3f417f9552d1f650c8585a71e4d67e13c667a1cca0aca3fc310",
+        "actualBytes": 514988
+      }
+    ]
+  },
+  "upstream": {
+    "pr": "https://github.com/byh-playground/bloom-gamekit/pull/48",
+    "merge": "2712703c83923f16bb70454ea60e2ac533489ef8",
+    "ci": "https://github.com/byh-playground/bloom-gamekit/actions/runs/38479410418",
+    "conclusion": "success"
+  },
+  "changedModules": [
+    "interpolation.js"
+  ],
+  "scope": "SDK pin only; Bounko has no LocalInputPreview/releasePreview usage. Combat, adapter and 60 TPS unchanged.",
+  "verification": {
+    "errors": [],
+    "views": [
+      {
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "skill": {
+          "id": "laserBloom",
+          "seed": 82741,
+          "tick": 240,
+          "paused": false,
+          "ended": true,
+          "hits": 30,
+          "damage": 494.99999999999994,
+          "lesson": {
+            "mode": "READY",
+            "hits": 0,
+            "kills": 0,
+            "shadow": false,
+            "stage": 1,
+            "evades": 0
+          }
+        },
+        "checks": [
+          "damage",
+          "pause stable display",
+          "resume to end",
+          "replay",
+          "close",
+          "parent tick/save unchanged",
+          "8 exact-pin modules"
+        ]
+      },
+      {
+        "viewport": {
+          "width": 1366,
+          "height": 768
+        },
+        "skill": {
+          "id": "laserBloom",
+          "seed": 82741,
+          "tick": 240,
+          "paused": false,
+          "ended": true,
+          "hits": 30,
+          "damage": 494.99999999999994,
+          "lesson": {
+            "mode": "READY",
+            "hits": 0,
+            "kills": 0,
+            "shadow": false,
+            "stage": 1,
+            "evades": 0
+          }
+        },
+        "checks": [
+          "damage",
+          "pause stable display",
+          "resume to end",
+          "replay",
+          "close",
+          "parent tick/save unchanged",
+          "8 exact-pin modules"
+        ]
+      }
+    ],
+    "result": "PASS",
+    "elapsedMs": 11616
+  },
+  "notRepeated": [
+    "full combat/intro cost benchmark from 0.22.4; only preview release code changed upstream"
+  ],
+  "limits": [
+    "real phone and Safari not tested"
+  ]
+}

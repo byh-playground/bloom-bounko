@@ -3,9 +3,9 @@ const clamp=(x,a,b)=>Math.max(a,Math.min(b,x));
 const turn=(a,b)=>Math.atan2(Math.sin(b-a),Math.cos(b-a));
 const follow=(a,b,dt,rate)=>a+(b-a)*(1-Math.exp(-rate*dt/1000));
 export function createPlayerPresentation(){return {
-  facing:{target:{x:1,y:0},angle:0,previousAngle:0},
-  body:{current:{xx:1,xy:0,yy:1,roll:0},previous:{xx:1,xy:0,yy:1,roll:0}},
-  sprout:{current:{x:0,y:0},previous:{x:0,y:0}},
+  facing:{target:{x:1,y:0},angle:0},
+  body:{current:{xx:1,xy:0,yy:1,roll:0}},
+  sprout:{current:{x:0,y:0}},
   motion:{rollAtMs:-Infinity,rollDurationMs:220,rollSign:1},
   impact:{atMs:-Infinity,direction:{x:1,y:0},strength:0},clock:{atMs:0}
 };}
@@ -13,8 +13,8 @@ export function facePlayer(p,direction){const length=Math.hypot(direction?.x??0,
 export function rollPlayer(p,direction,nowMs,durationMs){facePlayer(p,direction);Object.assign(p.motion,{rollAtMs:nowMs,rollDurationMs:Math.min(260,durationMs),rollSign:direction.x<0?-1:1});}
 export function impactPlayer(p,direction,speed,nowMs){if(speed<80||nowMs-p.impact.atMs<130)return;const length=Math.hypot(direction.x,direction.y)||1;Object.assign(p.impact,{atMs:nowMs,direction:{x:direction.x/length,y:direction.y/length},strength:clamp(speed/850,.12,1)});}
 export function updatePlayerPresentation(p,{nowMs,dtMs,direction,dash=null,recoil=null,compression=0}){
-  facePlayer(p,direction);const f=p.facing;f.previousAngle=f.angle;f.angle+=turn(f.angle,Math.atan2(f.target.y,f.target.x))*(1-Math.exp(-dtMs/65));
-  const b=p.body;b.previous={...b.current};const sprout=p.sprout;sprout.previous={...sprout.current};
+  facePlayer(p,direction);const f=p.facing;f.angle+=turn(f.angle,Math.atan2(f.target.y,f.target.x))*(1-Math.exp(-dtMs/65));
+  const b=p.body,sprout=p.sprout;
   let xx=1-compression,xy=0,yy=1-compression;
   function deform(n,amount){xx+=amount*(n.x*n.x-.6*n.y*n.y);xy+=amount*1.6*n.x*n.y;yy+=amount*(n.y*n.y-.6*n.x*n.x);}
   const stretch=dash?clamp(dash.speed/950,0,1)*.24:0;if(dash)deform(dash.direction,stretch);
@@ -28,11 +28,6 @@ export function updatePlayerPresentation(p,{nowMs,dtMs,direction,dash=null,recoi
   const bend=dash?{x:-dash.direction.x*stretch*23,y:-dash.direction.y*stretch*12}:{x:0,y:0};
   sprout.current.x=follow(sprout.current.x,bend.x-p.impact.direction.x*wobble,dtMs,20);
   sprout.current.y=follow(sprout.current.y,bend.y-p.impact.direction.y*wobble*.65,dtMs,20);p.clock.atMs=nowMs;
-}
-export function samplePlayerPresentation(p,alpha=1){const t=clamp(alpha,0,1),a=p.body.previous,b=p.body.current,s=p.sprout;
-  return {angle:p.facing.previousAngle+turn(p.facing.previousAngle,p.facing.angle)*t,
-    xx:a.xx+(b.xx-a.xx)*t,xy:a.xy+(b.xy-a.xy)*t,yy:a.yy+(b.yy-a.yy)*t,
-    roll:a.roll+turn(a.roll,b.roll)*t,sproutX:s.previous.x+(s.current.x-s.previous.x)*t,sproutY:s.previous.y+(s.current.y-s.previous.y)*t};
 }
 export function drawPlayerPresentation(r,position,p,colors,{silhouetteRadius=23.5,silhouetteOpacity=.88}={}){
   const cos=Math.cos(p.roll),sin=Math.sin(p.roll);

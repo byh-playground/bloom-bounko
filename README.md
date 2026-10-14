@@ -2,7 +2,11 @@
 
 블룸 세계관의 탑다운 2D 물리 액션 공 튕기기 게임입니다. 잔상을 보내 조준·충전하고, 타이밍에 맞춰 몸체를 돌진시켜 적과 충돌합니다. 전장을 탭해 구르며 피하고, 처치 후 지면 드롭을 자석으로 회수한 성장으로 기술과 기본 능력치를 강화합니다.
 
-게임·스타일·도움말·상세 위키는 `index.html`, 드롭 상태와 회수 이동은 `drops.js`, 소유·편성은 `pets.js`, 공통 Unit·능력은 `abilities.js`, 종·외형은 `enemies.js`, 목표·이동 의도는 `controllers.js`, 스킬 정의·장착·실행은 `ultimates.js`, 효과음 정의는 `audio.js`에 들어 있습니다. 현재 버전 **0.22.5**은 한국어·영어 UI/도움말/위키 전환과 저장 언어 우선 적용을 지원합니다. `i18n.js`는 공개 i18next 코어를 연결하고 `locales/ko.js`·`locales/en.js`는 표시 문구를 소유합니다. 장착 알은 110px 이상 뒤처지면 플레이어를 따라잡고 85px 안에서 원래 포메이션으로 복귀합니다. 클리어 후 회수 규칙은 그대로이며, 클리어 후 1.5초 동안 전체 지면 보상을 자석으로 끌어오고, 실제 도착분만 지급한 뒤 미회수분을 삭제합니다. 기존 처치 성장과 알은 가까이 가서 회수합니다. 자석 범위는 현재 플레이어 지름의2.5배이며 기본 대비+10%씩 투자합니다. 바깥 장착 알은 부드러운 가속·감쇠로 느슨하게 따라오고 정지하면 가볍게 떠 있습니다. 기존 공격·회피·전투 펫·알 확률·부화 조건은 유지합니다.
+게임·스타일·도움말·상세 위키는 `index.html`, 드롭 상태와 회수 이동은 `drops.js`, 소유·편성은 `pets.js`, 공통 Unit·능력은 `abilities.js`, 종·외형은 `enemies.js`, 목표·이동 의도는 `controllers.js`, 스킬 정의·장착·실행은 `ultimates.js`, 효과음 정의는 `audio.js`에 들어 있습니다. 현재 버전 **0.22.6**은 한국어·영어 UI/도움말/위키 전환과 저장 언어 우선 적용을 지원합니다. `i18n.js`는 공개 i18next 코어를 연결하고 `locales/ko.js`·`locales/en.js`는 표시 문구를 소유합니다. 장착 알은 110px 이상 뒤처지면 플레이어를 따라잡고 85px 안에서 원래 포메이션으로 복귀합니다. 클리어 후 회수 규칙은 그대로이며, 클리어 후 1.5초 동안 전체 지면 보상을 자석으로 끌어오고, 실제 도착분만 지급한 뒤 미회수분을 삭제합니다. 기존 처치 성장과 알은 가까이 가서 회수합니다. 자석 범위는 현재 플레이어 지름의2.5배이며 기본 대비+10%씩 투자합니다. 바깥 장착 알은 부드러운 가속·감쇠로 느슨하게 따라오고 정지하면 가볍게 떠 있습니다. 기존 공격·회피·전투 펫·알 확률·부화 조건은 유지합니다.
+
+## GameKit v0.3.1 (0.22.6)
+
+공식 v0.3.1 dist로 8개 SDK 모듈과 manifest 핀을 갱신했습니다. LocalInputPreview는 사용하지 않으며 전투·60 TPS·게임 규칙은 유지합니다. 사용자 요청에 따라 이번 SDK 패치 갱신은 정적 코드·SHA 검사만 수행하며 브라우저 검증은 생략합니다.
 
 ## SDK 후속 수정 (0.22.5)
 
@@ -79,7 +83,7 @@ PR33의 최초 자동 발사 예약 수정까지 최신 main `e563e09`를 통합
 
 GameKit의 `navigation.js`가 해시/옵션·브라우저 이력·상태 구독을, `scenario.js`가 고정 tick 명령 타임라인·재생·pause·종료를 담당합니다. 기존 `index.html`의 hash 파싱·URL 생성·popstate/hashchange 중복 처리와 소개 이벤트 cursor를 제거했습니다. 메뉴 UI/선택/스크롤/포커스·게임 입력·구매·실제 전투/Renderer는 Bounko가 소유하며, 프리뷰/소개는 기존 격리 iframe을 유지합니다. 재시작/반복은 새 iframe 게임 인스턴스로 복원하고 닫기는 오디오·입력·RAF·WebGL 자원을 정리합니다.
 
-사용 중인 공통 모듈 전체(interpolation/rendering/input/simloop/camera/navigation/scenario/audio)는 dist `e108fe481aa7314974c39974a169b549500bf12c`에 고정합니다. manifest SHA-256은 `800e4ddd95a33c332dff5a0c60b06438ffea6fd3bb3bca331b52d56b73f0775e`이며 사용 모듈 및 폰트의 실제 CDN 바이트를 대조했습니다. 배포 build.json의 gamekit_sdk_commit·gamekit_manifest_sha256으로 추적합니다. audio의 정적 ESM 핀도 같은 커밋이며 Pages 산출물 생성 시 일치를 검사합니다.
+사용 중인 공통 모듈 전체(interpolation/rendering/input/simloop/camera/navigation/scenario/audio)는 dist `72b09b260edf9650353017acb49c06873fe9f5a1`에 고정합니다. manifest SHA-256은 `c713809653043e8eb1d9b629c0c2734e9526217f69e04b49283d068c1b5d7da7`이며 사용 모듈 의 실제 CDN 바이트를 대조합니다. 배포 build.json의 gamekit_sdk_commit·gamekit_manifest_sha256으로 추적합니다. audio의 정적 ESM 핀도 같은 커밋이며 Pages 산출물 생성 시 일치를 검사합니다.
 
 GameKit 저장소의 `npm run test:consumer`가 공개 Bounko의 모바일/PC 메뉴·프리뷰·소개·저장 불변·전투 설정 복귀를 검사합니다. `BOUNKO_URL`로 로컬 검증 서버를 지정할 수 있습니다. 실제 결과와 성능 표본/미검증 범위는 통합 PR에 기록합니다. 녹화 인코더는 추가하지 않았습니다.
 

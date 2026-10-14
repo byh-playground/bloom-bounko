@@ -545,9 +545,9 @@ if(previewScenario?.tutorial){document.body.classList.add('guide-scene');documen
 import {t as tr,language,setLanguage,onLanguageChanged,translateDocument,localizedList,message,messageText,number,percent} from './i18n.js';
 
 
-const KIT = 'https://cdn.jsdelivr.net/gh/byh-playground/bloom-gamekit@e108fe481aa7314974c39974a169b549500bf12c/';
-const KIT_MANIFEST_SHA256 = '800e4ddd95a33c332dff5a0c60b06438ffea6fd3bb3bca331b52d56b73f0775e';
-const VERSION = '0.22.5', BUILD_ID = '20261013T-gamekit-e108fe4'
+const KIT = 'https://cdn.jsdelivr.net/gh/byh-playground/bloom-gamekit@72b09b260edf9650353017acb49c06873fe9f5a1/';
+const KIT_MANIFEST_SHA256 = 'c713809653043e8eb1d9b629c0c2734e9526217f69e04b49283d068c1b5d7da7';
+const VERSION = '0.22.6', BUILD_ID = '20261014T-gamekit-72b09b2'
 const $ = id => document.getElementById(id);
 document.querySelectorAll('[data-game-version]').forEach(el=>el.textContent='v'+VERSION);
 const loadtext = $('loadtext');translateDocument();document.title=tr('app.title');$('languageSelect').value=language();$('languageSelect').disabled=true;

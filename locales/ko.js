@@ -750,6 +750,7 @@ export default {
   "runtime.phrase.24": "등록되지 않은 보스 {{v0,gameNumber}}",
   "runtime.phrase.25": "등록되지 않은 지형 연산 {{v0,gameNumber}}",
   "runtime.phrase.26": "실행 라이브러리를 불러오지 못했습니다. 인터넷 연결을 확인하고 다시 여세요. {{v0,gameNumber}}",
+  "runtime.phrase.27": "게임을 초기화하지 못했습니다. 페이지를 다시 열어 주세요. {{v0}}",
   "species.0": " · 치유량·범위 성장",
   "species.phrase.27": "공격 없음 · 아군 치유 (자기 HP 1→3) · 자기 HP 5%/초{{v0,gameNumber}}",
   "species.1": " · 위력·사거리 성장",

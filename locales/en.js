@@ -750,6 +750,7 @@ export default {
   "runtime.phrase.24": "Unknown boss {{v0,gameNumber}}",
   "runtime.phrase.25": "Unknown terrain operator {{v0,gameNumber}}",
   "runtime.phrase.26": "Could not load runtime libraries. Check your internet connection and reopen. {{v0,gameNumber}}",
+  "runtime.phrase.27": "Game initialization failed. Reload the page. {{v0}}",
   "species.phrase.27": "No attacks · Heal allies (own HP 1→3) · Own HP 5%/second{{v0,gameNumber}}",
   "species.0": " · Healing amount/range growth",
   "species.1": " · Power/range growth",

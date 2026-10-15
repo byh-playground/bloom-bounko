@@ -1,0 +1,13 @@
+{
+  "name": "bounko",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "vector-assets:compile": "node scripts/compile-vector-assets.mjs",
+    "vector-assets:check": "node scripts/compile-vector-assets.mjs --check"
+  },
+  "devDependencies": {
+    "@xmldom/xmldom": "0.9.12",
+    "three": "0.186.1"
+  }
+}

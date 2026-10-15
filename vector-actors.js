@@ -1,8 +1,6 @@
 // Vector assets are retained once per SVG and rendered in the same ordered WebGL
-// context as Renderer2D. A renderer flush before and after each mesh keeps every
-// existing 2D VFX, actor, height marker, and overlay at its original depth.
-export function createVectorActors({ canvas, renderer, WebGLDevice, MeshRenderer, createVectorAsset, compiledAssets }) {
-  const device = new WebGLDevice(canvas, { alpha: true, antialias: true, depth: false, stencil: false });
+// context as Renderer2D. Meshes flush at the existing painter-order boundaries.
+export function createVectorActors({ renderer, device, MeshRenderer, createVectorAsset, compiledAssets }) {
   const meshRenderer = new MeshRenderer(device);
   const assets = new Map(Object.entries(compiledAssets).map(([id, compiled]) => [id, createVectorAsset(meshRenderer, compiled)]));
   const players = new Map();
@@ -64,8 +62,10 @@ export function createVectorActors({ canvas, renderer, WebGLDevice, MeshRenderer
     return output;
   }
   function drawOutlined(record, expression, matrix, outline, alpha) {
+    if (!active || device.state !== 'ready' || !device.active) return false;
     const passes = outlinePasses(outline);
     if (!passes.length) return drawMesh(record, matrix, { alpha });
+    renderer.flush();
     record.player.setExpression('outline');
     record.expression = 'outline';
     for (const pass of passes) {
@@ -73,9 +73,12 @@ export function createVectorActors({ canvas, renderer, WebGLDevice, MeshRenderer
         const angle = index * Math.PI / 4, drawMatrix = matrix.slice();
         drawMatrix[4] += Math.cos(angle) * pass.width;
         drawMatrix[5] += Math.sin(angle) * pass.width;
-        drawMesh(record, drawMatrix, { alpha, color: pass.color, forceColor: true });
+        record.player.draw({ projection: renderer.projection, matrix: drawMatrix, alpha, color: pass.color, forceColor: true });
       }
     }
+    // These offset draws share the same actor mesh, pose, projection, and clip;
+    // their per-instance matrices/colors are queued in order and flushed together.
+    meshRenderer.flush();
     record.player.setExpression(expression);
     record.expression = expression;
     return drawMesh(record, matrix, { alpha });
@@ -89,8 +92,18 @@ export function createVectorActors({ canvas, renderer, WebGLDevice, MeshRenderer
 
   function beginFrame() {
     visible = new Set();
-    active = device.beginFrame({ clearColor: [0, 0, 0, 0] });
-    return active;
+    try {
+      active = device.beginFrame({ clearColor: [0, 0, 0, 0] });
+      if (active) meshRenderer.beginFrame();
+      return active;
+    } catch (error) {
+      // A GPU context can be lost between the state check and WebGLDevice viewport query.
+      if (device.state === "lost" || renderer.state === "lost" || device.gl?.isContextLost?.() || error?.message?.includes("Cannot read properties of null (reading '0')")) {
+        active = false;
+        return false;
+      }
+      throw error;
+    }
   }
   function drawActor({ key, assetId, x, y, radius, timeMs, unit = null, attacking = false, expression = null,
     alpha = 1, scaleX = 1, scaleY = 1, outline = null }) {

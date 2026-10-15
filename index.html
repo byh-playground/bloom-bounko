@@ -546,10 +546,11 @@ if(previewScenario?.tutorial){document.body.classList.add('guide-scene');documen
 import {t as tr,language,setLanguage,onLanguageChanged,translateDocument,localizedList,message,messageText,number,percent} from './i18n.js';
 
 
-const KIT = 'https://cdn.jsdelivr.net/gh/byh-playground/bloom-gamekit@42d6135cb2083c599400a42ed29fdfee972bbd25/';
-const KIT_MANIFEST_SHA256 = '9dd27af1a7f25cb3f3d9ebf0eb36c304cc63b6c2b8d8c454a424d6b10314987a';
-const KIT_VECTOR_ASSETS_SHA256 = '2d5ac33a7570324dc385e00e49af32d01ec9f2886a5bbcb32600d6c6cf3be109';
-const VERSION = '0.23.1', BUILD_ID = '20261015T-gamekit-42d6135'
+const KIT = 'https://cdn.jsdelivr.net/gh/byh-playground/bloom-gamekit@a92e8e1e94302e903760bfe319b5b9380454e202/';
+const KIT_MANIFEST_SHA256 = '4807242bf8dd746b1ed599ae5e06f8ecfdf434c374bbb22e71a371b11b18b622';
+const KIT_VECTOR_ASSETS_SHA256 = '464c6fdb7d79a961d103e256158b98a216042c733bd7634ab04073312a1e5c26';
+const KIT_RENDERING_SHA256 = 'c359b07969c67474bcdf6b1df481ec7a801029d9ba235bf928558c3b5933b4c2';
+const VERSION = '0.23.3', BUILD_ID = '20261016T-gamekit-v0.6.1-a92e8e1'
 const $ = id => document.getElementById(id);
 document.querySelectorAll('[data-game-version]').forEach(el=>el.textContent='v'+VERSION);
 const loadtext = $('loadtext');translateDocument();document.title=tr('app.title');$('languageSelect').value=language();$('languageSelect').disabled=true;
@@ -789,7 +790,7 @@ try {
     if(killed&&hasTech('relay'))return 'any';
     return null;
   }
-  const canvas=$('game'), renderer=new Renderer2D(canvas), vectorActors=createVectorActors({canvas,renderer,WebGLDevice,MeshRenderer,createVectorAsset,compiledAssets:VECTOR_ASSETS}), actions=new ActionState();
+  const canvas=$('game'), vectorDevice=new WebGLDevice(canvas,{alpha:true,antialias:true,depth:true,stencil:false}), renderer=new Renderer2D(canvas), vectorActors=createVectorActors({renderer,device:vectorDevice,MeshRenderer,createVectorAsset,compiledAssets:VECTOR_ASSETS}), actions=new ActionState();
   const sampleFire={}, evadeSamples={up:{},left:{},down:{},right:{}};
   const gameUiTargets='input, textarea, select, button, a[href], [contenteditable]:not([contenteditable="false"]), [data-gamekit-ui]';
   const gameInputPanels=['settings','techPanel','guidePanel','wikiPanel','petPanel','ultimatePanel','themeStartPanel'].map($);
@@ -3005,9 +3006,9 @@ try {
     const cw=canvas.clientWidth,ch=canvas.clientHeight;
     cameraZoom=introScene?clamp(Math.min(cw/introScenes[introChapter].camera.width,ch/introScenes[introChapter].camera.height),.45,1.3):previewSkill?clamp(Math.min(cw/previewScenario.camera.width,ch/previewScenario.camera.height),.25,1.16):clamp(Math.min(cw/760,ch/940),.54,1.16);
     cameraView.setViewport({width:cw,height:ch});cameraView.setCamera({zoom:cameraZoom});
+    if(renderer.state!=='ready'||canvas.getContext('webgl')?.isContextLost()||!vectorActors.beginFrame())return;
     const shake=cameraShakeOffset();cameraView.setShake(shake.x,shake.y);cameraView.applyToRenderer(renderer);
     const ground=(THEME_POOL[stage.themeId]||THEME_POOL.garden).colors.clear;
-    if(!vectorActors.beginFrame())return;
     if(!renderer.beginFrame(ground)){vectorActors.endFrame();return;}
     drawWorld();
     drawDrops();

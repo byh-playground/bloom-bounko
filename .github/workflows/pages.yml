@@ -23,6 +23,15 @@ jobs:
     steps:
       - name: Check out source
         uses: actions/checkout@v6
+      - name: Set up Node for the pinned SVG compiler
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - name: Install locked build dependencies
+        run: npm ci
+      - name: Verify compiled SVG geometry against authored sources
+        run: npm run vector-assets:check
       - name: Configure Pages
         uses: actions/configure-pages@v5
       - name: Prepare static artifact and provenance
@@ -64,6 +73,10 @@ jobs:
               'gamekit_sdk_commit': re.search(r"KIT = 'https://cdn.jsdelivr.net/gh/byh-playground/bloom-gamekit@([^/]+)/'", html).group(1),
               'gamekit_manifest_sha256': re.search(r"KIT_MANIFEST_SHA256 = '([^']+)'", html).group(1),
               'gamekit_vector_assets_sha256': re.search(r"KIT_VECTOR_ASSETS_SHA256 = '([^']+)'", html).group(1),
+              'gamekit_rendering_sha256': re.search(r"KIT_RENDERING_SHA256 = '([^']+)'", html).group(1),
+              'gamekit_vector_compiler_commit': '4150109c7732a734e155b6d1e2cd83c13c1f1d0c',
+              'gamekit_vector_compiler_sha256': '1dfa99e9ce11afb9a9de18290ec049cbaecc3c720e3f6bd6ec7a7eb5913775cb',
+              'gamekit_vector_schema_sha256': '989bb4eee231b973adcc2c0744c63055692399c3dfb592bd46457dadb2b3b1fd',
               'index_sha256': hashlib.sha256(data).hexdigest(),
               'vector_runtime_sha256': hashlib.sha256(pathlib.Path('_site/vector-actors.js').read_bytes()).hexdigest(),
               'vector_assets_sha256': hashlib.sha256(pathlib.Path('_site/vector-assets.generated.js').read_bytes()).hexdigest(),
@@ -91,7 +104,9 @@ jobs:
               'audio_sdk_sha256': re.search(r"sha256:'([^']+)'", pathlib.Path('_site/audio.js').read_text(encoding='utf-8')).group(1),
           }
           assert metadata['gamekit_sdk_commit'] == metadata['audio_sdk_commit'], 'GameKit pins must match'
-          assert metadata['gamekit_vector_assets_sha256'] == '2d5ac33a7570324dc385e00e49af32d01ec9f2886a5bbcb32600d6c6cf3be109', 'GameKit vector-assets.js hash changed'
+          assert metadata['gamekit_manifest_sha256'] == '4807242bf8dd746b1ed599ae5e06f8ecfdf434c374bbb22e71a371b11b18b622', 'GameKit manifest hash changed'
+          assert metadata['gamekit_vector_assets_sha256'] == '464c6fdb7d79a961d103e256158b98a216042c733bd7634ab04073312a1e5c26', 'GameKit vector-assets.js hash changed'
+          assert metadata['gamekit_rendering_sha256'] == 'c359b07969c67474bcdf6b1df481ec7a801029d9ba235bf928558c3b5933b4c2', 'GameKit rendering.js hash changed'
           assert metadata['vector_source_count'] == 49, 'Unexpected SVG source count'
           pathlib.Path('_site/build.json').write_text(json.dumps(metadata, indent=2) + '\n', encoding='utf-8')
           PY

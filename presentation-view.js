@@ -65,7 +65,7 @@ export function createPresentationView({RenderObject:R,PresentationRuntime,stepM
       const links={beam:unitKey(unit.sunbeam?.target),heal:unitKey(unit.heal?.link?.target),summoner:unitKey(unit.summoner)};
       add(unitKey(unit),Unit,{x:p.x,y:p.y,z:volume?.feetZ??0,heading:Math.atan2(unit.headingY??0,unit.headingX??1),
         velocity:{x:unit.body.velocity.x*60,y:unit.body.velocity.y*60},data,links,healUntilMs:unit.heal?.link?.untilMs},
-      {kind:unit===player?'player':'unit',config:unit.config,presentation:unit===player?null:{...pres},height:volume?.height??0,
+      {kind:unit===player?'player':'unit',config:unit.config,presentation:unit===player?null:{...unit.presentation},height:volume?.height??0,
         bossParams:unit.bossParams,abilities:Object.fromEntries(abilityNames.map(n=>[n,unit[n]?.config])),evasionConfig:unit.evasion?.config});
     }
     for(const shot of shots){const p=shot.body.position,z=shot.body.plugin.volume?.feetZ??0;

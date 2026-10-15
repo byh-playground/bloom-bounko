@@ -27,6 +27,7 @@ jobs:
         uses: actions/configure-pages@v5
       - name: Prepare static artifact and provenance
         run: |
+          node scripts/compile-vector-assets.mjs --check
           mkdir -p _site
           cp index.html _site/index.html
           cp pets.js _site/pets.js
@@ -41,7 +42,12 @@ jobs:
           cp tech-view.js _site/tech-view.js
           cp player-presentation.js _site/player-presentation.js
           cp presentation-view.js _site/presentation-view.js
+          cp vector-actors.js _site/vector-actors.js
+          cp vector-assets.generated.js _site/vector-assets.generated.js
           cp i18n.js _site/i18n.js
+          mkdir -p _site/assets/vector
+          cp -R assets/vector/actors _site/assets/vector/actors
+          cp -R assets/vector/eggs _site/assets/vector/eggs
           mkdir -p _site/locales
           cp locales/ko.js locales/en.js _site/locales/
           touch _site/.nojekyll
@@ -57,7 +63,13 @@ jobs:
               'build_id': re.search(r"BUILD_ID = '([^']+)'", html).group(1),
               'gamekit_sdk_commit': re.search(r"KIT = 'https://cdn.jsdelivr.net/gh/byh-playground/bloom-gamekit@([^/]+)/'", html).group(1),
               'gamekit_manifest_sha256': re.search(r"KIT_MANIFEST_SHA256 = '([^']+)'", html).group(1),
+              'gamekit_vector_assets_sha256': re.search(r"KIT_VECTOR_ASSETS_SHA256 = '([^']+)'", html).group(1),
               'index_sha256': hashlib.sha256(data).hexdigest(),
+              'vector_runtime_sha256': hashlib.sha256(pathlib.Path('_site/vector-actors.js').read_bytes()).hexdigest(),
+              'vector_assets_sha256': hashlib.sha256(pathlib.Path('_site/vector-assets.generated.js').read_bytes()).hexdigest(),
+              'vector_source_sha256': {p.relative_to('_site').as_posix(): hashlib.sha256(p.read_bytes()).hexdigest()
+                  for p in sorted(pathlib.Path('_site/assets/vector').rglob('*.svg'))},
+              'vector_source_count': len(list(pathlib.Path('_site/assets/vector').rglob('*.svg'))),
               'theme_progress_sha256': hashlib.sha256(pathlib.Path('_site/theme-progress.js').read_bytes()).hexdigest(),
               'pets_sha256': hashlib.sha256(pathlib.Path('_site/pets.js').read_bytes()).hexdigest(),
               'drops_sha256': hashlib.sha256(pathlib.Path('_site/drops.js').read_bytes()).hexdigest(),
@@ -79,6 +91,8 @@ jobs:
               'audio_sdk_sha256': re.search(r"sha256:'([^']+)'", pathlib.Path('_site/audio.js').read_text(encoding='utf-8')).group(1),
           }
           assert metadata['gamekit_sdk_commit'] == metadata['audio_sdk_commit'], 'GameKit pins must match'
+          assert metadata['gamekit_vector_assets_sha256'] == '2d5ac33a7570324dc385e00e49af32d01ec9f2886a5bbcb32600d6c6cf3be109', 'GameKit vector-assets.js hash changed'
+          assert metadata['vector_source_count'] == 49, 'Unexpected SVG source count'
           pathlib.Path('_site/build.json').write_text(json.dumps(metadata, indent=2) + '\n', encoding='utf-8')
           PY
       - name: Upload Pages artifact

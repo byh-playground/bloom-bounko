@@ -17,9 +17,7 @@ export function createPresentationView({RenderObject:R,PresentationRuntime,stepM
     'data.evasion.presentation.shakeX':R.LINEAR,'data.evasion.presentation.markerOpacity':R.LINEAR,
     'data.groundAttack.effects':R.STEP,'data.groundAttack.pending':R.STEP,
     'data.hook.shots':R.STEP,'data.summon.slots':R.STEP,
-    'links':R.STEP,'healUntilMs':R.STEP,
-    'pose.angle':R.ANGLE,'pose.roll':R.ANGLE,'pose.xx':R.LINEAR,'pose.xy':R.LINEAR,
-    'pose.yy':R.LINEAR,'pose.sproutX':R.LINEAR,'pose.sproutY':R.LINEAR};
+    'links':R.STEP,'healUntilMs':R.STEP};
   for(const name of abilityNames){unitSchema[`data.${name}.phase`]=R.STATE_KEY;unitSchema[`data.${name}.leftMs`]=R.LINEAR;unitSchema[`data.${name}.aim`]=R.STEP;unitSchema[`data.${name}.stage`]=R.LINEAR;}
   class Unit extends R{static renderSchema=unitSchema;}
   class Shot extends R{
@@ -64,10 +62,9 @@ export function createPresentationView({RenderObject:R,PresentationRuntime,stepM
       if(unit.hook)data.hook={...unit.hook,shots:unit.hook.shots.map(s=>({arm:s.arm,finished:s.finished}))};
       if(unit.summon)data.summon={slots:unit.summon.slots.map(s=>s?{returnFlight:{phase:s.returnFlight?.phase}}:null)};
       data.evasion=unit.evasion;
-      const pres=unit.presentation,pose=unit===player?{angle:pres.facing.angle,roll:pres.body.current.roll,...pick(pres.body.current,['xx','xy','yy']),sproutX:pres.sprout.current.x,sproutY:pres.sprout.current.y}:null;
       const links={beam:unitKey(unit.sunbeam?.target),heal:unitKey(unit.heal?.link?.target),summoner:unitKey(unit.summoner)};
       add(unitKey(unit),Unit,{x:p.x,y:p.y,z:volume?.feetZ??0,heading:Math.atan2(unit.headingY??0,unit.headingX??1),
-        velocity:{x:unit.body.velocity.x*60,y:unit.body.velocity.y*60},data,pose,links,healUntilMs:unit.heal?.link?.untilMs},
+        velocity:{x:unit.body.velocity.x*60,y:unit.body.velocity.y*60},data,links,healUntilMs:unit.heal?.link?.untilMs},
       {kind:unit===player?'player':'unit',config:unit.config,presentation:unit===player?null:{...pres},height:volume?.height??0,
         bossParams:unit.bossParams,abilities:Object.fromEntries(abilityNames.map(n=>[n,unit[n]?.config])),evasionConfig:unit.evasion?.config});
     }
@@ -103,7 +100,7 @@ export function createPresentationView({RenderObject:R,PresentationRuntime,stepM
       if(def.kind==='player'||def.kind==='unit'){
         // A disposable render adapter, never a prototype or a simulation unit.
         v={...model.data,alive:true,config:def.config,presentation:def.presentation,bossParams:def.bossParams,
-          headingX:Math.cos(model.heading),headingY:Math.sin(model.heading),pose:model.pose,velocity:model.velocity,
+          headingX:Math.cos(model.heading),headingY:Math.sin(model.heading),velocity:model.velocity,
           body:{position:{x:model.x,y:model.y},plugin:{volume:{feetZ:model.z,height:def.height}}},spatial:{feetZ:model.z}};
         for(const name of abilityNames)if(model.data[name])v[name]={...model.data[name],config:def.abilities[name]};
         if(model.data.evasion)v.evasion={...model.data.evasion,config:def.evasionConfig};
@@ -130,7 +127,7 @@ export function createPresentationView({RenderObject:R,PresentationRuntime,stepM
     lastFrame=output;return output;
   }
   return {capture,frame,reset,snapshot(){return lastFrame?{timeMs:lastFrame.timeMs,captureTimeMs:atMs,revision,tracks:definitions.size,
-    player:{...lastFrame.player.body.position,z:lastFrame.player.spatial.feetZ,pose:{...lastFrame.player.pose}},
+    player:{...lastFrame.player.body.position,z:lastFrame.player.spatial.feetZ},
     units:lastFrame.units.map(u=>({id:u.unitId,x:u.body.position.x,y:u.body.position.y,z:u.spatial.feetZ,heading:Math.atan2(u.headingY,u.headingX)})),
     shots:lastFrame.shots.length,companions:lastFrame.companions.length}:null;}};
 }

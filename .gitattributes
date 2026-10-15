@@ -4,3 +4,4 @@ index.html text eol=lf
 *.yml text eol=lf
 .gitattributes text eol=lf
 *.js text eol=lf
+*.svg text eol=lf

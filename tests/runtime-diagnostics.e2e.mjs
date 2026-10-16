@@ -90,7 +90,21 @@ function serve(root, { exposeVectorAssets = false } = {}) {
 
 async function boot(page, url) {
   await page.goto(url, { waitUntil: 'domcontentloaded' });
-  await page.waitForFunction(() => window.__bloomImpulse && document.querySelector('#load')?.classList.contains('hidden'), null, { timeout: 25_000 });
+  try {
+    await page.waitForFunction(() => window.__bloomImpulse && document.querySelector('#load')?.classList.contains('hidden'), null, { timeout: 25_000 });
+  } catch (error) {
+    const state = await page.evaluate(() => ({
+      ready: !!window.__bloomImpulse,
+      loadVisible: !document.querySelector('#load')?.classList.contains('hidden'),
+      loadText: document.querySelector('#loadtext')?.textContent,
+      fatalVisible: document.querySelector('#fatalError')?.hidden === false,
+      fatalText: document.querySelector('#fatalErrorReport')?.value,
+    })).catch(e => ({ inspectError: e.message }));
+    await page.screenshot({ path: resolve(OUT, 'candidate-boot-failure.png'), fullPage: true }).catch(() => {});
+    evidence.bootFailure = { url, state, server: server?.vectorSourceStats?.(), browserEvents: evidence.browserEvents };
+    evidence.screenshots.push('candidate-boot-failure.png');
+    throw new Error(`${error.message}; candidate boot state: ${JSON.stringify(state)}`);
+  }
   assert.equal(await page.locator('#fatalError').isVisible(), false, 'the game should boot without a fatal runtime dialog');
   return page.evaluate(() => ({ version: window.__bloomImpulse.VERSION, buildId: window.__bloomImpulse.BUILD_ID }));
 }
@@ -159,7 +173,17 @@ try {
   const page = await context.newPage();
   const unexpectedPageErrors = [];
   const vectorAssetRequests = new Map();
+  evidence.browserEvents = [];
   page.on('pageerror', error => unexpectedPageErrors.push(error.message));
+  page.on('console', message => {
+    if (message.type() === 'error') evidence.browserEvents.push({ kind: 'console.error', text: message.text().slice(0, 1200) });
+  });
+  page.on('requestfailed', request => evidence.browserEvents.push({
+    kind: 'requestfailed', url: request.url(), error: request.failure()?.errorText,
+  }));
+  page.on('response', response => {
+    if (response.status() >= 400) evidence.browserEvents.push({ kind: 'http-error', status: response.status(), url: response.url() });
+  });
   page.on('request', request => {
     const url = new URL(request.url());
     if (url.pathname.includes('/assets/vector/') && url.pathname.endsWith('.svg')) {

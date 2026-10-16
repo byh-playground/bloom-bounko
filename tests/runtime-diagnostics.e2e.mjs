@@ -53,7 +53,7 @@ function serve(root, { exposeVectorAssets = false } = {}) {
         vectorSourceRequests.set(pathname, (vectorSourceRequests.get(pathname) ?? 0) + 1);
         vectorSourceBytes += bytes.byteLength;
       }
-      if (exposeVectorAssets && pathname === '/index.html') {
+      if (exposeVectorAssets && (pathname === '/' || pathname === '/index.html')) {
         const html = bytes.toString('utf8');
         const startup = 'const VECTOR_ASSETS=await loadVectorAssets({loader:vectorAssetLoader,manifest:VECTOR_ASSET_MANIFEST,baseUrl:document.baseURI,maxBytes:64*1024});';
         assert.equal(html.split(startup).length - 1, 1, 'test-only vector asset probe must have one startup handoff');

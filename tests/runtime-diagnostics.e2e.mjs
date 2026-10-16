@@ -8,6 +8,7 @@ import { chromium } from 'playwright';
 
 const OUT = resolve('artifacts/runtime-diagnostics');
 const BASELINE_ROOT = process.env.BASELINE_ROOT ? resolve(process.env.BASELINE_ROOT) : null;
+const VECTOR_BASELINE = JSON.parse(await readFile(resolve('tests/fixtures/vector-assets-pr58-fingerprint.json'), 'utf8'));
 const evidence = {
   test: 'single Chromium user flow: real tick-58 launch, global errors, loop stop, restart, mobile manual copy',
   startedAt: new Date().toISOString(),
@@ -33,8 +34,10 @@ const hardStop = setTimeout(() => {
 }, evidence.timeBudgetMs);
 hardStop.unref();
 
-function serve(root) {
+function serve(root, { exposeVectorAssets = false } = {}) {
   const base = resolve(root);
+  const vectorSourceRequests = new Map();
+  let vectorSourceBytes = 0;
   const server = createServer(async (req, res) => {
     try {
       const pathname = decodeURIComponent(new URL(req.url, 'http://localhost').pathname);
@@ -45,7 +48,22 @@ function serve(root) {
       }
       const info = await stat(file);
       if (!info.isFile()) throw new Error('Not a file');
-      const bytes = await readFile(file);
+      let bytes = await readFile(file);
+      if (pathname.includes('/assets/vector/') && pathname.endsWith('.svg')) {
+        vectorSourceRequests.set(pathname, (vectorSourceRequests.get(pathname) ?? 0) + 1);
+        vectorSourceBytes += bytes.byteLength;
+      }
+      if (exposeVectorAssets && (pathname === '/' || pathname === '/index.html')) {
+        const html = bytes.toString('utf8');
+        const startup = 'const VECTOR_ASSETS=await loadVectorAssets({loader:vectorAssetLoader,manifest:VECTOR_ASSET_MANIFEST,baseUrl:document.baseURI,maxBytes:64*1024});';
+        assert.equal(html.split(startup).length - 1, 1, 'test-only vector asset probe must have one startup handoff');
+        bytes = Buffer.from(html.replace(startup, `${startup}window.__bounkoTestVectorAssets=VECTOR_ASSETS;`));
+      } else if (exposeVectorAssets && pathname === '/vector-assets-runtime.js') {
+        const moduleSource = bytes.toString('utf8');
+        const loadCall = 'const compiledAsset = await loader.load(url, {';
+        assert.equal(moduleSource.split(loadCall).length - 1, 1, 'test-only loader call counter must have one SDK handoff');
+        bytes = Buffer.from(moduleSource.replace(loadCall, 'window.__bounkoTestLoaderCalls=(window.__bounkoTestLoaderCalls??0)+1; const compiledAsset = await loader.load(url, {'));
+      }
       res.writeHead(200, { 'content-type': mime[extname(file)] || 'application/octet-stream', 'cache-control': 'no-store' });
       res.end(bytes);
     } catch {
@@ -56,14 +74,37 @@ function serve(root) {
     server.once('error', reject);
     server.listen(0, '127.0.0.1', () => {
       const address = server.address();
-      resolveListen({ server, url: `http://127.0.0.1:${address.port}/` });
+      resolveListen({
+        server,
+        url: `http://127.0.0.1:${address.port}/`,
+        vectorSourceStats: () => ({
+          paths: vectorSourceRequests.size,
+          requests: [...vectorSourceRequests.values()].reduce((sum, count) => sum + count, 0),
+          duplicates: [...vectorSourceRequests.values()].filter(count => count !== 1).length,
+          bytes: vectorSourceBytes,
+        }),
+      });
     });
   });
 }
 
 async function boot(page, url) {
   await page.goto(url, { waitUntil: 'domcontentloaded' });
-  await page.waitForFunction(() => window.__bloomImpulse && document.querySelector('#load')?.classList.contains('hidden'), null, { timeout: 25_000 });
+  try {
+    await page.waitForFunction(() => window.__bloomImpulse && document.querySelector('#load')?.classList.contains('hidden'), null, { timeout: 25_000 });
+  } catch (error) {
+    const state = await page.evaluate(() => ({
+      ready: !!window.__bloomImpulse,
+      loadVisible: !document.querySelector('#load')?.classList.contains('hidden'),
+      loadText: document.querySelector('#loadtext')?.textContent,
+      fatalVisible: document.querySelector('#fatalError')?.hidden === false,
+      fatalText: document.querySelector('#fatalErrorReport')?.value,
+    })).catch(e => ({ inspectError: e.message }));
+    await page.screenshot({ path: resolve(OUT, 'candidate-boot-failure.png'), fullPage: true }).catch(() => {});
+    evidence.bootFailure = { url, state, server: server?.vectorSourceStats?.(), browserEvents: evidence.browserEvents };
+    evidence.screenshots.push('candidate-boot-failure.png');
+    throw new Error(`${error.message}; candidate boot state: ${JSON.stringify(state)}`);
+  }
   assert.equal(await page.locator('#fatalError').isVisible(), false, 'the game should boot without a fatal runtime dialog');
   return page.evaluate(() => ({ version: window.__bloomImpulse.VERSION, buildId: window.__bloomImpulse.BUILD_ID }));
 }
@@ -100,7 +141,7 @@ async function reloadAndBoot(page) {
 
 let server, baselineServer, browser;
 try {
-  server = await serve(process.cwd());
+  server = await serve(process.cwd(), { exposeVectorAssets: true });
   if (BASELINE_ROOT) baselineServer = await serve(BASELINE_ROOT);
   browser = await chromium.launch({ headless: true });
 
@@ -131,10 +172,67 @@ try {
   const context = await browser.newContext({ viewport: { width: 1280, height: 900 } });
   const page = await context.newPage();
   const unexpectedPageErrors = [];
+  const vectorAssetRequests = new Map();
+  evidence.browserEvents = [];
   page.on('pageerror', error => unexpectedPageErrors.push(error.message));
+  page.on('console', message => {
+    if (message.type() === 'error') evidence.browserEvents.push({ kind: 'console.error', text: message.text().slice(0, 1200) });
+  });
+  page.on('requestfailed', request => evidence.browserEvents.push({
+    kind: 'requestfailed', url: request.url(), error: request.failure()?.errorText,
+  }));
+  page.on('response', response => {
+    if (response.status() >= 400) evidence.browserEvents.push({ kind: 'http-error', status: response.status(), url: response.url() });
+  });
+  page.on('request', request => {
+    const url = new URL(request.url());
+    if (url.pathname.includes('/assets/vector/') && url.pathname.endsWith('.svg')) {
+      vectorAssetRequests.set(url.pathname, (vectorAssetRequests.get(url.pathname) ?? 0) + 1);
+    }
+  });
   const candidateVersion = await boot(page, server.url);
-  evidence.candidate = { ...candidateVersion, sdkCommit: '0d4e4fd270b036340d453553896b8d670b993bba', sdkVersion: '0.10.1' };
-  assert.equal(candidateVersion.version, '0.23.6');
+  evidence.candidate = { ...candidateVersion, sdkCommit: '9ac9bff838f2060efa0522272ffa94d003f5ce36', sdkSourceCommit: '009c9d39686686bc2b6f97443103e7c342f62126', sdkVersion: '0.10.5', vectorLoaderCommit: '9ac9bff838f2060efa0522272ffa94d003f5ce36', vectorLoaderVersion: '0.10.5', vectorLoaderSha256: '995cdcc071711d56ccdb19c99b8818735d35132e87e64355cc598f75d19d7319', vectorLoaderManifestSha256: '970387b230c5f7c6ece212474c5a17f8895cb0b7f06584e325702cf7090d8ede' };
+  assert.equal(candidateVersion.version, '0.23.7');
+  const vectorAssetFingerprint = await page.evaluate(async () => {
+    const canonical = value => {
+      if (Array.isArray(value)) return `[${value.map(canonical).join(',')}]`;
+      if (value && typeof value === 'object') return `{${Object.keys(value).sort().map(key => `${JSON.stringify(key)}:${canonical(value[key])}`).join(',')}}`;
+      return JSON.stringify(value);
+    };
+    const digest = async value => {
+      const bytes = new TextEncoder().encode(canonical(value));
+      const hash = await crypto.subtle.digest('SHA-256', bytes);
+      return [...new Uint8Array(hash)].map(byte => byte.toString(16).padStart(2, '0')).join('');
+    };
+    const assets = window.__bounkoTestVectorAssets;
+    if (!assets) throw new Error('The test-only vector asset probe was not populated');
+    const fingerprints = {};
+    for (const key of Object.keys(assets).sort()) {
+      const asset = assets[key];
+      const metadata = asset.metadata;
+      fingerprints[key] = {
+        sourceSha256: asset.sourceSha256,
+        geometry: await digest(asset.geometry),
+        viewBox: await digest(asset.viewBox),
+        metadata: await digest(metadata),
+        parts: await digest(metadata?.parts),
+        expressions: await digest(metadata?.expressions),
+        sockets: await digest(metadata?.sockets),
+        clips: await digest(metadata?.clips),
+      };
+    }
+    return fingerprints;
+  });
+  assert.equal(VECTOR_BASELINE.sourceCount, Object.keys(vectorAssetFingerprint).length,
+    'startup compilation should preserve the PR58 asset count');
+  assert.deepEqual(vectorAssetFingerprint, VECTOR_BASELINE.assets,
+    'startup-compiled geometry, viewBox, metadata, parts/pivots, expressions, sockets, and clips must match PR58 output');
+  evidence.candidate.vectorAssetRegression = {
+    baseline: 'PR58 compiled output at 432e4d4be36e22f872d07d1f5f177e6c9fe8242b',
+    sourceCount: Object.keys(vectorAssetFingerprint).length,
+    compared: ['source SHA-256', 'geometry', 'viewBox', 'metadata', 'parts and pivots', 'expressions', 'sockets', 'clips'],
+    result: 'exact normalized fingerprint match',
+  };
   await startRun(page);
 
   // Queue a real UI input at tick 52. The following fixed tick starts the 80 ms
@@ -182,8 +280,32 @@ try {
   assert.ok(candidateState.enemyStates.length > 0, 'candidate gameplay screenshot should contain live enemies');
   assert.ok(candidateState.vectorRendererState.meshes > 0, 'candidate vector meshes should remain loaded');
   assert.ok(candidateState.vectorRendererState.players > 0, 'candidate should retain rendered actors');
+  const vectorRequestsAfterStartup = [...vectorAssetRequests.entries()].sort(([a], [b]) => a.localeCompare(b));
+  assert.equal(vectorRequestsAfterStartup.length, 49, 'startup should fetch exactly the 49 authored SVG assets');
+  assert.ok(vectorRequestsAfterStartup.every(([, count]) => count === 1), 'each original SVG should be fetched only once');
+  const vectorSourceEvidence = server.vectorSourceStats();
+  assert.equal(vectorSourceEvidence.paths, 49, 'startup should receive exactly one successful source response per authored SVG');
+  assert.equal(vectorSourceEvidence.requests, 49);
+  assert.equal(vectorSourceEvidence.duplicates, 0);
+  const vectorSourcePayloadBytes = vectorSourceEvidence.bytes;
+  assert.equal(vectorSourcePayloadBytes, 354867, 'startup SVG network payload should match the authored source byte total');
+  const loaderCallsAfterStartup = await page.evaluate(() => window.__bounkoTestLoaderCalls ?? 0);
+  assert.equal(loaderCallsAfterStartup, 49, 'each source should be compiled through the SDK exactly once at startup');
+  await page.waitForTimeout(250);
+  assert.deepEqual([...vectorAssetRequests.entries()].sort(([a], [b]) => a.localeCompare(b)), vectorRequestsAfterStartup,
+    'the render loop must not refetch or reconvert SVG sources');
+  assert.deepEqual(server.vectorSourceStats(), vectorSourceEvidence, 'the render loop must not request SVG sources again');
+  assert.equal(await page.evaluate(() => window.__bounkoTestLoaderCalls ?? 0), loaderCallsAfterStartup,
+    'the render loop must not invoke the SDK SVG compiler again');
   await page.screenshot({ path: resolve(OUT, 'candidate-gameplay-after-launch.png') });
   evidence.screenshots.push('candidate-gameplay-after-launch.png');
+  evidence.candidate.vectorStartup = {
+    sourceCount: vectorRequestsAfterStartup.length,
+    sourcePayloadBytes: vectorSourcePayloadBytes,
+    compiledBundleBytes: 0,
+    requests: vectorRequestsAfterStartup.length,
+    duplicateRequests: vectorRequestsAfterStartup.filter(([, count]) => count !== 1).length,
+  };
   evidence.candidate.gameplay = {
     tick: candidateState.tick,
     launchTick,

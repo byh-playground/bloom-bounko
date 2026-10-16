@@ -23,20 +23,20 @@ jobs:
     steps:
       - name: Check out source
         uses: actions/checkout@v6
-      - name: Set up Node for the pinned SVG compiler
+      - name: Set up Node for authored SVG verification
         uses: actions/setup-node@v4
         with:
           node-version: 22
-          cache: npm
-      - name: Install locked build dependencies
-        run: npm ci
-      - name: Verify compiled SVG geometry against authored sources
-        run: npm run vector-assets:check
+      - name: Verify original SVG inventory, hashes, and runtime manifest
+        run: |
+          npm run vector-assets:check
+          npm run test:vector-assets
       - name: Configure Pages
         uses: actions/configure-pages@v5
       - name: Prepare static artifact and provenance
         run: |
-          node scripts/compile-vector-assets.mjs --check
+          npm run vector-assets:check
+          npm run test:vector-assets
           mkdir -p _site
           cp index.html _site/index.html
           cp pets.js _site/pets.js
@@ -52,7 +52,8 @@ jobs:
           cp player-presentation.js _site/player-presentation.js
           cp presentation-view.js _site/presentation-view.js
           cp vector-actors.js _site/vector-actors.js
-          cp vector-assets.generated.js _site/vector-assets.generated.js
+          cp vector-assets-runtime.js _site/vector-assets-runtime.js
+          cp vector-assets.manifest.js _site/vector-assets.manifest.js
           cp i18n.js _site/i18n.js
           mkdir -p _site/assets/vector
           cp -R assets/vector/actors _site/assets/vector/actors
@@ -72,21 +73,33 @@ jobs:
               'build_id': re.search(r"BUILD_ID = '([^']+)'", html).group(1),
               'gamekit_sdk_commit': re.search(r"KIT = 'https://cdn.jsdelivr.net/gh/byh-playground/bloom-gamekit@([^/]+)/'", html).group(1),
               'gamekit_sdk_version': re.search(r"KIT_VERSION = '([^']+)'", html).group(1),
+              'gamekit_sdk_source_commit': re.search(r"KIT_SOURCE_COMMIT = '([^']+)'", html).group(1),
               'gamekit_diagnostics_commit': re.search(r"DIAGNOSTICS = 'https://cdn.jsdelivr.net/gh/byh-playground/bloom-gamekit@([^/]+)/debug-tools.js'", html).group(1),
               'gamekit_diagnostics_sha256': re.search(r"DIAGNOSTICS_SHA256 = '([^']+)'", html).group(1),
               'gamekit_manifest_sha256': re.search(r"KIT_MANIFEST_SHA256 = '([^']+)'", html).group(1),
               'gamekit_interpolation_sha256': re.search(r"KIT_INTERPOLATION_SHA256 = '([^']+)'", html).group(1),
               'gamekit_vector_assets_sha256': re.search(r"KIT_VECTOR_ASSETS_SHA256 = '([^']+)'", html).group(1),
+              'gamekit_input_sha256': re.search(r"KIT_INPUT_SHA256 = '([^']+)'", html).group(1),
+              'gamekit_simloop_sha256': re.search(r"KIT_SIMLOOP_SHA256 = '([^']+)'", html).group(1),
+              'gamekit_camera_sha256': re.search(r"KIT_CAMERA_SHA256 = '([^']+)'", html).group(1),
+              'gamekit_navigation_sha256': re.search(r"KIT_NAVIGATION_SHA256 = '([^']+)'", html).group(1),
+              'gamekit_scenario_sha256': re.search(r"KIT_SCENARIO_SHA256 = '([^']+)'", html).group(1),
+              'gamekit_audio_sha256': re.search(r"KIT_AUDIO_SHA256 = '([^']+)'", html).group(1),
+              'gamekit_vector_loader_commit': re.search(r"VECTOR_LOADER = 'https://cdn.jsdelivr.net/gh/byh-playground/bloom-gamekit@([^/]+)/vector-assets-loader.js'", html).group(1),
+              'gamekit_vector_loader_sha256': re.search(r"VECTOR_LOADER_SHA256 = '([^']+)'", html).group(1),
+              'gamekit_vector_loader_manifest_sha256': re.search(r"VECTOR_LOADER_MANIFEST_SHA256 = '([^']+)'", html).group(1),
+              'gamekit_vector_loader_version': '0.10.5',
               'gamekit_rendering_sha256': re.search(r"KIT_RENDERING_SHA256 = '([^']+)'", html).group(1),
-              'gamekit_vector_compiler_commit': '12aa27b7508bcffd284181645ca51a5684dbfdbd',
-              'gamekit_vector_compiler_sha256': 'dc57bec50d0f46e6b004840722843f91904b8e3d37e3e7ade2a74f0e92e99f68',
-              'gamekit_vector_schema_sha256': '4d649b001822c6377371cec6a83fcf8f3a77e702326b963a221997d1e677863c',
               'index_sha256': hashlib.sha256(data).hexdigest(),
               'vector_runtime_sha256': hashlib.sha256(pathlib.Path('_site/vector-actors.js').read_bytes()).hexdigest(),
-              'vector_assets_sha256': hashlib.sha256(pathlib.Path('_site/vector-assets.generated.js').read_bytes()).hexdigest(),
+              'vector_assets_manifest_sha256': hashlib.sha256(pathlib.Path('_site/vector-assets.manifest.js').read_bytes()).hexdigest(),
+              'vector_assets_runtime_loader_sha256': hashlib.sha256(pathlib.Path('_site/vector-assets-runtime.js').read_bytes()).hexdigest(),
               'vector_source_sha256': {p.relative_to('_site').as_posix(): hashlib.sha256(p.read_bytes()).hexdigest()
                   for p in sorted(pathlib.Path('_site/assets/vector').rglob('*.svg'))},
               'vector_source_count': len(list(pathlib.Path('_site/assets/vector').rglob('*.svg'))),
+              'vector_source_bytes': sum(p.stat().st_size for p in pathlib.Path('_site/assets/vector').rglob('*.svg')),
+              'vector_compiled_assets_bytes': 0,
+              'vector_previous_compiled_bundle_bytes': 1446734,
               'theme_progress_sha256': hashlib.sha256(pathlib.Path('_site/theme-progress.js').read_bytes()).hexdigest(),
               'pets_sha256': hashlib.sha256(pathlib.Path('_site/pets.js').read_bytes()).hexdigest(),
               'drops_sha256': hashlib.sha256(pathlib.Path('_site/drops.js').read_bytes()).hexdigest(),
@@ -108,14 +121,30 @@ jobs:
               'audio_sdk_sha256': re.search(r"sha256:'([^']+)'", pathlib.Path('_site/audio.js').read_text(encoding='utf-8')).group(1),
           }
           assert metadata['gamekit_sdk_commit'] == metadata['audio_sdk_commit'], 'GameKit pins must match'
-          assert metadata['gamekit_sdk_version'] == '0.10.1', 'GameKit SDK version changed'
-          assert metadata['gamekit_diagnostics_commit'] == '0d4e4fd270b036340d453553896b8d670b993bba', 'GameKit diagnostics commit changed'
+          assert metadata['gamekit_sdk_commit'] == '9ac9bff838f2060efa0522272ffa94d003f5ce36', 'GameKit SDK dist commit changed'
+          assert metadata['gamekit_sdk_source_commit'] == '009c9d39686686bc2b6f97443103e7c342f62126', 'GameKit SDK source commit changed'
+          assert metadata['gamekit_sdk_version'] == '0.10.5', 'GameKit SDK version changed'
+          assert metadata['gamekit_diagnostics_commit'] == metadata['gamekit_sdk_commit'], 'GameKit diagnostics must share the SDK dist pin'
           assert metadata['gamekit_diagnostics_sha256'] == '72260336a6c3f2ee0357a303fa8943dd8cfa4f7deea5d9517d311d4cd8796a71', 'GameKit diagnostics module hash changed'
-          assert metadata['gamekit_manifest_sha256'] == 'aa3adf24ba6d9f6843c3e2944236096469992776a4406027ea66dca15a94921c', 'GameKit manifest hash changed'
+          assert metadata['gamekit_manifest_sha256'] == '970387b230c5f7c6ece212474c5a17f8895cb0b7f06584e325702cf7090d8ede', 'GameKit manifest hash changed'
           assert metadata['gamekit_interpolation_sha256'] == '193c0e00bd60b89ea59a74be5badb898420ffbd350eb9cd3b7f6b56600d33a74', 'GameKit interpolation.js hash changed'
-          assert metadata['gamekit_vector_assets_sha256'] == 'a4a0db5cba7ce4d7ad9cd4d411c72c6e3bfaeabcfebdaad5884ccd693bf2fda3', 'GameKit vector-assets.js hash changed'
-          assert metadata['gamekit_rendering_sha256'] == 'fd254f4f8b91ab74dae294abbe3f2d76736648e797ccc370abf35aec8ea41f94', 'GameKit rendering.js hash changed'
+          assert metadata['gamekit_vector_assets_sha256'] == 'fb8cc088d7e02cb58504654215326d00001a4fbc614d12035356ce2675db95ec', 'GameKit vector-assets.js hash changed'
+          assert metadata['gamekit_input_sha256'] == 'ae84399953c7e54c8d96408c97208f42b2246a8ac27ef5265053cb0beb306168', 'GameKit input.js hash changed'
+          assert metadata['gamekit_simloop_sha256'] == 'f1d348b2f6a80b69c867b9bd45fc359f6d0b238885d85edfe0e9b73d03f043f4', 'GameKit simloop.js hash changed'
+          assert metadata['gamekit_camera_sha256'] == '3fd1c8a61b49e22b50606dbf472495775419640a8487f3a0ec079cb4d3522cb7', 'GameKit camera.js hash changed'
+          assert metadata['gamekit_navigation_sha256'] == '92c387dcfa8af47beb3544f4a16121bbfc8fa9831052b33ce07076dd733c81d3', 'GameKit navigation.js hash changed'
+          assert metadata['gamekit_scenario_sha256'] == 'c826d7c3fbefb14e83ad95af36d4afe25e9b1c962355123581bdacb13cf11c9f', 'GameKit scenario.js hash changed'
+          assert metadata['gamekit_audio_sha256'] == '7e3e16d34ce88124e6ba7699f16d23107a3e42ee93ea5a16691e856e5865c14a', 'GameKit audio.js hash changed'
+          assert metadata['gamekit_rendering_sha256'] == '5ec22f1b4c3689b11cd0d4c14acc017b94ce5c11afc859df399898645976e227', 'GameKit rendering.js hash changed'
+          assert metadata['gamekit_vector_loader_commit'] == metadata['gamekit_sdk_commit'], 'GameKit vector loader must share the SDK dist pin'
+          assert metadata['gamekit_vector_loader_sha256'] == '995cdcc071711d56ccdb19c99b8818735d35132e87e64355cc598f75d19d7319', 'GameKit vector-assets-loader.js hash changed'
+          assert metadata['gamekit_vector_loader_manifest_sha256'] == '970387b230c5f7c6ece212474c5a17f8895cb0b7f06584e325702cf7090d8ede', 'GameKit vector loader dist manifest hash changed'
+          assert metadata['gamekit_vector_loader_version'] == '0.10.5', 'GameKit vector loader version changed'
+          assert metadata['gamekit_vector_loader_manifest_sha256'] == metadata['gamekit_manifest_sha256'], 'GameKit module and loader manifest pins must match'
           assert metadata['vector_source_count'] == 49, 'Unexpected SVG source count'
+          assert metadata['vector_source_bytes'] == 354867, 'Authored SVG payload changed'
+          assert metadata['vector_compiled_assets_bytes'] == 0, 'Compiled vector data must not be shipped'
+          assert not pathlib.Path('_site/vector-assets.generated.js').exists(), 'Compiled vector data must not be shipped'
           pathlib.Path('_site/build.json').write_text(json.dumps(metadata, indent=2) + '\n', encoding='utf-8')
           PY
       - name: Upload Pages artifact

@@ -533,7 +533,7 @@ next stage -&gt; centered stage number; 4/7/10... expands map/theme segment</cod
   <div id="settings" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="settingsTitle"><button id="coachReplay" type="button" class="guide-action" data-i18n="learn.replay"></button><div class="settings-head"><h2 id="settingsTitle" data-i18n-html="dom.settings.html.1">조작 · 물리 실험</h2><button id="closeSettings" aria-label="설정 닫기" data-i18n-html="dom.closeSettings.html.1" data-i18n-aria-label="dom.closeSettings.aria-label.1">닫기 ✕</button></div><details id="coreboundStats"><summary><span data-i18n="dom.coreboundStats.text.1">기본 능력치 </span><span style="color:#8cbcae;font-size:10px"><span data-i18n="dom.coreboundStats.text.2">설정 열기</span></span></summary><div id="statRows"></div><p class="caption" data-i18n-html="dom.coreboundStats.html.1">흡혈은 기본 0%이며 별도 성장으로 강화합니다. 방어 관통은 대상의 방어력이 있을 때 적용됩니다. 잔상 속도·발사 준비·자동 연격은 각각 기본 물리 설정과 테크트리에서 관리합니다.</p></details><div id="settingRows"></div><p class="tech-settings-note" data-i18n-html="dom.settings.html.2">공격 탄·도탄·운동·충격 특성 및 영구 스탯은 대기 화면의 「업그레이드」에서 해금합니다.</p><label class="check"><input type="checkbox" id="showCompression" checked=""><span data-i18n="dom.settings.text.1">목표 수축 조준선 / 남은 거리 VFX</span></label><label class="check"><input type="checkbox" id="showLinkPulse" checked=""><span data-i18n="dom.settings.text.2">잔상↔목표 펄스</span></label><label class="check"><input type="checkbox" id="showDebug"><span data-i18n="dom.settings.text.3">충돌 / 잔상 계측 보이기</span></label><footer><span data-i18n="dom.settings.text.4">잔상 차지율은 </span><b><span data-i18n="dom.settings.text.5">돌진 시작 충격량과 돌진 비행 중의 가속도만</span></b><span data-i18n="dom.settings.text.6"> 결정합니다. 공격 피해는 </span><b><span data-i18n="dom.settings.text.7">공격력 × 실제 충돌 접근 속도 / 기준 속도</span></b><span data-i18n="dom.settings.text.8">이며 차지율·날아간 거리의 피해 배율은 없습니다. 멀리서 정확히 시작하면 더 오래 가속하여 충돌 피해가 커질 수 있습니다. 공격 돌진은 시작 시 횡방향 속도를 제거하며 적을 따라 궤도를 꺾지 않습니다. 전장 탭·WASD는 같은 구르기이고 공격을 취소하며, 충전 2회와 순차 회복 500ms 및 시작 100ms 탄환 무적을 가집니다. 플레이어의 수축 고리는 다음 발사 준비, 목표 주변 에임은 남은 거리 기준 타이밍을 표시합니다. 수동 잔상 발사는 기본 2발의 별도 탄을 쓰며 1,500ms마다 1발씩 순차 장전합니다. HP는 쓰지 않습니다. 수동·메아리·연격의 새 잔상은 같은 탄 1개를 쓰며 기존 잔상으로 돌진은 무료입니다. 이동 충전·명중 환급 없이 자연 장전만 진행합니다. 평상 접촉 피해는0이며 실제 공격 피해에 투자한 흡혈률만 회복합니다. 기존 50% 차지 손익분기 가정은 새 속도 피해식에서 더 이상 고정되지 않습니다. 초기 수치는 조정용이며 정식 밸런스가 아닙니다.</span></footer></div>
 </div>
 <div id="gameover"><div class="over-inner"><div class="over-tag">RUN ENDED</div><h1 data-i18n-html="dom.gameover.html.1">쓰러졌어</h1><p id="runSummary"></p><button id="retry" data-i18n-html="dom.retry.html.1">대기 화면으로</button></div></div>
-<div id="load"><div id="loadbox"><h1>BOUNKO</h1><p id="loadtext" data-i18n-html="dom.loadtext.html.1">물리 엔진과 공통 게임 모듈을 불러오는 중…</p><details><summary><span data-i18n="dom.loadbox.text.1">라이브러리 정보</span></summary><p data-i18n-html="dom.loadbox.html.1">Matter.js 0.20.0 / Bloom GameKit ESM · 고정 커밋 d1e2c385. 최초 실행에는 인터넷 연결이 필요합니다.</p></details></div></div>
+<div id="load"><div id="loadbox"><h1>BOUNKO</h1><p id="loadtext" data-i18n-html="dom.loadtext.html.1">물리 엔진과 공통 게임 모듈을 불러오는 중…</p><details><summary><span data-i18n="dom.loadbox.text.1">라이브러리 정보</span></summary><p data-i18n-html="dom.loadbox.html.1">Matter.js 0.20.0 / GameKit runtime 0.10.5 / SVG startup loader 0.10.5. 최초 실행에는 인터넷 연결이 필요합니다.</p></details></div></div>
 <div id="petReveal" role="status" aria-live="polite"></div>
 <section id="themeStartPanel" class="pet-panel" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="themeStartTitle" data-gamekit-ui><div class="pet-card theme-start-dialog"><header class="pet-head"><h2 id="themeStartTitle" data-i18n="themeStart.title"></h2><button id="themeStartClose" type="button" data-i18n="preview.close"></button></header><p class="pet-note" data-i18n="themeStart.note"></p><div id="themeStartList" class="theme-start-list"></div></div></section>
 <div id="petPanel" class="pet-panel" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="petTitle"><div class="pet-card"><div class="pet-head"><h2 id="petTitle" data-i18n-html="dom.petTitle.html.1">◉ 동행 카드</h2><button id="petClose" type="button" data-i18n-html="dom.petClose.html.1">닫기 ✕</button></div><p class="pet-note" data-i18n-html="dom.petPanel.html.1">보유 카드 탭 → 첫 빈칸에 장착 · 동행 슬롯 탭 → 해제<small>기본 1칸, 슬롯 강화로 최대 5칸. 가득 차면 먼저 슬롯을 비워주세요.</small></p><div class="pet-automation"><section><label><input id="petHatchMode" type="checkbox"><strong data-i18n="automation.hatch"></strong></label><label for="petHatchSpecies" data-i18n="automation.preference"></label><select id="petHatchSpecies"></select><p id="petHatchStatus" class="pet-note" role="status"></p><p class="pet-note" data-i18n="automation.hatchHelp"></p></section><section><label><input id="petAutoFusion" type="checkbox"><strong data-i18n="automation.fusion"></strong></label><p id="petFusionStatus" class="pet-note" role="status"></p><p class="pet-note" data-i18n="automation.fusionHelp"></p></section></div><div id="petSlots" class="pet-slots" aria-label="동행 카드 슬롯" data-i18n-aria-label="dom.petSlots.aria-label.1"></div><div id="petResult" class="pet-result" aria-live="polite"></div><h3 data-i18n-html="dom.petPanel.html.2">보유 카드</h3><div id="petInventory" class="pet-inventory"></div><div class="pet-fusion"><label><span data-i18n="dom.petPanel.text.1">합성 </span><select id="petFusionSpecies"></select></label><select id="petFusionGrade" aria-label="합성 등급" data-i18n-aria-label="dom.petFusionGrade.aria-label.1"></select><button id="petFuse" type="button" data-i18n-html="dom.petFuse.html.1">5마리 합성</button><button id="petFuseAll" type="button" data-i18n-html="dom.petFuseAll.html.1">선택 등급 연속 합성</button><span id="petFusionOdds"></span></div><p class="pet-note" data-i18n-html="dom.petPanel.html.3">잠금한 펫만 합성에서 보호됩니다. 장착 펫도 재료에 포함되며 예비 펫을 먼저 씁니다. 성공: 5마리 → 상위 1마리. 실패: 1~4마리 소모, 최소 1마리 유지. 알은 재료가 아닙니다.</p><p class="pet-note" data-i18n-html="dom.petPanel.html.4">일반·소환 적중 처치 5%, 보스 10%로 같은 종의 알을 얻습니다. 장착 알은 적중 처치마다 +1, 30처치에 같은 칸에서 부화합니다.</p></div></div>
@@ -546,6 +546,8 @@ next stage -&gt; centered stage number; 4/7/10... expands map/theme segment</cod
 <script type="module">
 import {createPlayerPresentation,facePlayer,rollPlayer,impactPlayer,updatePlayerPresentation,playerVectorState} from './player-presentation.js';
 import {createVectorActors} from './vector-actors.js';
+import {loadVectorAssets} from './vector-assets-runtime.js';
+import {VECTOR_ASSET_MANIFEST} from './vector-assets.manifest.js';
 import {createPresentationView} from './presentation-view.js';
 import {ThemeProgress} from './theme-progress.js';
 import {createTechView} from './tech-view.js';
@@ -559,15 +561,25 @@ if(previewScenario?.tutorial){document.body.classList.add('guide-scene');documen
 import {t as tr,language,setLanguage,onLanguageChanged,translateDocument,localizedList,message,messageText,number,percent} from './i18n.js';
 
 
-const KIT = 'https://cdn.jsdelivr.net/gh/byh-playground/bloom-gamekit@0d4e4fd270b036340d453553896b8d670b993bba/';
-const KIT_VERSION = '0.10.1';
-const KIT_MANIFEST_SHA256 = 'aa3adf24ba6d9f6843c3e2944236096469992776a4406027ea66dca15a94921c';
+const KIT = 'https://cdn.jsdelivr.net/gh/byh-playground/bloom-gamekit@9ac9bff838f2060efa0522272ffa94d003f5ce36/';
+const KIT_VERSION = '0.10.5';
+const KIT_SOURCE_COMMIT = '009c9d39686686bc2b6f97443103e7c342f62126';
+const KIT_MANIFEST_SHA256 = '970387b230c5f7c6ece212474c5a17f8895cb0b7f06584e325702cf7090d8ede';
 const KIT_INTERPOLATION_SHA256 = '193c0e00bd60b89ea59a74be5badb898420ffbd350eb9cd3b7f6b56600d33a74';
-const KIT_VECTOR_ASSETS_SHA256 = 'a4a0db5cba7ce4d7ad9cd4d411c72c6e3bfaeabcfebdaad5884ccd693bf2fda3';
-const KIT_RENDERING_SHA256 = 'fd254f4f8b91ab74dae294abbe3f2d76736648e797ccc370abf35aec8ea41f94';
-const DIAGNOSTICS = 'https://cdn.jsdelivr.net/gh/byh-playground/bloom-gamekit@0d4e4fd270b036340d453553896b8d670b993bba/debug-tools.js';
+const KIT_VECTOR_ASSETS_SHA256 = 'fb8cc088d7e02cb58504654215326d00001a4fbc614d12035356ce2675db95ec';
+const KIT_RENDERING_SHA256 = '5ec22f1b4c3689b11cd0d4c14acc017b94ce5c11afc859df399898645976e227';
+const KIT_INPUT_SHA256 = 'ae84399953c7e54c8d96408c97208f42b2246a8ac27ef5265053cb0beb306168';
+const KIT_SIMLOOP_SHA256 = 'f1d348b2f6a80b69c867b9bd45fc359f6d0b238885d85edfe0e9b73d03f043f4';
+const KIT_CAMERA_SHA256 = '3fd1c8a61b49e22b50606dbf472495775419640a8487f3a0ec079cb4d3522cb7';
+const KIT_NAVIGATION_SHA256 = '92c387dcfa8af47beb3544f4a16121bbfc8fa9831052b33ce07076dd733c81d3';
+const KIT_SCENARIO_SHA256 = 'c826d7c3fbefb14e83ad95af36d4afe25e9b1c962355123581bdacb13cf11c9f';
+const KIT_AUDIO_SHA256 = '7e3e16d34ce88124e6ba7699f16d23107a3e42ee93ea5a16691e856e5865c14a';
+const DIAGNOSTICS = 'https://cdn.jsdelivr.net/gh/byh-playground/bloom-gamekit@9ac9bff838f2060efa0522272ffa94d003f5ce36/debug-tools.js';
 const DIAGNOSTICS_SHA256 = '72260336a6c3f2ee0357a303fa8943dd8cfa4f7deea5d9517d311d4cd8796a71';
-const VERSION = '0.23.6', BUILD_ID = '20261016T-exception-diagnostics-gamekit-v0.10.1-0d4e4fd'
+const VECTOR_LOADER = 'https://cdn.jsdelivr.net/gh/byh-playground/bloom-gamekit@9ac9bff838f2060efa0522272ffa94d003f5ce36/vector-assets-loader.js';
+const VECTOR_LOADER_SHA256 = '995cdcc071711d56ccdb19c99b8818735d35132e87e64355cc598f75d19d7319';
+const VECTOR_LOADER_MANIFEST_SHA256 = '970387b230c5f7c6ece212474c5a17f8895cb0b7f06584e325702cf7090d8ede';
+const VERSION = '0.23.7', BUILD_ID = '20261016T-svg-startup-loader-sdk-v0.10.5-9ac9bff';
 const $ = id => document.getElementById(id);
 document.querySelectorAll('[data-game-version]').forEach(el=>el.textContent='v'+VERSION);
 const loadtext = $('loadtext');translateDocument();document.title=tr('app.title');$('languageSelect').value=language();$('languageSelect').disabled=true;
@@ -627,10 +639,12 @@ try {
   copyDiagnosticFn=copyDiagnostic;
   diagnosticCleanup=diagnostics.installGlobal(window,{onReport:recordGlobalRuntimeError});
   if (!window.Matter) throw new Error(tr("runtime.1"));
-  const [{Renderer2D,WebGLDevice,MeshRenderer}, {createVectorAsset}, {VECTOR_ASSETS}, {ActionState,createDOMInput}, {createLoop}, {petConfig,CompanionCollection,CompanionRoster,companionCapacity,companionPresentation,patternAngle}, {audioConfig,AudioPlayer}, {volume,snapshotVolumes,contactWindow,filterMatterVolumes,sweepVerticalContacts,groundArc,stepArc,DeathReason,hostile,receiveHit,receiveHeal,combatConfig,collisionDamage,ChargePool,UnitStatus,elementConfig,effectiveArmor,damageAfterArmor,mixin,Evasive,eliteEvasionConfig}, {enemyConfig,enemyClasses,enemyWave,enemyRefillWave,pickRefillSpecies,species,speciesConfig,bossSpecies,bossConfig}, {EnemyController,PetController,SummonController}, {CameraViewport,OrthographicProjection}, {RewardDrops,dropConfig}, {createNavigation}, {createScenario}, {RenderObject,PresentationRuntime}] = await Promise.all([
-    import(KIT+'rendering.js'),import(KIT+'vector-assets.js'),import('./vector-assets.generated.js'),import(KIT+'input.js'),import(KIT+'simloop.js'),import('./pets.js'),import('./audio.js'),import('./abilities.js'),import('./enemies.js'),import('./controllers.js'),import(KIT+'camera.js'),import('./drops.js'),import(KIT+'navigation.js'),import(KIT+'scenario.js'),import(KIT+'interpolation.js')
+  const [{Renderer2D,WebGLDevice,MeshRenderer}, {createVectorAsset}, {createVectorAssetLoader}, {ActionState,createDOMInput}, {createLoop}, {petConfig,CompanionCollection,CompanionRoster,companionCapacity,companionPresentation,patternAngle}, {audioConfig,AudioPlayer}, {volume,snapshotVolumes,contactWindow,filterMatterVolumes,sweepVerticalContacts,groundArc,stepArc,DeathReason,hostile,receiveHit,receiveHeal,combatConfig,collisionDamage,ChargePool,UnitStatus,elementConfig,effectiveArmor,damageAfterArmor,mixin,Evasive,eliteEvasionConfig}, {enemyConfig,enemyClasses,enemyWave,enemyRefillWave,pickRefillSpecies,species,speciesConfig,bossSpecies,bossConfig}, {EnemyController,PetController,SummonController}, {CameraViewport,OrthographicProjection}, {RewardDrops,dropConfig}, {createNavigation}, {createScenario}, {RenderObject,PresentationRuntime}] = await Promise.all([
+    import(KIT+'rendering.js'),import(KIT+'vector-assets.js'),import(VECTOR_LOADER),import(KIT+'input.js'),import(KIT+'simloop.js'),import('./pets.js'),import('./audio.js'),import('./abilities.js'),import('./enemies.js'),import('./controllers.js'),import(KIT+'camera.js'),import('./drops.js'),import(KIT+'navigation.js'),import(KIT+'scenario.js'),import(KIT+'interpolation.js')
   ]);
   runtimePhase='initialization';
+  const vectorAssetLoader=createVectorAssetLoader({fetch:window.fetch.bind(window),maxEntries:VECTOR_ASSET_MANIFEST.length});
+  const VECTOR_ASSETS=await loadVectorAssets({loader:vectorAssetLoader,manifest:VECTOR_ASSET_MANIFEST,baseUrl:document.baseURI,maxBytes:64*1024});
   const M = window.Matter;
   const sfx=new AudioPlayer(isolatedScene?{...audioConfig,storageKey:null}:audioConfig);
   const previewAudio=previewSkill&&window.parent!==window?window.parent.__bloomImpulse?.getAudio():null;

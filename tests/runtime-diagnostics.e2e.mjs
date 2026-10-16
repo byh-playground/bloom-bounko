@@ -191,7 +191,7 @@ try {
     }
   });
   const candidateVersion = await boot(page, server.url);
-  evidence.candidate = { ...candidateVersion, sdkCommit: '0d4e4fd270b036340d453553896b8d670b993bba', sdkVersion: '0.10.1', vectorLoaderCommit: '9ac9bff838f2060efa0522272ffa94d003f5ce36', vectorLoaderVersion: '0.10.5', vectorLoaderSha256: '995cdcc071711d56ccdb19c99b8818735d35132e87e64355cc598f75d19d7319', vectorLoaderManifestSha256: '970387b230c5f7c6ece212474c5a17f8895cb0b7f06584e325702cf7090d8ede' };
+  evidence.candidate = { ...candidateVersion, sdkCommit: '9ac9bff838f2060efa0522272ffa94d003f5ce36', sdkSourceCommit: '009c9d39686686bc2b6f97443103e7c342f62126', sdkVersion: '0.10.5', vectorLoaderCommit: '9ac9bff838f2060efa0522272ffa94d003f5ce36', vectorLoaderVersion: '0.10.5', vectorLoaderSha256: '995cdcc071711d56ccdb19c99b8818735d35132e87e64355cc598f75d19d7319', vectorLoaderManifestSha256: '970387b230c5f7c6ece212474c5a17f8895cb0b7f06584e325702cf7090d8ede' };
   assert.equal(candidateVersion.version, '0.23.7');
   const vectorAssetFingerprint = await page.evaluate(async () => {
     const canonical = value => {

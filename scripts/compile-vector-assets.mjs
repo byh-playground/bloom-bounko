@@ -9,15 +9,15 @@ const sources = [
   { directory: path.join(root, 'assets', 'vector', 'eggs'), prefix: 'egg-' },
 ];
 const outputPath = path.join(root, 'vector-assets.generated.js');
-const compilerCommit = '4150109c7732a734e155b6d1e2cd83c13c1f1d0c';
+const compilerCommit = '12aa27b7508bcffd284181645ca51a5684dbfdbd';
 const compilerModules = [
   {
     name: 'compiler.js',
-    sha256: '1dfa99e9ce11afb9a9de18290ec049cbaecc3c720e3f6bd6ec7a7eb5913775cb',
+    sha256: 'dc57bec50d0f46e6b004840722843f91904b8e3d37e3e7ade2a74f0e92e99f68',
   },
   {
     name: 'schema.js',
-    sha256: '989bb4eee231b973adcc2c0744c63055692399c3dfb592bd46457dadb2b3b1fd',
+    sha256: '4d649b001822c6377371cec6a83fcf8f3a77e702326b963a221997d1e677863c',
   },
 ];
 const cacheDirectory = path.join(root, 'scripts', '.cache', `gamekit-${compilerCommit}`);

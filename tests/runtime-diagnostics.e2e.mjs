@@ -36,6 +36,8 @@ hardStop.unref();
 
 function serve(root, { exposeVectorAssets = false } = {}) {
   const base = resolve(root);
+  const vectorSourceRequests = new Map();
+  let vectorSourceBytes = 0;
   const server = createServer(async (req, res) => {
     try {
       const pathname = decodeURIComponent(new URL(req.url, 'http://localhost').pathname);
@@ -47,6 +49,10 @@ function serve(root, { exposeVectorAssets = false } = {}) {
       const info = await stat(file);
       if (!info.isFile()) throw new Error('Not a file');
       let bytes = await readFile(file);
+      if (pathname.includes('/assets/vector/') && pathname.endsWith('.svg')) {
+        vectorSourceRequests.set(pathname, (vectorSourceRequests.get(pathname) ?? 0) + 1);
+        vectorSourceBytes += bytes.byteLength;
+      }
       if (exposeVectorAssets && pathname === '/index.html') {
         const html = bytes.toString('utf8');
         const startup = 'const VECTOR_ASSETS=await loadVectorAssets({loader:vectorAssetLoader,manifest:VECTOR_ASSET_MANIFEST,baseUrl:document.baseURI,maxBytes:64*1024});';
@@ -68,7 +74,16 @@ function serve(root, { exposeVectorAssets = false } = {}) {
     server.once('error', reject);
     server.listen(0, '127.0.0.1', () => {
       const address = server.address();
-      resolveListen({ server, url: `http://127.0.0.1:${address.port}/` });
+      resolveListen({
+        server,
+        url: `http://127.0.0.1:${address.port}/`,
+        vectorSourceStats: () => ({
+          paths: vectorSourceRequests.size,
+          requests: [...vectorSourceRequests.values()].reduce((sum, count) => sum + count, 0),
+          duplicates: [...vectorSourceRequests.values()].filter(count => count !== 1).length,
+          bytes: vectorSourceBytes,
+        }),
+      });
     });
   });
 }
@@ -144,18 +159,11 @@ try {
   const page = await context.newPage();
   const unexpectedPageErrors = [];
   const vectorAssetRequests = new Map();
-  const vectorAssetResponses = [];
   page.on('pageerror', error => unexpectedPageErrors.push(error.message));
   page.on('request', request => {
     const url = new URL(request.url());
     if (url.pathname.includes('/assets/vector/') && url.pathname.endsWith('.svg')) {
       vectorAssetRequests.set(url.pathname, (vectorAssetRequests.get(url.pathname) ?? 0) + 1);
-    }
-  });
-  page.on('response', response => {
-    const url = new URL(response.url());
-    if (url.pathname.includes('/assets/vector/') && url.pathname.endsWith('.svg')) {
-      vectorAssetResponses.push(response.body().then(bytes => ({ path: url.pathname, status: response.status(), bytes: bytes.byteLength })));
     }
   });
   const candidateVersion = await boot(page, server.url);
@@ -251,16 +259,18 @@ try {
   const vectorRequestsAfterStartup = [...vectorAssetRequests.entries()].sort(([a], [b]) => a.localeCompare(b));
   assert.equal(vectorRequestsAfterStartup.length, 49, 'startup should fetch exactly the 49 authored SVG assets');
   assert.ok(vectorRequestsAfterStartup.every(([, count]) => count === 1), 'each original SVG should be fetched only once');
-  const vectorResponseEvidence = await Promise.all(vectorAssetResponses);
-  assert.equal(vectorResponseEvidence.length, 49, 'startup should receive exactly one source response per authored SVG');
-  assert.ok(vectorResponseEvidence.every(response => response.status === 200), 'all original SVG responses should succeed');
-  const vectorSourcePayloadBytes = vectorResponseEvidence.reduce((sum, response) => sum + response.bytes, 0);
+  const vectorSourceEvidence = server.vectorSourceStats();
+  assert.equal(vectorSourceEvidence.paths, 49, 'startup should receive exactly one successful source response per authored SVG');
+  assert.equal(vectorSourceEvidence.requests, 49);
+  assert.equal(vectorSourceEvidence.duplicates, 0);
+  const vectorSourcePayloadBytes = vectorSourceEvidence.bytes;
   assert.equal(vectorSourcePayloadBytes, 354867, 'startup SVG network payload should match the authored source byte total');
   const loaderCallsAfterStartup = await page.evaluate(() => window.__bounkoTestLoaderCalls ?? 0);
   assert.equal(loaderCallsAfterStartup, 49, 'each source should be compiled through the SDK exactly once at startup');
   await page.waitForTimeout(250);
   assert.deepEqual([...vectorAssetRequests.entries()].sort(([a], [b]) => a.localeCompare(b)), vectorRequestsAfterStartup,
     'the render loop must not refetch or reconvert SVG sources');
+  assert.deepEqual(server.vectorSourceStats(), vectorSourceEvidence, 'the render loop must not request SVG sources again');
   assert.equal(await page.evaluate(() => window.__bounkoTestLoaderCalls ?? 0), loaderCallsAfterStartup,
     'the render loop must not invoke the SDK SVG compiler again');
   await page.screenshot({ path: resolve(OUT, 'candidate-gameplay-after-launch.png') });

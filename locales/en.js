@@ -1065,5 +1065,13 @@ export default {
   "learn.coach.moveCopyKeys": "Click open ground or press W / A / S / D to roll. This cancels your attack.",
   "learn.coach.done": "Take on the next stage",
   "learn.coach.doneCopy": "Collect drops to grow and challenge more enemies and bosses.",
-  "learn.slow": "Slow demonstration · 0.5×"
+  "learn.slow": "Slow demonstration · 0.5×",
+  "runtime.exception.title": "The game stopped",
+  "runtime.exception.message": "An internal error stopped the game. Copy the report and reload to continue.",
+  "runtime.exception.reportLabel": "Diagnostic report",
+  "runtime.exception.copyHelp": "If copying is blocked, the report will be selected. Long-press it and choose Copy.",
+  "runtime.exception.copy": "Copy report",
+  "runtime.exception.reload": "Reload",
+  "runtime.exception.copied": "The report was copied to the clipboard.",
+  "runtime.exception.manualCopy": "The report is selected. Long-press it and choose Copy."
 };

@@ -4,10 +4,12 @@
   "type": "module",
   "scripts": {
     "vector-assets:compile": "node scripts/compile-vector-assets.mjs",
-    "vector-assets:check": "node scripts/compile-vector-assets.mjs --check"
+    "vector-assets:check": "node scripts/compile-vector-assets.mjs --check",
+    "test:runtime-diagnostics": "node tests/runtime-diagnostics.e2e.mjs"
   },
   "devDependencies": {
     "@xmldom/xmldom": "0.9.12",
+    "playwright": "1.63.0",
     "three": "0.186.1"
   }
 }

@@ -29,6 +29,10 @@ jobs:
           cache: npm
       - name: Install locked dependencies
         run: npm ci
+      - name: Verify the original-SVG startup contract
+        run: |
+          npm run vector-assets:check
+          npm run test:vector-assets
       - name: Install one Chromium browser
         run: npx playwright install --with-deps chromium
       - name: Run one bounded browser flow

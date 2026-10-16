@@ -1,0 +1,45 @@
+name: Runtime diagnostics and renderer regression
+
+on:
+  pull_request:
+    branches: [main]
+    types: [opened, synchronize, reopened]
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  runtime-regression:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Check out candidate
+        uses: actions/checkout@v6
+      - name: Check out visual baseline
+        uses: actions/checkout@v6
+        with:
+          ref: ${{ github.event.pull_request.base.sha || github.event.before }}
+          path: baseline
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - name: Install locked dependencies
+        run: npm ci
+      - name: Install one Chromium browser
+        run: npx playwright install --with-deps chromium
+      - name: Run one bounded browser flow
+        env:
+          BASELINE_ROOT: baseline
+        run: npm run test:runtime-diagnostics
+      - name: Upload gameplay screenshots and diagnostic evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: bounko-runtime-regression-${{ github.run_id }}
+          path: artifacts/runtime-diagnostics/
+          if-no-files-found: warn
+          retention-days: 7

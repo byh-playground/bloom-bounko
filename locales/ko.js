@@ -1065,5 +1065,13 @@ export default {
   "learn.coach.moveCopyKeys": "빈 곳을 클릭하거나 W·A·S·D를 눌러 구르세요. 진행 중인 공격은 취소됩니다.",
   "learn.coach.done": "이제 전장을 돌파해 보세요",
   "learn.coach.doneCopy": "드롭을 회수해 성장하고, 다음 스테이지의 적과 보스에 도전하세요.",
-  "learn.slow": "느린 시연 · 0.5×"
+  "learn.slow": "느린 시연 · 0.5×",
+  "runtime.exception.title": "게임이 중지되었습니다",
+  "runtime.exception.message": "오류로 게임 진행을 멈췄습니다. 진단 보고서를 복사한 뒤 새로고침하세요.",
+  "runtime.exception.reportLabel": "진단 보고서",
+  "runtime.exception.copyHelp": "복사가 차단되면 보고서가 선택됩니다. 길게 눌러 복사를 선택하세요.",
+  "runtime.exception.copy": "보고서 복사",
+  "runtime.exception.reload": "새로고침",
+  "runtime.exception.copied": "보고서를 클립보드에 복사했습니다.",
+  "runtime.exception.manualCopy": "보고서가 선택되었습니다. 길게 눌러 복사를 선택하세요."
 };

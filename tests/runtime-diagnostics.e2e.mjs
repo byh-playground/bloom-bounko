@@ -173,6 +173,8 @@ try {
   assert.ok(launchState.tick >= 58, `launch should have occurred by tick 58, observed tick ${launchState.tick}`);
   assert.equal(launchState.launchCount, 1, 'the gameplay input should create exactly one shadow');
   assert.equal(launchState.shadow.launchedAtMs, 58 * (1000 / 60), 'launch timestamp should preserve the tick-derived double');
+  const launchTick = Math.round(launchState.shadow.launchedAtMs / (1000 / 60));
+  assert.equal(launchTick, 58, 'shadow launch time should identify the tick-58 boundary');
   await page.waitForFunction(() => window.__bloomImpulse.getState().tick >= 63);
   const candidateState = await snapshot(page);
   assert.equal(candidateState.phase, 'PLAYING');
@@ -184,7 +186,8 @@ try {
   evidence.screenshots.push('candidate-gameplay-after-launch.png');
   evidence.candidate.gameplay = {
     tick: candidateState.tick,
-    launchTick: launchState.tick,
+    launchTick,
+    observedTickAfterLaunch: launchState.tick,
     launchTimeMs: launchState.shadow.launchedAtMs,
     enemyCount: candidateState.enemyStates.length,
     theme: candidateState.stage.theme,

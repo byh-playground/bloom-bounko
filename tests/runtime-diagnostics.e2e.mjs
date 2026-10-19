@@ -10,7 +10,7 @@ const OUT = resolve('artifacts/runtime-diagnostics');
 const BASELINE_ROOT = process.env.BASELINE_ROOT ? resolve(process.env.BASELINE_ROOT) : null;
 const VECTOR_BASELINE = JSON.parse(await readFile(resolve('tests/fixtures/vector-assets-pr58-fingerprint.json'), 'utf8'));
 const evidence = {
-  test: 'single Chromium user flow: real tick-58 launch, global errors, loop stop, restart, mobile manual copy',
+  test: 'Chromium desktop and touch-emulated mobile flows: tick-58 launch, GameKit 0.14.3, global errors, loop stop, restart, manual copy',
   startedAt: new Date().toISOString(),
   timeBudgetMs: 150_000,
   baseline: null,
@@ -191,8 +191,8 @@ try {
     }
   });
   const candidateVersion = await boot(page, server.url);
-  evidence.candidate = { ...candidateVersion, sdkCommit: '9ac9bff838f2060efa0522272ffa94d003f5ce36', sdkSourceCommit: '009c9d39686686bc2b6f97443103e7c342f62126', sdkVersion: '0.10.5', vectorLoaderCommit: '9ac9bff838f2060efa0522272ffa94d003f5ce36', vectorLoaderVersion: '0.10.5', vectorLoaderSha256: '995cdcc071711d56ccdb19c99b8818735d35132e87e64355cc598f75d19d7319', vectorLoaderManifestSha256: '970387b230c5f7c6ece212474c5a17f8895cb0b7f06584e325702cf7090d8ede' };
-  assert.equal(candidateVersion.version, '0.23.7');
+  evidence.candidate = { ...candidateVersion, sdkCommit: '418e17c455db56d6ed073d82d115191d9dd8bf04', sdkSourceCommit: 'dd59a57fcf66409cef16632ffb433c0b760324fa', sdkVersion: '0.14.3', sdkManifestSha256: '20244c2beeee33719f407a9baa92c55a4bd55a0e4eb9f094590bb0eed652296e', vectorLoaderCommit: '418e17c455db56d6ed073d82d115191d9dd8bf04', vectorLoaderVersion: '0.14.3', vectorLoaderSha256: '56042179b1b669d69d4791c5a1ad7bbd1927d8686fa4e9192504fb248c2170e2', vectorLoaderManifestSha256: '20244c2beeee33719f407a9baa92c55a4bd55a0e4eb9f094590bb0eed652296e' };
+  assert.equal(candidateVersion.version, '0.23.8');
   const vectorAssetFingerprint = await page.evaluate(async () => {
     const canonical = value => {
       if (Array.isArray(value)) return `[${value.map(canonical).join(',')}]`;
@@ -326,9 +326,67 @@ try {
     };
   }
 
+  // Run one touch-emulated mobile attack and capture the resulting gameplay view.
+  const mobileContext = await browser.newContext({
+    viewport: { width: 390, height: 844 },
+    deviceScaleFactor: 2,
+    isMobile: true,
+    hasTouch: true,
+  });
+  const mobilePage = await mobileContext.newPage();
+  const mobilePageErrors = [];
+  mobilePage.on('pageerror', error => mobilePageErrors.push(error.message));
+  const mobileVersion = await boot(mobilePage, server.url);
+  assert.equal(mobileVersion.version, '0.23.8');
+  await startRun(mobilePage);
+  await mobilePage.waitForFunction(() => window.__bloomImpulse.getState().tick >= 52);
+  await mobilePage.evaluate(() => {
+    window.__bounkoTestTouch = null;
+    document.querySelector('#auto').addEventListener('pointerdown', event => {
+      window.__bounkoTestTouch = { pointerType: event.pointerType, pointerId: event.pointerId };
+    }, { once: true });
+  });
+  const autoButton = await mobilePage.locator('#auto').boundingBox();
+  assert.ok(autoButton, 'mobile gameplay attack control should be visible');
+  await mobilePage.touchscreen.tap(autoButton.x + autoButton.width / 2, autoButton.y + autoButton.height / 2);
+  await mobilePage.waitForFunction(() => {
+    const state = window.__bloomImpulse?.getState();
+    return document.querySelector('#fatalError')?.hidden === false || state?.launchCount > 0;
+  }, null, { timeout: 8_000 });
+  assert.deepEqual(mobilePageErrors, [], 'mobile touch gameplay should have no uncaught page errors');
+  const mobileTouch = await mobilePage.evaluate(() => window.__bounkoTestTouch);
+  assert.equal(mobileTouch?.pointerType, 'touch', 'Playwright touchscreen tap should reach the game as a touch pointer');
+  const mobileGameplayState = await snapshot(mobilePage);
+  assert.equal(mobileGameplayState.phase, 'PLAYING');
+  assert.equal(mobileGameplayState.launchCount, 1, 'the touch attack should launch exactly one shadow');
+  assert.ok(mobileGameplayState.tick >= 58, 'the touch attack should complete its fixed-tick launch');
+  assert.equal(mobileGameplayState.rendererState, 'ready');
+  assert.ok(mobileGameplayState.shadow, 'the touch attack should leave its launched shadow visible');
+  assert.ok(mobileGameplayState.enemyStates.length > 0, 'mobile gameplay screenshot should contain live enemies');
+  assert.ok(mobileGameplayState.vectorRendererState.meshes > 0, 'mobile gameplay screenshot should contain vector meshes');
+  await mobilePage.screenshot({ path: resolve(OUT, 'mobile-gameplay-after-touch-launch.png') });
+  evidence.screenshots.push('mobile-gameplay-after-touch-launch.png');
+  evidence.candidate.mobileGameplay = {
+    viewport: { width: 390, height: 844 },
+    deviceScaleFactor: 2,
+    method: 'Playwright Chromium touch emulation',
+    touch: mobileTouch,
+    tick: mobileGameplayState.tick,
+    launchCount: mobileGameplayState.launchCount,
+    launchTimeMs: mobileGameplayState.shadow.launchedAtMs,
+    enemyCount: mobileGameplayState.enemyStates.length,
+    renderer: mobileGameplayState.rendererState,
+    vectorMeshes: mobileGameplayState.vectorRendererState.meshes,
+    vectorActors: mobileGameplayState.vectorRendererState.players,
+  };
+  await mobileContext.close();
+
   // Inject a real unhandled window error. Check a stopped run, mobile layout,
   // and clipboard-denied manual-selection fallback before reloading.
   await page.setViewportSize({ width: 390, height: 844 });
+  await page.waitForTimeout(250);
+  const mobileDiagnosticState = await snapshot(page);
+  assert.equal(mobileDiagnosticState.phase, 'PLAYING');
   await page.evaluate(() => setTimeout(() => { throw new Error('E2E_GLOBAL_ERROR_INJECTED'); }, 0));
   const globalReport = await waitForFatal(page);
   assert.ok(globalReport.length > 0, 'global exception should produce a diagnostic report');

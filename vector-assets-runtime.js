@@ -26,6 +26,7 @@ export async function loadVectorAssets({ loader, manifest, baseUrl, maxBytes = 6
       expectedSha256: source.sha256,
       maxBytes,
       curveSegments: 16,
+      strokeArcDivisions: 12,
       includeSourcePaths: false,
       normalizeCenteredViewBox: true,
     });

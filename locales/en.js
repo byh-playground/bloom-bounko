@@ -317,7 +317,7 @@ export default {
   "dom.gameover.html.1": "You fell",
   "dom.retry.html.1": "Return to lobby",
   "dom.loadtext.html.1": "Checking and preparing the physics engine, shared game modules, and original SVGs…",
-  "dom.loadbox.html.1": "Matter.js 0.20.0 / GameKit runtime and SVG startup loader 0.10.5 / i18next 26.4.3. First load needs internet access.",
+  "dom.loadbox.html.1": "Matter.js 0.20.0 / GameKit runtime and SVG startup loader 0.14.3 / i18next 26.4.3. First load needs internet access.",
   "dom.petTitle.html.1": "◉ Companion cards",
   "dom.petClose.html.1": "Close ✕",
   "dom.petPanel.html.1": "Tap owned card → equip first empty slot · Tap equipped slot → unequip<small>One base slot, up to five through upgrades. Clear a slot first when full.</small>",

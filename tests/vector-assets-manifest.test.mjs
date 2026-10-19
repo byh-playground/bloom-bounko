@@ -40,6 +40,7 @@ test('loads the complete source manifest once through the SDK loader before rend
       expectedSha256: 'dfb23559a50eed592f684195cf4e1f656c483bf9fd4df93a4d1efb511f62f6ed',
       maxBytes: 64 * 1024,
       curveSegments: 16,
+      strokeArcDivisions: 12,
       includeSourcePaths: false,
       normalizeCenteredViewBox: true,
     },

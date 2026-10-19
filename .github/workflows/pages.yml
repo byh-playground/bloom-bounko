@@ -69,8 +69,8 @@ jobs:
           metadata = {
               'commit': os.environ['GITHUB_SHA'],
               'built_at_utc': datetime.datetime.now(datetime.timezone.utc).isoformat(),
-              'version': re.search(r"VERSION = '([^']+)'", html).group(1),
-              'build_id': re.search(r"BUILD_ID = '([^']+)'", html).group(1),
+              'version': re.search(r"(?m)^const VERSION = '([^']+)'", html).group(1),
+              'build_id': re.search(r"(?m)^const VERSION = '[^']+', BUILD_ID = '([^']+)'", html).group(1),
               'gamekit_sdk_commit': re.search(r"KIT = 'https://cdn.jsdelivr.net/gh/byh-playground/bloom-gamekit@([^/]+)/'", html).group(1),
               'gamekit_sdk_version': re.search(r"KIT_VERSION = '([^']+)'", html).group(1),
               'gamekit_sdk_source_commit': re.search(r"KIT_SOURCE_COMMIT = '([^']+)'", html).group(1),
@@ -88,7 +88,7 @@ jobs:
               'gamekit_vector_loader_commit': re.search(r"VECTOR_LOADER = 'https://cdn.jsdelivr.net/gh/byh-playground/bloom-gamekit@([^/]+)/vector-assets-loader.js'", html).group(1),
               'gamekit_vector_loader_sha256': re.search(r"VECTOR_LOADER_SHA256 = '([^']+)'", html).group(1),
               'gamekit_vector_loader_manifest_sha256': re.search(r"VECTOR_LOADER_MANIFEST_SHA256 = '([^']+)'", html).group(1),
-              'gamekit_vector_loader_version': '0.10.5',
+              'gamekit_vector_loader_version': re.search(r"KIT_VERSION = '([^']+)'", html).group(1),
               'gamekit_rendering_sha256': re.search(r"KIT_RENDERING_SHA256 = '([^']+)'", html).group(1),
               'index_sha256': hashlib.sha256(data).hexdigest(),
               'vector_runtime_sha256': hashlib.sha256(pathlib.Path('_site/vector-actors.js').read_bytes()).hexdigest(),
@@ -121,25 +121,27 @@ jobs:
               'audio_sdk_sha256': re.search(r"sha256:'([^']+)'", pathlib.Path('_site/audio.js').read_text(encoding='utf-8')).group(1),
           }
           assert metadata['gamekit_sdk_commit'] == metadata['audio_sdk_commit'], 'GameKit pins must match'
-          assert metadata['gamekit_sdk_commit'] == '9ac9bff838f2060efa0522272ffa94d003f5ce36', 'GameKit SDK dist commit changed'
-          assert metadata['gamekit_sdk_source_commit'] == '009c9d39686686bc2b6f97443103e7c342f62126', 'GameKit SDK source commit changed'
-          assert metadata['gamekit_sdk_version'] == '0.10.5', 'GameKit SDK version changed'
+          assert metadata['version'] == '0.23.8', 'Bounko product version changed'
+          assert metadata['build_id'] == '20261019T-gamekit-v0.14.3-418e17c', 'Bounko build ID changed'
+          assert metadata['gamekit_sdk_commit'] == '418e17c455db56d6ed073d82d115191d9dd8bf04', 'GameKit SDK dist commit changed'
+          assert metadata['gamekit_sdk_source_commit'] == 'dd59a57fcf66409cef16632ffb433c0b760324fa', 'GameKit SDK source commit changed'
+          assert metadata['gamekit_sdk_version'] == '0.14.3', 'GameKit SDK version changed'
           assert metadata['gamekit_diagnostics_commit'] == metadata['gamekit_sdk_commit'], 'GameKit diagnostics must share the SDK dist pin'
-          assert metadata['gamekit_diagnostics_sha256'] == '72260336a6c3f2ee0357a303fa8943dd8cfa4f7deea5d9517d311d4cd8796a71', 'GameKit diagnostics module hash changed'
-          assert metadata['gamekit_manifest_sha256'] == '970387b230c5f7c6ece212474c5a17f8895cb0b7f06584e325702cf7090d8ede', 'GameKit manifest hash changed'
-          assert metadata['gamekit_interpolation_sha256'] == '193c0e00bd60b89ea59a74be5badb898420ffbd350eb9cd3b7f6b56600d33a74', 'GameKit interpolation.js hash changed'
-          assert metadata['gamekit_vector_assets_sha256'] == 'fb8cc088d7e02cb58504654215326d00001a4fbc614d12035356ce2675db95ec', 'GameKit vector-assets.js hash changed'
-          assert metadata['gamekit_input_sha256'] == 'ae84399953c7e54c8d96408c97208f42b2246a8ac27ef5265053cb0beb306168', 'GameKit input.js hash changed'
-          assert metadata['gamekit_simloop_sha256'] == 'f1d348b2f6a80b69c867b9bd45fc359f6d0b238885d85edfe0e9b73d03f043f4', 'GameKit simloop.js hash changed'
-          assert metadata['gamekit_camera_sha256'] == '3fd1c8a61b49e22b50606dbf472495775419640a8487f3a0ec079cb4d3522cb7', 'GameKit camera.js hash changed'
-          assert metadata['gamekit_navigation_sha256'] == '92c387dcfa8af47beb3544f4a16121bbfc8fa9831052b33ce07076dd733c81d3', 'GameKit navigation.js hash changed'
-          assert metadata['gamekit_scenario_sha256'] == 'c826d7c3fbefb14e83ad95af36d4afe25e9b1c962355123581bdacb13cf11c9f', 'GameKit scenario.js hash changed'
-          assert metadata['gamekit_audio_sha256'] == '7e3e16d34ce88124e6ba7699f16d23107a3e42ee93ea5a16691e856e5865c14a', 'GameKit audio.js hash changed'
-          assert metadata['gamekit_rendering_sha256'] == '5ec22f1b4c3689b11cd0d4c14acc017b94ce5c11afc859df399898645976e227', 'GameKit rendering.js hash changed'
+          assert metadata['gamekit_diagnostics_sha256'] == 'b2abc40a6e5ca59b0b24b6c7fefa7492ea13b17686da86f61a8fff16be146ac5', 'GameKit diagnostics module hash changed'
+          assert metadata['gamekit_manifest_sha256'] == '20244c2beeee33719f407a9baa92c55a4bd55a0e4eb9f094590bb0eed652296e', 'GameKit manifest hash changed'
+          assert metadata['gamekit_interpolation_sha256'] == '061960f311ad57894914186baa01f6b257269637353056ac93f86d34265a4ef8', 'GameKit interpolation.js hash changed'
+          assert metadata['gamekit_vector_assets_sha256'] == '288eadf3830df2836f0b103dc513a906b5b9dbd58660885c18b2a0941d0e877a', 'GameKit vector-assets.js hash changed'
+          assert metadata['gamekit_input_sha256'] == 'a969755a39702723b35b6a1503e9b2e53a431ea91845017474c979752fdfb51f', 'GameKit input.js hash changed'
+          assert metadata['gamekit_simloop_sha256'] == 'c25a8f7f4999e4fe8beb6b08167fa4d0934c34098db2bf912335e81db53c4ef8', 'GameKit simloop.js hash changed'
+          assert metadata['gamekit_camera_sha256'] == 'c9d6f59a49e7ca0640b4f55fbe9aab2d1e5362d99ad0bb3871596a66fd3859c0', 'GameKit camera.js hash changed'
+          assert metadata['gamekit_navigation_sha256'] == '2c8e12432f6eae5472418d80898c93af32f5b14dce8217f6fa75bd198893b417', 'GameKit navigation.js hash changed'
+          assert metadata['gamekit_scenario_sha256'] == '2bcd65e620bce1d468256d53dadfef00fe4081d10ef8a431ee7b7d04da858ad6', 'GameKit scenario.js hash changed'
+          assert metadata['gamekit_audio_sha256'] == 'f792c0b56b4829d20dfecb03f087bc435e377d9e772a7c5caa3611afef281d20', 'GameKit audio.js hash changed'
+          assert metadata['gamekit_rendering_sha256'] == '021b11f83b49be3e94cfe0a67769dcd248b9463325b6dcc55ea4943a0ea6c18b', 'GameKit rendering.js hash changed'
           assert metadata['gamekit_vector_loader_commit'] == metadata['gamekit_sdk_commit'], 'GameKit vector loader must share the SDK dist pin'
-          assert metadata['gamekit_vector_loader_sha256'] == '995cdcc071711d56ccdb19c99b8818735d35132e87e64355cc598f75d19d7319', 'GameKit vector-assets-loader.js hash changed'
-          assert metadata['gamekit_vector_loader_manifest_sha256'] == '970387b230c5f7c6ece212474c5a17f8895cb0b7f06584e325702cf7090d8ede', 'GameKit vector loader dist manifest hash changed'
-          assert metadata['gamekit_vector_loader_version'] == '0.10.5', 'GameKit vector loader version changed'
+          assert metadata['gamekit_vector_loader_sha256'] == '56042179b1b669d69d4791c5a1ad7bbd1927d8686fa4e9192504fb248c2170e2', 'GameKit vector-assets-loader.js hash changed'
+          assert metadata['gamekit_vector_loader_manifest_sha256'] == '20244c2beeee33719f407a9baa92c55a4bd55a0e4eb9f094590bb0eed652296e', 'GameKit vector loader dist manifest hash changed'
+          assert metadata['gamekit_vector_loader_version'] == '0.14.3', 'GameKit vector loader version changed'
           assert metadata['gamekit_vector_loader_manifest_sha256'] == metadata['gamekit_manifest_sha256'], 'GameKit module and loader manifest pins must match'
           assert metadata['vector_source_count'] == 49, 'Unexpected SVG source count'
           assert metadata['vector_source_bytes'] == 354867, 'Authored SVG payload changed'

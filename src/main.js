@@ -16,25 +16,25 @@ if(previewScenario?.tutorial){document.body.classList.add('guide-scene');documen
 import {t as tr,language,setLanguage,onLanguageChanged,translateDocument,localizedList,message,messageText,number,percent} from '../i18n.js';
 
 
-const KIT = 'https://cdn.jsdelivr.net/gh/byh-playground/bloom-gamekit@6ef60d922541329af05e070b464caf66c970a041/';
-const KIT_VERSION = '0.26.5';
-const KIT_SOURCE_COMMIT = 'd287ca4e2268486b00a8155585b0bf6855f71f0d';
-const KIT_MANIFEST_SHA256 = 'd114896850e6f99d279bd80b549b0eb2c366b8ebd9afaa1f28d2c2dde9028130';
+const KIT = 'https://cdn.jsdelivr.net/gh/byh-playground/bloom-gamekit@b83464e445efaf86d66499859d3d05463df2b22a/';
+const KIT_VERSION = '0.26.6';
+const KIT_SOURCE_COMMIT = '88630ef4dea7fd3a7fd7aad22090fe74cb3a6fbc';
+const KIT_MANIFEST_SHA256 = 'bb92d60e2f7f84397d9055f990ba99d6a4d61da2bf0c053acf90bf42dc379e53';
 const KIT_INTERPOLATION_SHA256 = 'acad7ad93615633609a62e484bff918980fc84282840db9b5cd108e8f5bb133a';
 const KIT_VECTOR_ASSETS_SHA256 = 'de7093c51d5ffd80d6bd716a0023a9b78586a1a9b10d607eb730109ba1af694c';
-const KIT_RENDERING_SHA256 = '5d6620b7ff04434c42883d51629cc1307eda7ae7135f06e1b6d60ee8ea5b63e4';
+const KIT_RENDERING_SHA256 = 'dac868f1efd9eb8e12b5ae9874813e9944fe3e106eb2d6044856cc09f83c8835';
 const KIT_INPUT_SHA256 = 'a969755a39702723b35b6a1503e9b2e53a431ea91845017474c979752fdfb51f';
 const KIT_SIMLOOP_SHA256 = 'c25a8f7f4999e4fe8beb6b08167fa4d0934c34098db2bf912335e81db53c4ef8';
 const KIT_CAMERA_SHA256 = '99c1be43b6a38945028d029a5ecc594f7ff6dfc71075305264930748cafe88b6';
 const KIT_NAVIGATION_SHA256 = '2c8e12432f6eae5472418d80898c93af32f5b14dce8217f6fa75bd198893b417';
 const KIT_SCENARIO_SHA256 = 'b21a2be85b497588589c796f8e95f932c464474cc4ea3f703a8718e96a9946ce';
 const KIT_AUDIO_SHA256 = 'f792c0b56b4829d20dfecb03f087bc435e377d9e772a7c5caa3611afef281d20';
-const DIAGNOSTICS = 'https://cdn.jsdelivr.net/gh/byh-playground/bloom-gamekit@6ef60d922541329af05e070b464caf66c970a041/debug-tools.js';
+const DIAGNOSTICS = 'https://cdn.jsdelivr.net/gh/byh-playground/bloom-gamekit@b83464e445efaf86d66499859d3d05463df2b22a/debug-tools.js';
 const DIAGNOSTICS_SHA256 = 'b2abc40a6e5ca59b0b24b6c7fefa7492ea13b17686da86f61a8fff16be146ac5';
-const VECTOR_LOADER = 'https://cdn.jsdelivr.net/gh/byh-playground/bloom-gamekit@6ef60d922541329af05e070b464caf66c970a041/vector-assets-loader.js';
+const VECTOR_LOADER = 'https://cdn.jsdelivr.net/gh/byh-playground/bloom-gamekit@b83464e445efaf86d66499859d3d05463df2b22a/vector-assets-loader.js';
 const VECTOR_LOADER_SHA256 = 'a9d9eaa61d891fb1dd9d7d8ac9d9781fe2545cc2a7f8ede6202556c2a7a2f48f';
-const VECTOR_LOADER_MANIFEST_SHA256 = 'd114896850e6f99d279bd80b549b0eb2c366b8ebd9afaa1f28d2c2dde9028130';
-const VERSION = '0.23.9', BUILD_ID = '20261029T-gamekit-v0.26.5-6ef60d9';
+const VECTOR_LOADER_MANIFEST_SHA256 = 'bb92d60e2f7f84397d9055f990ba99d6a4d61da2bf0c053acf90bf42dc379e53';
+const VERSION = '0.23.9', BUILD_ID = '20261029T-gamekit-v0.26.6-b83464e';
 const $ = id => document.getElementById(id);
 document.querySelectorAll('[data-game-version]').forEach(el=>el.textContent='v'+VERSION);
 const loadtext = $('loadtext');translateDocument();document.title=tr('app.title');$('languageSelect').value=language();$('languageSelect').disabled=true;

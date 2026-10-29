@@ -10,7 +10,7 @@ const OUT = resolve('artifacts/runtime-diagnostics');
 const BASELINE_ROOT = process.env.BASELINE_ROOT ? resolve(process.env.BASELINE_ROOT) : null;
 const VECTOR_BASELINE = JSON.parse(await readFile(resolve('tests/fixtures/vector-assets-pr58-fingerprint.json'), 'utf8'));
 const evidence = {
-  test: 'Chromium desktop and touch-emulated mobile flows: tick-58 launch, GameKit 0.26.4, global errors, loop stop, restart, manual copy',
+  test: 'Chromium desktop and touch-emulated mobile flows: tick-58 launch, GameKit 0.26.5, global errors, loop stop, restart, manual copy',
   startedAt: new Date().toISOString(),
   timeBudgetMs: 150_000,
   baseline: null,
@@ -191,7 +191,7 @@ try {
     }
   });
   const candidateVersion = await boot(page, server.url);
-  evidence.candidate = { ...candidateVersion, sdkCommit: '1854b197480926e81453be6a67a18ddd7a30bed3', sdkSourceCommit: '710bec0e70ff2171785e62d2c03d86dc55b66466', sdkVersion: '0.26.4', sdkManifestSha256: '39a8ddba0d1d5baa1bb221618e32f457e4f8f84ecec90fc924d40d11e609b49d', vectorLoaderCommit: '1854b197480926e81453be6a67a18ddd7a30bed3', vectorLoaderVersion: '0.26.4', vectorLoaderSha256: 'a9d9eaa61d891fb1dd9d7d8ac9d9781fe2545cc2a7f8ede6202556c2a7a2f48f', vectorLoaderManifestSha256: '39a8ddba0d1d5baa1bb221618e32f457e4f8f84ecec90fc924d40d11e609b49d' };
+  evidence.candidate = { ...candidateVersion, sdkCommit: '6ef60d922541329af05e070b464caf66c970a041', sdkSourceCommit: 'd287ca4e2268486b00a8155585b0bf6855f71f0d', sdkVersion: '0.26.5', sdkManifestSha256: 'd114896850e6f99d279bd80b549b0eb2c366b8ebd9afaa1f28d2c2dde9028130', vectorLoaderCommit: '6ef60d922541329af05e070b464caf66c970a041', vectorLoaderVersion: '0.26.5', vectorLoaderSha256: 'a9d9eaa61d891fb1dd9d7d8ac9d9781fe2545cc2a7f8ede6202556c2a7a2f48f', vectorLoaderManifestSha256: 'd114896850e6f99d279bd80b549b0eb2c366b8ebd9afaa1f28d2c2dde9028130' };
   assert.equal(candidateVersion.version, '0.23.9');
   const vectorAssetFingerprint = await page.evaluate(async () => {
     const canonical = value => {

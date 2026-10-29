@@ -37,7 +37,7 @@ test('loads the complete source manifest once through the SDK loader before rend
     url: 'https://example.test/bloom-bounko/assets/vector/actors/brute.svg',
     options: {
       sourcePath: 'assets/vector/actors/brute.svg',
-      expectedSha256: 'dfb23559a50eed592f684195cf4e1f656c483bf9fd4df93a4d1efb511f62f6ed',
+      expectedSha256: '200d9d21cbc541f2c350132d6b8791f9f159254df37607e7ff191268a7ea2f90',
       maxBytes: 64 * 1024,
       curveSegments: 16,
       strokeArcDivisions: 12,

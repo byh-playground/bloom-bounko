@@ -10,7 +10,7 @@ const OUT = resolve('artifacts/runtime-diagnostics');
 const BASELINE_ROOT = process.env.BASELINE_ROOT ? resolve(process.env.BASELINE_ROOT) : null;
 const VECTOR_BASELINE = JSON.parse(await readFile(resolve('tests/fixtures/vector-assets-pr58-fingerprint.json'), 'utf8'));
 const evidence = {
-  test: 'Chromium desktop and touch-emulated mobile flows: tick-58 launch, GameKit 0.14.3, global errors, loop stop, restart, manual copy',
+  test: 'Chromium desktop and touch-emulated mobile flows: tick-58 launch, GameKit 0.26.5, global errors, loop stop, restart, manual copy',
   startedAt: new Date().toISOString(),
   timeBudgetMs: 150_000,
   baseline: null,
@@ -53,7 +53,7 @@ function serve(root, { exposeVectorAssets = false } = {}) {
         vectorSourceRequests.set(pathname, (vectorSourceRequests.get(pathname) ?? 0) + 1);
         vectorSourceBytes += bytes.byteLength;
       }
-      if (exposeVectorAssets && (pathname === '/' || pathname === '/index.html')) {
+      if (exposeVectorAssets && pathname === '/src/main.js') {
         const html = bytes.toString('utf8');
         const startup = 'const VECTOR_ASSETS=await loadVectorAssets({loader:vectorAssetLoader,manifest:VECTOR_ASSET_MANIFEST,baseUrl:document.baseURI,maxBytes:64*1024});';
         assert.equal(html.split(startup).length - 1, 1, 'test-only vector asset probe must have one startup handoff');
@@ -191,8 +191,8 @@ try {
     }
   });
   const candidateVersion = await boot(page, server.url);
-  evidence.candidate = { ...candidateVersion, sdkCommit: '418e17c455db56d6ed073d82d115191d9dd8bf04', sdkSourceCommit: 'dd59a57fcf66409cef16632ffb433c0b760324fa', sdkVersion: '0.14.3', sdkManifestSha256: '20244c2beeee33719f407a9baa92c55a4bd55a0e4eb9f094590bb0eed652296e', vectorLoaderCommit: '418e17c455db56d6ed073d82d115191d9dd8bf04', vectorLoaderVersion: '0.14.3', vectorLoaderSha256: '56042179b1b669d69d4791c5a1ad7bbd1927d8686fa4e9192504fb248c2170e2', vectorLoaderManifestSha256: '20244c2beeee33719f407a9baa92c55a4bd55a0e4eb9f094590bb0eed652296e' };
-  assert.equal(candidateVersion.version, '0.23.8');
+  evidence.candidate = { ...candidateVersion, sdkCommit: '6ef60d922541329af05e070b464caf66c970a041', sdkSourceCommit: 'd287ca4e2268486b00a8155585b0bf6855f71f0d', sdkVersion: '0.26.5', sdkManifestSha256: 'd114896850e6f99d279bd80b549b0eb2c366b8ebd9afaa1f28d2c2dde9028130', vectorLoaderCommit: '6ef60d922541329af05e070b464caf66c970a041', vectorLoaderVersion: '0.26.5', vectorLoaderSha256: 'a9d9eaa61d891fb1dd9d7d8ac9d9781fe2545cc2a7f8ede6202556c2a7a2f48f', vectorLoaderManifestSha256: 'd114896850e6f99d279bd80b549b0eb2c366b8ebd9afaa1f28d2c2dde9028130' };
+  assert.equal(candidateVersion.version, '0.23.9');
   const vectorAssetFingerprint = await page.evaluate(async () => {
     const canonical = value => {
       if (Array.isArray(value)) return `[${value.map(canonical).join(',')}]`;
@@ -288,7 +288,7 @@ try {
   assert.equal(vectorSourceEvidence.requests, 49);
   assert.equal(vectorSourceEvidence.duplicates, 0);
   const vectorSourcePayloadBytes = vectorSourceEvidence.bytes;
-  assert.equal(vectorSourcePayloadBytes, 354867, 'startup SVG network payload should match the authored source byte total');
+  assert.equal(vectorSourcePayloadBytes, 356397, 'startup SVG network payload should match the authored source byte total');
   const loaderCallsAfterStartup = await page.evaluate(() => window.__bounkoTestLoaderCalls ?? 0);
   assert.equal(loaderCallsAfterStartup, 49, 'each source should be compiled through the SDK exactly once at startup');
   await page.waitForTimeout(250);
@@ -337,7 +337,7 @@ try {
   const mobilePageErrors = [];
   mobilePage.on('pageerror', error => mobilePageErrors.push(error.message));
   const mobileVersion = await boot(mobilePage, server.url);
-  assert.equal(mobileVersion.version, '0.23.8');
+  assert.equal(mobileVersion.version, '0.23.9');
   await startRun(mobilePage);
   await mobilePage.waitForFunction(() => window.__bloomImpulse.getState().tick >= 52);
   await mobilePage.evaluate(() => {

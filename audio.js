@@ -1,5 +1,5 @@
-export {AudioPlayer} from 'https://cdn.jsdelivr.net/gh/byh-playground/bloom-gamekit@418e17c455db56d6ed073d82d115191d9dd8bf04/audio.js';
-export const audioSdk={commit:'418e17c455db56d6ed073d82d115191d9dd8bf04',sha256:'f792c0b56b4829d20dfecb03f087bc435e377d9e772a7c5caa3611afef281d20'};
+export {AudioPlayer} from 'https://cdn.jsdelivr.net/gh/byh-playground/bloom-gamekit@6ef60d922541329af05e070b464caf66c970a041/audio.js';
+export const audioSdk={commit:'6ef60d922541329af05e070b464caf66c970a041',sha256:'f792c0b56b4829d20dfecb03f087bc435e377d9e772a7c5caa3611afef281d20'};
 // BOUNKO owns sound definitions. The immutable GameKit module owns audio resources.
 const tone=(hz,end,ms,gain=.18,type='sine',delay=0)=>({kind:'tone',hz,end,ms,gain,type,delay});
 const noise=(ms,gain=.14,hz=1600,delay=0)=>({kind:'noise',ms,gain,hz,delay});

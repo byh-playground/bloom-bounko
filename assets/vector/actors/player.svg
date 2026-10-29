@@ -3,12 +3,12 @@
   <g id="shadow"><ellipse id="shadow-shape" cx="3" cy="8" rx="21" ry="12" fill="#000000" fill-opacity="0.37"/></g>
   <g id="body"><ellipse id="silhouette" cx="0" cy="0" rx="23.5" ry="23.5" fill="#041311" fill-opacity="0.88"/><ellipse id="body-color" cx="0" cy="0" rx="19" ry="19" fill="#4de6a6"/></g>
   <g id="core"><ellipse id="core-color" cx="-1" cy="0" rx="12.5" ry="12.5" fill="#dcffc7"/></g>
-  <g id="core-hurt"><ellipse id="core-hurt-color" cx="-1" cy="0" rx="12.5" ry="12.5" fill="#ff878f"/></g>
+  <g id="core-hurt" display="none"><ellipse id="core-hurt-color" cx="-1" cy="0" rx="12.5" ry="12.5" fill="#ff878f"/></g>
   <g id="stem"><line id="stem-shape" x1="-2" y1="-16" x2="-4" y2="-27" stroke="#1f7057" stroke-width="2.7" stroke-linecap="round"/></g>
   <g id="leaf-left"><polygon id="leaf-left-shape" points="-4,-25 -11,-26 -10,-20 -4,-21" fill="#4de6a6"/></g>
   <g id="leaf-right"><polygon id="leaf-right-shape" points="-4,-26 1,-30 5,-25 -2,-22" fill="#85f2b5"/></g>
   <g id="gaze-north"><ellipse id="gaze-north-shape" cx="0" cy="-5" rx="4" ry="4" fill="#1f5752"/></g>
-  <g id="gaze-east"><ellipse id="gaze-east-shape" cx="5" cy="0" rx="4" ry="4" fill="#1f5752"/></g>
-  <g id="gaze-south"><ellipse id="gaze-south-shape" cx="0" cy="5" rx="4" ry="4" fill="#1f5752"/></g>
-  <g id="gaze-west"><ellipse id="gaze-west-shape" cx="-5" cy="0" rx="4" ry="4" fill="#1f5752"/></g>
+  <g id="gaze-east" display="none"><ellipse id="gaze-east-shape" cx="5" cy="0" rx="4" ry="4" fill="#1f5752"/></g>
+  <g id="gaze-south" display="none"><ellipse id="gaze-south-shape" cx="0" cy="5" rx="4" ry="4" fill="#1f5752"/></g>
+  <g id="gaze-west" display="none"><ellipse id="gaze-west-shape" cx="-5" cy="0" rx="4" ry="4" fill="#1f5752"/></g>
 </svg>

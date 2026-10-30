@@ -844,6 +844,7 @@ export default {
   "species.89": "Petal Predator",
   "app.title": "BOUNKO · Physics Action",
   "ui.language": "Language",
+  "ui.revive": "Watch an ad to continue",
   "ui.mute": "Mute",
   "ui.sfx": "Sound effects",
   "ui.sfxVolume": "Settings sound effects volume",

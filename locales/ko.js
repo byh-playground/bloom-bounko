@@ -845,6 +845,7 @@ export default {
   "app.title": "BOUNKO · 바운코 물리 액션",
   "ui.language": "언어",
   "ui.mute": "음소거",
+  "ui.revive": "광고 보고 이어하기",
   "ui.sfx": "효과음",
   "ui.sfxVolume": "설정 효과음 음량",
   "ui.stage": "스테이지 {{count,gameNumber}}",

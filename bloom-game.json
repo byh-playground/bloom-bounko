@@ -1,0 +1,15 @@
+{
+  "$schema": "https://byh-playground.github.io/bloom-world/playground/bloom-game.schema.json",
+  "schemaVersion": 1,
+  "title": "바운코",
+  "en": "BOUNKO",
+  "genre": "action",
+  "tags": ["물리 액션", "성장", "탑다운"],
+  "desc": "방향을 조준해 돌진하고, 충돌과 반발력으로 싸우는 탑다운 액션 게임입니다.",
+  "points": [
+    "조준·충전·돌진 조작",
+    "알과 동료를 모으는 성장 시스템",
+    "다양한 적과 물리 기반 충돌"
+  ],
+  "showcase": "https://byh-playground.github.io/bloom-bounko/#/showcase"
+}

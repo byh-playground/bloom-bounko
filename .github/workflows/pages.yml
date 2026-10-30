@@ -155,6 +155,12 @@ jobs:
           assert not pathlib.Path('_site/vector-assets.generated.js').exists(), 'Compiled vector data must not be shipped'
           pathlib.Path('_site/build.json').write_text(json.dumps(metadata, indent=2) + '\n', encoding='utf-8')
           PY
+      - name: Publish bloom-game.json with the Nightly tag name
+        run: |
+          curl -fsS https://raw.githubusercontent.com/byh-playground/bloom-world/main/playground/bloom-game.schema.json -o "$RUNNER_TEMP/schema.json"
+          STAMP=$(date -u -d "@$(git show -s --format=%ct "$GITHUB_SHA")" +%Y%m%dT%H%M%SZ)
+          jq --arg t "nightly-$STAMP-${GITHUB_SHA:0:12}" '. + {nightly:$t}' bloom-game.json > _site/bloom-game.json
+          npx --yes ajv-cli@5 validate --spec=draft2020 -s "$RUNNER_TEMP/schema.json" -d _site/bloom-game.json
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v4
         with:

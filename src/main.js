@@ -34,10 +34,10 @@ const DIAGNOSTICS_SHA256 = 'b2abc40a6e5ca59b0b24b6c7fefa7492ea13b17686da86f61a8f
 const VECTOR_LOADER = 'https://cdn.jsdelivr.net/gh/byh-playground/bloom-gamekit@b83464e445efaf86d66499859d3d05463df2b22a/vector-assets-loader.js';
 const VECTOR_LOADER_SHA256 = 'a9d9eaa61d891fb1dd9d7d8ac9d9781fe2545cc2a7f8ede6202556c2a7a2f48f';
 const VECTOR_LOADER_MANIFEST_SHA256 = 'bb92d60e2f7f84397d9055f990ba99d6a4d61da2bf0c053acf90bf42dc379e53';
-const BM_KIT = 'https://cdn.jsdelivr.net/gh/byh-playground/bloom-gamekit@936137d84c655d6d3ca99cce5fb8ea574ec590c6/';
-const BM_KIT_VERSION = '0.37.3';
+const BM_KIT = 'https://cdn.jsdelivr.net/gh/byh-playground/bloom-gamekit@c260d1f5c50c3171cc72e76019f3c5303c87bea8/';
+const BM_KIT_VERSION = '0.37.4';
 const BM_SHA256 = '00b3ff79285fc1e3568ed2cd32a4b9065bbcf5947586763087e756f722c5440b';
-const BM_IMA_SHA256 = '4ff0ef7a83ba974d15c826c4a4d093f1341efac4734993250024e2ccb974dd2b';
+const BM_IMA_SHA256 = '6602a5589533b138e69c7812518c46417826c0a303ca4c47ba0b24201ba8eb97';
 const VERSION = '0.23.9', BUILD_ID = '20261029T-gamekit-v0.26.6-b83464e';
 const $ = id => document.getElementById(id);
 document.querySelectorAll('[data-game-version]').forEach(el=>el.textContent='v'+VERSION);

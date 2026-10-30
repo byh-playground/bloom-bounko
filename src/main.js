@@ -34,9 +34,9 @@ const DIAGNOSTICS_SHA256 = 'b2abc40a6e5ca59b0b24b6c7fefa7492ea13b17686da86f61a8f
 const VECTOR_LOADER = 'https://cdn.jsdelivr.net/gh/byh-playground/bloom-gamekit@b83464e445efaf86d66499859d3d05463df2b22a/vector-assets-loader.js';
 const VECTOR_LOADER_SHA256 = 'a9d9eaa61d891fb1dd9d7d8ac9d9781fe2545cc2a7f8ede6202556c2a7a2f48f';
 const VECTOR_LOADER_MANIFEST_SHA256 = 'bb92d60e2f7f84397d9055f990ba99d6a4d61da2bf0c053acf90bf42dc379e53';
-const BM_KIT = 'https://cdn.jsdelivr.net/gh/byh-playground/bloom-gamekit@da38ad1de0a074731c5231b923c9b4c989874be6/';
-const BM_KIT_VERSION = '0.37.1';
-const BM_SHA256 = '2f601a8a7a48d4211f5a1eb34ea6780a40e6eb646182af48fb786097c22c3a2a';
+const BM_KIT = 'https://cdn.jsdelivr.net/gh/byh-playground/bloom-gamekit@1f6f4ba61ce42f9e065b1566bdf9221a4d0e476a/';
+const BM_KIT_VERSION = '0.37.2';
+const BM_SHA256 = '00b3ff79285fc1e3568ed2cd32a4b9065bbcf5947586763087e756f722c5440b';
 const BM_IMA_SHA256 = '3264388b815eb1af0e0839fbcb0d837e7a7b527d66c7639100123fadd3e31a28';
 const VERSION = '0.23.9', BUILD_ID = '20261029T-gamekit-v0.26.6-b83464e';
 const $ = id => document.getElementById(id);
@@ -162,7 +162,7 @@ try {
   const cameraView=new CameraViewport({projection:new OrthographicProjection({degrees:90})});
   let cameraShake=null;
   const World = M.Composite, Body=M.Body, Bodies=M.Bodies, Events=M.Events, Engine=M.Engine;
-  let adsBm=null,adsReady=false,reviveUsed=false,reviveGraceUntilMs=0;
+  let adsBm=null,reviveUsed=false,reviveGraceUntilMs=0;
   let engine, player, playerUnit, unitsById=new Map(), unitsByBody=new Map(), enemies, enemiesById, obstacles, projectiles=[],projectileById=new Map(),enemyShots=0,enemyAttacks=0,enemyPushes=0, shadow=null, mode='READY', phase='LOBBY', modeUntil=0,health=100,hitstopLeftMs=0,dashCharge=0,dashMotion=null,dashFlight=null,dashHits=new Set(),damageTaken=0,healingDone=0,launchCount=0,manualLaunchCount=0,echoLaunchCount=0,chainLaunchCount=0;
   const attackAmmo=new ChargePool(C.shadow.ammo);
   let ammoOrbitPhases=[],pendingLaunch=null,launchRecoil=null;
@@ -1042,7 +1042,7 @@ try {
     $('runSummary').textContent=tr("runtime.96",{v0:kills,v1:tech.defeats,v2:progressionLevel(tech.kills),v3:hits,v4:Math.round(damageTaken),v5:Math.round(healingDone)});
     $('revive').hidden=!canRevive();$('gameover').classList.add('show');
   }
-  function canRevive(){return adsBm!==null&&adsReady&&!reviveUsed&&adsBm.canShow('rewarded').ok;}
+  function canRevive(){return adsBm!==null&&!reviveUsed&&adsBm.canShow('rewarded').ok;}
   // 보상형 광고를 끝까지 본 경우에만 같은 자리에서 이어갑니다. 런당 1회이며 그 외 결과는 종료 화면을 그대로 둡니다.
   async function reviveWithAd(){
     if(!canRevive())return;
@@ -3137,7 +3137,7 @@ try {
     adsBm=createBm({adapter:createImaAdapter({adTagUrl:IMA_SAMPLE_TAGS.linear})});
     adsBm.on('adstart',()=>{loop.stop();sfx.stopAll();input.releaseAll('ad');});
     adsBm.on('adend',resumeMenuGame);
-    adsBm.preload('revive').then(ready=>{adsReady=ready;});
+    adsBm.preload('revive');
   }
   guideDemo=isolatedScene?null:createGuideDemo({translate:tr});
   previewHost=isolatedScene?null:createPreviewHost({translate:tr,pause(){loop.stop();sfx.stopAll();input.releaseAll('preview');},resume:resumeMenuGame});

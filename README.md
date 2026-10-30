@@ -8,6 +8,15 @@
 
 게임·스타일·도움말·상세 위키는 진입점 `index.html`과 `src/main.js`, `src/styles/main.css`가 소유하며, 드롭 상태와 회수 이동은 `drops.js`, 소유·편성은 `pets.js`, 공통 Unit·능력은 `abilities.js`, 종·외형은 `enemies.js`, 목표·이동 의도는 `controllers.js`, 스킬 정의·장착·실행은 `ultimates.js`, 효과음 정의는 `audio.js`에 들어 있습니다. 현재 버전 **0.23.9**은 한국어·영어 UI/도움말/위키 전환과 저장 언어 우선 적용을 지원합니다. `i18n.js`는 공개 i18next 코어를 연결하고 `locales/ko.js`·`locales/en.js`는 표시 문구를 소유합니다. 장착 알은 110px 이상 뒤처지면 플레이어를 따라잡고 85px 안에서 원래 포메이션으로 복귀합니다. 클리어 후 회수 규칙은 그대로이며, 클리어 후 1.5초 동안 전체 지면 보상을 자석으로 끌어오고, 실제 도착분만 지급한 뒤 미회수분을 삭제합니다. 기존 처치 성장과 알은 가까이 가서 회수합니다. 자석 범위는 현재 플레이어 지름의2.5배이며 기본 대비+10%씩 투자합니다. 바깥 장착 알은 부드러운 가속·감쇠로 느슨하게 따라오고 정지하면 가볍게 떠 있습니다. 기존 공격·회피·전투 펫·알 확률·부화 조건은 유지합니다.
 
+## 광고(bm) 시험 연결
+
+GameKit `bm`(v0.37.1 태그 커밋 `da38ad1`, `bm.js`·`bm-ima.js`의 SHA-256은 `src/main.js` 상수)을 주소에 `ads=test`가 있을 때만 켭니다. 기본 배포에는 광고가 없고 동작도 달라지지 않습니다. 광고는 Google IMA 공개 샘플 태그(테스트 전용)이므로 운영 광고가 아닙니다.
+
+- **이어하기(보상형):** 쓰러진 뒤 종료 화면의 '광고 보고 이어하기'를 끝까지 보면 그 자리에서 체력 50%로 이어가고 2초 동안 피해를 받지 않습니다. 수치는 `C.revive`(`healthRate`, `invulnerableMs`)입니다. 한 런에 한 번이며 광고가 준비되지 않았거나(SDK 로드 실패·광고 차단) 이미 썼으면 버튼이 숨겨집니다. 건너뛰거나 닫으면 보상 없이 종료 화면에 남습니다.
+- **전면:** 종료 화면의 '대기 화면으로'를 누르면 전면 광고 뒤에 대기 화면으로 갑니다. bm의 기본 쿨다운(60초) 안이면 광고 없이 바로 갑니다.
+- **광고 중:** `adstart`에서 루프를 멈추고 효과음을 끄며 입력을 놓고, `adend`에서 재개합니다.
+- 예: `index.html?ads=test`. 이 연결은 bm API를 다듬기 위한 시험이며 결제(store)와는 연결하지 않았습니다.
+
 ## GameKit 0.26.6 렌더링 이관 (0.23.9)
 
 GameKit 0.14.3의 `Renderer2D` + 직접 만든 `MeshRenderer` 구성을 v0.26.6의 `WebGLDevice` + `VectorContext` 하나로 옮겼습니다. 도형은 `PrimitivePainter`(`line`, `ellipse`, `tri`, `box`), 카메라는 `CameraViewport.applyToContext`·`planeToScreenInto`·`screenToPlaneInto`·`resizeCanvas`, 액터는 `createVectorActor`/`context.drawVectorActor`입니다. `Renderer2D`·`createPlayer`·손으로 하는 flush 순서 관리는 없앴고 호환 래퍼는 남기지 않았습니다. 게임 규칙·저장·입력·전투 수치는 바꾸지 않았습니다.

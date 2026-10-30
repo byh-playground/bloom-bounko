@@ -34,6 +34,10 @@ const DIAGNOSTICS_SHA256 = 'b2abc40a6e5ca59b0b24b6c7fefa7492ea13b17686da86f61a8f
 const VECTOR_LOADER = 'https://cdn.jsdelivr.net/gh/byh-playground/bloom-gamekit@b83464e445efaf86d66499859d3d05463df2b22a/vector-assets-loader.js';
 const VECTOR_LOADER_SHA256 = 'a9d9eaa61d891fb1dd9d7d8ac9d9781fe2545cc2a7f8ede6202556c2a7a2f48f';
 const VECTOR_LOADER_MANIFEST_SHA256 = 'bb92d60e2f7f84397d9055f990ba99d6a4d61da2bf0c053acf90bf42dc379e53';
+const BM_KIT = 'https://cdn.jsdelivr.net/gh/byh-playground/bloom-gamekit@da38ad1de0a074731c5231b923c9b4c989874be6/';
+const BM_KIT_VERSION = '0.37.1';
+const BM_SHA256 = '2f601a8a7a48d4211f5a1eb34ea6780a40e6eb646182af48fb786097c22c3a2a';
+const BM_IMA_SHA256 = '3264388b815eb1af0e0839fbcb0d837e7a7b527d66c7639100123fadd3e31a28';
 const VERSION = '0.23.9', BUILD_ID = '20261029T-gamekit-v0.26.6-b83464e';
 const $ = id => document.getElementById(id);
 document.querySelectorAll('[data-game-version]').forEach(el=>el.textContent='v'+VERSION);
@@ -117,6 +121,7 @@ try {
     drops:dropConfig,ultimates:ultimateConfig,
     spatial:{groundZ:0,actorHeightRadiusRate:2,projectileHeightRadiusRate:2,shadowHeight:14,sweep:{insetPx:1}},
     physics:{restitution:.86,frictionAir:.008,maxSpeed:1900},
+    revive:{healthRate:.5,invulnerableMs:2000},
     evade:{maxCharges:2,rechargeMs:500,durationMs:580,invulnerableMs:100,impulseSpeed:1020,decayPerSec:6.5,particleRateMs:22,
       capacityTierRate:.50,rechargeReductionTierRate:.20,distanceTierRate:.10,projectileWindowBonusRate:.50,hitRechargeRate:.20},
     stage:{initialKills:7,killsPerStage:4,bossEvery:3,mapEvery:3,transitionMs:1500,bossWarningMs:750,entryNoticeMs:1100,bossNoticeMs:1250,noticePriority:{stage:1,boss:3},worldRadius:550,radiusGrowth:.22,maxRadius:1600,initialPopulation:4,populationPerStage:1,maxEnemies:82,enemySpawnMinGap:98,spawnSafeRadius:285,obstaclePer100k:.93,maxObstacles:72,connectivityStep:82,connectivityMin:.92},
@@ -157,6 +162,7 @@ try {
   const cameraView=new CameraViewport({projection:new OrthographicProjection({degrees:90})});
   let cameraShake=null;
   const World = M.Composite, Body=M.Body, Bodies=M.Bodies, Events=M.Events, Engine=M.Engine;
+  let adsBm=null,adsReady=false,reviveUsed=false,reviveGraceUntilMs=0;
   let engine, player, playerUnit, unitsById=new Map(), unitsByBody=new Map(), enemies, enemiesById, obstacles, projectiles=[],projectileById=new Map(),enemyShots=0,enemyAttacks=0,enemyPushes=0, shadow=null, mode='READY', phase='LOBBY', modeUntil=0,health=100,hitstopLeftMs=0,dashCharge=0,dashMotion=null,dashFlight=null,dashHits=new Set(),damageTaken=0,healingDone=0,launchCount=0,manualLaunchCount=0,echoLaunchCount=0,chainLaunchCount=0;
   const attackAmmo=new ChargePool(C.shadow.ammo);
   let ammoOrbitPhases=[],pendingLaunch=null,launchRecoil=null;
@@ -949,7 +955,7 @@ try {
     engine.world.gravity.y=0;engine.world.gravity.x=0;
     volumeEvents=[];releaseVolumeFilter=filterMatterVolumes(M,engine,acceptVolumeContact);Events.on(engine,'beforeSolve',sweepVerticalMotion);
     pickupFeedback={growth:0,eggs:0,nextAtMs:0};
-    randomSeed=82741;nextEnemyId=1;timeMs=0;tick=0;combo=0;lastComboHitAtMs=-1e6;hits=0;kills=0;
+    randomSeed=82741;nextEnemyId=1;timeMs=0;tick=0;reviveUsed=false;reviveGraceUntilMs=0;combo=0;lastComboHitAtMs=-1e6;hits=0;kills=0;
     chainTargetId=null;chainActive=false;chainStarts=0;chainEnds=0;criticalHits=0;lastHit=null;
     shadow=null;setReadyState();particles=[];particleCursor=0;lightningArcs=[];fireEmbers=[];fireTransfers=[];fireFxSerial=0;elementalEvents={ignite:0,spread:0,conduct:0,conductSpread:0,conductConsumed:0,conductDamage:0,arc:0,burnDamage:0};health=C.stats.maxHp;hitstopLeftMs=0;
     dashCharge=0;dashMotion=null;dashFlight=null;dashHits.clear();damageTaken=0;healingDone=0;launchCount=0;manualLaunchCount=0;echoLaunchCount=0;chainLaunchCount=0;attackAmmo.reset();resetAmmoOrbit();launchRecoil=null;
@@ -964,7 +970,7 @@ try {
     player=Bodies.circle(C.world.width*.5,C.world.height*.5,C.player.radius,{label:'player',restitution:C.physics.restitution,
       frictionAir:C.physics.frictionAir,friction:0,frictionStatic:0,collisionFilter:{category:2,mask:1|4|8}});
     Body.setMass(player,C.player.mass);Body.setInertia(player,Infinity);volume(player,C.player.height);World.add(engine.world,player);
-    playerUnit={presentation:createPlayerPresentation(),status:new UnitStatus(),attackAmmo,unitId:0,id:0,faction:'garden',body:player,get invulnerable(){return ultimateRunner.active;},get config(){return {...C.stats,radius:C.player.radius,deferDeath:true,damageRounding:false};},pre:{x:0,y:0},preX:player.position.x,preY:player.position.y,
+    playerUnit={presentation:createPlayerPresentation(),status:new UnitStatus(),attackAmmo,unitId:0,id:0,faction:'garden',body:player,get invulnerable(){return ultimateRunner.active||timeMs<reviveGraceUntilMs;},get config(){return {...C.stats,radius:C.player.radius,deferDeath:true,damageRounding:false};},pre:{x:0,y:0},preX:player.position.x,preY:player.position.y,
       get hp(){return health;},set hp(value){health=value;},get maxHp(){return C.stats.maxHp;},get alive(){return mode!=='DEAD';},onHit(){},die(){die();},
       adapter:{freeze:unitAdapter.freeze,healed(target,amount){healingDone+=amount;sfx.play('heal');floatText(player.position.x,player.position.y,'+'+formatCombatNumber(amount),[.33,1,.68,1]);burst(player.position.x,player.position.y,120,6,[.24,1,.7,1]);},hurt(target,amount){damageTaken+=amount;if(amount>0){sfx.play('hurt');floatText(player.position.x,player.position.y,'-'+formatCombatNumber(amount),[1,.38,.43,1]);burst(player.position.x,player.position.y,90,8,[1,.36,.46,1]);}}}};
     setupStage(1);if(startIndex>1){stageHistory.length=0;setupStage(startIndex);}petRoster.reset();
@@ -1034,7 +1040,19 @@ try {
   function die(){if(health>0||mode==='DEAD')return;frostFields=[];acidPools=acidPools.filter(pool=>!pool.skillId);sfx.play('death');
     health=0;setAttackMode('DEAD');ultimateRunner.cancel('death');launchRecoil=null;phase='ENDED';shadow=null;dashMotion=null;dashFlight=null;attackOrigin=null;bufferedIntent=null;combo=0;hitstopLeftMs=0;endChain();
     $('runSummary').textContent=tr("runtime.96",{v0:kills,v1:tech.defeats,v2:progressionLevel(tech.kills),v3:hits,v4:Math.round(damageTaken),v5:Math.round(healingDone)});
-    $('gameover').classList.add('show');
+    $('revive').hidden=!canRevive();$('gameover').classList.add('show');
+  }
+  function canRevive(){return adsBm!==null&&adsReady&&!reviveUsed&&adsBm.canShow('rewarded').ok;}
+  // 보상형 광고를 끝까지 본 경우에만 같은 자리에서 이어갑니다. 런당 1회이며 그 외 결과는 종료 화면을 그대로 둡니다.
+  async function reviveWithAd(){
+    if(!canRevive())return;
+    $('revive').disabled=true;
+    const result=await adsBm.showRewarded('revive');
+    $('revive').disabled=false;
+    if(result.status!=='rewarded'){$('revive').hidden=!canRevive();return;}
+    reviveUsed=true;$('revive').hidden=true;health=C.stats.maxHp*C.revive.healthRate;reviveGraceUntilMs=timeMs+C.revive.invulnerableMs;
+    setReadyState();phase='PLAYING';$('gameover').classList.remove('show');
+    input.releaseAll();actions.consume();pending.length=0;loop.resetTiming?.();canvas.focus({preventScroll:true});
   }
   function hurtPlayer(amount,x,y,source={unitId:-1,faction:'wild',alive:true,config:{}}){if(mode==='DEAD')return 0;
     return damageUnit(playerUnit,{raw:amount,stats:source.config,kind:'projectile'},source);}
@@ -2873,7 +2891,11 @@ try {
   }
   $('startRun').addEventListener('click',()=>openThemeStart(true));
   $('restart').addEventListener('click',enterLobby);
-  $('retry').addEventListener('click',enterLobby);
+  $('revive').addEventListener('click',reviveWithAd);
+  $('retry').addEventListener('click',async()=>{
+    if(adsBm){$('retry').disabled=true;await adsBm.showInterstitial('lobby');$('retry').disabled=false;}
+    enterLobby();
+  });
 
   // The help/wiki render actual authored rules and snapshot the same initial
   // authoritative config; neither overlay is permitted to mutate gameplay.
@@ -3109,6 +3131,14 @@ try {
   }
   function routeMenu(screen,open){if(open)menuRouter.go({screen});else if(menuRouter.current.screen===screen)menuRouter.go({screen:'main'});}
   function resumeMenuGame(){if(menuRouter&&menuRouter.current.screen!=='main')return;loop.resetTiming();lastFrame=performance.now();loop.start();}
+  // 광고는 Google 공개 샘플 태그(테스트 전용)라 주소에 ads=test가 있을 때만 켭니다. 소리·시뮬레이션 정지는 게임이 adstart/adend에서 합니다.
+  if(new URLSearchParams(location.search+'&'+location.hash.slice(1)).get('ads')==='test'&&!isolatedScene){
+    const [{createBm},{createImaAdapter,IMA_SAMPLE_TAGS}]=await Promise.all([import(BM_KIT+'bm.js'),import(BM_KIT+'bm-ima.js')]);
+    adsBm=createBm({adapter:createImaAdapter({adTagUrl:IMA_SAMPLE_TAGS.linear})});
+    adsBm.on('adstart',()=>{loop.stop();sfx.stopAll();input.releaseAll('ad');});
+    adsBm.on('adend',resumeMenuGame);
+    adsBm.preload('revive').then(ready=>{adsReady=ready;});
+  }
   guideDemo=isolatedScene?null:createGuideDemo({translate:tr});
   previewHost=isolatedScene?null:createPreviewHost({translate:tr,pause(){loop.stop();sfx.stopAll();input.releaseAll('preview');},resume:resumeMenuGame});
   introHost=isolatedScene?null:createIntroHost({translate:tr,pause(){loop.stop();sfx.stopAll();input.releaseAll('intro');},resume:resumeMenuGame,play:startRun,help:()=>menuRouter?.go({screen:'help',item:'1'}),onClose:()=>menuRouter?.go({screen:"main"})});

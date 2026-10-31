@@ -1,10 +1,10 @@
-export {AudioPlayer} from 'https://cdn.jsdelivr.net/gh/byh-playground/bloom-gamekit@b83464e445efaf86d66499859d3d05463df2b22a/audio.js';
-export const audioSdk={commit:'b83464e445efaf86d66499859d3d05463df2b22a',sha256:'f792c0b56b4829d20dfecb03f087bc435e377d9e772a7c5caa3611afef281d20'};
+export {AudioPlayer,audioSettings} from 'https://cdn.jsdelivr.net/gh/byh-playground/bloom-gamekit@1a3ef3877dea431268c712cbe7b13b2600826119/audio.js';
+export const audioSdk={commit:'1a3ef3877dea431268c712cbe7b13b2600826119',sha256:'baf50e63457ccc7e66859ee9018049b0f53ef49e5b7c90b1395d2995bdcf6df1'};
 // BOUNKO owns sound definitions. The immutable GameKit module owns audio resources.
 const tone=(hz,end,ms,gain=.18,type='sine',delay=0)=>({kind:'tone',hz,end,ms,gain,type,delay});
 const noise=(ms,gain=.14,hz=1600,delay=0)=>({kind:'noise',ms,gain,hz,delay});
 export const audioConfig={
-  storageKey:'bounko-audio',volume:.7,headroom:.24,maxVoices:12,rampMs:8,
+  volume:.7,headroom:.24,maxVoices:12,rampMs:8,
   compressor:{threshold:-18,knee:12,ratio:6,attackMs:3,releaseMs:120},
   categories:{enemy:{volume:.65,max:2,gapMs:80,priority:1},impact:{volume:1,max:4,gapMs:35,priority:2},motion:{volume:.8,max:3,gapMs:45,priority:2},
     danger:{volume:.9,max:3,gapMs:80,priority:4},reward:{volume:.85,max:3,gapMs:70,priority:5},

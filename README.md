@@ -6,31 +6,32 @@
 
 블룸 세계관의 탑다운 2D 물리 액션 공 튕기기 게임입니다. 잔상을 보내 조준·충전하고, 타이밍에 맞춰 몸체를 돌진시켜 적과 충돌합니다. 전장을 탭해 구르며 피하고, 처치 후 지면 드롭을 자석으로 회수한 성장으로 기술과 기본 능력치를 강화합니다.
 
-게임·스타일·도움말·상세 위키는 진입점 `index.html`과 `src/main.js`, `src/styles/main.css`가 소유하며, 드롭 상태와 회수 이동은 `drops.js`, 소유·편성은 `pets.js`, 공통 Unit·능력은 `abilities.js`, 종·외형은 `enemies.js`, 목표·이동 의도는 `controllers.js`, 스킬 정의·장착·실행은 `ultimates.js`, 효과음 정의는 `audio.js`에 들어 있습니다. 현재 버전 **0.24.0**은 한국어·영어 UI/도움말/위키 전환과 저장 언어 우선 적용을 지원합니다. `i18n.js`는 공개 i18next 코어를 연결하고 `locales/ko.js`·`locales/en.js`는 표시 문구를 소유합니다. 장착 알은 110px 이상 뒤처지면 플레이어를 따라잡고 85px 안에서 원래 포메이션으로 복귀합니다. 클리어 후 회수 규칙은 그대로이며, 클리어 후 1.5초 동안 전체 지면 보상을 자석으로 끌어오고, 실제 도착분만 지급한 뒤 미회수분을 삭제합니다. 기존 처치 성장과 알은 가까이 가서 회수합니다. 자석 범위는 현재 플레이어 지름의2.5배이며 기본 대비+10%씩 투자합니다. 바깥 장착 알은 부드러운 가속·감쇠로 느슨하게 따라오고 정지하면 가볍게 떠 있습니다. 기존 공격·회피·전투 펫·알 확률·부화 조건은 유지합니다.
+게임·스타일·도움말·상세 위키는 진입점 `index.html`과 `src/main.js`, `src/styles/main.css`가 소유하며, 드롭 상태와 회수 이동은 `drops.js`, 소유·편성은 `pets.js`, 공통 Unit·능력은 `abilities.js`, 종·외형은 `enemies.js`, 목표·이동 의도는 `controllers.js`, 스킬 정의·장착·실행은 `ultimates.js`, 효과음 정의는 `audio.js`에 들어 있습니다. 현재 버전 **0.25.0**은 한국어·영어 UI/도움말/위키 전환과 저장 언어 우선 적용을 지원합니다. `i18n.js`는 공개 i18next 코어를 연결하고 `locales/ko.js`·`locales/en.js`는 표시 문구를 소유합니다. 장착 알은 110px 이상 뒤처지면 플레이어를 따라잡고 85px 안에서 원래 포메이션으로 복귀합니다. 클리어 후 회수 규칙은 그대로이며, 클리어 후 1.5초 동안 전체 지면 보상을 자석으로 끌어오고, 실제 도착분만 지급한 뒤 미회수분을 삭제합니다. 기존 처치 성장과 알은 가까이 가서 회수합니다. 자석 범위는 현재 플레이어 지름의2.5배이며 기본 대비+10%씩 투자합니다. 바깥 장착 알은 부드러운 가속·감쇠로 느슨하게 따라오고 정지하면 가볍게 떠 있습니다. 기존 공격·회피·전투 펫·알 확률·부화 조건은 유지합니다.
 
 ## 광고(bm) 시험 연결
 
-GameKit `bm`(v0.37.4 태그 커밋 `c260d1f`, `bm.js`·`bm-ima.js`의 SHA-256은 `src/main.js` 상수)을 주소에 `ads=test`가 있을 때만 켭니다. 기본 배포에는 광고가 없고 동작도 달라지지 않습니다. 광고는 Google IMA 공개 샘플 태그(테스트 전용)이므로 운영 광고가 아닙니다.
+GameKit `bm`(아래 GameKit 0.39.0 핀의 `bm.js`·`bm-ima.js`, SHA-256은 `src/main.js`의 `KIT_BM_SHA256`·`KIT_BM_IMA_SHA256`)을 주소에 `ads=test`가 있을 때만 켭니다. 기본 배포에는 광고가 없고 동작도 달라지지 않습니다. 광고는 Google IMA 공개 샘플 태그(테스트 전용)이므로 운영 광고가 아닙니다.
 
 - **이어하기(보상형):** 쓰러진 뒤 종료 화면의 '광고 보고 이어하기'를 끝까지 보면 그 자리에서 체력 50%로 이어가고 2초 동안 피해를 받지 않습니다. 수치는 `C.revive`(`healthRate`, `invulnerableMs`)입니다. 한 런에 한 번이며, 이미 썼거나 `canShow('rewarded')`가 막으면(SDK 로드 실패·광고 차단은 `not-ready`) 버튼이 숨겨집니다. 건너뛰거나 닫으면 보상 없이 종료 화면에 남습니다.
 - **전면:** 종료 화면의 '대기 화면으로'를 누르면 전면 광고 뒤에 대기 화면으로 갑니다. bm의 기본 쿨다운(60초) 안이면 광고 없이 바로 갑니다.
 - **광고 중:** `adstart`에서 루프를 멈추고 효과음을 끄며 입력을 놓고, `adend`에서 재개합니다.
 - 예: `index.html?ads=test`. 이 연결은 bm API를 다듬기 위한 시험이며 결제(store)와는 연결하지 않았습니다.
 
-## GameKit save 저장 이관 (0.24.0)
+## GameKit save 저장 이관 (0.24.0, 효과음 설정 0.25.0)
 
-진행과 설정은 GameKit `save`(v0.37.6, dist 커밋 `53361a1`, `save.js` SHA-256은 `src/main.js`의 `SAVE_SHA256`)가 저장합니다. 게임 코드는 localStorage를 직접 읽거나 쓰지 않습니다.
+진행·설정·효과음 설정은 GameKit `save`(아래 GameKit 0.39.0 핀의 `save.js`, SHA-256은 `src/main.js`의 `KIT_SAVE_SHA256`)가 저장합니다. 게임 코드와 GameKit `audio`는 localStorage를 직접 읽거나 쓰지 않습니다.
 
 ```js
 // localStorage 키 = 'bounko-' + key, 레코드 = 데이터 + schema + revision
 progress    (version 1): {kills, defeats, unlocked: [id], statLevels: {stat: level}, companions, pendingDrops, ultimates, themeProgress}
 preferences (version 1): {language: null | 'ko' | 'en', coachSeen: boolean}  // null이면 브라우저 언어
+audio-settings (version 1): {volume: 0..1, muted: boolean, categories: {category: 0..1}}  // GameKit audioSettings(audioConfig)가 key·형식을 정한다
 ```
 
-- **격리 장면:** 프리뷰(`?preview=`)·소개(`?intro=1`)는 어댑터 자리에서 모든 저장을 `memoryAdapter`로 엽니다. 소개·프리뷰용 고정 진행은 메모리 레코드로 넣고, 프레임 안 언어는 부모 화면의 현재 언어로 채웁니다. 게임 코드에 "격리면 저장하지 않음" 분기는 없습니다. 효과음 설정만 GameKit `audio`가 직접 저장하므로 격리 장면에서 `storageKey: null`을 유지합니다.
-- **읽지 못한 저장:** 형식이 틀리거나 JSON이 아니거나 미래 schema이면 시작 화면에 알리고 멈춥니다. 원본은 덮어쓰지 않습니다. 검증은 형식·현재 정의의 ID·스탯 범위만 봅니다. 선행 조건과 포인트 예산은 강화 동작이 지킵니다.
-- **저장 실패:** 저장소 실패와 다른 탭의 먼저 저장(충돌)은 화면 위 알림으로 보이며 새로고침 버튼을 둡니다. 다른 탭이 저장하면 바로 같은 알림을 띄웁니다.
-- 이전 키(`bloom-impulse-progression-v3`·`bounko-language-v1`·`bounko-controls-seen`)와 더 이전 키는 읽지도 지우지도 않습니다. 릴리즈 전이므로 기존 진행은 버립니다.
+- **격리 장면:** 프리뷰(`?preview=`)·소개(`?intro=1`)는 어댑터 자리에서 모든 저장을 `memoryAdapter`로 엽니다. 소개·프리뷰용 고정 진행은 메모리 레코드로 넣고, 프레임 안 언어는 부모 화면의 현재 언어로 채웁니다. 효과음 설정도 같은 `openSave`로 열어 `AudioPlayer`의 `settings`로 넘기므로 격리 장면의 음소거·음량 변경은 메모리에만 남습니다. 프리뷰 프레임은 부모 화면의 현재 음량·음소거로 메모리 레코드를 채웁니다. 게임 코드에 "격리면 저장하지 않음" 분기는 없습니다.
+- **읽지 못한 저장:** 형식이 틀리거나 JSON이 아니거나 미래 schema이면(효과음 설정 포함) 시작 화면에 알리고 멈춥니다. 효과음 설정도 기본값으로 바꾸지 않습니다. 원본은 덮어쓰지 않습니다. 검증은 형식·현재 정의의 ID·스탯 범위만 봅니다. 선행 조건과 포인트 예산은 강화 동작이 지킵니다.
+- **저장 실패:** 저장소 실패와 다른 탭의 먼저 저장(충돌)은 효과음 설정(`onSaveError`)까지 화면 위 알림으로 보이며 새로고침 버튼을 둡니다. 다른 탭이 저장하면 바로 같은 알림을 띄웁니다.
+- 이전 키(`bloom-impulse-progression-v3`·`bounko-language-v1`·`bounko-controls-seen`·효과음 `bounko-audio`)와 더 이전 키는 읽지도 지우지도 않습니다. 릴리즈 전이므로 기존 진행은 버립니다.
 - 드롭 회수 중(`claimingDrops`)에는 개별 저장을 막고 회수 끝에 한 번 저장합니다. 미회수 보상 삭제와 성장·알 지급이 한 레코드로 같이 저장되게 하는 묶음이며 격리와는 무관합니다.
 
 ## GameKit 0.26.6 렌더링 이관 (0.23.9)
@@ -43,7 +44,13 @@ GameKit v0.16.0부터 컴파일러는 `defaultExpression`이 숨기는 파트의
 
 처리되지 않은 전역 오류·Promise 거절과 게임 루프 예외가 보고되면 입력을 해제하고 게임 루프를 멈춘 뒤, 복사와 새로고침이 가능한 진단 화면을 표시합니다. 진단 기록은 최근 20개로 제한되며 메시지·스택의 경로와 비밀값은 가립니다. 보고서는 사용자가 직접 복사하기 전까지 자동 전송하지 않습니다.
 
-All consumed modules share verified GameKit **0.26.6** dist commit `b83464e445efaf86d66499859d3d05463df2b22a` (source commit `88630ef4dea7fd3a7fd7aad22090fe74cb3a6fbc`). Its manifest SHA-256 is `bb92d60e2f7f84397d9055f990ba99d6a4d61da2bf0c053acf90bf42dc379e53`; pinned module SHA-256 values are `interpolation.js` `acad7ad93615633609a62e484bff918980fc84282840db9b5cd108e8f5bb133a`, `rendering.js` `dac868f1efd9eb8e12b5ae9874813e9944fe3e106eb2d6044856cc09f83c8835`, `vector-assets.js` `de7093c51d5ffd80d6bd716a0023a9b78586a1a9b10d607eb730109ba1af694c`, `vector-assets-loader.js` `a9d9eaa61d891fb1dd9d7d8ac9d9781fe2545cc2a7f8ede6202556c2a7a2f48f`, `input.js` `a969755a39702723b35b6a1503e9b2e53a431ea91845017474c979752fdfb51f`, `simloop.js` `c25a8f7f4999e4fe8beb6b08167fa4d0934c34098db2bf912335e81db53c4ef8`, `camera.js` `99c1be43b6a38945028d029a5ecc594f7ff6dfc71075305264930748cafe88b6`, `navigation.js` `2c8e12432f6eae5472418d80898c93af32f5b14dce8217f6fa75bd198893b417`, `scenario.js` `b21a2be85b497588589c796f8e95f932c464474cc4ea3f703a8718e96a9946ce`, `debug-tools.js` `b2abc40a6e5ca59b0b24b6c7fefa7492ea13b17686da86f61a8fff16be146ac5`, and `audio.js` `f792c0b56b4829d20dfecb03f087bc435e377d9e772a7c5caa3611afef281d20`. The Pages workflow verifies the pinned dist, the runtime module hashes, and the loader against this manifest.
+## GameKit 0.39.0 핀 (0.25.0)
+
+모든 GameKit 모듈(SDK·진단·벡터 로더·audio·bm·save)이 dist 커밋 `1a3ef3877dea431268c712cbe7b13b2600826119`(SDK 0.39.0, 소스 커밋 `d5c35c3d4fec366e672c9a5889104ea47a300683`, manifest SHA-256 `ef220fd3801549c88b0044c2bcfa92f4a7de40ce49626e0199ed8e5b1a58f2c0`) 하나를 씁니다. Pages workflow는 `src/main.js`·`audio.js`의 모든 `bloom-gamekit@` 핀이 이 커밋 하나인지와 모듈별 SHA-256 고정값을 확인합니다.
+
+- 바뀐 모듈: `rendering.js` `cf39f38e…`·`vector-assets-loader.js` `277a4407…`(v0.37.0/0.37.1 스케치 에코 방향, v0.36.0 sprite `createActor` — BOUNKO는 스케치·sprite를 쓰지 않음), `audio.js` `baf50e63…`(v0.27.0~0.32.0 베드·패닝·EQ 추가, v0.38.0 `storageKey` 제거 → `settings`), `debug-tools.js` `bd077de5…`(v0.37.5 `installDebugHost` 추가, 기존 export 그대로), `save.js` `50164b43…`(v0.38.1 `reset()` 추가).
+- 그대로인 모듈: `interpolation.js` `acad7ad9…`, `vector-assets.js` `de7093c5…`, `input.js` `a969755a…`, `simloop.js` `c25a8f7f…`, `camera.js` `99c1be43…`, `navigation.js` `2c8e1243…`, `scenario.js` `b21a2be8…`, `bm.js` `00b3ff79…`, `bm-ima.js` `6602a558…`.
+- `transport`(v0.39.0 resume 어댑터)는 BOUNKO가 쓰지 않습니다. `sfx.start(id)`는 세 번째 인자가 없어 v0.27.0 변경과 무관합니다.
 
 ## GameKit v0.7.2 + non-scaling egg cracks (0.23.4)
 
@@ -55,7 +62,7 @@ The 0.23.4 release pinned GameKit v0.7.2 dist commit `f4de64ab4a0a038e8a48ff24e2
 
 ## Original SVGs with startup compilation (0.23.7)
 
-The app publishes the 49 authored SVG files directly and has no compiled actor/egg bundle. `vector-assets.manifest.js` holds each stable runtime key, relative source path, and expected SHA-256. Before the first playable screen is created, `vector-assets-runtime.js` asks the pinned GameKit 0.26.6 `vector-assets-loader.js` to fetch each original source, verify its exact bytes, and compile it once with the original `curveSegments: 16` and round-cap `strokeArcDivisions: 12`. Per-source input is capped at 64 KiB; SDK source-path diagnostics stay disabled. The loader retains successful compiled assets in its bounded 49-entry cache. `vector-actors.js` builds retained renderer assets once and only updates animation poses during frames.
+The app publishes the 49 authored SVG files directly and has no compiled actor/egg bundle. `vector-assets.manifest.js` holds each stable runtime key, relative source path, and expected SHA-256. Before the first playable screen is created, `vector-assets-runtime.js` asks the pinned GameKit `vector-assets-loader.js` (see the 0.39.0 pin section) to fetch each original source, verify its exact bytes, and compile it once with the original `curveSegments: 16` and round-cap `strokeArcDivisions: 12`. Per-source input is capped at 64 KiB; SDK source-path diagnostics stay disabled. The loader retains successful compiled assets in its bounded 49-entry cache. `vector-actors.js` builds retained renderer assets once and only updates animation poses during frames.
 
 The Bounko artwork uses centered local coordinates and includes empty no-op pose objects. The SDK loader normalizes only compiler input after verifying the untouched response bytes; the source SVGs in Git and Pages remain unchanged. `npm run vector-assets:check` verifies the 49-file manifest and every source hash. `npm run test:vector-assets` checks the URL resolution and startup handoff contract. The Chromium regression flow also compares hashes of each compiled asset's geometry, original viewBox, metadata, parts/pivots, expressions, sockets, and clips against compact fingerprints of the PR58 generated baseline; the fingerprint fixture is test-only and omitted from Pages.
 
@@ -393,7 +400,7 @@ Unit은 몸·HP·높이·공통 피해/회복·사망을 소유하고 능력 믹
 | --- | --- |
 | i18next 26.4.3 (MIT) | [공식 native ESM](https://cdn.jsdelivr.net/npm/i18next@26.4.3/dist/esm/i18next.js), 실제 HTTP 200·SHA-256 `4fb2e0c4dfd13dda4f6cb292ae0f9c5260a13b28bab05ee723915351bdaf00a1` |
 | Matter.js 0.20.0 | [jsDelivr npm 빌드](https://cdn.jsdelivr.net/npm/matter-js@0.20.0/build/matter.min.js) |
-| Bloom GameKit audio | pinned dist commit `b83464e445efaf86d66499859d3d05463df2b22a`의 [audio.js](https://github.com/byh-playground/bloom-gamekit/blob/b83464e445efaf86d66499859d3d05463df2b22a/audio.js), SHA-256 `f792c0b56b4829d20dfecb03f087bc435e377d9e772a7c5caa3611afef281d20` |
+| Bloom GameKit audio | pinned dist commit `1a3ef3877dea431268c712cbe7b13b2600826119`의 [audio.js](https://github.com/byh-playground/bloom-gamekit/blob/1a3ef3877dea431268c712cbe7b13b2600826119/audio.js), SHA-256 `baf50e63457ccc7e66859ee9018049b0f53ef49e5b7c90b1395d2995bdcf6df1` |
 | Bloom GameKit | 커밋 `d1e2c385033ad04a7a004cfbe9558948ef07a6d1`의 루트 [rendering.js](https://github.com/byh-playground/bloom-gamekit/blob/d1e2c385033ad04a7a004cfbe9558948ef07a6d1/rendering.js), [input.js](https://github.com/byh-playground/bloom-gamekit/blob/d1e2c385033ad04a7a004cfbe9558948ef07a6d1/input.js), [simloop.js](https://github.com/byh-playground/bloom-gamekit/blob/d1e2c385033ad04a7a004cfbe9558948ef07a6d1/simloop.js), [camera.js](https://github.com/byh-playground/bloom-gamekit/blob/d1e2c385033ad04a7a004cfbe9558948ef07a6d1/camera.js) |
 
 GameKit은 위 고정 커밋의 루트 ESM을 jsDelivr에서 가져옵니다. 오디오는 부모가 검토·머지한 [GameKit PR #36](https://github.com/byh-playground/bloom-gamekit/pull/36)의 실제 main→dist 배포본에 별도로 고정하며 로컬 재생 엔진을 복제하지 않습니다. 초기 이관에서는 제목·대기 화면·접근성 이름·내장 위키를 BOUNKO로 정리하고, 실제 루트 import와 맞도록 의존성 설명을 수정했습니다. 0.10.2 이관 시 게임 실행 모듈은 BUILD_ID 외에 원본과 동일했습니다. 0.10.3은 기존 GameKit 입력 수집과 회피 실행 경로를 재사용하며, 밸런스·공격 메커니즘·저장 계약을 유지합니다. 0.10.4는 공통 `launch`에 발사 원인(`manual` / `echo`)을 명시해 메아리만 무료로 처리합니다. 발사 성공 뒤에만 비용과 발사 횟수를 기록하므로 실패한 발사에는 비용이 없고, 무료 메아리도 발사 횟수에 포함됩니다. `.gitattributes`로 HTML의 LF 줄바꿈을 고정했습니다.

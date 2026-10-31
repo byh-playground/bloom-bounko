@@ -96,6 +96,11 @@ jobs:
               'gamekit_vector_loader_manifest_sha256': re.search(r"VECTOR_LOADER_MANIFEST_SHA256 = '([^']+)'", game_source).group(1),
               'gamekit_vector_loader_version': re.search(r"KIT_VERSION = '([^']+)'", game_source).group(1),
               'gamekit_rendering_sha256': re.search(r"KIT_RENDERING_SHA256 = '([^']+)'", game_source).group(1),
+              'gamekit_bm_sha256': re.search(r"KIT_BM_SHA256 = '([^']+)'", game_source).group(1),
+              'gamekit_bm_ima_sha256': re.search(r"KIT_BM_IMA_SHA256 = '([^']+)'", game_source).group(1),
+              'gamekit_save_sha256': re.search(r"KIT_SAVE_SHA256 = '([^']+)'", game_source).group(1),
+              'gamekit_pins': sorted({pin for source in ('_site/src/main.js', '_site/audio.js')
+                  for pin in re.findall(r"bloom-gamekit@([0-9a-f]{40})", pathlib.Path(source).read_text(encoding='utf-8'))}),
               'index_sha256': hashlib.sha256(data).hexdigest(),
               'vector_runtime_sha256': hashlib.sha256(pathlib.Path('_site/vector-actors.js').read_bytes()).hexdigest(),
               'vector_assets_manifest_sha256': hashlib.sha256(pathlib.Path('_site/vector-assets.manifest.js').read_bytes()).hexdigest(),
@@ -127,14 +132,18 @@ jobs:
               'audio_sdk_sha256': re.search(r"sha256:'([^']+)'", pathlib.Path('_site/audio.js').read_text(encoding='utf-8')).group(1),
           }
           assert metadata['gamekit_sdk_commit'] == metadata['audio_sdk_commit'], 'GameKit pins must match'
-          assert metadata['version'] == '0.24.0', 'Bounko product version changed'
-          assert metadata['build_id'] == '20261031T-gamekit-save-v0.37.6-53361a1', 'Bounko build ID changed'
-          assert metadata['gamekit_sdk_commit'] == 'b83464e445efaf86d66499859d3d05463df2b22a', 'GameKit SDK dist commit changed'
-          assert metadata['gamekit_sdk_source_commit'] == '88630ef4dea7fd3a7fd7aad22090fe74cb3a6fbc', 'GameKit SDK source commit changed'
-          assert metadata['gamekit_sdk_version'] == '0.26.6', 'GameKit SDK version changed'
+          assert metadata['gamekit_pins'] == [metadata['gamekit_sdk_commit']], 'Every GameKit module must use the one SDK dist pin'
+          assert metadata['version'] == '0.25.0', 'Bounko product version changed'
+          assert metadata['build_id'] == '20261031T-gamekit-v0.39.0-1a3ef38', 'Bounko build ID changed'
+          assert metadata['gamekit_sdk_commit'] == '1a3ef3877dea431268c712cbe7b13b2600826119', 'GameKit SDK dist commit changed'
+          assert metadata['gamekit_sdk_source_commit'] == 'd5c35c3d4fec366e672c9a5889104ea47a300683', 'GameKit SDK source commit changed'
+          assert metadata['gamekit_sdk_version'] == '0.39.0', 'GameKit SDK version changed'
           assert metadata['gamekit_diagnostics_commit'] == metadata['gamekit_sdk_commit'], 'GameKit diagnostics must share the SDK dist pin'
-          assert metadata['gamekit_diagnostics_sha256'] == 'b2abc40a6e5ca59b0b24b6c7fefa7492ea13b17686da86f61a8fff16be146ac5', 'GameKit diagnostics module hash changed'
-          assert metadata['gamekit_manifest_sha256'] == 'bb92d60e2f7f84397d9055f990ba99d6a4d61da2bf0c053acf90bf42dc379e53', 'GameKit manifest hash changed'
+          assert metadata['gamekit_diagnostics_sha256'] == 'bd077de55035f4e258d341318108b32613de5153d09aa5f6edca6ad31eedb4a4', 'GameKit diagnostics module hash changed'
+          assert metadata['gamekit_manifest_sha256'] == 'ef220fd3801549c88b0044c2bcfa92f4a7de40ce49626e0199ed8e5b1a58f2c0', 'GameKit manifest hash changed'
+          assert metadata['gamekit_bm_sha256'] == '00b3ff79285fc1e3568ed2cd32a4b9065bbcf5947586763087e756f722c5440b', 'GameKit bm.js hash changed'
+          assert metadata['gamekit_bm_ima_sha256'] == '6602a5589533b138e69c7812518c46417826c0a303ca4c47ba0b24201ba8eb97', 'GameKit bm-ima.js hash changed'
+          assert metadata['gamekit_save_sha256'] == '50164b43313c93dca7ebf076456a3b319b0825a0b5c6f5712af8d3286d604cfc', 'GameKit save.js hash changed'
           assert metadata['gamekit_interpolation_sha256'] == 'acad7ad93615633609a62e484bff918980fc84282840db9b5cd108e8f5bb133a', 'GameKit interpolation.js hash changed'
           assert metadata['gamekit_vector_assets_sha256'] == 'de7093c51d5ffd80d6bd716a0023a9b78586a1a9b10d607eb730109ba1af694c', 'GameKit vector-assets.js hash changed'
           assert metadata['gamekit_input_sha256'] == 'a969755a39702723b35b6a1503e9b2e53a431ea91845017474c979752fdfb51f', 'GameKit input.js hash changed'
@@ -142,12 +151,12 @@ jobs:
           assert metadata['gamekit_camera_sha256'] == '99c1be43b6a38945028d029a5ecc594f7ff6dfc71075305264930748cafe88b6', 'GameKit camera.js hash changed'
           assert metadata['gamekit_navigation_sha256'] == '2c8e12432f6eae5472418d80898c93af32f5b14dce8217f6fa75bd198893b417', 'GameKit navigation.js hash changed'
           assert metadata['gamekit_scenario_sha256'] == 'b21a2be85b497588589c796f8e95f932c464474cc4ea3f703a8718e96a9946ce', 'GameKit scenario.js hash changed'
-          assert metadata['gamekit_audio_sha256'] == 'f792c0b56b4829d20dfecb03f087bc435e377d9e772a7c5caa3611afef281d20', 'GameKit audio.js hash changed'
-          assert metadata['gamekit_rendering_sha256'] == 'dac868f1efd9eb8e12b5ae9874813e9944fe3e106eb2d6044856cc09f83c8835', 'GameKit rendering.js hash changed'
+          assert metadata['gamekit_audio_sha256'] == 'baf50e63457ccc7e66859ee9018049b0f53ef49e5b7c90b1395d2995bdcf6df1', 'GameKit audio.js hash changed'
+          assert metadata['gamekit_rendering_sha256'] == 'cf39f38e1644e2fdca168ee17ce556f09bddb05bfa4e8e89c310ce116d62d97e', 'GameKit rendering.js hash changed'
           assert metadata['gamekit_vector_loader_commit'] == metadata['gamekit_sdk_commit'], 'GameKit vector loader must share the SDK dist pin'
-          assert metadata['gamekit_vector_loader_sha256'] == 'a9d9eaa61d891fb1dd9d7d8ac9d9781fe2545cc2a7f8ede6202556c2a7a2f48f', 'GameKit vector-assets-loader.js hash changed'
-          assert metadata['gamekit_vector_loader_manifest_sha256'] == 'bb92d60e2f7f84397d9055f990ba99d6a4d61da2bf0c053acf90bf42dc379e53', 'GameKit vector loader dist manifest hash changed'
-          assert metadata['gamekit_vector_loader_version'] == '0.26.6', 'GameKit vector loader version changed'
+          assert metadata['gamekit_vector_loader_sha256'] == '277a44071e6c7294a14081cfcf2f8cf0e8f9fc72c7c67b40be20bbfb14966e03', 'GameKit vector-assets-loader.js hash changed'
+          assert metadata['gamekit_vector_loader_manifest_sha256'] == 'ef220fd3801549c88b0044c2bcfa92f4a7de40ce49626e0199ed8e5b1a58f2c0', 'GameKit vector loader dist manifest hash changed'
+          assert metadata['gamekit_vector_loader_version'] == '0.39.0', 'GameKit vector loader version changed'
           assert metadata['gamekit_vector_loader_manifest_sha256'] == metadata['gamekit_manifest_sha256'], 'GameKit module and loader manifest pins must match'
           assert metadata['vector_source_count'] == 49, 'Unexpected SVG source count'
           assert metadata['vector_source_bytes'] == 356397, 'Authored SVG payload changed'

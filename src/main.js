@@ -37,7 +37,7 @@ const DIAGNOSTICS_SHA256 = 'bd077de55035f4e258d341318108b32613de5153d09aa5f6edca
 const VECTOR_LOADER = 'https://cdn.jsdelivr.net/gh/byh-playground/bloom-gamekit@1a3ef3877dea431268c712cbe7b13b2600826119/vector-assets-loader.js';
 const VECTOR_LOADER_SHA256 = '277a44071e6c7294a14081cfcf2f8cf0e8f9fc72c7c67b40be20bbfb14966e03';
 const VECTOR_LOADER_MANIFEST_SHA256 = 'ef220fd3801549c88b0044c2bcfa92f4a7de40ce49626e0199ed8e5b1a58f2c0';
-const VERSION = '0.25.0', BUILD_ID = '20261031T-gamekit-v0.39.0-1a3ef38';
+const VERSION = '0.25.1', BUILD_ID = '20261031T-save-reset-1a3ef38';
 const $ = id => document.getElementById(id);
 document.querySelectorAll('[data-game-version]').forEach(el=>el.textContent='v'+VERSION);
 const loadtext = $('loadtext');translateDocument();document.title=tr('app.title');$('languageSelect').value=language();$('languageSelect').disabled=true;
@@ -93,6 +93,21 @@ function showSaveFailure(error){
   $('saveNoticeText').textContent=saveFailureText(error);$('saveNotice').hidden=false;
 }
 $('saveNoticeReload').addEventListener('click',()=>location.reload());
+// Every opened save, so a startup lock can offer to reset exactly the records that are locked.
+const openedSaves=[];
+// The lock stays until the player confirms; only then are the locked records replaced with create() and the game restarts.
+function offerSaveReset(lockedSaves){
+  if(!lockedSaves.length)return;
+  const start=$('saveResetStart'),confirm=$('saveResetConfirm'),accept=$('saveResetAccept'),cancel=$('saveResetCancel');
+  const ask=open=>{start.hidden=open;confirm.hidden=!open;(open?cancel:start).focus();};
+  start.onclick=()=>ask(true);cancel.onclick=()=>ask(false);
+  accept.onclick=async()=>{
+    accept.disabled=cancel.disabled=true;
+    try{for(const save of lockedSaves)await save.reset();location.reload();}
+    catch(error){console.error(error);loadtext.textContent=saveFailureText(error);accept.disabled=cancel.disabled=false;ask(false);}
+  };
+  $('saveReset').hidden=false;
+}
 const ERROR = error => {
   console.error(error);
   const message=String(error.message||error).replace(/[<>]/g,'');
@@ -111,7 +126,7 @@ try {
   // The adapter is the only isolation point: previews and the intro open every save in memory,
   // seeded with their fixed records, so they can never overwrite the player's saves.
   const savedStorage=isolatedScene?null:localStorageAdapter({prefix:'bounko-'});
-  const openSave=(options,isolatedData)=>createSave({...options,adapter:isolatedScene?memoryAdapter(isolatedData?{[options.key]:{...isolatedData,schema:options.version,revision:0}}:{}):savedStorage});
+  const openSave=(options,isolatedData)=>{const save=createSave({...options,adapter:isolatedScene?memoryAdapter(isolatedData?{[options.key]:{...isolatedData,schema:options.version,revision:0}}:{}):savedStorage});openedSaves.push(save);return save;};
   const watchExternalSave=save=>save.onExternalChange(()=>showSaveFailure({name:'SaveError',kind:'conflict'}));
   // Isolated frames show the parent's current language; nothing they change is written back.
   const PREFERENCES=openSave({key:'preferences',version:1,create:()=>({language:null,coachSeen:false}),validate(p){
@@ -3200,5 +3215,5 @@ try {
     if(previewScenario?.tutorial)sfx.setMuted(true);scenarioRunner.play();if(previewSkill&&!previewScenario.tutorial)void sfx.unlock();
   }
   window.addEventListener('pagehide',()=>window.__bloomImpulse.dispose(),{once:true});
-} catch(e) { if(e?.name==='SaveError')loadtext.textContent=saveFailureText(e);else if(diagnostics){try{diagnostics.report(e,{kind:'startup-exception',visibility:'fatal',origin:runtimePhase,cause:diagnosticContext()});}catch{}haltForRuntimeError();}else ERROR(e); }
+} catch(e) { if(e?.name==='SaveError'){loadtext.textContent=saveFailureText(e);offerSaveReset(openedSaves.filter(save=>save.locked));}else if(diagnostics){try{diagnostics.report(e,{kind:'startup-exception',visibility:'fatal',origin:runtimePhase,cause:diagnosticContext()});}catch{}haltForRuntimeError();}else ERROR(e); }
 

@@ -1080,5 +1080,9 @@ export default {
   "save.storage": "저장하지 못했습니다. 브라우저 저장 공간과 권한을 확인하세요.",
   "save.closed": "저장이 닫혔습니다. 새로고침하세요.",
   "save.failed": "저장하지 못했습니다. {{v0}}",
-  "save.reload": "새로고침"
+  "save.reload": "새로고침",
+  "save.reset": "기록 지우고 새로 시작",
+  "save.resetConfirm": "읽을 수 없는 저장만 지우고 새로 시작합니다. 지운 기록은 되돌릴 수 없습니다.",
+  "save.resetAccept": "지우고 새로 시작",
+  "save.resetCancel": "취소"
 };

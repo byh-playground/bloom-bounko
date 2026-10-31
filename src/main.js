@@ -16,32 +16,28 @@ if(previewScenario?.tutorial){document.body.classList.add('guide-scene');documen
 import {t as tr,language,languages,setLanguage,onLanguageChanged,translateDocument,localizedList,message,messageText,number,percent} from '../i18n.js';
 
 
-const KIT = 'https://cdn.jsdelivr.net/gh/byh-playground/bloom-gamekit@b83464e445efaf86d66499859d3d05463df2b22a/';
-const KIT_VERSION = '0.26.6';
-const KIT_SOURCE_COMMIT = '88630ef4dea7fd3a7fd7aad22090fe74cb3a6fbc';
-const KIT_MANIFEST_SHA256 = 'bb92d60e2f7f84397d9055f990ba99d6a4d61da2bf0c053acf90bf42dc379e53';
+const KIT = 'https://cdn.jsdelivr.net/gh/byh-playground/bloom-gamekit@1a3ef3877dea431268c712cbe7b13b2600826119/';
+const KIT_VERSION = '0.39.0';
+const KIT_SOURCE_COMMIT = 'd5c35c3d4fec366e672c9a5889104ea47a300683';
+const KIT_MANIFEST_SHA256 = 'ef220fd3801549c88b0044c2bcfa92f4a7de40ce49626e0199ed8e5b1a58f2c0';
 const KIT_INTERPOLATION_SHA256 = 'acad7ad93615633609a62e484bff918980fc84282840db9b5cd108e8f5bb133a';
 const KIT_VECTOR_ASSETS_SHA256 = 'de7093c51d5ffd80d6bd716a0023a9b78586a1a9b10d607eb730109ba1af694c';
-const KIT_RENDERING_SHA256 = 'dac868f1efd9eb8e12b5ae9874813e9944fe3e106eb2d6044856cc09f83c8835';
+const KIT_RENDERING_SHA256 = 'cf39f38e1644e2fdca168ee17ce556f09bddb05bfa4e8e89c310ce116d62d97e';
 const KIT_INPUT_SHA256 = 'a969755a39702723b35b6a1503e9b2e53a431ea91845017474c979752fdfb51f';
 const KIT_SIMLOOP_SHA256 = 'c25a8f7f4999e4fe8beb6b08167fa4d0934c34098db2bf912335e81db53c4ef8';
 const KIT_CAMERA_SHA256 = '99c1be43b6a38945028d029a5ecc594f7ff6dfc71075305264930748cafe88b6';
 const KIT_NAVIGATION_SHA256 = '2c8e12432f6eae5472418d80898c93af32f5b14dce8217f6fa75bd198893b417';
 const KIT_SCENARIO_SHA256 = 'b21a2be85b497588589c796f8e95f932c464474cc4ea3f703a8718e96a9946ce';
-const KIT_AUDIO_SHA256 = 'f792c0b56b4829d20dfecb03f087bc435e377d9e772a7c5caa3611afef281d20';
-const DIAGNOSTICS = 'https://cdn.jsdelivr.net/gh/byh-playground/bloom-gamekit@b83464e445efaf86d66499859d3d05463df2b22a/debug-tools.js';
-const DIAGNOSTICS_SHA256 = 'b2abc40a6e5ca59b0b24b6c7fefa7492ea13b17686da86f61a8fff16be146ac5';
-const VECTOR_LOADER = 'https://cdn.jsdelivr.net/gh/byh-playground/bloom-gamekit@b83464e445efaf86d66499859d3d05463df2b22a/vector-assets-loader.js';
-const VECTOR_LOADER_SHA256 = 'a9d9eaa61d891fb1dd9d7d8ac9d9781fe2545cc2a7f8ede6202556c2a7a2f48f';
-const VECTOR_LOADER_MANIFEST_SHA256 = 'bb92d60e2f7f84397d9055f990ba99d6a4d61da2bf0c053acf90bf42dc379e53';
-const BM_KIT = 'https://cdn.jsdelivr.net/gh/byh-playground/bloom-gamekit@c260d1f5c50c3171cc72e76019f3c5303c87bea8/';
-const BM_KIT_VERSION = '0.37.4';
-const BM_SHA256 = '00b3ff79285fc1e3568ed2cd32a4b9065bbcf5947586763087e756f722c5440b';
-const BM_IMA_SHA256 = '6602a5589533b138e69c7812518c46417826c0a303ca4c47ba0b24201ba8eb97';
-const SAVE_KIT = 'https://cdn.jsdelivr.net/gh/byh-playground/bloom-gamekit@53361a10c66cec705a15e7857831a4c21537e592/';
-const SAVE_KIT_VERSION = '0.37.6';
-const SAVE_SHA256 = 'cda1b1231df67104b9a3d8a1b07fa3303cb9881f19522f7c0de48c11dce6a75f';
-const VERSION = '0.24.0', BUILD_ID = '20261031T-gamekit-save-v0.37.6-53361a1';
+const KIT_AUDIO_SHA256 = 'baf50e63457ccc7e66859ee9018049b0f53ef49e5b7c90b1395d2995bdcf6df1';
+const KIT_BM_SHA256 = '00b3ff79285fc1e3568ed2cd32a4b9065bbcf5947586763087e756f722c5440b';
+const KIT_BM_IMA_SHA256 = '6602a5589533b138e69c7812518c46417826c0a303ca4c47ba0b24201ba8eb97';
+const KIT_SAVE_SHA256 = '50164b43313c93dca7ebf076456a3b319b0825a0b5c6f5712af8d3286d604cfc';
+const DIAGNOSTICS = 'https://cdn.jsdelivr.net/gh/byh-playground/bloom-gamekit@1a3ef3877dea431268c712cbe7b13b2600826119/debug-tools.js';
+const DIAGNOSTICS_SHA256 = 'bd077de55035f4e258d341318108b32613de5153d09aa5f6edca6ad31eedb4a4';
+const VECTOR_LOADER = 'https://cdn.jsdelivr.net/gh/byh-playground/bloom-gamekit@1a3ef3877dea431268c712cbe7b13b2600826119/vector-assets-loader.js';
+const VECTOR_LOADER_SHA256 = '277a44071e6c7294a14081cfcf2f8cf0e8f9fc72c7c67b40be20bbfb14966e03';
+const VECTOR_LOADER_MANIFEST_SHA256 = 'ef220fd3801549c88b0044c2bcfa92f4a7de40ce49626e0199ed8e5b1a58f2c0';
+const VERSION = '0.25.0', BUILD_ID = '20261031T-gamekit-v0.39.0-1a3ef38';
 const $ = id => document.getElementById(id);
 document.querySelectorAll('[data-game-version]').forEach(el=>el.textContent='v'+VERSION);
 const loadtext = $('loadtext');translateDocument();document.title=tr('app.title');$('languageSelect').value=language();$('languageSelect').disabled=true;
@@ -108,8 +104,8 @@ try {
   copyDiagnosticFn=copyDiagnostic;
   diagnosticCleanup=diagnostics.installGlobal(window,{onReport:recordGlobalRuntimeError});
   if (!window.Matter) throw new Error(tr("runtime.1"));
-  const [{WebGLDevice,VectorContext,PrimitivePainter}, {createVectorActor}, {createVectorAssetLoader}, {ActionState,createDOMInput}, {createLoop}, {petConfig,CompanionCollection,CompanionRoster,companionCapacity,companionPresentation,patternAngle}, {audioConfig,AudioPlayer}, {volume,snapshotVolumes,contactWindow,filterMatterVolumes,sweepVerticalContacts,groundArc,stepArc,DeathReason,hostile,receiveHit,receiveHeal,combatConfig,collisionDamage,ChargePool,UnitStatus,elementConfig,effectiveArmor,damageAfterArmor,mixin,Evasive,eliteEvasionConfig}, {enemyConfig,enemyClasses,enemyWave,enemyRefillWave,pickRefillSpecies,species,speciesConfig,bossSpecies,bossConfig}, {EnemyController,PetController,SummonController}, {CameraViewport,OrthographicProjection}, {RewardDrops,dropConfig}, {createNavigation}, {createScenario}, {RenderObject,PresentationRuntime}, {createSave,localStorageAdapter,memoryAdapter}] = await Promise.all([
-    import(KIT+'rendering.js'),import(KIT+'vector-assets.js'),import(VECTOR_LOADER),import(KIT+'input.js'),import(KIT+'simloop.js'),import('../pets.js'),import('../audio.js'),import('../abilities.js'),import('../enemies.js'),import('../controllers.js'),import(KIT+'camera.js'),import('../drops.js'),import(KIT+'navigation.js'),import(KIT+'scenario.js'),import(KIT+'interpolation.js'),import(SAVE_KIT+'save.js')
+  const [{WebGLDevice,VectorContext,PrimitivePainter}, {createVectorActor}, {createVectorAssetLoader}, {ActionState,createDOMInput}, {createLoop}, {petConfig,CompanionCollection,CompanionRoster,companionCapacity,companionPresentation,patternAngle}, {audioConfig,audioSettings,AudioPlayer}, {volume,snapshotVolumes,contactWindow,filterMatterVolumes,sweepVerticalContacts,groundArc,stepArc,DeathReason,hostile,receiveHit,receiveHeal,combatConfig,collisionDamage,ChargePool,UnitStatus,elementConfig,effectiveArmor,damageAfterArmor,mixin,Evasive,eliteEvasionConfig}, {enemyConfig,enemyClasses,enemyWave,enemyRefillWave,pickRefillSpecies,species,speciesConfig,bossSpecies,bossConfig}, {EnemyController,PetController,SummonController}, {CameraViewport,OrthographicProjection}, {RewardDrops,dropConfig}, {createNavigation}, {createScenario}, {RenderObject,PresentationRuntime}, {createSave,localStorageAdapter,memoryAdapter}] = await Promise.all([
+    import(KIT+'rendering.js'),import(KIT+'vector-assets.js'),import(VECTOR_LOADER),import(KIT+'input.js'),import(KIT+'simloop.js'),import('../pets.js'),import('../audio.js'),import('../abilities.js'),import('../enemies.js'),import('../controllers.js'),import(KIT+'camera.js'),import('../drops.js'),import(KIT+'navigation.js'),import(KIT+'scenario.js'),import(KIT+'interpolation.js'),import(KIT+'save.js')
   ]);
   runtimePhase='initialization';
   // The adapter is the only isolation point: previews and the intro open every save in memory,
@@ -127,10 +123,12 @@ try {
   const vectorAssetLoader=createVectorAssetLoader({fetch:window.fetch.bind(window),maxEntries:VECTOR_ASSET_MANIFEST.length});
   const VECTOR_ASSETS=await loadVectorAssets({loader:vectorAssetLoader,manifest:VECTOR_ASSET_MANIFEST,baseUrl:document.baseURI,maxBytes:64*1024});
   const M = window.Matter;
-  const sfx=new AudioPlayer(isolatedScene?{...audioConfig,storageKey:null}:audioConfig);
+  // Sound settings use the same adapter point; preview frames start from the parent's current mix.
   const previewAudio=previewSkill&&window.parent!==window?window.parent.__bloomImpulse?.getAudio():null;
+  const AUDIO_SETTINGS=openSave(audioSettings(audioConfig),previewAudio?{volume:previewAudio.volume,muted:previewAudio.muted,categories:previewAudio.categoryVolumes}:null);
+  await AUDIO_SETTINGS.load();watchExternalSave(AUDIO_SETTINGS);
+  const sfx=new AudioPlayer({...audioConfig,settings:AUDIO_SETTINGS,onSaveError:showSaveFailure});
   if(introScene)sfx.setMuted(true);
-  if(previewAudio){sfx.setVolume(previewAudio.volume);sfx.setMuted(previewAudio.muted);for(const [category,value]of Object.entries(previewAudio.categoryVolumes))sfx.setCategoryVolume(category,value);}
   let menuRouter=null,introHost=null,introChapter=0,introDashPending=false,introMetrics=[];
   let demoPressUntil=0,demoTap=null,guideDemo=null,previewHost=null,scenarioRunner=null,previewOrigin=null,previewHitCount=0;
   function playImpact(speed,sound=null){return sfx.play(sound||(speed<500?'impactLight':speed<1000?'impactMedium':'impactHeavy'),Math.min(1,.4+speed/1600));}
@@ -3151,7 +3149,7 @@ try {
   function resumeMenuGame(){if(menuRouter&&menuRouter.current.screen!=='main')return;loop.resetTiming();lastFrame=performance.now();loop.start();}
   // 광고는 Google 공개 샘플 태그(테스트 전용)라 주소에 ads=test가 있을 때만 켭니다. 소리·시뮬레이션 정지는 게임이 adstart/adend에서 합니다.
   if(new URLSearchParams(location.search+'&'+location.hash.slice(1)).get('ads')==='test'&&!isolatedScene){
-    const [{createBm},{createImaAdapter,IMA_SAMPLE_TAGS}]=await Promise.all([import(BM_KIT+'bm.js'),import(BM_KIT+'bm-ima.js')]);
+    const [{createBm},{createImaAdapter,IMA_SAMPLE_TAGS}]=await Promise.all([import(KIT+'bm.js'),import(KIT+'bm-ima.js')]);
     adsBm=createBm({adapter:createImaAdapter({adTagUrl:IMA_SAMPLE_TAGS.linear})});
     adsBm.on('adstart',()=>{loop.stop();sfx.stopAll();input.releaseAll('ad');});
     adsBm.on('adend',resumeMenuGame);

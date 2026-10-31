@@ -10,7 +10,7 @@ const OUT = resolve('artifacts/runtime-diagnostics');
 const BASELINE_ROOT = process.env.BASELINE_ROOT ? resolve(process.env.BASELINE_ROOT) : null;
 const VECTOR_BASELINE = JSON.parse(await readFile(resolve('tests/fixtures/vector-assets-pr58-fingerprint.json'), 'utf8'));
 const evidence = {
-  test: 'Chromium desktop and touch-emulated mobile flows: tick-58 launch, GameKit 0.26.6, global errors, loop stop, restart, manual copy',
+  test: 'Chromium desktop and touch-emulated mobile flows: tick-58 launch, GameKit 0.39.0, global errors, loop stop, restart, manual copy',
   startedAt: new Date().toISOString(),
   timeBudgetMs: 150_000,
   baseline: null,
@@ -191,8 +191,8 @@ try {
     }
   });
   const candidateVersion = await boot(page, server.url);
-  evidence.candidate = { ...candidateVersion, sdkCommit: 'b83464e445efaf86d66499859d3d05463df2b22a', sdkSourceCommit: '88630ef4dea7fd3a7fd7aad22090fe74cb3a6fbc', sdkVersion: '0.26.6', sdkManifestSha256: 'bb92d60e2f7f84397d9055f990ba99d6a4d61da2bf0c053acf90bf42dc379e53', vectorLoaderCommit: 'b83464e445efaf86d66499859d3d05463df2b22a', vectorLoaderVersion: '0.26.6', vectorLoaderSha256: 'a9d9eaa61d891fb1dd9d7d8ac9d9781fe2545cc2a7f8ede6202556c2a7a2f48f', vectorLoaderManifestSha256: 'bb92d60e2f7f84397d9055f990ba99d6a4d61da2bf0c053acf90bf42dc379e53' };
-  assert.equal(candidateVersion.version, '0.24.0');
+  evidence.candidate = { ...candidateVersion, sdkCommit: '1a3ef3877dea431268c712cbe7b13b2600826119', sdkSourceCommit: 'd5c35c3d4fec366e672c9a5889104ea47a300683', sdkVersion: '0.39.0', sdkManifestSha256: 'ef220fd3801549c88b0044c2bcfa92f4a7de40ce49626e0199ed8e5b1a58f2c0', vectorLoaderCommit: '1a3ef3877dea431268c712cbe7b13b2600826119', vectorLoaderVersion: '0.39.0', vectorLoaderSha256: '277a44071e6c7294a14081cfcf2f8cf0e8f9fc72c7c67b40be20bbfb14966e03', vectorLoaderManifestSha256: 'ef220fd3801549c88b0044c2bcfa92f4a7de40ce49626e0199ed8e5b1a58f2c0' };
+  assert.equal(candidateVersion.version, '0.25.0');
   const vectorAssetFingerprint = await page.evaluate(async () => {
     const canonical = value => {
       if (Array.isArray(value)) return `[${value.map(canonical).join(',')}]`;
@@ -337,7 +337,7 @@ try {
   const mobilePageErrors = [];
   mobilePage.on('pageerror', error => mobilePageErrors.push(error.message));
   const mobileVersion = await boot(mobilePage, server.url);
-  assert.equal(mobileVersion.version, '0.24.0');
+  assert.equal(mobileVersion.version, '0.25.0');
   await startRun(mobilePage);
   await mobilePage.waitForFunction(() => window.__bloomImpulse.getState().tick >= 52);
   await mobilePage.evaluate(() => {

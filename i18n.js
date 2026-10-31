@@ -2,18 +2,16 @@ import i18next from 'https://cdn.jsdelivr.net/npm/i18next@26.4.3/dist/esm/i18nex
 import ko from './locales/ko.js';
 import en from './locales/en.js';
 
-const storageKey='bounko-language-v1';
 export const languages=['ko','en'];
 const normalized=value=>typeof value==='string'?value.toLowerCase().split('-')[0]:null;
-let saved;
-try{saved=localStorage.getItem(storageKey);}catch{}
-const initial=languages.includes(saved)?saved:(navigator.languages||[navigator.language]).map(normalized).find(code=>languages.includes(code))||'en';
+// The game's preferences save owns the chosen language; until it loads, the browser language applies.
+const initial=(navigator.languages||[navigator.language]).map(normalized).find(code=>languages.includes(code))||'en';
 await i18next.init({lng:initial,supportedLngs:languages,load:'languageOnly',fallbackLng:'en',
   keySeparator:false,resources:{ko:{translation:ko},en:{translation:en}},interpolation:{escapeValue:false}});
 i18next.services.formatter.addCached('gameNumber',lng=>{const formatter=new Intl.NumberFormat(lng);return value=>typeof value==='number'?formatter.format(value):value;});
 export const t=(key,values)=>i18next.t(key,values);
 export const language=()=>i18next.resolvedLanguage;
-export async function setLanguage(code){if(!languages.includes(code))return;try{localStorage.setItem(storageKey,code);}catch{}await i18next.changeLanguage(code);}
+export async function setLanguage(code){if(!languages.includes(code))return;await i18next.changeLanguage(code);}
 export const onLanguageChanged=listener=>i18next.on('languageChanged',listener);
 const numberFormats=new Map();
 export function number(value,options={}){const key=language()+JSON.stringify(options);if(!numberFormats.has(key))numberFormats.set(key,new Intl.NumberFormat(language(),options));return numberFormats.get(key).format(value);}

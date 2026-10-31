@@ -235,7 +235,7 @@ export default {
   "dom.wiki_runtime.html.5": "<td>Bloom GameKit ActionState/createDOMInput</td><td>Normalize DOM input and submit input queue</td>",
   "dom.wiki_runtime.html.6": "<td>Bloom GameKit createLoop</td><td>Separate fixed 60 TPS simulation from RAF rendering</td>",
   "dom.wiki_runtime.html.7": "<td>BOUNKO</td><td>Stages, attacks, rules, damage, progression, targets, elements, VFX meaning</td>",
-  "dom.wiki_runtime.html.8": "<td>localStorage</td><td>Collected growth, defeats, unlocks, stats, companions, pending rewards; no active map/combat save</td>",
+  "dom.wiki_runtime.html.8": "<td>GameKit save · localStorage</td><td>Progress (collected growth, defeats, unlocks, stats, companions, pending rewards) and settings (language, controls coach); no active map/combat save. Previews and the intro use memory-only saves</td>",
   "dom.wiki_runtime.html.9": "The HTML entry imports local game modules and language catalogs. First load needs Matter.js CDN, commit-pinned Bloom GameKit ESM, and pinned i18next ESM. A new game Engine is created per run. Tick order: input→time/state→AI→physics/collision→post-processing. Lobby overlays do not advance combat. Language refresh changes presentation without resetting simulation or progress.",
   "dom.wiki_runtime.html.10": "<b>Time</b>: durations/cooldowns use milliseconds. Physics converts dt to seconds. Render frame count must not cause duplicate damage/AI updates.",
   "dom.wiki_config.html.1": "20. All base Config values (from runtime)",
@@ -1074,5 +1074,11 @@ export default {
   "runtime.exception.copy": "Copy report",
   "runtime.exception.reload": "Reload",
   "runtime.exception.copied": "The report was copied to the clipboard.",
-  "runtime.exception.manualCopy": "The report is selected. Long-press it and choose Copy."
+  "runtime.exception.manualCopy": "The report is selected. Long-press it and choose Copy.",
+  "save.unreadable": "Saved data could not be read. The existing save was kept as is, not overwritten.",
+  "save.conflict": "Another tab saved first. Changes in this tab are not saved; reload the page.",
+  "save.storage": "Could not save. Check browser storage space and permissions.",
+  "save.closed": "Saving is closed. Reload the page.",
+  "save.failed": "Could not save. {{v0}}",
+  "save.reload": "Reload"
 };

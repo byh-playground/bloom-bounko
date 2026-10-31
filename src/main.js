@@ -13,7 +13,7 @@ const introScene=new URLSearchParams(location.search).get('intro')==='1',isolate
 if(isolatedScene)document.body.classList.add('preview-scene');
 if(introScene)document.body.classList.add('intro-scene');
 if(previewScenario?.tutorial){document.body.classList.add('guide-scene');document.body.dataset.guideScene=previewScenario.tutorial;}
-import {t as tr,language,setLanguage,onLanguageChanged,translateDocument,localizedList,message,messageText,number,percent} from '../i18n.js';
+import {t as tr,language,languages,setLanguage,onLanguageChanged,translateDocument,localizedList,message,messageText,number,percent} from '../i18n.js';
 
 
 const KIT = 'https://cdn.jsdelivr.net/gh/byh-playground/bloom-gamekit@b83464e445efaf86d66499859d3d05463df2b22a/';
@@ -38,7 +38,10 @@ const BM_KIT = 'https://cdn.jsdelivr.net/gh/byh-playground/bloom-gamekit@c260d1f
 const BM_KIT_VERSION = '0.37.4';
 const BM_SHA256 = '00b3ff79285fc1e3568ed2cd32a4b9065bbcf5947586763087e756f722c5440b';
 const BM_IMA_SHA256 = '6602a5589533b138e69c7812518c46417826c0a303ca4c47ba0b24201ba8eb97';
-const VERSION = '0.23.9', BUILD_ID = '20261029T-gamekit-v0.26.6-b83464e';
+const SAVE_KIT = 'https://cdn.jsdelivr.net/gh/byh-playground/bloom-gamekit@53361a10c66cec705a15e7857831a4c21537e592/';
+const SAVE_KIT_VERSION = '0.37.6';
+const SAVE_SHA256 = 'cda1b1231df67104b9a3d8a1b07fa3303cb9881f19522f7c0de48c11dce6a75f';
+const VERSION = '0.24.0', BUILD_ID = '20261031T-gamekit-save-v0.37.6-53361a1';
 const $ = id => document.getElementById(id);
 document.querySelectorAll('[data-game-version]').forEach(el=>el.textContent='v'+VERSION);
 const loadtext = $('loadtext');translateDocument();document.title=tr('app.title');$('languageSelect').value=language();$('languageSelect').disabled=true;
@@ -87,6 +90,13 @@ $('fatalError').addEventListener('keydown',event=>{
   if(event.shiftKey&&index===0){event.preventDefault();focusable[focusable.length-1].focus();}
   else if(!event.shiftKey&&index===focusable.length-1){event.preventDefault();focusable[0].focus();}
 });
+// Save failures stay visible until reload. Unreadable records are preserved by the save module and never replaced.
+const saveFailureText=error=>error?.name==='SaveError'?tr('save.'+error.kind):tr('save.failed',{v0:String(error?.message||error)});
+function showSaveFailure(error){
+  console.error(error);
+  $('saveNoticeText').textContent=saveFailureText(error);$('saveNotice').hidden=false;
+}
+$('saveNoticeReload').addEventListener('click',()=>location.reload());
 const ERROR = error => {
   console.error(error);
   const message=String(error.message||error).replace(/[<>]/g,'');
@@ -98,10 +108,22 @@ try {
   copyDiagnosticFn=copyDiagnostic;
   diagnosticCleanup=diagnostics.installGlobal(window,{onReport:recordGlobalRuntimeError});
   if (!window.Matter) throw new Error(tr("runtime.1"));
-  const [{WebGLDevice,VectorContext,PrimitivePainter}, {createVectorActor}, {createVectorAssetLoader}, {ActionState,createDOMInput}, {createLoop}, {petConfig,CompanionCollection,CompanionRoster,companionCapacity,companionPresentation,patternAngle}, {audioConfig,AudioPlayer}, {volume,snapshotVolumes,contactWindow,filterMatterVolumes,sweepVerticalContacts,groundArc,stepArc,DeathReason,hostile,receiveHit,receiveHeal,combatConfig,collisionDamage,ChargePool,UnitStatus,elementConfig,effectiveArmor,damageAfterArmor,mixin,Evasive,eliteEvasionConfig}, {enemyConfig,enemyClasses,enemyWave,enemyRefillWave,pickRefillSpecies,species,speciesConfig,bossSpecies,bossConfig}, {EnemyController,PetController,SummonController}, {CameraViewport,OrthographicProjection}, {RewardDrops,dropConfig}, {createNavigation}, {createScenario}, {RenderObject,PresentationRuntime}] = await Promise.all([
-    import(KIT+'rendering.js'),import(KIT+'vector-assets.js'),import(VECTOR_LOADER),import(KIT+'input.js'),import(KIT+'simloop.js'),import('../pets.js'),import('../audio.js'),import('../abilities.js'),import('../enemies.js'),import('../controllers.js'),import(KIT+'camera.js'),import('../drops.js'),import(KIT+'navigation.js'),import(KIT+'scenario.js'),import(KIT+'interpolation.js')
+  const [{WebGLDevice,VectorContext,PrimitivePainter}, {createVectorActor}, {createVectorAssetLoader}, {ActionState,createDOMInput}, {createLoop}, {petConfig,CompanionCollection,CompanionRoster,companionCapacity,companionPresentation,patternAngle}, {audioConfig,AudioPlayer}, {volume,snapshotVolumes,contactWindow,filterMatterVolumes,sweepVerticalContacts,groundArc,stepArc,DeathReason,hostile,receiveHit,receiveHeal,combatConfig,collisionDamage,ChargePool,UnitStatus,elementConfig,effectiveArmor,damageAfterArmor,mixin,Evasive,eliteEvasionConfig}, {enemyConfig,enemyClasses,enemyWave,enemyRefillWave,pickRefillSpecies,species,speciesConfig,bossSpecies,bossConfig}, {EnemyController,PetController,SummonController}, {CameraViewport,OrthographicProjection}, {RewardDrops,dropConfig}, {createNavigation}, {createScenario}, {RenderObject,PresentationRuntime}, {createSave,localStorageAdapter,memoryAdapter}] = await Promise.all([
+    import(KIT+'rendering.js'),import(KIT+'vector-assets.js'),import(VECTOR_LOADER),import(KIT+'input.js'),import(KIT+'simloop.js'),import('../pets.js'),import('../audio.js'),import('../abilities.js'),import('../enemies.js'),import('../controllers.js'),import(KIT+'camera.js'),import('../drops.js'),import(KIT+'navigation.js'),import(KIT+'scenario.js'),import(KIT+'interpolation.js'),import(SAVE_KIT+'save.js')
   ]);
   runtimePhase='initialization';
+  // The adapter is the only isolation point: previews and the intro open every save in memory,
+  // seeded with their fixed records, so they can never overwrite the player's saves.
+  const savedStorage=isolatedScene?null:localStorageAdapter({prefix:'bounko-'});
+  const openSave=(options,isolatedData)=>createSave({...options,adapter:isolatedScene?memoryAdapter(isolatedData?{[options.key]:{...isolatedData,schema:options.version,revision:0}}:{}):savedStorage});
+  const watchExternalSave=save=>save.onExternalChange(()=>showSaveFailure({name:'SaveError',kind:'conflict'}));
+  // Isolated frames show the parent's current language; nothing they change is written back.
+  const PREFERENCES=openSave({key:'preferences',version:1,create:()=>({language:null,coachSeen:false}),validate(p){
+    if(p.language!==null&&!languages.includes(p.language))throw new Error('preferences.language');
+    if(typeof p.coachSeen!=='boolean')throw new Error('preferences.coachSeen');
+  }},window.parent!==window?{language:window.parent.document.documentElement.lang,coachSeen:true}:null);
+  await PREFERENCES.load();watchExternalSave(PREFERENCES);
+  if(PREFERENCES.data.language&&PREFERENCES.data.language!==language()){await setLanguage(PREFERENCES.data.language);translateDocument();document.title=tr('app.title');$('languageSelect').value=language();}
   const vectorAssetLoader=createVectorAssetLoader({fetch:window.fetch.bind(window),maxEntries:VECTOR_ASSET_MANIFEST.length});
   const VECTOR_ASSETS=await loadVectorAssets({loader:vectorAssetLoader,manifest:VECTOR_ASSET_MANIFEST,baseUrl:document.baseURI,maxBytes:64*1024});
   const M = window.Matter;
@@ -176,13 +198,6 @@ try {
   let stage={index:1,phase:'WAVE',waveKills:0,killTarget:7,startedAtMs:0,transitionUntilMs:0,boss:null,patternLog:[],themeId:'garden',layoutId:'open',radius:550,targetPopulation:4,mapTier:0,mapStart:1},arenaVertices=[],boundaryWalls=[],bossObstaclesBroken=0;
   runtimeStateSnapshot=()=>({runtimePhase,phase,mode,tick,timeMs,stage:stage.index,stagePhase:stage.phase,waveKills:stage.waveKills,boss:stage.boss?{state:stage.boss.state??null,hp:stage.boss.hp??null,pattern:stage.boss.pattern??null}:null,hp:health,units:unitsById.size,seed:randomSeed});
    let terrainDecor=[],terrainChannels=[],generationStats={retries:0,connectivity:1,clearLane:0,obstacles:0},stageHistory=[],stageBasePlayableArea=0,bossVisits={};
-  // The current Definition owns saved investments. Keep kills and valid choices;
-  // omit removed IDs/invalid prerequisites so their spent points are refunded.
-  // No old-ID aliases or translation path; only this product-owned key persists.
-  const LEGACY_TECH_KEY='bloom-impulse-tech-v1';
-  const PREVIOUS_TECH_KEY='bloom-impulse-progression-v2';
-  const TECH_SAVE_KEY='bloom-impulse-progression-v3';
-  if(!isolatedScene)try { localStorage.removeItem(LEGACY_TECH_KEY); localStorage.removeItem(PREVIOUS_TECH_KEY); } catch(e) {}
   const TECH_NODES=Object.freeze([
     {id:'echo',branch:'chain',get name(){return tr("runtime.2");},symbol:'↻',cost:1,requires:[],get desc(){return tr("runtime.3");}},
     {id:'autoChain',branch:'chain',get name(){return tr("runtime.4");},symbol:'◉',cost:2,requires:['echo'],get desc(){return tr("runtime.5");}},
@@ -242,19 +257,24 @@ try {
   const STAT_REQUIREMENTS={criticalDamage:{criticalChance:1}};
   const statPathReady=(id,levels)=>Object.entries(STAT_REQUIREMENTS[id]??{}).every(([parent,level])=>levels[parent]>=level);
   function progressionLevel(k){return Math.floor(Math.sqrt(k+1));}
-  function loadTech(){if(introScene)return {kills:0,defeats:0,unlocked:new Set(['echo','autoChain','ricochet','relay','shadowCapacity1','shadowCapacity2','shadowRecharge1','shadowRecharge2','momentum','spore','conduct','relayArc','ignite','spreadFlame','laserBloom','chainDrive','elasticBlast']),statLevels:Object.fromEntries(STAT_UPGRADES.map(([key])=>[key,key==='petSlots'?1:0])),ultimates:{slots:[]},companions:{inventory:[{id:1,speciesId:'lancer',kind:'pet',grade:2},{id:2,speciesId:'brute',kind:'pet',grade:2}],slots:[null,null],nextId:3}};if(previewSkill)return {kills:0,defeats:0,unlocked:new Set(previewScenario.tech||[previewSkill]),statLevels:Object.fromEntries(STAT_UPGRADES.map(([key])=>[key,0])),ultimates:{slots:C.ultimates.skills[previewSkill]?[previewSkill]:[]}};try{const p=JSON.parse(localStorage.getItem(TECH_SAVE_KEY)||'null');
-    if(p&&Number.isSafeInteger(p.kills)&&p.kills>=0&&Array.isArray(p.unlocked)&&p.statLevels&&typeof p.statLevels==='object'){
-      const selected=new Set();for(const node of TECH_NODES)if(p.unlocked.includes(node.id)&&node.requires.every(id=>selected.has(id)))selected.add(node.id);
-      const levels={};for(const [key,,,,,maxLevel=500] of STAT_UPGRADES)levels[key]=Math.max(0,Math.min(maxLevel,Number.isSafeInteger(p.statLevels[key])?p.statLevels[key]:0));
-      for(const [key] of STAT_UPGRADES)if(!statPathReady(key,levels))levels[key]=0;
-      const spent=TECH_NODES.reduce((sum,n)=>sum+(selected.has(n.id)?n.cost:0),0)+Object.values(levels).reduce((sum,n)=>sum+n,0);
-      const budget=progressionLevel(p.kills)-1;let used=spent;
-      // Revalidate against the current Definition; discard unaffordable terminal nodes without resetting growth.
-      if(used>budget)for(const node of [...TECH_NODES].reverse())if(selected.has(node.id)){selected.delete(node.id);used-=node.cost;if(used<=budget)break;}
-      if(used<=budget)return {kills:p.kills,defeats:Number.isSafeInteger(p.defeats)&&p.defeats>=p.kills?p.defeats:p.kills,unlocked:selected,statLevels:levels,companions:p.companions,pendingDrops:p.pendingDrops,ultimates:p.ultimates,themeProgress:p.themeProgress};
-    }
-  }catch(e){}return {kills:0,defeats:0,unlocked:new Set(),statLevels:Object.fromEntries(STAT_UPGRADES.map(([key])=>[key,0]))};}
-  const tech=loadTech();
+  const statLevelsAt=level=>Object.fromEntries(STAT_UPGRADES.map(([key])=>[key,key==='petSlots'?level:0]));
+  // Saved progression must match the current Definition exactly; a mismatch is unreadable, never repaired.
+  // Prerequisites and budget are enforced by learnTech/learnStat, so fixed preview records may unlock a lone skill.
+  function validateProgress(p){
+    const fail=field=>{throw new Error('progress.'+field);};
+    if(!Number.isSafeInteger(p.kills)||p.kills<0)fail('kills');
+    if(!Number.isSafeInteger(p.defeats)||p.defeats<0)fail('defeats');
+    if(!Array.isArray(p.unlocked)||new Set(p.unlocked).size!==p.unlocked.length||!p.unlocked.every(id=>TECH_NODES.some(node=>node.id===id)))fail('unlocked');
+    if(!p.statLevels||typeof p.statLevels!=='object'||Object.keys(p.statLevels).length!==STAT_UPGRADES.length)fail('statLevels');
+    for(const [key,,,,,maxLevel=500] of STAT_UPGRADES){const n=p.statLevels[key];if(!Number.isSafeInteger(n)||n<0||n>maxLevel)fail('statLevels.'+key);}
+    for(const field of ['companions','pendingDrops','ultimates','themeProgress'])if(p[field]!==null&&(typeof p[field]!=='object'||Array.isArray(p[field])))fail(field);
+  }
+  const isolatedProgress=introScene?{kills:0,defeats:0,unlocked:['echo','autoChain','ricochet','relay','shadowCapacity1','shadowCapacity2','shadowRecharge1','shadowRecharge2','momentum','spore','conduct','relayArc','ignite','spreadFlame','laserBloom','chainDrive','elasticBlast'],statLevels:statLevelsAt(1),ultimates:{slots:[]},companions:{inventory:[{id:1,speciesId:'lancer',kind:'pet',grade:2},{id:2,speciesId:'brute',kind:'pet',grade:2}],slots:[null,null],nextId:3},pendingDrops:null,themeProgress:null}
+    :previewSkill?{kills:0,defeats:0,unlocked:previewScenario.tech||[previewSkill],statLevels:statLevelsAt(0),ultimates:{slots:C.ultimates.skills[previewSkill]?[previewSkill]:[]},companions:null,pendingDrops:null,themeProgress:null}:null;
+  const PROGRESS=openSave({key:'progress',version:1,validate:validateProgress,
+    create:()=>({kills:0,defeats:0,unlocked:[],statLevels:statLevelsAt(0),companions:null,pendingDrops:null,ultimates:null,themeProgress:null})},isolatedProgress);
+  await PROGRESS.load();watchExternalSave(PROGRESS);
+  const tech={...structuredClone(PROGRESS.data),unlocked:new Set(PROGRESS.data.unlocked)};
   const ultimateLoadout=new UltimateLoadout(C.ultimates,tech.ultimates);delete tech.ultimates;
   const ultimateRunner=new UltimateRunner(ultimateLoadout,{
     valid:()=>phase==='PLAYING'&&mode!=='DEAD'&&(stage.phase==='WAVE'||stage.phase==='BOSS'),
@@ -270,7 +290,7 @@ try {
   const hasTech=id=>tech.unlocked.has(id);
   const techSpent=()=>TECH_NODES.reduce((sum,n)=>sum+(hasTech(n.id)?n.cost:0),0)+Object.values(tech.statLevels).reduce((sum,n)=>sum+n,0);
   const availableTech=()=>Math.max(0,progressionLevel(tech.kills)-1-techSpent());
-  function persistTech(){if(isolatedScene||claimingDrops)return;try{localStorage.setItem(TECH_SAVE_KEY,JSON.stringify({kills:tech.kills,defeats:tech.defeats,unlocked:[...tech.unlocked],statLevels:tech.statLevels,companions:companions.snapshot(),pendingDrops:lootDrops.snapshot(),ultimates:ultimateLoadout.save(),themeProgress:themeProgress.snapshot()}));}catch(e){}}
+  function persistTech(){if(claimingDrops)return;const snapshot={kills:tech.kills,defeats:tech.defeats,unlocked:[...tech.unlocked],statLevels:{...tech.statLevels},companions:companions.snapshot(),pendingDrops:lootDrops.snapshot(),ultimates:ultimateLoadout.save(),themeProgress:themeProgress.snapshot()};PROGRESS.update(draft=>{Object.assign(draft,snapshot);}).catch(showSaveFailure);}
   function applyTech(){ultimateLoadout.configure(tech.unlocked);applyEvadeTech();applyAttackAmmoTech();C.chain.enabled=hasTech('echo');C.chain.followKill=hasTech('relay');
     C.augment.spore.enabled=hasTech('spore');C.augment.momentum.enabled=hasTech('momentum');
     for(const [key,,label,rate,kind] of STAT_UPGRADES){const n=tech.statLevels[key];const base=BASE_STATS[key];
@@ -298,7 +318,7 @@ try {
     evadeCharges=clamp(evadeCharges+C.evade.maxCharges-oldMax,0,C.evade.maxCharges);
     evadeRefillAtMs=evadeCharges<C.evade.maxCharges?timeMs+(1-progress)*C.evade.rechargeMs:0;
   }
-  applyTech();persistTech(); // Save only the current Definition; removed investments become available points.
+  applyTech();
   function recordGrowth(amount){const level=progressionLevel(tech.kills);tech.kills+=amount;if(progressionLevel(tech.kills)>level)sfx.play('level');}
   function learnTech(id){const node=TECH_NODES.find(n=>n.id===id);if(!node||hasTech(id)||!node.requires.every(hasTech)||availableTech()<node.cost)return false;
     tech.unlocked.add(id);sfx.play('upgrade');applyTech();persistTech();updateTechUi();ringFx(player.position.x,player.position.y,100,[1,.86,.48,1],680);burst(player.position.x,player.position.y,180,22,[1,.86,.48,1]);return true;}
@@ -876,7 +896,7 @@ try {
     if(stageHistory.length>20)stageHistory.shift();
     petRoster.enterStage();if(index>1)sfx.play('themeStart');
     stageNotice(message('ui.stage',{count:index}),C.stage.entryNoticeMs,'stage');
-    if(!isolatedScene&&phase==='PLAYING'){themeProgress.enter(theme.id);persistTech();}
+    if(phase==='PLAYING'){themeProgress.enter(theme.id);persistTech();}
   }
   function stageNotice(message,durationMs,kind){
     const priority=C.stage.noticePriority[kind];
@@ -933,7 +953,7 @@ try {
 
   };
   function onEnemyKilled(e){
-    if(e===stage.boss){if(!isolatedScene&&phase==='PLAYING'&&health>0&&themeProgress.recordBossDefeat(stage,e))persistTech();finishStage();return;}
+    if(e===stage.boss){if(phase==='PLAYING'&&health>0&&themeProgress.recordBossDefeat(stage,e))persistTech();finishStage();return;}
     if(e.isSummon)return;
     if(stage.phase==='WAVE'){
       stage.waveKills++;
@@ -2885,7 +2905,7 @@ try {
   function startRun(){
     menuRouter?.go({screen:'main'},{replace:true});
     openUltimates(false);openPets(false);openGuide(false);openWiki(false);openTech(false);toggleSettings(false);reset(isolatedScene?1:themeProgress.startStage);input.releaseAll();actions.consume();phase='PLAYING';
-    if(!isolatedScene){themeProgress.enter(stage.themeId);persistTech();beginPlayCoach();}
+    themeProgress.enter(stage.themeId);persistTech();beginPlayCoach();
     sfx.play('themeStart');$('lobby').classList.add('hidden');document.body.classList.remove('lobby-active');
     pending.length=0;loop.resetTiming?.();if(!isolatedScene)canvas.focus({preventScroll:true});
   }
@@ -2974,14 +2994,12 @@ try {
   }
   $('wikiSearch').addEventListener('input',event=>wikiSearch(event.target.value));
   $('wikiMenu').addEventListener('click',()=>$('wikiSidebar').classList.toggle('mobile-open'));
-  const COACH_KEY='bounko-controls-seen';
   let coachEnabled=false,coachBaseline={launch:0,hits:0,evade:0},coachText='';
   function beginPlayCoach(force=false){
     if(isolatedScene)return;
-    let seen=false;try{seen=localStorage.getItem(COACH_KEY)==='1';}catch{}
-    coachEnabled=force||!seen;coachBaseline={launch:launchCount,hits,evade:evadeActions};coachText='';
+    coachEnabled=force||!PREFERENCES.data.coachSeen;coachBaseline={launch:launchCount,hits,evade:evadeActions};coachText='';
   }
-  function dismissPlayCoach(){coachEnabled=false;$('playCoach').hidden=true;try{localStorage.setItem(COACH_KEY,'1');}catch{}canvas.focus({preventScroll:true});}
+  function dismissPlayCoach(){coachEnabled=false;$('playCoach').hidden=true;PREFERENCES.update(p=>{if(p.coachSeen)return false;p.coachSeen=true;}).catch(showSaveFailure);canvas.focus({preventScroll:true});}
   function updatePlayCoach(){
     const shown=coachEnabled&&!isolatedScene&&phase==='PLAYING'&&!gameplayInputBlocked();$('playCoach').hidden=!shown;if(!shown)return;
     const touch=matchMedia('(pointer:coarse)').matches;
@@ -2992,7 +3010,7 @@ try {
   }
   $('playCoachClose').onclick=dismissPlayCoach;
   $('coachReplay').onclick=()=>{toggleSettings(false);beginPlayCoach(true);canvas.focus({preventScroll:true});};
-  $('guideCoachReplay').onclick=()=>{try{localStorage.removeItem(COACH_KEY);}catch{}openGuide(false);if(phase==='PLAYING')beginPlayCoach(true);else openThemeStart(true);};
+  $('guideCoachReplay').onclick=()=>{PREFERENCES.update(p=>{if(!p.coachSeen)return false;p.coachSeen=false;}).catch(showSaveFailure);openGuide(false);if(phase==='PLAYING')beginPlayCoach(true);else openThemeStart(true);};
   let guideIndex=0;
   const guideSlides=[...document.querySelectorAll('.guide-slide')];
   function showGuideSlide(next){if(menuRouter&&!menuRouter.applying&&menuRouter.current.screen==="help")return menuRouter.go({screen:"help",item:String(clamp(next+1,1,guideSlides.length))},{force:true});
@@ -3167,7 +3185,7 @@ try {
     for(const [el,x,y]of scroll){el.scrollLeft=x;el.scrollTop=y;}
     const next=focused?.isConnected?focused:ultimateId?document.querySelector('[data-ultimate-id="'+ultimateId+'"]'):ultimateSlot!==undefined?document.querySelector('[data-ultimate-slot="'+ultimateSlot+'"]'):ultimateOrder?document.querySelector('#ultimateEquipSlots [data-slot="'+ultimateOrder.slot+'"]')?.children[ultimateOrder.child]:petId?document.querySelector('[data-pet-id="'+petId+'"] [data-action="'+action+'"]'):slot!==undefined?document.querySelector('[data-slot-index="'+slot+'"]'):null;next?.focus({preventScroll:true});
   }
-  $('languageSelect').addEventListener('change',event=>void setLanguage(event.target.value));
+  $('languageSelect').addEventListener('change',event=>{const code=event.target.value;PREFERENCES.update(p=>{p.language=code;}).catch(showSaveFailure);void setLanguage(code);});
   onLanguageChanged(refreshLanguageUi);refreshLanguageUi();$('languageSelect').disabled=false;
 
   runtimePhase='gameplay';if(!isolatedScene&&!runtimeFatal)loop.start();$('load').classList.add('hidden');if(!isolatedScene&&!runtimeFatal)canvas.focus({preventScroll:true});
@@ -3184,5 +3202,5 @@ try {
     if(previewScenario?.tutorial)sfx.setMuted(true);scenarioRunner.play();if(previewSkill&&!previewScenario.tutorial)void sfx.unlock();
   }
   window.addEventListener('pagehide',()=>window.__bloomImpulse.dispose(),{once:true});
-} catch(e) { if(diagnostics){try{diagnostics.report(e,{kind:'startup-exception',visibility:'fatal',origin:runtimePhase,cause:diagnosticContext()});}catch{}haltForRuntimeError();}else ERROR(e); }
+} catch(e) { if(e?.name==='SaveError')loadtext.textContent=saveFailureText(e);else if(diagnostics){try{diagnostics.report(e,{kind:'startup-exception',visibility:'fatal',origin:runtimePhase,cause:diagnosticContext()});}catch{}haltForRuntimeError();}else ERROR(e); }
 

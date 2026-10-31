@@ -1084,5 +1084,10 @@ export default {
   "save.reset": "Erase records and start over",
   "save.resetConfirm": "Only the unreadable save is erased and started fresh. Erased records cannot be restored.",
   "save.resetAccept": "Erase and start over",
-  "save.resetCancel": "Cancel"
+  "save.resetCancel": "Cancel",
+  "pwa.install": "Install app",
+  "pwa.update": "A new version is ready. Reload to apply it.",
+  "pwa.reload": "Reload",
+  "pwa.failed": "App install or offline setup failed. {{v0}}",
+  "pwa.dismiss": "Close"
 };

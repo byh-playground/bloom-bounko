@@ -5,7 +5,9 @@
   "scripts": {
     "vector-assets:check": "node scripts/verify-vector-assets.mjs",
     "test:vector-assets": "node --test tests/vector-assets-manifest.test.mjs",
-    "test:runtime-diagnostics": "node tests/runtime-diagnostics.e2e.mjs"
+    "test:runtime-diagnostics": "node tests/runtime-diagnostics.e2e.mjs",
+    "pwa": "node scripts/pwa.mjs",
+    "pwa:check": "node scripts/pwa.mjs --check"
   },
   "devDependencies": {
     "playwright": "1.63.0"

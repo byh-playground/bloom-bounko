@@ -10,7 +10,7 @@ const OUT = resolve('artifacts/runtime-diagnostics');
 const BASELINE_ROOT = process.env.BASELINE_ROOT ? resolve(process.env.BASELINE_ROOT) : null;
 const VECTOR_BASELINE = JSON.parse(await readFile(resolve('tests/fixtures/vector-assets-pr58-fingerprint.json'), 'utf8'));
 const evidence = {
-  test: 'Chromium desktop and touch-emulated mobile flows: tick-58 launch, GameKit 0.39.0, global errors, loop stop, restart, manual copy',
+  test: 'Chromium desktop and touch-emulated mobile flows: tick-58 launch, GameKit 0.39.1, global errors, loop stop, restart, manual copy',
   startedAt: new Date().toISOString(),
   timeBudgetMs: 150_000,
   baseline: null,
@@ -38,6 +38,7 @@ function serve(root, { exposeVectorAssets = false } = {}) {
   const base = resolve(root);
   const vectorSourceRequests = new Map();
   let vectorSourceBytes = 0;
+  const precacheSourceRequests = new Map();
   const server = createServer(async (req, res) => {
     try {
       const pathname = decodeURIComponent(new URL(req.url, 'http://localhost').pathname);
@@ -49,9 +50,14 @@ function serve(root, { exposeVectorAssets = false } = {}) {
       const info = await stat(file);
       if (!info.isFile()) throw new Error('Not a file');
       let bytes = await readFile(file);
+      // The service worker's one-time precache download (referer sw.js) is counted apart from the game's startup loader.
+      const precacheRequest = new URL(req.headers.referer ?? 'http://localhost/').pathname.endsWith('/sw.js');
       if (pathname.includes('/assets/vector/') && pathname.endsWith('.svg')) {
-        vectorSourceRequests.set(pathname, (vectorSourceRequests.get(pathname) ?? 0) + 1);
-        vectorSourceBytes += bytes.byteLength;
+        if (precacheRequest) precacheSourceRequests.set(pathname, (precacheSourceRequests.get(pathname) ?? 0) + 1);
+        else {
+          vectorSourceRequests.set(pathname, (vectorSourceRequests.get(pathname) ?? 0) + 1);
+          vectorSourceBytes += bytes.byteLength;
+        }
       }
       if (exposeVectorAssets && pathname === '/src/main.js') {
         const html = bytes.toString('utf8');
@@ -83,6 +89,10 @@ function serve(root, { exposeVectorAssets = false } = {}) {
           duplicates: [...vectorSourceRequests.values()].filter(count => count !== 1).length,
           bytes: vectorSourceBytes,
         }),
+        precacheSourceStats: () => ({
+          paths: precacheSourceRequests.size,
+          requests: [...precacheSourceRequests.values()].reduce((sum, count) => sum + count, 0),
+        }),
       });
     });
   });
@@ -106,6 +116,9 @@ async function boot(page, url) {
     throw new Error(`${error.message}; candidate boot state: ${JSON.stringify(state)}`);
   }
   assert.equal(await page.locator('#fatalError').isVisible(), false, 'the game should boot without a fatal runtime dialog');
+  // A build with a web manifest installs its service worker on this first visit. Gameplay ticks below are checked
+  // from the installed steady state, so the one-time precache download does not share the frames being measured.
+  await page.evaluate(() => document.querySelector('link[rel="manifest"]') ? navigator.serviceWorker.ready.then(() => true) : false);
   return page.evaluate(() => ({ version: window.__bloomImpulse.VERSION, buildId: window.__bloomImpulse.BUILD_ID }));
 }
 
@@ -191,8 +204,8 @@ try {
     }
   });
   const candidateVersion = await boot(page, server.url);
-  evidence.candidate = { ...candidateVersion, sdkCommit: '1a3ef3877dea431268c712cbe7b13b2600826119', sdkSourceCommit: 'd5c35c3d4fec366e672c9a5889104ea47a300683', sdkVersion: '0.39.0', sdkManifestSha256: 'ef220fd3801549c88b0044c2bcfa92f4a7de40ce49626e0199ed8e5b1a58f2c0', vectorLoaderCommit: '1a3ef3877dea431268c712cbe7b13b2600826119', vectorLoaderVersion: '0.39.0', vectorLoaderSha256: '277a44071e6c7294a14081cfcf2f8cf0e8f9fc72c7c67b40be20bbfb14966e03', vectorLoaderManifestSha256: 'ef220fd3801549c88b0044c2bcfa92f4a7de40ce49626e0199ed8e5b1a58f2c0' };
-  assert.equal(candidateVersion.version, '0.25.1');
+  evidence.candidate = { ...candidateVersion, sdkCommit: 'fcd3a02db452b2e469898b05aa797d754a89fb76', sdkSourceCommit: '47d9ec102622c84fb6fb66121eab74e8e91fd862', sdkVersion: '0.39.1', sdkManifestSha256: '049171e4b5cd21e07083cc096f3e50aa7bc01f4d4f822e0bd9fc880cfb48c172', vectorLoaderCommit: 'fcd3a02db452b2e469898b05aa797d754a89fb76', vectorLoaderVersion: '0.39.1', vectorLoaderSha256: '277a44071e6c7294a14081cfcf2f8cf0e8f9fc72c7c67b40be20bbfb14966e03', vectorLoaderManifestSha256: '049171e4b5cd21e07083cc096f3e50aa7bc01f4d4f822e0bd9fc880cfb48c172' };
+  assert.equal(candidateVersion.version, '0.26.0');
   const vectorAssetFingerprint = await page.evaluate(async () => {
     const canonical = value => {
       if (Array.isArray(value)) return `[${value.map(canonical).join(',')}]`;
@@ -295,6 +308,7 @@ try {
   assert.deepEqual([...vectorAssetRequests.entries()].sort(([a], [b]) => a.localeCompare(b)), vectorRequestsAfterStartup,
     'the render loop must not refetch or reconvert SVG sources');
   assert.deepEqual(server.vectorSourceStats(), vectorSourceEvidence, 'the render loop must not request SVG sources again');
+  assert.deepEqual(server.precacheSourceStats(), { paths: 49, requests: 49 }, 'the service worker should precache each authored SVG exactly once');
   assert.equal(await page.evaluate(() => window.__bounkoTestLoaderCalls ?? 0), loaderCallsAfterStartup,
     'the render loop must not invoke the SDK SVG compiler again');
   await page.screenshot({ path: resolve(OUT, 'candidate-gameplay-after-launch.png') });
@@ -337,7 +351,7 @@ try {
   const mobilePageErrors = [];
   mobilePage.on('pageerror', error => mobilePageErrors.push(error.message));
   const mobileVersion = await boot(mobilePage, server.url);
-  assert.equal(mobileVersion.version, '0.25.1');
+  assert.equal(mobileVersion.version, '0.26.0');
   await startRun(mobilePage);
   await mobilePage.waitForFunction(() => window.__bloomImpulse.getState().tick >= 52);
   await mobilePage.evaluate(() => {

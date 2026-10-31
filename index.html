@@ -1,7 +1,23 @@
 <!DOCTYPE html>
 <html lang="ko"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
-<meta name="theme-color" content="#0b141a"><title>BOUNKO · Prototype 0.12.2</title>
+<!-- bloom-pwa:start -->
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#0b141a">
+<meta name="description" content="방향을 조준해 돌진하고, 충돌과 반발력으로 싸우는 탑다운 액션 게임입니다.">
+<link rel="icon" type="image/png" sizes="192x192" href="pwa/icon-192.png">
+<link rel="apple-touch-icon" href="pwa/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-title" content="바운코">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://byh-playground.github.io/bloom-bounko/">
+<meta property="og:title" content="BOUNKO · 바운코">
+<meta property="og:description" content="방향을 조준해 돌진하고, 충돌과 반발력으로 싸우는 탑다운 액션 게임입니다.">
+<meta property="og:image" content="https://byh-playground.github.io/bloom-bounko/pwa/share.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<!-- bloom-pwa:end -->
+<title>BOUNKO · Prototype 0.12.2</title>
 <link rel="stylesheet" href="./src/styles/main.css">
 
 </head><body>
@@ -15,7 +31,7 @@
     <div class="runtime-error-actions"><button id="fatalErrorCopy" type="button" data-i18n="runtime.exception.copy">Copy report</button><button id="fatalErrorReload" class="secondary" type="button" data-i18n="runtime.exception.reload">Reload</button></div>
   </div>
 </section>
-<div id="saveNotice" hidden role="alert"><span id="saveNoticeText"></span><button id="saveNoticeReload" type="button" data-i18n="save.reload">새로고침</button></div>
+<div id="notice" hidden role="alert"><span id="noticeText"></span><button id="noticeAction" type="button"></button></div>
 <label class="language-control"><span data-i18n="ui.language">언어</span> <select id="languageSelect" data-i18n-aria-label="ui.language"><option value="ko">한국어</option><option value="en">English</option></select></label>
 <small id="buildVersion" data-game-version></small>
 <canvas id="game" tabindex="0" aria-label="BOUNKO(바운코) 물리 전투 게임" data-i18n-aria-label="dom.game.aria-label.1"></canvas>
@@ -38,7 +54,7 @@
       <h1 data-i18n-html="dom.lobby.html.1">흐름을 이어라</h1>
       <p class="lobby-intro" data-i18n-html="dom.lobby.html.2">공격 버튼 두 번으로 돌진하고, 전장 탭이나 WASD로 구르며 피하자. 적의 공격 예고를 피하고, 흡혈·재생이나 치유 동행으로 체력을 관리하자.</p>
       <div class="lobby-meta"><span id="lobbyGrowth"><span data-i18n="dom.lobbyGrowth.text.1">누적 처치 0</span></span><span id="lobbyBalance"><span data-i18n="dom.lobbyBalance.text.1">레벨 1 · 남은 강화 0</span></span></div>
-      <div class="lobby-buttons"><button id="startRun" class="lobby-primary" data-i18n-html="dom.startRun.html.1">게임 시작 <span aria-hidden="true">↗</span></button><button id="techOpen" class="lobby-secondary"><span data-i18n="dom.techOpen.text.1">업그레이드 </span><span class="lobby-pts">✦ <b id="techPoints">0</b></span></button></div><button id="introOpen" type="button" data-i18n="intro.open">Watch intro · 28s</button><div class="audio-controls"><button id="audioMute" type="button" aria-pressed="false" data-i18n-html="dom.audioMute.html.1">소리 켜짐</button><label><span data-i18n="dom.lobby.text.2">효과음 </span><input id="audioVolume" type="range" min="0" max="100" step="1" aria-label="효과음 음량" data-i18n-aria-label="dom.audioVolume.aria-label.1"></label><output id="audioVolumeValue"></output></div><div class="lobby-resource-buttons"><button id="guideOpen" type="button" data-i18n-html="dom.guideOpen.html.1">◈ 도움말 · 3장</button><button id="wikiOpen" type="button" data-i18n-html="dom.wikiOpen.html.1">▤ 상세 위키</button><button id="ultimateOpen" type="button" data-i18n="ultimate.open">✦ 스킬 편성</button><button id="petOpen" type="button" data-i18n-html="dom.petOpen.html.1">◉ 동행 · 알과 펫</button></div>
+      <div class="lobby-buttons"><button id="startRun" class="lobby-primary" data-i18n-html="dom.startRun.html.1">게임 시작 <span aria-hidden="true">↗</span></button><button id="techOpen" class="lobby-secondary"><span data-i18n="dom.techOpen.text.1">업그레이드 </span><span class="lobby-pts">✦ <b id="techPoints">0</b></span></button></div><div class="lobby-links"><button id="introOpen" type="button" data-i18n="intro.open">Watch intro · 28s</button><button id="installApp" type="button" hidden data-i18n="pwa.install">앱으로 설치</button></div><div class="audio-controls"><button id="audioMute" type="button" aria-pressed="false" data-i18n-html="dom.audioMute.html.1">소리 켜짐</button><label><span data-i18n="dom.lobby.text.2">효과음 </span><input id="audioVolume" type="range" min="0" max="100" step="1" aria-label="효과음 음량" data-i18n-aria-label="dom.audioVolume.aria-label.1"></label><output id="audioVolumeValue"></output></div><div class="lobby-resource-buttons"><button id="guideOpen" type="button" data-i18n-html="dom.guideOpen.html.1">◈ 도움말 · 3장</button><button id="wikiOpen" type="button" data-i18n-html="dom.wikiOpen.html.1">▤ 상세 위키</button><button id="ultimateOpen" type="button" data-i18n="ultimate.open">✦ 스킬 편성</button><button id="petOpen" type="button" data-i18n-html="dom.petOpen.html.1">◉ 동행 · 알과 펫</button></div>
       <p id="lobbyLastRun" class="lobby-run-summary" data-i18n-html="dom.lobbyLastRun.html.1">공격 버튼 두 번 = 돌진 · 전장 탭 / WASD = 회피</p>
     </div>
   </section>

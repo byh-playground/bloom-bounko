@@ -16,10 +16,10 @@ if(previewScenario?.tutorial){document.body.classList.add('guide-scene');documen
 import {t as tr,language,languages,setLanguage,onLanguageChanged,translateDocument,localizedList,message,messageText,number,percent} from '../i18n.js';
 
 
-const KIT = 'https://cdn.jsdelivr.net/gh/byh-playground/bloom-gamekit@1a3ef3877dea431268c712cbe7b13b2600826119/';
-const KIT_VERSION = '0.39.0';
-const KIT_SOURCE_COMMIT = 'd5c35c3d4fec366e672c9a5889104ea47a300683';
-const KIT_MANIFEST_SHA256 = 'ef220fd3801549c88b0044c2bcfa92f4a7de40ce49626e0199ed8e5b1a58f2c0';
+const KIT = 'https://cdn.jsdelivr.net/gh/byh-playground/bloom-gamekit@fcd3a02db452b2e469898b05aa797d754a89fb76/';
+const KIT_VERSION = '0.39.1';
+const KIT_SOURCE_COMMIT = '47d9ec102622c84fb6fb66121eab74e8e91fd862';
+const KIT_MANIFEST_SHA256 = '049171e4b5cd21e07083cc096f3e50aa7bc01f4d4f822e0bd9fc880cfb48c172';
 const KIT_INTERPOLATION_SHA256 = 'acad7ad93615633609a62e484bff918980fc84282840db9b5cd108e8f5bb133a';
 const KIT_VECTOR_ASSETS_SHA256 = 'de7093c51d5ffd80d6bd716a0023a9b78586a1a9b10d607eb730109ba1af694c';
 const KIT_RENDERING_SHA256 = 'cf39f38e1644e2fdca168ee17ce556f09bddb05bfa4e8e89c310ce116d62d97e';
@@ -32,12 +32,13 @@ const KIT_AUDIO_SHA256 = 'baf50e63457ccc7e66859ee9018049b0f53ef49e5b7c90b1395d29
 const KIT_BM_SHA256 = '00b3ff79285fc1e3568ed2cd32a4b9065bbcf5947586763087e756f722c5440b';
 const KIT_BM_IMA_SHA256 = '6602a5589533b138e69c7812518c46417826c0a303ca4c47ba0b24201ba8eb97';
 const KIT_SAVE_SHA256 = '50164b43313c93dca7ebf076456a3b319b0825a0b5c6f5712af8d3286d604cfc';
-const DIAGNOSTICS = 'https://cdn.jsdelivr.net/gh/byh-playground/bloom-gamekit@1a3ef3877dea431268c712cbe7b13b2600826119/debug-tools.js';
+const KIT_PWA_SHA256 = '4f30dd7b16ca3d56f7cbeee4f6e17ff7d7ef04d8aacefaea0af93bd2f6afec8f';
+const DIAGNOSTICS = 'https://cdn.jsdelivr.net/gh/byh-playground/bloom-gamekit@fcd3a02db452b2e469898b05aa797d754a89fb76/debug-tools.js';
 const DIAGNOSTICS_SHA256 = 'bd077de55035f4e258d341318108b32613de5153d09aa5f6edca6ad31eedb4a4';
-const VECTOR_LOADER = 'https://cdn.jsdelivr.net/gh/byh-playground/bloom-gamekit@1a3ef3877dea431268c712cbe7b13b2600826119/vector-assets-loader.js';
+const VECTOR_LOADER = 'https://cdn.jsdelivr.net/gh/byh-playground/bloom-gamekit@fcd3a02db452b2e469898b05aa797d754a89fb76/vector-assets-loader.js';
 const VECTOR_LOADER_SHA256 = '277a44071e6c7294a14081cfcf2f8cf0e8f9fc72c7c67b40be20bbfb14966e03';
-const VECTOR_LOADER_MANIFEST_SHA256 = 'ef220fd3801549c88b0044c2bcfa92f4a7de40ce49626e0199ed8e5b1a58f2c0';
-const VERSION = '0.25.1', BUILD_ID = '20261031T-save-reset-1a3ef38';
+const VECTOR_LOADER_MANIFEST_SHA256 = '049171e4b5cd21e07083cc096f3e50aa7bc01f4d4f822e0bd9fc880cfb48c172';
+const VERSION = '0.26.0', BUILD_ID = '20261031T-pwa-fcd3a02';
 const $ = id => document.getElementById(id);
 document.querySelectorAll('[data-game-version]').forEach(el=>el.textContent='v'+VERSION);
 const loadtext = $('loadtext');translateDocument();document.title=tr('app.title');$('languageSelect').value=language();$('languageSelect').disabled=true;
@@ -88,11 +89,36 @@ $('fatalError').addEventListener('keydown',event=>{
 });
 // Save failures stay visible until reload. Unreadable records are preserved by the save module and never replaced.
 const saveFailureText=error=>error?.name==='SaveError'?tr('save.'+error.kind):tr('save.failed',{v0:String(error?.message||error)});
+// One notice bar for save failures and app messages. It stays until the player presses its button.
+// A visible notice is only replaced by one at least as important (a save failure is never hidden by an app message).
+const NOTICE_PRIORITY={save:3,error:2,update:1};
+function showNotice(kind,text,label,action){
+  const notice=$('notice');
+  if(!notice.hidden&&NOTICE_PRIORITY[notice.dataset.kind]>NOTICE_PRIORITY[kind])return;
+  notice.dataset.kind=kind;$('noticeText').textContent=text;$('noticeAction').textContent=label;$('noticeAction').onclick=action;notice.hidden=false;
+}
 function showSaveFailure(error){
   console.error(error);
-  $('saveNoticeText').textContent=saveFailureText(error);$('saveNotice').hidden=false;
+  showNotice('save',saveFailureText(error),tr('save.reload'),()=>location.reload());
 }
-$('saveNoticeReload').addEventListener('click',()=>location.reload());
+// Installable app with offline start. Isolated scenes (previews, intro) never register the service worker.
+if(!isolatedScene){
+  import(KIT+'pwa.js').then(({registerPwa})=>{
+    const PWA=registerPwa({
+      serviceWorker:'./sw.js',
+      onUpdate:()=>showNotice('update',tr('pwa.update'),tr('pwa.reload'),()=>PWA.update().catch(showPwaError)),
+      onError:showPwaError,
+      onInstallable:()=>{
+        const button=$('installApp');button.hidden=false;
+        button.onclick=()=>{button.hidden=true;PWA.install().catch(showPwaError);};
+      },
+    });
+  },showPwaError);
+}
+function showPwaError(error){
+  console.error(error);
+  showNotice('error',tr('pwa.failed',{v0:String(error?.message||error)}),tr('pwa.dismiss'),()=>{$('notice').hidden=true;});
+}
 // Every opened save, so a startup lock can offer to reset exactly the records that are locked.
 const openedSaves=[];
 // The lock stays until the player confirms; only then are the locked records replaced with create() and the game restarts.

@@ -31,6 +31,11 @@ jobs:
         run: |
           npm run vector-assets:check
           npm run test:vector-assets
+      - name: Verify generated PWA files match their sources
+        run: |
+          npm ci
+          npx playwright install --with-deps chromium
+          npm run pwa:check
       - name: Check entry module syntax
         run: |
           node --check src/main.js
@@ -65,6 +70,8 @@ jobs:
           cp -R assets/vector/eggs _site/assets/vector/eggs
           mkdir -p _site/locales
           cp locales/ko.js locales/en.js _site/locales/
+          cp manifest.webmanifest sw.js _site/
+          cp -R pwa _site/pwa
           touch _site/.nojekyll
           python3 - <<'PY'
           import datetime, hashlib, json, os, pathlib, re
@@ -99,6 +106,8 @@ jobs:
               'gamekit_bm_sha256': re.search(r"KIT_BM_SHA256 = '([^']+)'", game_source).group(1),
               'gamekit_bm_ima_sha256': re.search(r"KIT_BM_IMA_SHA256 = '([^']+)'", game_source).group(1),
               'gamekit_save_sha256': re.search(r"KIT_SAVE_SHA256 = '([^']+)'", game_source).group(1),
+              'gamekit_pwa_sha256': re.search(r"KIT_PWA_SHA256 = '([^']+)'", game_source).group(1),
+              'pwa_build_sha256': hashlib.sha256(pathlib.Path('scripts/vendor/gamekit/pwa-build.mjs').read_bytes()).hexdigest(),
               'gamekit_pins': sorted({pin for source in ('_site/src/main.js', '_site/audio.js')
                   for pin in re.findall(r"bloom-gamekit@([0-9a-f]{40})", pathlib.Path(source).read_text(encoding='utf-8'))}),
               'index_sha256': hashlib.sha256(data).hexdigest(),
@@ -133,17 +142,19 @@ jobs:
           }
           assert metadata['gamekit_sdk_commit'] == metadata['audio_sdk_commit'], 'GameKit pins must match'
           assert metadata['gamekit_pins'] == [metadata['gamekit_sdk_commit']], 'Every GameKit module must use the one SDK dist pin'
-          assert metadata['version'] == '0.25.1', 'Bounko product version changed'
-          assert metadata['build_id'] == '20261031T-save-reset-1a3ef38', 'Bounko build ID changed'
-          assert metadata['gamekit_sdk_commit'] == '1a3ef3877dea431268c712cbe7b13b2600826119', 'GameKit SDK dist commit changed'
-          assert metadata['gamekit_sdk_source_commit'] == 'd5c35c3d4fec366e672c9a5889104ea47a300683', 'GameKit SDK source commit changed'
-          assert metadata['gamekit_sdk_version'] == '0.39.0', 'GameKit SDK version changed'
+          assert metadata['version'] == '0.26.0', 'Bounko product version changed'
+          assert metadata['build_id'] == '20261031T-pwa-fcd3a02', 'Bounko build ID changed'
+          assert metadata['gamekit_sdk_commit'] == 'fcd3a02db452b2e469898b05aa797d754a89fb76', 'GameKit SDK dist commit changed'
+          assert metadata['gamekit_sdk_source_commit'] == '47d9ec102622c84fb6fb66121eab74e8e91fd862', 'GameKit SDK source commit changed'
+          assert metadata['gamekit_sdk_version'] == '0.39.1', 'GameKit SDK version changed'
           assert metadata['gamekit_diagnostics_commit'] == metadata['gamekit_sdk_commit'], 'GameKit diagnostics must share the SDK dist pin'
           assert metadata['gamekit_diagnostics_sha256'] == 'bd077de55035f4e258d341318108b32613de5153d09aa5f6edca6ad31eedb4a4', 'GameKit diagnostics module hash changed'
-          assert metadata['gamekit_manifest_sha256'] == 'ef220fd3801549c88b0044c2bcfa92f4a7de40ce49626e0199ed8e5b1a58f2c0', 'GameKit manifest hash changed'
+          assert metadata['gamekit_manifest_sha256'] == '049171e4b5cd21e07083cc096f3e50aa7bc01f4d4f822e0bd9fc880cfb48c172', 'GameKit manifest hash changed'
           assert metadata['gamekit_bm_sha256'] == '00b3ff79285fc1e3568ed2cd32a4b9065bbcf5947586763087e756f722c5440b', 'GameKit bm.js hash changed'
           assert metadata['gamekit_bm_ima_sha256'] == '6602a5589533b138e69c7812518c46417826c0a303ca4c47ba0b24201ba8eb97', 'GameKit bm-ima.js hash changed'
           assert metadata['gamekit_save_sha256'] == '50164b43313c93dca7ebf076456a3b319b0825a0b5c6f5712af8d3286d604cfc', 'GameKit save.js hash changed'
+          assert metadata['gamekit_pwa_sha256'] == '4f30dd7b16ca3d56f7cbeee4f6e17ff7d7ef04d8aacefaea0af93bd2f6afec8f', 'GameKit pwa.js hash changed'
+          assert metadata['pwa_build_sha256'] == 'dc00f87aa0194ec9721b1949888c310c219238fb9c2562704300d3cbd0003858', 'GameKit pwa-build.mjs copy changed'
           assert metadata['gamekit_interpolation_sha256'] == 'acad7ad93615633609a62e484bff918980fc84282840db9b5cd108e8f5bb133a', 'GameKit interpolation.js hash changed'
           assert metadata['gamekit_vector_assets_sha256'] == 'de7093c51d5ffd80d6bd716a0023a9b78586a1a9b10d607eb730109ba1af694c', 'GameKit vector-assets.js hash changed'
           assert metadata['gamekit_input_sha256'] == 'a969755a39702723b35b6a1503e9b2e53a431ea91845017474c979752fdfb51f', 'GameKit input.js hash changed'
@@ -155,13 +166,18 @@ jobs:
           assert metadata['gamekit_rendering_sha256'] == 'cf39f38e1644e2fdca168ee17ce556f09bddb05bfa4e8e89c310ce116d62d97e', 'GameKit rendering.js hash changed'
           assert metadata['gamekit_vector_loader_commit'] == metadata['gamekit_sdk_commit'], 'GameKit vector loader must share the SDK dist pin'
           assert metadata['gamekit_vector_loader_sha256'] == '277a44071e6c7294a14081cfcf2f8cf0e8f9fc72c7c67b40be20bbfb14966e03', 'GameKit vector-assets-loader.js hash changed'
-          assert metadata['gamekit_vector_loader_manifest_sha256'] == 'ef220fd3801549c88b0044c2bcfa92f4a7de40ce49626e0199ed8e5b1a58f2c0', 'GameKit vector loader dist manifest hash changed'
-          assert metadata['gamekit_vector_loader_version'] == '0.39.0', 'GameKit vector loader version changed'
+          assert metadata['gamekit_vector_loader_manifest_sha256'] == '049171e4b5cd21e07083cc096f3e50aa7bc01f4d4f822e0bd9fc880cfb48c172', 'GameKit vector loader dist manifest hash changed'
+          assert metadata['gamekit_vector_loader_version'] == '0.39.1', 'GameKit vector loader version changed'
           assert metadata['gamekit_vector_loader_manifest_sha256'] == metadata['gamekit_manifest_sha256'], 'GameKit module and loader manifest pins must match'
           assert metadata['vector_source_count'] == 49, 'Unexpected SVG source count'
           assert metadata['vector_source_bytes'] == 356397, 'Authored SVG payload changed'
           assert metadata['vector_compiled_assets_bytes'] == 0, 'Compiled vector data must not be shipped'
           assert not pathlib.Path('_site/vector-assets.generated.js').exists(), 'Compiled vector data must not be shipped'
+          precache = json.loads(re.search(r'"precache": (\[.*?\])', pathlib.Path('_site/sw.js').read_text(encoding='utf-8'), re.S).group(1))
+          missing = [p for p in precache if not p.startswith('https://') and not pathlib.Path('_site', p).is_file()]
+          assert not missing, f'sw.js precaches files the site does not ship: {missing}'
+          assert all(p.split('bloom-gamekit@')[1].startswith(metadata['gamekit_sdk_commit']) for p in precache if p.startswith('https://')), 'sw.js precaches another GameKit pin'
+          assert pathlib.Path('_site/pwa/share.png').is_file(), 'og:image is not shipped'
           pathlib.Path('_site/build.json').write_text(json.dumps(metadata, indent=2) + '\n', encoding='utf-8')
           PY
       - name: Publish bloom-game.json with the Nightly tag name

@@ -235,7 +235,7 @@ export default {
   "dom.wiki_runtime.html.5": "<td>Bloom GameKit ActionState/createDOMInput</td><td>DOM 입력 이벤트 정규화 및 입력 큐 전달</td>",
   "dom.wiki_runtime.html.6": "<td>Bloom GameKit createLoop</td><td>60 TPS 고정 시뮬레이션 스텝과 RAF 렌더 분리</td>",
   "dom.wiki_runtime.html.7": "<td>BOUNKO 게임 소유</td><td>스테이지, 공격 상태, 판정, 피해, 성장, 타겟, 속성, VFX 의미</td>",
-  "dom.wiki_runtime.html.8": "<td>localStorage</td><td>회수 성장·처치 기록·해금·스탯·동행 소유·미회수 보상을 저장. 진행 중 맵/전투 저장은 없음</td>",
+  "dom.wiki_runtime.html.8": "<td>GameKit save · localStorage</td><td>진행(회수 성장·처치 기록·해금·스탯·동행 소유·미회수 보상)과 설정(언어·조작 안내)을 저장. 진행 중 맵/전투 저장은 없음. 프리뷰·소개는 메모리 저장만 씀</td>",
   "dom.wiki_runtime.html.9": "단일 HTML 실행물이다. 최초 실행은 Matter.js CDN과 커밋 고정된 Bloom GameKit 루트 ESM에 네트워크 연결이 필요하다. 게임 `Engine` 인스턴스는 시작마다 재생성하고, 게임 틱은 입력→시간/상태→AI→물리/충돌→후처리 순으로 처리한다. UI 오버레이는 대기 중에만 열리며 게임 상태를 쓰지 않는다.",
   "dom.wiki_runtime.html.10": "<b>시간</b>: 설정의 모든 지속시간·쿨다운은 밀리초 단위다. Engine 물리 스텝에서 dt는 초 단위로 변환한다. 렌더 프레임 수에 맞춰 피해나 적 AI가 두 번 갱신되면 안 된다.",
   "dom.wiki_config.html.1": "20. 모든 기본 Config 값 (실행 코드 동기화)",
@@ -1074,5 +1074,11 @@ export default {
   "runtime.exception.copy": "보고서 복사",
   "runtime.exception.reload": "새로고침",
   "runtime.exception.copied": "보고서를 클립보드에 복사했습니다.",
-  "runtime.exception.manualCopy": "보고서가 선택되었습니다. 길게 눌러 복사를 선택하세요."
+  "runtime.exception.manualCopy": "보고서가 선택되었습니다. 길게 눌러 복사를 선택하세요.",
+  "save.unreadable": "저장 데이터를 읽을 수 없습니다. 기존 저장은 덮어쓰지 않고 그대로 두었습니다.",
+  "save.conflict": "다른 탭에서 저장되었습니다. 이 탭의 변경은 저장되지 않으니 새로고침하세요.",
+  "save.storage": "저장하지 못했습니다. 브라우저 저장 공간과 권한을 확인하세요.",
+  "save.closed": "저장이 닫혔습니다. 새로고침하세요.",
+  "save.failed": "저장하지 못했습니다. {{v0}}",
+  "save.reload": "새로고침"
 };

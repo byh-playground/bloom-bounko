@@ -192,7 +192,7 @@ try {
   });
   const candidateVersion = await boot(page, server.url);
   evidence.candidate = { ...candidateVersion, sdkCommit: 'b83464e445efaf86d66499859d3d05463df2b22a', sdkSourceCommit: '88630ef4dea7fd3a7fd7aad22090fe74cb3a6fbc', sdkVersion: '0.26.6', sdkManifestSha256: 'bb92d60e2f7f84397d9055f990ba99d6a4d61da2bf0c053acf90bf42dc379e53', vectorLoaderCommit: 'b83464e445efaf86d66499859d3d05463df2b22a', vectorLoaderVersion: '0.26.6', vectorLoaderSha256: 'a9d9eaa61d891fb1dd9d7d8ac9d9781fe2545cc2a7f8ede6202556c2a7a2f48f', vectorLoaderManifestSha256: 'bb92d60e2f7f84397d9055f990ba99d6a4d61da2bf0c053acf90bf42dc379e53' };
-  assert.equal(candidateVersion.version, '0.23.9');
+  assert.equal(candidateVersion.version, '0.24.0');
   const vectorAssetFingerprint = await page.evaluate(async () => {
     const canonical = value => {
       if (Array.isArray(value)) return `[${value.map(canonical).join(',')}]`;
@@ -337,7 +337,7 @@ try {
   const mobilePageErrors = [];
   mobilePage.on('pageerror', error => mobilePageErrors.push(error.message));
   const mobileVersion = await boot(mobilePage, server.url);
-  assert.equal(mobileVersion.version, '0.23.9');
+  assert.equal(mobileVersion.version, '0.24.0');
   await startRun(mobilePage);
   await mobilePage.waitForFunction(() => window.__bloomImpulse.getState().tick >= 52);
   await mobilePage.evaluate(() => {

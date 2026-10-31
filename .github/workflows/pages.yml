@@ -127,8 +127,8 @@ jobs:
               'audio_sdk_sha256': re.search(r"sha256:'([^']+)'", pathlib.Path('_site/audio.js').read_text(encoding='utf-8')).group(1),
           }
           assert metadata['gamekit_sdk_commit'] == metadata['audio_sdk_commit'], 'GameKit pins must match'
-          assert metadata['version'] == '0.23.9', 'Bounko product version changed'
-          assert metadata['build_id'] == '20261029T-gamekit-v0.26.6-b83464e', 'Bounko build ID changed'
+          assert metadata['version'] == '0.24.0', 'Bounko product version changed'
+          assert metadata['build_id'] == '20261031T-gamekit-save-v0.37.6-53361a1', 'Bounko build ID changed'
           assert metadata['gamekit_sdk_commit'] == 'b83464e445efaf86d66499859d3d05463df2b22a', 'GameKit SDK dist commit changed'
           assert metadata['gamekit_sdk_source_commit'] == '88630ef4dea7fd3a7fd7aad22090fe74cb3a6fbc', 'GameKit SDK source commit changed'
           assert metadata['gamekit_sdk_version'] == '0.26.6', 'GameKit SDK version changed'

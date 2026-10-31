@@ -1080,5 +1080,9 @@ export default {
   "save.storage": "Could not save. Check browser storage space and permissions.",
   "save.closed": "Saving is closed. Reload the page.",
   "save.failed": "Could not save. {{v0}}",
-  "save.reload": "Reload"
+  "save.reload": "Reload",
+  "save.reset": "Erase records and start over",
+  "save.resetConfirm": "Only the unreadable save is erased and started fresh. Erased records cannot be restored.",
+  "save.resetAccept": "Erase and start over",
+  "save.resetCancel": "Cancel"
 };

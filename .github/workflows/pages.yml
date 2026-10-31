@@ -133,8 +133,8 @@ jobs:
           }
           assert metadata['gamekit_sdk_commit'] == metadata['audio_sdk_commit'], 'GameKit pins must match'
           assert metadata['gamekit_pins'] == [metadata['gamekit_sdk_commit']], 'Every GameKit module must use the one SDK dist pin'
-          assert metadata['version'] == '0.25.0', 'Bounko product version changed'
-          assert metadata['build_id'] == '20261031T-gamekit-v0.39.0-1a3ef38', 'Bounko build ID changed'
+          assert metadata['version'] == '0.25.1', 'Bounko product version changed'
+          assert metadata['build_id'] == '20261031T-save-reset-1a3ef38', 'Bounko build ID changed'
           assert metadata['gamekit_sdk_commit'] == '1a3ef3877dea431268c712cbe7b13b2600826119', 'GameKit SDK dist commit changed'
           assert metadata['gamekit_sdk_source_commit'] == 'd5c35c3d4fec366e672c9a5889104ea47a300683', 'GameKit SDK source commit changed'
           assert metadata['gamekit_sdk_version'] == '0.39.0', 'GameKit SDK version changed'

@@ -1086,8 +1086,6 @@ export default {
   "save.resetAccept": "지우고 새로 시작",
   "save.resetCancel": "취소",
   "pwa.install": "앱으로 설치",
-  "pwa.update": "새 버전이 있습니다. 새로고침하면 적용됩니다.",
-  "pwa.reload": "새로고침",
   "pwa.failed": "앱 설치·오프라인 준비에 실패했습니다. {{v0}}",
   "pwa.dismiss": "닫기"
 };

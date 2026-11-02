@@ -10,7 +10,7 @@
 
 ## 광고(bm) 시험 연결
 
-GameKit `bm`(아래 GameKit 0.39.1 핀의 `bm.js`·`bm-ima.js`, SHA-256은 `src/main.js`의 `KIT_BM_SHA256`·`KIT_BM_IMA_SHA256`)을 주소에 `ads=test`가 있을 때만 켭니다. 기본 배포에는 광고가 없고 동작도 달라지지 않습니다. 광고는 Google IMA 공개 샘플 태그(테스트 전용)이므로 운영 광고가 아닙니다.
+GameKit `bm`(아래 GameKit 0.41.3 핀의 `bm.js`·`bm-ima.js`, SHA-256은 `src/main.js`의 `KIT_BM_SHA256`·`KIT_BM_IMA_SHA256`)을 주소에 `ads=test`가 있을 때만 켭니다. 기본 배포에는 광고가 없고 동작도 달라지지 않습니다. 광고는 Google IMA 공개 샘플 태그(테스트 전용)이므로 운영 광고가 아닙니다.
 
 - **이어하기(보상형):** 쓰러진 뒤 종료 화면의 '광고 보고 이어하기'를 끝까지 보면 그 자리에서 체력 50%로 이어가고 2초 동안 피해를 받지 않습니다. 수치는 `C.revive`(`healthRate`, `invulnerableMs`)입니다. 한 런에 한 번이며, 이미 썼거나 `canShow('rewarded')`가 막으면(SDK 로드 실패·광고 차단은 `not-ready`) 버튼이 숨겨집니다. 건너뛰거나 닫으면 보상 없이 종료 화면에 남습니다.
 - **전면:** 종료 화면의 '대기 화면으로'를 누르면 전면 광고 뒤에 대기 화면으로 갑니다. bm의 기본 쿨다운(60초) 안이면 광고 없이 바로 갑니다.
@@ -19,7 +19,7 @@ GameKit `bm`(아래 GameKit 0.39.1 핀의 `bm.js`·`bm-ima.js`, SHA-256은 `src/
 
 ## GameKit save 저장 이관 (0.24.0, 효과음 설정 0.25.0)
 
-진행·설정·효과음 설정은 GameKit `save`(아래 GameKit 0.39.1 핀의 `save.js`, SHA-256은 `src/main.js`의 `KIT_SAVE_SHA256`)가 저장합니다. 게임 코드와 GameKit `audio`는 localStorage를 직접 읽거나 쓰지 않습니다.
+진행·설정·효과음 설정은 GameKit `save`(아래 GameKit 0.41.3 핀의 `save.js`, SHA-256은 `src/main.js`의 `KIT_SAVE_SHA256`)가 저장합니다. 게임 코드와 GameKit `audio`는 localStorage를 직접 읽거나 쓰지 않습니다.
 
 ```js
 // localStorage 키 = 'bounko-' + key, 레코드 = 데이터 + schema + revision
@@ -45,9 +45,9 @@ GameKit v0.16.0부터 컴파일러는 `defaultExpression`이 숨기는 파트의
 
 처리되지 않은 전역 오류·Promise 거절과 게임 루프 예외가 보고되면 입력을 해제하고 게임 루프를 멈춘 뒤, 복사와 새로고침이 가능한 진단 화면을 표시합니다. 진단 기록은 최근 20개로 제한되며 메시지·스택의 경로와 비밀값은 가립니다. 보고서는 사용자가 직접 복사하기 전까지 자동 전송하지 않습니다.
 
-## 설치 가능한 앱(PWA)과 GameKit 0.39.1 핀 (0.26.0)
+## 설치 가능한 앱(PWA)과 GameKit 0.41.3 핀 (0.26.1)
 
-GameKit `pwa`로 설치 가능한 앱이 되고, 한 번 방문한 뒤에는 service worker가 게임 파일을 캐시합니다.
+GameKit `pwa`로 설치 가능한 앱이 됩니다. 페이지를 읽으면(새로고침 포함) 항상 최신 버전이고, worker가 제어한 상태로 한 번 읽은 뒤(두 번째 방문)부터 오프라인으로도 시작합니다.
 
 ```sh
 npm run pwa        # assets/pwa/*.svg → manifest.webmanifest, pwa/*.png, sw.js, index.html의 bloom-pwa 마커 사이 태그
@@ -55,15 +55,16 @@ npm run pwa:check  # 커밋된 결과가 원본과 다르면 실패(Pages 배포
 ```
 
 - 원본 그림: `assets/pwa/icon.svg`·`icon-maskable.svg`(플레이어 `player.svg`, 오른쪽을 보는 표정), `share.svg`(1200×630, 플레이어·rogue·petalPredator·lancer·puff·thornfruit·medic 알, 글자는 Noto Sans KR을 path로 바꿔 PC 글꼴과 무관). 생성 결과는 커밋합니다.
-- 생성기: `scripts/vendor/gamekit/pwa-build.mjs`는 dist `fcd3a02`의 사본이고, `scripts/pwa.mjs`가 SHA-256 `dc00f87a…`을 확인한 뒤에만 실행합니다. PNG는 Playwright 1.63.0 Chromium으로 그리며 Windows·Linux(AlmaLinux WSL) 결과가 같았습니다.
-- precache: `index.html`, `src/**`, Pages가 배포하는 루트 게임 모듈 16개, `assets/vector/**`, `locales/*.js`와 생성한 manifest·아이콘. 루트를 `*.js`로 고르면 생성된 `sw.js`가 들어가 생성기가 거부하므로 이름으로 나열합니다. Pages workflow는 precache한 같은 origin 파일이 모두 `_site`에 있는지 확인합니다.
-- 오프라인 시작: `matter-js@0.20.0`·`i18next@26.4.3`은 jsdelivr npm 주소라 service worker가 캐시하지 않습니다. 첫 방문 뒤 오프라인 시작은 브라우저 HTTP 캐시가 이 둘을 들고 있을 때만 됩니다. GameKit 모듈은 `…:gamekit` runtime cache로 들어갑니다.
-- runtime: 격리 장면(`?preview=`·`?intro=1`)이 아니면 `registerPwa`를 부릅니다. 새 버전은 화면 위 알림(`#notice`, 저장 실패와 같은 자리)에 '새로고침' 버튼으로, 등록 실패는 같은 자리에 '닫기' 버튼으로 보입니다. 보이는 알림은 더 중요하거나 같은 알림만 덮습니다(저장 실패 > 등록 실패 > 새 버전). 브라우저가 설치를 허용하면(`beforeinstallprompt`) 대기 화면 '소개 보기' 옆에 '앱으로 설치' 버튼이 나타나고, 누르면 설치 창을 한 번 띄운 뒤 숨깁니다.
+- 생성기: `scripts/vendor/gamekit/pwa-build.mjs`는 dist `c819a0b`의 사본이고, `scripts/pwa.mjs`가 SHA-256 `f4f213c2…`을 확인한 뒤에만 실행합니다. PNG는 Playwright 1.63.0 Chromium으로 그립니다.
+- service worker: 설치 때 아무것도 받지 않습니다. 같은 origin 파일은 매번 서버에 재확인(`no-cache`)하고 200 응답을 runtime 캐시에 오프라인 사본으로 두며, 네트워크 오류일 때만 사본을 씁니다. 게임 파일 목록을 관리하지 않으므로 게임 파일만 바뀐 배포는 `npm run pwa`를 다시 돌릴 필요가 없습니다. 커밋 고정 GameKit 주소는 `…:gamekit` 캐시에서 cache-first입니다.
+- 오프라인 시작: `matter-js@0.20.0`·`i18next@26.4.3`은 jsdelivr npm 주소라 service worker가 캐시하지 않습니다(D-122). 오프라인 시작은 브라우저 HTTP 캐시가 이 둘을 들고 있을 때만 되며, 우회 코드는 두지 않습니다.
+- runtime: 격리 장면(`?preview=`·`?intro=1`)이 아니면 `registerPwa`를 부릅니다. 새 버전 알림은 없습니다(새로고침이 곧 최신). 등록 실패는 화면 위 알림(`#notice`, 저장 실패와 같은 자리)에 '닫기' 버튼으로 보이고, 저장 실패가 보이는 동안에는 덮지 않습니다. 브라우저가 설치를 허용하면(`beforeinstallprompt`) 대기 화면 '소개 보기' 옆에 '앱으로 설치' 버튼이 나타나고, 누르면 설치 창을 한 번 띄운 뒤 숨깁니다. 설정에 '업데이트 확인' 항목은 없습니다.
+- `index.html`의 마커 사이 태그는 0.39.1 생성기가 쓴 `>` 모양 그대로입니다. 0.41.3 생성기는 따옴표 밖 공백·`/>` 차이를 같은 것으로 보므로 다시 쓰지 않고 `--check`가 통과합니다. 이 저장소는 Prettier를 쓰지 않아 `.prettierignore`가 없습니다.
 
-모든 GameKit 모듈(SDK·진단·벡터 로더·audio·bm·save·pwa)이 dist 커밋 `fcd3a02db452b2e469898b05aa797d754a89fb76`(SDK 0.39.1, 소스 커밋 `47d9ec102622c84fb6fb66121eab74e8e91fd862`, manifest SHA-256 `049171e4b5cd21e07083cc096f3e50aa7bc01f4d4f822e0bd9fc880cfb48c172`) 하나를 씁니다. Pages workflow는 `src/main.js`·`audio.js`의 모든 `bloom-gamekit@` 핀이 이 커밋 하나인지와 모듈별 SHA-256 고정값을 확인합니다.
+모든 GameKit 모듈(SDK·진단·벡터 로더·audio·bm·save·pwa·pwa-build)이 dist 커밋 `c819a0b48fb650ee8222f7d5ea90a63a2b9306d1`(SDK 0.41.3, 소스 커밋 `bb3f59614c8d4da8188a3ffdc2eff43314fabe5f`, manifest SHA-256 `d9c141ee18be4ce7a33cc8c39bdba75d5cd76e0b8ecdf7c2038386bc75cd9851`) 하나를 씁니다. Pages workflow는 `src/main.js`·`audio.js`의 모든 `bloom-gamekit@` 핀이 이 커밋 하나인지와 모듈별 SHA-256 고정값을 확인합니다.
 
-- 0.39.0(`1a3ef38`) → 0.39.1(`fcd3a02`): BOUNKO가 쓰는 모듈은 바이트가 그대로입니다(`rendering.js` `cf39f38e…`, `vector-assets-loader.js` `277a4407…`, `audio.js` `baf50e63…`, `debug-tools.js` `bd077de5…`, `save.js` `50164b43…`, `interpolation.js` `acad7ad9…`, `vector-assets.js` `de7093c5…`, `input.js` `a969755a…`, `simloop.js` `c25a8f7f…`, `camera.js` `99c1be43…`, `navigation.js` `2c8e1243…`, `scenario.js` `b21a2be8…`, `bm.js` `00b3ff79…`, `bm-ima.js` `6602a558…`). 바뀐 것은 쓰지 않는 `rollback.js`와 새 `pwa.js` `4f30dd7b…`·`pwa-build.mjs` `dc00f87a…`입니다.
-- v0.38.0 audio `storageKey` → `settings`는 0.25.0에서 이미 옮겼습니다. v0.39.0 `transport` `resume.adapter`는 BOUNKO가 transport를 쓰지 않아 해당이 없습니다.
+- 0.39.1(`fcd3a02`) → 0.41.3(`c819a0b`)에서 바뀐 모듈: `rendering.js` `cf39f38e…`→`08a11090…`(v0.39.3~v0.40.2: 숫자 텍스처 premultiply 수정, depth, drawQuads 할당 감소, opt-in orderedMeshQuads), `vector-assets.js` `de7093c5…`→`b3e6a20d…`·`vector-assets-loader.js` `277a4407…`→`f53c266c…`(v0.40.3 scale 0 허용), `interpolation.js` `acad7ad9…`→`854e9034…`(v0.40.4 복사 성능), `save.js` `50164b43…`→`540b2af2…`(v0.40.0 migrate 오류 → `unreadable`), `pwa.js` `4f30dd7b…`→`295b5918…`·`pwa-build.mjs` `dc00f87a…`→`f4f213c2…`(v0.40.1·v0.41.0·v0.41.3). 그대로인 것: `input.js`·`simloop.js`·`camera.js`·`navigation.js`·`scenario.js`·`audio.js`·`debug-tools.js`·`bm.js`·`bm-ima.js`.
+- Breaking: v0.41.0 pwa는 `precache`·`onUpdate`·`update()`를 지워 맞췄습니다(새 버전 알림·문구 `pwa.update`·`pwa.reload`·알림 색 제거). v0.40.0 save는 BOUNKO가 `migrate`를 쓰지 않아 해당이 없습니다. 새 모듈 `boot`(v0.41.1)·`i18n`(v0.41.2)은 쓰지 않으며, 이 저장소에는 manifest 모듈 목록을 고정 검사하는 스크립트가 없습니다.
 
 ## GameKit v0.7.2 + non-scaling egg cracks (0.23.4)
 
@@ -413,7 +414,7 @@ Unit은 몸·HP·높이·공통 피해/회복·사망을 소유하고 능력 믹
 | --- | --- |
 | i18next 26.4.3 (MIT) | [공식 native ESM](https://cdn.jsdelivr.net/npm/i18next@26.4.3/dist/esm/i18next.js), 실제 HTTP 200·SHA-256 `4fb2e0c4dfd13dda4f6cb292ae0f9c5260a13b28bab05ee723915351bdaf00a1` |
 | Matter.js 0.20.0 | [jsDelivr npm 빌드](https://cdn.jsdelivr.net/npm/matter-js@0.20.0/build/matter.min.js) |
-| Bloom GameKit audio | pinned dist commit `fcd3a02db452b2e469898b05aa797d754a89fb76`의 [audio.js](https://github.com/byh-playground/bloom-gamekit/blob/fcd3a02db452b2e469898b05aa797d754a89fb76/audio.js), SHA-256 `baf50e63457ccc7e66859ee9018049b0f53ef49e5b7c90b1395d2995bdcf6df1` |
+| Bloom GameKit audio | pinned dist commit `c819a0b48fb650ee8222f7d5ea90a63a2b9306d1`의 [audio.js](https://github.com/byh-playground/bloom-gamekit/blob/c819a0b48fb650ee8222f7d5ea90a63a2b9306d1/audio.js), SHA-256 `baf50e63457ccc7e66859ee9018049b0f53ef49e5b7c90b1395d2995bdcf6df1` |
 | Bloom GameKit | 커밋 `d1e2c385033ad04a7a004cfbe9558948ef07a6d1`의 루트 [rendering.js](https://github.com/byh-playground/bloom-gamekit/blob/d1e2c385033ad04a7a004cfbe9558948ef07a6d1/rendering.js), [input.js](https://github.com/byh-playground/bloom-gamekit/blob/d1e2c385033ad04a7a004cfbe9558948ef07a6d1/input.js), [simloop.js](https://github.com/byh-playground/bloom-gamekit/blob/d1e2c385033ad04a7a004cfbe9558948ef07a6d1/simloop.js), [camera.js](https://github.com/byh-playground/bloom-gamekit/blob/d1e2c385033ad04a7a004cfbe9558948ef07a6d1/camera.js) |
 
 GameKit은 위 고정 커밋의 루트 ESM을 jsDelivr에서 가져옵니다. 오디오는 부모가 검토·머지한 [GameKit PR #36](https://github.com/byh-playground/bloom-gamekit/pull/36)의 실제 main→dist 배포본에 별도로 고정하며 로컬 재생 엔진을 복제하지 않습니다. 초기 이관에서는 제목·대기 화면·접근성 이름·내장 위키를 BOUNKO로 정리하고, 실제 루트 import와 맞도록 의존성 설명을 수정했습니다. 0.10.2 이관 시 게임 실행 모듈은 BUILD_ID 외에 원본과 동일했습니다. 0.10.3은 기존 GameKit 입력 수집과 회피 실행 경로를 재사용하며, 밸런스·공격 메커니즘·저장 계약을 유지합니다. 0.10.4는 공통 `launch`에 발사 원인(`manual` / `echo`)을 명시해 메아리만 무료로 처리합니다. 발사 성공 뒤에만 비용과 발사 횟수를 기록하므로 실패한 발사에는 비용이 없고, 무료 메아리도 발사 횟수에 포함됩니다. `.gitattributes`로 HTML의 LF 줄바꿈을 고정했습니다.

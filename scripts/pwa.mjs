@@ -5,9 +5,9 @@ import { readFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import { chromium } from 'playwright';
 
-// GameKit dist fcd3a02(SDK 0.39.1)의 pwa-build.mjs 사본. 다른 바이트면 실행하지 않는다.
+// GameKit dist c819a0b(SDK 0.41.3)의 pwa-build.mjs 사본. 다른 바이트면 실행하지 않는다.
 const PWA_BUILD = new URL('./vendor/gamekit/pwa-build.mjs', import.meta.url);
-const PWA_BUILD_SHA256 = 'dc00f87aa0194ec9721b1949888c310c219238fb9c2562704300d3cbd0003858';
+const PWA_BUILD_SHA256 = 'f4f213c2bec77e4cce2c6fa64434d127b09d382f75b487c9a55750bac1bea80f';
 const ACTUAL = createHash('sha256').update(await readFile(PWA_BUILD)).digest('hex');
 if (ACTUAL !== PWA_BUILD_SHA256) {
     throw new Error(`scripts/vendor/gamekit/pwa-build.mjs sha256 ${ACTUAL} does not match the pinned ${PWA_BUILD_SHA256}`);
@@ -30,19 +30,6 @@ const RESULT = await buildPwa({
     scope: './',
     siteUrl: 'https://byh-playground.github.io/bloom-bounko/',
     html: 'index.html',
-    // Pages 워크플로가 배포하는 시작 파일 전부(index.html·src·루트 게임 모듈·SVG 원본·문구).
-    // 루트는 `*.js`로 고르지 않는다: 생성된 sw.js가 들어가면 생성기가 거부한다.
-    precache: [
-        'index.html',
-        'src/**',
-        ...[
-            'abilities', 'audio', 'controllers', 'drops', 'enemies', 'i18n', 'pets', 'player-presentation',
-            'presentation-view', 'preview', 'tech-view', 'theme-progress', 'ultimates', 'vector-actors',
-            'vector-assets-runtime', 'vector-assets.manifest',
-        ].map((name) => `${name}.js`),
-        'assets/vector/**',
-        'locales/*.js',
-    ],
     out: '.',
     check: process.argv.includes('--check'),
 });

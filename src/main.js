@@ -16,13 +16,13 @@ if(previewScenario?.tutorial){document.body.classList.add('guide-scene');documen
 import {t as tr,language,languages,setLanguage,onLanguageChanged,translateDocument,localizedList,message,messageText,number,percent} from '../i18n.js';
 
 
-const KIT = 'https://cdn.jsdelivr.net/gh/byh-playground/bloom-gamekit@fcd3a02db452b2e469898b05aa797d754a89fb76/';
-const KIT_VERSION = '0.39.1';
-const KIT_SOURCE_COMMIT = '47d9ec102622c84fb6fb66121eab74e8e91fd862';
-const KIT_MANIFEST_SHA256 = '049171e4b5cd21e07083cc096f3e50aa7bc01f4d4f822e0bd9fc880cfb48c172';
-const KIT_INTERPOLATION_SHA256 = 'acad7ad93615633609a62e484bff918980fc84282840db9b5cd108e8f5bb133a';
-const KIT_VECTOR_ASSETS_SHA256 = 'de7093c51d5ffd80d6bd716a0023a9b78586a1a9b10d607eb730109ba1af694c';
-const KIT_RENDERING_SHA256 = 'cf39f38e1644e2fdca168ee17ce556f09bddb05bfa4e8e89c310ce116d62d97e';
+const KIT = 'https://cdn.jsdelivr.net/gh/byh-playground/bloom-gamekit@c819a0b48fb650ee8222f7d5ea90a63a2b9306d1/';
+const KIT_VERSION = '0.41.3';
+const KIT_SOURCE_COMMIT = 'bb3f59614c8d4da8188a3ffdc2eff43314fabe5f';
+const KIT_MANIFEST_SHA256 = 'd9c141ee18be4ce7a33cc8c39bdba75d5cd76e0b8ecdf7c2038386bc75cd9851';
+const KIT_INTERPOLATION_SHA256 = '854e90343fba611d4f0d118048c33256624543c454c9134e0c4b5cd18d14a509';
+const KIT_VECTOR_ASSETS_SHA256 = 'b3e6a20d29368985770e175ecb015da18c1ed00796d965e0b140051f61fceadf';
+const KIT_RENDERING_SHA256 = '08a110906c3a249c892685940ff79b3ebe7bc34afe36f4c5d6b7b056572ccf8b';
 const KIT_INPUT_SHA256 = 'a969755a39702723b35b6a1503e9b2e53a431ea91845017474c979752fdfb51f';
 const KIT_SIMLOOP_SHA256 = 'c25a8f7f4999e4fe8beb6b08167fa4d0934c34098db2bf912335e81db53c4ef8';
 const KIT_CAMERA_SHA256 = '99c1be43b6a38945028d029a5ecc594f7ff6dfc71075305264930748cafe88b6';
@@ -31,14 +31,14 @@ const KIT_SCENARIO_SHA256 = 'b21a2be85b497588589c796f8e95f932c464474cc4ea3f703a8
 const KIT_AUDIO_SHA256 = 'baf50e63457ccc7e66859ee9018049b0f53ef49e5b7c90b1395d2995bdcf6df1';
 const KIT_BM_SHA256 = '00b3ff79285fc1e3568ed2cd32a4b9065bbcf5947586763087e756f722c5440b';
 const KIT_BM_IMA_SHA256 = '6602a5589533b138e69c7812518c46417826c0a303ca4c47ba0b24201ba8eb97';
-const KIT_SAVE_SHA256 = '50164b43313c93dca7ebf076456a3b319b0825a0b5c6f5712af8d3286d604cfc';
-const KIT_PWA_SHA256 = '4f30dd7b16ca3d56f7cbeee4f6e17ff7d7ef04d8aacefaea0af93bd2f6afec8f';
-const DIAGNOSTICS = 'https://cdn.jsdelivr.net/gh/byh-playground/bloom-gamekit@fcd3a02db452b2e469898b05aa797d754a89fb76/debug-tools.js';
+const KIT_SAVE_SHA256 = '540b2af25e91bd6b5683c3ae8f80484a951baea9dc90452233dd72c26a4696ed';
+const KIT_PWA_SHA256 = '295b5918d9c6c92d2b973496019bb4c108dd36372ea93af55d1e5eccb4259b97';
+const DIAGNOSTICS = 'https://cdn.jsdelivr.net/gh/byh-playground/bloom-gamekit@c819a0b48fb650ee8222f7d5ea90a63a2b9306d1/debug-tools.js';
 const DIAGNOSTICS_SHA256 = 'bd077de55035f4e258d341318108b32613de5153d09aa5f6edca6ad31eedb4a4';
-const VECTOR_LOADER = 'https://cdn.jsdelivr.net/gh/byh-playground/bloom-gamekit@fcd3a02db452b2e469898b05aa797d754a89fb76/vector-assets-loader.js';
-const VECTOR_LOADER_SHA256 = '277a44071e6c7294a14081cfcf2f8cf0e8f9fc72c7c67b40be20bbfb14966e03';
-const VECTOR_LOADER_MANIFEST_SHA256 = '049171e4b5cd21e07083cc096f3e50aa7bc01f4d4f822e0bd9fc880cfb48c172';
-const VERSION = '0.26.0', BUILD_ID = '20261031T-pwa-fcd3a02';
+const VECTOR_LOADER = 'https://cdn.jsdelivr.net/gh/byh-playground/bloom-gamekit@c819a0b48fb650ee8222f7d5ea90a63a2b9306d1/vector-assets-loader.js';
+const VECTOR_LOADER_SHA256 = 'f53c266c4bff3e79c0a6341b8e1c68525507199a920c7d6a97936ebc84ca6da9';
+const VECTOR_LOADER_MANIFEST_SHA256 = 'd9c141ee18be4ce7a33cc8c39bdba75d5cd76e0b8ecdf7c2038386bc75cd9851';
+const VERSION = '0.26.1', BUILD_ID = '20261103T-pwa-c819a0b';
 const $ = id => document.getElementById(id);
 document.querySelectorAll('[data-game-version]').forEach(el=>el.textContent='v'+VERSION);
 const loadtext = $('loadtext');translateDocument();document.title=tr('app.title');$('languageSelect').value=language();$('languageSelect').disabled=true;
@@ -91,7 +91,7 @@ $('fatalError').addEventListener('keydown',event=>{
 const saveFailureText=error=>error?.name==='SaveError'?tr('save.'+error.kind):tr('save.failed',{v0:String(error?.message||error)});
 // One notice bar for save failures and app messages. It stays until the player presses its button.
 // A visible notice is only replaced by one at least as important (a save failure is never hidden by an app message).
-const NOTICE_PRIORITY={save:3,error:2,update:1};
+const NOTICE_PRIORITY={save:2,error:1};
 function showNotice(kind,text,label,action){
   const notice=$('notice');
   if(!notice.hidden&&NOTICE_PRIORITY[notice.dataset.kind]>NOTICE_PRIORITY[kind])return;
@@ -106,7 +106,6 @@ if(!isolatedScene){
   import(KIT+'pwa.js').then(({registerPwa})=>{
     const PWA=registerPwa({
       serviceWorker:'./sw.js',
-      onUpdate:()=>showNotice('update',tr('pwa.update'),tr('pwa.reload'),()=>PWA.update().catch(showPwaError)),
       onError:showPwaError,
       onInstallable:()=>{
         const button=$('installApp');button.hidden=false;

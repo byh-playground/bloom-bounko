@@ -1086,8 +1086,6 @@ export default {
   "save.resetAccept": "Erase and start over",
   "save.resetCancel": "Cancel",
   "pwa.install": "Install app",
-  "pwa.update": "A new version is ready. Reload to apply it.",
-  "pwa.reload": "Reload",
   "pwa.failed": "App install or offline setup failed. {{v0}}",
   "pwa.dismiss": "Close"
 };
